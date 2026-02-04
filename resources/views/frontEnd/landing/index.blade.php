@@ -751,15 +751,6 @@
 
 <!-- jquery plugins here-->
 <!-- jquery -->
-<script src="{{asset('public/landing/js/jquery-1.12.1.min.js')}}"></script>
-<!-- popper js -->
-<script src="{{asset('public/landing/js/popper.min.js')}}"></script>
-<!-- bootstrap js -->
-<script src="{{asset('public/landing/js/bootstrap.min.js')}}"></script>
-<!-- easing js -->
-<script src="{{asset('public/landing/js/jquery.magnific-popup.js')}}"></script>
-<!--  -->
-<script src="{{asset('public/landing/js/jquery.easing.min.js')}}"></script>
 
 </body>
 
