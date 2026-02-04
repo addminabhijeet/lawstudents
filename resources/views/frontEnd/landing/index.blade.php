@@ -760,8 +760,6 @@
 <script src="{{asset('public/landing/js/jquery.magnific-popup.js')}}"></script>
 <!--  -->
 <script src="{{asset('public/landing/js/jquery.easing.min.js')}}"></script>
-<!-- custom js -->
-<script src="{{asset('public/landing/js/custom.js')}}"></script>
 
 </body>
 
