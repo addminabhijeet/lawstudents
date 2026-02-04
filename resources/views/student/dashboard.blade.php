@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Landing</title>
+    <title>Parent Dashboard</title>
 </head>
 <body>
 
