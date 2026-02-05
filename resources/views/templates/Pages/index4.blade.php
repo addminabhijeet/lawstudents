@@ -1,5 +1,5 @@
 @extends('templates.element.header.navbar4')
-
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -915,3 +915,4 @@
 </body>
 
 </html>
+@endsection
