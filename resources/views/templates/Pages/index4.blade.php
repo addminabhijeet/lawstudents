@@ -1,3 +1,5 @@
+@extends('templates.element.header.navbar4')
+
 <!DOCTYPE html>
 <html lang="en">
 
