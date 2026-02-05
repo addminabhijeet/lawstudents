@@ -5,15 +5,12 @@
 
 <head>
   <?= element('title_meta' , ['title' => 'Lawsy || Divorce Law || 01' , 'logo10' => true ]) ?>
-
-  <?= element("head_css") ?>
+@extends('templates.element.head_css')
 </head>
 
 <body>
 
-  <?= element("loader" , ['loader' => 'preloader5']) ?>
-
-  <?= element("header/navbar4") ?>
+@extends('templates.element.loader')
 @extends('templates.element.header.navbar4')
   <!--===== WELCOME STARTS =======-->
   <div class="welcome5-scetion-area">
@@ -910,8 +907,7 @@
   </div>
   <!--===== FOOTER ENDS =======-->
 
-  <?= element("footer_scripts") ?>
-
+@extends('templates.element.footer_scripts')
 </body>
 
 </html>
