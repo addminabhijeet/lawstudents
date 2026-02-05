@@ -1,4 +1,4 @@
-@extends('templates.element.header.navbar4')
+
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@
   <?= element("loader" , ['loader' => 'preloader5']) ?>
 
   <?= element("header/navbar4") ?>
-
+@extends('templates.element.header.navbar4')
   <!--===== WELCOME STARTS =======-->
   <div class="welcome5-scetion-area">
     <div class="container">
