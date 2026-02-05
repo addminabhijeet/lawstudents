@@ -1,0 +1,11 @@
+<script src="/js/plugins/bootstrap.min.js"></script>
+<script src="/js/plugins/fontawesome.js"></script>
+<script src="/js/plugins/counter.js"></script>
+<script src="/js/plugins/owl-carousel.min.js"></script>
+<script src="/js/plugins/jquery-modal.min.js"></script>
+<script src="/js/plugins/sidebar.js"></script>
+<script src="/js/plugins/jquery.nice-select.js"></script>
+<script src="/js/plugins/aos.js"></script>
+<script src="/js/plugins/slider.js"></script>
+<script src="/js/plugins/mobilemenu.js"></script>
+<script src="/js/main.js"></script>
