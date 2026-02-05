@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-  <?= $this->element('title_meta' , ['title' => 'Lawsy || Divorce Law || 01' , 'logo10' => true ]) ?>
+  <?= element('title_meta' , ['title' => 'Lawsy || Divorce Law || 01' , 'logo10' => true ]) ?>
 
-  <?= $this->element("head_css") ?>
+  <?= element("head_css") ?>
 </head>
 
 <body>
 
-  <?= $this->element("loader" , ['loader' => 'preloader5']) ?>
+  <?= element("loader" , ['loader' => 'preloader5']) ?>
 
-  <?= $this->element("header/navbar4") ?>
+  <?= element("header/navbar4") ?>
 
   <!--===== WELCOME STARTS =======-->
   <div class="welcome5-scetion-area">
@@ -908,7 +908,7 @@
   </div>
   <!--===== FOOTER ENDS =======-->
 
-  <?= $this->element("footer_scripts") ?>
+  <?= element("footer_scripts") ?>
 
 </body>
 
