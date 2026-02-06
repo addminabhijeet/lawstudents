@@ -41,29 +41,11 @@
                                     <li><a href="" class=" mainhome">Home</a></li>
                                     <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
                                     <li><a href="{{ route('second', ['blog', 'blog4']) }}">Free Notes</a></li>
-                                    <li><a href="#">Pages <span><i class="fa-solid fa-angle-down"></i></span></a>
-                                        <ul class="dropdown-padding">
-                                            <li><a href="{{ route('second', ['pages', 'team1']) }}">Our Team 01</a>
-                                            </li>
-                                            <li><a href="{{ route('second', ['pages', 'team2']) }}">Our Team 02</a>
-                                            </li>
-                                            <li><a href="{{ route('second', ['pages', 'testimonial1']) }}">Testimonial
-                                                    01</a></li>
-                                            <li><a href="{{ route('second', ['pages', 'testimonial2']) }}">Testimonial
-                                                    02</a></li>
-                                            <li><a href="{{ route('second', ['pages', 'testimonial3']) }}">Testimonial
-                                                    03</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="{{ route('second', ['contact', 'v2']) }}">Contact <span><i
-                                                    class="fa-solid fa-angle-down"></i></span></a>
-                                    </li>
-                                    <li><a href="{{ route('login') }}">Login<span><i
-                                                    class="fa-solid fa-angle-down"></i></span></a>
-                                    </li>
+                                    <li><a href="{{ route('second', ['pages', 'team1']) }}">Gallery</a></li>
+                                    <li><a href="{{ route('second', ['contact', 'v2']) }}">Contact Us</a></li>
+                                    <li><a href="{{ route('login') }}">Login</a></li>
                                 </ul>
                             </div>
-
                             <div class="contact-3 d-lg-block d-none">
                                 <div class="consulting2 consulting3">
                                     <div class="search-icon header__search header-search-btn">
