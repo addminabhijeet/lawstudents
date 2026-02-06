@@ -7,6 +7,7 @@
 
     RewriteRule ^build/(.*)$ public/build/$1 [L]
     RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+    RewriteRule ^img/(.*)$ public/img/$1 [L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
