@@ -1,0 +1,74 @@
+{
+  "node_modules/owl.carousel/dist/assets/owl.video.play.png": {
+    "file": "assets/owl.video.play-BJo37keB.png",
+    "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
+  },
+  "resources/fonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-CCY5neTf.ttf",
+    "src": "resources/fonts/fa-brands-400.ttf"
+  },
+  "resources/fonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-Cmgzmso_.woff2",
+    "src": "resources/fonts/fa-brands-400.woff2"
+  },
+  "resources/fonts/fa-duotone-900.ttf": {
+    "file": "assets/fa-duotone-900-D3z9DPdH.ttf",
+    "src": "resources/fonts/fa-duotone-900.ttf"
+  },
+  "resources/fonts/fa-duotone-900.woff2": {
+    "file": "assets/fa-duotone-900-DDBVeZhv.woff2",
+    "src": "resources/fonts/fa-duotone-900.woff2"
+  },
+  "resources/fonts/fa-light-300.ttf": {
+    "file": "assets/fa-light-300-MxS50Jsy.ttf",
+    "src": "resources/fonts/fa-light-300.ttf"
+  },
+  "resources/fonts/fa-light-300.woff2": {
+    "file": "assets/fa-light-300-BIIPDt7z.woff2",
+    "src": "resources/fonts/fa-light-300.woff2"
+  },
+  "resources/fonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-BlbHWFQL.ttf",
+    "src": "resources/fonts/fa-regular-400.ttf"
+  },
+  "resources/fonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-DcyeaIpN.woff2",
+    "src": "resources/fonts/fa-regular-400.woff2"
+  },
+  "resources/fonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-Dn5Ag2DJ.ttf",
+    "src": "resources/fonts/fa-solid-900.ttf"
+  },
+  "resources/fonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-DjKv4PhZ.woff2",
+    "src": "resources/fonts/fa-solid-900.woff2"
+  },
+  "resources/fonts/fa-thin-100.ttf": {
+    "file": "assets/fa-thin-100-BOecG6-3.ttf",
+    "src": "resources/fonts/fa-thin-100.ttf"
+  },
+  "resources/fonts/fa-thin-100.woff2": {
+    "file": "assets/fa-thin-100-COluDTpR.woff2",
+    "src": "resources/fonts/fa-thin-100.woff2"
+  },
+  "resources/fonts/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility-DT4DjF5T.woff2",
+    "src": "resources/fonts/fa-v4compatibility.woff2"
+  },
+  "resources/js/main.js": {
+    "file": "assets/main-DGIsBkiY.js",
+    "name": "main",
+    "src": "resources/js/main.js",
+    "isEntry": true
+  },
+  "resources/scss/master.scss": {
+    "file": "assets/master-DcpeqMkg.css",
+    "src": "resources/scss/master.scss",
+    "isEntry": true
+  },
+  "resources/scss/typography.css": {
+    "file": "assets/typography-CDgyMFkg.css",
+    "src": "resources/scss/typography.css",
+    "isEntry": true
+  }
+}
