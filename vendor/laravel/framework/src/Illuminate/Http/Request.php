@@ -22,9 +22,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  * @method array validate(array $rules, ...$params)
  * @method array validateWithBag(string $errorBag, array $rules, ...$params)
  * @method bool hasValidSignature(bool $absolute = true)
- * @method bool hasValidRelativeSignature()
- * @method bool hasValidSignatureWhileIgnoring($ignoreQuery = [], $absolute = true)
- * @method bool hasValidRelativeSignatureWhileIgnoring($ignoreQuery = [])
  */
 class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 {
@@ -62,13 +59,6 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * @var \Closure
      */
     protected $routeResolver;
-
-    /**
-     * The cached "Accept" header value.
-     *
-     * @var string|null
-     */
-    protected $cachedAcceptHeader;
 
     /**
      * Create a new Illuminate HTTP request from server variables.
@@ -361,23 +351,6 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     public function userAgent()
     {
         return $this->headers->get('User-Agent');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    #[\Override]
-    public function getAcceptableContentTypes(): array
-    {
-        $currentAcceptHeader = $this->headers->get('Accept');
-
-        if ($this->cachedAcceptHeader !== $currentAcceptHeader) {
-            // Flush acceptable content types so Symfony re-calculates them...
-            $this->acceptableContentTypes = null;
-            $this->cachedAcceptHeader = $currentAcceptHeader;
-        }
-
-        return parent::getAcceptableContentTypes();
     }
 
     /**

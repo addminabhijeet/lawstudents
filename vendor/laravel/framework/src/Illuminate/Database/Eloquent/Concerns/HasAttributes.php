@@ -41,7 +41,6 @@ use ReflectionClass;
 use ReflectionMethod;
 use ReflectionNamedType;
 use RuntimeException;
-use Stringable;
 use ValueError;
 
 use function Illuminate\Support\enum_value;
@@ -251,7 +250,7 @@ trait HasAttributes
     protected function addDateAttributesToArray(array $attributes)
     {
         foreach ($this->getDates() as $key) {
-            if (is_null($key) || ! isset($attributes[$key])) {
+            if (! isset($attributes[$key])) {
                 continue;
             }
 
@@ -791,15 +790,6 @@ trait HasAttributes
     {
         foreach ($casts as $attribute => $cast) {
             $casts[$attribute] = match (true) {
-                is_object($cast) => value(function () use ($cast, $attribute) {
-                    if ($cast instanceof Stringable) {
-                        return (string) $cast;
-                    }
-
-                    throw new InvalidArgumentException(
-                        "The cast object for the {$attribute} attribute must implement Stringable."
-                    );
-                }),
                 is_array($cast) => value(function () use ($cast) {
                     if (count($cast) === 1) {
                         return $cast[0];
@@ -1314,7 +1304,7 @@ trait HasAttributes
      * @param  string  $path
      * @param  string  $key
      * @param  mixed  $value
-     * @return array
+     * @return $this
      */
     protected function getArrayAttributeWithValue($path, $key, $value)
     {
@@ -1446,7 +1436,7 @@ trait HasAttributes
      *
      * @return \Illuminate\Contracts\Encryption\Encrypter
      */
-    public static function currentEncrypter()
+    protected static function currentEncrypter()
     {
         return static::$encrypter ?? Crypt::getFacadeRoot();
     }
@@ -1622,7 +1612,7 @@ trait HasAttributes
     /**
      * Get the attributes that should be converted to dates.
      *
-     * @return array<int, string|null>
+     * @return array
      */
     public function getDates()
     {
@@ -1785,10 +1775,6 @@ trait HasAttributes
         $castType = $casts[$key];
 
         if (in_array($castType, static::$primitiveCastTypes)) {
-            return false;
-        }
-
-        if (is_subclass_of($castType, Castable::class)) {
             return false;
         }
 
@@ -2169,9 +2155,6 @@ trait HasAttributes
     {
         [$this->attributes, $this->changes, $this->previous] = [$this->original, [], []];
 
-        $this->classCastCache = [];
-        $this->attributeCastCache = [];
-
         return $this;
     }
 
@@ -2395,19 +2378,6 @@ trait HasAttributes
     public function setAppends(array $appends)
     {
         $this->appends = $appends;
-
-        return $this;
-    }
-
-    /**
-     * Merge new appended attributes with existing appended attributes on the model.
-     *
-     * @param  array<string>  $appends
-     * @return $this
-     */
-    public function mergeAppends(array $appends)
-    {
-        $this->appends = array_values(array_unique(array_merge($this->appends, $appends)));
 
         return $this;
     }

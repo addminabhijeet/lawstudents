@@ -1,3 +1,33 @@
+import $ from 'jquery'
+
+window.jQuery = window.$ = $;
+// Magnific Popup
+
+import bootstrap from 'bootstrap/dist/js/bootstrap'
+
+window.bootstrap = bootstrap;
+
+import './plugins/fontawesome';
+// AOS (Animate On Scroll)
+import AOS from "aos";
+
+import './plugins/jquery-modal.min';
+
+import 'metismenu/dist/metisMenu.js';
+import 'owl.carousel/dist/owl.carousel.min.js';
+
+// Waypoints
+import "waypoints/src/waypoint.js";
+
+
+import "slick-slider/slick/slick.min.js";
+import "./plugins/mobilemenu";
+
+import { CountUp } from 'countup.js';
+
+import './plugins/jquery.nice-select';
+
+
 ;(function($){
 
      $(document).ready(function(){
@@ -85,10 +115,17 @@
       });
       
   //========== COUNTER UP============= //
-    const ucounter = $('.counter');
-    if (ucounter.length > 0) {
-     ucounter.countUp();  
-    };
+  const counterElements = document.querySelectorAll('.counter');
+
+  counterElements.forEach(el => {
+      const endVal = parseInt(el.innerText);
+      const countUp = new CountUp(el, endVal);
+      if (!countUp.error) {
+          countUp.start();
+      } else {
+          console.error(countUp.error);
+      }
+  });
 
     //========== TESTIMONIAL AREA STARTS ============= // 
       $(".product-slider-single").slick({

@@ -7,7 +7,6 @@ use Illuminate\Database\Query\JoinLateralClause;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use InvalidArgumentException;
 
 class SqlServerGrammar extends Grammar
 {
@@ -111,22 +110,12 @@ class SqlServerGrammar extends Grammar
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  \Illuminate\Database\Query\IndexHint  $indexHint
      * @return string
-     *
-     * @throws \InvalidArgumentException
      */
     protected function compileIndexHint(Builder $query, $indexHint)
     {
-        if ($indexHint->type !== 'force') {
-            return '';
-        }
-
-        $index = $indexHint->index;
-
-        if (! preg_match('/^[a-zA-Z0-9_$]+$/', $index)) {
-            throw new InvalidArgumentException('Index name contains invalid characters.');
-        }
-
-        return "with (index([{$index}]))";
+        return $indexHint->type === 'force'
+            ? "with (index({$indexHint->index}))"
+            : '';
     }
 
     /**
@@ -426,19 +415,19 @@ class SqlServerGrammar extends Grammar
      */
     public function compileUpsert(Builder $query, array $values, array $uniqueBy, array $update)
     {
-        $columns = $this->columnize(array_keys(array_first($values)));
+        $columns = $this->columnize(array_keys(reset($values)));
 
         $sql = 'merge '.$this->wrapTable($query->from).' ';
 
-        $parameters = (new Collection($values))
-            ->map(fn ($record) => '('.$this->parameterize($record).')')
-            ->implode(', ');
+        $parameters = (new Collection($values))->map(function ($record) {
+            return '('.$this->parameterize($record).')';
+        })->implode(', ');
 
         $sql .= 'using (values '.$parameters.') '.$this->wrapTable('laravel_source').' ('.$columns.') ';
 
-        $on = (new Collection($uniqueBy))
-            ->map(fn ($column) => $this->wrap('laravel_source.'.$column).' = '.$this->wrap($query->from.'.'.$column))
-            ->implode(' and ');
+        $on = (new Collection($uniqueBy))->map(function ($column) use ($query) {
+            return $this->wrap('laravel_source.'.$column).' = '.$this->wrap($query->from.'.'.$column);
+        })->implode(' and ');
 
         $sql .= 'on '.$on.' ';
 
@@ -464,12 +453,9 @@ class SqlServerGrammar extends Grammar
      * @param  array  $values
      * @return array
      */
-    #[\Override]
     public function prepareBindingsForUpdate(array $bindings, array $values)
     {
         $cleanBindings = Arr::except($bindings, 'select');
-
-        $values = Arr::flatten(array_map(fn ($value) => value($value), $values));
 
         return array_values(
             array_merge($values, Arr::flatten($cleanBindings))

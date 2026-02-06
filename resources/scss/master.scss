@@ -32,6 +32,14 @@ Location:
 /* ============= FOOTER CSS AREA =============== */
 
 
+@import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import './components/fontawesome';
+@import './components/select';
+@import './components/mobile';
+@import '/node_modules/slick-slider/slick/slick.css';
+@import '/node_modules/owl.carousel/dist/assets/owl.carousel.min.css';
+@import '/node_modules/aos/dist/aos.css';
+
 @import 'variables';
 @import 'typography';
 @import 'responsive';

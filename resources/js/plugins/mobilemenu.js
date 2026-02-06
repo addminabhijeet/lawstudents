@@ -1,3 +1,6 @@
+import $ from 'jquery'
+
+window.jQuery = window.$ = $;
 ;(function($) {
 
     $(document).ready(function() {
@@ -30,7 +33,7 @@
   
     //mobile-menus-markup
     $.fn.menumarker = function(options){
-      mobile_menu = $(this),
+      var mobile_menu = $(this),
       settings = $.extend({
         format: "dropdown",
         sticky: false

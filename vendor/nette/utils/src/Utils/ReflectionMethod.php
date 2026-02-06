@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace Nette\Utils;
 
-use function explode, is_string, str_contains;
-
 
 /**
  * ReflectionMethod preserving the original class name.
@@ -18,8 +16,7 @@ use function explode, is_string, str_contains;
  */
 final class ReflectionMethod extends \ReflectionMethod
 {
-	/** @var \ReflectionClass<object> */
-	private readonly \ReflectionClass $originalClass;
+	private \ReflectionClass $originalClass;
 
 
 	public function __construct(object|string $objectOrMethod, ?string $method = null)
@@ -32,7 +29,6 @@ final class ReflectionMethod extends \ReflectionMethod
 	}
 
 
-	/** @return \ReflectionClass<object> */
 	public function getOriginalClass(): \ReflectionClass
 	{
 		return $this->originalClass;

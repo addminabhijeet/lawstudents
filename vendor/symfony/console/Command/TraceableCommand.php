@@ -169,9 +169,9 @@ final class TraceableCommand extends Command
     public function setCode(callable $code): static
     {
         if ($code instanceof InvokableCommand) {
-            $r = \Closure::bind(function () {
-                return $this->invokable;
-            }, $code, InvokableCommand::class)();
+            $r = new \ReflectionFunction(\Closure::bind(function () {
+                return $this->code;
+            }, $code, InvokableCommand::class)());
 
             $this->invokableCommandInfo = [
                 'class' => $r->getClosureScopeClass()->name,
@@ -292,7 +292,7 @@ final class TraceableCommand extends Command
         $event = $this->stopwatch->start($this->getName(), 'command');
 
         try {
-            $this->exitCode = $this->command->run($input, $output);
+            $this->exitCode = parent::run($input, $output);
         } finally {
             $event->stop();
 
