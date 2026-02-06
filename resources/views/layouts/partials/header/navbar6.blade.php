@@ -80,7 +80,7 @@
                                     <li><a href="{{ route('second', ['contact', 'v2']) }}">Contact <span><i
                                                     class="fa-solid fa-angle-down"></i></span></a>
                                     </li>
-                                    <li><a href="{{ route('login']) }}">Login<span><i
+                                    <li><a href="{{ route('login') }}">Login<span><i
                                                     class="fa-solid fa-angle-down"></i></span></a>
                                     </li>
                                 </ul>
