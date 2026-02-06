@@ -3,6 +3,14 @@
     "file": "assets/owl.video.play-BJo37keB.png",
     "src": "node_modules/owl.carousel/dist/assets/owl.video.play.png"
   },
+  "public/img/bacground/header3-bg.png": {
+    "file": "assets/header3-bg-DGN76y4Q.png",
+    "src": "public/img/bacground/header3-bg.png"
+  },
+  "public/img/images/testimonial4-img1.png": {
+    "file": "assets/testimonial4-img1-3lJXiJGm.png",
+    "src": "public/img/images/testimonial4-img1.png"
+  },
   "resources/fonts/fa-brands-400.ttf": {
     "file": "assets/fa-brands-400-CCY5neTf.ttf",
     "src": "resources/fonts/fa-brands-400.ttf"
@@ -62,7 +70,7 @@
     "isEntry": true
   },
   "resources/scss/master.scss": {
-    "file": "assets/master-DcpeqMkg.css",
+    "file": "assets/master-DPRIbYlC.css",
     "src": "resources/scss/master.scss",
     "isEntry": true
   },
