@@ -38,30 +38,9 @@
                             </div>
                             <div class="main-menu-ex homepage6">
                                 <ul>
-                                    <li><a href="" class=" mainhome">Home</a>
-                                    </li>
+                                    <li><a href="" class=" mainhome">Home</a></li>
                                     <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
-
-
-                                    <li><a href="#">Free Notes<span><i
-                                                    class="fa-solid fa-angle-down"></i></span></a>
-                                        <ul class="dropdown-padding">
-                                            <li><a href="{{ route('second', ['blog', 'blog1']) }}">Blog One</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'blog2']) }}">Blog Two</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'blog3']) }}">Blog Three</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'blog4']) }}">Blog Four</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'left']) }}">Blog Left Side</a>
-                                            </li>
-                                            <li><a href="{{ route('second', ['blog', 'left-details']) }}">Blog Details
-                                                    Left</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'right']) }}">Blog RIght Side</a>
-                                            </li>
-                                            <li><a href="{{ route('second', ['blog', 'right-details']) }}">Blog Details
-                                                    Right </a></li>
-                                            <li><a href="{{ route('second', ['blog', 'single']) }}">Blog Single </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="{{ route('second', ['blog', 'blog4']) }}">Free Notes</a></li>
                                     <li><a href="#">Pages <span><i class="fa-solid fa-angle-down"></i></span></a>
                                         <ul class="dropdown-padding">
                                             <li><a href="{{ route('second', ['pages', 'team1']) }}">Our Team 01</a>
