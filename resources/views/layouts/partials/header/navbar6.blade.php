@@ -5,12 +5,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="header-top-area">
-                        <div class="header-top-border" style="background-image: url(/img/bacground/header7-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                        <div class="header-top-border"
+                            style="background-image: url(/img/bacground/header7-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="top-content-area">
                                         <div class="content">
-                                            <p>Are you ready to free case evaluation today? <a href="{{ route('second', ['contact', 'v1']) }}">Contact Us</a></p>
+                                            <p>Are you ready to free case evaluation today? <a
+                                                    href="{{ route('second', ['contact', 'v1']) }}">Contact Us</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -18,10 +20,12 @@
                                 <div class="col-lg-4">
                                     <div class="social-area">
                                         <ul>
-                                            <li><a href="mailto:info@lawexample.com"><img src="/img/icons/email3.svg" alt="">info@lawexample.com</a></li>
+                                            <li><a href="mailto:info@lawexample.com"><img src="/img/icons/email3.svg"
+                                                        alt="">info@lawexample.com</a></li>
                                         </ul>
                                         <ul class="list">
-                                            <li><a href="tel:(555)123-4567"><img src="/img/icons/phone3.svg" alt="">(555) 123-4567</a></li>
+                                            <li><a href="tel:(555)123-4567"><img src="/img/icons/phone3.svg"
+                                                        alt="">(555) 123-4567</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -29,56 +33,55 @@
                         </div>
                         <div class="header-elements">
                             <div class="site-logo">
-                                <a href="{{ route('any', 'index') }}"><img src="/img/logo/logo11.png" alt=""></a>
+                                <a href="{{ route('any', 'index') }}"><img src="/img/logo/logo11.png"
+                                        alt=""></a>
                             </div>
                             <div class="main-menu-ex homepage6">
                                 <ul>
-                                    <li><a href="#" class=" mainhome">Home <span><i class="fa-solid fa-angle-down"></i></span></a>
-                                        <ul class="dropdown-padding">
-                                            <li><a href="{{ route('any', 'index') }}">Home One</a></li>
-                                            <li><a href="{{ route('second', ['demo', 'index1']) }}">Home Two</a></li>
-                                            <li><a href="{{ route('second', ['demo', 'index2']) }}">Home Three</a></li>
-                                            <li><a href="{{ route('second', ['demo', 'index3']) }}">Home Four</a></li>
-                                            <li><a href="{{ route('second', ['demo', 'index4']) }}">Home Five</a></li>
-                                            <li><a href="{{ route('second', ['demo', 'index5']) }}">Home Six</a></li>
-                                            <li><a href="{{ route('second', ['demo', 'index6']) }}">Home Seven</a></li>
-                                            <li><a href="{{ route('second', ['demo', 'index-rtl-1']) }}">RTL</a></li>
-                                        </ul>
+                                    <li><a href="#" class=" mainhome">Home <span><i
+                                                    class="fa-solid fa-angle-down"></i></span></a>
                                     </li>
                                     <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
 
-                                    <li><a href="#"> Practice Areas <span><i class="fa-solid fa-angle-down"></i></span></a>
-                                        <ul class="dropdown-padding">
-                                            <li><a href="{{ route('second', ['service', 'service1']) }}">Service One</a></li>
-                                            <li><a href="{{ route('second', ['service', 'service2']) }}">Service Two</a></li>
-                                            <li><a href="{{ route('second', ['service', 'left']) }}">Service Left Side</a></li>
-                                            <li><a href="{{ route('second', ['service', 'right']) }}">Service Right Side </a></li>
-                                            <li><a href="{{ route('second', ['service', 'single']) }}">Service Single </a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Blogs <span><i class="fa-solid fa-angle-down"></i></span></a>
+
+                                    <li><a href="#">Free Notes<span><i
+                                                    class="fa-solid fa-angle-down"></i></span></a>
                                         <ul class="dropdown-padding">
                                             <li><a href="{{ route('second', ['blog', 'blog1']) }}">Blog One</a></li>
                                             <li><a href="{{ route('second', ['blog', 'blog2']) }}">Blog Two</a></li>
                                             <li><a href="{{ route('second', ['blog', 'blog3']) }}">Blog Three</a></li>
                                             <li><a href="{{ route('second', ['blog', 'blog4']) }}">Blog Four</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'left']) }}">Blog Left Side</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'left-details']) }}">Blog Details Left</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'right']) }}">Blog RIght Side</a></li>
-                                            <li><a href="{{ route('second', ['blog', 'right-details']) }}">Blog Details Right </a></li>
-                                            <li><a href="{{ route('second', ['blog', 'single']) }}">Blog Single </a></li>
+                                            <li><a href="{{ route('second', ['blog', 'left']) }}">Blog Left Side</a>
+                                            </li>
+                                            <li><a href="{{ route('second', ['blog', 'left-details']) }}">Blog Details
+                                                    Left</a></li>
+                                            <li><a href="{{ route('second', ['blog', 'right']) }}">Blog RIght Side</a>
+                                            </li>
+                                            <li><a href="{{ route('second', ['blog', 'right-details']) }}">Blog Details
+                                                    Right </a></li>
+                                            <li><a href="{{ route('second', ['blog', 'single']) }}">Blog Single </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Pages <span><i class="fa-solid fa-angle-down"></i></span></a>
                                         <ul class="dropdown-padding">
-                                            <li><a href="{{ route('second', ['pages', 'team1']) }}">Our Team 01</a></li>
-                                            <li><a href="{{ route('second', ['pages', 'team2']) }}">Our Team 02</a></li>
-                                            <li><a href="{{ route('second', ['pages', 'testimonial1']) }}">Testimonial 01</a></li>
-                                            <li><a href="{{ route('second', ['pages', 'testimonial2']) }}">Testimonial 02</a></li>
-                                            <li><a href="{{ route('second', ['pages', 'testimonial3']) }}">Testimonial 03</a></li>
+                                            <li><a href="{{ route('second', ['pages', 'team1']) }}">Our Team 01</a>
+                                            </li>
+                                            <li><a href="{{ route('second', ['pages', 'team2']) }}">Our Team 02</a>
+                                            </li>
+                                            <li><a href="{{ route('second', ['pages', 'testimonial1']) }}">Testimonial
+                                                    01</a></li>
+                                            <li><a href="{{ route('second', ['pages', 'testimonial2']) }}">Testimonial
+                                                    02</a></li>
+                                            <li><a href="{{ route('second', ['pages', 'testimonial3']) }}">Testimonial
+                                                    03</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="{{ route('login', ['pages', 'team1']) }}">Login<span><i class="fa-solid fa-angle-down"></i></span></a>
+                                    <li><a href="{{ route('second', ['contact', 'v2']) }}">Contact <span><i
+                                                    class="fa-solid fa-angle-down"></i></span></a>
+                                    </li>
+                                    <li><a href="{{ route('login']) }}">Login<span><i
+                                                    class="fa-solid fa-angle-down"></i></span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -89,7 +92,8 @@
                                         <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                                     </div>
                                     <div class="marginsp1"></div>
-                                    <a class="header__bar hamburger_menu header__bar-icon header_bar5" href="javascript:void(0);">
+                                    <a class="header__bar hamburger_menu header__bar-icon header_bar5"
+                                        href="javascript:void(0);">
                                         <i class="fa-solid fa-bars"></i>
                                     </a>
                                 </div>
@@ -106,7 +110,8 @@
                                         </a>
                                     </div>
                                     <div class="sidebar-content">
-                                        <p>Revolutionize Your Future: Harness the Power of Technology for Unparalleled Growth and Success!</p>
+                                        <p>Revolutionize Your Future: Harness the Power of Technology for Unparalleled
+                                            Growth and Success!</p>
                                     </div>
                                     <ul class="sidebar-menu list-unstyled">
                                         <li><a href="{{ route('second', ['pages', 'about']) }}">About</a></li>
@@ -141,7 +146,8 @@
                                                     <img src="/img/icons/loctaion1.svg" alt="">
                                                 </div>
                                                 <div class="phone-side">
-                                                    <a href="mailto:demolawsy@gmail.com">8708 Technology Forest Pl Suite <br> 125 -G, The Woodlands, TX 77381</a> <br>
+                                                    <a href="mailto:demolawsy@gmail.com">8708 Technology Forest Pl
+                                                        Suite <br> 125 -G, The Woodlands, TX 77381</a> <br>
 
                                                 </div>
                                             </div>
@@ -180,7 +186,8 @@
                                             <a href="#!">Blog</a>
                                             <ul class="sub-menu">
                                                 <li><a href="blog">Blog</a></li>
-                                                <li><a href="{{ route('second', ['blog', 'single']) }}">Blog Details</a></li>
+                                                <li><a href="{{ route('second', ['blog', 'single']) }}">Blog
+                                                        Details</a></li>
                                             </ul>
                                         </li>
                                         <li><a class="scrollspy-btn" href="contact">Get in touch</a></li>
@@ -191,8 +198,10 @@
                                 <div class="tx-search-close tx-close"><i class="fa-solid fa-xmark"></i></div>
                                 <div class="header-search-container">
                                     <form role="search" class="search-form">
-                                        <input type="search" class="search-field" placeholder="Search …" value="" name="s">
-                                        <button type="submit" class="search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                        <input type="search" class="search-field" placeholder="Search …"
+                                            value="" name="s">
+                                        <button type="submit" class="search-submit"><i
+                                                class="fa-solid fa-magnifying-glass"></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -319,7 +328,8 @@
                                 <img src="/img/icons/footer-location1.svg" alt="">
                             </div>
                             <div class="contact-info-text">
-                                <a href="mailto:info@example.com">55 East Birchwood Ave.Brooklyn, <br> New York 11201,United States</a>
+                                <a href="mailto:info@example.com">55 East Birchwood Ave.Brooklyn, <br> New York
+                                    11201,United States</a>
                             </div>
                         </div>
 
