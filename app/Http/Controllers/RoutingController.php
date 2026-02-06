@@ -12,9 +12,14 @@ class RoutingController extends Controller
         return view('demo.index');
     }
 
-    public function login()
+    public function log()
     {
         return view('indexone');
+    }
+
+    public function login()
+    {
+        return view('auth-login-cover.blade');
     }
 
     /**
