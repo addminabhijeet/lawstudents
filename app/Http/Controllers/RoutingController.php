@@ -19,7 +19,7 @@ class RoutingController extends Controller
 
     public function login()
     {
-        return view('auth-login-creative');
+        return view('auth-login-minimal');
     }
 
     /**
