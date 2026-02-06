@@ -38,8 +38,7 @@
                             </div>
                             <div class="main-menu-ex homepage6">
                                 <ul>
-                                    <li><a href="" class=" mainhome">Home <span><i
-                                                    class="fa-solid fa-angle-down"></i></span></a>
+                                    <li><a href="" class=" mainhome">Home</a>
                                     </li>
                                     <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
 
