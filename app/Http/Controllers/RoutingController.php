@@ -19,7 +19,7 @@ class RoutingController extends Controller
 
     public function login()
     {
-        return view('auth-login-cover.blade');
+        return view('auth-login-cover');
     }
 
     /**
