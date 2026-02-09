@@ -41,4 +41,25 @@ class LoginController extends Controller
 
         return back()->with('error', 'Invalid login details');
     }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'username' => 'required|string|max:100|unique:admins',
+            'email' => 'required|email|max:150|unique:admins',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $admin = Admin::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password, // auto-hashed in Admin model
+        ]);
+
+        Auth::guard('admin')->login($admin);
+
+        return route('login');
+    }
 }
