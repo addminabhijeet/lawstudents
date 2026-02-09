@@ -49,6 +49,36 @@
                         <h4 class="fs-13 fw-bold mb-2">Manage all your Duralux crm</h4>
                         <p class="fs-12 fw-medium text-muted">Let's get you all setup, so you can verify your personal
                             account and begine setting up your profile.</p>
+
+                        {{-- Display Login Errors and Validation Messages --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         <form action="{{ route('admin.registersubmit') }}" method="POST" class="w-100 mt-4 pt-2">
                             @csrf
                             <div class="mb-4">
@@ -94,7 +124,8 @@
                                     <input type="checkbox" class="custom-control-input" id="termsCondition"
                                         name="termsCondition" required>
                                     <label class="custom-control-label c-pointer text-muted" for="termsCondition"
-                                        style="font-weight: 400 !important">I agree to all the <a href="">Terms &
+                                        style="font-weight: 400 !important">I agree to all the <a href="">Terms
+                                            &
                                             Conditions</a> and <a href="">Fees</a>.</label>
                                 </div>
                             </div>

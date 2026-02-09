@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Validator;
 use App\Models\Admin;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -44,13 +44,22 @@ class LoginController extends Controller
 
     public function registersubmit(Request $request)
     {
-        $request->validate([
+        // Validate the request
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:100',
             'username' => 'required|string|max:100|unique:admins',
             'email' => 'required|email|max:150|unique:admins',
             'password' => 'required|confirmed|min:6',
         ]);
 
+        // If validation fails, redirect back with errors
+        if ($validator->fails()) {
+            return redirect()->route('register')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Create admin
         $admin = Admin::create([
             'name' => $request->name,
             'username' => $request->username,
@@ -58,8 +67,11 @@ class LoginController extends Controller
             'password' => $request->password, // auto-hashed in Admin model
         ]);
 
+        // Login the admin
         Auth::guard('admin')->login($admin);
 
-        return route('login');
+        // Redirect to login route with success message
+        return redirect()->route('login')
+            ->with('success', 'Registration successful. Please login.');
     }
 }
