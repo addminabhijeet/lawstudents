@@ -2,21 +2,23 @@
 
 use App\Http\Controllers\RoutingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [RoutingController::class, 'root'])->name('root');
 Route::get('/log', [RoutingController::class, 'log'])->name('log');
-Route::get('/login', [RoutingController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class,'login'])->name('login.submit');
 Route::get('/student', [RoutingController::class, 'student'])->name('student');
 Route::get('/admin', [RoutingController::class, 'admin'])->name('admin');
 
 Route::get('/{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])
-    ->where('first', '^(?!build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
+    ->where('first', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
     ->name('third');
 
 Route::get('/{first}/{second}', [RoutingController::class, 'secondLevel'])
-    ->where('first', '^(?!build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
+    ->where('first', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
     ->name('second');
 
 Route::get('/{any}', [RoutingController::class, 'firstLevel'])
-    ->where('any', '^(?!build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
+    ->where('any', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
     ->name('any');
+
