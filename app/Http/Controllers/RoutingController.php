@@ -17,10 +17,7 @@ class RoutingController extends Controller
         return view('indexone');
     }
 
-    public function login()
-    {
-        return view('auth-login-minimal');
-    }
+
 
     public function student()
     {
