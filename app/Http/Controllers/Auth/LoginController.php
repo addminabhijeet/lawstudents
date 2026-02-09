@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function login()
-    {
-        return view('auth-login-minimal');
-    }
 
     public function loginsubmit(Request $request)
     {

@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', [RoutingController::class, 'root'])->name('root');
 Route::get('/log', [RoutingController::class, 'log'])->name('log');
 Route::post('/loginsubmit', [LoginController::class,'loginsubmit'])->name('login.submit');
-Route::post('/login', [LoginController::class,'login'])->name('login');
+Route::post('/login', [RoutingController::class,'login'])->name('login');
 Route::get('/student', [RoutingController::class, 'student'])->name('student');
 Route::get('/admin', [RoutingController::class, 'admin'])->name('admin');
 
