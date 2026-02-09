@@ -74,11 +74,11 @@
                                             Growth and Success!</p>
                                     </div>
                                     <ul class="sidebar-menu list-unstyled">
-                                        <li><a href="{{ route('second', ['pages', 'about']) }}">About</a></li>
-                                        <li><a href="{{ route('second', ['service', 'service1']) }}">Services</a></li>
-                                        <li><a href="{{ route('second', ['pages', 'team1']) }}">Team</a></li>
-                                        <li><a href="{{ route('second', ['blog', 'blog1']) }}">Blog</a></li>
-                                        <li><a href="{{ route('second', ['contact', 'v1']) }}">Contact</a></li>
+                                        <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
+                                        <li><a href="{{ route('second', ['pages', 'team1']) }}">Free Notes</a></li>
+                                        <li><a href="{{ route('second', ['blog', 'blog1']) }}">Gallery</a></li>
+                                        <li><a href="{{ route('second', ['contact', 'v1']) }}">Contact Us</a></li>
+                                        <li><a href="{{ route('second', ['service', 'service1']) }}">Login</a></li>
                                     </ul>
                                     <div class="sidebar-contact-header">
                                         <h3>Contact Info</h3>
