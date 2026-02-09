@@ -32,7 +32,7 @@ class RoutingController extends Controller
         return view('admission.payment');
     }
 
-    public function addadmission()
+    public function admissioncreate()
     {
         return view('admission.proposal-create');
     }
