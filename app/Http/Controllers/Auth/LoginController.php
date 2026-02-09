@@ -35,7 +35,7 @@ class LoginController extends Controller
 
             if (Hash::check($request->password, $admin->password)) {
                 Auth::guard('admin')->login($admin, $request->remember);
-                return redirect('/admin/dashboard');
+                return redirect()->route('log');
             }
         }
 
@@ -52,7 +52,7 @@ class LoginController extends Controller
 
             if (Hash::check($request->password, $student->password)) {
                 Auth::guard('student')->login($student, $request->remember);
-                return redirect('/student/dashboard');
+                return redirect()->route('loginstu');
             }
         }
 
