@@ -7,7 +7,7 @@ Route::middleware(['web','auth:student'])
     ->prefix('student')
     ->group(function () {
 
-        Route::get('/', [RoutingController::class,'student'])
+        Route::get('student', [RoutingController::class,'student'])
             ->name('student.dashboard');
 
 });
