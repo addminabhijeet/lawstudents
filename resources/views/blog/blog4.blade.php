@@ -1,7 +1,22 @@
 @extends('layouts.landing', ['title' => 'Lawsy || Criminal Law || Our Blog 04'])
 
 @section('content')
-
+  <!--===== WELCOME STARTS =======-->
+  <div class="welcome-inner-section-area" style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <img src="/img/elements/elementor40.png" alt="" class="elementor40 keyframe3 d-lg-block d-none">
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-3 m-auto">
+      <div class="welcome-inner-header text-center">
+        <h1>Our Blog</h1>
+        <a href="{{ route('any', 'index') }}">Home <span><i class="fa-light fa-angle-right"></i></span> Our BLog</a>
+        <img src="/img/elements/elementor20.png" alt="">
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!--===== WELCOME ENDS =======-->
 
   <!--===== BLOG STARTS =======-->
   <div class="blog1-section-area sp3">
