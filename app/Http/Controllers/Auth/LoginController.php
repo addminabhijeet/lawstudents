@@ -42,7 +42,7 @@ class LoginController extends Controller
         return back()->with('error', 'Invalid login details');
     }
 
-    public function register(Request $request)
+    public function registersubmit(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:100',
