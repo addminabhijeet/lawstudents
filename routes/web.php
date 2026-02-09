@@ -8,6 +8,7 @@ Route::get('/', [RoutingController::class, 'root'])->name('root');
 Route::get('/log', [RoutingController::class, 'log'])->name('log');
 Route::post('/loginsubmit', [LoginController::class,'loginsubmit'])->name('login.submit');
 Route::get('/login', [RoutingController::class,'login'])->name('login');
+Route::get('/register', [RoutingController::class,'register'])->name('register');
 Route::get('/student', [RoutingController::class, 'student'])->name('student');
 Route::get('/admin', [RoutingController::class, 'admin'])->name('admin');
 
