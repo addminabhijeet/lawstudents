@@ -16,7 +16,7 @@
 
     @include('layouts.partials.loader')
 
-    @include('layouts.partials.header.navbar6')
+    @include('layouts.partials.header.navbar2')
 
 
     @yield('content')
