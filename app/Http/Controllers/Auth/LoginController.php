@@ -92,4 +92,37 @@ class LoginController extends Controller
         return redirect()->route('login')
             ->with('success', 'Registration successful. Please login.');
     }
+
+    public function studentregister(Request $request)
+    {
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:100',
+            'username' => 'required|string|max:100|unique:students',
+            'email' => 'required|email|max:150|unique:students',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        // If validation fails, redirect back with errors
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Create student
+        $student = Student::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => $request->password, // auto-hashed in Student model
+        ]);
+
+        // Login the student
+        Auth::guard('student')->login($student);
+
+        // Redirect to student dashboard or login
+        return redirect()->route('login')
+            ->with('success', 'Student registration successful. Please login.');
+    }
 }
