@@ -15,6 +15,7 @@ Route::get('student', [RoutingController::class, 'student'])->name('student');
 Route::get('addstudent', [RoutingController::class, 'addstudent'])->name('addstudent');
 Route::get('admin', [RoutingController::class, 'admin'])->name('admin');
 Route::get('liststudent', [RoutingController::class, 'liststudent'])->name('liststudent');
+Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])->name('admin.admissioncreate');
 
 Route::get('/{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])
     ->where('first', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
@@ -29,4 +30,4 @@ Route::get('/{any}', [RoutingController::class, 'firstLevel'])
     ->name('any');
 
 
-Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])->name('admin.admissioncreate');
+
