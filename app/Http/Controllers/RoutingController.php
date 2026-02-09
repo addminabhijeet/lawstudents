@@ -22,6 +22,11 @@ class RoutingController extends Controller
         return view('auth.auth-login-minimal');
     }
 
+    public function verify()
+    {
+        return view('auth.auth-verify-minimal');
+    }
+
     public function register()
     {
         return view('auth.auth-register-minimal');
