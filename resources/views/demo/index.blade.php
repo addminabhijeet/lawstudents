@@ -3,7 +3,7 @@
 @section('content')
   @include('layouts.partials.loader', ['loader' => 'preloader7'])
 
-  @include('layouts.partials.header.navbar6')
+  @include('layouts.partials.header.navbar')
 
   <!-- ===== WELCOME STARTS ======= -->
   <div class="slider-carousel-area owl-carousel car">
