@@ -50,7 +50,7 @@ class RoutingController extends Controller
 
     public function addstudent()
     {
-        return view('indexstu');
+        return view('admission.proposal-create');
     }
 
     public function admin()
