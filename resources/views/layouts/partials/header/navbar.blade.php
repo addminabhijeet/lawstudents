@@ -1,6 +1,6 @@
 <!--===== HEADER STARTS =======-->
-<header class="header d-none d-lg-block">
-    <div class="header-area header homepage7 header-sticky" id="header">
+<header class="header d-none d-lg-block" style="position:relative; z-index:999;">
+    <div class="header-area header homepage7 header-sticky" id="header" style="position:relative; top:auto;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
