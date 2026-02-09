@@ -9,8 +9,8 @@ Route::middleware(['web', 'auth:admin'])
 
         Route::get('/', [RoutingController::class, 'admin'])
             ->name('admin.dashboard');
-        Route::get('/admission', [RoutingController::class, 'admission'])
+        Route::get('admission', [RoutingController::class, 'admission'])
             ->name('admin.admission');
-        Route::get('/admissioncreate', [RoutingController::class, 'admissioncreate'])
+        Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])
             ->name('admin.admissioncreate');
     });
