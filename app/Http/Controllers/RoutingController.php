@@ -22,13 +22,18 @@ class RoutingController extends Controller
         return view('auth.auth-login-minimal');
     }
 
+    public function admission()
+    {
+        return view('admission.payment');
+    }
+
 
     public function student()
     {
         return view('indexstu');
     }
 
-        public function admin()
+    public function admin()
     {
         return view('indexone');
     }
