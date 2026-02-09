@@ -136,7 +136,7 @@
 
                         <div class="mt-5 text-muted">
                             <span>Already have an account?</span>
-                            <a href="{{ route('register') }}" class="fw-bold">Login</a>
+                            <a href="{{ route('login') }}" class="fw-bold">Login</a>
                         </div>
                     </div>
                 </div>
