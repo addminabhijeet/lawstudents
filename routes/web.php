@@ -12,6 +12,7 @@ Route::get('login', [RoutingController::class, 'login'])->name('login');
 Route::get('verify', [RoutingController::class, 'verify'])->name('verify');
 Route::get('register', [RoutingController::class, 'register'])->name('register');
 Route::get('student', [RoutingController::class, 'student'])->name('student');
+Route::get('addstudent', [RoutingController::class, 'addstudent'])->name('addstudent');
 Route::get('admin', [RoutingController::class, 'admin'])->name('admin');
 
 Route::get('/{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])

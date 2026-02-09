@@ -48,6 +48,11 @@ class RoutingController extends Controller
         return view('indexstu');
     }
 
+    public function addstudent()
+    {
+        return view('indexstu');
+    }
+
     public function admin()
     {
         return view('indexone');
