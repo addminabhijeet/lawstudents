@@ -27,5 +27,5 @@ Route::get('/{any}', [RoutingController::class, 'firstLevel'])
     ->where('any', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
     ->name('any');
 
-Route::get('admission', [RoutingController::class, 'admission'])->name('admin.admission');
+Route::get('liststudent', [RoutingController::class, 'liststudent'])->name('liststudent');
 Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])->name('admin.admissioncreate');
