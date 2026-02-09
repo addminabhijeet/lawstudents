@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use Illuminate\Support\Facades\Validator;
 use App\Models\Admin;
 use App\Models\Student;
@@ -24,9 +25,18 @@ class LoginController extends Controller
             ->orWhere('username', $request->login)
             ->first();
 
-        if ($admin && Hash::check($request->password, $admin->password)) {
-            Auth::guard('admin')->login($admin, $request->remember);
-            return redirect('/admin/dashboard');
+        if ($admin) {
+            // Check if password is bcrypt before calling Hash::check
+            if (!preg_match('/^\$2y\$/', $admin->password)) {
+                // If not hashed, hash it (one-time fix)
+                $admin->password = bcrypt($admin->password);
+                $admin->save();
+            }
+
+            if (Hash::check($request->password, $admin->password)) {
+                Auth::guard('admin')->login($admin, $request->remember);
+                return redirect('/admin/dashboard');
+            }
         }
 
         // ===== STUDENT LOGIN =====
@@ -34,13 +44,21 @@ class LoginController extends Controller
             ->orWhere('username', $request->login)
             ->first();
 
-        if ($student && Hash::check($request->password, $student->password)) {
-            Auth::guard('student')->login($student, $request->remember);
-            return redirect('/student/dashboard');
+        if ($student) {
+            if (!preg_match('/^\$2y\$/', $student->password)) {
+                $student->password = bcrypt($student->password);
+                $student->save();
+            }
+
+            if (Hash::check($request->password, $student->password)) {
+                Auth::guard('student')->login($student, $request->remember);
+                return redirect('/student/dashboard');
+            }
         }
 
         return back()->with('error', 'Invalid login details');
     }
+
 
     public function registersubmit(Request $request)
     {
