@@ -24,3 +24,5 @@ Route::get('/{any}', [RoutingController::class, 'firstLevel'])
     ->name('any');
 
 Route::get('/admission', [RoutingController::class, 'admission'])->name('admission');
+
+Route::get('/admission-add', [RoutingController::class, 'addadmission'])->name('addadmission');
