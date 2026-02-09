@@ -22,6 +22,16 @@ class RoutingController extends Controller
         return view('auth-login-minimal');
     }
 
+    public function student()
+    {
+        return view('indexstu');
+    }
+
+        public function admin()
+    {
+        return view('indexone');
+    }
+
     /**
      * First level route
      */

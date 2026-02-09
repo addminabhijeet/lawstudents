@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [RoutingController::class, 'root'])->name('root');
 Route::get('/log', [RoutingController::class, 'log'])->name('log');
 Route::get('/login', [RoutingController::class, 'login'])->name('login');
+Route::get('/student', [RoutingController::class, 'student'])->name('student');
+Route::get('/admin', [RoutingController::class, 'admin'])->name('admin');
 
 Route::get('/{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])
     ->where('first', '^(?!build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
