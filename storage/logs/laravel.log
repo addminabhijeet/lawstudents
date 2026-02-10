@@ -16960,3 +16960,28 @@ Did you mean one of these?
 #29 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
 #30 {main}
 "} 
+[2026-02-10 22:24:03] local.ERROR: require(E:\lawstudents\routes/admin.php): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(E:\\lawstudents\\routes/admin.php): Failed to open stream: No such file or directory at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:34)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate/Foundation/Bootstrap/HandleExceptions->handleError(2, 'require(E://laws...', 'E://lawstudents//...', 34)
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(34): Illuminate/Foundation/Bootstrap/HandleExceptions->Illuminate/Foundation/Bootstrap/{closure}(2, 'require(E://laws...', 'E://lawstudents//...', 34)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(34): require('E://lawstudents//...')
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Routing/Router.php(526): Illuminate/Routing/RouteFileRegistrar->register('E://lawstudents//...')
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Routing/Router.php(480): Illuminate/Routing/Router->loadRoutes('E://lawstudents//...')
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(212): Illuminate/Routing/Router->group(Array, 'E://lawstudents//...')
+#6 E:/lawstudents/app/Providers/AppServiceProvider.php(26): Illuminate/Routing/RouteRegistrar->group('E://lawstudents//...')
+#7 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): App/Providers/AppServiceProvider->boot()
+#8 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::Illuminate/Container/{closure}()
+#9 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#10 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#11 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Container.php(799): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#12 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1151): Illuminate/Container/Container->call(Array)
+#13 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1132): Illuminate/Foundation/Application->bootProvider(Object(App/Providers/AppServiceProvider))
+#14 [internal function]: Illuminate/Foundation/Application->Illuminate/Foundation/{closure}(Object(App/Providers/AppServiceProvider), 'App//Providers//A...')
+#15 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1131): array_walk(Array, Object(Closure))
+#16 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate/Foundation/Application->boot()
+#17 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/BootProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#18 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#19 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#20 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#21 {main}
+"} 
