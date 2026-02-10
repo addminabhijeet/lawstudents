@@ -14,7 +14,7 @@ class RoutingController extends Controller
 
     public function log()
     {
-        return view('indexone');
+        return view('leads-view');
     }
 
     public function login()

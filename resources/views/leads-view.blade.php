@@ -1,3 +1,6 @@
+@include('layouts.partials.dashboard.dashboard')
+
+
 <div class="nxl-content">
     <!-- [ page-header ] start -->
     <div class="page-header">
@@ -322,3 +325,6 @@
     </div>
     <!-- [ Main Content ] end -->
 </div>
+
+@include('layouts.partials.dashboard.footer')
+
