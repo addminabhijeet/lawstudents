@@ -23,9 +23,12 @@ class AppServiceProvider extends ServiceProvider
         // ===== LOAD EXTRA ROUTE FILES (ADMIN + STUDENT) =====
 
         Route::middleware('web')
-            ->group(base_path('routes/admin.php'));
+            ->group(base_path('routes/web/admin.php'));
 
         Route::middleware('web')
-            ->group(base_path('routes/student.php'));
+            ->group(base_path('routes/web/student.php'));
+        
+        Route::middleware('web')
+            ->group(base_path('routes/web/saas.php'));
     }
 }
