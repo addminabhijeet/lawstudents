@@ -12,7 +12,7 @@ class RoutingController extends Controller
         return view('demo.index');
     }
 
-    public function admin()
+    public function log()
     {
         return view('leads-view');
     }
@@ -56,6 +56,11 @@ class RoutingController extends Controller
     public function addstudent()
     {
         return view('admission.proposal-create');
+    }
+
+    public function admin()
+    {
+        return view('indexone');
     }
 
     /**
