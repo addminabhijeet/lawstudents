@@ -1,4 +1,4 @@
-@include('layouts.partials.dashboard.dashboard')
+@include('layouts.partials.admin.dashboard')
 
 
 <div class="nxl-content">
@@ -326,5 +326,5 @@
     <!-- [ Main Content ] end -->
 </div>
 
-@include('layouts.partials.dashboard.footer')
+@include('layouts.partials.admin.footer')
 
