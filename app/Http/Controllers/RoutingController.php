@@ -50,7 +50,7 @@ class RoutingController extends Controller
 
     public function student()
     {
-        return view('indexstu');
+        return view('student.indexstu');
     }
 
     public function addstudent()
@@ -60,7 +60,7 @@ class RoutingController extends Controller
 
     public function admin()
     {
-        return view('indexone');
+        return view('admin.indexone');
     }
 
     /**
