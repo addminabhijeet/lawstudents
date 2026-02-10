@@ -93,7 +93,7 @@ class LoginController extends Controller
             ->with('success', 'Registration successful. Please login.');
     }
 
-    public function studentregister(Request $request)
+    public function registerstusubmit(Request $request)
     {
         // Validate the request
         $validator = Validator::make($request->all(), [

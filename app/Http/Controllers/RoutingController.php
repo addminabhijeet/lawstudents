@@ -32,6 +32,11 @@ class RoutingController extends Controller
         return view('auth.auth-register-minimal');
     }
 
+    public function registerstu()
+    {
+        return view('auth.auth-registerstu-minimal');
+    }
+
     public function liststudent()
     {
         return view('admission.payment');
