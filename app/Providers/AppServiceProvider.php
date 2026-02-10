@@ -27,5 +27,8 @@ class AppServiceProvider extends ServiceProvider
 
         Route::middleware('web')
             ->group(base_path('routes/student.php'));
+
+        Route::middleware('web')
+            ->group(base_path('routes/auth.php'));
     }
 }
