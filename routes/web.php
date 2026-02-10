@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [RoutingController::class, 'root'])->name('root');
-Route::get('log', [RoutingController::class, 'log'])->name('log');
 Route::post('loginsubmit', [LoginController::class, 'loginsubmit'])->name('login.submit');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('registersubmit', [LoginController::class, 'registersubmit'])->name('admin.registersubmit');
 Route::get('login', [RoutingController::class, 'login'])->name('login');
 Route::get('verify', [RoutingController::class, 'verify'])->name('verify');
