@@ -31,7 +31,7 @@ class AdminLoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('admin');
+            return redirect()->route('log');
         }
 
         return back()->with('error', 'Invalid login details');

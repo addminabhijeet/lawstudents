@@ -32,7 +32,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('admin');
+            return redirect()->route('log');
         }
 
         return back()->with('error', 'Invalid admin credentials');
