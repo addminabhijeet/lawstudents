@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Student extends Authenticatable
@@ -28,9 +31,11 @@ class Student extends Authenticatable
 
     // Cast attributes to native types
     protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
+        'created_at' => 'immutable_datetime',
+        'updated_at' => 'immutable_datetime',
+        'otp_expires_at' => 'datetime',
     ];
+
 
     /**
      * Mutator to hash password automatically when set
@@ -38,7 +43,25 @@ class Student extends Authenticatable
     public function setPasswordAttribute($value)
     {
         if ($value) {
-            $this->attributes['password'] = bcrypt($value);
+            $this->attributes['password'] = Hash::make($value);
         }
+    }
+
+    public function generateOtp()
+    {
+        $otp = random_int(100000, 999999);
+
+        $this->otp = $otp;
+        $this->otp_expires_at = now()->addMinutes(10);
+        $this->save();
+
+        return $otp;
+    }
+
+    public function clearOtp()
+    {
+        $this->otp = null;
+        $this->otp_expires_at = null;
+        $this->save();
     }
 }
