@@ -24,7 +24,7 @@ class RoutingController extends Controller
 
     public function verify()
     {
-        return view('auth.auth-verify-minimal');
+        return view('auth.student-verify-otp');
     }
 
     public function register()
