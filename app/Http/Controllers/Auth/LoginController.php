@@ -52,7 +52,7 @@ class LoginController extends Controller
 
             if (Hash::check($request->password, $student->password)) {
                 Auth::guard('student')->login($student, $request->remember);
-                return redirect()->route('loginstu');
+                return redirect()->route('login');
             }
         }
 
