@@ -2854,3 +2854,4 @@
     <!--! ================================================================ !-->
     <main class="nxl-container">
         <!-- main containts -->
+<div class="nxl-content">
