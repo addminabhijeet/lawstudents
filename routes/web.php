@@ -6,7 +6,19 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\StudentPasswordController;
 
 Route::get('/', [RoutingController::class, 'root'])->name('root');
-Route::get('log', [RoutingController::class, 'log'])->name('log');
+Route::middleware('auth:admin')->group(function () {
+
+    Route::get('log', [RoutingController::class, 'log'])->name('log');
+
+});
+
+Route::middleware('guest:admin')->group(function () {
+
+    Route::get('login', [RoutingController::class, 'login'])->name('login');
+    Route::post('loginsubmit', [LoginController::class, 'loginsubmit'])->name('login.submit');
+
+});
+
 Route::post('loginsubmit', [LoginController::class, 'loginsubmit'])->name('login.submit');
 Route::post('registersubmit', [LoginController::class, 'registersubmit'])->name('admin.registersubmit');
 Route::get('login', [RoutingController::class, 'login'])->name('login');

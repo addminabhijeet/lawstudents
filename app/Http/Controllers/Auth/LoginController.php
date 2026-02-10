@@ -14,47 +14,37 @@ class LoginController extends Controller
 {
     public function loginsubmit(Request $request): RedirectResponse
     {
-        $data = $request->validate([
-            'login' => ['required','string'],
-            'password' => ['required','string'],
+        $credentials = $request->validate([
+            'login' => ['required', 'string'],
+            'password' => ['required', 'string'],
         ]);
 
-        if ($admin = Admin::where('email',$data['login'])
-            ->orWhere('username',$data['login'])->first()) {
+        $remember = $request->boolean('remember');
 
-            if (Hash::needsRehash($admin->password)) {
-                $admin->update(['password'=>bcrypt($admin->password)]);
-            }
+        $loginField = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL)
+            ? 'email'
+            : 'username';
 
-            if (Hash::check($data['password'],$admin->password)) {
-                Auth::guard('admin')->login($admin,$request->boolean('remember'));
-                return redirect()->route('log');
-            }
+        if (Auth::guard('admin')->attempt([
+            $loginField => $credentials['login'],
+            'password' => $credentials['password'],
+        ], $remember)) {
+
+            $request->session()->regenerate();
+
+            return redirect()->route('log');
         }
 
-        if ($student = Student::where('email',$data['login'])
-            ->orWhere('username',$data['login'])->first()) {
-
-            if (!Hash::isHashed($student->password)) {
-                $student->update(['password'=>bcrypt($student->password)]);
-            }
-
-            if (Hash::check($data['password'],$student->password)) {
-                Auth::guard('student')->login($student,$request->boolean('remember'));
-                return redirect()->route('login');
-            }
-        }
-
-        return back()->with('error','Invalid login details');
+        return back()->with('error', 'Invalid admin credentials');
     }
 
     public function registersubmit(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'name'=>'required|string|max:100',
-            'username'=>'required|string|max:100|unique:admins',
-            'email'=>'required|email|max:150|unique:admins',
-            'password'=>'required|confirmed|min:6',
+            'name' => 'required|string|max:100',
+            'username' => 'required|string|max:100|unique:admins',
+            'email' => 'required|email|max:150|unique:admins',
+            'password' => 'required|confirmed|min:6',
         ]);
 
         $admin = Admin::create($data);
@@ -62,16 +52,16 @@ class LoginController extends Controller
         Auth::guard('admin')->login($admin);
 
         return redirect()->route('login')
-            ->with('success','Registration successful. Please login.');
+            ->with('success', 'Registration successful. Please login.');
     }
 
     public function registerstusubmit(Request $request): RedirectResponse
     {
         $data = $request->validate([
-            'name'=>'required|string|max:100',
-            'username'=>'required|string|max:100|unique:students',
-            'email'=>'required|email|max:150|unique:students',
-            'password'=>'required|confirmed|min:6',
+            'name' => 'required|string|max:100',
+            'username' => 'required|string|max:100|unique:students',
+            'email' => 'required|email|max:150|unique:students',
+            'password' => 'required|confirmed|min:6',
         ]);
 
         $student = Student::create($data);
@@ -79,6 +69,16 @@ class LoginController extends Controller
         Auth::guard('student')->login($student);
 
         return redirect()->route('login')
-            ->with('success','Student registration successful.');
+            ->with('success', 'Student registration successful.');
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
     }
 }
