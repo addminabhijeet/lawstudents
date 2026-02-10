@@ -1,49 +1,11 @@
 <?php
 
-use App\Http\Controllers\RoutingController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\StudentPasswordController;
+use App\Http\Controllers\RoutingController;
 
-Route::get('/', [RoutingController::class, 'root'])->name('root');
-Route::middleware('auth:admin')->group(function () {
-
-    Route::get('log', [RoutingController::class, 'log'])->name('log');
-
-});
-
-Route::middleware('guest:admin')->group(function () {
-
-    Route::get('login', [RoutingController::class, 'login'])->name('login');
-    Route::post('loginsubmit', [LoginController::class, 'loginsubmit'])->name('login.submit');
-
-});
-
-Route::post('loginsubmit', [LoginController::class, 'loginsubmit'])->name('login.submit');
-Route::post('registersubmit', [LoginController::class, 'registersubmit'])->name('admin.registersubmit');
-Route::get('login', [RoutingController::class, 'login'])->name('login');
-Route::get('verify', [RoutingController::class, 'verify'])->name('verify');
-Route::get('register', [RoutingController::class, 'register'])->name('register');
-Route::post('/student/send-otp', [StudentPasswordController::class,'sendOtp'])
-    ->middleware('throttle:3,1');
-
-// Show request OTP form
-Route::get('/student/forgot-password', [StudentPasswordController::class, 'showForgotForm'])->name('student.forgot');
-
-// Send OTP
-Route::post('/student/send-otp', [StudentPasswordController::class, 'sendOtp'])->name('student.send-otp');
-
-// Show OTP verification form
-Route::get('/student/verify-otp', [StudentPasswordController::class, 'showVerifyOtpForm'])->name('student.verify-otp');
-
-// Verify OTP
-Route::post('/student/verify-otp', [StudentPasswordController::class, 'verifyOtp'])->name('student.verify-otp.submit');
-
-// Show reset password form
-Route::get('/student/reset-password/{student}', [StudentPasswordController::class, 'showResetForm'])->name('student.reset-password');
-
-// Update password
-Route::post('/student/reset-password/{student}', [StudentPasswordController::class, 'resetPassword'])->name('student.reset-password.submit');
+Route::get('/', [RoutingController::class,'root'])->name('root');
+Route::get('verify', [RoutingController::class,'verify'])->name('verify');
+Route::get('register', [RoutingController::class,'register'])->name('register');
 
 Route::get('/{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])
     ->where('first', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
