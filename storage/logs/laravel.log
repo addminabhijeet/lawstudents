@@ -16969,3 +16969,22 @@ Did you mean one of these?
 #29 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
 #30 {main}
 "} 
+[2026-02-10 21:31:10] local.ERROR: Command "route:match" is not defined.
+
+Did you mean one of these?
+    route:cache
+    route:clear
+    route:list {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"route:match\" is not defined.
+
+Did you mean one of these?
+    route:cache
+    route:clear
+    route:list at E:/lawstudents/vendor/symfony/console/Application.php:759)
+[stacktrace]
+#0 E:/lawstudents/vendor/symfony/console/Application.php(298): Symfony/Component/Console/Application->find('route:match')
+#1 E:/lawstudents/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#4 E:/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#5 {main}
+"} 
