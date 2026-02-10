@@ -12,6 +12,8 @@ Route::post('registersubmit', [LoginController::class, 'registersubmit'])->name(
 Route::get('login', [RoutingController::class, 'login'])->name('login');
 Route::get('verify', [RoutingController::class, 'verify'])->name('verify');
 Route::get('register', [RoutingController::class, 'register'])->name('register');
+Route::post('/student/send-otp', [StudentPasswordController::class,'sendOtp'])
+    ->middleware('throttle:3,1');
 
 // Show request OTP form
 Route::get('/student/forgot-password', [StudentPasswordController::class, 'showForgotForm'])->name('student.forgot');

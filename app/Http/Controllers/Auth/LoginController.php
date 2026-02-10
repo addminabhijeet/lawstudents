@@ -22,7 +22,7 @@ class LoginController extends Controller
         if ($admin = Admin::where('email',$data['login'])
             ->orWhere('username',$data['login'])->first()) {
 
-            if (!Hash::isHashed($admin->password)) {
+            if (Hash::needsRehash($admin->password)) {
                 $admin->update(['password'=>bcrypt($admin->password)]);
             }
 
