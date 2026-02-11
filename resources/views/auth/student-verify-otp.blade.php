@@ -390,12 +390,19 @@
 
                         this.value = this.value.replace(/[^0-9]/g, '');
 
+                        // Move focus to next input
                         if (this.value.length === 1 && index < inputs.length - 1) {
                             inputs[index + 1].focus();
                         }
 
-                    });
+                        // If last input and filled, auto submit form
+                        if (index === inputs.length - 1 && this.value.length === 1) {
+                            combineOtp();
+                            input.closest('form').submit();
+                        }
 
+                    });
+                    
                     input.addEventListener('keydown', function(e) {
 
                         if (e.key === "Backspace" && this.value === '' && index > 0) {
