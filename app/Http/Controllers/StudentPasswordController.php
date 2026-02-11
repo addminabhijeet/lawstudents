@@ -61,23 +61,17 @@ class StudentPasswordController extends Controller
         return view('auth.student-reset-password', compact('student'));
     }
 
-public function resetPassword(StudentResetPasswordRequest $request, Student $student)
-{
-    // reset password using service
-    $this->service->resetPassword($student, $request->password);
+    public function resetPassword(StudentResetPasswordRequest $request, Student $student)
+    {
+        $this->service->resetPassword($student, $request->password);
 
-    // clear otp (production SaaS practice)
-    $student->clearOtp();
+        $student->clearOtp();
 
-    // login student using student guard
-    Auth::guard('student')->login($student);
+        Auth::guard('student')->login($student);
 
-    // regenerate session (security - prevent session fixation)
-    request()->session()->regenerate();
+        request()->session()->regenerate();
 
-    // redirect to student dashboard
-    return redirect()->route('student.dashboard')
-        ->with('success', 'Password reset successfully!');
-}
-
+        return redirect()->route('student.dashboard')
+            ->with('success', 'Password reset successfully!');
+    }
 }
