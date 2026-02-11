@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [RoutingController::class, 'root'])->name('root');
 Route::post('loginsubmit', [LoginController::class, 'loginsubmit'])->name('login.submit');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:admin');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:admin');
 Route::post('registersubmit', [LoginController::class, 'registersubmit'])->name('admin.registersubmit');
 Route::get('login', [RoutingController::class, 'login'])->name('login');
 Route::get('verify', [RoutingController::class, 'verify'])->name('verify');
