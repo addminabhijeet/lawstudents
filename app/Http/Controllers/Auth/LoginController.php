@@ -90,4 +90,14 @@ class LoginController extends Controller
 
         return redirect()->route('login');
     }
+
+    public function logoutstu(Request $request): RedirectResponse
+    {
+        Auth::guard('student')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+    }
 }
