@@ -5,16 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [RoutingController::class, 'root'])->name('root');
-Route::post('loginsubmit', [LoginController::class, 'loginsubmit'])->name('login.submit');
-Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth:admin');
-Route::post('logoutstu', [LoginController::class, 'logoutstu'])->name('logoutstu')->middleware('auth:student');
-Route::post('registersubmit', [LoginController::class, 'registersubmit'])->name('admin.registersubmit');
-Route::get('login', [RoutingController::class, 'login'])->name('login');
-Route::get('verify', [RoutingController::class, 'verify'])->name('verify');
-Route::get('register', [RoutingController::class, 'register'])->name('register');
-
-Route::get('addstudent', [RoutingController::class, 'addstudent'])->name('addstudent');
-
 
 Route::get('/{first}/{second}/{third}', [RoutingController::class, 'thirdLevel'])
     ->where('first', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
@@ -27,6 +17,3 @@ Route::get('/{first}/{second}', [RoutingController::class, 'secondLevel'])
 Route::get('/{any}', [RoutingController::class, 'firstLevel'])
     ->where('any', '^(?!admin|student|build|assets|img|css|js|storage|vendor|favicon\.ico|robots\.txt|\.well-known).*$')
     ->name('any');
-
-Route::get('admission', [RoutingController::class, 'admission'])->name('admin.admission');
-Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])->name('admin.admissioncreate');
