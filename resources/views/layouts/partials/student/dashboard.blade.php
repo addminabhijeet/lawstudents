@@ -2827,7 +2827,7 @@
                                 <span>Account Settings</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            <form id="logout-form" action="{{ route('logoutstu') }}" method="POST"
                                 style="display: none;">
                                 @csrf
                             </form>
