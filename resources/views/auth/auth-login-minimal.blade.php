@@ -91,12 +91,13 @@
                                     <input type="password" name="password" class="form-control password"
                                         placeholder="Password" required>
 
-                                    <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                        data-bs-toggle="tooltip" title="Show/Hide Password">
-                                        <i></i>
+                                    <div class="input-group-text border-start c-pointer show-pass"
+                                        style="background:#f8f9fa;" data-bs-toggle="tooltip" title="Show/Hide Password">
+                                        <i class="feather-eye"></i>
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
