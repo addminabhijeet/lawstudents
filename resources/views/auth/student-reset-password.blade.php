@@ -79,7 +79,9 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('student.reset-password.submit') }}" method="POST" class="w-100 mt-4 pt-2">
+                        <form action="{{ route('student.reset-password.submit', $student->id) }}" method="POST"
+                            class="w-100 mt-4 pt-2">
+
                             @csrf
                             <div class="mb-4">
                                 <input type="text" name="name" class="form-control" placeholder="Full Name"
