@@ -34,7 +34,7 @@ Route::middleware(['student.auth'])->group(function () {
         Route::get('student-reset-password/{student}', 'showResetForm')
             ->name('student.reset-password');
 
-        Route::post('student-reset-password/{student}', 'resetPassword')
+        Route::post('student-reset-password-submit/{student}', 'resetPassword')
             ->name('student.reset-password.submit');
     });
 
