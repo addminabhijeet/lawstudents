@@ -10,7 +10,7 @@
     <meta name="author" content="theme_ocean">
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Duralux || Login Minimal</title>
+    <title>Duralux || Register Minimal</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -45,10 +45,11 @@
                         <img src="assets/images/logo-abbr.png" alt="" class="img-fluid">
                     </div>
                     <div class="card-body p-sm-5">
-                        <h2 class="fs-20 fw-bolder mb-4">Login</h2>
-                        <h4 class="fs-13 fw-bold mb-2">Login to your account</h4>
-                        <p class="fs-12 fw-medium text-muted">Thank you for get back <strong>Nelel</strong> web
-                            applications, let's access our the best recommendation for you.</p>
+                        <h2 class="fs-20 fw-bolder mb-4">Register</h2>
+                        <h4 class="fs-13 fw-bold mb-2">Manage all your Duralux crm</h4>
+                        <p class="fs-12 fw-medium text-muted">Let's get you all setup, so you can verify your personal
+                            account and begine setting up your profile.</p>
+
                         {{-- Display Login Errors and Validation Messages --}}
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -78,57 +79,64 @@
                             </div>
                         @endif
 
-
-                        <form action="{{ route('login.submit') }}" method="POST" class="w-100 mt-4 pt-2">
+                        <form action="{{ route('student.reset-password.submit') }}" method="POST" class="w-100 mt-4 pt-2">
                             @csrf
                             <div class="mb-4">
-                                <input type="text" name="login" class="form-control"
-                                    placeholder="Email or Username" required>
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" name="password" class="form-control" placeholder="Password"
+                                <input type="text" name="name" class="form-control" placeholder="Full Name"
                                     required>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="remember" class="custom-control-input"
-                                            id="rememberMe">
-                                        <label class="custom-control-label c-pointer" for="rememberMe">Remember
-                                            Me</label>
-                                    </div>
+                            <div class="mb-4">
+                                <input type="text" name="username" class="form-control" placeholder="Username"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="mb-4 generate-pass">
+                                <div class="input-group field">
+                                    <input type="password" name="password" class="form-control password"
+                                        id="newPassword" placeholder="Password" required>
+                                    <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
+                                        title="Generate Password"><i class="feather-hash"></i></div>
+                                    <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                        data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
-                                <div>
-                                    <a href="{{ route('student.forgot') }}" class="fs-11 text-primary">Forget password?</a>
+                                <div class="progress-bar mt-2">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <input type="password" name="password_confirmation" class="form-control"
+                                    placeholder="Confirm Password" required>
+                            </div>
+                            <div class="mt-4">
+                                <div class="custom-control custom-checkbox mb-2">
+                                    <input type="checkbox" class="custom-control-input" id="receiveMail"
+                                        name="receiveMail">
+                                    <label class="custom-control-label c-pointer text-muted" for="receiveMail"
+                                        style="font-weight: 400 !important">Yes, I want to receive Duralux community
+                                        emails</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="termsCondition"
+                                        name="termsCondition" required>
+                                    <label class="custom-control-label c-pointer text-muted" for="termsCondition"
+                                        style="font-weight: 400 !important">I agree to all the <a href="">Terms
+                                            &
+                                            Conditions</a> and <a href="">Fees</a>.</label>
                                 </div>
                             </div>
                             <div class="mt-5">
-                                <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>
+                                <button type="submit" class="btn btn-lg btn-primary w-100">Create Account</button>
                             </div>
                         </form>
 
-                        <div class="w-100 mt-5 text-center mx-auto">
-                            <div class="mb-4 border-bottom position-relative"><span
-                                    class="small py-1 px-3 text-uppercase text-muted bg-white position-absolute translate-middle">or</span>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center gap-2">
-                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill"
-                                    data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Facebook">
-                                    <i class="feather-facebook"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill"
-                                    data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Twitter">
-                                    <i class="feather-twitter"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill"
-                                    data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Github">
-                                    <i class="feather-github text"></i>
-                                </a>
-                            </div>
-                        </div>
                         <div class="mt-5 text-muted">
-                            <span> Don't have an account?</span>
-                            <a href="{{ route('register') }}" class="fw-bold">Create an Account</a>
+                            <span>Already have an account?</span>
+                            <a href="{{ route('login') }}" class="fw-bold">Login</a>
                         </div>
                     </div>
                 </div>
@@ -363,6 +371,7 @@
     <!--! BEGIN: Vendors JS !-->
     <script src="assets/vendors/js/vendors.min.js"></script>
     <!-- vendors.min.js {always must need to be top} -->
+    <script src="assets/vendors/js/lslstrength.min.js"></script>
     <!--! END: Vendors JS !-->
     <!--! BEGIN: Apps Init  !-->
     <script src="assets/js/common-init.min.js"></script>
