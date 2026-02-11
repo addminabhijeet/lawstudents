@@ -86,15 +86,12 @@
                                     placeholder="Email or Username" required>
                             </div>
 
-                            <div class="mb-3">
-                                <div class="input-group">
+                            <div class="mb-4 generate-pass">
+                                <div class="input-group field">
                                     <input type="password" name="password" class="form-control password"
                                         placeholder="Password" required>
-
-                                    <div class="input-group-text border-start c-pointer show-pass"
-                                         data-bs-toggle="tooltip" title="Show/Hide Password">
-                                        <i></i>
-                                    </div>
+                                    <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                        data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
                             </div>
 
