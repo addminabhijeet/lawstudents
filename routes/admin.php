@@ -3,23 +3,28 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 
-Route::middleware(['auth:admin'])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
+Route::middleware(['admin.auth'])->group(function () {
 
-        Route::get('/', [RoutingController::class, 'admin'])
-            ->name('dashboard');
+    Route::middleware(['auth:admin'])
+        ->prefix('admin')
+        ->name('admin.')
+        ->group(function () {
 
-        Route::get('addstudent', [RoutingController::class, 'addstudent'])
-            ->name('addstudent');
+            Route::get('/', [RoutingController::class, 'admin'])
+                ->name('dashboard');
 
-        Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])
-            ->name('admissioncreate');
+            Route::get('addstudent', [RoutingController::class, 'addstudent'])
+                ->name('addstudent');
 
-        Route::get('liststudent', [RoutingController::class, 'liststudent'])
-            ->name('liststudent');
+            Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])
+                ->name('admissioncreate');
 
-    });
-Route::get('/legacy-admin', [RoutingController::class, 'admin'])
-    ->name('admin');
+            Route::get('liststudent', [RoutingController::class, 'liststudent'])
+                ->name('liststudent');
+
+        });
+
+    Route::get('/legacy-admin', [RoutingController::class, 'admin'])
+        ->name('admin');
+
+});
