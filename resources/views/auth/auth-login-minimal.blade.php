@@ -92,8 +92,8 @@
                                         placeholder="Password" required>
 
                                     <div class="input-group-text border-start c-pointer show-pass"
-                                        style="background:#f8f9fa;" data-bs-toggle="tooltip" title="Show/Hide Password">
-                                        <i class="feather-eye"></i>
+                                         data-bs-toggle="tooltip" title="Show/Hide Password">
+                                        <i></i>
                                     </div>
                                 </div>
                             </div>
