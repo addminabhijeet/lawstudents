@@ -2,23 +2,23 @@
 
 namespace App\Services;
 
-use App\Models\Student;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class StudentPasswordService
 {
-    public function sendOtp(Student $student)
+    public function sendOtp(Authenticatable $user)
     {
-        return $student->generateOtp();
+        return $user->generateOtp();
     }
 
-    public function verifyOtp(Student $student, $otp)
+    public function verifyOtp(Authenticatable $user, $otp)
     {
         if (
-            $student->otp !== $otp ||
-            !$student->otp_expires_at ||
-            now()->greaterThan($student->otp_expires_at)
+            $user->otp !== $otp ||
+            !$user->otp_expires_at ||
+            now()->greaterThan($user->otp_expires_at)
         ) {
             throw ValidationException::withMessages([
                 'otp' => 'Invalid or expired OTP',
@@ -28,11 +28,10 @@ class StudentPasswordService
         return true;
     }
 
-    public function resetPassword(Student $student, $password)
+    public function resetPassword(Authenticatable $user, $password)
     {
-        $student->password = $password;
-        $student->clearOtp();
-
-        $student->save();
+        $user->password = $password;
+        $user->clearOtp();
+        $user->save();
     }
 }
