@@ -49,7 +49,7 @@
                         <h4 class="fs-13 fw-bold mb-2">Reset to your username/password</h4>
                         <p class="fs-12 fw-medium text-muted">Enter your email and a reset link will sent to you, let's
                             access our the best recommendation for you.</p>
-                        <form method="POST" action="{{ route('student.verify-otp.submit') }}" class="w-100 mt-4 pt-2">
+                        <form method="POST" action="{{ route('student.verify-otp') }}" class="w-100 mt-4 pt-2">
                             @csrf
                             <div class="mb-4">
                                 <input name="email" class="form-control" placeholder="Email or Username" required>
