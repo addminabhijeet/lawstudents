@@ -9,9 +9,6 @@ use Illuminate\Support\Carbon;
 
 class StudentPasswordService
 {
-    /**
-     * Generate and assign OTP
-     */
     public function sendOtp(Authenticatable $user): int
     {
         if (!method_exists($user, 'generateOtp')) {
@@ -23,9 +20,6 @@ class StudentPasswordService
         return $user->generateOtp();
     }
 
-    /**
-     * Verify OTP with strict SaaS validation
-     */
     public function verifyOtp(Authenticatable $user, $otp): bool
     {
         if (!$user->otp) {
@@ -55,9 +49,6 @@ class StudentPasswordService
         return true;
     }
 
-    /**
-     * Reset Password (Multi Guard Safe)
-     */
     public function resetPassword(Authenticatable $user, string $password): void
     {
         if (!$password) {
@@ -66,7 +57,7 @@ class StudentPasswordService
             ]);
         }
 
-        $user->password = $password; // auto hashed via model mutator
+        $user->password = $password;
         $user->save();
     }
 }
