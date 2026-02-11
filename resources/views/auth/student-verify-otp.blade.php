@@ -167,8 +167,8 @@
                         style="top: -12px">Skins</label>
                     <div class="row g-2 theme-options-items app-skin" id="appSkinList">
                         <div class="col-6 text-center position-relative single-option light-button active">
-                            <input type="radio" class="btn-check" id="app-skin-light" name="app-skin" value="1"
-                                data-app-skin="app-skin-light">
+                            <input type="radio" class="btn-check" id="app-skin-light" name="app-skin"
+                                value="1" data-app-skin="app-skin-light">
                             <label
                                 class="py-2 fs-9 fw-bold text-dark text-uppercase text-spacing-1 border border-gray-2 w-100 h-100 c-pointer position-relative options-label"
                                 for="app-skin-light">Light</label>
@@ -375,32 +375,75 @@
     <script src="assets/js/theme-customizer-init.min.js"></script>
     <!--! END: Theme Customizer !-->
     <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
+        document.addEventListener("DOMContentLoaded", function() {
+
             function OTPInput() {
-                const inputs = document.querySelectorAll("#otp > *[id]");
-                for (let i = 0; i < inputs.length; i++) {
-                    inputs[i].addEventListener("keydown", function(event) {
-                        if (event.key === "Backspace") {
-                            inputs[i].value = "";
-                            if (i !== 0) inputs[i - 1].focus();
-                        } else {
-                            if (i === inputs.length - 1 && inputs[i].value !== "") {
-                                return true;
-                            } else if (event.keyCode > 47 && event.keyCode < 58) {
-                                inputs[i].value = event.key;
-                                if (i !== inputs.length - 1) inputs[i + 1].focus();
-                                event.preventDefault();
-                            } else if (event.keyCode > 64 && event.keyCode < 91) {
-                                inputs[i].value = String.fromCharCode(event.keyCode);
-                                if (i !== inputs.length - 1) inputs[i + 1].focus();
-                                event.preventDefault();
-                            }
+
+                const container = document.querySelector('#otp');
+                if (!container) return;
+
+                const inputs = container.querySelectorAll('.otp-digit');
+
+                inputs.forEach((input, index) => {
+
+                    input.addEventListener('input', function() {
+
+                        this.value = this.value.replace(/[^0-9]/g, '');
+
+                        if (this.value.length === 1 && index < inputs.length - 1) {
+                            inputs[index + 1].focus();
                         }
+
                     });
+
+                    input.addEventListener('keydown', function(e) {
+
+                        if (e.key === "Backspace" && this.value === '' && index > 0) {
+                            inputs[index - 1].focus();
+                        }
+
+                    });
+
+                    input.addEventListener('paste', function(e) {
+
+                        let pasteData = (e.clipboardData || window.clipboardData).getData('text');
+                        pasteData = pasteData.replace(/[^0-9]/g, '').slice(0, inputs.length);
+
+                        if (pasteData.length > 1) {
+
+                            inputs.forEach((input, i) => {
+                                input.value = pasteData[i] || '';
+                            });
+
+                            e.preventDefault();
+                        }
+
+                    });
+
+                });
+
+                if (inputs.length) {
+                    inputs[0].focus();
                 }
             }
+
             OTPInput();
+
         });
+    </script>
+    <script>
+        function combineOtp() {
+
+            let otp = '';
+
+            document.querySelectorAll('#otp .otp-digit').forEach(input => {
+                otp += input.value;
+            });
+
+            document.getElementById('otp_full').value = otp;
+
+            return true;
+        }
     </script>
 </body>
 
