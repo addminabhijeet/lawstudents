@@ -13,16 +13,11 @@
     <title>Duralux || Register Minimal</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
-    <!--! END: Favicon-->
-    <!--! BEGIN: Bootstrap CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <!--! END: Bootstrap CSS-->
-    <!--! BEGIN: Vendors CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/vendors/css/vendors.min.css">
-    <!--! END: Vendors CSS-->
-    <!--! BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/theme.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendors.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
+
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
     <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
@@ -42,7 +37,7 @@
                 <div class="card mb-4 mt-5 mx-4 mx-sm-0 position-relative">
                     <div
                         class="wd-50 bg-white p-2 rounded-circle shadow-lg position-absolute translate-middle top-0 start-50">
-                        <img src="assets/images/logo-abbr.png" alt="" class="img-fluid">
+                        <img src="{{ asset('assets/images/logo-abbr.png') }}" alt="" class="img-fluid">
                     </div>
                     <div class="card-body p-sm-5">
                         <h2 class="fs-20 fw-bolder mb-4">Register</h2>
@@ -79,7 +74,8 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('student.reset-password.submit', $student) }}" method="POST" class="w-100 mt-4 pt-2">
+                        <form action="{{ route('student.reset-password.submit', $student) }}" method="POST"
+                            class="w-100 mt-4 pt-2">
 
 
                             @csrf
@@ -371,16 +367,11 @@
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
     <!--! BEGIN: Vendors JS !-->
-    <script src="assets/vendors/js/vendors.min.js"></script>
-    <!-- vendors.min.js {always must need to be top} -->
-    <script src="assets/vendors/js/lslstrength.min.js"></script>
-    <!--! END: Vendors JS !-->
-    <!--! BEGIN: Apps Init  !-->
-    <script src="assets/js/common-init.min.js"></script>
-    <!--! END: Apps Init !-->
-    <!--! BEGIN: Theme Customizer  !-->
-    <script src="assets/js/theme-customizer-init.min.js"></script>
-    <!--! END: Theme Customizer !-->
+    <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/lslstrength.min.js') }}"></script>
+    <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+    <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
+
 </body>
 
 </html>
