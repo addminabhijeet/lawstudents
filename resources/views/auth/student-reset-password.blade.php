@@ -80,16 +80,20 @@
 
                             @csrf
                             <div class="mb-4">
-                                <input type="text" name="name" class="form-control" placeholder="Full Name"
-                                    required>
+                                <input type="text" name="name" class="form-control" value="{{ $student->name }}"
+                                    readonly>
                             </div>
+
                             <div class="mb-4">
-                                <input type="text" name="username" class="form-control" placeholder="Username"
-                                    required>
+                                <input type="text" name="username" class="form-control"
+                                    value="{{ $student->username }}" readonly>
                             </div>
+
                             <div class="mb-4">
-                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                <input type="email" name="email" class="form-control" value="{{ $student->email }}"
+                                    readonly>
                             </div>
+
                             <div class="mb-4 generate-pass">
                                 <div class="input-group field">
                                     <input type="password" name="password" class="form-control password"
