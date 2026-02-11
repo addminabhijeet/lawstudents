@@ -84,7 +84,7 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="apps-chat.html">Chat</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addstudent') }}">Add Student</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-email.html">Email</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-tasks.html">Tasks</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-notes.html">Notes</a></li>
