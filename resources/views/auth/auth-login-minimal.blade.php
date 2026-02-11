@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="#" class="fs-11 text-primary">Forget password?</a>
+                                    <a href="{{ route('student.forgot') }}" class="fs-11 text-primary">Forget password?</a>
                                 </div>
                             </div>
                             <div class="mt-5">
