@@ -14,7 +14,16 @@ class StudentResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => 'required|confirmed|min:6'
+            'password' => ['required','confirmed','min:6'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'password.required' => 'Password is required.',
+            'password.confirmed' => 'Passwords do not match.',
+            'password.min' => 'Password must be at least 6 characters.',
         ];
     }
 }

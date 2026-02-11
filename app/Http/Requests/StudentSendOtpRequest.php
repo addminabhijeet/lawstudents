@@ -14,7 +14,15 @@ class StudentSendOtpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email'
+            'email' => ['required','email'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Email is required.',
+            'email.email' => 'Enter a valid email address.',
         ];
     }
 }

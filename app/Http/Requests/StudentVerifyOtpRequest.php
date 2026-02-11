@@ -14,8 +14,16 @@ class StudentVerifyOtpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
-            'otp' => 'required|digits:6'
+            'email' => ['required','email'],
+            'otp' => ['required','digits:6'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'otp.required' => 'OTP is required.',
+            'otp.digits' => 'OTP must be 6 digits.',
         ];
     }
 }

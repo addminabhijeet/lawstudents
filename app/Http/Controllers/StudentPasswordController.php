@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use App\Models\Student;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Mail;
@@ -29,7 +30,13 @@ class StudentPasswordController extends Controller
     public function sendOtp(StudentSendOtpRequest $request)
     {
         $user = Student::where('email', $request->email)->first()
-            ?? Admin::where('email', $request->email)->firstOrFail();
+            ?? Admin::where('email', $request->email)->first();
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'email' => 'No account found with this email.',
+            ]);
+        }
 
         $otp = $this->service->sendOtp($user);
 
@@ -43,7 +50,12 @@ class StudentPasswordController extends Controller
     public function showVerifyOtpForm()
     {
         $email = session('email');
-        if (!$email) return redirect()->route('student.forgot');
+
+        if (!$email) {
+            throw ValidationException::withMessages([
+                'email' => 'Session expired. Please request OTP again.',
+            ]);
+        }
 
         return view('auth.student-verify-otp', compact('email'));
     }
@@ -51,7 +63,13 @@ class StudentPasswordController extends Controller
     public function verifyOtp(StudentVerifyOtpRequest $request)
     {
         $user = Student::where('email', $request->email)->first()
-            ?? Admin::where('email', $request->email)->firstOrFail();
+            ?? Admin::where('email', $request->email)->first();
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'email' => 'Account not found.',
+            ]);
+        }
 
         $this->service->verifyOtp($user, $request->otp);
 
@@ -61,7 +79,13 @@ class StudentPasswordController extends Controller
 
     public function showResetForm($id)
     {
-        $user = Student::find($id) ?? Admin::findOrFail($id);
+        $user = Student::find($id) ?? Admin::find($id);
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'user' => 'Invalid reset request.',
+            ]);
+        }
 
         return view('auth.student-reset-password', ['student' => $user]);
     }
@@ -72,8 +96,14 @@ class StudentPasswordController extends Controller
         $guard = 'student';
 
         if (!$user) {
-            $user = Admin::findOrFail($id);
+            $user = Admin::find($id);
             $guard = 'admin';
+        }
+
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'user' => 'Invalid reset request.',
+            ]);
         }
 
         $this->service->resetPassword($user, $request->password);
