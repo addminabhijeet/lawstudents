@@ -33,9 +33,9 @@ class StudentPasswordController extends Controller
             ?? Admin::where('email', $request->email)->first();
 
         if (!$user) {
-            throw ValidationException::withMessages([
+            return back()->withErrors([
                 'email' => 'No account found with this email.',
-            ]);
+            ])->withInput();
         }
 
         $otp = $this->service->sendOtp($user);
@@ -52,9 +52,10 @@ class StudentPasswordController extends Controller
         $email = session('email');
 
         if (!$email) {
-            throw ValidationException::withMessages([
-                'email' => 'Session expired. Please request OTP again.',
-            ]);
+            return redirect()->route('student.forgot')
+                ->withErrors([
+                    'email' => 'Session expired. Please request OTP again.',
+                ]);
         }
 
         return view('auth.student-verify-otp', compact('email'));
@@ -66,12 +67,18 @@ class StudentPasswordController extends Controller
             ?? Admin::where('email', $request->email)->first();
 
         if (!$user) {
-            throw ValidationException::withMessages([
+            return back()->withErrors([
                 'email' => 'Account not found.',
             ]);
         }
 
-        $this->service->verifyOtp($user, $request->otp);
+        try {
+            $this->service->verifyOtp($user, $request->otp);
+        } catch (ValidationException $e) {
+            return back()
+                ->withErrors($e->errors())
+                ->withInput();
+        }
 
         return redirect()->route('student.reset-password', $user->id)
             ->with('success', 'OTP verified! You can reset your password.');
@@ -82,9 +89,10 @@ class StudentPasswordController extends Controller
         $user = Student::find($id) ?? Admin::find($id);
 
         if (!$user) {
-            throw ValidationException::withMessages([
-                'user' => 'Invalid reset request.',
-            ]);
+            return redirect()->route('student.forgot')
+                ->withErrors([
+                    'user' => 'Invalid reset request.',
+                ]);
         }
 
         return view('auth.student-reset-password', ['student' => $user]);
@@ -101,14 +109,13 @@ class StudentPasswordController extends Controller
         }
 
         if (!$user) {
-            throw ValidationException::withMessages([
-                'user' => 'Invalid reset request.',
-            ]);
+            return redirect()->route('student.forgot')
+                ->withErrors([
+                    'user' => 'Invalid reset request.',
+                ]);
         }
 
         $this->service->resetPassword($user, $request->password);
-
-        $user->clearOtp();
 
         Auth::guard($guard)->login($user);
 
