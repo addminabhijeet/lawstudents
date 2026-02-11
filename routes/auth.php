@@ -30,22 +30,22 @@ Route::controller(LoginController::class)->group(function () {
 
 Route::controller(StudentPasswordController::class)->group(function () {
 
-    Route::get('student-forgot', 'showForgotForm')
+    Route::get('forgot', 'showForgotForm')
         ->name('student.forgot');
 
-    Route::post('student-send-otp', 'sendOtp')
+    Route::post('send-otp', 'sendOtp')
         ->name('student.send-otp');
 
-    Route::get('student-verify-otp', 'showVerifyOtpForm')
+    Route::get('verify-otp', 'showVerifyOtpForm')
         ->name('student.verify-otp');
 
-    Route::post('student-verify-otp', 'verifyOtp')
+    Route::post('verify-otp', 'verifyOtp')
         ->name('student.verify-otp.submit');
 
-    Route::get('student-reset-password/{student}', 'showResetForm')
+    Route::get('reset-password/{student}', 'showResetForm')
         ->name('student.reset-password');
 
-    Route::post('student-reset-password-submit/{student}', 'resetPassword')
+    Route::post('reset-password-submit/{student}', 'resetPassword')
         ->name('student.reset-password.submit');
 });
 
