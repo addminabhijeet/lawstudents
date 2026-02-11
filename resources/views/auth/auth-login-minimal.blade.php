@@ -81,24 +81,14 @@
 
                         <form action="{{ route('login.submit') }}" method="POST" class="w-100 mt-4 pt-2">
                             @csrf
-
                             <div class="mb-4">
                                 <input type="text" name="login" class="form-control"
                                     placeholder="Email or Username" required>
                             </div>
-
                             <div class="mb-3">
-                                <div class="input-group">
-                                    <input type="password" name="password" id="passwordField" class="form-control"
-                                        placeholder="Password" required>
-
-                                    <button type="button" class="btn btn-outline-secondary"
-                                        onclick="this.previousElementSibling.type = this.previousElementSibling.type === 'password' ? 'text' : 'password'">
-                                        <i class="feather-eye"></i>
-                                    </button>
-                                </div>
+                                <input type="password" name="password" class="form-control" placeholder="Password"
+                                    required>
                             </div>
-
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
                                     <div class="custom-control custom-checkbox">
@@ -108,18 +98,14 @@
                                             Me</label>
                                     </div>
                                 </div>
-
                                 <div>
-                                    <a href="{{ route('student.forgot') }}" class="fs-11 text-primary">Forget
-                                        password?</a>
+                                    <a href="{{ route('student.forgot') }}" class="fs-11 text-primary">Forget password?</a>
                                 </div>
                             </div>
-
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>
                             </div>
                         </form>
-
 
                         <div class="w-100 mt-5 text-center mx-auto">
                             <div class="mb-4 border-bottom position-relative"><span
@@ -377,7 +363,6 @@
     <!--! BEGIN: Vendors JS !-->
     <script src="assets/vendors/js/vendors.min.js"></script>
     <!-- vendors.min.js {always must need to be top} -->
-    <script src="assets/vendors/js/lslstrength.min.js"></script>
     <!--! END: Vendors JS !-->
     <!--! BEGIN: Apps Init  !-->
     <script src="assets/js/common-init.min.js"></script>
