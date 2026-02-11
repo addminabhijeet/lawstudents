@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StudentOtpMail;
 use App\Services\StudentPasswordService;
@@ -27,14 +28,15 @@ class StudentPasswordController extends Controller
 
     public function sendOtp(StudentSendOtpRequest $request)
     {
-        $student = Student::where('email', $request->email)->firstOrFail();
+        $user = Student::where('email', $request->email)->first()
+            ?? Admin::where('email', $request->email)->firstOrFail();
 
-        $otp = $this->service->sendOtp($student);
+        $otp = $this->service->sendOtp($user);
 
-        Mail::to($student->email)->send(new StudentOtpMail($otp));
+        Mail::to($user->email)->send(new StudentOtpMail($otp));
 
         return redirect()->route('student.verify-otp')
-            ->with('email', $student->email)
+            ->with('email', $user->email)
             ->with('success', 'OTP sent to your email!');
     }
 
@@ -48,30 +50,41 @@ class StudentPasswordController extends Controller
 
     public function verifyOtp(StudentVerifyOtpRequest $request)
     {
-        $student = Student::where('email', $request->email)->firstOrFail();
+        $user = Student::where('email', $request->email)->first()
+            ?? Admin::where('email', $request->email)->firstOrFail();
 
-        $this->service->verifyOtp($student, $request->otp);
+        $this->service->verifyOtp($user, $request->otp);
 
-        return redirect()->route('student.reset-password', $student->id)
+        return redirect()->route('student.reset-password', $user->id)
             ->with('success', 'OTP verified! You can reset your password.');
     }
 
-    public function showResetForm(Student $student)
+    public function showResetForm($id)
     {
-        return view('auth.student-reset-password', compact('student'));
+        $user = Student::find($id) ?? Admin::findOrFail($id);
+
+        return view('auth.student-reset-password', ['student' => $user]);
     }
 
-    public function resetPassword(StudentResetPasswordRequest $request, Student $student)
+    public function resetPassword(StudentResetPasswordRequest $request, $id)
     {
-        $this->service->resetPassword($student, $request->password);
+        $user = Student::find($id);
+        $guard = 'student';
 
-        $student->clearOtp();
+        if (!$user) {
+            $user = Admin::findOrFail($id);
+            $guard = 'admin';
+        }
 
-        Auth::guard('student')->login($student);
+        $this->service->resetPassword($user, $request->password);
+
+        $user->clearOtp();
+
+        Auth::guard($guard)->login($user);
 
         request()->session()->regenerate();
 
-        return redirect()->route('student.dashboard')
+        return redirect()->route($guard . '.dashboard')
             ->with('success', 'Password reset successfully!');
     }
 }

@@ -14,7 +14,7 @@ class StudentVerifyOtpRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|exists:students,email',
+            'email' => 'required|email',
             'otp' => 'required|digits:6'
         ];
     }
