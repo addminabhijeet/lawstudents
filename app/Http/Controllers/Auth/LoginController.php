@@ -7,7 +7,6 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
@@ -25,18 +24,28 @@ class LoginController extends Controller
             ? 'email'
             : 'username';
 
-        if (Auth::guard('admin')->attempt([
+        $authData = [
             $loginField => $credentials['login'],
             'password' => $credentials['password'],
-        ], $remember)) {
+        ];
+
+        if (Auth::guard('admin')->attempt($authData, $remember)) {
 
             $request->session()->regenerate();
 
             return redirect()->route('admin');
         }
 
-        return back()->with('error', 'Invalid admin credentials');
+        if (Auth::guard('student')->attempt($authData, $remember)) {
+
+            $request->session()->regenerate();
+
+            return redirect()->route('student.dashboard');
+        }
+
+        return back()->with('error', 'Invalid login credentials');
     }
+
 
     public function registersubmit(Request $request): RedirectResponse
     {
