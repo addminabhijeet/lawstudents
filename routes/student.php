@@ -4,40 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\StudentPasswordController;
 
-/*
-|--------------------------------------------------------------------------
-| PUBLIC STUDENT PASSWORD ROUTES (NO AUTH REQUIRED)
-|--------------------------------------------------------------------------
-*/
-
-Route::controller(StudentPasswordController::class)->group(function () {
-
-    Route::get('student-forgot', 'showForgotForm')
-        ->name('student.forgot');
-
-    Route::post('student-send-otp', 'sendOtp')
-        ->name('student.send-otp');
-
-    Route::get('student-verify-otp', 'showVerifyOtpForm')
-        ->name('student.verify-otp');
-
-    Route::post('student-verify-otp', 'verifyOtp')
-        ->name('student.verify-otp.submit');
-
-    Route::get('student-reset-password/{student}', 'showResetForm')
-        ->name('student.reset-password');
-
-    Route::post('student-reset-password-submit/{student}', 'resetPassword')
-        ->name('student.reset-password.submit');
-});
-
-
-/*
-|--------------------------------------------------------------------------
-| PROTECTED STUDENT ROUTES
-|--------------------------------------------------------------------------
-*/
-
 Route::middleware(['student.auth', 'auth:student'])
     ->prefix('student')
     ->name('student.')
@@ -46,7 +12,6 @@ Route::middleware(['student.auth', 'auth:student'])
         Route::get('/', [RoutingController::class, 'student'])
             ->name('dashboard');
     });
-
 
 Route::get('/legacy-student', [RoutingController::class, 'student'])
     ->name('student');
