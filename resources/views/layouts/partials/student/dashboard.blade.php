@@ -309,7 +309,7 @@
                         </ul>
                     </li>
                 </ul>
-                
+
             </div>
         </div>
     </nav>
@@ -1092,10 +1092,10 @@
                                                                 class="dropdown-item">Regiser</a>
                                                             <a href="javascript:void(0);"
                                                                 class="dropdown-item">Error-404</a>
-                                                            <a href="javascript:void(0);"
-                                                                class="dropdown-item">Reset Pass</a>
-                                                            <a href="javascript:void(0);"
-                                                                class="dropdown-item">Verify OTP</a>
+                                                            <a href="javascript:void(0);" class="dropdown-item">Reset
+                                                                Pass</a>
+                                                            <a href="javascript:void(0);" class="dropdown-item">Verify
+                                                                OTP</a>
                                                             <a href="javascript:void(0);"
                                                                 class="dropdown-item">Maintenance</a>
                                                         </div>
@@ -2827,7 +2827,13 @@
                                 <span>Account Settings</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="./auth-login-minimal.html" class="dropdown-item">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+
+                            <a href="#" class="dropdown-item"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="feather-log-out"></i>
                                 <span>Logout</span>
                             </a>
@@ -2846,4 +2852,4 @@
     <!--! ================================================================ !-->
     <main class="nxl-container">
         <!-- main containts -->
-<div class="nxl-content">
+        <div class="nxl-content">
