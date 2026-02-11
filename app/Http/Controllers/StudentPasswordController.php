@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StudentOtpMail;
@@ -60,11 +61,23 @@ class StudentPasswordController extends Controller
         return view('auth.student-reset-password', compact('student'));
     }
 
-    public function resetPassword(StudentResetPasswordRequest $request, Student $student)
-    {
-        $this->service->resetPassword($student, $request->password);
+public function resetPassword(StudentResetPasswordRequest $request, Student $student)
+{
+    // reset password using service
+    $this->service->resetPassword($student, $request->password);
 
-        return redirect()->route('login')
-            ->with('success', 'Password reset successfully!');
-    }
+    // clear otp (production SaaS practice)
+    $student->clearOtp();
+
+    // login student using student guard
+    Auth::guard('student')->login($student);
+
+    // regenerate session (security - prevent session fixation)
+    request()->session()->regenerate();
+
+    // redirect to student dashboard
+    return redirect()->route('student.dashboard')
+        ->with('success', 'Password reset successfully!');
+}
+
 }
