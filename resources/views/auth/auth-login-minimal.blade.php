@@ -85,10 +85,19 @@
                                 <input type="text" name="login" class="form-control"
                                     placeholder="Email or Username" required>
                             </div>
+
                             <div class="mb-3">
-                                <input type="password" name="password" class="form-control" placeholder="Password"
-                                    required>
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control password"
+                                        placeholder="Password" required>
+
+                                    <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                        data-bs-toggle="tooltip" title="Show/Hide Password">
+                                        <i></i>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
                                     <div class="custom-control custom-checkbox">
@@ -99,13 +108,16 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <a href="{{ route('student.forgot') }}" class="fs-11 text-primary">Forget password?</a>
+                                    <a href="{{ route('student.forgot') }}" class="fs-11 text-primary">Forget
+                                        password?</a>
                                 </div>
                             </div>
+
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>
                             </div>
                         </form>
+
 
                         <div class="w-100 mt-5 text-center mx-auto">
                             <div class="mb-4 border-bottom position-relative"><span
@@ -363,7 +375,7 @@
     <!--! BEGIN: Vendors JS !-->
     <script src="assets/vendors/js/vendors.min.js"></script>
     <!-- vendors.min.js {always must need to be top} -->
-    <!--! END: Vendors JS !-->
+    <script src="assets/vendors/js/lslstrength.min.js"></script>
     <!--! BEGIN: Apps Init  !-->
     <script src="assets/js/common-init.min.js"></script>
     <!--! END: Apps Init !-->
