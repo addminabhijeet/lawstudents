@@ -64,7 +64,7 @@ class RoutingController extends Controller
 
     public function student()
     {
-        return view('student.indexstu');
+        return view('dashboard.student');
     }
 
     public function liststudent()
@@ -77,6 +77,16 @@ class RoutingController extends Controller
         return view('notes.list');
     }
 
+    public function listsubject()
+    {
+        return view('subject.list');
+    }
+
+    public function listcourse()
+    {
+        return view('course.list');
+    }
+
     public function addstudent()
     {
         return view('student.add');
@@ -84,7 +94,7 @@ class RoutingController extends Controller
 
     public function admin()
     {
-        return view('admin.indexone');
+        return view('dashboard.admin');
     }
 
     /**

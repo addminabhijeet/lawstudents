@@ -36,6 +36,12 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('list-notes', [RoutingController::class, 'listnotes'])
                 ->name('listnotes');
+
+            Route::get('list-subject', [RoutingController::class, 'listsubject'])
+                ->name('listsubject');
+
+            Route::get('list-course', [RoutingController::class, 'listcourse'])
+                ->name('listcourse');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
