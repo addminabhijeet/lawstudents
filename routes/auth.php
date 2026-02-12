@@ -30,7 +30,7 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 
-// 🔐 PASSWORD RESET ROUTES (GUEST ONLY — VERY IMPORTANT)
+//  PASSWORD RESET ROUTES (GUEST ONLY — VERY IMPORTANT)
 Route::controller(StudentPasswordController::class)
     ->middleware('guest:admin,student')
     ->group(function () {
