@@ -65,7 +65,7 @@
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-cast"></i></span>
-                            <span class="nxl-mtext">Reports</span><span class="nxl-arrow"><i
+                            <span class="nxl-mtext">Subject</span><span class="nxl-arrow"><i
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
