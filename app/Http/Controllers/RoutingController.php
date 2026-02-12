@@ -72,6 +72,11 @@ class RoutingController extends Controller
         return view('student.list');
     }
 
+    public function listnotes()
+    {
+        return view('notes.list');
+    }
+
     public function addstudent()
     {
         return view('student.add');
