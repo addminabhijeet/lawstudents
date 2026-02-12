@@ -83,11 +83,10 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List
-                                    Student</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List Student</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addstudent') }}">Add Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="apps-tasks.html">Tasks</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="apps-notes.html">Notes</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add Addmission</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-storage.html">Storage</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-calendar.html">Calendar</a></li>
                         </ul>

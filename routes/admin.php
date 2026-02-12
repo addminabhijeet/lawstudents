@@ -16,11 +16,14 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('addstudent', [RoutingController::class, 'addstudent'])
                 ->name('addstudent');
 
-            Route::get('admissioncreate', [RoutingController::class, 'admissioncreate'])
-                ->name('admissioncreate');
-
             Route::get('liststudent', [RoutingController::class, 'liststudent'])
                 ->name('liststudent');
+
+            Route::get('addadmission', [RoutingController::class, 'addadmission'])
+                ->name('addadmission');
+
+            Route::get('listadmission', [RoutingController::class, 'listadmission'])
+                ->name('listadmission');
 
         });
 
