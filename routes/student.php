@@ -17,6 +17,36 @@ Route::middleware(['student.auth', 'auth:student'])
 
         Route::get('list-student-course', [RoutingController::class, 'listcourse'])
             ->name('listcourse');
+
+        Route::get('add-student-student', [RoutingController::class, 'addstudent'])
+            ->name('addstudent');
+
+        Route::get('list-student-student', [RoutingController::class, 'liststudent'])
+            ->name('liststudent');
+
+        Route::get('add-student-admission', [RoutingController::class, 'addadmission'])
+            ->name('addadmission');
+
+        Route::get('list-student-admission', [RoutingController::class, 'listadmission'])
+            ->name('listadmission');
+
+        Route::get('add-student-payment', [RoutingController::class, 'addpayment'])
+            ->name('addpayment');
+
+        Route::get('view-student-payment', [RoutingController::class, 'viewpayment'])
+            ->name('viewpayment');
+
+        Route::get('list-student-payment', [RoutingController::class, 'listpayment'])
+            ->name('listpayment');
+
+        Route::get('list-student-notes', [RoutingController::class, 'listnotes'])
+            ->name('listnotes');
+
+        Route::get('list-student-subject', [RoutingController::class, 'listsubject'])
+            ->name('listsubject');
+
+        Route::get('list-student-course', [RoutingController::class, 'listcourse'])
+            ->name('listcourse');
     });
 
 Route::get('/legacy-student', [RoutingController::class, 'student'])
