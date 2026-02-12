@@ -107,7 +107,7 @@
                 </div>
                 <a href="invoice-create.html" class="btn btn-primary">
                     <i class="feather-plus me-2"></i>
-                    <span>Add Student</span>
+                    <span>Add Admission</span>
                 </a>
             </div>
         </div>
