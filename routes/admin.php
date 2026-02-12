@@ -30,6 +30,9 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('view-payment', [RoutingController::class, 'viewpayment'])
                 ->name('viewpayment');
+
+            Route::get('list-payment', [RoutingController::class, 'listpayment'])
+                ->name('listpayment');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
