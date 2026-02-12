@@ -1,4 +1,4 @@
-@include('layouts.partials.admin.dashboard')
+@include('layouts.partials.student.dashboard')
 <!-- [ page-header ] start -->
 <div class="page-header">
     <div class="page-header-left d-flex align-items-center">
@@ -1250,4 +1250,4 @@
 </div>
 <!-- [ Main Content ] end -->
 
-@include('layouts.partials.admin.footer')
+@include('layouts.partials.student.footer')
