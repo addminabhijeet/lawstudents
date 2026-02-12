@@ -39,7 +39,7 @@ class RoutingController extends Controller
 
     public function liststudent()
     {
-        return view('admission.payment');
+        return view('student.payment');
     }
 
     public function listadmission()
@@ -59,7 +59,7 @@ class RoutingController extends Controller
 
     public function addstudent()
     {
-        return view('admission.proposal-create');
+        return view('student.proposal-create');
     }
 
     public function admin()
