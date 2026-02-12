@@ -1106,6 +1106,7 @@
     <!-- [ Content Area ] end -->
 </div>
 <!-- [ Main Content ] end -->
+@include('layouts.partials.admin.footer')
 <script>
     function removeNote() {
         $(".remove-note")
