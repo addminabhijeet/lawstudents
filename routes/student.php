@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\RoutingControllerStu;
 use App\Http\Controllers\StudentPasswordController;
 
 Route::middleware(['student.auth', 'auth:student'])
@@ -9,45 +9,45 @@ Route::middleware(['student.auth', 'auth:student'])
     ->name('student.')
     ->group(function () {
 
-        Route::get('/', [RoutingController::class, 'student'])
+        Route::get('/', [RoutingControllerStu::class, 'student'])
             ->name('dashboard');
 
-        Route::get('list-student-subject', [RoutingController::class, 'listsubject'])
+        Route::get('list-student-subject', [RoutingControllerStu::class, 'listsubject'])
             ->name('listsubject');
 
-        Route::get('list-student-course', [RoutingController::class, 'listcourse'])
+        Route::get('list-student-course', [RoutingControllerStu::class, 'listcourse'])
             ->name('listcourse');
 
-        Route::get('add-student-student', [RoutingController::class, 'addstudent'])
+        Route::get('add-student-student', [RoutingControllerStu::class, 'addstudent'])
             ->name('addstudent');
 
-        Route::get('list-student-student', [RoutingController::class, 'liststudent'])
+        Route::get('list-student-student', [RoutingControllerStu::class, 'liststudent'])
             ->name('liststudent');
 
-        Route::get('add-student-admission', [RoutingController::class, 'addadmission'])
+        Route::get('add-student-admission', [RoutingControllerStu::class, 'addadmission'])
             ->name('addadmission');
 
-        Route::get('list-student-admission', [RoutingController::class, 'listadmission'])
+        Route::get('list-student-admission', [RoutingControllerStu::class, 'listadmission'])
             ->name('listadmission');
 
-        Route::get('add-student-payment', [RoutingController::class, 'addpayment'])
+        Route::get('add-student-payment', [RoutingControllerStu::class, 'addpayment'])
             ->name('addpayment');
 
-        Route::get('view-student-payment', [RoutingController::class, 'viewpayment'])
+        Route::get('view-student-payment', [RoutingControllerStu::class, 'viewpayment'])
             ->name('viewpayment');
 
-        Route::get('list-student-payment', [RoutingController::class, 'listpayment'])
+        Route::get('list-student-payment', [RoutingControllerStu::class, 'listpayment'])
             ->name('listpayment');
 
-        Route::get('list-student-notes', [RoutingController::class, 'listnotes'])
+        Route::get('list-student-notes', [RoutingControllerStu::class, 'listnotes'])
             ->name('listnotes');
 
-        Route::get('list-student-subject', [RoutingController::class, 'listsubject'])
+        Route::get('list-student-subject', [RoutingControllerStu::class, 'listsubject'])
             ->name('listsubject');
 
-        Route::get('list-student-course', [RoutingController::class, 'listcourse'])
+        Route::get('list-student-course', [RoutingControllerStu::class, 'listcourse'])
             ->name('listcourse');
     });
 
-Route::get('/legacy-student', [RoutingController::class, 'student'])
+Route::get('/legacy-student', [RoutingControllerStu::class, 'student'])
     ->name('student');
