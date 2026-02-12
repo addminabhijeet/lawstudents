@@ -33,6 +33,9 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('list-payment', [RoutingController::class, 'listpayment'])
                 ->name('listpayment');
+
+            Route::get('list-notes', [RoutingController::class, 'listnotes'])
+                ->name('listnotes');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])

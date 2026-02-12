@@ -98,10 +98,10 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="proposal.html">Proposal</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="proposal-view.html">Proposal View</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="proposal-edit.html">Proposal Edit</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="proposal-create.html">Proposal Create</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Notes</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">Notes View</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">Notes Edit</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">Notes Create</a>
                             </li>
                         </ul>
                     </li>
