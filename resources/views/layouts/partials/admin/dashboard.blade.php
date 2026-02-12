@@ -83,7 +83,7 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">list
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List
                                     Student</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-email.html">Email</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-tasks.html">Tasks</a></li>
