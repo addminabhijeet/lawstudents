@@ -25,9 +25,13 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('list-admission', [RoutingController::class, 'listadmission'])
                 ->name('listadmission');
 
+            Route::get('create-payment', [RoutingController::class, 'createpayment'])
+                ->name('createpayment');
+
+            Route::get('view-payment', [RoutingController::class, 'viewpayment'])
+                ->name('viewpayment');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
         ->name('admin');
-
 });
