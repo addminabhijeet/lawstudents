@@ -13,16 +13,16 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('/', [RoutingController::class, 'admin'])
                 ->name('dashboard');
 
-            Route::get('addstudent', [RoutingController::class, 'addstudent'])
+            Route::get('add-student', [RoutingController::class, 'addstudent'])
                 ->name('addstudent');
 
-            Route::get('liststudent', [RoutingController::class, 'liststudent'])
+            Route::get('list-student', [RoutingController::class, 'liststudent'])
                 ->name('liststudent');
 
-            Route::get('addadmission', [RoutingController::class, 'addadmission'])
+            Route::get('add-admission', [RoutingController::class, 'addadmission'])
                 ->name('addadmission');
 
-            Route::get('listadmission', [RoutingController::class, 'listadmission'])
+            Route::get('list-admission', [RoutingController::class, 'listadmission'])
                 ->name('listadmission');
 
         });
