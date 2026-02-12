@@ -37,9 +37,19 @@ class RoutingController extends Controller
         return view('auth.auth-registerstu-minimal');
     }
 
-    public function liststudent()
+    public function listpayment()
     {
-        return view('student.list');
+        return view('payment.list');
+    }
+
+    public function viewpayment()
+    {
+        return view('payment.view');
+    }
+
+    public function addpayment()
+    {
+        return view('payment.add');
     }
 
     public function listadmission()
@@ -55,6 +65,11 @@ class RoutingController extends Controller
     public function student()
     {
         return view('student.indexstu');
+    }
+
+    public function liststudent()
+    {
+        return view('student.list');
     }
 
     public function addstudent()
