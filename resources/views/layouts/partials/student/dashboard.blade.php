@@ -83,10 +83,10 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addstudent') }}">Add Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List Addmission</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.liststudent') }}">List Student</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.addstudent') }}">Add Student</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listadmission') }}">List Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.addadmission') }}">Add Addmission</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-storage.html">Storage</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-calendar.html">Calendar</a></li>
                         </ul>
@@ -112,9 +112,9 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listpayment') }}">Payment</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.viewpayment') }}">Invoice View</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addpayment') }}">Invoice Create</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listpayment') }}">Payment</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.viewpayment') }}">Invoice View</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.addpayment') }}">Invoice Create</a>
                             </li>
                         </ul>
                     </li>
@@ -811,7 +811,7 @@
                                                     alt="" class="img-fluid rounded-3">
 
                                             </div>
-                                            <h6 class="fw-bolder">Duralux - Admin Dashboard UiKit</h6>
+                                            <h6 class="fw-bolder">Duralux - Student Dashboard UiKit</h6>
                                             <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started
                                                 Duralux with Duralux up and running. Duralux bootstrap template docs
                                                 helps you to get started with simple html codes.</p>
