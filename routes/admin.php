@@ -20,6 +20,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('edit-student/{id}', [RoutingController::class, 'editstudent'])
                 ->name('editstudent');
 
+            Route::get('show-student/{id}', [RoutingController::class, 'showstudent'])
+                ->name('showstudent');
+
             Route::get('list-student', [RoutingController::class, 'liststudent'])
                 ->name('liststudent');
 
