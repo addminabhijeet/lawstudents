@@ -71,15 +71,15 @@ class RoutingController extends Controller
 
     public function liststudent()
     {
-        return view('student.list');
+        $students = Student::all();
+        return view('student.list', compact('students'));
     }
 
     public function editstudent($id)
     {
-        $students = Student::findOrFail($id);
-        return view('student.edit', compact('students'));
+        $student = Student::findOrFail($id);
+        return view('student.edit', compact('student'));
     }
-
 
     public function listnotes()
     {
