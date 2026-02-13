@@ -40,7 +40,7 @@ class StudentPasswordController extends Controller
 
         $otp = $this->service->sendOtp($user);
 
-        Mail::to($user->email)->send(new StudentOtpMail($otp));
+        Mail::to($user->email)->queue(new StudentOtpMail($otp));
 
         return redirect()->route('student.verify-otp')
             ->with('email', $user->email)
