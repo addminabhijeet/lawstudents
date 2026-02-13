@@ -74,10 +74,12 @@ class RoutingController extends Controller
         return view('student.list');
     }
 
-    public function editstudent()
+    public function editstudent($id)
     {
-        return view('student.edit');
+        $student = Student::findOrFail($id);
+        return view('student.edit', compact('student'));
     }
+
 
     public function listnotes()
     {
