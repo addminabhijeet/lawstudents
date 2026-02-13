@@ -39,7 +39,7 @@
 </div>
 <!-- [ page-header ] end -->
 <!-- [ Main Content ] start -->
-<form method="POST" action="{{ isset($admission) ? route('editadmission', $admission->id) : route('listadmission') }}"
+<form method="POST" action="{{ isset($admission) ? route('admin.editadmission', $admission->id) : route('admin.listadmission') }}"
     enctype="multipart/form-data">
     @csrf
     @if (isset($admission))
