@@ -17598,3 +17598,7 @@ Did you mean one of these?
 #8 E:/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
 #9 {main}
 "} 
+[2026-02-13 19:51:35] local.ERROR: Cannot use App\Http\Controllers\RoutingController as RoutingController because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\RoutingController as RoutingController because the name is already in use at E:/lawstudents/routes/admin.php:5)
+[stacktrace]
+#0 {main}
+"} 

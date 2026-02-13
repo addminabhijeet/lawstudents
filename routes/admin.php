@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\StudentAdmissinController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -22,7 +23,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('add-admission', [RoutingController::class, 'addadmission'])
                 ->name('addadmission');
 
-            Route::get('list-admission', [RoutingController::class, 'listadmission'])
+            Route::get('list-admission', [StudentAdmissinController::class, 'index'])
                 ->name('listadmission');
 
             Route::get('add-payment', [RoutingController::class, 'addpayment'])

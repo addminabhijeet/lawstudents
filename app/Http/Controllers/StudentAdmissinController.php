@@ -13,7 +13,7 @@ class StudentAdmissinController extends Controller
     public function index()
     {
         $admissions = StudentAdmission::latest()->get();
-        return view('admin.admissions.index', compact('admissions'));
+        return view('admission.list', compact('admissions'));
     }
 
     /**
