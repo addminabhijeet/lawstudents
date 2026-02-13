@@ -115,7 +115,7 @@ class RoutingController extends Controller
             'password' => $data['password'], 
         ]);
 
-        return redirect()->route('admin.registerstu')
+        return redirect()->route('admin.addstudent')
             ->with('success', 'Student registration successful.');
     }
 
