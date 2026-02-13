@@ -232,7 +232,7 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('student-admissions.show', $admission->id) }}"
+                                            <a href="{{ route('admission.show', $admission->id) }}"
                                                 class="fw-bold">
                                                 #ADM{{ $admission->id }}
                                             </a>
@@ -266,18 +266,18 @@
                                         <td>
                                             <div class="hstack gap-2 justify-content-end">
 
-                                                <a href="{{ route('student-admissions.show', $admission->id) }}"
+                                                <a href="{{ route('admission.show', $admission->id) }}"
                                                     class="avatar-text avatar-md">
                                                     <i class="feather feather-eye"></i>
                                                 </a>
 
-                                                <a href="{{ route('student-admissions.edit', $admission->id) }}"
+                                                <a href="{{ route('admission.edit', $admission->id) }}"
                                                     class="avatar-text avatar-md">
                                                     <i class="feather feather-edit"></i>
                                                 </a>
 
                                                 <form
-                                                    action="{{ route('student-admissions.destroy', $admission->id) }}"
+                                                    action="{{ route('admission.destroy', $admission->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
