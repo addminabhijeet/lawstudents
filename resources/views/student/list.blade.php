@@ -271,7 +271,7 @@
                                                     <ul class="dropdown-menu">
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('student.edit', $student->id) }}">
+                                                                href="{{ route('editstudent', $student->id) }}">
                                                                 <i class="feather feather-edit-3 me-3"></i>
                                                                 <span>Edit</span>
                                                             </a>
