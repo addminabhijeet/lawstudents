@@ -103,16 +103,22 @@ class RoutingController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:100',
-            'username' => 'required|string|max:100|unique:students',
-            'email' => 'required|email|max:150|unique:students',
+            'username' => 'required|string|max:100|unique:students,username',
+            'email' => 'required|email|max:150|unique:students,email',
             'password' => 'required|confirmed|min:6',
         ]);
 
-        $student = Student::create($data);
+        Student::create([
+            'name' => $data['name'],
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => $data['password'], 
+        ]);
 
         return redirect()->route('admin.registerstu')
             ->with('success', 'Student registration successful.');
     }
+
 
     /**
      * First level route
