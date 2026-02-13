@@ -52,7 +52,7 @@ class StudentAdmissinController extends Controller
     public function edit($id)
     {
         $admission = StudentAdmission::findOrFail($id);
-        return view('admin.admissions.edit', compact('admission'));
+        return view('admission.edit', compact('admission'));
     }
 
     public function update(Request $request, $id)

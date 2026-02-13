@@ -74,6 +74,11 @@ class RoutingController extends Controller
         return view('student.list');
     }
 
+    public function editstudent()
+    {
+        return view('student.add');
+    }
+
     public function listnotes()
     {
         return view('notes.list');
@@ -112,7 +117,7 @@ class RoutingController extends Controller
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
-            'password' => $data['password'], 
+            'password' => $data['password'],
         ]);
 
         return redirect()->route('admin.addstudent')
