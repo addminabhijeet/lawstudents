@@ -41,11 +41,12 @@
 <!-- [ Main Content ] start -->
 <form method="POST" enctype="multipart/form-data">
     @csrf
+    @method('PUT') <!-- Required for update -->
 
     <div class="main-content">
         <div class="row">
 
-            <input type="hidden" name="student_id" value="{{ auth()->id() }}">
+            <input type="hidden" name="student_id" value="{{ $admission->student_id ?? auth()->id() }}">
 
             <div class="col-xl-6">
                 <div class="card stretch stretch-full">
@@ -53,58 +54,72 @@
 
                         <div class="mb-4">
                             <label class="form-label">Full Name *</label>
-                            <input type="text" class="form-control" name="full_name">
+                            <input type="text" class="form-control" name="full_name"
+                                value="{{ old('full_name', $admission->full_name) }}">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Gender *</label>
                             <select class="form-control" name="gender">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                                <option value="male"
+                                    {{ old('gender', $admission->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                                <option value="female"
+                                    {{ old('gender', $admission->gender) == 'female' ? 'selected' : '' }}>Female
+                                </option>
+                                <option value="other"
+                                    {{ old('gender', $admission->gender) == 'other' ? 'selected' : '' }}>Other
+                                </option>
                             </select>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Phone *</label>
-                            <input type="text" class="form-control" name="phone">
+                            <input type="text" class="form-control" name="phone"
+                                value="{{ old('phone', $admission->phone) }}">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Alternate Phone</label>
-                            <input type="text" class="form-control" name="alternate_phone">
+                            <input type="text" class="form-control" name="alternate_phone"
+                                value="{{ old('alternate_phone', $admission->alternate_phone) }}">
                         </div>
 
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">DOB *</label>
-                                <input type="date" class="form-control" name="dob">
+                                <input type="date" class="form-control" name="dob"
+                                    value="{{ old('dob', $admission->dob?->format('Y-m-d')) }}">
                             </div>
 
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">Pincode *</label>
-                                <input type="text" class="form-control" name="pincode">
+                                <input type="text" class="form-control" name="pincode"
+                                    value="{{ old('pincode', $admission->pincode) }}">
                             </div>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Father Name</label>
-                            <input type="text" class="form-control" name="father_name">
+                            <input type="text" class="form-control" name="father_name"
+                                value="{{ old('father_name', $admission->father_name) }}">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Mother Name</label>
-                            <input type="text" class="form-control" name="mother_name">
+                            <input type="text" class="form-control" name="mother_name"
+                                value="{{ old('mother_name', $admission->mother_name) }}">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Guardian Phone</label>
-                            <input type="text" class="form-control" name="guardian_phone">
+                            <input type="text" class="form-control" name="guardian_phone"
+                                value="{{ old('guardian_phone', $admission->guardian_phone) }}">
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label">Guardian Email</label>
-                            <input type="email" class="form-control" name="guardian_email">
+                            <input type="email" class="form-control" name="guardian_email"
+                                value="{{ old('guardian_email', $admission->guardian_email) }}">
                         </div>
 
                     </div>
@@ -120,11 +135,13 @@
                             <div class="row">
                                 <div class="col-lg-6 mb-4">
                                     <input type="text" class="form-control" name="address_line1"
-                                        placeholder="Address Line 1">
+                                        placeholder="Address Line 1"
+                                        value="{{ old('address_line1', $admission->address_line1) }}">
                                 </div>
                                 <div class="col-lg-6 mb-4">
                                     <input type="text" class="form-control" name="address_line2"
-                                        placeholder="Address Line 2">
+                                        placeholder="Address Line 2"
+                                        value="{{ old('address_line2', $admission->address_line2) }}">
                                 </div>
                             </div>
                         </div>
@@ -132,36 +149,42 @@
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">City *</label>
-                                <input type="text" class="form-control" name="city">
+                                <input type="text" class="form-control" name="city"
+                                    value="{{ old('city', $admission->city) }}">
                             </div>
 
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">State *</label>
-                                <input type="text" class="form-control" name="state">
+                                <input type="text" class="form-control" name="state"
+                                    value="{{ old('state', $admission->state) }}">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">Country *</label>
-                                <input type="text" class="form-control" name="country" value="India">
+                                <input type="text" class="form-control" name="country"
+                                    value="{{ old('country', $admission->country ?? 'India') }}">
                             </div>
 
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">Course Name *</label>
-                                <input type="text" class="form-control" name="course_name">
+                                <input type="text" class="form-control" name="course_name"
+                                    value="{{ old('course_name', $admission->course_name) }}">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">Course Duration</label>
-                                <input type="text" class="form-control" name="course_duration">
+                                <input type="text" class="form-control" name="course_duration"
+                                    value="{{ old('course_duration', $admission->course_duration) }}">
                             </div>
 
                             <div class="col-lg-6 mb-4">
                                 <label class="form-label">Admission Session *</label>
-                                <input type="text" class="form-control" name="admission_session">
+                                <input type="text" class="form-control" name="admission_session"
+                                    value="{{ old('admission_session', $admission->admission_session) }}">
                             </div>
                         </div>
 
@@ -169,23 +192,27 @@
 
                         <div class="mb-3">
                             <label class="form-label">Last Qualification *</label>
-                            <input type="text" class="form-control" name="last_qualification">
+                            <input type="text" class="form-control" name="last_qualification"
+                                value="{{ old('last_qualification', $admission->last_qualification) }}">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Board / University *</label>
-                            <input type="text" class="form-control" name="board_university">
+                            <input type="text" class="form-control" name="board_university"
+                                value="{{ old('board_university', $admission->board_university) }}">
                         </div>
 
                         <div class="row">
                             <div class="col-lg-6 mb-3">
                                 <label class="form-label">Passing Year *</label>
-                                <input type="number" class="form-control" name="passing_year">
+                                <input type="number" class="form-control" name="passing_year"
+                                    value="{{ old('passing_year', $admission->passing_year) }}">
                             </div>
 
                             <div class="col-lg-6 mb-3">
                                 <label class="form-label">Percentage</label>
-                                <input type="number" class="form-control" name="percentage">
+                                <input type="number" class="form-control" name="percentage"
+                                    value="{{ old('percentage', $admission->percentage) }}">
                             </div>
                         </div>
 
@@ -193,12 +220,14 @@
 
                         <div class="mb-3">
                             <label class="form-label">Aadhaar</label>
-                            <input type="text" class="form-control" name="aadhaar_number">
+                            <input type="text" class="form-control" name="aadhaar_number"
+                                value="{{ old('aadhaar_number', $admission->aadhaar_number) }}">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">PAN</label>
-                            <input type="text" class="form-control" name="pan_number">
+                            <input type="text" class="form-control" name="pan_number"
+                                value="{{ old('pan_number', $admission->pan_number) }}">
                         </div>
 
                         <hr class="my-4">
@@ -206,11 +235,19 @@
                         <div class="mb-3">
                             <label class="form-label">Photo</label>
                             <input type="file" class="form-control" name="photo">
+                            @if ($admission->photo)
+                                <img src="{{ asset('storage/' . $admission->photo) }}" alt="Photo" width="100"
+                                    class="mt-2">
+                            @endif
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Signature</label>
                             <input type="file" class="form-control" name="signature">
+                            @if ($admission->signature)
+                                <img src="{{ asset('storage/' . $admission->signature) }}" alt="Signature"
+                                    width="100" class="mt-2">
+                            @endif
                         </div>
 
                         <div class="mb-3">
@@ -225,7 +262,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Remarks</label>
-                            <textarea class="form-control" name="remarks"></textarea>
+                            <textarea class="form-control" name="remarks">{{ old('remarks', $admission->remarks) }}</textarea>
                         </div>
 
                     </div>
@@ -233,7 +270,7 @@
             </div>
 
             <div class="col-12 text-end">
-                <button type="submit" class="btn btn-primary">Submit Admission</button>
+                <button type="submit" class="btn btn-primary">Update Admission</button>
             </div>
 
         </div>
