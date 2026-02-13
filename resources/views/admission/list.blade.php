@@ -105,7 +105,7 @@
                         </a>
                     </div>
                 </div>
-                <a href="invoice-create.html" class="btn btn-primary">
+                <a href="{{ route('admin.showadmission') }}" class="btn btn-primary">
                     <i class="feather-plus me-2"></i>
                     <span>Add Admission</span>
                 </a>
@@ -232,7 +232,7 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('admin.showadmission', $admission->id) }}"
+                                            <a href="{{ route('admin.addadmission', $admission->id) }}"
                                                 class="fw-bold">
                                                 #ADM{{ $admission->id }}
                                             </a>
