@@ -64,22 +64,7 @@ class LoginController extends Controller
             ->with('success', 'Registration successful. Please login.');
     }
 
-    public function registerstusubmit(Request $request): RedirectResponse
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'username' => 'required|string|max:100|unique:students',
-            'email' => 'required|email|max:150|unique:students',
-            'password' => 'required|confirmed|min:6',
-        ]);
-
-        $student = Student::create($data);
-
-        Auth::guard('student')->login($student);
-
-        return redirect()->route('login')
-            ->with('success', 'Student registration successful.');
-    }
+    
 
     public function logout(Request $request): RedirectResponse
     {

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Models\Student;
+use Illuminate\Http\RedirectResponse;
 
 class RoutingController extends Controller
 {
@@ -95,6 +97,21 @@ class RoutingController extends Controller
     public function admin()
     {
         return view('dashboard.admin');
+    }
+
+    public function registerstusubmit(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:100',
+            'username' => 'required|string|max:100|unique:students',
+            'email' => 'required|email|max:150|unique:students',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $student = Student::create($data);
+
+        return redirect()->route('admin.registerstu')
+            ->with('success', 'Student registration successful.');
     }
 
     /**
