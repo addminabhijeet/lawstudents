@@ -7,26 +7,18 @@ use App\Models\StudentAdmission;
 
 class StudentAdmissinController extends Controller
 {
-    /**
-     * Display all admissions (READ)
-     */
+
     public function index()
     {
         $admissions = StudentAdmission::latest()->get();
         return view('admission.list', compact('admissions'));
     }
 
-    /**
-     * Show create form
-     */
     public function create()
     {
         return view('admin.admissions.create');
     }
 
-    /**
-     * Store new admission (CREATE)
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -51,27 +43,18 @@ class StudentAdmissinController extends Controller
         return redirect()->back()->with('success', 'Admission created successfully.');
     }
 
-    /**
-     * Show single admission (READ ONE)
-     */
     public function show($id)
     {
         $admission = StudentAdmission::findOrFail($id);
         return view('admin.admissions.show', compact('admission'));
     }
 
-    /**
-     * Show edit form
-     */
     public function edit($id)
     {
         $admission = StudentAdmission::findOrFail($id);
         return view('admin.admissions.edit', compact('admission'));
     }
 
-    /**
-     * Update admission (UPDATE)
-     */
     public function update(Request $request, $id)
     {
         $admission = StudentAdmission::findOrFail($id);
@@ -94,9 +77,6 @@ class StudentAdmissinController extends Controller
         return redirect()->back()->with('success', 'Admission updated successfully.');
     }
 
-    /**
-     * Delete admission (DELETE)
-     */
     public function destroy($id)
     {
         $admission = StudentAdmission::findOrFail($id);
