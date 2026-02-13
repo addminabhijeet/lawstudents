@@ -69,8 +69,7 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List</a>
-                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="reports-leads.html">Leads Report</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="reports-project.html">Project Report</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="reports-timesheets.html">Timesheets
@@ -88,14 +87,11 @@
                                     Student</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addstudent') }}">Add
                                     Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.editstudent') }}">Edit
-                                    Student</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List
                                     Addmission</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add
                                     Addmission</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.editadmission') }}">Edit
-                                    Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="apps-storage.html">Storage</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="apps-calendar.html">Calendar</a></li>
                         </ul>
                     </li>
@@ -1125,8 +1121,7 @@
                                                                 class="dropdown-item">Error-404</a>
                                                             <a href="javascript:void(0);" class="dropdown-item">Reset
                                                                 Pass</a>
-                                                            <a href="javascript:void(0);"
-                                                                class="dropdown-item">Verify
+                                                            <a href="javascript:void(0);" class="dropdown-item">Verify
                                                                 OTP</a>
                                                             <a href="javascript:void(0);"
                                                                 class="dropdown-item">Maintenance</a>

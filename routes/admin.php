@@ -17,6 +17,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('add-student', [RoutingController::class, 'addstudent'])
                 ->name('addstudent');
 
+            Route::get('edit-student', [RoutingController::class, 'editstudent'])
+                ->name('editstudent');
+
             Route::get('list-student', [RoutingController::class, 'liststudent'])
                 ->name('liststudent');
 
