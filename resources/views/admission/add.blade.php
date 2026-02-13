@@ -39,272 +39,206 @@
 </div>
 <!-- [ page-header ] end -->
 <!-- [ Main Content ] start -->
-<div class="main-content">
-    <div class="row">
-        <div class="col-xl-6">
-            <div class="card stretch stretch-full">
-                <div class="card-body">
-                    <div class="mb-4">
-                        <label class="form-label">Subject <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Subject">
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Related <span class="text-danger">*</span></label>
-                        <select class="form-control" data-select2-selector="icon">
-                            <option value="lead" data-icon="feather-at-sign">Lead</option>
-                            <option value="coustomer" data-icon="feather-users">Coustomer</option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Lead <span class="text-danger">*</span></label>
-                        <select class="form-select" data-select2-selector="user">
-                            <option value="1" data-user="1">Alexandra Della - Website design and development
-                            </option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Discount </label>
-                        <select class="form-select" data-select2-selector="default">
-                            <option value="">No Discount</option>
-                            <option value="">Before Tax</option>
+<form method="POST" action="{{ route('student.admission.submit') }}" enctype="multipart/form-data">
+    @csrf
 
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Visibility:</label>
-                        <select class="form-select form-control" data-select2-selector="visibility">
-                            <option value="public" data-icon="feather-globe">Public</option>
-                            <option value="private" data-icon="feather-lock">Private</option>
+    <div class="main-content">
+        <div class="row">
 
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Start <span class="text-danger">*</span></label>
-                            <input class="form-control" id="startDate" placeholder="Pick start date ">
+            <input type="hidden" name="student_id" value="{{ auth()->id() }}">
+
+            <div class="col-xl-6">
+                <div class="card stretch stretch-full">
+                    <div class="card-body">
+
+                        <div class="mb-4">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" name="full_name">
                         </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Due <span class="text-danger">*</span></label>
-                            <input class="form-control" id="dueDate" placeholder="Pick due date">
+
+                        <div class="mb-4">
+                            <label class="form-label">Gender *</label>
+                            <select class="form-control" name="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Tags:</label>
-                        <select class="form-select form-control" data-select2-selector="tag" multiple>
-                            <option value="primary" data-bg="bg-primary">Team</option>
-                            <option value="teal" data-bg="bg-teal">Primary</option>
 
-                        </select>
-                    </div>
-                    <div class="mb-0">
-                        <label class="form-label">Assignee:</label>
-                        <select class="form-select form-control" data-select2-selector="user" multiple>
-                            <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
-                            <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
+                        <div class="mb-4">
+                            <label class="form-label">Phone *</label>
+                            <input type="text" class="form-control" name="phone">
+                        </div>
 
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div class="card stretch stretch-full">
-                <div class="card-body">
-                    <div class="mb-4">
-                        <label class="form-label">To <span class="text-danger">*</span></label>
-                        <select class="form-select form-control" data-select2-selector="user">
-                            <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
-                            <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
+                        <div class="mb-4">
+                            <label class="form-label">Alternate Phone</label>
+                            <input type="text" class="form-control" name="alternate_phone">
+                        </div>
 
-                        </select>
-                    </div>
-                    <div>
-                        <label class="form-label">Address <span class="text-danger">*</span></label>
                         <div class="row">
                             <div class="col-lg-6 mb-4">
-                                <input type="text" class="form-control mb-2" placeholder="Address Line 1">
+                                <label class="form-label">DOB *</label>
+                                <input type="date" class="form-control" name="dob">
                             </div>
+
                             <div class="col-lg-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Address Line 2">
+                                <label class="form-label">Pincode *</label>
+                                <input type="text" class="form-control" name="pincode">
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Emial">
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Phone <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Phone">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Country <span class="text-danger">*</span></label>
-                            <select class="form-control" data-select2-selector="country">
-                                <option data-country="af">Afghanistan</option>
-                                <option data-country="ax">Åland Islands</option>
 
-                                <option data-country="ye">Yemen</option>
-                                <option data-country="zm">Zambia</option>
-                                <option data-country="zw">Zimbabwe</option>
-                            </select>
+                        <div class="mb-4">
+                            <label class="form-label">Father Name</label>
+                            <input type="text" class="form-control" name="father_name">
                         </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">State</label>
-                            <select class="form-control" data-select2-selector="state">
-                                <option data-state="al">Alabama</option>
-                                <option data-state="ak" selected>Alaska</option>
 
-                                <option data-state="wi">Wisconsin</option>
-                                <option data-state="wy">Wyoming</option>
-                            </select>
+                        <div class="mb-4">
+                            <label class="form-label">Mother Name</label>
+                            <input type="text" class="form-control" name="mother_name">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">City </label>
-                            <select class="form-control" data-select2-selector="city">
-                                <option data-city="bg-primary">Akutan</option>
 
-                                <option data-city="bg-cyan">Kodiak Island Borough</option>
-                                <option data-city="bg-warning">Kodiak Station</option>
-                                <option data-city="bg-darken">Kotzebue</option>
-                            </select>
+                        <div class="mb-4">
+                            <label class="form-label">Guardian Phone</label>
+                            <input type="text" class="form-control" name="guardian_phone">
                         </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Timezone </label>
-                            <select class="form-control" data-select2-selector="tzone">
-                                <option data-tzone="feather-moon">(GMT -12:00) Eniwetok, Kwajalein</option>
 
-                                <option data-tzone="feather-sun">(GMT +13:00) Apia, Nukualofa</option>
-                                <option data-tzone="feather-sun">(GMT +14:00) Line Islands, Tokelau</option>
-                            </select>
+                        <div class="mb-4">
+                            <label class="form-label">Guardian Email</label>
+                            <input type="email" class="form-control" name="guardian_email">
                         </div>
-                    </div>
-                    <hr class="my-5">
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Currency</label>
-                            <select class="form-control" data-select2-selector="currency">
-                                <option data-currency="vu">VUV - Vanuatu Vatu - VT</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Status </label>
-                            <select class="form-control" data-select2-selector="status">
-                                <option value="teal" data-bg="bg-teal">Sent</option>
-                            </select>
-                        </div>
-                    </div>
-                    <hr class="my-5">
-                    <div class="row mb-4">
-                        <div class="form-check form-switch form-switch-sm ps-5">
-                            <input class="form-check-input c-pointer" type="checkbox" id="commentSwitch">
-                            <label class="form-check-label fw-500 text-dark c-pointer" for="commentSwitch">Allow
-                                Comments</label>
-                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12">
-            <div class="card stretch stretch-full">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="mb-4">
-                                <h5 class="fw-bold">Add Items:</h5>
-                                <span class="fs-12 text-muted">Add items to proposal</span>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered overflow-hidden" id="tab_logic">
-                                    <thead>
-                                        <tr class="single-item">
-                                            <th class="text-center">#</th>
-                                            <th class="text-center wd-450">Product</th>
-                                            <th class="text-center wd-150">Qty</th>
-                                            <th class="text-center wd-150">Price</th>
-                                            <th class="text-center wd-150">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id="addr0">
-                                            <td>1</td>
-                                            <td><input type="text" name="product[]" placeholder="Product Name"
-                                                    class="form-control"></td>
-                                            <td><input type="number" name="qty[]" placeholder="Qty"
-                                                    class="form-control qty" step="1" min="1"></td>
-                                            <td><input type="number" name="price[]" placeholder="Unit Price"
-                                                    class="form-control price" step="1.00"></td>
-                                            <td><input type="number" name="total[]" placeholder="0.00"
-                                                    class="form-control total" readonly=""></td>
-                                        </tr>
-                                        <tr id="addr1">
-                                            <td>3</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="d-flex justify-content-end gap-2 mt-3">
-                                <button id="delete_row" class="btn btn-md bg-soft-danger text-danger">Delete</button>
-                                <button id="add_row" class="btn btn-md btn-primary">Add Items</button>
+
+            <div class="col-xl-6">
+                <div class="card stretch stretch-full">
+                    <div class="card-body">
+
+                        <div>
+                            <label class="form-label">Address *</label>
+                            <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <input type="text" class="form-control" name="address_line1"
+                                        placeholder="Address Line 1">
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <input type="text" class="form-control" name="address_line2"
+                                        placeholder="Address Line 2">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="mb-4">
-                                <h5 class="fw-bold">Grand Total:</h5>
-                                <span class="fs-12 text-muted">Grand total proposal</span>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <label class="form-label">City *</label>
+                                <input type="text" class="form-control" name="city">
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="tab_logic_total">
-                                    <tbody>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase">Sub Total</th>
-                                            <td class="w-25"><input type="number" name="sub_total"
-                                                    placeholder="0.00"
-                                                    class="form-control border-0 bg-transparent p-0" id="sub_total"
-                                                    readonly=""></td>
-                                        </tr>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase">Tax</th>
-                                            <td class="w-25">
-                                                <div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number"
-                                                        class="form-control border-0 bg-transparent p-0"
-                                                        id="tax" placeholder="0">
-                                                    <div class="input-group-addon">%</div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase">Tax Amount</th>
-                                            <td class="w-25"><input type="number" name="tax_amount"
-                                                    id="tax_amount" placeholder="0.00"
-                                                    class="form-control border-0 bg-transparent p-0" readonly="">
-                                            </td>
-                                        </tr>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase bg-gray-100">Grand Total</th>
-                                            <td class="bg-gray-100 w-25"><input type="number" name="total_amount"
-                                                    id="total_amount" placeholder="0.00"
-                                                    class="form-control border-0 bg-transparent p-0 fw-700 text-dark"
-                                                    readonly=""></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                            <div class="col-lg-6 mb-4">
+                                <label class="form-label">State *</label>
+                                <input type="text" class="form-control" name="state">
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <label class="form-label">Country *</label>
+                                <input type="text" class="form-control" name="country" value="India">
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <label class="form-label">Course Name *</label>
+                                <input type="text" class="form-control" name="course_name">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <label class="form-label">Course Duration</label>
+                                <input type="text" class="form-control" name="course_duration">
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+                                <label class="form-label">Admission Session *</label>
+                                <input type="text" class="form-control" name="admission_session">
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="mb-3">
+                            <label class="form-label">Last Qualification *</label>
+                            <input type="text" class="form-control" name="last_qualification">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Board / University *</label>
+                            <input type="text" class="form-control" name="board_university">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <label class="form-label">Passing Year *</label>
+                                <input type="number" class="form-control" name="passing_year">
+                            </div>
+
+                            <div class="col-lg-6 mb-3">
+                                <label class="form-label">Percentage</label>
+                                <input type="number" class="form-control" name="percentage">
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="mb-3">
+                            <label class="form-label">Aadhaar</label>
+                            <input type="text" class="form-control" name="aadhaar_number">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">PAN</label>
+                            <input type="text" class="form-control" name="pan_number">
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="mb-3">
+                            <label class="form-label">Photo</label>
+                            <input type="file" class="form-control" name="photo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Signature</label>
+                            <input type="file" class="form-control" name="signature">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Marksheet</label>
+                            <input type="file" class="form-control" name="marksheet">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">ID Proof</label>
+                            <input type="file" class="form-control" name="id_proof">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Remarks</label>
+                            <textarea class="form-control" name="remarks"></textarea>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary">Submit Admission</button>
+            </div>
+
         </div>
     </div>
-</div>
+</form>
+
 <!-- [ Main Content ] end -->
 @include('layouts.partials.admin.footer')
