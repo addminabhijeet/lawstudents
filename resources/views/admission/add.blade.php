@@ -39,7 +39,7 @@
 </div>
 <!-- [ page-header ] end -->
 <!-- [ Main Content ] start -->
-<form method="POST" action="{{ route('student.admission.submit') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('') }}" enctype="multipart/form-data">
     @csrf
 
     <div class="main-content">
