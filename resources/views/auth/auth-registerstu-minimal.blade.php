@@ -101,43 +101,17 @@
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                         data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
-                                <div class="progress-bar mt-2">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
+                                
                             </div>
                             <div class="mb-4">
                                 <input type="password" name="password_confirmation" class="form-control"
                                     placeholder="Confirm Password" required>
                             </div>
-                            <div class="mt-4">
-                                <div class="custom-control custom-checkbox mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="receiveMail"
-                                        name="receiveMail">
-                                    <label class="custom-control-label c-pointer text-muted" for="receiveMail"
-                                        style="font-weight: 400 !important">Yes, I want to receive Duralux community
-                                        emails</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="termsCondition"
-                                        name="termsCondition" required>
-                                    <label class="custom-control-label c-pointer text-muted" for="termsCondition"
-                                        style="font-weight: 400 !important">I agree to all the <a href="">Terms
-                                            &
-                                            Conditions</a> and <a href="">Fees</a>.</label>
-                                </div>
-                            </div>
+                            
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-lg btn-primary w-100">Create Account</button>
                             </div>
                         </form>
-
-                        <div class="mt-5 text-muted">
-                            <span>Already have an account?</span>
-                            <a href="{{ route('login') }}" class="fw-bold">Login</a>
-                        </div>
                     </div>
                 </div>
             </div>
