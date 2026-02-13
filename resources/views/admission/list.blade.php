@@ -232,7 +232,8 @@
                                         </td>
 
                                         <td>
-                                            <a class="fw-bold">
+                                            <a href="{{ route('student-admissions.show', $admission->id) }}"
+                                                class="fw-bold">
                                                 #ADM{{ $admission->id }}
                                             </a>
                                         </td>
