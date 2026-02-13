@@ -17,7 +17,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('add-student', [RoutingController::class, 'addstudent'])
                 ->name('addstudent');
 
-            Route::get('edit-student', [RoutingController::class, 'editstudent'])
+            Route::get('edit-student/{id}', [RoutingController::class, 'editstudent'])
                 ->name('editstudent');
 
             Route::get('list-student', [RoutingController::class, 'liststudent'])
@@ -32,7 +32,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('show-admission', [StudentAdmissinController::class, 'show'])
                 ->name('showadmission');
 
-            Route::get('edit-admission', [StudentAdmissinController::class, 'edit'])
+            Route::get('edit-admission/{id}', [StudentAdmissinController::class, 'edit'])
                 ->name('editadmission');
 
             Route::get('destroy-admission', [StudentAdmissinController::class, 'destroy'])
