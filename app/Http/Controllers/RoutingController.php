@@ -76,8 +76,8 @@ class RoutingController extends Controller
 
     public function editstudent($id)
     {
-        $student = Student::findOrFail($id);
-        return view('student.edit', compact('student'));
+        $students = Student::findOrFail($id);
+        return view('student.edit', compact('students'));
     }
 
 
