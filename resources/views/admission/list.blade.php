@@ -232,7 +232,7 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('admission.show', $admission->id) }}"
+                                            <a href="{{ route('admin.showadmission', $admission->id) }}"
                                                 class="fw-bold">
                                                 #ADM{{ $admission->id }}
                                             </a>
@@ -266,18 +266,17 @@
                                         <td>
                                             <div class="hstack gap-2 justify-content-end">
 
-                                                <a href="{{ route('admission.show', $admission->id) }}"
+                                                <a href="{{ route('admin.showadmission', $admission->id) }}"
                                                     class="avatar-text avatar-md">
                                                     <i class="feather feather-eye"></i>
                                                 </a>
 
-                                                <a href="{{ route('admission.edit', $admission->id) }}"
+                                                <a href="{{ route('admin.editadmission', $admission->id) }}"
                                                     class="avatar-text avatar-md">
                                                     <i class="feather feather-edit"></i>
                                                 </a>
 
-                                                <form
-                                                    action="{{ route('admission.destroy', $admission->id) }}"
+                                                <form action="{{ route('admin.destroyadmission', $admission->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
