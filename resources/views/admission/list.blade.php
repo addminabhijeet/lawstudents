@@ -105,7 +105,7 @@
                         </a>
                     </div>
                 </div>
-                <a href="{{ route('admin.showadmission') }}" class="btn btn-primary">
+                <a href="{{ route('admin.addadmission') }}" class="btn btn-primary">
                     <i class="feather-plus me-2"></i>
                     <span>Add Admission</span>
                 </a>
