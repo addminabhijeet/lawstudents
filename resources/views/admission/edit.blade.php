@@ -39,10 +39,12 @@
 </div>
 <!-- [ page-header ] end -->
 <!-- [ Main Content ] start -->
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" action="{{ isset($admission) ? route('editadmission', $admission->id) : route('listadmission') }}"
+    enctype="multipart/form-data">
     @csrf
-    @method('PUT') <!-- Required for update -->
-
+    @if (isset($admission))
+        @method('PUT')
+    @endif
     <div class="main-content">
         <div class="row">
 
