@@ -74,6 +74,7 @@ class StudentAdmissinController extends Controller
 
         $data = $request->validate([
             'full_name' => 'required|string|max:150',
+            'email' => 'required|email|max:150|unique:students,email',
             'dob' => 'required|date',
             'gender' => 'required',
             'phone' => 'required|string|max:20',
@@ -81,6 +82,9 @@ class StudentAdmissinController extends Controller
             'city' => 'required|string|max:100',
             'state' => 'required|string|max:100',
             'pincode' => 'required|string|max:10',
+            'last_qualification' => 'required|string|max:150',
+            'board_university' => 'required|string|max:150',
+            'passing_year' => 'required|integer',
             'course_name' => 'required|string|max:150',
             'admission_session' => 'required|string|max:20',
         ]);
