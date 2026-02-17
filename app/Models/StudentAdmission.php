@@ -18,6 +18,7 @@ class StudentAdmission extends Model
         'student_id',
         'full_name',
         'dob',
+        'email',
         'gender',
         'phone',
         'alternate_phone',

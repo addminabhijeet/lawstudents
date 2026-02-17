@@ -125,7 +125,8 @@ class RoutingController extends Controller
 
         StudentAdmission::create([
             'student_id' => $student->id,
-            'full_name' => null,
+            'full_name' => $data['name'],
+            'email' => $data['email'],
             'dob' => null,
             'gender' => null,
             'phone' => null,
