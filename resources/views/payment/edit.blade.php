@@ -44,267 +44,192 @@
         <div class="col-xl-6">
             <div class="card stretch stretch-full">
                 <div class="card-body">
+
                     <div class="mb-4">
                         <label class="form-label">Subject <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Subject">
+                        <input type="text" class="form-control" name="invoice_label"
+                            value="{{ old('invoice_label', $payment->invoice_label) }}">
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">Related <span class="text-danger">*</span></label>
-                        <select class="form-control" data-select2-selector="icon">
-                            <option value="lead" data-icon="feather-at-sign">Lead</option>
-                            <option value="coustomer" data-icon="feather-users">Coustomer</option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Lead <span class="text-danger">*</span></label>
-                        <select class="form-select" data-select2-selector="user">
-                            <option value="1" data-user="1">Alexandra Della - Website design and development
-                            </option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Discount </label>
-                        <select class="form-select" data-select2-selector="default">
-                            <option value="">No Discount</option>
-                            <option value="">Before Tax</option>
 
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Visibility:</label>
-                        <select class="form-select form-control" data-select2-selector="visibility">
-                            <option value="public" data-icon="feather-globe">Public</option>
-                            <option value="private" data-icon="feather-lock">Private</option>
-
-                        </select>
-                    </div>
                     <div class="row">
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label">Start <span class="text-danger">*</span></label>
-                            <input class="form-control" id="startDate" placeholder="Pick start date ">
+                            <label class="form-label">Start</label>
+                            <input class="form-control" type="date" name="issue_date"
+                                value="{{ old('issue_date', optional($payment->issue_date)->format('Y-m-d')) }}">
                         </div>
+
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label">Due <span class="text-danger">*</span></label>
-                            <input class="form-control" id="dueDate" placeholder="Pick due date">
+                            <label class="form-label">Due</label>
+                            <input class="form-control" type="date" name="due_date"
+                                value="{{ old('due_date', optional($payment->due_date)->format('Y-m-d')) }}">
                         </div>
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">Tags:</label>
-                        <select class="form-select form-control" data-select2-selector="tag" multiple>
-                            <option value="primary" data-bg="bg-primary">Team</option>
-                            <option value="teal" data-bg="bg-teal">Primary</option>
 
-                        </select>
-                    </div>
-                    <div class="mb-0">
-                        <label class="form-label">Assignee:</label>
-                        <select class="form-select form-control" data-select2-selector="user" multiple>
-                            <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
-                            <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
-
-                        </select>
-                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- RIGHT SIDE -->
         <div class="col-xl-6">
             <div class="card stretch stretch-full">
                 <div class="card-body">
+
                     <div class="mb-4">
-                        <label class="form-label">To <span class="text-danger">*</span></label>
-                        <select class="form-select form-control" data-select2-selector="user">
-                            <option value="alex@outlook.com" data-user="1">alex@outlook.com</option>
-                            <option value="john.deo@outlook.com" data-user="2">john.deo@outlook.com</option>
+                        <label class="form-label">To</label>
+                        <input type="text" class="form-control" name="to_name"
+                            value="{{ old('to_name', $payment->to_name) }}">
+                    </div>
 
-                        </select>
+                    <div class="mb-4">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="to_address"
+                            value="{{ old('to_address', $payment->to_address) }}">
                     </div>
-                    <div>
-                        <label class="form-label">Address <span class="text-danger">*</span></label>
-                        <div class="row">
-                            <div class="col-lg-6 mb-4">
-                                <input type="text" class="form-control mb-2" placeholder="Address Line 1">
-                            </div>
-                            <div class="col-lg-6 mb-4">
-                                <input type="text" class="form-control" placeholder="Address Line 2">
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Emial">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" name="to_email"
+                                value="{{ old('to_email', $payment->to_email) }}">
                         </div>
+
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label">Phone <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" placeholder="Phone">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control" name="to_phone"
+                                value="{{ old('to_phone', $payment->to_phone) }}">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Country <span class="text-danger">*</span></label>
-                            <select class="form-control" data-select2-selector="country">
-                                <option data-country="af">Afghanistan</option>
-                                <option data-country="ax">Åland Islands</option>
 
-                                <option data-country="ye">Yemen</option>
-                                <option data-country="zm">Zambia</option>
-                                <option data-country="zw">Zimbabwe</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">State</label>
-                            <select class="form-control" data-select2-selector="state">
-                                <option data-state="al">Alabama</option>
-                                <option data-state="ak" selected>Alaska</option>
-
-                                <option data-state="wi">Wisconsin</option>
-                                <option data-state="wy">Wyoming</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">City </label>
-                            <select class="form-control" data-select2-selector="city">
-                                <option data-city="bg-primary">Akutan</option>
-
-                                <option data-city="bg-cyan">Kodiak Island Borough</option>
-                                <option data-city="bg-warning">Kodiak Station</option>
-                                <option data-city="bg-darken">Kotzebue</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-6 mb-4">
-                            <label class="form-label">Timezone </label>
-                            <select class="form-control" data-select2-selector="tzone">
-                                <option data-tzone="feather-moon">(GMT -12:00) Eniwetok, Kwajalein</option>
-
-                                <option data-tzone="feather-sun">(GMT +13:00) Apia, Nukualofa</option>
-                                <option data-tzone="feather-sun">(GMT +14:00) Line Islands, Tokelau</option>
-                            </select>
-                        </div>
-                    </div>
                     <hr class="my-5">
+
                     <div class="row">
                         <div class="col-lg-6 mb-4">
                             <label class="form-label">Currency</label>
-                            <select class="form-control" data-select2-selector="currency">
-                                <option data-currency="vu">VUV - Vanuatu Vatu - VT</option>
-                            </select>
+                            <input type="text" class="form-control" name="currency"
+                                value="{{ old('currency', $payment->currency) }}">
                         </div>
+
                         <div class="col-lg-6 mb-4">
-                            <label class="form-label">Status </label>
-                            <select class="form-control" data-select2-selector="status">
-                                <option value="teal" data-bg="bg-teal">Sent</option>
+                            <label class="form-label">Status</label>
+                            <select class="form-control" name="payment_status">
+                                <option value="pending" {{ $payment->payment_status == 'pending' ? 'selected' : '' }}>
+                                    Pending</option>
+                                <option value="paid" {{ $payment->payment_status == 'paid' ? 'selected' : '' }}>Paid
+                                </option>
+                                <option value="failed" {{ $payment->payment_status == 'failed' ? 'selected' : '' }}>
+                                    Failed</option>
+                                <option value="cancelled"
+                                    {{ $payment->payment_status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                             </select>
                         </div>
                     </div>
-                    <hr class="my-5">
-                    <div class="row mb-4">
-                        <div class="form-check form-switch form-switch-sm ps-5">
-                            <input class="form-check-input c-pointer" type="checkbox" id="commentSwitch">
-                            <label class="form-check-label fw-500 text-dark c-pointer" for="commentSwitch">Allow
-                                Comments</label>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
+
+        <!-- ITEMS SECTION -->
         <div class="col-12">
             <div class="card stretch stretch-full">
                 <div class="card-body">
                     <div class="row">
+
                         <div class="col-lg-8">
-                            <div class="mb-4">
-                                <h5 class="fw-bold">Add Items:</h5>
-                                <span class="fs-12 text-muted">Add items to proposal</span>
-                            </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered overflow-hidden" id="tab_logic">
                                     <thead>
-                                        <tr class="single-item">
-                                            <th class="text-center">#</th>
-                                            <th class="text-center wd-450">Product</th>
-                                            <th class="text-center wd-150">Qty</th>
-                                            <th class="text-center wd-150">Price</th>
-                                            <th class="text-center wd-150">Total</th>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Product</th>
+                                            <th>Qty</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr id="addr0">
-                                            <td>1</td>
-                                            <td><input type="text" name="product[]" placeholder="Product Name"
-                                                    class="form-control"></td>
-                                            <td><input type="number" name="qty[]" placeholder="Qty"
-                                                    class="form-control qty" step="1" min="1"></td>
-                                            <td><input type="number" name="price[]" placeholder="Unit Price"
-                                                    class="form-control price" step="1.00"></td>
-                                            <td><input type="number" name="total[]" placeholder="0.00"
-                                                    class="form-control total" readonly=""></td>
-                                        </tr>
-                                        <tr id="addr1">
-                                            <td>3</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+
+                                        @if (!empty($payment->items))
+                                            @foreach ($payment->items as $index => $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>
+                                                        <input type="text" name="product[]" class="form-control"
+                                                            value="{{ $item['product'] ?? '' }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="qty[]" class="form-control"
+                                                            value="{{ $item['qty'] ?? 1 }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="price[]" class="form-control"
+                                                            value="{{ $item['price'] ?? 0 }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="total[]" class="form-control"
+                                                            value="{{ $item['total'] ?? 0 }}" readonly>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="d-flex justify-content-end gap-2 mt-3">
-                                <button id="delete_row" class="btn btn-md bg-soft-danger text-danger">Delete</button>
-                                <button id="add_row" class="btn btn-md btn-primary">Add Items</button>
-                            </div>
                         </div>
+
+                        <!-- TOTAL SECTION -->
                         <div class="col-lg-4">
-                            <div class="mb-4">
-                                <h5 class="fw-bold">Grand Total:</h5>
-                                <span class="fs-12 text-muted">Grand total proposal</span>
-                            </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="tab_logic_total">
+                                <table class="table table-bordered">
                                     <tbody>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase">Sub Total</th>
-                                            <td class="w-25"><input type="number" name="sub_total"
-                                                    placeholder="0.00"
-                                                    class="form-control border-0 bg-transparent p-0" id="sub_total"
-                                                    readonly=""></td>
-                                        </tr>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase">Tax</th>
-                                            <td class="w-25">
-                                                <div class="input-group mb-2 mb-sm-0">
-                                                    <input type="number"
-                                                        class="form-control border-0 bg-transparent p-0"
-                                                        id="tax" placeholder="0">
-                                                    <div class="input-group-addon">%</div>
-                                                </div>
+                                        <tr>
+                                            <th>Sub Total</th>
+                                            <td>
+                                                <input type="number" name="sub_total"
+                                                    class="form-control border-0 bg-transparent"
+                                                    value="{{ $payment->sub_total }}" readonly>
                                             </td>
                                         </tr>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase">Tax Amount</th>
-                                            <td class="w-25"><input type="number" name="tax_amount"
-                                                    id="tax_amount" placeholder="0.00"
-                                                    class="form-control border-0 bg-transparent p-0" readonly="">
+
+                                        <tr>
+                                            <th>Tax %</th>
+                                            <td>
+                                                <input type="number" name="tax_percentage"
+                                                    class="form-control border-0 bg-transparent"
+                                                    value="{{ $payment->tax_percentage }}">
                                             </td>
                                         </tr>
-                                        <tr class="single-item">
-                                            <th class="fs-10 text-dark text-uppercase bg-gray-100">Grand Total</th>
-                                            <td class="bg-gray-100 w-25"><input type="number" name="total_amount"
-                                                    id="total_amount" placeholder="0.00"
-                                                    class="form-control border-0 bg-transparent p-0 fw-700 text-dark"
-                                                    readonly=""></td>
+
+                                        <tr>
+                                            <th>Tax Amount</th>
+                                            <td>
+                                                <input type="number" name="tax_amount"
+                                                    class="form-control border-0 bg-transparent"
+                                                    value="{{ $payment->tax_amount }}" readonly>
+                                            </td>
                                         </tr>
+
+                                        <tr>
+                                            <th class="bg-gray-100">Grand Total</th>
+                                            <td class="bg-gray-100">
+                                                <input type="number" name="grand_total"
+                                                    class="form-control border-0 bg-transparent fw-700"
+                                                    value="{{ $payment->grand_total }}" readonly>
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
 <!-- [ Main Content ] end -->
 @include('layouts.partials.admin.footer')
