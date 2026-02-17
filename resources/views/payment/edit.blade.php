@@ -41,7 +41,7 @@
 <!-- [ Main Content ] start -->
 <div class="main-content">
     <div class="row">
-        <form method="POST" action="{{ route('admin.updateadmsubmit', $admission->id) }}"
+        <form method="POST" action="{{ route('admin.updateadmsubmit', $payment->id) }}"
             enctype="multipart/form-data">
             @csrf
             <div class="col-xl-8">
