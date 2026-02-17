@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\StudentAdmission;
+use Illuminate\Support\Str;
+use App\Models\Student;
 
 class StudentAdmissinController extends Controller
 {
@@ -38,10 +40,20 @@ class StudentAdmissinController extends Controller
             'admission_session' => 'required|string|max:20',
         ]);
 
+        $student = Student::create([
+            'name'     => $data['full_name'],
+            'username' => Str::slug($data['full_name']) . rand(100, 999),
+            'email'    => Str::slug($data['full_name']) . rand(100, 999) . '@example.com',
+            'password' => '123456', 
+        ]);
+
+        $data['student_id'] = $student->id;
+
         StudentAdmission::create($data);
 
         return redirect()->back()->with('success', 'Admission created successfully.');
     }
+
 
     public function show($id)
     {

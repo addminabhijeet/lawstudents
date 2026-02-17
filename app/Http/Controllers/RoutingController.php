@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Student;
+use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 
 class RoutingController extends Controller
@@ -115,11 +116,28 @@ class RoutingController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
-        Student::create([
+        $student = Student::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => $data['password'],
+        ]);
+
+        StudentAdmission::create([
+            'student_id' => $student->id,
+            'full_name' => null,
+            'dob' => null,
+            'gender' => null,
+            'phone' => null,
+            'address_line1' => null,
+            'city' => null,
+            'state' => null,
+            'pincode' => null,
+            'last_qualification' => null,
+            'board_university' => null,
+            'passing_year' => null,
+            'course_name' => null,
+            'admission_session' => null,
         ]);
 
         return redirect()->route('admin.addstudent')
