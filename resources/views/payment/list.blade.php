@@ -283,7 +283,7 @@
 
                                         <td>
                                             <div class="hstack gap-2 justify-content-end">
-                                                <a href="{{ route('invoice.view', $payment->id) }}"
+                                                <a href=""
                                                     class="avatar-text avatar-md">
                                                     <i class="feather feather-eye"></i>
                                                 </a>
