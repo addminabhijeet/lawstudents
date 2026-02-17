@@ -242,7 +242,7 @@
                                             <div>
                                                 <span class="text-truncate-1-line">{{ $admission->full_name }}</span>
                                                 <small class="fs-12 fw-normal text-muted">
-                                                    {{ $admission->guardian_email ?? '-' }}
+                                                    {{ $admission->email ?? '-' }}
                                                 </small>
                                             </div>
                                         </td>

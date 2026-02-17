@@ -57,6 +57,11 @@
                         </div>
 
                         <div class="mb-4">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+
+                        <div class="mb-4">
                             <label class="form-label">Gender *</label>
                             <select class="form-control" name="gender">
                                 <option value="male">Male</option>
