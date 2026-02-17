@@ -146,6 +146,29 @@ class RoutingController extends Controller
     }
 
 
+    public function updatestusubmit(Request $request, $id): RedirectResponse
+    {
+        $student = Student::findOrFail($id);
+
+        $data = $request->validate([
+            'name' => 'required|string|max:100',
+            'username' => 'required|string|max:100|unique:students,username,' . $student->id,
+            'email' => 'required|email|max:150|unique:students,email,' . $student->id,
+            'password' => 'nullable|confirmed|min:6',
+        ]);
+
+        $student->update([
+            'name' => $data['name'],
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => $data['password'] ?? $student->password,
+        ]);
+
+        return redirect()->route('admin.addstudent')
+            ->with('success', 'Student updated successfully.');
+    }
+
+    
     /**
      * First level route
      */

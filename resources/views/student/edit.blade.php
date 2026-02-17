@@ -82,37 +82,53 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.registerstusubmit') }}" method="POST" class="w-100 mt-4 pt-2">
+                    <form action="{{ route('admin.updatestusubmit', $student->id) }}" method="POST" class="w-100 mt-4 pt-2">
                         @csrf
+
                         <div class="mb-4">
-                            <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                            <input type="text" name="name" class="form-control" placeholder="Full Name"
+                                value="{{ old('name', $student->name ?? '') }}" required>
                         </div>
+
                         <div class="mb-4">
-                            <input type="text" name="username" class="form-control" placeholder="Username" required>
+                            <input type="text" name="username" class="form-control" placeholder="Username"
+                                value="{{ old('username', $student->username ?? '') }}" required>
                         </div>
+
                         <div class="mb-4">
-                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            <input type="email" name="email" class="form-control" placeholder="Email"
+                                value="{{ old('email', $student->email ?? '') }}" required>
                         </div>
+
                         <div class="mb-4 generate-pass">
                             <div class="input-group field">
                                 <input type="password" name="password" class="form-control password" id="newPassword"
-                                    placeholder="Password" required>
-                                <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
-                                    title="Generate Password"><i class="feather-hash"></i></div>
-                                <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                    data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
-                            </div>
+                                    placeholder="Password">
 
+                                <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
+                                    title="Generate Password">
+                                    <i class="feather-hash"></i>
+                                </div>
+
+                                <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                    data-bs-toggle="tooltip" title="Show/Hide Password">
+                                    <i></i>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="mb-4">
                             <input type="password" name="password_confirmation" class="form-control"
-                                placeholder="Confirm Password" required>
+                                placeholder="Confirm Password">
                         </div>
 
                         <div class="mt-5">
-                            <button type="submit" class="btn btn-lg btn-primary w-100">Create Account</button>
+                            <button type="submit" class="btn btn-lg btn-primary w-100">
+                                {{ isset($student) ? 'Update Account' : 'Create Account' }}
+                            </button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
