@@ -39,7 +39,7 @@
 </div>
 <!-- [ page-header ] end -->
 <!-- [ Main Content ] start -->
-<form method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.registeradmsubmit') }}" method="POST">
     @csrf
 
     <div class="main-content">

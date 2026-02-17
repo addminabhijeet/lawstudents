@@ -19,7 +19,7 @@ class StudentAdmissinController extends Controller
         return view('admin.admissions.create');
     }
 
-    public function store(Request $request)
+    public function registeradmsubmit(Request $request)
     {
         $data = $request->validate([
             'student_id' => 'required|exists:students,id',
