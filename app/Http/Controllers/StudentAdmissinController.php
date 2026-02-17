@@ -26,6 +26,7 @@ class StudentAdmissinController extends Controller
         $data = $request->validate([
             'student_id' => 'required|exists:students,id',
             'full_name' => 'required|string|max:150',
+            'email' => 'required|email|max:150|unique:students,email',
             'dob' => 'required|date',
             'gender' => 'required',
             'phone' => 'required|string|max:20',
@@ -43,8 +44,8 @@ class StudentAdmissinController extends Controller
         $student = Student::create([
             'name'     => $data['full_name'],
             'username' => Str::slug($data['full_name']) . rand(100, 999),
-            'email'    => Str::slug($data['full_name']) . rand(100, 999) . '@example.com',
-            'password' => '123456', 
+            'email' => $data['email'],
+            'password' => '123456',
         ]);
 
         $data['student_id'] = $student->id;
