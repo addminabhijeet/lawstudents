@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
@@ -14,6 +13,7 @@ class Payment extends Model
 
     protected $fillable = [
         'student_id',
+
         'invoice_label',
         'invoice_number',
         'invoice_product',
@@ -39,6 +39,7 @@ class Payment extends Model
         'grand_total',
 
         'currency',
+
         'payment_method',
         'payment_status',
 
@@ -49,9 +50,9 @@ class Payment extends Model
     ];
 
     protected $casts = [
+        'items' => 'array',
         'issue_date' => 'date',
         'due_date' => 'date',
-        'items' => 'array',
         'sub_total' => 'decimal:2',
         'tax_percentage' => 'decimal:2',
         'tax_amount' => 'decimal:2',
@@ -60,14 +61,12 @@ class Payment extends Model
         'late_fees' => 'boolean',
         'client_note_enabled' => 'boolean',
         'save_payment' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
     ];
 
     /**
      * Relationship: Payment belongs to Student
      */
-    public function student(): BelongsTo
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }
