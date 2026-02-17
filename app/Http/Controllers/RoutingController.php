@@ -164,11 +164,11 @@ class RoutingController extends Controller
             'password' => $data['password'] ?? $student->password,
         ]);
 
-        return redirect()->route('admin.addstudent')
+        return redirect()->route('admin.liststudent')
             ->with('success', 'Student updated successfully.');
     }
 
-    
+
     /**
      * First level route
      */
