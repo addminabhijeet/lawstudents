@@ -190,13 +190,11 @@ class RoutingController extends Controller
         return view('payment.edit', compact('payment'));
     }
 
-    public function viewpayment(Request $request)
+    public function viewpayment($id)
     {
-        $id = $request->query('id');
         $payment = Payment::findOrFail($id);
         return view('payment.view', compact('payment'));
     }
-
 
     public function listnotes()
     {
