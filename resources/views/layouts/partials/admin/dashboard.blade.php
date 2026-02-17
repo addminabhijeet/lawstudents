@@ -122,8 +122,6 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listpayment') }}">Payment</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.viewpayment') }}">Invoice
-                                    View</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addpayment') }}">Invoice
                                     Create</a>
                             </li>
