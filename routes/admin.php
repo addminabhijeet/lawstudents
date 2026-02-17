@@ -76,6 +76,9 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::post('update-payment/{id}', [RoutingController::class, 'updatepayment'])
                 ->name('updatepayment');
+
+            Route::get('view-payment/{id}', [RoutingController::class, 'viewpayment'])
+                ->name('viewpayment');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])

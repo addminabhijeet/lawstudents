@@ -152,12 +152,6 @@ class RoutingController extends Controller
             ->with('success', 'Payment updated successfully.');
     }
 
-
-    public function viewpayment()
-    {
-        return view('payment.view');
-    }
-
     public function addpayment()
     {
         return view('payment.add');
@@ -194,6 +188,12 @@ class RoutingController extends Controller
     {
         $payment = Payment::findOrFail($id);
         return view('payment.edit', compact('payment'));
+    }
+
+    public function viewpayment($id)
+    {
+        $payment = Payment::findOrFail($id);
+        return view('payment.view', compact('payment'));
     }
 
     public function listnotes()
