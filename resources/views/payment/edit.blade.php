@@ -43,7 +43,6 @@
     <div class="row">
         <form method="POST" action="{{ route('admin.updatepayment', $payment->id) }}" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
 
             <div class="col-xl-8">
                 <div class="card invoice-container">
