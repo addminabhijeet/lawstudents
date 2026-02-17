@@ -74,7 +74,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('update-admission/{id}', [StudentAdmissinController::class, 'updateadmsubmit'])
                 ->name('updateadmsubmit');
 
-            Route::get('update-payment/{id}', [RoutingController::class, 'updatepayment'])
+            Route::post('update-payment/{id}', [RoutingController::class, 'updatepayment'])
                 ->name('updatepayment');
         });
 
