@@ -52,11 +52,6 @@ class RoutingController extends Controller
     {
         $payment = Payment::findOrFail($id);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Validation
-        |--------------------------------------------------------------------------
-        */
         $validated = $request->validate([
             'invoice_label'     => 'nullable|string|max:255',
             'invoice_number'    => 'required|string|max:255',
@@ -89,12 +84,6 @@ class RoutingController extends Controller
             'invoice_note'      => 'nullable|string',
         ]);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Calculate Totals (SERVER SIDE SECURITY)
-        |--------------------------------------------------------------------------
-        */
-
         $subTotal = 0;
         $items = [];
 
@@ -120,12 +109,6 @@ class RoutingController extends Controller
         $discount = (float) ($validated['discount'] ?? 0);
 
         $grandTotal = $subTotal + $taxAmount - $discount;
-
-        /*
-        |--------------------------------------------------------------------------
-        | Update Payment
-        |--------------------------------------------------------------------------
-        */
 
         $payment->update([
             'invoice_label'     => $validated['invoice_label'] ?? null,
