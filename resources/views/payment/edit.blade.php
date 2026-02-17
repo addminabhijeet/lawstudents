@@ -629,7 +629,7 @@
             </div>
 
             <div class="col-12 text-end">
-                <button type="submit" class="btn btn-primary">Update Admission</button>
+                <button type="submit" class="btn btn-primary">Update Payment</button>
             </div>
         </form>
     </div>
