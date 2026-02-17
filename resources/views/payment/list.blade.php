@@ -232,7 +232,7 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('invoice.view', $payment->id) }}" class="fw-bold">
+                                            <a href="" class="fw-bold">
                                                 #{{ $payment->invoice_number }}
                                             </a>
                                         </td>
