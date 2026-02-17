@@ -44,6 +44,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('add-payment', [RoutingController::class, 'addpayment'])
                 ->name('addpayment');
 
+            Route::get('edit-payment/{id}', [RoutingController::class, 'editpayment'])
+                ->name('editpayment');
+
             Route::get('view-payment', [RoutingController::class, 'viewpayment'])
                 ->name('viewpayment');
 
