@@ -67,6 +67,9 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::post('register-admission', [StudentAdmissinController::class, 'registeradmsubmit'])
                 ->name('registeradmsubmit');
+
+            Route::post('update-admission/{id}', [StudentAdmissinController::class, 'updateadmsubmit'])
+                ->name('updateadmsubmit');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
