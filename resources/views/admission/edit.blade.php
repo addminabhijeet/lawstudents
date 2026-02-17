@@ -39,9 +39,8 @@
 </div>
 <!-- [ page-header ] end -->
 <!-- [ Main Content ] start -->
-<form method="POST" action="{{ route('admin.editadmission', $admission->id) }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.updateadmsubmit', $admission->id) }}" enctype="multipart/form-data">
     @csrf
-    @method('PUT')
 
     <div class="main-content">
         <div class="row">
