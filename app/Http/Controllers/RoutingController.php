@@ -165,7 +165,7 @@ class RoutingController extends Controller
         ]);
 
         return redirect()
-            ->route('payments.index')
+            ->route('admin.listpayment')
             ->with('success', 'Payment updated successfully.');
     }
 
