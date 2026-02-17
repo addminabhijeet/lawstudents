@@ -127,6 +127,29 @@
                                 value="{{ old('guardian_email', $admission->guardian_email) }}">
                         </div>
 
+                        <div class="mb-4">
+                            <label class="form-label">Admission Status</label>
+                            <select class="form-control" name="admission_status">
+
+                                <option value="pending"
+                                    {{ old('admission_status', $admission->admission_status) == 'pending' ? 'selected' : '' }}>
+                                    Pending
+                                </option>
+
+                                <option value="approved"
+                                    {{ old('admission_status', $admission->admission_status) == 'approved' ? 'selected' : '' }}>
+                                    Approved
+                                </option>
+
+                                <option value="rejected"
+                                    {{ old('admission_status', $admission->admission_status) == 'rejected' ? 'selected' : '' }}>
+                                    Rejected
+                                </option>
+
+                            </select>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

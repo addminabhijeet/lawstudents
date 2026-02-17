@@ -40,7 +40,7 @@ class StudentAdmissinController extends Controller
             'passing_year' => 'required|integer',
             'course_name' => 'required|string|max:150',
             'admission_session' => 'required|string|max:20',
-            'admission_status' => 'nullable|string'
+            'admission_status' => 'required|in:pending,approved,rejected',
         ]);
 
         $student = Student::create([
@@ -115,7 +115,7 @@ class StudentAdmissinController extends Controller
             'passing_year' => 'required|integer',
             'course_name' => 'required|string|max:150',
             'admission_session' => 'required|string|max:20',
-            'admission_status' => 'nullable|string'
+            'admission_status' => 'required|in:pending,approved,rejected',
         ]);
 
         $admission->update($data);

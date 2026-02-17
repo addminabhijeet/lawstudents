@@ -112,6 +112,14 @@
                             <input type="email" class="form-control" name="guardian_email">
                         </div>
 
+                        <div class="mb-4">
+                            <label class="form-label">Admission Status</label>
+                            <select class="form-control" name="admission_status">
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
