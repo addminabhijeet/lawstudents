@@ -120,10 +120,6 @@ class StudentAdmissinController extends Controller
 
         $admission->update($data);
 
-        // ✅ Create payment only if:
-        // 1. Status changed to approved
-        // 2. No payment exists already
-
         if (
             $oldStatus !== 'approved' &&
             $admission->admission_status === 'approved'

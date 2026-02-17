@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Student;
+use App\Models\Payment;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 
@@ -42,7 +43,9 @@ class RoutingController extends Controller
 
     public function listpayment()
     {
-        return view('payment.list');
+        $payments = Payment::with('student')->latest()->get();
+
+        return view('payment.list', compact('payments'));
     }
 
     public function viewpayment()
