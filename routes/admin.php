@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\StudentAdmissinController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Admin\CourseNoteController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -83,6 +84,10 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::post('course-store', [CourseController::class, 'storeCourse'])
                 ->name('storeCourse');
+
+            Route::get('course-notes', [CourseNoteController::class, 'listCourseNote'])
+                ->name('listCourseNote');
+
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])

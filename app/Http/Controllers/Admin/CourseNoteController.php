@@ -5,11 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseNote;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CourseNoteController extends Controller
 {
+    public function listCourseNote()
+    {
+        $categories = Category::with([
+            'children.courses.notes',
+            'courses.notes'
+        ])
+            ->whereNull('parent_id') 
+            ->get();
+
+        return view('admin.course_notes.list', compact('categories'));
+    }
+
     public function store(Request $request, $courseId)
     {
         $request->validate([
