@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class CourseController extends Controller
 {
     // Show All Categories with Courses
-    public function courses()
+    public function listcourse()
     {
         $categories = Category::with('courses')->whereNull('parent_id')->get();
 
