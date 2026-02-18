@@ -72,11 +72,6 @@ class RoutingControllerStu extends Controller
         return view('student.list');
     }
 
-    public function listnotes()
-    {
-        return view('notes.list');
-    }
-
     public function listsubject()
     {
         return view('subject.list');
