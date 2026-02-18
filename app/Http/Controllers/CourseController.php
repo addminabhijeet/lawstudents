@@ -12,7 +12,7 @@ class CourseController extends Controller
     // Show All Categories with Courses
     public function listcourse()
     {
-        $categories = Category::with('courses')->whereNull('parent_id')->get();
+        $categories = Category::with('courses')->get();
 
         return view('course.list', compact('categories'));
     }
