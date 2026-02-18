@@ -6,7 +6,7 @@
             <!-- [ Content Sidebar ] start -->
             <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
-                    <h4 class="fw-bolder mb-0">Notes</h4>
+                    <h4 class="fw-bolder mb-0">Courses</h4>
                     <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex">
                         <i class="feather-x"></i>
                     </a>
@@ -14,7 +14,7 @@
                 <div class="content-sidebar-header">
                     <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes">
                         <i class="feather-plus me-2"></i>
-                        <span>Add Notes</span>
+                        <span>Add Courses</span>
                     </a>
                 </div>
                 <div class="content-sidebar-body">
@@ -396,7 +396,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Add Notes</h5>
+                <h5 class="modal-title" id="modalTitleId">Add Course</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
