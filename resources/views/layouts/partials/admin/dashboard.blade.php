@@ -54,10 +54,12 @@
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-cast"></i></span>
-                            <span class="nxl-mtext">Course</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                            <span class="nxl-mtext">Course</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -553,8 +555,7 @@
                         <a href="javascript:void(0);" class="nxl-head-link me-0 dark-button">
                             <i class="feather-moon"></i>
                         </a>
-                        <a href="javascript:void(0);" class="nxl-head-link me-0 light-button"
-                            style="display: none">
+                        <a href="javascript:void(0);" class="nxl-head-link me-0 light-button" style="display: none">
                             <i class="feather-sun"></i>
                         </a>
                     </div>
@@ -573,8 +574,7 @@
                                     <span>3 Upcomming</span>
                                 </a>
                             </div>
-                            <div
-                                class="d-flex justify-content-between align-items-center flex-column timesheets-body">
+                            <div class="d-flex justify-content-between align-items-center flex-column timesheets-body">
                                 <i class="feather-clock fs-1 mb-4"></i>
                                 <p class="text-muted">No started timers found yes!</p>
                                 <a href="javascript:void(0);" class="btn btn-sm btn-primary">Started Timer</a>
@@ -843,4 +843,3 @@
     <!--! ================================================================ !-->
     <!--! [Start] Main Content !-->
     <!--! ================================================================ !-->
-
