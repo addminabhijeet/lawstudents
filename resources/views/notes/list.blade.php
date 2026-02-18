@@ -357,7 +357,7 @@
                                         <span class="side-stick"></span>
 
                                         <h5 class="note-title text-truncate w-75 mb-1">
-                                            {{ $course->title }}
+                                            {{ $note->title }}
                                         </h5>
 
                                         <p class="fs-11 text-muted note-date">
