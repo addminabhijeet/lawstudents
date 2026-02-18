@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\StudentAdmissinController;
+use App\Http\Controllers\CourseController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -76,6 +77,15 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('view-payment/{id}', [RoutingController::class, 'viewpayment'])
                 ->name('viewpayment');
+
+            Route::get('courses', [CourseController::class, 'courses'])
+                ->name('courses');
+
+            Route::post('category-store', [CourseController::class, 'storeCategory'])
+                ->name('storeCategory');
+
+            Route::post('course-store', [CourseController::class, 'storeCourse'])
+                ->name('storeCourse');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
