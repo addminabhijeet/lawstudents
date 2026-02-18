@@ -16,9 +16,7 @@ class CourseNoteController extends Controller
         $categories = Category::with([
             'children.courses.notes',
             'courses.notes'
-        ])
-            ->whereNull('parent_id')
-            ->get();
+        ])->get();
 
         return view('notes.list', compact('categories'));
     }
