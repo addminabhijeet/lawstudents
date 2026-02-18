@@ -1,4 +1,4 @@
-<footer class="footer mt-auto">
+<footer class="footer flex-fill">
     <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
         <span>Copyright ©</span>
         <script>
