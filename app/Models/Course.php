@@ -33,8 +33,5 @@ class Course extends Model
     }
 
 
-    public function notes()
-    {
-        return $this->hasMany(CourseNote::class);
-    }
+
 }
