@@ -1233,10 +1233,442 @@
                         </div>
                     </div>
                 </div>
-                <!-- [ Main Content ] end -->
                 @include('layouts.partials.admin.footer')
+            </div>
+        </div>
+    </div>
 </main>
 @include('layouts.partials.admin.theme')
+<div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Add Notes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="notes-box">
+                    <div class="notes-content">
+                        <form action="javascript:void(0);" id="addnotesmodalTitle">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <div class="note-title">
+                                        <label class="form-label">Note Title</label>
+                                        <input type="text" id="note-has-title" class="form-control"
+                                            minlength="25" placeholder="Title">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="note-description">
+                                        <label class="form-label">Note Description</label>
+                                        <textarea id="note-has-description" class="form-control" minlength="60" placeholder="Description"
+                                            rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-n-save" class="float-left btn btn-success">Save</button>
+                <button class="btn btn-danger" data-dismiss="modal">Discard</button>
+                <button id="btn-n-add" class="btn btn-success" disabled="disabled">Add Note</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--! ================================================================ !-->
+<!--! END: Modal Add Notes !-->
+<!--! ================================================================ !-->
+<!--! ================================================================ !-->
+<!--! [Start] Search Modal !-->
+<!--! ================================================================ !-->
+<div class="modal fade-scale" id="searchModal" aria-hidden="true" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-top modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header search-form py-0">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="feather-search fs-4 text-muted"></i>
+                    </span>
+                    <input type="text" class="form-control search-input-field" placeholder="Search...">
+                    <span class="input-group-text">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="searching-for mb-5">
+                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">I'm searching for...</h4>
+                    <div class="row g-1">
+                        <div class="col-md-4 col-xl-2">
+                            <a href="javascript:void(0);"
+                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                <i class="feather-compass"></i>
+                                <span>Recent</span>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-xl-2">
+                            <a href="javascript:void(0);"
+                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                <i class="feather-command"></i>
+                                <span>Command</span>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-xl-2">
+                            <a href="javascript:void(0);"
+                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                <i class="feather-users"></i>
+                                <span>Peoples</span>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-xl-2">
+                            <a href="javascript:void(0);"
+                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                <i class="feather-file"></i>
+                                <span>Files</span>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-xl-2">
+                            <a href="javascript:void(0);"
+                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                <i class="feather-video"></i>
+                                <span>Medias</span>
+                            </a>
+                        </div>
+                        <div class="col-md-4 col-xl-2">
+                            <a href="javascript:void(0);"
+                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
+                                <span>More</span>
+                                <i class="feather-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="recent-result mb-5">
+                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">Recnet <span
+                            class="badge small bg-gray-200 rounded ms-1 text-dark">3</span></h4>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-airplay fs-5"></i>
+                            <div class="fs-13 fw-semibold">CRM dashboard redesign</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">/<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-file-plus fs-5"></i>
+                            <div class="fs-13 fw-semibold">Create new eocument</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">N /<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-user-plus fs-5"></i>
+                            <div class="fs-13 fw-semibold">Invite project colleagues</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">P /<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="command-result mb-5">
+                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">Command <span
+                            class="badge small bg-gray-200 rounded ms-1 text-dark">5</span></h4>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-user fs-5"></i>
+                            <div class="fs-13 fw-semibold">My profile</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">P /<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-users fs-5"></i>
+                            <div class="fs-13 fw-semibold">Team profile</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">T /<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-user-plus fs-5"></i>
+                            <div class="fs-13 fw-semibold">Invite colleagues</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">I /<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-briefcase fs-5"></i>
+                            <div class="fs-13 fw-semibold">Create new project</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">CP /<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-life-buoy fs-5"></i>
+                            <div class="fs-13 fw-semibold">Support center</div>
+                        </a>
+                        <a href="javascript:void(0);" class="badge border rounded text-dark">SC /<i
+                                class="feather-command ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="file-result mb-4">
+                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">Files <span
+                            class="badge small bg-gray-200 rounded ms-1 text-dark">3</span></h4>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-folder-plus fs-5"></i>
+                            <div class="fs-13 fw-semibold">CRM Desing Project <span
+                                    class="fs-12 fw-normal text-muted">(56.74 MB)</span></div>
+                        </a>
+                        <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-folder-plus fs-5"></i>
+                            <div class="fs-13 fw-semibold">Admin Dashboard Project <span
+                                    class="fs-12 fw-normal text-muted">(46.83 MB)</span></div>
+                        </a>
+                        <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
+                            <i class="feather-folder-plus fs-5"></i>
+                            <div class="fs-13 fw-semibold">CRM Dashboard Project <span
+                                    class="fs-12 fw-normal text-muted">(68.59 MB)</span></div>
+                        </a>
+                        <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--! ================================================================ !-->
+<!--! [End] Search Modal !-->
+<!--! ================================================================ !-->
+<!--! ================================================================ !-->
+<!--! [Start] Language Select !-->
+<!--! ================================================================ !-->
+<div class="modal fade-scale" id="languageSelectModal" aria-hidden="true"
+    aria-labelledby="languageSelectModalLabel" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="languageSelectModalLabel">Select Language</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sa.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Arabic </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/bd.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Bengali </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ch.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Chinese </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/hr.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Croatian </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/dk.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Danish </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/nl.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Dutch </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select active">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/us.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>English </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fi.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Filipino </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fr.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>French </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/de.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>German </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/il.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Hebrew </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/in.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Hindi </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/id.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Indonesian </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/it.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Italian </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/jp.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Japanese </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/kr.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Korean </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ir.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Persian </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pt.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Portuguese </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ru.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Russian </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/es.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Spanish </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sv.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Swedish </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/tr.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Turkish </span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pk.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Urdo</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3 language_select">
+                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
+                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/vi.svg"
+                                    alt="" class="img-fluid"></div>
+                            <span>Vietnamese</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--! ================================================================ !-->
+<!--! [End] Language Select !-->
+<!--! ================================================================ !-->
+<!--! ================================================================ !-->
+<!--! BEGIN: Downloading Toast !-->
+<!--! ================================================================ !-->
+<div class="position-fixed" style="right: 5px; bottom: 5px; z-index: 999999">
+    <div id="toast" class="toast bg-black hide" data-bs-delay="3000" role="alert" aria-live="assertive"
+        aria-atomic="true">
+        <div
+            class="toast-header px-3 bg-transparent d-flex align-items-center justify-content-between border-bottom border-light border-opacity-10">
+            <div class="text-white mb-0 mr-auto">Downloading...</div>
+            <a href="javascript:void(0)" class="ms-2 mb-1 close fw-normal" data-bs-dismiss="toast"
+                aria-label="Close">
+                <span class="text-white">&times;</span>
+            </a>
+        </div>
+        <div class="toast-body p-3 text-white">
+            <h6 class="fs-13 text-white">Project.zip</h6>
+            <span class="text-light fs-11">4.2mb of 5.5mb</span>
+        </div>
+        <div class="toast-footer p-3 pt-0 border-top border-light border-opacity-10">
+            <div class="progress mt-3" style="height: 5px">
+                <div class="progress-bar progress-bar-striped progress-bar-animated w-75 bg-dark" role="progressbar"
+                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
 <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
