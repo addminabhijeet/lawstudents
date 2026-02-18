@@ -76,11 +76,11 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('courses', [CourseController::class, 'listcourse'])
                 ->name('listcourse');
 
-            Route::post('category-store', [CourseController::class, 'storeCategory'])
-                ->name('storeCategory');
+            Route::post('category-store', [CourseController::class, 'storecategory'])
+                ->name('storecategory');
 
-            Route::post('course-store', [CourseController::class, 'storeCourse'])
-                ->name('storeCourse');
+            Route::post('course-store', [CourseController::class, 'storecourse'])
+                ->name('storecourse');
 
             Route::get('course-notes', [CourseNoteController::class, 'listnotes'])
                 ->name('listnotes');

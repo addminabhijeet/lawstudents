@@ -406,7 +406,7 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="{{ route('storeCourse') }}" method="POST">
+                        <form action="{{ route('storecourse') }}" method="POST">
                             @csrf
 
                             <div class="row">
@@ -478,7 +478,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form action="{{ route('storeCategory') }}" method="POST">
+            <form action="{{ route('storecategory') }}" method="POST">
                 @csrf
 
                 <div class="modal-body">
