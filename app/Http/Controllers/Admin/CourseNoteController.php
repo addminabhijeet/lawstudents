@@ -14,13 +14,27 @@ class CourseNoteController extends Controller
 
     public function listnotes()
     {
-        $categories = Category::with([
-            'courses.notes.course',
-            'children.courses.notes.course',
-        ])->get();
+        $categories = Category::whereHas('courses.notes')
+            ->with([
+                'courses' => function ($query) {
+                    $query->whereHas('notes')
+                        ->with(['notes']);
+                },
+                'children' => function ($query) {
+                    $query->whereHas('courses.notes')
+                        ->with([
+                            'courses' => function ($q) {
+                                $q->whereHas('notes')
+                                    ->with(['notes']);
+                            }
+                        ]);
+                }
+            ])
+            ->get();
 
         return view('notes.list', compact('categories'));
     }
+
 
     public function store(Request $request, $courseId)
     {
