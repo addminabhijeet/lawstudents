@@ -30,7 +30,7 @@
                         @foreach ($categories as $category)
                             <li class="nav-item">
                                 <a href="javascript:void(0)" class="nav-link note-link"
-                                    data-category="{{ $category->id }}">
+                                    id="category-{{ $category->id }}">
                                     <i class="feather-folder"></i>
                                     <span>{{ $category->name }}</span>
                                 </a>
@@ -348,44 +348,43 @@
                     </div>
                 </div>
                 <div class="content-area-body pb-0">
-                    @foreach ($categories as $category)
-                        @foreach ($category->courses as $course)
-                            <div
-                                class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 
-                single-note-item all-category category-{{ $category->id }}">
-                                <div class="card card-body mb-4 stretch stretch-full">
-                                    <span class="side-stick"></span>
+                    <div class="row note-has-grid" id="note-full-container">
+                        @foreach ($categories as $category)
+                            @foreach ($category->courses as $course)
+                                <div
+                                    class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
+                                    <div class="card card-body mb-4 stretch stretch-full">
+                                        <span class="side-stick"></span>
 
-                                    <h5 class="note-title text-truncate w-75 mb-1">
-                                        {{ $course->title }}
-                                    </h5>
+                                        <h5 class="note-title text-truncate w-75 mb-1">
+                                            {{ $course->title }}
+                                        </h5>
 
-                                    <p class="fs-11 text-muted note-date">
-                                        {{ $course->created_at->format('d F Y') }}
-                                    </p>
-
-                                    <div class="note-content flex-grow-1">
-                                        <p class="text-muted note-inner-content text-truncate-3-line">
-                                            {{ $course->description }}
+                                        <p class="fs-11 text-muted note-date">
+                                            {{ $course->created_at->format('d F Y') }}
                                         </p>
-                                    </div>
 
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="badge bg-primary">
-                                            {{ $category->name }}
-                                        </span>
+                                        <div class="note-content flex-grow-1">
+                                            <p class="text-muted note-inner-content text-truncate-3-line">
+                                                {{ $course->description }}
+                                            </p>
+                                        </div>
 
-                                        <span class="fw-bold text-success">
-                                            ₹{{ $course->price }}
-                                        </span>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="badge bg-primary">
+                                                {{ $category->name }}
+                                            </span>
+
+                                            <span class="fw-bold text-success">
+                                                ₹{{ $course->price }}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         @endforeach
-                    @endforeach
-
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -602,201 +601,6 @@
         </div>
     </div>
 </div>
-<!--! ================================================================ !-->
-<!--! [End] Search Modal !-->
-<!--! ================================================================ !-->
-<!--! ================================================================ !-->
-<!--! [Start] Language Select !-->
-<!--! ================================================================ !-->
-<div class="modal fade-scale" id="languageSelectModal" aria-hidden="true" aria-labelledby="languageSelectModalLabel"
-    tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="languageSelectModalLabel">Select Language</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sa.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Arabic </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/bd.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Bengali </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ch.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Chinese </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/hr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Croatian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/dk.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Danish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/nl.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Dutch </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select active">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/us.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>English </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fi.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Filipino </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>French </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/de.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>German </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/il.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Hebrew </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/in.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Hindi </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/id.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Indonesian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/it.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Italian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/jp.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Japanese </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/kr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Korean </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ir.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Persian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pt.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Portuguese </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ru.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Russian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/es.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Spanish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sv.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Swedish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/tr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Turkish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pk.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Urdo</span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/vi.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Vietnamese</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--! ================================================================ !-->
-<!--! [End] Language Select !-->
-<!--! ================================================================ !-->
-<!--! ================================================================ !-->
-<!--! BEGIN: Downloading Toast !-->
-<!--! ================================================================ !-->
 <div class="position-fixed" style="right: 5px; bottom: 5px; z-index: 999999">
     <div id="toast" class="toast bg-black hide" data-bs-delay="3000" role="alert" aria-live="assertive"
         aria-atomic="true">
@@ -927,20 +731,18 @@
             });
     }
     var $btns = $(".note-link").click(function() {
+
         if (this.id == "all-category") {
-            var $el = $("." + this.id).fadeIn();
-            $("#note-full-container> div").not($el).hide();
-        }
-        if (this.id == "important") {
-            var $el = $("." + this.id).fadeIn();
-            $("#note-full-container> div").not($el).hide();
+            $("#note-full-container> div").fadeIn();
         } else {
-            var $el = $("." + this.id).fadeIn();
-            $("#note-full-container> div").not($el).hide();
+            $("#note-full-container> div").hide();
+            $("#note-full-container> div." + this.id).fadeIn();
         }
+
         $btns.removeClass("active");
         $(this).addClass("active");
     });
+
     $("#add-notes").on("click", function(event) {
         $("#addnotesmodal").modal("show");
         $("#btn-n-save").hide();
