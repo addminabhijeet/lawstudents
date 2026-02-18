@@ -29,8 +29,14 @@ class CourseNote extends Model
     // Accessor for readable size
     public function getFormattedSizeAttribute()
     {
-        return $this->file_size
-            ? number_format($this->file_size / 1024, 2) . ' KB'
-            : null;
+        if (!$this->file_size) return '0 KB';
+
+        $size = $this->file_size;
+
+        if ($size >= 1048576) {
+            return round($size / 1048576, 2) . ' MB';
+        }
+
+        return round($size / 1024, 2) . ' KB';
     }
 }
