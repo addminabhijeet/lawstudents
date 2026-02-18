@@ -116,7 +116,7 @@
             <!--! [Start] Header Left !-->
             <div class="header-left d-flex align-items-center gap-4">
 
-                <a href="javascript:void(0);" class="nxl-head-mobile-toggler" id="mobile-collapse">
+                <a href="javascript:void(0);" class="nxl-head-mobile-toggler d-lg-none" id="mobile-collapse">
                     <div class="hamburger hamburger--arrowturn">
                         <div class="hamburger-box">
                             <div class="hamburger-inner"></div>
