@@ -1,4 +1,7 @@
 @include('layouts.partials.admin.dashboard')
+    <main class="nxl-container">
+        <!-- main containts -->
+        <div class="nxl-content">
 <!-- [ page-header ] start -->
 <div class="page-header">
     <div class="page-header-left d-flex align-items-center">
@@ -1249,5 +1252,5 @@
     </div>
 </div>
 <!-- [ Main Content ] end -->
-
+</div>
 @include('layouts.partials.admin.footer')
