@@ -290,15 +290,21 @@
                                 <h2 class="fs-4 fw-bold text-primary">Invoice</h2>
                                 <div>
                                     <span class="fw-bold text-dark">Invoice:</span>
-                                    <span class="fw-bold text-primary">#NXL369852</span>
+                                    <span class="fw-bold text-primary">#{{ $payment->invoice_number }}</span>
                                 </div>
                                 <div>
                                     <span class="fw-bold text-dark">Due Date:</span>
-                                    <span class="text-muted">28 Feb, 2023</span>
+                                    <span class="text-muted">
+                                        {{ optional($payment->due_date)->format('d M, Y') }}
+                                    </span>
+
                                 </div>
                                 <div>
                                     <span class="fw-bold text-dark">Issued Date:</span>
-                                    <span class="text-muted">25 JAN, 2023</span>
+                                    <span class="text-muted">
+                                        {{ optional($payment->issue_date)->format('d M, Y') }}
+                                    </span>
+
                                 </div>
                             </div>
                         </div>
@@ -309,11 +315,12 @@
                             <div class="text-sm-end">
                                 <h2 class="fs-16 fw-bold text-dark mb-3">Invoiced To:</h2>
                                 <address class="text-muted lh-lg">
-                                    Ellen Louise Ripley<br>
-                                    Nostromo PO Box 29618<br>
-                                    VAT No: 295 3932 6119<br>
-                                    United Kingdom
+                                    {{ $payment->to_name }}<br>
+                                    {{ $payment->to_address }}<br>
+                                    Email: {{ $payment->to_email }}<br>
+                                    Phone: {{ $payment->to_phone }}
                                 </address>
+
                             </div>
                             <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block"></div>
                             <div class="mt-4 mt-sm-0">
@@ -321,11 +328,26 @@
                                 <div class="text-muted lh-lg">
                                     <div>
                                         <span class="text-muted">Total Due:</span>
-                                        <span class="fw-bold text-dark">$249 USD</span>
+                                        <span class="fw-bold text-dark">
+                                            {{ $payment->currency }} {{ number_format($payment->grand_total, 2) }}
+                                        </span>
+
                                     </div>
                                     <div>
                                         <span class="text-muted">Payout Status:</span>
-                                        <span class="fw-bold text-warning">Pending</span>
+                                        @php
+                                            $statusColor = match ($payment->payment_status) {
+                                                'paid' => 'text-success',
+                                                'failed' => 'text-danger',
+                                                'cancelled' => 'text-secondary',
+                                                default => 'text-warning',
+                                            };
+                                        @endphp
+
+                                        <span class="fw-bold {{ $statusColor }}">
+                                            {{ ucfirst($payment->payment_status) }}
+                                        </span>
+
                                     </div>
                                     <div>
                                         <span class="text-muted">Card Holder:</span>
@@ -333,7 +355,10 @@
                                     </div>
                                     <div>
                                         <span class="text-muted">Payment Method:</span>
-                                        <span class="fw-bold text-dark">Mastercard</span>
+                                        <span class="fw-bold text-dark">
+                                            {{ ucfirst(str_replace('_', ' ', $payment->payment_method)) }}
+                                        </span>
+
                                     </div>
                                 </div>
                             </div>
@@ -352,79 +377,76 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="javascript:void(0)">Adata </a></td>
-                                    <td>Modern &amp; Minimal Multipurpose Bootstrap Admin Dashboard</td>
-                                    <td>$50.00</td>
-                                    <td>10</td>
-                                    <td class="text-dark fw-semibold">$500.00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="javascript:void(0)">Avesta </a></td>
-                                    <td>Multipurpose Bootstrap4 Admin Dashboard Template</td>
-                                    <td>$120.00</td>
-                                    <td>10</td>
-                                    <td class="text-dark fw-semibold">$1200.00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="javascript:void(0)">Metrical </a></td>
-                                    <td>Multipurpose Bootstrap4 Admin Dashboard Template</td>
-                                    <td>$450.00</td>
-                                    <td>1</td>
-                                    <td class="text-dark fw-semibold">$450.00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="javascript:void(0)">Avesta </a></td>
-                                    <td>Multipurpose Bootstrap4 Admin Dashboard Template</td>
-                                    <td>$120.00</td>
-                                    <td>10</td>
-                                    <td class="text-dark fw-semibold">$1200.00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="javascript:void(0)">Duralux </a></td>
-                                    <td>Admin Dashboard &amp; Webapps Template</td>
-                                    <td>$50.00</td>
-                                    <td>10</td>
-                                    <td class="text-dark fw-semibold">$500.00</td>
-                                </tr>
+                                @php $subTotal = 0; @endphp
+
+                                @if ($payment->items)
+                                    @foreach ($payment->items as $item)
+                                        @php
+                                            $amount = $item['qty'] * $item['price'];
+                                            $subTotal += $amount;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $item['product'] }}</td>
+                                            <td>{{ $item['product'] }}</td>
+                                            <td>{{ $payment->currency }} {{ number_format($item['price'], 2) }}</td>
+                                            <td>{{ $item['qty'] }}</td>
+                                            <td class="text-dark fw-semibold">
+                                                {{ $payment->currency }} {{ number_format($amount, 2) }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
                                 <tr>
                                     <td colspan="3"></td>
                                     <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Sub Total</td>
-                                    <td class="fw-bold text-dark bg-gray-100">+ $2150.00</td>
+                                    <td class="fw-bold text-dark bg-gray-100">
+                                        + {{ $payment->currency }} {{ number_format($payment->sub_total, 2) }}
+                                    </td>
                                 </tr>
+
                                 <tr>
                                     <td colspan="3"></td>
-                                    <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Discount (NXL2023 - 15%)
+                                    <td class="fw-semibold text-dark bg-gray-100 text-lg-end">
+                                        Discount ({{ $payment->discount }}%)
                                     </td>
-                                    <td class="fw-bold text-success bg-gray-100">- $567.00</td>
+                                    <td class="fw-bold text-success bg-gray-100">
+                                        - {{ $payment->currency }} {{ number_format($payment->discount, 2) }}
+                                    </td>
                                 </tr>
+
                                 <tr>
                                     <td colspan="3"></td>
-                                    <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Estimated Tax (12.5%)
+                                    <td class="fw-semibold text-dark bg-gray-100 text-lg-end">
+                                        Tax ({{ $payment->tax_percentage }}%)
                                     </td>
-                                    <td class="fw-bold text-dark bg-gray-100">+ $225.00</td>
+                                    <td class="fw-bold text-dark bg-gray-100">
+                                        + {{ $payment->currency }} {{ number_format($payment->tax_amount, 2) }}
+                                    </td>
                                 </tr>
+
                                 <tr>
                                     <td colspan="3"></td>
                                     <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Grand Amount</td>
-                                    <td class="fw-bolder text-dark bg-gray-100">= $2065.00</td>
+                                    <td class="fw-bolder text-dark bg-gray-100">
+                                        = {{ $payment->currency }} {{ number_format($payment->grand_total, 2) }}
+                                    </td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
                     <hr class="border-dashed mt-0">
                     <div class="px-4">
-                        <div class="alert alert-dismissible p-4 mt-3 alert-soft-warning-message" role="alert">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                            <p class="mb-0">
-                                <strong>NOTES:</strong> All accounts are to be paid within 7 days from receipt of
-                                invoice. <br>
-                                To be paid by cheque or credit card or direct payment online. <br>
-                                If account is not paid within 7 days the credits details supplied as confirmation of
-                                work undertaken will be charged the agreed quoted fee noted above.
-                            </p>
-                        </div>
+                        @if ($payment->invoice_note)
+                            <div class="alert alert-dismissible p-4 mt-3 alert-soft-warning-message">
+                                <p class="mb-0">
+                                    <strong>NOTES:</strong><br>
+                                    {{ $payment->invoice_note }}
+                                </p>
+                            </div>
+                        @endif
+
                     </div>
                     <div class="px-4 pt-4 d-sm-flex align-items-center justify-content-between">
                         <div class="mb-5 mb-sm-0">
