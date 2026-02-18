@@ -52,9 +52,6 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('list-payment', [RoutingController::class, 'listpayment'])
                 ->name('listpayment');
 
-            Route::get('list-notes', [RoutingController::class, 'listnotes'])
-                ->name('listnotes');
-
             Route::get('list-subject', [RoutingController::class, 'listsubject'])
                 ->name('listsubject');
 
@@ -86,7 +83,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('storeCourse');
 
             Route::get('course-notes', [CourseNoteController::class, 'listCourseNote'])
-                ->name('listCourseNote');
+                ->name('listnotes');
 
         });
 
