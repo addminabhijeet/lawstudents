@@ -370,7 +370,7 @@
                                             </p>
                                         </div>
 
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
                                             <span class="badge bg-primary text-truncate w-75 mb-1">
                                                 {{ $category->name }}
                                             </span>
@@ -379,6 +379,7 @@
                                                 ₹{{ $course->price }}
                                             </span>
                                         </div>
+
                                     </div>
                                 </div>
                             @endforeach
