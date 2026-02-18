@@ -408,7 +408,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="nxl-h-item d-none d-sm-flex">
                         <div class="full-screen-switcher">
                             <a href="javascript:void(0);" class="nxl-head-link me-0"
@@ -426,7 +426,7 @@
                             <i class="feather-sun"></i>
                         </a>
                     </div>
-                    
+
                     <div class="dropdown nxl-h-item">
                         <a class="nxl-head-link me-3" data-bs-toggle="dropdown" href="#" role="button"
                             data-bs-auto-close="outside">
@@ -529,13 +529,12 @@
                                         class="img-fluid user-avtar">
 
                                     <div>
-                                        <h6 class="text-dark mb-0">Alexandra Della <span
-                                                class="badge bg-soft-success text-success ms-1">PRO</span></h6>
-                                        <span class="fs-12 fw-medium text-muted">alex.della@outlook.com</span>
+                                        <h6 class="text-dark mb-0">{{ auth()->user()->name }}</h6>
+                                        <span class="fs-12 fw-medium text-muted">{{ auth()->user()->email }}</span>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="dropdown-divider"></div>
                             <a href="javascript:void(0);" class="dropdown-item">
                                 <i class="feather-user"></i>
