@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseNoteController extends Controller
 {
-    public function listCourseNote()
+    public function listnotes()
     {
         $categories = Category::with([
             'children.courses.notes',
