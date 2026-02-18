@@ -12,15 +12,19 @@
                     </a>
                 </div>
                 <div class="content-sidebar-header">
+                    <!-- Add Courses Button -->
                     <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes">
                         <i class="feather-plus me-2"></i>
                         <span>Add Courses</span>
                     </a>
+
+                    <!-- Add Category Button -->
                     <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category">
                         <i class="feather-plus me-2"></i>
                         <span>Add Category</span>
                     </a>
                 </div>
+
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
 
