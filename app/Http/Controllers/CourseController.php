@@ -29,10 +29,13 @@ class CourseController extends Controller
 
     public function listcourse()
     {
-        $categories = Category::with('courses')->whereNull('parent_id')->get();
+        $categories = Category::with('courses')
+            ->whereNotNull('parent_id')
+            ->get();
 
         return view('course.list', compact('categories'));
     }
+
 
     // Store Category
     public function storeCategory(Request $request)
