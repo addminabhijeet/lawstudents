@@ -351,40 +351,44 @@
                     <div class="row note-has-grid" id="note-full-container">
                         @foreach ($categories as $category)
                             @foreach ($category->courses as $course)
-                                <div
-                                    class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
-                                    <div class="card card-body mb-4 stretch stretch-full">
-                                        <span class="side-stick"></span>
+                                @foreach ($course->notes as $note)
+                                    <div
+                                        class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 
+                single-note-item all-category category-{{ $category->id }}">
 
-                                        <h5 class="note-title text-truncate w-75 mb-1">
-                                            {{ $course->title }}
-                                        </h5>
+                                        <div class="card card-body mb-4 stretch stretch-full">
+                                            <span class="side-stick"></span>
 
-                                        <p class="fs-11 text-muted note-date">
-                                            {{ $course->created_at->format('d F Y') }}
-                                        </p>
+                                            <h5 class="note-title text-truncate w-75 mb-1">
+                                                {{ $note->title }}
+                                            </h5>
 
-                                        <div class="note-content flex-grow-1">
-                                            <p class="text-muted note-inner-content text-truncate-3-line">
-                                                {{ $course->description }}
+                                            <p class="fs-11 text-muted note-date">
+                                                {{ $note->created_at->format('d F Y') }}
                                             </p>
+
+                                            <div class="note-content flex-grow-1">
+                                                <p class="text-muted note-inner-content text-truncate-3-line">
+                                                    Course: {{ $course->title }}
+                                                </p>
+                                            </div>
+
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="badge bg-primary">
+                                                    {{ $category->name }}
+                                                </span>
+
+                                                <span class="fw-bold text-success">
+                                                    {{ $note->formatted_size }}
+                                                </span>
+                                            </div>
                                         </div>
-
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="badge bg-primary text-truncate w-75 mb-1">
-                                                {{ $category->name }}
-                                            </span>
-
-                                            <span class="fw-bold text-success">
-                                                ₹{{ $course->price }}
-                                            </span>
-                                        </div>
-
 
                                     </div>
-                                </div>
+                                @endforeach
                             @endforeach
                         @endforeach
+
                     </div>
                 </div>
             </div>
