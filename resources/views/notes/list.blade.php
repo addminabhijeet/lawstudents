@@ -374,7 +374,7 @@
                                             </div>
 
                                             <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-primary">
+                                                <span class="badge bg-primary text-truncate w-75 mb-1">
                                                     {{ $category->name }}
                                                 </span>
 
