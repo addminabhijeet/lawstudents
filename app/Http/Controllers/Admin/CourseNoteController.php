@@ -20,7 +20,7 @@ class CourseNoteController extends Controller
             ->whereNull('parent_id')
             ->get();
 
-        return view('admin.course_notes.list', compact('categories'));
+        return view('notes.list', compact('categories'));
     }
 
     public function store(Request $request, $courseId)
