@@ -10,11 +10,11 @@ use Illuminate\Support\Str;
 class CourseController extends Controller
 {
     // Show All Categories with Courses
-    public function index()
+    public function courses()
     {
         $categories = Category::with('courses')->whereNull('parent_id')->get();
 
-        return view('courses.index', compact('categories'));
+        return view('course.list', compact('categories'));
     }
 
     // Store Category

@@ -57,9 +57,6 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('list-subject', [RoutingController::class, 'listsubject'])
                 ->name('listsubject');
 
-            Route::get('list-course', [RoutingController::class, 'listcourse'])
-                ->name('listcourse');
-
             Route::post('register-student', [RoutingController::class, 'registerstusubmit'])
                 ->name('registerstusubmit');
 
@@ -78,8 +75,8 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('view-payment/{id}', [RoutingController::class, 'viewpayment'])
                 ->name('viewpayment');
 
-            Route::get('courses', [CourseController::class, 'courses'])
-                ->name('courses');
+            Route::get('courses', [CourseController::class, 'listcourse'])
+                ->name('listcourse');
 
             Route::post('category-store', [CourseController::class, 'storeCategory'])
                 ->name('storeCategory');
