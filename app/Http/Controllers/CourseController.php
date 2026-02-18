@@ -38,7 +38,7 @@ class CourseController extends Controller
 
 
     // Store Category
-    public function storeCategory(Request $request)
+    public function storecategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -56,7 +56,7 @@ class CourseController extends Controller
 
 
     // Store Course
-    public function storeCourse(Request $request)
+    public function storecourse(Request $request)
     {
         $request->validate([
             'category_id' => 'required|exists:categories,id',
