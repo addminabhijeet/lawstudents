@@ -9,24 +9,32 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'parent_id'
+        'description',
+        'icon',
+        'parent_id',
+        'status',
+        'sort_order'
     ];
 
-    // Parent Category
+    protected $casts = [
+        'status' => 'boolean'
+    ];
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    // Child Categories
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id')
+            ->where('status', 1)
+            ->orderBy('sort_order');
     }
 
-    // Courses in Category
     public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Course::class)
+            ->where('status', 1);
     }
 }
