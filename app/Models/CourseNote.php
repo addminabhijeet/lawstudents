@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CourseNote extends Model
 {
+
     protected $fillable = [
         'course_id',
         'title',
@@ -14,6 +15,9 @@ class CourseNote extends Model
         'page_count',
         'is_downloadable',
         'status',
+        'download_count',
+        'version',
+        'visibility',
     ];
 
     // Relationship

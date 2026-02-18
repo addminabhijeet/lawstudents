@@ -17,7 +17,7 @@ class CourseNoteController extends Controller
             'children.courses.notes',
             'courses.notes'
         ])
-            ->whereNull('parent_id') 
+            ->whereNull('parent_id')
             ->get();
 
         return view('admin.course_notes.list', compact('categories'));
@@ -56,10 +56,18 @@ class CourseNoteController extends Controller
             abort(403, 'Download not allowed.');
         }
 
-        $path = storage_path('app/public/' . $note->file_path);
+        // Increase download count
+        $note->increment('download_count');
 
-        return response()->download($path, $note->title . '.pdf');
+        $filePath = storage_path('app/public/' . $note->file_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->download($filePath, $note->title . '.pdf');
     }
+
 
     public function destroy($id)
     {
