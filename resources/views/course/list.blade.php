@@ -406,14 +406,14 @@
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <div class="note-title">
-                                        <label class="form-label">Note Title</label>
+                                        <label class="form-label">Course Title</label>
                                         <input type="text" id="note-has-title" class="form-control"
                                             minlength="25" placeholder="Title">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="note-description">
-                                        <label class="form-label">Note Description</label>
+                                        <label class="form-label">Course Description</label>
                                         <textarea id="note-has-description" class="form-control" minlength="60" placeholder="Description" rows="5"></textarea>
                                     </div>
                                 </div>
@@ -425,7 +425,7 @@
             <div class="modal-footer">
                 <button id="btn-n-save" class="float-left btn btn-success">Save</button>
                 <button class="btn btn-danger" data-dismiss="modal">Discard</button>
-                <button id="btn-n-add" class="btn btn-success" disabled="disabled">Add Note</button>
+                <button id="btn-n-add" class="btn btn-success" disabled="disabled">Add Course</button>
             </div>
         </div>
     </div>
