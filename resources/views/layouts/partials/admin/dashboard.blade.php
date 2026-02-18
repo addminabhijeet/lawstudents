@@ -53,17 +53,6 @@
                     </li>
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
-                            <span class="nxl-mtext">Dashboards</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
-                        </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="index.html">CRM</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="analytics.html">Analytics</a></li>
-                        </ul>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-cast"></i></span>
                             <span class="nxl-mtext">Course</span><span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
@@ -97,13 +86,6 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Notes</a>
                             </li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">Notes
-                                    View</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">Notes
-                                    Edit</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">Notes
-                                    Create</a>
-                            </li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -115,8 +97,6 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listpayment') }}">Payment</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addpayment') }}">Invoice Create</a>
-                            </li>
                         </ul>
                     </li>
                 </ul>
