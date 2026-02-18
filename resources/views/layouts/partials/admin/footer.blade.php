@@ -1,18 +1,5 @@
 <footer class="footer"
-    style="
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: #ffffff;
-        border-top: 1px solid #dee2e6;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1050;
-    ">
-
+    style="position:fixed; bottom:0; left:0; width:100%; z-index:999;">
     <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
         <span>Copyright ©</span>
         <script>
