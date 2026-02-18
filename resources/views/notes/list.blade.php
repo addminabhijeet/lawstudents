@@ -19,61 +19,27 @@
                 </div>
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
+
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
                                 <i class="feather-layers"></i>
-                                <span>Alls</span>
+                                <span>All</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-tasks">
-                                <i class="feather-check-circle"></i>
-                                <span>Tasks</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-works">
-                                <i class="feather-tool"></i>
-                                <span>Works</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-social">
-                                <i class="feather-cast"></i>
-                                <span>Social</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-archive">
-                                <i class="feather-archive"></i>
-                                <span>Archive</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-priority">
-                                <i class="feather-command"></i>
-                                <span>Priority</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-personal">
-                                <i class="feather-user"></i>
-                                <span>Personal</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-business">
-                                <i class="feather-briefcase"></i>
-                                <span>Business</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="note-important">
-                                <i class="feather-star"></i>
-                                <span>Important</span>
-                            </a>
-                        </li>
+
+                        @foreach ($categories as $category)
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link note-link"
+                                    id="category-{{ $category->id }}">
+                                    <i class="feather-folder"></i>
+                                    <span>{{ $category->name }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+
+
                     </ul>
+
                 </div>
             </div>
             <!-- [ Content Sidebar  ] end -->
@@ -163,8 +129,8 @@
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <a href="javascript:void(0)" class="d-flex" data-bs-toggle="dropdown"
-                                data-bs-offset="0,22" data-bs-auto-close="outside" aria-expanded="false">
+                            <a href="javascript:void(0)" class="d-flex" data-bs-toggle="dropdown" data-bs-offset="0,22"
+                                data-bs-auto-close="outside" aria-expanded="false">
                                 <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
                                     title="Tags">
                                     <i class="feather-tag"></i>
@@ -383,152 +349,44 @@
                 </div>
                 <div class="content-area-body pb-0">
                     <div class="row note-has-grid" id="note-full-container">
-                        <!--! BEGIN: [Single Note Item] !-->
-                        <div
-                            class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category note-important note-tasks">
-                            <div class="card card-body mb-4 stretch stretch-full">
-                                <span class="side-stick"></span>
-                                <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Book a Ticket for Movie">Book a Ticket for Movie <i
-                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
-                                <p class="fs-11 text-muted note-date">11 March 2023</p>
-                                <div class="note-content flex-grow-1">
-                                    <p class="text-muted note-inner-content text-truncate-3-line"
-                                        data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
-                                        soluta.</p>
-                                </div>
-                                <div class="d-flex align-items-center gap-1">
-                                    <span class="avatar-text avatar-sm"><i
-                                            class="feather-star favourite-note"></i></span>
-                                    <span class="avatar-text avatar-sm"><i
-                                            class="feather-trash-2 remove-note"></i></span>
-                                    <div class="ms-auto">
-                                        <div class="dropdown btn-group category-selector">
-                                            <a class="nav-link dropdown-toggle category-dropdown label-group p-0"
-                                                data-bs-toggle="dropdown" href="#" role="button"
-                                                aria-haspopup="true" aria-expanded="true">
-                                                <div class="category">
-                                                    <div class="category-business"></div>
-                                                    <div class="category-social"></div>
-                                                    <div class="category-important"></div>
-                                                </div>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right category-menu">
-                                                <a class="note-tasks badge-group-item badge-tasks dropdown-item position-relative category-tasks"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-danger rounded-circle me-3"></span>Tasks
-                                                </a>
-                                                <a class="note-works badge-group-item badge-works dropdown-item position-relative category-works"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-primary rounded-circle me-3"></span>Works
-                                                </a>
-                                                <a class="note-social badge-group-item badge-social dropdown-item position-relative category-social"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-info rounded-circle me-3"></span>Social
-                                                </a>
-                                                <a class="note-archive badge-group-item badge-archive dropdown-item position-relative category-archive"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-dark rounded-circle me-3"></span>Archive
-                                                </a>
-                                                <a class="note-priority badge-group-item badge-priority dropdown-item position-relative category-priority"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-danger rounded-circle me-3"></span>Priority
-                                                </a>
-                                                <a class="note-personal badge-group-item badge-personal dropdown-item position-relative category-personal"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-primary rounded-circle me-3"></span>Personal
-                                                </a>
-                                                <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-warning rounded-circle me-3"></span>Business
-                                                </a>
-                                                <a class="note-important badge-group-item badge-important dropdown-item position-relative category-important"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-success rounded-circle me-3"></span>Important
-                                                </a>
-                                            </div>
+                        @foreach ($categories as $category)
+                            @foreach ($category->courses as $course)
+                                <div
+                                    class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
+                                    <div class="card card-body mb-4 stretch stretch-full">
+                                        <span class="side-stick"></span>
+
+                                        <h5 class="note-title text-truncate w-75 mb-1">
+                                            {{ $course->title }}
+                                        </h5>
+
+                                        <p class="fs-11 text-muted note-date">
+                                            {{ $course->created_at->format('d F Y') }}
+                                        </p>
+
+                                        <div class="note-content flex-grow-1">
+                                            <p class="text-muted note-inner-content text-truncate-3-line">
+                                                {{ $course->description }}
+                                            </p>
                                         </div>
+
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-primary text-truncate w-75 mb-1">
+                                                {{ $category->name }}
+                                            </span>
+
+                                            <span class="fw-bold text-success">
+                                                ₹{{ $course->price }}
+                                            </span>
+                                        </div>
+
+
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!--! BEGIN: [Single Note Item] !-->
-                        <div
-                            class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category note-social note-works note-personal">
-                            <div class="card card-body mb-4 stretch stretch-full">
-                                <span class="side-stick"></span>
-                                <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Meeting with Mr.Jojo">Meeting with Mr.Jojo <i
-                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
-                                <p class="fs-11 text-muted note-date">19 October 2023</p>
-                                <div class="note-content flex-grow-1">
-                                    <p class="text-muted note-inner-content text-truncate-3-line"
-                                        data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
-                                        soluta.</p>
-                                </div>
-                                <div class="d-flex align-items-center gap-1">
-                                    <span class="avatar-text avatar-sm"><i
-                                            class="feather-star favourite-note"></i></span>
-                                    <span class="avatar-text avatar-sm"><i
-                                            class="feather-trash-2 remove-note"></i></span>
-                                    <div class="ms-auto">
-                                        <div class="dropdown btn-group category-selector">
-                                            <a class="nav-link dropdown-toggle category-dropdown label-group p-0"
-                                                data-bs-toggle="dropdown" href="#" role="button"
-                                                aria-haspopup="true" aria-expanded="true">
-                                                <div class="category">
-                                                    <div class="category-business"></div>
-                                                    <div class="category-social"></div>
-                                                    <div class="category-important"></div>
-                                                </div>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right category-menu">
-                                                <a class="note-tasks badge-group-item badge-tasks dropdown-item position-relative category-tasks"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-danger rounded-circle me-3"></span>Tasks
-                                                </a>
-                                                <a class="note-works badge-group-item badge-works dropdown-item position-relative category-works"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-primary rounded-circle me-3"></span>Works
-                                                </a>
-                                                <a class="note-social badge-group-item badge-social dropdown-item position-relative category-social"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-info rounded-circle me-3"></span>Social
-                                                </a>
-                                                <a class="note-archive badge-group-item badge-archive dropdown-item position-relative category-archive"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-dark rounded-circle me-3"></span>Archive
-                                                </a>
-                                                <a class="note-priority badge-group-item badge-priority dropdown-item position-relative category-priority"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-danger rounded-circle me-3"></span>Priority
-                                                </a>
-                                                <a class="note-personal badge-group-item badge-personal dropdown-item position-relative category-personal"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-primary rounded-circle me-3"></span>Personal
-                                                </a>
-                                                <a class="note-business badge-group-item badge-business dropdown-item position-relative category-business"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-warning rounded-circle me-3"></span>Business
-                                                </a>
-                                                <a class="note-important badge-group-item badge-important dropdown-item position-relative category-important"
-                                                    href="javascript:void(0);"><span
-                                                        class="wd-5 ht-5 bg-success rounded-circle me-3"></span>Important
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endforeach
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -556,8 +414,7 @@
                                 <div class="col-md-12">
                                     <div class="note-description">
                                         <label class="form-label">Note Description</label>
-                                        <textarea id="note-has-description" class="form-control" minlength="60" placeholder="Description"
-                                            rows="5"></textarea>
+                                        <textarea id="note-has-description" class="form-control" minlength="60" placeholder="Description" rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -746,201 +603,6 @@
         </div>
     </div>
 </div>
-<!--! ================================================================ !-->
-<!--! [End] Search Modal !-->
-<!--! ================================================================ !-->
-<!--! ================================================================ !-->
-<!--! [Start] Language Select !-->
-<!--! ================================================================ !-->
-<div class="modal fade-scale" id="languageSelectModal" aria-hidden="true"
-    aria-labelledby="languageSelectModalLabel" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="languageSelectModalLabel">Select Language</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sa.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Arabic </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/bd.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Bengali </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ch.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Chinese </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/hr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Croatian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/dk.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Danish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/nl.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Dutch </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select active">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/us.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>English </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fi.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Filipino </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/fr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>French </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/de.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>German </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/il.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Hebrew </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/in.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Hindi </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/id.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Indonesian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/it.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Italian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/jp.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Japanese </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/kr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Korean </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ir.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Persian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pt.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Portuguese </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/ru.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Russian </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/es.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Spanish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/sv.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Swedish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/tr.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Turkish </span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/pk.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Urdo</span>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 language_select">
-                        <a href="javascript:void(0);" class="d-flex align-items-center gap-2">
-                            <div class="avatar-image avatar-sm"><img src="assets/vendors/img/flags/1x1/vi.svg"
-                                    alt="" class="img-fluid"></div>
-                            <span>Vietnamese</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--! ================================================================ !-->
-<!--! [End] Language Select !-->
-<!--! ================================================================ !-->
-<!--! ================================================================ !-->
-<!--! BEGIN: Downloading Toast !-->
-<!--! ================================================================ !-->
 <div class="position-fixed" style="right: 5px; bottom: 5px; z-index: 999999">
     <div id="toast" class="toast bg-black hide" data-bs-delay="3000" role="alert" aria-live="assertive"
         aria-atomic="true">
@@ -1071,20 +733,18 @@
             });
     }
     var $btns = $(".note-link").click(function() {
+
         if (this.id == "all-category") {
-            var $el = $("." + this.id).fadeIn();
-            $("#note-full-container> div").not($el).hide();
-        }
-        if (this.id == "important") {
-            var $el = $("." + this.id).fadeIn();
-            $("#note-full-container> div").not($el).hide();
+            $("#note-full-container> div").fadeIn();
         } else {
-            var $el = $("." + this.id).fadeIn();
-            $("#note-full-container> div").not($el).hide();
+            $("#note-full-container> div").hide();
+            $("#note-full-container> div." + this.id).fadeIn();
         }
+
         $btns.removeClass("active");
         $(this).addClass("active");
     });
+
     $("#add-notes").on("click", function(event) {
         $("#addnotesmodal").modal("show");
         $("#btn-n-save").hide();
