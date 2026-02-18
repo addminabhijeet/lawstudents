@@ -292,14 +292,11 @@
                                                                 <i class="feather feather-trash-2 text-danger"></i>
                                                             </button>
                                                         </form>
-
                                                     </div>
                                                 </td>
-
                                             </tr>
                                         @endforeach
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
@@ -311,4 +308,52 @@
     <!-- [ Main Content ] end -->
     @include('layouts.partials.admin.footer')
 </main>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="paymentSent">
+    <div class="offcanvas-header ht-80 px-4 border-bottom border-gray-5">
+        <div>
+            <h2 class="fs-16 fw-bold text-truncate-1-line">Sent Payment</h2>
+            <small class="fs-12 text-muted">Sent payment to your client's</small>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div
+        class="py-3 px-4 d-flex justify-content-between align-items-center border-bottom border-bottom-dashed border-gray-5 bg-gray-100">
+        <div>
+            <span class="fw-bold text-dark">Date:</span>
+            <span class="fs-11 fw-medium text-muted">25 MAY, 2023</span>
+        </div>
+        <div>
+            <span class="fw-bold text-dark">Payment No:</span>
+            <span class="fs-12 fw-bold text-primary c-pointer">#NXL369852</span>
+        </div>
+    </div>
+    <div class="offcanvas-body">
+        <div class="form-group mb-4">
+            <label class="form-label">From: <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" value="wrapcode.info@gmail.com" placeholder="Clients..."
+                readonly="" required>
+        </div>
+        <div class="form-group mb-4">
+            <label class="form-label">To: <span class="text-danger">*</span></label>
+            <input class="form-control" name="tomailcontent" value="wrapcode.info@gmail.com" placeholder="To..."
+                required>
+        </div>
+        <div class="form-group mb-4">
+            <label class="form-label">Subject: <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" placeholder="Subject..." required>
+        </div>
+        <div class="form-group mb-4">
+            <label class="form-label">URL: </label>
+            <input type="url" class="form-control" placeholder="URL...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Messages:</label>
+            <div data-editor-target="editor" class="ht-200"></div>
+        </div>
+    </div>
+    <div class="px-4 gap-2 d-flex align-items-center ht-80 border border-end-0 border-gray-2">
+        <a href="javascript:void(0);" class="btn btn-primary w-50" data-alert-target="alertMessage">Sent Payment</a>
+        <a href="javascript:void(0);" class="btn btn-danger w-50" data-bs-dismiss="offcanvas">Cancel</a>
+    </div>
+</div>
 @include('layouts.partials.admin.theme')
