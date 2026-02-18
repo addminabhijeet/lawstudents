@@ -6,11 +6,14 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Http\\Controllers\\Admin\\CourseNoteController' => $baseDir . '/app/Http/Controllers/Admin/CourseNoteController.php',
     'App\\Http\\Controllers\\Auth\\AdminLoginController' => $baseDir . '/app/Http/Controllers/Auth/AdminLoginController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\CourseController' => $baseDir . '/app/Http/Controllers/CourseController.php',
     'App\\Http\\Controllers\\RoutingController' => $baseDir . '/app/Http/Controllers/RoutingController.php',
     'App\\Http\\Controllers\\RoutingControllerStu' => $baseDir . '/app/Http/Controllers/RoutingControllerStu.php',
+    'App\\Http\\Controllers\\StudentAdmissinController' => $baseDir . '/app/Http/Controllers/StudentAdmissinController.php',
     'App\\Http\\Controllers\\StudentPasswordController' => $baseDir . '/app/Http/Controllers/StudentPasswordController.php',
     'App\\Http\\Middleware\\RedirectIfNotAdmin' => $baseDir . '/app/Http/Middleware/RedirectIfNotAdmin.php',
     'App\\Http\\Middleware\\RedirectIfNotStudent' => $baseDir . '/app/Http/Middleware/RedirectIfNotStudent.php',
@@ -20,7 +23,12 @@ return array(
     'App\\Http\\Requests\\StudentVerifyOtpRequest' => $baseDir . '/app/Http/Requests/StudentVerifyOtpRequest.php',
     'App\\Mail\\StudentOtpMail' => $baseDir . '/app/Mail/StudentOtpMail.php',
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
+    'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
+    'App\\Models\\Course' => $baseDir . '/app/Models/Course.php',
+    'App\\Models\\CourseNote' => $baseDir . '/app/Models/CourseNote.php',
+    'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
     'App\\Models\\Student' => $baseDir . '/app/Models/Student.php',
+    'App\\Models\\StudentAdmission' => $baseDir . '/app/Models/StudentAdmission.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Services\\StudentPasswordService' => $baseDir . '/app/Services/StudentPasswordService.php',

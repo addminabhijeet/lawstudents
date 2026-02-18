@@ -17624,3 +17624,86 @@ Did you mean one of these?
 #17 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
 #18 {main}
 "} 
+[2026-02-18 18:56:35] local.ERROR: Uncaught Error: Class "App\Http\Controllers\Admin\Controller" not found in E:\lawstudents\app\Models\CourseNote.php:10
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Http\\Controllers\\Admin\\Controller\" not found in E:\\lawstudents\\app\\Models\\CourseNote.php:10
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown at E:/lawstudents/app/Models/CourseNote.php:10)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-18 18:57:05] local.ERROR: Uncaught Error: Class "App\Http\Controllers\Admin\Controller" not found in E:\lawstudents\app\Models\CourseNote.php:10
+Stack trace:
+#0 E:\lawstudents\vendor\composer\ClassLoader.php(576): include()
+#1 E:\lawstudents\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('E:\\lawstudents\\...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Models\\Cour...')
+#3 Command line code(1): class_exists('App\\Models\\Cour...')
+#4 [internal function]: {closure}('App\\Models\\Cour...')
+#5 Command line code(1): array_filter(Array, Object(Closure))
+#6 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Http\\Controllers\\Admin\\Controller\" not found in E:\\lawstudents\\app\\Models\\CourseNote.php:10
+Stack trace:
+#0 E:\\lawstudents\\vendor\\composer\\ClassLoader.php(576): include()
+#1 E:\\lawstudents\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('E:\\\\lawstudents\\\\...')
+#2 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Models\\\\Cour...')
+#3 Command line code(1): class_exists('App\\\\Models\\\\Cour...')
+#4 [internal function]: {closure}('App\\\\Models\\\\Cour...')
+#5 Command line code(1): array_filter(Array, Object(Closure))
+#6 {main}
+  thrown at E:/lawstudents/app/Models/CourseNote.php:10)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-18 18:57:15] local.ERROR: Uncaught Error: Class "App\Http\Controllers\Admin\Controller" not found in E:\lawstudents\app\Models\CourseNote.php:10
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Http\\Controllers\\Admin\\Controller\" not found in E:\\lawstudents\\app\\Models\\CourseNote.php:10
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown at E:/lawstudents/app/Models/CourseNote.php:10)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-18 18:58:05] local.ERROR: syntax error, unexpected token "\", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"\\\", expecting \"{\" at E:/lawstudents/app/Models/CourseNote.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-18 18:58:06] local.ERROR: syntax error, unexpected token "\", expecting "{" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"\\\", expecting \"{\" at E:/lawstudents/app/Models/CourseNote.php:3)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-18 18:58:22] local.ERROR: Uncaught Error: Class "App\Http\Controllers\Admin\Controller" not found in E:\lawstudents\app\Models\CourseNote.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught Error: Class \"App\\Http\\Controllers\\Admin\\Controller\" not found in E:\\lawstudents\\app\\Models\\CourseNote.php:9
+Stack trace:
+#0 Command line code(1): include_once()
+#1 {main}
+  thrown at E:/lawstudents/app/Models/CourseNote.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-18 19:49:05] local.ERROR: rename(E:\lawstudents\bootstrap\cache\pacFEA3.tmp,E:\lawstudents\bootstrap\cache\packages.php): Access is denied (code: 5) {"exception":"[object] (ErrorException(code: 0): rename(E:\\lawstudents\\bootstrap\\cache\\pacFEA3.tmp,E:\\lawstudents\\bootstrap\\cache\\packages.php): Access is denied (code: 5) at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:233)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(258): Illuminate/Foundation/Bootstrap/HandleExceptions->handleError(2, 'rename(E://lawst...', 'E://lawstudents//...', 233)
+#1 [internal function]: Illuminate/Foundation/Bootstrap/HandleExceptions->Illuminate/Foundation/Bootstrap/{closure}(2, 'rename(E://lawst...', 'E://lawstudents//...', 233)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(233): rename('E://lawstudents//...', 'E://lawstudents//...')
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(182): Illuminate/Filesystem/Filesystem->replace('E://lawstudents//...', '<?php return ar...')
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(132): Illuminate/Foundation/PackageManifest->write(Array)
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(108): Illuminate/Foundation/PackageManifest->build()
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(90): Illuminate/Foundation/PackageManifest->getManifest()
+#7 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(79): Illuminate/Foundation/PackageManifest->config('aliases')
+#8 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate/Foundation/PackageManifest->aliases()
+#9 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterFacades->bootstrap(Object(Illuminate/Foundation/Application))
+#10 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#11 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#12 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#13 {main}
+"} 

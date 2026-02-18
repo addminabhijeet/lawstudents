@@ -542,11 +542,14 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\Admin\\CourseNoteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CourseNoteController.php',
         'App\\Http\\Controllers\\Auth\\AdminLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminLoginController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/CourseController.php',
         'App\\Http\\Controllers\\RoutingController' => __DIR__ . '/../..' . '/app/Http/Controllers/RoutingController.php',
         'App\\Http\\Controllers\\RoutingControllerStu' => __DIR__ . '/../..' . '/app/Http/Controllers/RoutingControllerStu.php',
+        'App\\Http\\Controllers\\StudentAdmissinController' => __DIR__ . '/../..' . '/app/Http/Controllers/StudentAdmissinController.php',
         'App\\Http\\Controllers\\StudentPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/StudentPasswordController.php',
         'App\\Http\\Middleware\\RedirectIfNotAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfNotAdmin.php',
         'App\\Http\\Middleware\\RedirectIfNotStudent' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfNotStudent.php',
@@ -556,7 +559,12 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Requests\\StudentVerifyOtpRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StudentVerifyOtpRequest.php',
         'App\\Mail\\StudentOtpMail' => __DIR__ . '/../..' . '/app/Mail/StudentOtpMail.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Course' => __DIR__ . '/../..' . '/app/Models/Course.php',
+        'App\\Models\\CourseNote' => __DIR__ . '/../..' . '/app/Models/CourseNote.php',
+        'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/Models/Payment.php',
         'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',
+        'App\\Models\\StudentAdmission' => __DIR__ . '/../..' . '/app/Models/StudentAdmission.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Services\\StudentPasswordService' => __DIR__ . '/../..' . '/app/Services/StudentPasswordService.php',
