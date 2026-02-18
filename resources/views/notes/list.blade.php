@@ -1,7 +1,6 @@
 @include('layouts.partials.admin.dashboard')
-<main class="nxl-container">
-    <!-- main containts -->
-    <div class="nxl-content">
+<main class="nxl-container apps-container apps-notes">
+    <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
             <!-- [ Content Sidebar ] start -->
@@ -390,16 +389,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Book a Ticket for Movie">Book
-                                    a Ticket for Movie <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Book a Ticket for Movie">Book a Ticket for Movie <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">11 March 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -468,9 +466,8 @@
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -533,16 +530,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Meeting with Mr.Jojo">Meeting
-                                    with Mr.Jojo <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Meeting with Mr.Jojo">Meeting with Mr.Jojo <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">19 October 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -605,16 +601,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Give Review for design">Give
-                                    Review for design <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Give Review for design">Give Review for design <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">02 January 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -677,16 +672,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Nightout with friends">
-                                    Nightout with friends <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Nightout with friends">Nightout with friends <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">01 August 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -749,16 +743,14 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1" data-noteheading="Launch new template">
-                                    Launch
-                                    new template <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    Launch new template <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">21 January 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -821,16 +813,14 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1" data-noteheading="Change a Design">
-                                    Change a
-                                    Design <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    Change a Design <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">25 December 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -893,16 +883,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Give review for foods">Give
-                                    review for foods <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Give review for foods">Give review for foods <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">18 December 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -965,16 +954,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Give salary to employee">Give
-                                    salary to employee <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Give salary to employee">Give salary to employee <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">15 Fabruary 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -1037,16 +1025,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Nightout with friends">
-                                    Nightout with friends <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Nightout with friends">Nightout with friends <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">01 August 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -1115,9 +1102,8 @@
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -1180,16 +1166,15 @@
                             <div class="card card-body mb-4 stretch stretch-full">
                                 <span class="side-stick"></span>
                                 <h5 class="note-title text-truncate w-75 mb-1"
-                                    data-noteheading="Meeting with Mr.Jojo">Meeting
-                                    with Mr.Jojo <i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
+                                    data-noteheading="Meeting with Mr.Jojo">Meeting with Mr.Jojo <i
+                                        class="point bi bi-circle-fill ms-1 fs-7"></i></h5>
                                 <p class="fs-11 text-muted note-date">19 October 2023</p>
                                 <div class="note-content flex-grow-1">
                                     <p class="text-muted note-inner-content text-truncate-3-line"
                                         data-notecontent="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo harum excepturi laudantium eum earum accusantium labore libero maiores illo soluta.">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis vitae iure, quo
-                                        harum
-                                        excepturi laudantium eum earum accusantium labore libero maiores illo soluta.
-                                    </p>
+                                        harum excepturi laudantium eum earum accusantium labore libero maiores illo
+                                        soluta.</p>
                                 </div>
                                 <div class="d-flex align-items-center gap-1">
                                     <span class="avatar-text avatar-sm"><i
@@ -1248,211 +1233,207 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- [ Content Area ] end -->
-        </div>
-    </div>
-    <!-- [ Main Content ] end -->
-    @include('layouts.partials.admin.footer')
-    <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
-    <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
-    <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
-    <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
-    <script>
-        function removeNote() {
-            $(".remove-note")
-                .off("click")
-                .on("click", function(event) {
-                    event.stopPropagation();
-                    $(this).parents(".single-note-item").remove();
-                });
-        }
-
-        function favouriteNote() {
-            $(".favourite-note")
-                .off("click")
-                .on("click", function(event) {
-                    event.stopPropagation();
-                    $(this).parents(".single-note-item").toggleClass("note-favourite");
-                });
-        }
-
-        function addLabelGroups() {
-            $(".category-selector .badge-group-item")
-                .off("click")
-                .on("click", function(event) {
-                    event.preventDefault();
-                    /* Act on the event */
-                    var getclass = this.className;
-                    var getSplitclass = getclass.split(" ")[0];
-                    if ($(this).hasClass("badge-tasks")) {
-                        $(this).parents(".single-note-item").removeClass("note-works");
-                        $(this).parents(".single-note-item").removeClass("note-archive");
-                        $(this).parents(".single-note-item").removeClass("note-social");
-                        $(this).parents(".single-note-item").removeClass("note-priority");
-                        $(this).parents(".single-note-item").removeClass("note-personal");
-                        $(this).parents(".single-note-item").removeClass("note-business");
-                        $(this).parents(".single-note-item").removeClass("note-important");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
-                    } else if ($(this).hasClass("badge-works")) {
-                        $(this).parents(".single-note-item").removeClass("note-tasks");
-                        $(this).parents(".single-note-item").removeClass("note-archive");
-                        $(this).parents(".single-note-item").removeClass("note-social");
-                        $(this).parents(".single-note-item").removeClass("note-priority");
-                        $(this).parents(".single-note-item").removeClass("note-personal");
-                        $(this).parents(".single-note-item").removeClass("note-business");
-                        $(this).parents(".single-note-item").removeClass("note-important");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
-                    } else if ($(this).hasClass("badge-social")) {
-                        $(this).parents(".single-note-item").removeClass("note-tasks");
-                        $(this).parents(".single-note-item").removeClass("note-works");
-                        $(this).parents(".single-note-item").removeClass("note-archive");
-                        $(this).parents(".single-note-item").removeClass("note-priority");
-                        $(this).parents(".single-note-item").removeClass("note-personal");
-                        $(this).parents(".single-note-item").removeClass("note-business");
-                        $(this).parents(".single-note-item").removeClass("note-important");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
-                    } else if ($(this).hasClass("badge-archive")) {
-                        $(this).parents(".single-note-item").removeClass("note-tasks");
-                        $(this).parents(".single-note-item").removeClass("note-works");
-                        $(this).parents(".single-note-item").removeClass("note-social");
-                        $(this).parents(".single-note-item").removeClass("note-priority");
-                        $(this).parents(".single-note-item").removeClass("note-personal");
-                        $(this).parents(".single-note-item").removeClass("note-business");
-                        $(this).parents(".single-note-item").removeClass("note-important");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
-                    } else if ($(this).hasClass("badge-priority")) {
-                        $(this).parents(".single-note-item").removeClass("note-tasks");
-                        $(this).parents(".single-note-item").removeClass("note-works");
-                        $(this).parents(".single-note-item").removeClass("note-social");
-                        $(this).parents(".single-note-item").removeClass("note-archive");
-                        $(this).parents(".single-note-item").removeClass("note-personal");
-                        $(this).parents(".single-note-item").removeClass("note-business");
-                        $(this).parents(".single-note-item").removeClass("note-important");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
-                    } else if ($(this).hasClass("badge-personal")) {
-                        $(this).parents(".single-note-item").removeClass("note-tasks");
-                        $(this).parents(".single-note-item").removeClass("note-works");
-                        $(this).parents(".single-note-item").removeClass("note-social");
-                        $(this).parents(".single-note-item").removeClass("note-archive");
-                        $(this).parents(".single-note-item").removeClass("note-priority");
-                        $(this).parents(".single-note-item").removeClass("note-business");
-                        $(this).parents(".single-note-item").removeClass("note-important");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
-                    } else if ($(this).hasClass("badge-business")) {
-                        $(this).parents(".single-note-item").removeClass("note-tasks");
-                        $(this).parents(".single-note-item").removeClass("note-works");
-                        $(this).parents(".single-note-item").removeClass("note-social");
-                        $(this).parents(".single-note-item").removeClass("note-archive");
-                        $(this).parents(".single-note-item").removeClass("note-priority");
-                        $(this).parents(".single-note-item").removeClass("note-personal");
-                        $(this).parents(".single-note-item").removeClass("note-important");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
-                    } else if ($(this).hasClass("badge-important")) {
-                        $(this).parents(".single-note-item").removeClass("note-tasks");
-                        $(this).parents(".single-note-item").removeClass("note-works");
-                        $(this).parents(".single-note-item").removeClass("note-social");
-                        $(this).parents(".single-note-item").removeClass("note-archive");
-                        $(this).parents(".single-note-item").removeClass("note-priority");
-                        $(this).parents(".single-note-item").removeClass("note-personal");
-                        $(this).parents(".single-note-item").removeClass("note-business");
-                        $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                <!-- [ Main Content ] end -->
+                @include('layouts.partials.admin.footer')
+                <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
+                <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+                <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
+                <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
+                <script>
+                    function removeNote() {
+                        $(".remove-note")
+                            .off("click")
+                            .on("click", function(event) {
+                                event.stopPropagation();
+                                $(this).parents(".single-note-item").remove();
+                            });
                     }
-                });
-        }
-        var $btns = $(".note-link").click(function() {
-            if (this.id == "all-category") {
-                var $el = $("." + this.id).fadeIn();
-                $("#note-full-container> div").not($el).hide();
-            }
-            if (this.id == "important") {
-                var $el = $("." + this.id).fadeIn();
-                $("#note-full-container> div").not($el).hide();
-            } else {
-                var $el = $("." + this.id).fadeIn();
-                $("#note-full-container> div").not($el).hide();
-            }
-            $btns.removeClass("active");
-            $(this).addClass("active");
-        });
-        $("#add-notes").on("click", function(event) {
-            $("#addnotesmodal").modal("show");
-            $("#btn-n-save").hide();
-            $("#btn-n-add").show();
-        });
-        // Button add
-        $("#btn-n-add").on("click", function(event) {
-            event.preventDefault();
-            /* Act on the event */
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, "0");
-            var mm = String(today.getMonth()); //January is 0!
-            var yyyy = today.getFullYear();
-            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            today = dd + " " + monthNames[mm] + " " + yyyy;
 
-            var $_noteTitle = document.getElementById("note-has-title").value;
-            var $_noteDescription = document.getElementById("note-has-description").value;
+                    function favouriteNote() {
+                        $(".favourite-note")
+                            .off("click")
+                            .on("click", function(event) {
+                                event.stopPropagation();
+                                $(this).parents(".single-note-item").toggleClass("note-favourite");
+                            });
+                    }
 
-            $html =
-                '<div class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category"><div class="card card-body mb-4 stretch stretch-full">' +
-                '<span class="side-stick"></span>' +
-                '<h5 class="note-title text-truncate w-75 mb-1" data-noteHeading="' + $_noteTitle + '">' +
-                $_noteTitle + '<i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>' +
-                '<p class="fs-11 text-muted note-date">' + today + "</p>" +
-                '<div class="note-content flex-grow-1">' +
-                '<p class="text-muted note-inner-content text-truncate-3-line" data-noteContent="' +
-                $_noteDescription + '">' + $_noteDescription + "</p>" + "</div>" +
-                '<div class="d-flex align-items-center gap-1">' +
-                '<span class="avatar-text avatar-sm"><i class="feather-star favourite-note"></i></span>' +
-                '<span class="avatar-text avatar-sm"><i class="feather-trash-2 remove-note"></i></span>' +
-                '<div class="ms-auto">' + '<div class="dropdown btn-group category-selector">' +
-                '<a class="nav-link dropdown-toggle category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">' +
-                '<div class="category">' + '<div class="category-tasks"></div>' +
-                '<div class="category-works"></div>' + '<div class="category-works"></div>' +
-                '<div class="category-social"></div>' + '<div class="category-archive"></div>' +
-                '<div class="category-priority"></div>' + '<div class="category-personal"></div>' +
-                '<div class="category-business"></div>' + '<div class="category-important"></div>' + "</div>" +
-                "</a>" + '<div class="dropdown-menu dropdown-menu-right category-menu">' +
-                '<a class="note-tasks badge-group-item badge-tasks dropdown-item position-relative category-tasks" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-danger rounded-circle fs-12 me-3"></i>Tasks </a>' +
-                '<a class="note-works badge-group-item badge-works dropdown-item position-relative category-works" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-primary rounded-circle fs-12 me-3"></i>Works </a>' +
-                '<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-info rounded-circle fs-12 me-3"></i>Social </a>' +
-                '<a class="note-archive badge-group-item badge-archive dropdown-item position-relative category-archive" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-dark rounded-circle fs-12 me-3"></i>Archive </a>' +
-                '<a class="note-archive badge-group-item badge-priority dropdown-item position-relative category-priority" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-danger rounded-circle fs-12 me-3"></i>Priority </a>' +
-                '<a class="note-archive badge-group-item badge-personal dropdown-item position-relative category-personal" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-primary rounded-circle fs-12 me-3"></i>Personal </a>' +
-                '<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-warning rounded-circle me-3"></i>Business </a>' +
-                '<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important" href="javascript:void(0);"> <span class="wd-5 ht-5 bg-success rounded-circle me-3"></span>Important </a>' +
-                "</div>" + "</div>" + "</div>" + "</div>" + "</div></div> ";
+                    function addLabelGroups() {
+                        $(".category-selector .badge-group-item")
+                            .off("click")
+                            .on("click", function(event) {
+                                event.preventDefault();
+                                /* Act on the event */
+                                var getclass = this.className;
+                                var getSplitclass = getclass.split(" ")[0];
+                                if ($(this).hasClass("badge-tasks")) {
+                                    $(this).parents(".single-note-item").removeClass("note-works");
+                                    $(this).parents(".single-note-item").removeClass("note-archive");
+                                    $(this).parents(".single-note-item").removeClass("note-social");
+                                    $(this).parents(".single-note-item").removeClass("note-priority");
+                                    $(this).parents(".single-note-item").removeClass("note-personal");
+                                    $(this).parents(".single-note-item").removeClass("note-business");
+                                    $(this).parents(".single-note-item").removeClass("note-important");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                } else if ($(this).hasClass("badge-works")) {
+                                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                                    $(this).parents(".single-note-item").removeClass("note-archive");
+                                    $(this).parents(".single-note-item").removeClass("note-social");
+                                    $(this).parents(".single-note-item").removeClass("note-priority");
+                                    $(this).parents(".single-note-item").removeClass("note-personal");
+                                    $(this).parents(".single-note-item").removeClass("note-business");
+                                    $(this).parents(".single-note-item").removeClass("note-important");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                } else if ($(this).hasClass("badge-social")) {
+                                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                                    $(this).parents(".single-note-item").removeClass("note-works");
+                                    $(this).parents(".single-note-item").removeClass("note-archive");
+                                    $(this).parents(".single-note-item").removeClass("note-priority");
+                                    $(this).parents(".single-note-item").removeClass("note-personal");
+                                    $(this).parents(".single-note-item").removeClass("note-business");
+                                    $(this).parents(".single-note-item").removeClass("note-important");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                } else if ($(this).hasClass("badge-archive")) {
+                                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                                    $(this).parents(".single-note-item").removeClass("note-works");
+                                    $(this).parents(".single-note-item").removeClass("note-social");
+                                    $(this).parents(".single-note-item").removeClass("note-priority");
+                                    $(this).parents(".single-note-item").removeClass("note-personal");
+                                    $(this).parents(".single-note-item").removeClass("note-business");
+                                    $(this).parents(".single-note-item").removeClass("note-important");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                } else if ($(this).hasClass("badge-priority")) {
+                                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                                    $(this).parents(".single-note-item").removeClass("note-works");
+                                    $(this).parents(".single-note-item").removeClass("note-social");
+                                    $(this).parents(".single-note-item").removeClass("note-archive");
+                                    $(this).parents(".single-note-item").removeClass("note-personal");
+                                    $(this).parents(".single-note-item").removeClass("note-business");
+                                    $(this).parents(".single-note-item").removeClass("note-important");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                } else if ($(this).hasClass("badge-personal")) {
+                                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                                    $(this).parents(".single-note-item").removeClass("note-works");
+                                    $(this).parents(".single-note-item").removeClass("note-social");
+                                    $(this).parents(".single-note-item").removeClass("note-archive");
+                                    $(this).parents(".single-note-item").removeClass("note-priority");
+                                    $(this).parents(".single-note-item").removeClass("note-business");
+                                    $(this).parents(".single-note-item").removeClass("note-important");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                } else if ($(this).hasClass("badge-business")) {
+                                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                                    $(this).parents(".single-note-item").removeClass("note-works");
+                                    $(this).parents(".single-note-item").removeClass("note-social");
+                                    $(this).parents(".single-note-item").removeClass("note-archive");
+                                    $(this).parents(".single-note-item").removeClass("note-priority");
+                                    $(this).parents(".single-note-item").removeClass("note-personal");
+                                    $(this).parents(".single-note-item").removeClass("note-important");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                } else if ($(this).hasClass("badge-important")) {
+                                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                                    $(this).parents(".single-note-item").removeClass("note-works");
+                                    $(this).parents(".single-note-item").removeClass("note-social");
+                                    $(this).parents(".single-note-item").removeClass("note-archive");
+                                    $(this).parents(".single-note-item").removeClass("note-priority");
+                                    $(this).parents(".single-note-item").removeClass("note-personal");
+                                    $(this).parents(".single-note-item").removeClass("note-business");
+                                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                                }
+                            });
+                    }
+                    var $btns = $(".note-link").click(function() {
+                        if (this.id == "all-category") {
+                            var $el = $("." + this.id).fadeIn();
+                            $("#note-full-container> div").not($el).hide();
+                        }
+                        if (this.id == "important") {
+                            var $el = $("." + this.id).fadeIn();
+                            $("#note-full-container> div").not($el).hide();
+                        } else {
+                            var $el = $("." + this.id).fadeIn();
+                            $("#note-full-container> div").not($el).hide();
+                        }
+                        $btns.removeClass("active");
+                        $(this).addClass("active");
+                    });
+                    $("#add-notes").on("click", function(event) {
+                        $("#addnotesmodal").modal("show");
+                        $("#btn-n-save").hide();
+                        $("#btn-n-add").show();
+                    });
+                    // Button add
+                    $("#btn-n-add").on("click", function(event) {
+                        event.preventDefault();
+                        /* Act on the event */
+                        var today = new Date();
+                        var dd = String(today.getDate()).padStart(2, "0");
+                        var mm = String(today.getMonth()); //January is 0!
+                        var yyyy = today.getFullYear();
+                        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                        today = dd + " " + monthNames[mm] + " " + yyyy;
 
-            $("#note-full-container").prepend($html);
-            $("#addnotesmodal").modal("hide");
+                        var $_noteTitle = document.getElementById("note-has-title").value;
+                        var $_noteDescription = document.getElementById("note-has-description").value;
 
-            removeNote();
-            favouriteNote();
-            addLabelGroups();
-        });
-        $("#addnotesmodal").on("hidden.bs.modal", function(event) {
-            event.preventDefault();
-            document.getElementById("note-has-title").value = "";
-            document.getElementById("note-has-description").value = "";
-        });
-        removeNote();
-        favouriteNote();
-        addLabelGroups();
-        $("#btn-n-add").attr("disabled", "disabled");
+                        $html =
+                            '<div class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category"><div class="card card-body mb-4 stretch stretch-full">' +
+                            '<span class="side-stick"></span>' +
+                            '<h5 class="note-title text-truncate w-75 mb-1" data-noteHeading="' + $_noteTitle + '">' +
+                            $_noteTitle + '<i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>' +
+                            '<p class="fs-11 text-muted note-date">' + today + "</p>" +
+                            '<div class="note-content flex-grow-1">' +
+                            '<p class="text-muted note-inner-content text-truncate-3-line" data-noteContent="' +
+                            $_noteDescription + '">' + $_noteDescription + "</p>" + "</div>" +
+                            '<div class="d-flex align-items-center gap-1">' +
+                            '<span class="avatar-text avatar-sm"><i class="feather-star favourite-note"></i></span>' +
+                            '<span class="avatar-text avatar-sm"><i class="feather-trash-2 remove-note"></i></span>' +
+                            '<div class="ms-auto">' + '<div class="dropdown btn-group category-selector">' +
+                            '<a class="nav-link dropdown-toggle category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">' +
+                            '<div class="category">' + '<div class="category-tasks"></div>' +
+                            '<div class="category-works"></div>' + '<div class="category-works"></div>' +
+                            '<div class="category-social"></div>' + '<div class="category-archive"></div>' +
+                            '<div class="category-priority"></div>' + '<div class="category-personal"></div>' +
+                            '<div class="category-business"></div>' + '<div class="category-important"></div>' + "</div>" +
+                            "</a>" + '<div class="dropdown-menu dropdown-menu-right category-menu">' +
+                            '<a class="note-tasks badge-group-item badge-tasks dropdown-item position-relative category-tasks" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-danger rounded-circle fs-12 me-3"></i>Tasks </a>' +
+                            '<a class="note-works badge-group-item badge-works dropdown-item position-relative category-works" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-primary rounded-circle fs-12 me-3"></i>Works </a>' +
+                            '<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-info rounded-circle fs-12 me-3"></i>Social </a>' +
+                            '<a class="note-archive badge-group-item badge-archive dropdown-item position-relative category-archive" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-dark rounded-circle fs-12 me-3"></i>Archive </a>' +
+                            '<a class="note-archive badge-group-item badge-priority dropdown-item position-relative category-priority" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-danger rounded-circle fs-12 me-3"></i>Priority </a>' +
+                            '<a class="note-archive badge-group-item badge-personal dropdown-item position-relative category-personal" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-primary rounded-circle fs-12 me-3"></i>Personal </a>' +
+                            '<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-warning rounded-circle me-3"></i>Business </a>' +
+                            '<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important" href="javascript:void(0);"> <span class="wd-5 ht-5 bg-success rounded-circle me-3"></span>Important </a>' +
+                            "</div>" + "</div>" + "</div>" + "</div>" + "</div></div> ";
 
-        $("#note-has-title").keyup(function() {
-            var empty = false;
-            $("#note-has-title").each(function() {
-                if ($(this).val() == "") {
-                    empty = true;
-                }
-            });
+                        $("#note-full-container").prepend($html);
+                        $("#addnotesmodal").modal("hide");
 
-            if (empty) {
-                $("#btn-n-add").attr("disabled", "disabled");
-            } else {
-                $("#btn-n-add").removeAttr("disabled");
-            }
-        });
-    </script>
+                        removeNote();
+                        favouriteNote();
+                        addLabelGroups();
+                    });
+                    $("#addnotesmodal").on("hidden.bs.modal", function(event) {
+                        event.preventDefault();
+                        document.getElementById("note-has-title").value = "";
+                        document.getElementById("note-has-description").value = "";
+                    });
+                    removeNote();
+                    favouriteNote();
+                    addLabelGroups();
+                    $("#btn-n-add").attr("disabled", "disabled");
+
+                    $("#note-has-title").keyup(function() {
+                        var empty = false;
+                        $("#note-has-title").each(function() {
+                            if ($(this).val() == "") {
+                                empty = true;
+                            }
+                        });
+
+                        if (empty) {
+                            $("#btn-n-add").attr("disabled", "disabled");
+                        } else {
+                            $("#btn-n-add").removeAttr("disabled");
+                        }
+                    });
+                </script>
