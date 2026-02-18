@@ -1,5 +1,4 @@
-<footer class="footer"
-    style="position: fixed; bottom: 0; z-index: 999;">
+<footer class="footer">
 
     <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
         <span>Copyright ©</span>
