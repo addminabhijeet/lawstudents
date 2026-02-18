@@ -454,14 +454,8 @@
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-n-save" class="float-left btn btn-success">Save</button>
-                <button class="btn btn-danger" data-dismiss="modal">Discard</button>
-                <button id="btn-n-add" class="btn btn-success" disabled="disabled">Add Course</button>
             </div>
         </div>
     </div>
