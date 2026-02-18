@@ -399,16 +399,18 @@
 <div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
+            <!-- Modal Header -->
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitleId">Add Course</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            <!-- Modal Body -->
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
                         <form action="{{ route('admin.storecourse') }}" method="POST">
                             @csrf
-
                             <div class="row">
                                 <!-- Category -->
                                 <div class="col-md-12 mb-3">
@@ -416,9 +418,7 @@
                                     <select name="category_id" class="form-control" required>
                                         <option value="">-- Select Category --</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">
-                                                {{ $category->name }}
-                                            </option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -445,21 +445,21 @@
                                 </div>
                             </div>
 
+                            <!-- Modal Footer -->
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">
-                                    Add Course
-                                </button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                                    Cancel
-                                </button>
+                                <button type="submit" class="btn btn-success">Add Course</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            <!-- End Modal Body -->
+
         </div>
     </div>
 </div>
+
 <!--! ================================================================ !-->
 <!--! END: Modal Add Notes !-->
 <!--! ================================================================ !-->
