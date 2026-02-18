@@ -11,11 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class CourseNoteController extends Controller
 {
+
     public function listnotes()
     {
         $categories = Category::with([
-            'children.courses.notes',
-            'courses.notes'
+            'courses.notes.course',
+            'children.courses.notes.course',
         ])->get();
 
         return view('notes.list', compact('categories'));
