@@ -306,7 +306,7 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
-    @include('layouts.partials.admin.footer')
+
 </main>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="paymentSent">
     <div class="offcanvas-header ht-80 px-4 border-bottom border-gray-5">

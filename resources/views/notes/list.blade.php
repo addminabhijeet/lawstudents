@@ -1233,7 +1233,7 @@
                         </div>
                     </div>
                 </div>
-                @include('layouts.partials.admin.footer')
+                
             </div>
         </div>
     </div>

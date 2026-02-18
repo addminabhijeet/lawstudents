@@ -486,6 +486,5 @@
         </div>
     </div>
     <!-- [ Main Content ] end -->
-    @include('layouts.partials.admin.footer')
 </main>
 @include('layouts.partials.admin.theme')

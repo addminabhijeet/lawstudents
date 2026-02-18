@@ -1284,6 +1284,6 @@
         </div>
         <!-- [ Main Content ] end -->
     </div>
-    @include('layouts.partials.student.footer')
+
 </main>
 @include('layouts.partials.admin.theme')

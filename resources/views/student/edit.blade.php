@@ -151,6 +151,5 @@
         <!--! END: Theme Customizer !-->
         <!-- [ Main Content ] end -->
     </div>
-    @include('layouts.partials.admin.footer')
 </main>
 @include('layouts.partials.admin.theme')
