@@ -16,6 +16,10 @@
                         <i class="feather-plus me-2"></i>
                         <span>Add Courses</span>
                     </a>
+                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category">
+                        <i class="feather-plus me-2"></i>
+                        <span>Add Category</span>
+                    </a>
                 </div>
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
@@ -402,23 +406,55 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="javascript:void(0);" id="addnotesmodalTitle">
+                        <form action="{{ route('courses.store') }}" method="POST">
+                            @csrf
+
                             <div class="row">
+                                <!-- Category -->
                                 <div class="col-md-12 mb-3">
-                                    <div class="note-title">
-                                        <label class="form-label">Course Title</label>
-                                        <input type="text" id="note-has-title" class="form-control"
-                                            minlength="25" placeholder="Title">
-                                    </div>
+                                    <label class="form-label">Select Category</label>
+                                    <select name="category_id" class="form-control" required>
+                                        <option value="">-- Select Category --</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="note-description">
-                                        <label class="form-label">Course Description</label>
-                                        <textarea id="note-has-description" class="form-control" minlength="60" placeholder="Description" rows="5"></textarea>
-                                    </div>
+
+                                <!-- Title -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Course Title</label>
+                                    <input type="text" name="title" class="form-control" minlength="5"
+                                        placeholder="Enter Course Title" required>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Course Description</label>
+                                    <textarea name="description" class="form-control" minlength="10" rows="4"
+                                        placeholder="Enter Course Description"></textarea>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Price</label>
+                                    <input type="number" step="0.01" name="price" class="form-control"
+                                        placeholder="Enter Course Price">
                                 </div>
                             </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">
+                                    Add Course
+                                </button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                            </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -433,6 +469,56 @@
 <!--! ================================================================ !-->
 <!--! END: Modal Add Notes !-->
 <!--! ================================================================ !-->
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="{{ route('categories.store') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+
+                    <!-- Category Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Category Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Enter Category Name"
+                            required>
+                    </div>
+
+                    <!-- Parent Category -->
+                    <div class="mb-3">
+                        <label class="form-label">Parent Category (Optional)</label>
+                        <select name="parent_id" class="form-control">
+                            <option value="">-- Main Category --</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                        Add Category
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
 <!--! ================================================================ !-->
 <!--! [Start] Search Modal !-->
 <!--! ================================================================ !-->
@@ -747,6 +833,12 @@
 
     $("#add-notes").on("click", function(event) {
         $("#addnotesmodal").modal("show");
+        $("#btn-n-save").hide();
+        $("#btn-n-add").show();
+    });
+
+    $("#add-category").on("click", function(event) {
+        $("#addCategoryModal").modal("show");
         $("#btn-n-save").hide();
         $("#btn-n-add").show();
     });

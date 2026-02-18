@@ -54,6 +54,7 @@ class CourseController extends Controller
         return back()->with('success', 'Category Created Successfully');
     }
 
+
     // Store Course
     public function storeCourse(Request $request)
     {
