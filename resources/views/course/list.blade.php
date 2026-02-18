@@ -52,15 +52,15 @@
                         </a>
                         <div class="dropdown">
                             <a href="javascript:void(0)" class="btn btn-light-brand dropdown-toggle"
-                                data-bs-toggle="dropdown" data-bs-offset="0,18">Project Notes</a>
+                                data-bs-toggle="dropdown" data-bs-offset="0,18">Project Course</a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="javascript:void(0)">All Notes</a></li>
-                                <li><a class="dropdown-item" href="javascript:void(0)">Lead Notes</a></li>
-                                <li><a class="dropdown-item" href="javascript:void(0)">Client Notes</a></li>
-                                <li><a class="dropdown-item active" href="javascript:void(0)">Project Notes</a></li>
-                                <li><a class="dropdown-item" href="javascript:void(0)">Meeting Notes</a></li>
-                                <li><a class="dropdown-item" href="javascript:void(0)">Personal Notes</a></li>
-                                <li><a class="dropdown-item" href="javascript:void(0)">Customer Notes</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">All Course</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">Lead Course</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">Client Course</a></li>
+                                <li><a class="dropdown-item active" href="javascript:void(0)">Project Course</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">Meeting Course</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">Personal Course</a></li>
+                                <li><a class="dropdown-item" href="javascript:void(0)">Customer Course</a></li>
                             </ul>
                         </div>
                         <div class="dropdown">
