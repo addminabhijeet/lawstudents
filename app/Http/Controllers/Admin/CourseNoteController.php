@@ -9,7 +9,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Smalot\PdfParser\Parser; 
+use Smalot\PdfParser\Parser;
 
 class CourseNoteController extends Controller
 {
@@ -20,64 +20,55 @@ class CourseNoteController extends Controller
             ->with([
                 'courses' => function ($query) {
                     $query->whereHas('notes')
-                        ->with(['notes']);
+                        ->with('notes');
                 },
                 'children' => function ($query) {
                     $query->whereHas('courses.notes')
                         ->with([
                             'courses' => function ($q) {
                                 $q->whereHas('notes')
-                                    ->with(['notes']);
+                                    ->with('notes');
                             }
                         ]);
                 }
             ])
             ->get();
 
-        return view('notes.list', compact('categories'));
+        $courses = Course::where('status', 1)->get();
+
+        return view('notes.list', compact('categories', 'courses'));
     }
 
-    public function storenotes(Request $request, $courseId)
+
+    public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'pdf'   => 'required|mimes:pdf|max:20480', // 20MB
-            'description' => 'nullable|string',
-            'is_downloadable' => 'nullable|boolean',
-            'visibility' => 'nullable|in:free,paid,enrolled',
-            'version' => 'nullable|string|max:20',
+            'course_id' => 'required|exists:courses,id',
+            'title'     => 'required|string|max:255',
+            'pdf'       => 'required|mimes:pdf|max:20480',
         ]);
 
-        $course = Course::findOrFail($courseId);
+        $course = Course::findOrFail($request->course_id);
 
         $file = $request->file('pdf');
         $path = $file->store('course_notes', 'public');
 
-        // Optional: Count PDF pages using Smalot\PdfParser
-        $pageCount = null;
-        try {
-            $parser = new Parser();
-            $pdf = $parser->parseFile($file->getPathname());
-            $pageCount = $pdf->getPages() ? count($pdf->getPages()) : null;
-        } catch (\Exception $e) {
-            $pageCount = null; // fallback if PDF parsing fails
-        }
-
         CourseNote::create([
-            'course_id'      => $course->id,
-            'title'          => $request->title,
-            'file_path'      => $path,
-            'file_size'      => $file->getSize(),
-            'page_count'     => $pageCount,
-            'is_downloadable' => $request->has('is_downloadable') ? $request->is_downloadable : true,
-            'status'         => true,
-            'download_count' => 0,
-            'version'        => $request->version ?? '1.0',
-            'visibility'     => $request->visibility ?? 'enrolled',
+            'course_id'       => $course->id,
+            'title'           => $request->title,
+            'file_path'       => $path,
+            'file_size'       => $file->getSize(),
+            'page_count'      => null,
+            'is_downloadable' => $request->has('is_downloadable'),
+            'status'          => true,
+            'download_count'  => 0,
+            'version'         => $request->version ?? '1.0',
+            'visibility'      => $request->visibility ?? 'enrolled',
         ]);
 
         return back()->with('success', 'PDF Note uploaded successfully.');
     }
+
 
 
     public function download($id)

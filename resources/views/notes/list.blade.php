@@ -404,11 +404,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="{{ route('admin.storenotes', $course->id) }}" method="POST"
-                enctype="multipart/form-data">
+            <form action="{{ route('admin.storenotes') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-body">
+
+                    <!-- Course Selection -->
+                    <div class="mb-3">
+                        <label class="form-label">Select Course *</label>
+                        <select name="course_id" class="form-control" required>
+                            <option value="">-- Select Course --</option>
+                            @foreach ($courses as $course)
+                                <option value="{{ $course->id }}">
+                                    {{ $course->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <!-- Note Title -->
                     <div class="mb-3">
