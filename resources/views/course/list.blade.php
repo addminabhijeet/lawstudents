@@ -14,7 +14,7 @@
                 <div class="content-sidebar-header">
                     <!-- Add Courses Button -->
                     <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes"
-                        style="display:block; margin-bottom:12px;">
+                        style="display:block; margin-right: 30px;">
                         <i class="feather-plus me-2"></i>
                         <span>Add Courses</span>
                     </a>
