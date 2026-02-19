@@ -85,7 +85,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('course-notes', [CourseNoteController::class, 'listnotes'])
                 ->name('listnotes');
 
-            Route::get('store-notes', [CourseNoteController::class, 'storenotes'])
+            Route::post('store-notes', [CourseNoteController::class, 'storenotes'])
                 ->name('storenotes');
 
         });
