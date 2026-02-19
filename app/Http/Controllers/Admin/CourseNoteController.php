@@ -40,7 +40,7 @@ class CourseNoteController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function storenotes(Request $request)
     {
         $request->validate([
             'course_id' => 'required|exists:courses,id',
