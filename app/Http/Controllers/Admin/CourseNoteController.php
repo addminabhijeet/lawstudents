@@ -8,6 +8,8 @@ use App\Models\CourseNote;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Smalot\PdfParser\Parser; 
 
 class CourseNoteController extends Controller
 {
@@ -35,31 +37,48 @@ class CourseNoteController extends Controller
         return view('notes.list', compact('categories'));
     }
 
-
     public function store(Request $request, $courseId)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'pdf'   => 'required|mimes:pdf|max:20480', // 20MB
+            'description' => 'nullable|string',
+            'is_downloadable' => 'nullable|boolean',
+            'visibility' => 'nullable|in:free,paid,enrolled',
+            'version' => 'nullable|string|max:20',
         ]);
 
         $course = Course::findOrFail($courseId);
 
         $file = $request->file('pdf');
-
         $path = $file->store('course_notes', 'public');
+
+        // Optional: Count PDF pages using Smalot\PdfParser
+        $pageCount = null;
+        try {
+            $parser = new Parser();
+            $pdf = $parser->parseFile($file->getPathname());
+            $pageCount = $pdf->getPages() ? count($pdf->getPages()) : null;
+        } catch (\Exception $e) {
+            $pageCount = null; // fallback if PDF parsing fails
+        }
 
         CourseNote::create([
             'course_id'      => $course->id,
             'title'          => $request->title,
             'file_path'      => $path,
             'file_size'      => $file->getSize(),
-            'is_downloadable' => true,
+            'page_count'     => $pageCount,
+            'is_downloadable' => $request->has('is_downloadable') ? $request->is_downloadable : true,
             'status'         => true,
+            'download_count' => 0,
+            'version'        => $request->version ?? '1.0',
+            'visibility'     => $request->visibility ?? 'enrolled',
         ]);
 
         return back()->with('success', 'PDF Note uploaded successfully.');
     }
+
 
     public function download($id)
     {
