@@ -396,44 +396,78 @@
     </div>
 </main>
 @include('layouts.partials.admin.theme')
-<div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+<div class="modal fade" id="addNotesModal" tabindex="-1" aria-labelledby="addNotesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Add Notes</h5>
+                <h5 class="modal-title" id="addNotesModalLabel">Add Course Note</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="notes-box">
-                    <div class="notes-content">
-                        <form action="javascript:void(0);" id="addnotesmodalTitle">
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <div class="note-title">
-                                        <label class="form-label">Note Title</label>
-                                        <input type="text" id="note-has-title" class="form-control"
-                                            minlength="25" placeholder="Title">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="note-description">
-                                        <label class="form-label">Note Description</label>
-                                        <textarea id="note-has-description" class="form-control" minlength="60" placeholder="Description" rows="5"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+
+            <form action="{{ route('admin.storenotes', $course->id) }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+
+                <div class="modal-body">
+
+                    <!-- Note Title -->
+                    <div class="mb-3">
+                        <label class="form-label">Note Title <span class="text-danger">*</span></label>
+                        <input type="text" name="title" class="form-control" placeholder="Enter Note Title"
+                            minlength="5" required>
                     </div>
+
+                    <!-- Note Description -->
+                    <div class="mb-3">
+                        <label class="form-label">Note Description</label>
+                        <textarea name="description" class="form-control" placeholder="Enter Note Description" rows="4"
+                            minlength="20"></textarea>
+                    </div>
+
+                    <!-- PDF Upload -->
+                    <div class="mb-3">
+                        <label class="form-label">Upload PDF <span class="text-danger">*</span></label>
+                        <input type="file" name="pdf" class="form-control" accept="application/pdf" required>
+                        <small class="text-muted">Max size: 20MB</small>
+                    </div>
+
+                    <!-- Is Downloadable -->
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="is_downloadable" id="isDownloadable"
+                            checked>
+                        <label class="form-check-label" for="isDownloadable">
+                            Allow Download
+                        </label>
+                    </div>
+
+                    <!-- Version -->
+                    <div class="mb-3">
+                        <label class="form-label">Version</label>
+                        <input type="text" name="version" class="form-control" placeholder="1.0">
+                    </div>
+
+                    <!-- Visibility -->
+                    <div class="mb-3">
+                        <label class="form-label">Visibility</label>
+                        <select name="visibility" class="form-control">
+                            <option value="enrolled" selected>Enrolled Users</option>
+                            <option value="free">Free</option>
+                            <option value="paid">Paid</option>
+                        </select>
+                    </div>
+
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button id="btn-n-save" class="float-left btn btn-success">Save</button>
-                <button class="btn btn-danger" data-dismiss="modal">Discard</button>
-                <button id="btn-n-add" class="btn btn-success" disabled="disabled">Add Note</button>
-            </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Add Note</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
+
 <!--! ================================================================ !-->
 <!--! END: Modal Add Notes !-->
 <!--! ================================================================ !-->

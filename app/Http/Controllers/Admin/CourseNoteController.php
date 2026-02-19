@@ -37,7 +37,7 @@ class CourseNoteController extends Controller
         return view('notes.list', compact('categories'));
     }
 
-    public function store(Request $request, $courseId)
+    public function storenotes(Request $request, $courseId)
     {
         $request->validate([
             'title' => 'required|string|max:255',
