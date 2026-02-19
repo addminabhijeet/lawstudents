@@ -30,7 +30,6 @@ class CourseController extends Controller
     public function listcourse()
     {
         $categories = Category::with('courses')
-            ->whereNotNull('parent_id')
             ->get();
 
         return view('course.list', compact('categories'));
