@@ -496,7 +496,7 @@
                     <!-- Parent Category -->
                     <div class="mb-3">
                         <label class="form-label">Parent Category (Optional)</label>
-                        <select name="parent_id" class="form-control">
+                        <select name="parent_id" class="form-control" id="parentCategorySelect">
                             <option value="">-- Main Category --</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">
@@ -504,6 +504,12 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        <!-- Add checkbox for main category -->
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="mainCategoryCheck">
+                            <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
+                        </div>
                     </div>
 
                 </div>
@@ -918,6 +924,20 @@
             $("#btn-n-add").attr("disabled", "disabled");
         } else {
             $("#btn-n-add").removeAttr("disabled");
+        }
+    });
+</script>
+
+<script>
+    const mainCheck = document.getElementById('mainCategoryCheck');
+    const parentSelect = document.getElementById('parentCategorySelect');
+
+    mainCheck.addEventListener('change', function() {
+        if (this.checked) {
+            parentSelect.value = ""; // set parent_id to null
+            parentSelect.disabled = true; // disable select
+        } else {
+            parentSelect.disabled = false; // enable select
         }
     });
 </script>
