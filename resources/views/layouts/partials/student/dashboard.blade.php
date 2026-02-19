@@ -502,8 +502,8 @@
                                         class="img-fluid user-avtar">
 
                                     <div>
-                                        <h6 class="text-dark mb-0">{{ auth('admin')->user()?->name }}</h6>
-                                        <span class="fs-12 fw-medium text-muted">{{ auth('admin')->user()?->email }}</span>
+                                        <h6 class="text-dark mb-0">{{ auth('student')->user()?->name }}</h6>
+                                        <span class="fs-12 fw-medium text-muted">{{ auth('student')->user()?->email }}</span>
                                     </div>
                                 </div>
                             </div>
