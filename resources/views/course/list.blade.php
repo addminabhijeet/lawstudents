@@ -13,7 +13,8 @@
                 </div>
                 <div class="content-sidebar-header">
                     <!-- Add Courses Button -->
-                    <a href="javascript:void(0);" class="btn btn-primary w-100 mb-4" id="add-notes">
+                    <a href="javascript:void(0);" class="btn btn-primary w-100 mb-4" id="add-notes"
+                        style="margin-bottom: 10px;">
                         <i class="feather-plus me-2"></i>
                         <span>Add Courses</span>
                     </a>
@@ -23,6 +24,7 @@
                         <i class="feather-plus me-2"></i>
                         <span>Add Category</span>
                     </a>
+
                 </div>
 
 
