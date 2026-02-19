@@ -396,7 +396,7 @@
     </div>
 </main>
 @include('layouts.partials.admin.theme')
-<div class="modal fade" id="addNotesModal" tabindex="-1" aria-labelledby="addNotesModalLabel" aria-hidden="true">
+<div class="modal fade" id="addnotesmodal" tabindex="-1" aria-labelledby="addNotesModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
