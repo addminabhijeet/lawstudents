@@ -397,11 +397,11 @@
 </main>
 @include('layouts.partials.admin.theme')
 <div class="modal fade" id="addnotesmodal" tabindex="-1" aria-labelledby="addNotesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addNotesModalLabel">Add Course Note</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <form action="{{ route('admin.storenotes') }}" method="POST" enctype="multipart/form-data">
@@ -409,63 +409,80 @@
 
                 <div class="modal-body">
 
-                    <!-- Course Selection -->
-                    <div class="mb-3">
-                        <label class="form-label">Select Course *</label>
-                        <select name="course_id" class="form-control" required>
-                            <option value="">-- Select Course --</option>
-                            @foreach ($courses as $course)
-                                <option value="{{ $course->id }}">
-                                    {{ $course->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+                    <div class="row">
 
-                    <!-- Note Title -->
-                    <div class="mb-3">
-                        <label class="form-label">Note Title <span class="text-danger">*</span></label>
-                        <input type="text" name="title" class="form-control" placeholder="Enter Note Title"
-                            minlength="5" required>
-                    </div>
+                        <!-- LEFT COLUMN -->
+                        <div class="col-md-6">
 
-                    <!-- Note Description -->
-                    <div class="mb-3">
-                        <label class="form-label">Note Description</label>
-                        <textarea name="description" class="form-control" placeholder="Enter Note Description" rows="4"
-                            minlength="20"></textarea>
-                    </div>
+                            <!-- Course Selection -->
+                            <div class="mb-3">
+                                <label class="form-label">Select Course *</label>
+                                <select name="course_id" class="form-control" required>
+                                    <option value="">-- Select Course --</option>
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">
+                                            {{ $course->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                    <!-- PDF Upload -->
-                    <div class="mb-3">
-                        <label class="form-label">Upload PDF <span class="text-danger">*</span></label>
-                        <input type="file" name="pdf" class="form-control" accept="application/pdf" required>
-                        <small class="text-muted">Max size: 20MB</small>
-                    </div>
+                            <!-- Note Title -->
+                            <div class="mb-3">
+                                <label class="form-label">Note Title *</label>
+                                <input type="text" name="title" class="form-control"
+                                    placeholder="Enter Note Title" minlength="5" required>
+                            </div>
 
-                    <!-- Is Downloadable -->
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" name="is_downloadable" id="isDownloadable"
-                            checked>
-                        <label class="form-check-label" for="isDownloadable">
-                            Allow Download
-                        </label>
-                    </div>
+                            <!-- Version -->
+                            <div class="mb-3">
+                                <label class="form-label">Version</label>
+                                <input type="text" name="version" class="form-control" placeholder="1.0">
+                            </div>
 
-                    <!-- Version -->
-                    <div class="mb-3">
-                        <label class="form-label">Version</label>
-                        <input type="text" name="version" class="form-control" placeholder="1.0">
-                    </div>
+                        </div>
 
-                    <!-- Visibility -->
-                    <div class="mb-3">
-                        <label class="form-label">Visibility</label>
-                        <select name="visibility" class="form-control">
-                            <option value="enrolled" selected>Enrolled Users</option>
-                            <option value="free">Free</option>
-                            <option value="paid">Paid</option>
-                        </select>
+                        <!-- RIGHT COLUMN -->
+                        <div class="col-md-6">
+
+                            <!-- PDF Upload -->
+                            <div class="mb-3">
+                                <label class="form-label">Upload PDF *</label>
+                                <input type="file" name="pdf" class="form-control" accept="application/pdf"
+                                    required>
+                                <small class="text-muted">Max size: 20MB</small>
+                            </div>
+
+                            <!-- Visibility -->
+                            <div class="mb-3">
+                                <label class="form-label">Visibility</label>
+                                <select name="visibility" class="form-control">
+                                    <option value="enrolled" selected>Enrolled Users</option>
+                                    <option value="free">Free</option>
+                                    <option value="paid">Paid</option>
+                                </select>
+                            </div>
+
+                            <!-- Is Downloadable -->
+                            <div class="form-check mt-4">
+                                <input class="form-check-input" type="checkbox" name="is_downloadable"
+                                    id="isDownloadable" checked>
+                                <label class="form-check-label" for="isDownloadable">
+                                    Allow Download
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <!-- FULL WIDTH DESCRIPTION -->
+                        <div class="col-md-12 mt-2">
+                            <div class="mb-3">
+                                <label class="form-label">Note Description</label>
+                                <textarea name="description" class="form-control" placeholder="Enter Note Description" rows="3"
+                                    minlength="20"></textarea>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -479,6 +496,7 @@
         </div>
     </div>
 </div>
+
 
 <!--! ================================================================ !-->
 <!--! END: Modal Add Notes !-->
