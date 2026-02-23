@@ -58,7 +58,7 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listcourse') }}">List</a>
                             </li>
                         </ul>
                     </li>
@@ -69,13 +69,13 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.liststudent') }}">List
                                     Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addstudent') }}">Add
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.addstudent') }}">Add
                                     Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listadmission') }}">List
                                     Addmission</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.addadmission') }}">Add
                                     Addmission</a></li>
                         </ul>
                     </li>
@@ -86,7 +86,7 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Notes</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listnotes') }}">Notes</a>
                             </li>
                         </ul>
                     </li>
@@ -98,7 +98,7 @@
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listpayment') }}">Payment</a></li>
+                                    href="{{ route('student.listpayment') }}">Payment</a></li>
                         </ul>
                     </li>
                 </ul>
