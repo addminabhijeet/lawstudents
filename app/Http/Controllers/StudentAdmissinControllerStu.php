@@ -13,7 +13,12 @@ class StudentAdmissinControllerStu extends Controller
 
     public function index()
     {
-        $admissions = StudentAdmission::latest()->get();
+        $student = auth('student')->user();
+
+        $admissions = StudentAdmission::where('student_id', $student->id)
+            ->latest()
+            ->get();
+
         return view('admissionstu.list', compact('admissions'));
     }
 

@@ -174,7 +174,10 @@ class RoutingControllerStu extends Controller
 
     public function liststudent()
     {
-        $students = Student::all();
+        $student = auth('student')->user();
+
+        $students = Student::where('id', $student->id)->get();
+
         return view('studentstu.list', compact('students'));
     }
 
