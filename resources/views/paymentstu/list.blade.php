@@ -1,4 +1,4 @@
-@include('layouts.partials.admin.dashboard')
+@include('layouts.partials.student.dashboard')
 <main class="nxl-container">
     <!-- main containts -->
     <div class="nxl-content">
@@ -318,4 +318,4 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
-@include('layouts.partials.admin.theme')
+@include('layouts.partials.student.theme')
