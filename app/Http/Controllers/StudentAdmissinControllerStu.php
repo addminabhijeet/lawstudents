@@ -14,12 +14,12 @@ class StudentAdmissinControllerStu extends Controller
     public function index()
     {
         $admissions = StudentAdmission::latest()->get();
-        return view('admission.list', compact('admissions'));
+        return view('admissionstu.list', compact('admissions'));
     }
 
     public function create()
     {
-        return view('admin.admissions.create');
+        return view('admissionstu.create');
     }
 
     public function registeradmsubmit(Request $request)

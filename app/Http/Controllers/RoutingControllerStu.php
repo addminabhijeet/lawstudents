@@ -45,7 +45,7 @@ class RoutingControllerStu extends Controller
     {
         $payments = Payment::with('student')->latest()->get();
 
-        return view('payment.list', compact('payments'));
+        return view('paymentstu.list', compact('payments'));
     }
 
     public function updatepayment(Request $request, $id)
@@ -154,17 +154,17 @@ class RoutingControllerStu extends Controller
 
     public function addpayment()
     {
-        return view('payment.add');
+        return view('paymentstu.add');
     }
 
     public function listadmission()
     {
-        return view('admission.list');
+        return view('admissionstu.list');
     }
 
     public function addadmission()
     {
-        return view('admission.add');
+        return view('admissionstu.add');
     }
 
     public function student()
@@ -175,25 +175,25 @@ class RoutingControllerStu extends Controller
     public function liststudent()
     {
         $students = Student::all();
-        return view('student.list', compact('students'));
+        return view('studentstu.list', compact('students'));
     }
 
     public function editstudent($id)
     {
         $student = Student::findOrFail($id);
-        return view('student.edit', compact('student'));
+        return view('studentstu.edit', compact('student'));
     }
 
     public function editpayment($id)
     {
         $payment = Payment::findOrFail($id);
-        return view('payment.edit', compact('payment'));
+        return view('paymentstu.edit', compact('payment'));
     }
 
     public function viewpayment($id)
     {
         $payment = Payment::findOrFail($id);
-        return view('payment.view', compact('payment'));
+        return view('paymentstu.view', compact('payment'));
     }
 
     public function listnotes()
@@ -213,7 +213,7 @@ class RoutingControllerStu extends Controller
 
     public function addstudent()
     {
-        return view('student.add');
+        return view('studentstu.add');
     }
 
     public function admin()

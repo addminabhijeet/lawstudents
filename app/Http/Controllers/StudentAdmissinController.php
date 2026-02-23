@@ -19,7 +19,7 @@ class StudentAdmissinController extends Controller
 
     public function create()
     {
-        return view('admin.admissions.create');
+        return view('admission.create');
     }
 
     public function registeradmsubmit(Request $request)
@@ -85,7 +85,7 @@ class StudentAdmissinController extends Controller
     public function show($id)
     {
         $admission = StudentAdmission::findOrFail($id);
-        return view('admin.admissions.show', compact('admission'));
+        return view('admission.show', compact('admission'));
     }
 
     public function edit($id)
