@@ -71,12 +71,10 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('student.liststudent') }}">List
                                     Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.addstudent') }}">Add
-                                    Student</a></li>
+                            
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listadmission') }}">List
                                     Addmission</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.addadmission') }}">Add
-                                    Addmission</a></li>
+                            
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
