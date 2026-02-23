@@ -208,7 +208,7 @@ class RoutingControllerStu extends Controller
 
     public function listcourse()
     {
-        return view('course.list');
+        return view('coursestu.list');
     }
 
     public function addstudent()
