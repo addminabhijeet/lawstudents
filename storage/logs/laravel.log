@@ -17711,3 +17711,27 @@ Stack trace:
 [stacktrace]
 #0 {main}
 "} 
+[2026-02-23 17:20:50] local.ERROR: Cannot use App\Http\Controllers\StudentPasswordController as StudentPasswordController because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\StudentPasswordController as StudentPasswordController because the name is already in use at E:/lawstudents/routes/student.php:6)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-23 17:24:54] local.ERROR: Cannot use App\Http\Controllers\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use at E:/lawstudents/routes/student.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-23 17:25:02] local.ERROR: Cannot use App\Http\Controllers\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use at E:/lawstudents/routes/student.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-23 17:25:02] local.ERROR: Cannot use App\Http\Controllers\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use at E:/lawstudents/routes/student.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-23 17:25:02] local.ERROR: Cannot use App\Http\Controllers\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\StudentAdmissinControllerStu as StudentAdmissinControllerStu because the name is already in use at E:/lawstudents/routes/student.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-23 17:25:48] local.ERROR: Cannot use App\Http\Controllers\RoutingControllerStu as RoutingControllerStu because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot use App\\Http\\Controllers\\RoutingControllerStu as RoutingControllerStu because the name is already in use at E:/lawstudents/routes/student.php:5)
+[stacktrace]
+#0 {main}
+"} 

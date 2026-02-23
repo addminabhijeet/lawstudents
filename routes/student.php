@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseNoteControllerStu;
 use App\Http\Controllers\RoutingControllerStu;
 use App\Http\Controllers\StudentPasswordController;
+use App\Http\Controllers\CourseControllerStu;
+use App\Http\Controllers\StudentAdmissinControllerStu;
+
 
 Route::middleware(['student.auth', 'auth:student'])
     ->prefix('student')
@@ -12,41 +16,77 @@ Route::middleware(['student.auth', 'auth:student'])
         Route::get('/', [RoutingControllerStu::class, 'student'])
             ->name('dashboard');
 
-        Route::get('list-student-subject', [RoutingControllerStu::class, 'listsubject'])
-            ->name('listsubject');
-
-        Route::get('list-student-course', [RoutingControllerStu::class, 'listcourse'])
-            ->name('listcourse');
-
-        Route::get('add-student-student', [RoutingControllerStu::class, 'addstudent'])
+        Route::get('add-student', [RoutingControllerStu::class, 'addstudent'])
             ->name('addstudent');
 
-        Route::get('list-student-student', [RoutingControllerStu::class, 'liststudent'])
+        Route::get('edit-student/{id}', [RoutingControllerStu::class, 'editstudent'])
+            ->name('editstudent');
+
+        Route::get('show-student/{id}', [RoutingControllerStu::class, 'showstudent'])
+            ->name('showstudent');
+
+        Route::get('list-student', [RoutingControllerStu::class, 'liststudent'])
             ->name('liststudent');
 
-        Route::get('add-student-admission', [RoutingControllerStu::class, 'addadmission'])
+        Route::get('add-admission', [RoutingControllerStu::class, 'addadmission'])
             ->name('addadmission');
 
-        Route::get('list-student-admission', [RoutingControllerStu::class, 'listadmission'])
+        Route::get('list-admission', [StudentAdmissinControllerStu::class, 'index'])
             ->name('listadmission');
 
-        Route::get('add-student-payment', [RoutingControllerStu::class, 'addpayment'])
+        Route::get('show-admission', [StudentAdmissinControllerStu::class, 'show'])
+            ->name('showadmission');
+
+        Route::get('edit-admission/{id}', [StudentAdmissinControllerStu::class, 'edit'])
+            ->name('editadmission');
+
+        Route::get('destroy-admission', [StudentAdmissinControllerStu::class, 'destroy'])
+            ->name('destroyadmission');
+
+        Route::get('add-payment', [RoutingControllerStu::class, 'addpayment'])
             ->name('addpayment');
 
-        Route::get('view-student-payment', [RoutingControllerStu::class, 'viewpayment'])
-            ->name('viewpayment');
+        Route::get('edit-payment/{id}', [RoutingControllerStu::class, 'editpayment'])
+            ->name('editpayment');
 
-        Route::get('list-student-payment', [RoutingControllerStu::class, 'listpayment'])
+        Route::get('list-payment', [RoutingControllerStu::class, 'listpayment'])
             ->name('listpayment');
 
-        Route::get('list-student-notes', [RoutingControllerStu::class, 'listnotes'])
-            ->name('listnotes');
-
-        Route::get('list-student-subject', [RoutingControllerStu::class, 'listsubject'])
+        Route::get('list-subject', [RoutingControllerStu::class, 'listsubject'])
             ->name('listsubject');
 
-        Route::get('list-student-course', [RoutingControllerStu::class, 'listcourse'])
+        Route::post('register-student', [RoutingControllerStu::class, 'registerstusubmit'])
+            ->name('registerstusubmit');
+
+        Route::post('update-student/{id}', [RoutingControllerStu::class, 'updatestusubmit'])
+            ->name('updatestusubmit');
+
+        Route::post('register-admission', [StudentAdmissinControllerStu::class, 'registeradmsubmit'])
+            ->name('registeradmsubmit');
+
+        Route::post('update-admission/{id}', [StudentAdmissinControllerStu::class, 'updateadmsubmit'])
+            ->name('updateadmsubmit');
+
+        Route::post('update-payment/{id}', [RoutingControllerStu::class, 'updatepayment'])
+            ->name('updatepayment');
+
+        Route::get('view-payment/{id}', [RoutingControllerStu::class, 'viewpayment'])
+            ->name('viewpayment');
+
+        Route::get('courses', [CourseControllerStu::class, 'listcourse'])
             ->name('listcourse');
+
+        Route::post('category-store', [CourseControllerStu::class, 'storecategory'])
+            ->name('storecategory');
+
+        Route::post('course-store', [CourseControllerStu::class, 'storecourse'])
+            ->name('storecourse');
+
+        Route::get('course-notes', [CourseNoteControllerStu::class, 'listnotes'])
+            ->name('listnotes');
+
+        Route::post('store-notes', [CourseNoteControllerStu::class, 'storenotes'])
+            ->name('storenotes');
     });
 
 Route::get('/legacy-student', [RoutingControllerStu::class, 'student'])
