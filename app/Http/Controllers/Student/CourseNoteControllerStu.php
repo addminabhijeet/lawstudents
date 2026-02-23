@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Payment;
 use App\Models\CourseNote;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -16,17 +18,44 @@ class CourseNoteControllerStu extends Controller
 
     public function listnotes()
     {
-        $categories = Category::whereHas('courses.notes')
+
+        $student = Auth::guard('student')->user();
+
+        // Get paid course IDs
+        $paidCourseIds = Payment::where('student_id', $student->id)
+            ->where('payment_status', 'paid')
+            ->pluck('course_id')
+            ->toArray();
+
+        $categories = Category::whereHas('courses.notes', function ($query) use ($paidCourseIds) {
+            $query->where(function ($q) use ($paidCourseIds) {
+                $q->where('is_free', 1)
+                    ->orWhereIn('id', $paidCourseIds);
+            });
+        })
             ->with([
-                'courses' => function ($query) {
+                'courses' => function ($query) use ($paidCourseIds) {
                     $query->whereHas('notes')
+                        ->where(function ($q) use ($paidCourseIds) {
+                            $q->where('is_free', 1)
+                                ->orWhereIn('id', $paidCourseIds);
+                        })
                         ->with('notes');
                 },
-                'children' => function ($query) {
-                    $query->whereHas('courses.notes')
+                'children' => function ($query) use ($paidCourseIds) {
+                    $query->whereHas('courses.notes', function ($q) use ($paidCourseIds) {
+                        $q->where(function ($qq) use ($paidCourseIds) {
+                            $qq->where('is_free', 1)
+                                ->orWhereIn('id', $paidCourseIds);
+                        });
+                    })
                         ->with([
-                            'courses' => function ($q) {
+                            'courses' => function ($q) use ($paidCourseIds) {
                                 $q->whereHas('notes')
+                                    ->where(function ($qq) use ($paidCourseIds) {
+                                        $qq->where('is_free', 1)
+                                            ->orWhereIn('id', $paidCourseIds);
+                                    })
                                     ->with('notes');
                             }
                         ]);
@@ -34,11 +63,15 @@ class CourseNoteControllerStu extends Controller
             ])
             ->get();
 
-        $courses = Course::where('status', 1)->get();
+        $courses = Course::where('status', 1)
+            ->where(function ($q) use ($paidCourseIds) {
+                $q->where('is_free', 1)
+                    ->orWhereIn('id', $paidCourseIds);
+            })
+            ->get();
 
         return view('notesstu.list', compact('categories', 'courses'));
     }
-
 
     public function storenotes(Request $request)
     {

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class CourseControllerStu extends Controller
 {
@@ -29,8 +31,22 @@ class CourseControllerStu extends Controller
 
     public function listcourse()
     {
-        $categories = Category::with('courses')
-            ->get();
+        $student = Auth::guard('student')->user();
+
+        // Get paid course IDs of logged in student
+        $paidCourseIds = Payment::where('student_id', $student->id)
+            ->where('payment_status', 'paid')
+            ->pluck('course_id')
+            ->toArray();
+
+        $categories = Category::whereHas('courses', function ($query) use ($paidCourseIds) {
+            $query->where('is_free', 1)
+                ->orWhereIn('id', $paidCourseIds);
+        })
+            ->with(['courses' => function ($query) use ($paidCourseIds) {
+                $query->where('is_free', 1)
+                    ->orWhereIn('id', $paidCourseIds);
+            }])->get();
 
         return view('coursestu.list', compact('categories'));
     }
