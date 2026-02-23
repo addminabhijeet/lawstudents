@@ -108,7 +108,7 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="{{ route('admin.addstudent') }}" class="btn btn-primary">
+                        <a href="{{ route('student.addstudent') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
                             <span>Add Student</span>
                         </a>
@@ -279,7 +279,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="{{ route('admin.showstudent', $student->id) }}"
+                                                        <a href="{{ route('student.showstudent', $student->id) }}"
                                                             class="avatar-text avatar-md">
                                                             <i class="feather feather-eye"></i>
                                                         </a>
@@ -291,7 +291,7 @@
                                                             <ul class="dropdown-menu">
                                                                 <li>
                                                                     <a class="dropdown-item"
-                                                                        href="{{ route('admin.editstudent', $student->id) }}">
+                                                                        href="{{ route('student.editstudent', $student->id) }}">
                                                                         <i class="feather feather-edit-3 me-3"></i>
                                                                         <span>Edit</span>
                                                                     </a>

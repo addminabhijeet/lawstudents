@@ -108,10 +108,7 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="{{ route('admin.addadmission') }}" class="btn btn-primary">
-                            <i class="feather-plus me-2"></i>
-                            <span>Add Admission</span>
-                        </a>
+                        
                     </div>
                 </div>
                 <div class="d-md-none d-flex align-items-center">
@@ -237,7 +234,7 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="{{ route('admin.addadmission', $admission->id) }}"
+                                                    <a href=""
                                                         class="fw-bold">
                                                         #ADM{{ $admission->id }}
                                                     </a>
@@ -272,26 +269,11 @@
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
 
-                                                        <a href="{{ route('admin.showadmission', $admission->id) }}"
+                                                        <a href="{{ route('student.showadmission', $admission->id) }}"
                                                             class="avatar-text avatar-md">
                                                             <i class="feather feather-eye"></i>
                                                         </a>
 
-                                                        <a href="{{ route('admin.editadmission', $admission->id) }}"
-                                                            class="avatar-text avatar-md">
-                                                            <i class="feather feather-edit"></i>
-                                                        </a>
-
-                                                        <form
-                                                            action="{{ route('admin.destroyadmission', $admission->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button
-                                                                class="avatar-text avatar-md border-0 bg-transparent">
-                                                                <i class="feather feather-trash-2 text-danger"></i>
-                                                            </button>
-                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
