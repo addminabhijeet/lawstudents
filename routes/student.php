@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CourseNoteControllerStu;
+use App\Http\Controllers\Student\CourseNoteControllerStu;
 use App\Http\Controllers\RoutingControllerStu;
 use App\Http\Controllers\StudentPasswordController;
 use App\Http\Controllers\CourseControllerStu;
