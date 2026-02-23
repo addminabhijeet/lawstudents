@@ -1,4 +1,4 @@
-@include('layouts.partials.admin.dashboard')
+@include('layouts.partials.student.dashboard')
 <main class="nxl-container apps-container apps-notes">
     <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
@@ -404,7 +404,7 @@
         </div>
     </div>
 </main>
-@include('layouts.partials.admin.theme')
+@include('layouts.partials.student.theme')
 <div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
