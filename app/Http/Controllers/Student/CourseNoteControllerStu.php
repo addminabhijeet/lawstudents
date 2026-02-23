@@ -36,7 +36,7 @@ class CourseNoteControllerStu extends Controller
 
         $courses = Course::where('status', 1)->get();
 
-        return view('notes.list', compact('categories', 'courses'));
+        return view('notesstu.list', compact('categories', 'courses'));
     }
 
 
