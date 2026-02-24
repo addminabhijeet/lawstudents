@@ -9,7 +9,7 @@
         <div class="col-lg-3 m-auto">
           <div class="welcome-inner-header text-center">
             <h1>About Us</h1>
-            <a href="{{ route('any', 'index') }}">Home <span><i class="fa-light fa-angle-right"></i></span> About Us</a>
+            <a href="{{ route('') }}">Home <span><i class="fa-light fa-angle-right"></i></span> About Us</a>
             <img src="/img/elements/elementor20.png" alt="" />
           </div>
         </div>
@@ -49,7 +49,7 @@
               <p>Some services emphasize environmental sustainability as a benefit, Car-sharing services like Zipcar promote reduced emissions and the use of fewer vehicles, contributing to a greener environment.</p>
             </div>
             <div class="div">
-              <a href="{{ route('second', ['pages', 'about']) }}" class="casebtn1">Request Case Evolution <span><i class="fa-regular fa-arrow-right"></i></span></a>
+              <a href="" class="casebtn1">Request Case Evolution <span><i class="fa-regular fa-arrow-right"></i></span></a>
             </div>
           </div>
         </div>

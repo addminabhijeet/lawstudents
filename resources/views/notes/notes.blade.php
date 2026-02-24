@@ -9,7 +9,7 @@
       <div class="col-lg-3 m-auto">
       <div class="welcome-inner-header text-center">
         <h1>Our Blog</h1>
-        <a href="{{ route('any', 'index') }}">Home <span><i class="fa-light fa-angle-right"></i></span> Our BLog</a>
+        <a href="{{ route('') }}">Home <span><i class="fa-light fa-angle-right"></i></span> Our BLog</a>
         <img src="/img/elements/elementor20.png" alt="">
       </div>
       </div>
