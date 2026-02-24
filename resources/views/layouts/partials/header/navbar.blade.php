@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="sidebar-info sidebar-info6">
                                     <div class="sidebar-logo mb-30">
-                                        <a href="{{ route('') }}">
+                                        <a href="">
                                             <img src="/img/logo/logo11.png" alt="logo">
                                         </a>
                                     </div>
@@ -205,24 +205,24 @@
         <ul class="mobile-nav-list">
             <li><a href="#">Home </a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('') }}">Home One</a></li>
+                    <li><a href="">Home One</a></li>
                 </ul>
             </li>
             <li><a href="#">Pages</a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('') }}">Our Team 01</a></li>
+                    <li><a href="">Our Team 01</a></li>
                 </ul>
             </li>
             <li><a href="#">Practice Areas</a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('') }}">Service One</a></li>
+                    <li><a href="">Service One</a></li>
 
                 </ul>
             </li>
 
             <li><a href="#">Blogs </a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('') }}">Blog One</a></li>
+                    <li><a href="">Blog One</a></li>
                 </ul>
             </li>
             <li><a href="">Contact</a>
@@ -233,7 +233,7 @@
         </ul>
 
         <div class="allmobilesection">
-            <a href="{{ route('') }}" class="welcome5-btn">Get Started</a>
+            <a href="" class="welcome5-btn">Get Started</a>
             <div class="single-footer">
                 <h3>Contact Info</h3>
                 <div class="footer4-contact-info">
