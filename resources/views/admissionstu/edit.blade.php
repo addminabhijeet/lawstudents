@@ -302,10 +302,6 @@
                         </div>
                     </div>
 
-                    <div class="col-12 text-end">
-                        <button type="submit" class="btn btn-primary">Update Admission</button>
-                    </div>
-
                 </div>
             </div>
         </form>
