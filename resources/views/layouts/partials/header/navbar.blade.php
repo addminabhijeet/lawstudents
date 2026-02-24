@@ -12,7 +12,7 @@
                                     <div class="top-content-area">
                                         <div class="content">
                                             <p>Are you ready to free case evaluation today? <a
-                                                    href="{{ route('second', ['contact', 'v1']) }}">Contact Us</a></p>
+                                                    href="{{ route('contact') }}">Contact Us</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -33,16 +33,15 @@
                         </div>
                         <div class="header-elements">
                             <div class="site-logo">
-                                <a href="{{ route('any', 'index') }}"><img src="/img/logo/logo11.png"
-                                        alt=""></a>
+                                <a href=""><img src="/img/logo/logo11.png" alt=""></a>
                             </div>
                             <div class="main-menu-ex homepage6">
                                 <ul>
                                     <li><a href="" class=" mainhome">Home</a></li>
-                                    <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
-                                    <li><a href="{{ route('second', ['blog', 'blog4']) }}">Free Notes</a></li>
-                                    <li><a href="{{ route('second', ['pages', 'team1']) }}">Gallery</a></li>
-                                    <li><a href="{{ route('second', ['contact', 'v2']) }}">Contact Us</a></li>
+                                    <li><a href="{{ route('about') }}">About Us</a></li>
+                                    <li><a href="{{ route('notes') }}">Free Notes</a></li>
+                                    <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                     <li><a href="{{ route('login') }}">Login</a></li>
                                 </ul>
                             </div>
@@ -65,7 +64,7 @@
                                 </div>
                                 <div class="sidebar-info sidebar-info6">
                                     <div class="sidebar-logo mb-30">
-                                        <a href="{{ route('any', 'index') }}">
+                                        <a href="{{ route('') }}">
                                             <img src="/img/logo/logo11.png" alt="logo">
                                         </a>
                                     </div>
@@ -74,11 +73,11 @@
                                             Growth and Success!</p>
                                     </div>
                                     <ul class="sidebar-menu list-unstyled">
-                                        <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
-                                        <li><a href="{{ route('second', ['pages', 'team1']) }}">Free Notes</a></li>
-                                        <li><a href="{{ route('second', ['blog', 'blog1']) }}">Gallery</a></li>
-                                        <li><a href="{{ route('second', ['contact', 'v1']) }}">Contact Us</a></li>
-                                        <li><a href="{{ route('second', ['service', 'service1']) }}">Login</a></li>
+                                        <li><a href="{{ route('about') }}">About Us</a></li>
+                                        <li><a href="{{ route('notes') }}">Free Notes</a></li>
+                                        <li><a href="{{ route('gallery') }}">Gallery</a></li>
+                                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                                        <li><a href="{{ route('login') }}">Login</a></li>
                                     </ul>
                                     <div class="sidebar-contact-header">
                                         <h3>Contact Info</h3>
@@ -133,9 +132,9 @@
                                         </form>
                                     </div>
                                     <ul id="mobile-menu-active">
-                                        <li class="dropdown"><a href="{{ route('any', 'index') }}">Home</a>
+                                        <li class="dropdown"><a href="">Home</a>
                                             <ul class="sub-menu">
-                                                <li><a href="{{ route('any', 'index') }}">Home Chatbot</a></li>
+                                                <li><a href="">Home Chatbot</a></li>
                                                 <li><a href="home-2">Home CRM</a></li>
                                                 <li class="active"><a href="home-3">Home Copy Writing</a></li>
                                             </ul>
@@ -146,7 +145,7 @@
                                             <a href="#!">Blog</a>
                                             <ul class="sub-menu">
                                                 <li><a href="blog">Blog</a></li>
-                                                <li><a href="{{ route('second', ['blog', 'single']) }}">Blog
+                                                <li><a href="">Blog
                                                         Details</a></li>
                                             </ul>
                                         </li>
@@ -182,7 +181,7 @@
         <div class="col-12">
             <div class="mobile-header-elements">
                 <div class="mobile-logo">
-                    <a href="{{ route('any', 'index') }}"><img src="/img/logo/logo11.png" alt=""></a>
+                    <a href="{{ route('') }}"><img src="/img/logo/logo11.png" alt=""></a>
                 </div>
                 <div class="mobile-nav-icon dots-menu">
                     <i class="fa-solid fa-bars"></i>
@@ -206,59 +205,35 @@
         <ul class="mobile-nav-list">
             <li><a href="#">Home </a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('any', 'index') }}">Home One</a></li>
-                    <li><a href="{{ route('second', ['demo', 'index1']) }}">Home Two</a></li>
-                    <li><a href="{{ route('second', ['demo', 'index2']) }}">Home Three</a></li>
-                    <li><a href="{{ route('second', ['demo', 'index3']) }}">Home Four</a></li>
-                    <li><a href="{{ route('second', ['demo', 'index4']) }}">Home Five</a></li>
-                    <li><a href="{{ route('second', ['demo', 'index5']) }}">Home Six</a></li>
-                    <li><a href="{{ route('second', ['demo', 'index6']) }}">Home Seven</a></li>
-                    <li><a href="{{ route('second', ['demo', 'index-rtl-1']) }}">RTL</a></li>
+                    <li><a href="{{ route('') }}">Home One</a></li>
                 </ul>
             </li>
             <li><a href="#">Pages</a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('second', ['pages', 'team1']) }}">Our Team 01</a></li>
-                    <li><a href="{{ route('second', ['pages', 'team2']) }}">Our Team 02</a></li>
-                    <li><a href="{{ route('second', ['pages', 'testimonial1']) }}">Testimonial 01 </a></li>
-                    <li><a href="{{ route('second', ['pages', 'testimonial2']) }}">Testimonial 02 </a></li>
-                    <li><a href="{{ route('second', ['pages', 'testimonial3']) }}">Testimonial 03 </a></li>
+                    <li><a href="{{ route('') }}">Our Team 01</a></li>
                 </ul>
             </li>
             <li><a href="#">Practice Areas</a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('second', ['service', 'service1']) }}">Service One</a></li>
-                    <li><a href="{{ route('second', ['service', 'service2']) }}">Service Two</a></li>
-                    <li><a href="{{ route('second', ['service', 'left']) }}">Service Left Side</a></li>
-                    <li><a href="{{ route('second', ['service', 'right']) }}">Service Right Side</a></li>
-                    <li><a href="{{ route('second', ['service', 'single']) }}">Service Single</a></li>
+                    <li><a href="{{ route('') }}">Service One</a></li>
+
                 </ul>
             </li>
 
             <li><a href="#">Blogs </a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('second', ['blog', 'blog1']) }}">Blog One</a></li>
-                    <li><a href="{{ route('second', ['blog', 'blog2']) }}">Blog Two</a></li>
-                    <li><a href="{{ route('second', ['blog', 'blog3']) }}">Blog Three</a></li>
-                    <li><a href="{{ route('second', ['blog', 'blog4']) }}">Blog Four</a></li>
-                    <li><a href="{{ route('second', ['blog', 'left']) }}">Blog Left Side</a></li>
-                    <li><a href="{{ route('second', ['blog', 'left-details']) }}">Blog Details Left</a></li>
-                    <li><a href="{{ route('second', ['blog', 'right']) }}">Blog RIght Side</a></li>
-                    <li><a href="{{ route('second', ['blog', 'right-details']) }}">Blog Details Right </a></li>
-                    <li><a href="{{ route('second', ['blog', 'single']) }}">Blog Single </a></li>
+                    <li><a href="{{ route('') }}">Blog One</a></li>
                 </ul>
             </li>
-            <li><a href="{{ route('second', ['contact', 'v1']) }}">Contact</a>
+            <li><a href="">Contact</a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('second', ['contact', 'v1']) }}">Contact 01</a></li>
-                    <li><a href="{{ route('second', ['contact', 'v2']) }}">Contact 02</a></li>
-                    <li><a href="{{ route('second', ['contact', 'v3']) }}">Contact 03</a></li>
+                    <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </li>
         </ul>
 
         <div class="allmobilesection">
-            <a href="{{ route('second', ['contact', 'v1']) }}" class="welcome5-btn">Get Started</a>
+            <a href="{{ route('') }}" class="welcome5-btn">Get Started</a>
             <div class="single-footer">
                 <h3>Contact Info</h3>
                 <div class="footer4-contact-info">
