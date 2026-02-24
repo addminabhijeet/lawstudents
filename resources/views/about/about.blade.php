@@ -9,7 +9,7 @@
         <div class="col-lg-3 m-auto">
           <div class="welcome-inner-header text-center">
             <h1>About Us</h1>
-            <a href="{{ route('') }}">Home <span><i class="fa-light fa-angle-right"></i></span> About Us</a>
+            <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> About Us</a>
             <img src="/img/elements/elementor20.png" alt="" />
           </div>
         </div>
@@ -112,7 +112,7 @@
               </ul>
             </div>
             <div class="div">
-              <a href="{{ route('second', ['service', 'service1']) }}" class="casebtn1">Secure Your Defense <span><i class="fa-regular fa-arrow-right"></i></span></a>
+              <a href="" class="casebtn1">Secure Your Defense <span><i class="fa-regular fa-arrow-right"></i></span></a>
             </div>
           </div>
         </div>
@@ -356,7 +356,7 @@
             </div>
             <div class="team2-textarea">
               <div class="teamsname">
-                <a href="{{ route('second', ['pages', 'team1']) }}">Alex Fargusion</a>
+                <a href="">Alex Fargusion</a>
                 <p>Senior Attorneys</p>
               </div>
               <div class="shareicon">
@@ -391,7 +391,7 @@
             </div>
             <div class="team2-textarea">
               <div class="teamsname">
-                <a href="{{ route('second', ['pages', 'team1']) }}">Richad Stones</a>
+                <a href="">Richad Stones</a>
                 <p>Senior Attorneys</p>
               </div>
               <div class="shareicon">
@@ -426,7 +426,7 @@
             </div>
             <div class="team2-textarea">
               <div class="teamsname">
-                <a href="{{ route('second', ['pages', 'team1']) }}">Pep Gurdiola</a>
+                <a href="">Pep Gurdiola</a>
                 <p>Tax Analysis</p>
               </div>
               <div class="shareicon">
@@ -461,7 +461,7 @@
             </div>
             <div class="team2-textarea">
               <div class="teamsname">
-                <a href="{{ route('second', ['pages', 'team1']) }}">Richad Stones</a>
+                <a href="">Richad Stones</a>
                 <p>Senior Attorneys</p>
               </div>
               <div class="shareicon">
