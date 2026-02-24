@@ -96,7 +96,7 @@ class StudentAdmissinControllerStu extends Controller
     public function edit($id)
     {
         $admission = StudentAdmission::findOrFail($id);
-        return view('admission.edit', compact('admission'));
+        return view('admissionstu.edit', compact('admission'));
     }
 
     public function updateadmsubmit(Request $request, $id)
