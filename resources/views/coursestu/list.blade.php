@@ -13,17 +13,17 @@
                 </div>
                 <div class="content-sidebar-header">
                     <!-- Add Courses Button -->
-                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes"
+                    <a href="" class="btn btn-primary w-100" id="add-notes"
                         style="display:block; margin-right: 30px;">
                       
-                        <span>Add Courses</span>
+                        <span>Free Courses</span>
                     </a>
 
                     <!-- Add Category Button -->
-                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category"
+                    <a href="" class="btn btn-primary w-100" id="add-category"
                         style="display:block;">
                         
-                        <span>Add Category</span>
+                        <span>Paid Courses</span>
                     </a>
 
                 </div>
@@ -405,128 +405,6 @@
     </div>
 </main>
 @include('layouts.partials.student.theme')
-<div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Add Course</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <div class="notes-box">
-                    <div class="notes-content">
-                        <form action="{{ route('admin.storecourse') }}" method="POST">
-                            @csrf
-                            <div class="row">
-                                <!-- Category -->
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Select Category</label>
-                                    <select name="category_id" class="form-control" required>
-                                        <option value="">-- Select Category --</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Title -->
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Course Title</label>
-                                    <input type="text" name="title" class="form-control" minlength="5"
-                                        placeholder="Enter Course Title" required>
-                                </div>
-
-                                <!-- Description -->
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Course Description</label>
-                                    <textarea name="description" class="form-control" minlength="10" rows="4"
-                                        placeholder="Enter Course Description"></textarea>
-                                </div>
-
-                                <!-- Price -->
-                                <div class="col-md-12 mb-3">
-                                    <label class="form-label">Price</label>
-                                    <input type="number" step="0.01" name="price" class="form-control"
-                                        placeholder="Enter Course Price">
-                                </div>
-                            </div>
-
-                            <!-- Modal Footer -->
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">Add Course</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- End Modal Body -->
-
-        </div>
-    </div>
-</div>
-
-<!--! ================================================================ !-->
-<!--! END: Modal Add Notes !-->
-<!--! ================================================================ !-->
-
-<div class="modal fade" id="addCategoryModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <form action="{{ route('admin.storecategory') }}" method="POST">
-                @csrf
-
-                <div class="modal-body">
-
-                    <!-- Category Name -->
-                    <div class="mb-3">
-                        <label class="form-label">Category Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter Category Name"
-                            required>
-                    </div>
-
-                    <!-- Parent Category -->
-                    <div class="mb-3">
-                        <label class="form-label">Parent Category (Optional)</label>
-                        <select name="parent_id" class="form-control" id="parentCategorySelect">
-                            <option value="">-- Main Category --</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">
-                                    {{ $category->name }}
-                                </option>
-                            @endforeach
-                        </select>
-
-                        <!-- Add checkbox for main category -->
-                        <div class="form-check mt-2">
-                            <input type="checkbox" class="form-check-input" id="mainCategoryCheck">
-                            <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">
-                        Add Category
-                    </button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        Cancel
-                    </button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
 
 <!--! ================================================================ !-->
 <!--! [Start] Search Modal !-->

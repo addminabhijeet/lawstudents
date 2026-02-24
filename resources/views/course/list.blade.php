@@ -13,17 +13,17 @@
                 </div>
                 <div class="content-sidebar-header">
                     <!-- Add Courses Button -->
-                    <a href="" class="btn btn-primary w-100" 
+                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes"
                         style="display:block; margin-right: 30px;">
                         <i class="feather-plus me-2"></i>
-                        <span>Free Courses</span>
+                        <span>Add Courses</span>
                     </a>
 
                     <!-- Add Category Button -->
-                    <a href="" class="btn btn-primary w-100" 
+                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category"
                         style="display:block;">
                         <i class="feather-plus me-2"></i>
-                        <span>Paid Courses</span>
+                        <span>Add Category</span>
                     </a>
 
                 </div>
@@ -405,7 +405,128 @@
     </div>
 </main>
 @include('layouts.partials.admin.theme')
+<div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Add Course</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="notes-box">
+                    <div class="notes-content">
+                        <form action="{{ route('admin.storecourse') }}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <!-- Category -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Select Category</label>
+                                    <select name="category_id" class="form-control" required>
+                                        <option value="">-- Select Category --</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Title -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Course Title</label>
+                                    <input type="text" name="title" class="form-control" minlength="5"
+                                        placeholder="Enter Course Title" required>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Course Description</label>
+                                    <textarea name="description" class="form-control" minlength="10" rows="4"
+                                        placeholder="Enter Course Description"></textarea>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Price</label>
+                                    <input type="number" step="0.01" name="price" class="form-control"
+                                        placeholder="Enter Course Price">
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Add Course</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Body -->
+
+        </div>
+    </div>
+</div>
+
+<!--! ================================================================ !-->
+<!--! END: Modal Add Notes !-->
+<!--! ================================================================ !-->
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="{{ route('admin.storecategory') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+
+                    <!-- Category Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Category Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Enter Category Name"
+                            required>
+                    </div>
+
+                    <!-- Parent Category -->
+                    <div class="mb-3">
+                        <label class="form-label">Parent Category (Optional)</label>
+                        <select name="parent_id" class="form-control" id="parentCategorySelect">
+                            <option value="">-- Main Category --</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        <!-- Add checkbox for main category -->
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="mainCategoryCheck">
+                            <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                        Add Category
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
 
 <!--! ================================================================ !-->
 <!--! [Start] Search Modal !-->
@@ -604,6 +725,208 @@
 <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
 <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
+<script>
+    function removeNote() {
+        $(".remove-note")
+            .off("click")
+            .on("click", function(event) {
+                event.stopPropagation();
+                $(this).parents(".single-note-item").remove();
+            });
+    }
+
+    function favouriteNote() {
+        $(".favourite-note")
+            .off("click")
+            .on("click", function(event) {
+                event.stopPropagation();
+                $(this).parents(".single-note-item").toggleClass("note-favourite");
+            });
+    }
+
+    function addLabelGroups() {
+        $(".category-selector .badge-group-item")
+            .off("click")
+            .on("click", function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                var getclass = this.className;
+                var getSplitclass = getclass.split(" ")[0];
+                if ($(this).hasClass("badge-tasks")) {
+                    $(this).parents(".single-note-item").removeClass("note-works");
+                    $(this).parents(".single-note-item").removeClass("note-archive");
+                    $(this).parents(".single-note-item").removeClass("note-social");
+                    $(this).parents(".single-note-item").removeClass("note-priority");
+                    $(this).parents(".single-note-item").removeClass("note-personal");
+                    $(this).parents(".single-note-item").removeClass("note-business");
+                    $(this).parents(".single-note-item").removeClass("note-important");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                } else if ($(this).hasClass("badge-works")) {
+                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                    $(this).parents(".single-note-item").removeClass("note-archive");
+                    $(this).parents(".single-note-item").removeClass("note-social");
+                    $(this).parents(".single-note-item").removeClass("note-priority");
+                    $(this).parents(".single-note-item").removeClass("note-personal");
+                    $(this).parents(".single-note-item").removeClass("note-business");
+                    $(this).parents(".single-note-item").removeClass("note-important");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                } else if ($(this).hasClass("badge-social")) {
+                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                    $(this).parents(".single-note-item").removeClass("note-works");
+                    $(this).parents(".single-note-item").removeClass("note-archive");
+                    $(this).parents(".single-note-item").removeClass("note-priority");
+                    $(this).parents(".single-note-item").removeClass("note-personal");
+                    $(this).parents(".single-note-item").removeClass("note-business");
+                    $(this).parents(".single-note-item").removeClass("note-important");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                } else if ($(this).hasClass("badge-archive")) {
+                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                    $(this).parents(".single-note-item").removeClass("note-works");
+                    $(this).parents(".single-note-item").removeClass("note-social");
+                    $(this).parents(".single-note-item").removeClass("note-priority");
+                    $(this).parents(".single-note-item").removeClass("note-personal");
+                    $(this).parents(".single-note-item").removeClass("note-business");
+                    $(this).parents(".single-note-item").removeClass("note-important");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                } else if ($(this).hasClass("badge-priority")) {
+                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                    $(this).parents(".single-note-item").removeClass("note-works");
+                    $(this).parents(".single-note-item").removeClass("note-social");
+                    $(this).parents(".single-note-item").removeClass("note-archive");
+                    $(this).parents(".single-note-item").removeClass("note-personal");
+                    $(this).parents(".single-note-item").removeClass("note-business");
+                    $(this).parents(".single-note-item").removeClass("note-important");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                } else if ($(this).hasClass("badge-personal")) {
+                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                    $(this).parents(".single-note-item").removeClass("note-works");
+                    $(this).parents(".single-note-item").removeClass("note-social");
+                    $(this).parents(".single-note-item").removeClass("note-archive");
+                    $(this).parents(".single-note-item").removeClass("note-priority");
+                    $(this).parents(".single-note-item").removeClass("note-business");
+                    $(this).parents(".single-note-item").removeClass("note-important");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                } else if ($(this).hasClass("badge-business")) {
+                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                    $(this).parents(".single-note-item").removeClass("note-works");
+                    $(this).parents(".single-note-item").removeClass("note-social");
+                    $(this).parents(".single-note-item").removeClass("note-archive");
+                    $(this).parents(".single-note-item").removeClass("note-priority");
+                    $(this).parents(".single-note-item").removeClass("note-personal");
+                    $(this).parents(".single-note-item").removeClass("note-important");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                } else if ($(this).hasClass("badge-important")) {
+                    $(this).parents(".single-note-item").removeClass("note-tasks");
+                    $(this).parents(".single-note-item").removeClass("note-works");
+                    $(this).parents(".single-note-item").removeClass("note-social");
+                    $(this).parents(".single-note-item").removeClass("note-archive");
+                    $(this).parents(".single-note-item").removeClass("note-priority");
+                    $(this).parents(".single-note-item").removeClass("note-personal");
+                    $(this).parents(".single-note-item").removeClass("note-business");
+                    $(this).parents(".single-note-item").toggleClass(getSplitclass);
+                }
+            });
+    }
+    var $btns = $(".note-link").click(function() {
+
+        if (this.id == "all-category") {
+            $("#note-full-container> div").fadeIn();
+        } else {
+            $("#note-full-container> div").hide();
+            $("#note-full-container> div." + this.id).fadeIn();
+        }
+
+        $btns.removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $("#add-notes").on("click", function(event) {
+        $("#addnotesmodal").modal("show");
+        $("#btn-n-save").hide();
+        $("#btn-n-add").show();
+    });
+
+    $("#add-category").on("click", function(event) {
+        $("#addCategoryModal").modal("show");
+        $("#btn-n-save").hide();
+        $("#btn-n-add").show();
+    });
+    // Button add
+    $("#btn-n-add").on("click", function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, "0");
+        var mm = String(today.getMonth()); //January is 0!
+        var yyyy = today.getFullYear();
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        today = dd + " " + monthNames[mm] + " " + yyyy;
+
+        var $_noteTitle = document.getElementById("note-has-title").value;
+        var $_noteDescription = document.getElementById("note-has-description").value;
+
+        $html =
+            '<div class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category"><div class="card card-body mb-4 stretch stretch-full">' +
+            '<span class="side-stick"></span>' +
+            '<h5 class="note-title text-truncate w-75 mb-1" data-noteHeading="' + $_noteTitle + '">' +
+            $_noteTitle + '<i class="point bi bi-circle-fill ms-1 fs-7"></i></h5>' +
+            '<p class="fs-11 text-muted note-date">' + today + "</p>" +
+            '<div class="note-content flex-grow-1">' +
+            '<p class="text-muted note-inner-content text-truncate-3-line" data-noteContent="' +
+            $_noteDescription + '">' + $_noteDescription + "</p>" + "</div>" +
+            '<div class="d-flex align-items-center gap-1">' +
+            '<span class="avatar-text avatar-sm"><i class="feather-star favourite-note"></i></span>' +
+            '<span class="avatar-text avatar-sm"><i class="feather-trash-2 remove-note"></i></span>' +
+            '<div class="ms-auto">' + '<div class="dropdown btn-group category-selector">' +
+            '<a class="nav-link dropdown-toggle category-dropdown label-group p-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">' +
+            '<div class="category">' + '<div class="category-tasks"></div>' +
+            '<div class="category-works"></div>' + '<div class="category-works"></div>' +
+            '<div class="category-social"></div>' + '<div class="category-archive"></div>' +
+            '<div class="category-priority"></div>' + '<div class="category-personal"></div>' +
+            '<div class="category-business"></div>' + '<div class="category-important"></div>' + "</div>" +
+            "</a>" + '<div class="dropdown-menu dropdown-menu-right category-menu">' +
+            '<a class="note-tasks badge-group-item badge-tasks dropdown-item position-relative category-tasks" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-danger rounded-circle fs-12 me-3"></i>Tasks </a>' +
+            '<a class="note-works badge-group-item badge-works dropdown-item position-relative category-works" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-primary rounded-circle fs-12 me-3"></i>Works </a>' +
+            '<a class="note-social badge-group-item badge-social dropdown-item position-relative category-social" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-info rounded-circle fs-12 me-3"></i>Social </a>' +
+            '<a class="note-archive badge-group-item badge-archive dropdown-item position-relative category-archive" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-dark rounded-circle fs-12 me-3"></i>Archive </a>' +
+            '<a class="note-archive badge-group-item badge-priority dropdown-item position-relative category-priority" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-danger rounded-circle fs-12 me-3"></i>Priority </a>' +
+            '<a class="note-archive badge-group-item badge-personal dropdown-item position-relative category-personal" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-primary rounded-circle fs-12 me-3"></i>Personal </a>' +
+            '<a class="note-business badge-group-item badge-business dropdown-item position-relative category-business" href="javascript:void(0);"> <i class="wd-5 ht-5 bg-warning rounded-circle me-3"></i>Business </a>' +
+            '<a class="note-important badge-group-item badge-important dropdown-item position-relative category-important" href="javascript:void(0);"> <span class="wd-5 ht-5 bg-success rounded-circle me-3"></span>Important </a>' +
+            "</div>" + "</div>" + "</div>" + "</div>" + "</div></div> ";
+
+        $("#note-full-container").prepend($html);
+        $("#addnotesmodal").modal("hide");
+
+        removeNote();
+        favouriteNote();
+        addLabelGroups();
+    });
+    $("#addnotesmodal").on("hidden.bs.modal", function(event) {
+        event.preventDefault();
+        document.getElementById("note-has-title").value = "";
+        document.getElementById("note-has-description").value = "";
+    });
+    removeNote();
+    favouriteNote();
+    addLabelGroups();
+    $("#btn-n-add").attr("disabled", "disabled");
+
+    $("#note-has-title").keyup(function() {
+        var empty = false;
+        $("#note-has-title").each(function() {
+            if ($(this).val() == "") {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            $("#btn-n-add").attr("disabled", "disabled");
+        } else {
+            $("#btn-n-add").removeAttr("disabled");
+        }
+    });
+</script>
 
 <script>
     const mainCheck = document.getElementById('mainCategoryCheck');
