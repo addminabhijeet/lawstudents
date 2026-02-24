@@ -25,7 +25,7 @@
           Our team of dedicated & experienced attorneys is committed to guiding you <br /> through this difficult time, we believe in empowering our clients.
         </p>
         <div class="div" data-aos="fade-left" data-aos-duration="1200">
-          <a href="{{ route('second', ['contact', 'v1']) }}" class="welcome6-btn">Get Legal Help Now <i class="fa-regular fa-arrow-right"></i></a>
+          <a href="" class="welcome6-btn">Get Legal Help Now <i class="fa-regular fa-arrow-right"></i></a>
         </div>
         </div>
       </div>
@@ -33,8 +33,8 @@
         <div class="welcome6-elements-area">
         <div class="polygon-author aniamtion-key-1" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-          <span><a href="{{ route('second', ['contact', 'v1']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-          <a href="{{ route('second', ['contact', 'v1']) }}">Free Case Review</a>
+          <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+          <a href="">Free Case Review</a>
           </div>
         </div>
         </div>
@@ -61,7 +61,7 @@
           Our team of dedicated & experienced attorneys is committed to guiding you <br /> through this difficult time, we believe in empowering our clients.
         </p>
         <div class="div" data-aos="fade-left" data-aos-duration="1200">
-          <a href="{{ route('second', ['contact', 'v1']) }}" class="welcome6-btn">Get Legal Help Now <i class="fa-regular fa-arrow-right"></i></a>
+          <a href="" class="welcome6-btn">Get Legal Help Now <i class="fa-regular fa-arrow-right"></i></a>
         </div>
         </div>
       </div>
@@ -69,8 +69,8 @@
         <div class="welcome6-elements-area">
         <div class="polygon-author aniamtion-key-1" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-          <span><a href="{{ route('second', ['contact', 'v1']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-          <a href="{{ route('second', ['contact', 'v1']) }}">Free Case Review</a>
+          <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+          <a href="">Free Case Review</a>
           </div>
         </div>
         </div>
@@ -97,7 +97,7 @@
           Our team of dedicated & experienced attorneys is committed to guiding you <br /> through this difficult time, we believe in empowering our clients.
         </p>
         <div class="div" data-aos="fade-left" data-aos-duration="1200">
-          <a href="{{ route('second', ['contact', 'v1']) }}" class="welcome6-btn">Get Legal Help Now <i class="fa-regular fa-arrow-right"></i></a>
+          <a href="" class="welcome6-btn">Get Legal Help Now <i class="fa-regular fa-arrow-right"></i></a>
         </div>
         </div>
       </div>
@@ -105,8 +105,8 @@
         <div class="welcome6-elements-area">
         <div class="polygon-author aniamtion-key-1" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-          <span><a href="{{ route('second', ['contact', 'v1']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-          <a href="{{ route('second', ['contact', 'v1']) }}">Free Case Review</a>
+          <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+          <a href="">Free Case Review</a>
           </div>
         </div>
         </div>
@@ -183,7 +183,7 @@
         </ul>
         </div>
         <div class="div" data-aos="fade-left" data-aos-duration="1200">
-        <a href="{{ route('second', ['contact', 'v1']) }}" class="welcome6-btn">Legal Support Needed<i class="fa-regular fa-arrow-right"></i></a>
+        <a href="" class="welcome6-btn">Legal Support Needed<i class="fa-regular fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -218,10 +218,10 @@
           <img src="/img/icons/service7-img1.svg" alt="" />
           </div>
           <div class="service-7-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Auto Accidents</a>
+          <a href="">Auto Accidents</a>
           <div class="service7-content">
             <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best team.</p>
-            <a href="{{ route('second', ['service', 'single']) }}">Read More <i class="fa-regular fa-arrow-right"></i></a>
+            <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
           </div>
           </div>
         </div>
@@ -240,10 +240,10 @@
           <img src="/img/icons/service7-img2.svg" alt="" />
           </div>
           <div class="service-7-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Workplace Injuries</a>
+          <a href="">Workplace Injuries</a>
           <div class="service7-content">
             <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best team.</p>
-            <a href="{{ route('second', ['service', 'single']) }}">Read More <i class="fa-regular fa-arrow-right"></i></a>
+            <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
           </div>
           </div>
         </div>
@@ -262,10 +262,10 @@
           <img src="/img/icons/service7-img3.svg" alt="" />
           </div>
           <div class="service-7-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Medical Malpractice</a>
+          <a href="">Medical Malpractice</a>
           <div class="service7-content">
             <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best team.</p>
-            <a href="{{ route('second', ['service', 'single']) }}">Read More <i class="fa-regular fa-arrow-right"></i></a>
+            <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
           </div>
           </div>
         </div>
@@ -284,10 +284,10 @@
           <img src="/img/icons/service7-img4.svg" alt="" />
           </div>
           <div class="service-7-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Slip and Fall Accidents</a>
+          <a href="">Slip and Fall Accidents</a>
           <div class="service7-content">
             <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best team.</p>
-            <a href="{{ route('second', ['service', 'single']) }}">Read More <i class="fa-regular fa-arrow-right"></i></a>
+            <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
           </div>
           </div>
         </div>
@@ -306,10 +306,10 @@
           <img src="/img/icons/service7-img5.svg" alt="" />
           </div>
           <div class="service-7-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Product Liability</a>
+          <a href="">Product Liability</a>
           <div class="service7-content">
             <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best team.</p>
-            <a href="{{ route('second', ['service', 'single']) }}">Read More <i class="fa-regular fa-arrow-right"></i></a>
+            <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
           </div>
           </div>
         </div>
@@ -328,10 +328,10 @@
           <img src="/img/icons/service7-img6.svg" alt="" />
           </div>
           <div class="service-7-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Wrongful Death</a>
+          <a href="">Wrongful Death</a>
           <div class="service7-content">
             <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best team.</p>
-            <a href="{{ route('second', ['service', 'single']) }}">Read More <i class="fa-regular fa-arrow-right"></i></a>
+            <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
           </div>
           </div>
         </div>
@@ -364,7 +364,7 @@
         <div class="space50"></div>
         <div class="work-author-box" data-aos="fade-right" data-aos-duration="1000">
           <div class="work-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Consultation & Assessment</a>
+          <a href="">Consultation & Assessment</a>
           <p>Schedule a consultation where we are law discuss your case detail.</p>
           </div>
           <div class="works-icon">
@@ -379,7 +379,7 @@
         <div class="col-lg-12">
         <div class="work-author-box" data-aos="fade-right" data-aos-duration="1200">
           <div class="work-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Tailored Legal Strategies</a>
+          <a href="">Tailored Legal Strategies</a>
           <p>Our firm provides aggressive is representation in court coupled</p>
           </div>
           <div class="works-icon icon2">
@@ -410,7 +410,7 @@
         <div class="space50"></div>
         <div class="work-author-box box2" data-aos="fade-left" data-aos-duration="1000">
           <div class="work-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Implementation Execution</a>
+          <a href="">Implementation Execution</a>
           <p>Expect clear and open lawyer communication at every step.</p>
           </div>
           <div class="works-icon icon3">
@@ -425,7 +425,7 @@
         <div class="col-lg-12">
         <div class="work-author-box box2" data-aos="fade-left" data-aos-duration="1200">
           <div class="work-content">
-          <a href="{{ route('second', ['service', 'single']) }}">Our Legal Support</a>
+          <a href="">Our Legal Support</a>
           <p>Your satisfaction and peace of a lawyer mind matter most to us.</p>
           </div>
           <div class="works-icon icon4">
@@ -467,12 +467,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Precision Legal Counsel</a>
+          <a href="">Precision Legal Counsel</a>
           </div>
         </div>
         </div>
@@ -484,12 +484,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Vanguard Legal Advocates</a>
+          <a href="">Vanguard Legal Advocates</a>
           </div>
         </div>
         </div>
@@ -501,12 +501,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Paramount Legal Services</a>
+          <a href="">Paramount Legal Services</a>
           </div>
         </div>
         </div>
@@ -518,12 +518,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Elite Counsel Solutions</a>
+          <a href="">Elite Counsel Solutions</a>
           </div>
         </div>
         </div>
@@ -534,12 +534,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Precision Legal Counsel</a>
+          <a href="">Precision Legal Counsel</a>
           </div>
         </div>
         </div>
@@ -551,12 +551,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Vanguard Legal Advocates</a>
+          <a href="">Vanguard Legal Advocates</a>
           </div>
         </div>
         </div>
@@ -568,12 +568,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Paramount Legal Services</a>
+          <a href="">Paramount Legal Services</a>
           </div>
         </div>
         </div>
@@ -585,12 +585,12 @@
           </div>
           <div class="polygon-author" style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
           <div class="polygon-arrow">
-            <span><a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a></span>
-            <a href="{{ route('second', ['blog', 'single']) }}">Read More</a>
+            <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
+            <a href="">Read More</a>
           </div>
           </div>
           <div class="case-study-carousel-content text-center">
-          <a href="{{ route('second', ['blog', 'single']) }}">Elite Counsel Solutions</a>
+          <a href="">Elite Counsel Solutions</a>
           </div>
         </div>
         </div>
@@ -644,7 +644,7 @@
         </div>
         </div>
         <div class="team-content text-center">
-        <a href="{{ route('second', ['pages', 'team1']) }}">Jofra Archer</a>
+        <a href="">Jofra Archer</a>
         <p>Founder Partner</p>
         </div>
       </div>
@@ -678,7 +678,7 @@
         </div>
         </div>
         <div class="team-content text-center">
-        <a href="{{ route('second', ['pages', 'team1']) }}">Mitchel Starc</a>
+        <a href="">Mitchel Starc</a>
         <p>Senior Attorneys</p>
         </div>
       </div>
@@ -712,7 +712,7 @@
         </div>
         </div>
         <div class="team-content text-center">
-        <a href="{{ route('second', ['pages', 'team1']) }}">MD. Saifuddin</a>
+        <a href="">MD. Saifuddin</a>
         <p>Personal Injury Law</p>
         </div>
       </div>
@@ -1104,11 +1104,11 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">The Role of a Criminal Defense Our Best Attorney</a>
+        <a href="">The Role of a Criminal Defense Our Best Attorney</a>
         <p>The world of law is constantly evolving, and staying informed is best crucial. Our blog acts as your compass in this ever-changing legal.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-regular fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-regular fa-arrow-right"></i></a>
         <div class="blog-arrow">
-          <a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a>
+          <a href=""><i class="fa-regular fa-arrow-right"></i></a>
         </div>
         </div>
       </div>
@@ -1133,18 +1133,18 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">The Law Unfolded: Expert Commentary & Guidance</a>
+        <a href="">The Law Unfolded: Expert Commentary & Guidance</a>
         <p>The world of law is constantly evolving, and staying informed is best crucial. Our blog acts as your compass in this ever-changing legal.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-regular fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-regular fa-arrow-right"></i></a>
         <div class="blog-arrow">
-          <a href="{{ route('second', ['blog', 'single']) }}"><i class="fa-regular fa-arrow-right"></i></a>
+          <a href=""><i class="fa-regular fa-arrow-right"></i></a>
         </div>
         </div>
       </div>
       </div>
       <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1200">
       <div class="div text-center">
-        <a href="{{ route('second', ['blog', 'blog1']) }}" class="welcome6-btn">Read More Blog & News <i class="fa-regular fa-arrow-right"></i></a>
+        <a href="" class="welcome6-btn">Read More Blog & News <i class="fa-regular fa-arrow-right"></i></a>
       </div>
       </div>
     </div>
@@ -1336,19 +1336,19 @@
           <h3>About Link</h3>
           <ul>
             <li>
-            <a href="{{ route('second', ['blog', 'blog1']) }}">Our Blog</a>
+            <a href="">Our Blog</a>
             </li>
             <li>
-            <a href="{{ route('second', ['pages', 'about']) }}">About Us</a>
+            <a href="">About Us</a>
             </li>
             <li>
-            <a href="{{ route('second', ['service', 'service1']) }}">Practice Areas</a>
+            <a href="">Practice Areas</a>
             </li>
             <li>
-            <a href="{{ route('second', ['pages', 'testimonial1']) }}">Testimonials</a>
+            <a href="">Testimonials</a>
             </li>
             <li>
-            <a href="{{ route('second', ['contact', 'v1']) }}">Contact Us</a>
+            <a href="">Contact Us</a>
             </li>
           </ul>
           </div>
