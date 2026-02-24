@@ -42,7 +42,7 @@
                                     <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
-                                    <li><a href="{{ route('frontend.login') }}">Login</a></li>
+                                    <li><a href="{{ route('login') }}">Login</a></li>
                                 </ul>
                             </div>
                             <div class="contact-3 d-lg-block d-none">
