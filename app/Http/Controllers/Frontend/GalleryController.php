@@ -9,6 +9,6 @@ class GalleryController extends Controller
 {
     public function __invoke(): View
     {
-        return view('frontend.gallery');
+        return view('gallery.gallery');
     }
 }

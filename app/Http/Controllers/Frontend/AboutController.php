@@ -9,6 +9,6 @@ class AboutController extends Controller
 {
     public function __invoke(): View
     {
-        return view('frontend.about');
+        return view('about.about');
     }
 }

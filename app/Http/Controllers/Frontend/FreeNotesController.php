@@ -9,6 +9,6 @@ class FreeNotesController extends Controller
 {
     public function __invoke(): View
     {
-        return view('frontend.free-notes');
+        return view('notes.notes');
     }
 }

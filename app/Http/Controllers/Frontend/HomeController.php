@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function __invoke(): View
     {
-        return view('frontend.home');
+        return view('home.home');
     }
 }
