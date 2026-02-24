@@ -12,7 +12,7 @@
                                     <div class="top-content-area">
                                         <div class="content">
                                             <p>Are you ready to free case evaluation today? <a
-                                                    href="{{ route('home.contact') }}">Contact Us</a></p>
+                                                    href="{{ route('frontend.contact') }}">Contact Us</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -38,11 +38,11 @@
                             <div class="main-menu-ex homepage6">
                                 <ul>
                                     <li><a href="" class=" mainhome">Home</a></li>
-                                    <li><a href="{{ route('home.about') }}">About Us</a></li>
-                                    <li><a href="{{ route('home.notes') }}">Free Notes</a></li>
-                                    <li><a href="{{ route('home.gallery') }}">Gallery</a></li>
-                                    <li><a href="{{ route('home.contact') }}">Contact Us</a></li>
-                                    <li><a href="{{ route('home.login') }}">Login</a></li>
+                                    <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+                                    <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
+                                    <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                                    <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+                                    <li><a href="{{ route('frontend.login') }}">Login</a></li>
                                 </ul>
                             </div>
                             <div class="contact-3 d-lg-block d-none">
@@ -73,10 +73,10 @@
                                             Growth and Success!</p>
                                     </div>
                                     <ul class="sidebar-menu list-unstyled">
-                                        <li><a href="{{ route('home.about') }}">About Us</a></li>
-                                        <li><a href="{{ route('home.notes') }}">Free Notes</a></li>
-                                        <li><a href="{{ route('home.gallery') }}">Gallery</a></li>
-                                        <li><a href="{{ route('home.contact') }}">Contact Us</a></li>
+                                        <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+                                        <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
+                                        <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                                        <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
                                         <li><a href="{{ route('login') }}">Login</a></li>
                                     </ul>
                                     <div class="sidebar-contact-header">
@@ -227,7 +227,7 @@
             </li>
             <li><a href="">Contact</a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('home.contact') }}">Contact</a></li>
+                    <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
                 </ul>
             </li>
         </ul>
