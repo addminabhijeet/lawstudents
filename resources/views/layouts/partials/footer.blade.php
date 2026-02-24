@@ -11,7 +11,8 @@
                                     <img src="/img/logo/logo5.png" alt="">
                                 </div>
                                 <div class="footer-text-area">
-                                    <p>Include any additional information that may be relevant or helpful for visitors, such as FAQs, pricing options.</p>
+                                    <p>Include any additional information that may be relevant or helpful for visitors,
+                                        such as FAQs, pricing options.</p>
                                     <div class="social-list-area">
                                         <ul>
                                             <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -27,12 +28,11 @@
                             <div class="about-links-area">
                                 <h3>About Link</h3>
                                 <ul>
-                                    <li><a href="{{ route('second', ['blog', 'blog1']) }}">Our Blog</a></li>
-                                    <li><a href="{{ route('second', ['pages', 'about']) }}">About Us</a></li>
-                                    <li><a href="{{ route('second', ['service', 'service1']) }}">Practice Areas</a></li>
-                                    <li><a href="{{ route('second', ['pages', 'testimonial1']) }}">Testimonials </a></li>
-                                    <li><a href="{{ route('second', ['contact', 'v1']) }}">Contact Us</a></li>
-
+                                    <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+                                    <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
+                                    <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                                    <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+                                    <li><a href="{{ route('login') }}">Login</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -41,9 +41,13 @@
                             <div class="get-links-area">
                                 <h3>Get In Touch</h3>
                                 <ul>
-                                    <li><img src="/img/icons/footer-email2.svg" alt=""><a href="maito:demolawsy@gmail.com">demolawsy@gmail.com</a></li>
-                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">8708 Technology Forest <br> Pl Suite 125 -G, The <br> Woodlands, TX 77381</a></li>
-                                    <li><img src="/img/icons/footer-phn.svg" alt=""><a href="tel:123-456-7890">123-456-7890</a></li>
+                                    <li><img src="/img/icons/footer-email2.svg" alt=""><a
+                                            href="maito:demolawsy@gmail.com">demolawsy@gmail.com</a></li>
+                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">8708
+                                            Technology Forest <br> Pl Suite 125 -G, The <br> Woodlands, TX 77381</a>
+                                    </li>
+                                    <li><img src="/img/icons/footer-phn.svg" alt=""><a
+                                            href="tel:123-456-7890">123-456-7890</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -54,7 +58,8 @@
                                     <form>
                                         <input type="email" placeholder="Enter Your Email">
                                         <div class="footer-btn">
-                                            <button type="submit">Subscribe <i class="fa-light fa-arrow-right"></i></button>
+                                            <button type="submit">Subscribe <i
+                                                    class="fa-light fa-arrow-right"></i></button>
                                         </div>
                                     </form>
                                 </div>
