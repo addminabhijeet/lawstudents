@@ -9,7 +9,7 @@
       <div class="col-lg-3 m-auto">
       <div class="welcome-inner-header text-center">
         <h1>Our Blog</h1>
-        <a href="{{ route('') }}">Home <span><i class="fa-light fa-angle-right"></i></span> Our BLog</a>
+        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Our BLog</a>
         <img src="/img/elements/elementor20.png" alt="">
       </div>
       </div>
@@ -45,9 +45,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Experience Matters: Your Tax Your & Resolution Starts Here</a>
+        <a href="">Experience Matters: Your Tax Your & Resolution Starts Here</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -75,9 +75,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Navigating the Tax Maze: Your Path to Financial Peace of Mind.</a>
+        <a href="">Navigating the Tax Maze: Your Path to Financial Peace of Mind.</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -105,9 +105,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Your Trusted Tax Attorney: Let's Solve Tax Issues Together</a>
+        <a href="">Your Trusted Tax Attorney: Let's Solve Tax Issues Together</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -135,9 +135,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Champions in Defense: Advocating for Your Freedom and Justice</a>
+        <a href="">Champions in Defense: Advocating for Your Freedom and Justice</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -165,9 +165,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Expert Defense Counsel: Your Law Lawyer Trusted Legal Guardians</a>
+        <a href="">Expert Defense Counsel: Your Law Lawyer Trusted Legal Guardians</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -195,9 +195,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Unyielding Defense Advocates: Crafting Your Strongest Case</a>
+        <a href="">Unyielding Defense Advocates: Crafting Your Strongest Case</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -225,9 +225,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Strategic Defense Solutions: Law Navigating Legal Complexities</a>
+        <a href="">Strategic Defense Solutions: Law Navigating Legal Complexities</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -255,9 +255,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Defense Excellence: Protecting Law Clients with Precision and Skill</a>
+        <a href="">Defense Excellence: Protecting Law Clients with Precision and Skill</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
@@ -285,9 +285,9 @@
           </a>
           </div>
         </div>
-        <a href="{{ route('second', ['blog', 'single']) }}">Fortifying Your Defense: Proficient Lawyers, Powerful Strategies</a>
+        <a href="">Fortifying Your Defense: Proficient Lawyers, Powerful Strategies</a>
         <p>As a small business owner, you're well aware of the numerous financial responsibilities.</p>
-        <a href="{{ route('second', ['blog', 'single']) }}" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
+        <a href="" class="readmore">Read More <i class="fa-light fa-arrow-right"></i></a>
         </div>
       </div>
       </div>
