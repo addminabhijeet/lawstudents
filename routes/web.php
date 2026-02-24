@@ -15,7 +15,7 @@ Route::middleware(['web'])
 
         Route::prefix('pages')->group(function () {
             Route::get('/about-us', AboutController::class)->name('about');
-            Route::get('/free-notes', FreeNotesController::class)->name('free.notes');
+            Route::get('/free-notes', FreeNotesController::class)->name('notes');
             Route::get('/gallery', GalleryController::class)->name('gallery');
             Route::get('/contact-us', ContactController::class)->name('contact');
         });
