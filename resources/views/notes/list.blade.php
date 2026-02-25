@@ -386,16 +386,23 @@
 
                                             <!-- ACTION BUTTONS -->
                                             <div class="mt-3 d-flex flex-column gap-2">
-
-                                                <a href="javascript:void(0);" class="btn btn-info w-100 mb-2"
-                                                    id="view-note-{{ $note->id }}" data-id="{{ $note->id }}">
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-info w-100 mb-2 view-note-btn"
+                                                    data-id="{{ $note->id }}" data-title="{{ $note->title }}"
+                                                    data-description="{{ $note->description }}"
+                                                    data-pdf="{{ asset('storage/' . $note->pdf_path) }}">
                                                     <i class="feather-eye me-2"></i>
                                                     <span>View Note</span>
                                                 </a>
 
-                                                <a href="javascript:void(0);" class="btn btn-warning w-100"
-                                                    id="edit-note-{{ $note->id }}"
-                                                    data-id="{{ $note->id }}">
+                                                <a href="javascript:void(0);"
+                                                    class="btn btn-warning w-100 edit-note-btn"
+                                                    data-id="{{ $note->id }}" data-title="{{ $note->title }}"
+                                                    data-description="{{ $note->description }}"
+                                                    data-version="{{ $note->version }}"
+                                                    data-course="{{ $note->course_id }}"
+                                                    data-visibility="{{ $note->visibility }}"
+                                                    data-download="{{ $note->is_downloadable }}">
                                                     <i class="feather-edit me-2"></i>
                                                     <span>Edit Note</span>
                                                 </a>
@@ -517,43 +524,30 @@
     </div>
 </div>
 
-<div class="modal fade" id="viewNoteModal{{ $note->id }}" tabindex="-1">
+<div class="modal fade" id="viewNoteModal" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">{{ $note->title }}</h5>
+                <h5 class="modal-title" id="viewNoteTitle"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body">
-
                 <div class="mb-3">
                     <strong>Description:</strong>
-                    <p>{{ $note->description }}</p>
+                    <p id="viewNoteDescription"></p>
                 </div>
 
-                <!-- PDF PREVIEW -->
-                <iframe src="{{ asset('storage/' . $note->pdf_path) }}" width="100%" height="600px"
-                    style="border:1px solid #ddd;">
+                <iframe id="viewNotePdf" width="100%" height="600px" style="border:1px solid #ddd;">
                 </iframe>
-
-            </div>
-
-            <div class="modal-footer">
-                <a href="{{ asset('storage/' . $note->pdf_path) }}" class="btn btn-success" target="_blank">
-                    Open Full PDF
-                </a>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
             </div>
 
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="editNoteModal{{ $note->id }}" tabindex="-1">
+<div class="modal fade" id="editNoteModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
 
@@ -562,82 +556,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form action="{{ route('admin.updatenotes', $note->id) }}" method="POST" enctype="multipart/form-data">
+            <form id="editNoteForm" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <div class="modal-body">
 
-                    <div class="row g-3">
+                    <input type="hidden" name="note_id" id="editNoteId">
 
-                        <div class="col-md-6">
+                    <div class="mb-3">
+                        <label>Title</label>
+                        <input type="text" name="title" id="editNoteTitle" class="form-control">
+                    </div>
 
-                            <!-- Course -->
-                            <div class="mb-3">
-                                <label class="form-label">Select Course *</label>
-                                <select name="course_id" class="form-select" required>
-                                    @foreach ($courses as $course)
-                                        <option value="{{ $course->id }}"
-                                            {{ $note->course_id == $course->id ? 'selected' : '' }}>
-                                            {{ $course->title }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <!-- Title -->
-                            <div class="mb-3">
-                                <label class="form-label">Note Title *</label>
-                                <input type="text" name="title" class="form-control"
-                                    value="{{ $note->title }}" required>
-                            </div>
-
-                            <!-- Version -->
-                            <div class="mb-3">
-                                <label class="form-label">Version</label>
-                                <input type="text" name="version" class="form-control"
-                                    value="{{ $note->version }}">
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-6">
-
-                            <!-- Replace PDF -->
-                            <div class="mb-3">
-                                <label class="form-label">Replace PDF</label>
-                                <input type="file" name="pdf" class="form-control" accept="application/pdf">
-                            </div>
-
-                            <!-- Visibility -->
-                            <div class="mb-3">
-                                <label class="form-label">Visibility</label>
-                                <select name="visibility" class="form-select">
-                                    <option value="enrolled" {{ $note->visibility == 'enrolled' ? 'selected' : '' }}>
-                                        Enrolled</option>
-                                    <option value="free" {{ $note->visibility == 'free' ? 'selected' : '' }}>Free
-                                    </option>
-                                    <option value="paid" {{ $note->visibility == 'paid' ? 'selected' : '' }}>Paid
-                                    </option>
-                                </select>
-                            </div>
-
-                            <!-- Download -->
-                            <div class="form-check mt-4">
-                                <input class="form-check-input" type="checkbox" name="is_downloadable"
-                                    value="1" {{ $note->is_downloadable ? 'checked' : '' }}>
-                                <label class="form-check-label">
-                                    Allow Download
-                                </label>
-                            </div>
-
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Description</label>
-                            <textarea name="description" class="form-control" rows="4">{{ $note->description }}</textarea>
-                        </div>
-
+                    <div class="mb-3">
+                        <label>Description</label>
+                        <textarea name="description" id="editNoteDescription" class="form-control"></textarea>
                     </div>
 
                 </div>
@@ -646,11 +580,7 @@
                     <button type="submit" class="btn btn-warning">
                         Update Note
                     </button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Cancel
-                    </button>
                 </div>
-
             </form>
 
         </div>
@@ -978,17 +908,36 @@
         $("#btn-n-add").show();
     });
 
-    $("[id^='view-note-']").on("click", function() {
-        let noteId = $(this).data("id");
-        $("#viewNoteModal" + noteId).modal("show");
+    // VIEW NOTE
+    $(document).on("click", ".view-note-btn", function() {
+
+        let title = $(this).data("title");
+        let description = $(this).data("description");
+        let pdf = $(this).data("pdf");
+
+        $("#viewNoteTitle").text(title);
+        $("#viewNoteDescription").text(description);
+        $("#viewNotePdf").attr("src", pdf);
+
+        $("#viewNoteModal").modal("show");
     });
 
-    $("[id^='edit-note-']").on("click", function() {
-        let noteId = $(this).data("id");
-        $("#editNoteModal" + noteId).modal("show");
 
-        $("#btn-n-save").show();
-        $("#btn-n-add").hide();
+    // EDIT NOTE
+    $(document).on("click", ".edit-note-btn", function() {
+
+        let id = $(this).data("id");
+        let title = $(this).data("title");
+        let description = $(this).data("description");
+
+        $("#editNoteId").val(id);
+        $("#editNoteTitle").val(title);
+        $("#editNoteDescription").val(description);
+
+        // Update form action dynamically
+        $("#editNoteForm").attr("action", "/admin/updatenotes/" + id);
+
+        $("#editNoteModal").modal("show");
     });
 
     // Button add
