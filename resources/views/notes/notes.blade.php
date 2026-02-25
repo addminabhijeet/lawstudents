@@ -77,7 +77,34 @@
                     object-fit:cover;">
                                 @endif
 
+
+
                             </div>
+
+                            <div class="blog-all-textarea"
+                                style="flex:1; 
+                            padding:15px; 
+                            overflow:hidden;">
+
+                                <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank"
+                                    style="font-weight:600; 
+                              display:block; 
+                              white-space:nowrap; 
+                              overflow:hidden; 
+                              text-overflow:ellipsis;">
+                                    {{ $note->title }}
+                                </a>
+
+                                <p style="margin:8px 0 4px 0;">
+                                    Course: {{ $course->title }}
+                                </p>
+
+                                <p style="margin:0;">
+                                    Size: {{ $note->formatted_size }}
+                                </p>
+
+                            </div>
+
 
                         </div>
                     @endforeach
