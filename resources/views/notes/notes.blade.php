@@ -27,18 +27,20 @@
                     @foreach ($course->notes as $note)
                         <div class="col-lg-4 col-md-6">
                             <div class="blog-boxarea">
-                                <div class="blog-images position-relative">
+                                <div class="blog-images position-relative"
+                                    style="width:100%; height:250px; position:relative; overflow:hidden; border-radius:8px;">
 
                                     @if ($note->file_path)
-                                        <iframe class="pdf-frame"
-                                            src="{{ route('frontend.viewnotes', $note->id) }}#toolbar=0&navpanes=0"
-                                            width="100%" height="250px" style="border:1px solid #ddd; border-radius:8px;">
+                                        <iframe src="{{ route('frontend.viewnotes', $note->id) }}#toolbar=0&navpanes=0"
+                                            style="width:100%; height:250px; border:1px solid #ddd; position:absolute; top:0; left:0;"
+                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                         </iframe>
 
-                                        <img class="fallback-img" src="{{ asset('img/images/blog-img1.png') }}"
-                                            style="display:none; border-radius:8px;">
+                                        <img src="{{ asset('img/images/blog-img1.png') }}"
+                                            style="width:100%; height:250px; object-fit:cover; position:absolute; top:0; left:0; display:none;">
                                     @else
-                                        <img src="{{ asset('img/images/blog-img1.png') }}" alt="">
+                                        <img src="{{ asset('img/images/blog-img1.png') }}"
+                                            style="width:100%; height:250px; object-fit:cover;">
                                     @endif
 
                                 </div>
