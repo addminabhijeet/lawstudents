@@ -23,92 +23,99 @@
     <div class="blog1-section-area sp3">
         <div class="container">
             <div class="row">
+
                 @foreach ($courses as $course)
                     @foreach ($course->notes as $note)
-                        <div class="col-lg-4 col-md-6" style="flex:0 0 33.3333%; max-width:33.3333%;">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="blog-boxarea">
 
-                            <div class="blog-images"
-                                style="width:100%;
-            height:250px;
-            overflow:hidden;
-            position:relative;
-            background:#f8f8f8;">
+                                {{-- IMAGE / PDF SECTION --}}
+                                <div class="blog-images">
 
-                                @if ($note->file_path)
-                                    <img id="preview-img-{{ $note->id }}" src="{{ asset('img/images/blog-img1.png') }}"
-                                        style="width:100%;
-                    height:250px;
-                    object-fit:cover;
-                    display:block;">
+                                    @if ($note->file_path)
+                                        <img id="preview-img-{{ $note->id }}"
+                                            src="{{ asset('img/images/blog-img1.png') }}"
+                                            style="width:100%; height:250px; object-fit:cover; display:block;">
 
-                                    <iframe id="pdf-frame-{{ $note->id }}"
-                                        style="width:100%;
-                       height:250px;
-                       border:none;
-                       display:none;">
-                                    </iframe>
+                                        <iframe id="pdf-frame-{{ $note->id }}"
+                                            style="width:100%; height:250px; border:none; display:none;">
+                                        </iframe>
 
-                                    <script>
-                                        (function() {
-                                            var pdfUrl = "{{ route('frontend.viewnotes', $note->id) }}";
-                                            var iframe = document.getElementById("pdf-frame-{{ $note->id }}");
-                                            var image = document.getElementById("preview-img-{{ $note->id }}");
+                                        <script>
+                                            (function() {
+                                                var pdfUrl = "{{ route('frontend.viewnotes', $note->id) }}";
+                                                var iframe = document.getElementById("pdf-frame-{{ $note->id }}");
+                                                var image = document.getElementById("preview-img-{{ $note->id }}");
 
-                                            fetch(pdfUrl, {
-                                                    method: 'HEAD'
-                                                })
-                                                .then(function(response) {
-                                                    if (response.ok) {
-                                                        iframe.src = pdfUrl + "#toolbar=0&navpanes=0";
-                                                        iframe.style.display = "block";
-                                                        image.style.display = "none";
-                                                    }
-                                                })
-                                                .catch(function() {
-                                                    // Keep default image visible
-                                                });
-                                        })
-                                        ();
-                                    </script>
-                                @else
-                                    <img src="{{ asset('img/images/blog-img1.png') }}"
-                                        style="width:100%;
-                    height:250px;
-                    object-fit:cover;">
-                                @endif
+                                                fetch(pdfUrl, {
+                                                        method: 'HEAD'
+                                                    })
+                                                    .then(function(response) {
+                                                        if (response.ok) {
+                                                            iframe.src = pdfUrl + "#toolbar=0&navpanes=0";
+                                                            iframe.style.display = "block";
+                                                            image.style.display = "none";
+                                                        }
+                                                    })
+                                                    .catch(function() {
+                                                        // keep default image
+                                                    });
+                                            })
+                                            ();
+                                        </script>
+                                    @else
+                                        <img src="{{ asset('img/images/blog-img1.png') }}"
+                                            style="width:100%; height:250px; object-fit:cover;">
+                                    @endif
 
+                                    {{-- Optional date badge --}}
+                                    <div class="date-img">
+                                        <img src="{{ asset('img/images/date9.png') }}" alt="">
+                                    </div>
 
+                                </div>
+
+                                {{-- CONTENT SECTION --}}
+                                <div class="blog-all-textarea">
+
+                                    <div class="blog-text-area">
+
+                                        <div class="blog-name-area">
+                                            <img src="{{ asset('img/icons/contact-img1.svg') }}" alt="">
+                                            <a href="#">
+                                                <p>{{ $course->title }}</p>
+                                            </a>
+                                        </div>
+
+                                        <div class="blog-name-area">
+                                            <img src="{{ asset('img/icons/tax-img1.svg') }}" alt="">
+                                            <a href="#">
+                                                <p>{{ $note->formatted_size }}</p>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank">
+                                        {{ $note->title }}
+                                    </a>
+
+                                    <p>
+                                        Free downloadable study material for {{ $course->title }} students.
+                                    </p>
+
+                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank"
+                                        class="readmore">
+                                        View PDF <i class="fa-light fa-arrow-right"></i>
+                                    </a>
+
+                                </div>
 
                             </div>
-
-                            <div class="blog-all-textarea"
-                                style="flex:1; 
-                            padding:15px; 
-                            overflow:hidden;">
-
-                                <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank"
-                                    style="font-weight:600; 
-                              display:block; 
-                              white-space:nowrap; 
-                              overflow:hidden; 
-                              text-overflow:ellipsis;">
-                                    {{ $note->title }}
-                                </a>
-
-                                <p style="margin:8px 0 4px 0;">
-                                    Course: {{ $course->title }}
-                                </p>
-
-                                <p style="margin:0;">
-                                    Size: {{ $note->formatted_size }}
-                                </p>
-
-                            </div>
-
-
                         </div>
                     @endforeach
                 @endforeach
+
             </div>
 
             <div class="col-lg-12 m-auto">
