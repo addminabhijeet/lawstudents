@@ -855,7 +855,7 @@
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
 <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
 <script>
-    let updateNoteUrl = "{{ route('admin.updatenotes') }}";
+    let updateNoteUrl = "{{ url('admin/course-notes') }}";
 </script>
 <script>
     function removeNote() {
