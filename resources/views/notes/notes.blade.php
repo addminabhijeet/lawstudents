@@ -28,7 +28,14 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="blog-boxarea">
                                 <div class="blog-images">
-                                    <img src="{{ asset('img/images/blog-img1.png') }}" alt="">
+                                    @if ($note->file_path)
+                                        <iframe
+                                            src="{{ asset('storage/' . $note->file_path) }}#toolbar=0&navpanes=0&scrollbar=0"
+                                            width="100%" height="250px" style="border:1px solid #ddd; border-radius:8px;">
+                                        </iframe>
+                                    @else
+                                        <img src="{{ asset('img/images/blog-img1.png') }}" alt="">
+                                    @endif
                                 </div>
 
                                 <div class="blog-all-textarea">

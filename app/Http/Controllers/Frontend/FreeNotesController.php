@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Models\Course;
 use App\Models\Category;
+use App\Models\CourseNote;
+use Illuminate\Support\Facades\Storage;
 
 class FreeNotesController extends Controller
 {
@@ -58,5 +60,18 @@ class FreeNotesController extends Controller
             ->get();
 
         return view('notes.notes', compact('categories', 'courses'));
+    }
+
+    public function viewNote($id)
+    {
+        $note = CourseNote::findOrFail($id);
+
+        if (!Storage::disk('public')->exists($note->file_path)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($note->file_path);
+
+        return response()->file($path);
     }
 }
