@@ -99,7 +99,7 @@
                                     <input type="password" name="password" class="form-control password"
                                         id="newPassword" placeholder="Password" required>
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                        data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
+                                        data-bs-toggle="tooltip" title="Show/Hide Password"><i>👁️</i></div>
                                 </div>
                             </div>
 
