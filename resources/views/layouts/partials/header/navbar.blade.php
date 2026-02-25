@@ -37,7 +37,7 @@
                             </div>
                             <div class="main-menu-ex homepage6">
                                 <ul>
-                                    <li><a href="{{ route('') }}" class=" mainhome">Home</a></li>
+                                    <li><a href="{{ route('frontend.') }}" class=" mainhome">Home</a></li>
                                     <li><a href="{{ route('frontend.about') }}">About Us</a></li>
                                     <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
