@@ -115,7 +115,7 @@
                                         data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
                             </div>
-
+                            
                             <div class="mt-4">
                                 <div class="custom-control custom-checkbox mb-2">
                                     <input type="checkbox" class="custom-control-input" id="receiveMail"
@@ -377,18 +377,7 @@
     <script src="{{ asset('assets/vendors/js/lslstrength.min.js') }}"></script>
     <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.show-pass').forEach(function(toggle) {
-                toggle.addEventListener('click', function() {
-                    let input = this.parentElement.querySelector('input.password');
-                    if (input) {
-                        input.type = input.type === 'password' ? 'text' : 'password';
-                    }
-                });
-            });
-        });
-    </script>
+
 </body>
 
 </html>
