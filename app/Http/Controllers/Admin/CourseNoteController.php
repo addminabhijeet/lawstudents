@@ -69,6 +69,41 @@ class CourseNoteController extends Controller
         return back()->with('success', 'PDF Note uploaded successfully.');
     }
 
+    public function updatenotes(Request $request, $id)
+    {
+        $request->validate([
+            'course_id' => 'required|exists:courses,id',
+            'title'     => 'required|string|max:255',
+            'pdf'       => 'nullable|mimes:pdf|max:20480',
+        ]);
+
+        $note = CourseNote::findOrFail($id);
+
+        $note->course_id       = $request->course_id;
+        $note->title           = $request->title;
+        $note->version         = $request->version ?? $note->version;
+        $note->visibility      = $request->visibility ?? 'enrolled';
+        $note->is_downloadable = $request->has('is_downloadable');
+
+        // If new PDF uploaded
+        if ($request->hasFile('pdf')) {
+
+            // Delete old file
+            if ($note->file_path && Storage::disk('public')->exists($note->file_path)) {
+                Storage::disk('public')->delete($note->file_path);
+            }
+
+            $file = $request->file('pdf');
+            $path = $file->store('course_notes', 'public');
+
+            $note->file_path  = $path;
+            $note->file_size  = $file->getSize();
+        }
+
+        $note->save();
+
+        return back()->with('success', 'Note updated successfully.');
+    }
 
 
     public function download($id)
