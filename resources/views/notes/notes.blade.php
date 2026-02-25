@@ -30,7 +30,7 @@
                                 <div class="blog-images">
                                     @if ($note->file_path)
                                         <iframe
-                                            src="{{ asset('storage/' . $note->file_path) }}#toolbar=0&navpanes=0&scrollbar=0"
+                                            src="{{ route('admin.viewnote', $note->id) }}#toolbar=0&navpanes=0&scrollbar=0"
                                             width="100%" height="250px" style="border:1px solid #ddd; border-radius:8px;">
                                         </iframe>
                                     @else
