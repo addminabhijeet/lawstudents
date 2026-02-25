@@ -28,27 +28,53 @@
                         <div class="col-lg-4 col-md-6" style="flex:0 0 33.3333%; max-width:33.3333%;">
 
                             <div class="blog-images"
-                                style="width:100%; 
-            height:250px; 
-            overflow:hidden; 
+                                style="width:100%;
+            height:250px;
+            overflow:hidden;
             position:relative;
             background:#f8f8f8;">
 
                                 @if ($note->file_path)
-                                    <iframe class="pdf-frame" src="{{ route('frontend.viewnotes', $note->id) }}"
-                                        style="width:100%; height:250px; border:none;">
+                                    <img id="preview-img-{{ $note->id }}" src="{{ asset('img/images/blog-img1.png') }}"
+                                        style="width:100%;
+                    height:250px;
+                    object-fit:cover;
+                    display:block;">
+
+                                    <iframe id="pdf-frame-{{ $note->id }}"
+                                        style="width:100%;
+                       height:250px;
+                       border:none;
+                       display:none;">
                                     </iframe>
 
-                                    <img class="fallback-img" src="{{ asset('img/images/blog-img1.png') }}"
-                                        style="display:none;
-                   width:100%;
-                   height:250px;
-                   object-fit:cover;">
+                                    <script>
+                                        (function() {
+                                            var pdfUrl = "{{ route('frontend.viewnotes', $note->id) }}";
+                                            var iframe = document.getElementById("pdf-frame-{{ $note->id }}");
+                                            var image = document.getElementById("preview-img-{{ $note->id }}");
+
+                                            fetch(pdfUrl, {
+                                                    method: 'HEAD'
+                                                })
+                                                .then(function(response) {
+                                                    if (response.ok) {
+                                                        iframe.src = pdfUrl + "#toolbar=0&navpanes=0";
+                                                        iframe.style.display = "block";
+                                                        image.style.display = "none";
+                                                    }
+                                                })
+                                                .catch(function() {
+                                                    // Keep default image visible
+                                                });
+                                        })
+                                        ();
+                                    </script>
                                 @else
                                     <img src="{{ asset('img/images/blog-img1.png') }}"
                                         style="width:100%;
-                   height:250px;
-                   object-fit:cover;">
+                    height:250px;
+                    object-fit:cover;">
                                 @endif
 
                             </div>
