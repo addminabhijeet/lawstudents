@@ -27,67 +27,29 @@
                     @foreach ($course->notes as $note)
                         <div class="col-lg-4 col-md-6" style="flex:0 0 33.3333%; max-width:33.3333%;">
 
-                            <div class="blog-boxarea"
-                                style="width:100%; height:420px; 
-                        border:1px solid #eee; 
-                        border-radius:10px; 
-                        overflow:hidden; 
-                        display:flex; 
-                        flex-direction:column;">
+                            <div class="blog-images"
+                                style="width:100%; 
+            height:250px; 
+            overflow:hidden; 
+            position:relative;
+            background:#f8f8f8;">
 
-                                <div class="blog-images"
-                                    style="width:100%; 
-                            height:250px; 
-                            overflow:hidden; 
-                            position:relative;
-                            background:#f8f8f8;">
+                                @if ($note->file_path)
+                                    <iframe class="pdf-frame" src="{{ route('frontend.viewnotes', $note->id) }}"
+                                        style="width:100%; height:250px; border:none;">
+                                    </iframe>
 
-                                    @if ($note->file_path)
-                                        <iframe
-                                            src="{{ route('frontend.viewnotes', $note->id) }}#toolbar=0&navpanes=0&scrollbar=0"
-                                            style="width:100%; 
-                                   height:250px; 
-                                   border:none;"
-                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                                        </iframe>
-
-                                        <img src="{{ asset('img/images/blog-img1.png') }}"
-                                            style="display:none; 
-                                   width:100%; 
-                                   height:250px; 
-                                   object-fit:cover;">
-                                    @else
-                                        <img src="{{ asset('img/images/blog-img1.png') }}"
-                                            style="width:100%; 
-                                   height:250px; 
-                                   object-fit:cover;">
-                                    @endif
-
-                                </div>
-
-                                <div class="blog-all-textarea"
-                                    style="flex:1; 
-                            padding:15px; 
-                            overflow:hidden;">
-
-                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank"
-                                        style="font-weight:600; 
-                              display:block; 
-                              white-space:nowrap; 
-                              overflow:hidden; 
-                              text-overflow:ellipsis;">
-                                        {{ $note->title }}
-                                    </a>
-
-                                    <p style="margin:8px 0 4px 0;">
-                                        Course: {{ $course->title }}
-                                    </p>
-
-                                    <p style="margin:0;">
-                                        Size: {{ $note->formatted_size }}
-                                    </p>
-
-                                </div>
+                                    <img class="fallback-img" src="{{ asset('img/images/blog-img1.png') }}"
+                                        style="display:none;
+                   width:100%;
+                   height:250px;
+                   object-fit:cover;">
+                                @else
+                                    <img src="{{ asset('img/images/blog-img1.png') }}"
+                                        style="width:100%;
+                   height:250px;
+                   object-fit:cover;">
+                                @endif
 
                             </div>
 
@@ -124,24 +86,36 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+
             document.querySelectorAll(".pdf-frame").forEach(function(iframe) {
 
-                iframe.addEventListener("load", function() {
+                let fallback = iframe.parentElement.querySelector(".fallback-img");
+
+                // If iframe fails to load within 3 seconds → show fallback
+                let timer = setTimeout(function() {
+                    iframe.style.display = "none";
+                    if (fallback) fallback.style.display = "block";
+                }, 3000);
+
+                iframe.onload = function() {
+                    clearTimeout(timer);
+
                     try {
-                        // If iframe loads a 404 page, detect it
-                        if (iframe.contentDocument.body.innerText.includes("404")) {
+                        let doc = iframe.contentDocument || iframe.contentWindow.document;
+
+                        if (!doc || doc.body.innerHTML.trim() === "") {
                             iframe.style.display = "none";
-                            iframe.parentElement.querySelector(".fallback-img").style.display =
-                                "block";
+                            if (fallback) fallback.style.display = "block";
                         }
+
                     } catch (e) {
-                        // If cross-origin error occurs → show fallback
                         iframe.style.display = "none";
-                        iframe.parentElement.querySelector(".fallback-img").style.display = "block";
+                        if (fallback) fallback.style.display = "block";
                     }
-                });
+                };
 
             });
+
         });
     </script>
     <!--===== BLOG ENDS =======-->
