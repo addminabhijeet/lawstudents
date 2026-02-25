@@ -556,7 +556,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form action="{{ route('admin.updatenotes') }}" id="editNoteForm" method="POST" enctype="multipart/form-data">
+            <form id="editNoteForm" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -855,6 +855,9 @@
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
 <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
 <script>
+    let updateNoteUrl = "{{ route('admin.updatenotes') }}";
+</script>
+<script>
     function removeNote() {
         $(".remove-note")
             .off("click")
@@ -1014,7 +1017,7 @@
             $("#editIsDownloadable").prop("checked", false);
         }
 
-        $("#editNoteForm").attr("action", "/admin/updatenotes/" + id);
+        $("#editNoteForm").attr("action", updateNoteUrl + "/" + id);
 
         $("#editNoteModal").modal("show");
     });
