@@ -6,6 +6,9 @@ use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\FreeNotesController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\ContactController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 Route::middleware(['web'])
     ->as('frontend.')
@@ -13,7 +16,27 @@ Route::middleware(['web'])
         Route::get('/', HomeController::class)->name('home');
         Route::get('about-us', AboutController::class)->name('about');
         Route::get('free-notes', FreeNotesController::class)->name('notes');
+        Route::get('view-note/{id}', [FreeNotesController::class, 'viewnote'])
+            ->middleware('auth')
+            ->name('viewnote');
         Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnotes'])->name('viewnotes');
         Route::get('gallery', GalleryController::class)->name('gallery');
         Route::get('contact-us', ContactController::class)->name('contact');
     });
+
+Route::get('auth/google', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google.login');
+
+Route::get('auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->user();
+
+    $user = User::updateOrCreate(
+        ['email' => $googleUser->getEmail()],
+        ['name' => $googleUser->getName()]
+    );
+
+    Auth::login($user);
+
+    return redirect()->intended('/');
+});

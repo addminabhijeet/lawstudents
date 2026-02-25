@@ -70,8 +70,10 @@ class FreeNotesController extends Controller
             abort(404);
         }
 
+        $note->increment('download_count');
+
         $path = Storage::disk('public')->path($note->file_path);
 
-        return response()->file($path);
+        return response()->download($path);
     }
 }

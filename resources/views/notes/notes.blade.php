@@ -104,10 +104,15 @@
                                         Free downloadable study material for {{ $course->title }} students.
                                     </p>
 
-                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank"
-                                        class="readmore">
-                                        View PDF <i class="fa-light fa-arrow-right"></i>
-                                    </a>
+                                    @if (auth()->check())
+                                        <a href="{{ route('frontend.viewnote', $note->id) }}" class="readmore">
+                                            Download PDF <i class="fa-light fa-arrow-right"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('google.login') }}" class="readmore">
+                                            Download PDF <i class="fa-light fa-arrow-right"></i>
+                                        </a>
+                                    @endif
 
                                 </div>
 
