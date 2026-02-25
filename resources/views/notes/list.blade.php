@@ -971,17 +971,18 @@
         $("#addnotesmodal").modal("show");
         $("#btn-n-save").hide();
         $("#btn-n-add").show();
-
-        $(".view-note-btn").on("click", function() {
-            var noteId = $(this).data("id");
-            $("#viewNoteModal" + noteId).modal("show");
-        });
-
-        $(".edit-note-btn").on("click", function() {
-            var noteId = $(this).data("id");
-            $("#editNoteModal" + noteId).modal("show");
-        });
     });
+
+    $(document).on("click", ".view-note-btn", function() {
+        var noteId = $(this).data("id");
+        $("#viewNoteModal" + noteId).modal("show");
+    });
+
+    $(document).on("click", ".edit-note-btn", function() {
+        var noteId = $(this).data("id");
+        $("#editNoteModal" + noteId).modal("show");
+    });
+
     // Button add
     $("#btn-n-add").on("click", function(event) {
         event.preventDefault();
