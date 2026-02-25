@@ -105,20 +105,27 @@
                                     <div class="input-group field">
                                         <input type="password" name="password" class="form-control password"
                                             id="newPassword" placeholder="Password" required>
-                                        <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
-                                            title="Generate Password"><i class="feather-hash"></i></div>
                                         <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                             data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                     </div>
-
                                 </div>
+
                                 <div class="mb-4">
-                                    <input type="password" name="password_confirmation" class="form-control"
-                                        placeholder="Confirm Password" required>
+                                    <div class="input-group field">
+                                        <input type="password" name="password_confirmation"
+                                            class="form-control password" id="confirmPassword"
+                                            placeholder="Confirm Password" required>
+                                        <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                            id="toggleConfirmPassword" data-bs-toggle="tooltip"
+                                            title="Show/Hide Password">
+                                            <i class="feather-eye"></i>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mt-5">
-                                    <button type="submit" class="btn btn-lg btn-primary w-100">Create Account</button>
+                                    <button type="submit" class="btn btn-lg btn-primary w-100">Create
+                                        Account</button>
                                 </div>
                             </form>
                         </div>
@@ -138,5 +145,24 @@
         <!--! END: Theme Customizer !-->
         <!-- [ Main Content ] end -->
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            function togglePassword(toggleId, inputId) {
+                let toggle = document.getElementById(toggleId);
+                let input = document.getElementById(inputId);
+
+                if (toggle && input) {
+                    toggle.addEventListener('click', function() {
+                        input.type = input.type === 'password' ? 'text' : 'password';
+                    });
+                }
+            }
+
+            togglePassword('toggleNewPassword', 'newPassword');
+            togglePassword('toggleConfirmPassword', 'confirmPassword');
+        });
+    </script>
 </main>
+
 @include('layouts.partials.admin.theme')
