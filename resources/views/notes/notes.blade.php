@@ -25,44 +25,72 @@
             <div class="row">
                 @foreach ($courses as $course)
                     @foreach ($course->notes as $note)
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-boxarea">
+                        <div class="col-lg-4 col-md-6" style="flex:0 0 33.3333%; max-width:33.3333%;">
+
+                            <div class="blog-boxarea"
+                                style="width:100%; height:420px; 
+                        border:1px solid #eee; 
+                        border-radius:10px; 
+                        overflow:hidden; 
+                        display:flex; 
+                        flex-direction:column;">
+
                                 <div class="blog-images"
-                                    style="width:100%; height:250px; position:relative; overflow:hidden; border-radius:8px;">
+                                    style="width:100%; 
+                            height:250px; 
+                            overflow:hidden; 
+                            position:relative;
+                            background:#f8f8f8;">
 
                                     @if ($note->file_path)
-                                        <iframe src="{{ route('frontend.viewnotes', $note->id) }}#toolbar=0&navpanes=0"
-                                            style="width:100%; height:250px; border:1px solid #ddd; position:absolute; top:0; left:0;"
+                                        <iframe
+                                            src="{{ route('frontend.viewnotes', $note->id) }}#toolbar=0&navpanes=0&scrollbar=0"
+                                            style="width:100%; 
+                                   height:250px; 
+                                   border:none;"
                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                         </iframe>
 
                                         <img src="{{ asset('img/images/blog-img1.png') }}"
-                                            style="width:100%; height:250px; object-fit:cover; position:absolute; top:0; left:0; display:none;">
+                                            style="display:none; 
+                                   width:100%; 
+                                   height:250px; 
+                                   object-fit:cover;">
                                     @else
                                         <img src="{{ asset('img/images/blog-img1.png') }}"
-                                            style="width:100%; height:250px; object-fit:cover;">
+                                            style="width:100%; 
+                                   height:250px; 
+                                   object-fit:cover;">
                                     @endif
 
                                 </div>
 
+                                <div class="blog-all-textarea"
+                                    style="flex:1; 
+                            padding:15px; 
+                            overflow:hidden;">
 
-
-                                <div class="blog-all-textarea">
-
-                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank">
+                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank"
+                                        style="font-weight:600; 
+                              display:block; 
+                              white-space:nowrap; 
+                              overflow:hidden; 
+                              text-overflow:ellipsis;">
                                         {{ $note->title }}
                                     </a>
 
-                                    <p>
+                                    <p style="margin:8px 0 4px 0;">
                                         Course: {{ $course->title }}
                                     </p>
 
-                                    <p>
+                                    <p style="margin:0;">
                                         Size: {{ $note->formatted_size }}
                                     </p>
 
                                 </div>
+
                             </div>
+
                         </div>
                     @endforeach
                 @endforeach
