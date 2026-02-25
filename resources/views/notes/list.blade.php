@@ -399,13 +399,6 @@
 
                                         </div>
                                     </div>
-
-                                    {{-- INCLUDE MODALS --}}
-                                    @include('notes.partials.view-modal', ['note' => $note])
-                                    @include('notes.partials.edit-modal', [
-                                        'note' => $note,
-                                        'courses' => $courses,
-                                    ])
                                 @endforeach
                             @endforeach
                         @endforeach
