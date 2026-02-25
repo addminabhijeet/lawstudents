@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 Route::middleware(['web'])
     ->as('frontend.')
     ->group(function () {
-        Route::get('home', HomeController::class)->name('home');
+        Route::get('', HomeController::class)->name('home');
         Route::get('about-us', AboutController::class)->name('about');
         Route::get('free-notes', FreeNotesController::class)->name('notes');
         Route::get('view-note/{id}', [FreeNotesController::class, 'viewnote'])->middleware('auth')->name('viewnote');
