@@ -62,7 +62,7 @@ class FreeNotesController extends Controller
         return view('notes.notes', compact('categories', 'courses'));
     }
 
-    public function viewnotes($id)
+    public function viewnote($id)
     {
         $note = CourseNote::findOrFail($id);
 
@@ -75,5 +75,18 @@ class FreeNotesController extends Controller
         $path = Storage::disk('public')->path($note->file_path);
 
         return response()->download($path);
+    }
+
+    public function viewnotes($id)
+    {
+        $note = CourseNote::findOrFail($id);
+
+        if (!Storage::disk('public')->exists($note->file_path)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($note->file_path);
+
+        return response()->file($path);
     }
 }

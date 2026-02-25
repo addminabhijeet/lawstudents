@@ -17923,3 +17923,23 @@ Stack trace:
 #42 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
 #43 {main}
 "} 
+[2026-02-25 20:59:42] local.ERROR: Cannot redeclare App\Http\Controllers\Frontend\FreeNotesController::viewnotes() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Controllers\\Frontend\\FreeNotesController::viewnotes() at E:/lawstudents/app/Http/Controllers/Frontend/FreeNotesController.php:95)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-25 20:59:51] local.ERROR: Cannot redeclare App\Http\Controllers\Frontend\FreeNotesController::viewnote() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Controllers\\Frontend\\FreeNotesController::viewnote() at E:/lawstudents/app/Http/Controllers/Frontend/FreeNotesController.php:95)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-25 20:59:55] local.ERROR: Cannot redeclare App\Http\Controllers\Frontend\FreeNotesController::viewnote() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Controllers\\Frontend\\FreeNotesController::viewnote() at E:/lawstudents/app/Http/Controllers/Frontend/FreeNotesController.php:95)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-25 20:59:55] local.ERROR: Cannot redeclare App\Http\Controllers\Frontend\FreeNotesController::viewnote() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Controllers\\Frontend\\FreeNotesController::viewnote() at E:/lawstudents/app/Http/Controllers/Frontend/FreeNotesController.php:95)
+[stacktrace]
+#0 {main}
+"} 
+[2026-02-25 21:01:00] local.ERROR: Cannot redeclare App\Http\Controllers\Frontend\FreeNotesController::viewnotes() {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot redeclare App\\Http\\Controllers\\Frontend\\FreeNotesController::viewnotes() at E:/lawstudents/app/Http/Controllers/Frontend/FreeNotesController.php:80)
+[stacktrace]
+#0 {main}
+"} 
