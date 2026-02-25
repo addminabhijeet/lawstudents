@@ -13,7 +13,7 @@ Route::middleware(['web'])
         Route::get('/', HomeController::class)->name('home');
         Route::get('about-us', AboutController::class)->name('about');
         Route::get('free-notes', FreeNotesController::class)->name('notes');
-        Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnote'])->name('viewnotes');
+        Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnotes'])->name('viewnotes');
         Route::get('gallery', GalleryController::class)->name('gallery');
         Route::get('contact-us', ContactController::class)->name('contact');
     });

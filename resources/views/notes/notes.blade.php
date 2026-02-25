@@ -40,7 +40,7 @@
 
                                 <div class="blog-all-textarea">
 
-                                    <a href="{{ route('admin.viewnote', $note->id) }}" target="_blank">
+                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank">
                                         {{ $note->title }}
                                     </a>
 

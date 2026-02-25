@@ -62,7 +62,7 @@ class FreeNotesController extends Controller
         return view('notes.notes', compact('categories', 'courses'));
     }
 
-    public function viewnote($id)
+    public function viewnotes($id)
     {
         $note = CourseNote::findOrFail($id);
 
