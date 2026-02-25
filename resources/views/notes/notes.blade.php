@@ -27,16 +27,23 @@
                     @foreach ($course->notes as $note)
                         <div class="col-lg-4 col-md-6">
                             <div class="blog-boxarea">
-                                <div class="blog-images">
+                                <div class="blog-images position-relative">
+
                                     @if ($note->file_path)
-                                        <iframe
-                                            src="{{ route('frontend.viewnotes', $note->id) }}#toolbar=0&navpanes=0&scrollbar=0"
+                                        <iframe class="pdf-frame"
+                                            src="{{ route('frontend.viewnotes', $note->id) }}#toolbar=0&navpanes=0"
                                             width="100%" height="250px" style="border:1px solid #ddd; border-radius:8px;">
                                         </iframe>
+
+                                        <img class="fallback-img" src="{{ asset('img/images/blog-img1.png') }}"
+                                            style="display:none; border-radius:8px;">
                                     @else
                                         <img src="{{ asset('img/images/blog-img1.png') }}" alt="">
                                     @endif
+
                                 </div>
+
+
 
                                 <div class="blog-all-textarea">
 
@@ -85,5 +92,27 @@
         </div>
     </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".pdf-frame").forEach(function(iframe) {
+
+                iframe.addEventListener("load", function() {
+                    try {
+                        // If iframe loads a 404 page, detect it
+                        if (iframe.contentDocument.body.innerText.includes("404")) {
+                            iframe.style.display = "none";
+                            iframe.parentElement.querySelector(".fallback-img").style.display =
+                                "block";
+                        }
+                    } catch (e) {
+                        // If cross-origin error occurs → show fallback
+                        iframe.style.display = "none";
+                        iframe.parentElement.querySelector(".fallback-img").style.display = "block";
+                    }
+                });
+
+            });
+        });
+    </script>
     <!--===== BLOG ENDS =======-->
 @endsection
