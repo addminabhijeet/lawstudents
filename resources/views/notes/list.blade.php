@@ -552,7 +552,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Edit Note</h5>
+                <h5 class="modal-title">Edit Course Note</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -561,26 +561,93 @@
                 @method('PUT')
 
                 <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row g-3">
 
-                    <input type="hidden" name="note_id" id="editNoteId">
+                            <input type="hidden" name="note_id" id="editNoteId">
 
-                    <div class="mb-3">
-                        <label>Title</label>
-                        <input type="text" name="title" id="editNoteTitle" class="form-control">
+                            <!-- LEFT COLUMN -->
+                            <div class="col-md-6">
+
+                                <!-- Course Selection -->
+                                <div class="mb-3">
+                                    <label class="form-label">Select Course *</label>
+                                    <select name="course_id" id="editCourseId" class="form-select" required>
+                                        <option value="">-- Select Course --</option>
+                                        @foreach ($courses as $course)
+                                            <option value="{{ $course->id }}">
+                                                {{ $course->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Note Title -->
+                                <div class="mb-3">
+                                    <label class="form-label">Note Title *</label>
+                                    <input type="text" name="title" id="editNoteTitle" class="form-control"
+                                        minlength="5" required>
+                                </div>
+
+                                <!-- Version -->
+                                <div class="mb-3">
+                                    <label class="form-label">Version</label>
+                                    <input type="text" name="version" id="editNoteVersion" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <!-- RIGHT COLUMN -->
+                            <div class="col-md-6">
+
+                                <!-- PDF Upload -->
+                                <div class="mb-3">
+                                    <label class="form-label">Replace PDF</label>
+                                    <input type="file" name="pdf" class="form-control"
+                                        accept="application/pdf">
+                                    <small class="text-muted">Leave empty to keep existing PDF</small>
+                                </div>
+
+                                <!-- Visibility -->
+                                <div class="mb-3">
+                                    <label class="form-label">Visibility</label>
+                                    <select name="visibility" id="editVisibility" class="form-select">
+                                        <option value="enrolled">Enrolled Users</option>
+                                        <option value="free">Free</option>
+                                        <option value="paid">Paid</option>
+                                    </select>
+                                </div>
+
+                                <!-- Is Downloadable -->
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" name="is_downloadable"
+                                        id="editIsDownloadable">
+                                    <label class="form-check-label" for="editIsDownloadable">
+                                        Allow Download
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <!-- FULL WIDTH DESCRIPTION -->
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Note Description</label>
+                                    <textarea name="description" id="editNoteDescription" class="form-control" rows="4" minlength="20"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label>Description</label>
-                        <textarea name="description" id="editNoteDescription" class="form-control"></textarea>
-                    </div>
-
                 </div>
 
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-warning">
                         Update Note
                     </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                 </div>
+
             </form>
 
         </div>
@@ -929,12 +996,24 @@
         let id = $(this).data("id");
         let title = $(this).data("title");
         let description = $(this).data("description");
+        let version = $(this).data("version");
+        let course = $(this).data("course");
+        let visibility = $(this).data("visibility");
+        let download = $(this).data("download");
 
         $("#editNoteId").val(id);
         $("#editNoteTitle").val(title);
         $("#editNoteDescription").val(description);
+        $("#editNoteVersion").val(version);
+        $("#editCourseId").val(course);
+        $("#editVisibility").val(visibility);
 
-        // Update form action dynamically
+        if (download == 1) {
+            $("#editIsDownloadable").prop("checked", true);
+        } else {
+            $("#editIsDownloadable").prop("checked", false);
+        }
+
         $("#editNoteForm").attr("action", "/admin/updatenotes/" + id);
 
         $("#editNoteModal").modal("show");
