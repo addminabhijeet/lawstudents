@@ -390,7 +390,7 @@
                                                     class="btn btn-info w-100 mb-2 view-note-btn"
                                                     data-id="{{ $note->id }}" data-title="{{ $note->title }}"
                                                     data-description="{{ $note->description }}"
-                                                    data-pdf="{{ asset('storage/' . $note->file_path) }}">
+                                                    data-pdf="{{ route('admin.viewnote', $note->id) }}">
                                                     <i class="feather-eye me-2"></i>
                                                     <span>View Note</span>
                                                 </a>

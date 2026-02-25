@@ -127,6 +127,20 @@ class CourseNoteController extends Controller
     }
 
 
+    public function viewNote($id)
+    {
+        $note = CourseNote::findOrFail($id);
+
+        if (!Storage::disk('public')->exists($note->file_path)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($note->file_path);
+
+        return response()->file($path);
+    }
+
+
     public function destroy($id)
     {
         $note = CourseNote::findOrFail($id);
