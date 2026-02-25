@@ -556,7 +556,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <form id="editNoteForm" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.updatenotes') }}" id="editNoteForm" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
