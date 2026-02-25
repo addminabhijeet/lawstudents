@@ -105,14 +105,17 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4">
+                            <div class="mb-4 generate-pass">
                                 <div class="input-group field">
                                     <input type="password" name="password_confirmation" class="form-control password"
                                         id="confirmPassword" placeholder="Confirm Password" required>
+                                    <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
+                                        title="Generate Password"><i class="feather-hash"></i></div>
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                         data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
                             </div>
+                            
                             <div class="mt-4">
                                 <div class="custom-control custom-checkbox mb-2">
                                     <input type="checkbox" class="custom-control-input" id="receiveMail"
