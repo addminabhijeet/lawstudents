@@ -98,8 +98,6 @@
                                 <div class="input-group field">
                                     <input type="password" name="password" class="form-control password"
                                         id="newPassword" placeholder="Password" required>
-                                    <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
-                                        title="Generate Password"><i class="feather-hash"></i></div>
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                         data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
@@ -109,10 +107,10 @@
                                 <div class="input-group field">
                                     <input type="password" name="password_confirmation" class="form-control password"
                                         id="confirmPassword" placeholder="Confirm Password" required>
-                                    <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
-                                        title="Generate Password"><i class="feather-hash"></i></div>
-                                    <div class="input-group-text border-start bg-gray-2 c-pointer show-pas"
-                                        data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
+                                    <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                        id="toggleConfirmPassword" data-bs-toggle="tooltip" title="Show/Hide Password">
+                                        <i></i>
+                                    </div>
                                 </div>
                             </div>
 
@@ -379,14 +377,20 @@
     <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.show-pas').forEach(function(toggle) {
-                toggle.addEventListener('click', function() {
-                    let input = this.closest('.input-group').querySelector('input.password');
-                    if (input) {
+
+            function togglePassword(toggleId, inputId) {
+                let toggle = document.getElementById(toggleId);
+                let input = document.getElementById(inputId);
+
+                if (toggle && input) {
+                    toggle.addEventListener('click', function() {
                         input.type = input.type === 'password' ? 'text' : 'password';
-                    }
-                });
-            });
+                    });
+                }
+            }
+
+            togglePassword('toggleNewPassword', 'newPassword');
+            togglePassword('toggleConfirmPassword', 'confirmPassword');
         });
     </script>
 </body>
