@@ -108,23 +108,23 @@
                                 <div class="mb-4 generate-pass">
                                     <div class="input-group field">
                                         <input type="password" name="password" class="form-control password"
-                                            id="newPassword" placeholder="Password">
-
-                                        <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
-                                            title="Generate Password">
-                                            <i class="feather-hash"></i>
-                                        </div>
-
+                                            id="newPassword" placeholder="Password" required>
                                         <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                            data-bs-toggle="tooltip" title="Show/Hide Password">
-                                            <i></i>
-                                        </div>
+                                            data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                     </div>
                                 </div>
 
                                 <div class="mb-4">
-                                    <input type="password" name="password_confirmation" class="form-control"
-                                        placeholder="Confirm Password">
+                                    <div class="input-group field">
+                                        <input type="password" name="password_confirmation"
+                                            class="form-control password" id="confirmPassword"
+                                            placeholder="Confirm Password" required>
+                                        <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                            id="toggleConfirmPassword" data-bs-toggle="tooltip"
+                                            title="Show/Hide Password">
+                                            <i class="feather-eye"></i>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mt-5">
@@ -139,17 +139,28 @@
                 </div>
             </div>
         </main>
-        <script src="assets/vendors/js/vendors.min.js"></script>
-        <!-- vendors.min.js {always must need to be top} -->
-        <script src="assets/vendors/js/lslstrength.min.js"></script>
-        <!--! END: Vendors JS !-->
-        <!--! BEGIN: Apps Init  !-->
-        <script src="assets/js/common-init.min.js"></script>
-        <!--! END: Apps Init !-->
-        <!--! BEGIN: Theme Customizer  !-->
-        <script src="assets/js/theme-customizer-init.min.js"></script>
-        <!--! END: Theme Customizer !-->
-        <!-- [ Main Content ] end -->
+        <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
+        <script src="{{ asset('assets/vendors/js/lslstrength.min.js') }}"></script>
+        <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+        <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            function togglePassword(toggleId, inputId) {
+                let toggle = document.getElementById(toggleId);
+                let input = document.getElementById(inputId);
+
+                if (toggle && input) {
+                    toggle.addEventListener('click', function() {
+                        input.type = input.type === 'password' ? 'text' : 'password';
+                    });
+                }
+            }
+
+            togglePassword('toggleNewPassword', 'newPassword');
+            togglePassword('toggleConfirmPassword', 'confirmPassword');
+        });
+    </script>
 </main>
 @include('layouts.partials.student.theme')

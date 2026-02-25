@@ -280,7 +280,7 @@
                                                             class="avatar-text avatar-md">
                                                             <i class="feather feather-eye"></i>
                                                         </a>
-                                                        
+
                                                     </div>
                                                 </td>
                                             </tr>
