@@ -86,7 +86,9 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Notes</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Paid Notes</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listfreenotes') }}">Free Notes</a>
                             </li>
                         </ul>
                     </li>
@@ -503,7 +505,8 @@
 
                                     <div>
                                         <h6 class="text-dark mb-0">{{ auth('admin')->user()?->name }}</h6>
-                                        <span class="fs-12 fw-medium text-muted">{{ auth('admin')->user()?->email }}</span>
+                                        <span
+                                            class="fs-12 fw-medium text-muted">{{ auth('admin')->user()?->email }}</span>
                                     </div>
                                 </div>
                             </div>

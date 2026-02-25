@@ -39,6 +39,31 @@ class CourseNoteController extends Controller
         return view('notes.list', compact('categories', 'courses'));
     }
 
+    public function listfreenotes()
+    {
+        $categories = Category::whereHas('courses.notes')
+            ->with([
+                'courses' => function ($query) {
+                    $query->whereHas('notes')
+                        ->with('notes');
+                },
+                'children' => function ($query) {
+                    $query->whereHas('courses.notes')
+                        ->with([
+                            'courses' => function ($q) {
+                                $q->whereHas('notes')
+                                    ->with('notes');
+                            }
+                        ]);
+                }
+            ])
+            ->get();
+
+        $courses = Course::where('status', 1)->get();
+
+        return view('notes.listfree', compact('categories', 'courses'));
+    }
+
 
     public function storenotes(Request $request)
     {

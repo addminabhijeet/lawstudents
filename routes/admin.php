@@ -85,6 +85,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('course-notes', [CourseNoteController::class, 'listnotes'])
                 ->name('listnotes');
 
+            Route::get('course-free-notes', [CourseNoteController::class, 'listfreenotes'])
+                ->name('listfreenotes');
+
             Route::put('course-notes/{id}', [CourseNoteController::class, 'updatenotes'])
                 ->name('updatenotes');
 
