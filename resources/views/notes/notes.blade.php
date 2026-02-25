@@ -27,7 +27,7 @@
                     @foreach ($course->notes as $note)
                         <div class="col-lg-4 col-md-6">
                             <div class="blog-boxarea">
-                                <div class="blog-images position-relative"
+                                <div class="blog-images"
                                     style="width:100%; height:250px; position:relative; overflow:hidden; border-radius:8px;">
 
                                     @if ($note->file_path)
