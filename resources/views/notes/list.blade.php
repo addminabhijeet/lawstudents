@@ -352,148 +352,51 @@
                         @foreach ($categories as $category)
                             @foreach ($category->courses as $course)
                                 @foreach ($course->notes as $note)
-                                    {{-- VIEW MODAL --}}
-                                    <div class="modal fade" id="viewNoteModal{{ $note->id }}" tabindex="-1">
-                                        <div
-                                            class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-                                            <div class="modal-content">
+                                    <div
+                                        class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 
+                        single-note-item all-category category-{{ $category->id }}">
 
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">{{ $note->title }}</h5>
-                                                    <button type="button" class="btn-close"
-                                                        data-dismiss="modal"></button>
-                                                </div>
+                                        <div class="card card-body mb-4 stretch stretch-full">
+                                            <span class="side-stick"></span>
 
-                                                <div class="modal-body">
+                                            <h5 class="note-title text-truncate w-75 mb-1">
+                                                {{ $note->title }}
+                                            </h5>
 
-                                                    <div class="mb-3">
-                                                        <strong>Description:</strong>
-                                                        <p>{{ $note->description }}</p>
-                                                    </div>
+                                            <p class="fs-11 text-muted note-date">
+                                                {{ $note->created_at->format('d F Y') }}
+                                            </p>
 
-                                                    <iframe src="{{ asset('storage/' . $note->pdf_path) }}"
-                                                        width="100%" height="600px" style="border:1px solid #ddd;">
-                                                    </iframe>
-
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <a href="{{ asset('storage/' . $note->pdf_path) }}"
-                                                        class="btn btn-success" target="_blank">
-                                                        Open Full PDF
-                                                    </a>
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                </div>
-
+                                            <div class="note-content flex-grow-1">
+                                                <p class="text-muted text-truncate-3-line">
+                                                    Course: {{ $course->title }}
+                                                </p>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    {{-- EDIT MODAL --}}
-                                    <div class="modal fade" id="editNoteModal{{ $note->id }}" tabindex="-1">
-                                        <div
-                                            class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                                            <div class="modal-content">
+                                            <div class="d-flex align-items-center justify-content-between mt-2">
 
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Edit Note</h5>
-                                                    <button type="button" class="btn-close"
-                                                        data-dismiss="modal"></button>
-                                                </div>
+                                                <span class="badge bg-primary">
+                                                    {{ $category->name }}
+                                                </span>
 
-                                                <form action="{{ route('admin.updatenotes', $note->id) }}"
-                                                    method="POST" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('PUT')
-
-                                                    <div class="modal-body">
-                                                        <div class="row g-3">
-
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Select Course *</label>
-                                                                    <select name="course_id" class="form-select"
-                                                                        required>
-                                                                        @foreach ($courses as $course)
-                                                                            <option value="{{ $course->id }}"
-                                                                                {{ $note->course_id == $course->id ? 'selected' : '' }}>
-                                                                                {{ $course->title }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Note Title *</label>
-                                                                    <input type="text" name="title"
-                                                                        class="form-control"
-                                                                        value="{{ $note->title }}" required>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Version</label>
-                                                                    <input type="text" name="version"
-                                                                        class="form-control"
-                                                                        value="{{ $note->version }}">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Replace PDF</label>
-                                                                    <input type="file" name="pdf"
-                                                                        class="form-control" accept="application/pdf">
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Visibility</label>
-                                                                    <select name="visibility" class="form-select">
-                                                                        <option value="enrolled"
-                                                                            {{ $note->visibility == 'enrolled' ? 'selected' : '' }}>
-                                                                            Enrolled</option>
-                                                                        <option value="free"
-                                                                            {{ $note->visibility == 'free' ? 'selected' : '' }}>
-                                                                            Free</option>
-                                                                        <option value="paid"
-                                                                            {{ $note->visibility == 'paid' ? 'selected' : '' }}>
-                                                                            Paid</option>
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="form-check mt-4">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        name="is_downloadable" value="1"
-                                                                        {{ $note->is_downloadable ? 'checked' : '' }}>
-                                                                    <label class="form-check-label">
-                                                                        Allow Download
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-12">
-                                                                <label class="form-label">Description</label>
-                                                                <textarea name="description" class="form-control" rows="4">{{ $note->description }}</textarea>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-warning">
-                                                            Update Note
-                                                        </button>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">
-                                                            Cancel
-                                                        </button>
-                                                    </div>
-
-                                                </form>
-
+                                                <span class="fw-bold text-success">
+                                                    {{ $note->formatted_size }}
+                                                </span>
                                             </div>
+
+                                            <!-- ACTION BUTTONS -->
+                                            <div class="mt-3 d-flex gap-2">
+                                                <button class="btn btn-sm btn-info view-note-btn"
+                                                    data-id="{{ $note->id }}">
+                                                    View
+                                                </button>
+
+                                                <button class="btn btn-sm btn-warning edit-note-btn"
+                                                    data-id="{{ $note->id }}">
+                                                    Edit
+                                                </button>
+                                            </div>
+
                                         </div>
                                     </div>
                                 @endforeach
@@ -1069,12 +972,12 @@
         $("#btn-n-save").hide();
         $("#btn-n-add").show();
 
-        $(document).on("click", ".view-note-btn", function() {
+        $(".view-note-btn").on("click", function() {
             var noteId = $(this).data("id");
             $("#viewNoteModal" + noteId).modal("show");
         });
 
-        $(document).on("click", ".edit-note-btn", function() {
+        $(".edit-note-btn").on("click", function() {
             var noteId = $(this).data("id");
             $("#editNoteModal" + noteId).modal("show");
         });
