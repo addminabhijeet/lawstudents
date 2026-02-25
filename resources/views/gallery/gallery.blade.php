@@ -8,8 +8,8 @@
       <div class="row">
         <div class="col-lg-3 m-auto">
           <div class="welcome-inner-header text-center">
-            <h1>Our Team</h1>
-            <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Our Team</a>
+            <h1>Gallery</h1>
+            <a href="">Home <span><i class="fa-light fa-angle-right"></i></span>Gallery</a>
             <img src="/img/elements/elementor20.png" alt="">
           </div>
         </div>
