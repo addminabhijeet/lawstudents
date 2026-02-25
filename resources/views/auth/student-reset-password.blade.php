@@ -108,7 +108,7 @@
                                     <input type="password" name="password_confirmation" class="form-control password"
                                         id="confirmPassword" placeholder="Confirm Password" required>
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                        id="toggleConfirmPassword" data-bs-toggle="tooltip" title="Show/Hide Password">
+                                        data-bs-toggle="tooltip" title="Show/Hide Password">
                                         <i></i>
                                     </div>
                                 </div>
