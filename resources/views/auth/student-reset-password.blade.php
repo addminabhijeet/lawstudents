@@ -377,18 +377,7 @@
     <script src="{{ asset('assets/vendors/js/lslstrength.min.js') }}"></script>
     <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.show-pass').forEach(function(toggle) {
-                toggle.addEventListener('click', function() {
-                    let input = this.closest('.input-group').querySelector('input.password');
-                    if (input) {
-                        input.type = input.type === 'password' ? 'text' : 'password';
-                    }
-                });
-            });
-        });
-    </script>
+
 </body>
 
 </html>
