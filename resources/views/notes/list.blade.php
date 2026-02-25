@@ -387,21 +387,15 @@
                                             <!-- ACTION BUTTONS -->
                                             <div class="mt-3 d-flex flex-column gap-2">
 
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-info w-100 mb-2 view-note-btn"
-                                                    data-id="{{ $note->id }}" data-title="{{ $note->title }}"
-                                                    data-description="{{ $note->description }}"
-                                                    data-pdf="{{ asset('storage/' . $note->pdf_path) }}">
+                                                <a href="javascript:void(0);" class="btn btn-info w-100 mb-2"
+                                                    id="view-note-{{ $note->id }}" data-id="{{ $note->id }}">
                                                     <i class="feather-eye me-2"></i>
                                                     <span>View Note</span>
                                                 </a>
 
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-warning w-100 edit-note-btn"
-                                                    data-id="{{ $note->id }}" data-title="{{ $note->title }}"
-                                                    data-description="{{ $note->description }}"
-                                                    data-course="{{ $note->course_id }}"
-                                                    data-update-url="{{ route('admin.updatenotes', $note->id) }}">
+                                                <a href="javascript:void(0);" class="btn btn-warning w-100"
+                                                    id="edit-note-{{ $note->id }}"
+                                                    data-id="{{ $note->id }}">
                                                     <i class="feather-edit me-2"></i>
                                                     <span>Edit Note</span>
                                                 </a>
@@ -522,7 +516,7 @@
         </div>
     </div>
 </div>
-{{-- 
+
 <div class="modal fade" id="viewNoteModal{{ $note->id }}" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -644,99 +638,6 @@
                             <textarea name="description" class="form-control" rows="4">{{ $note->description }}</textarea>
                         </div>
 
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-warning">
-                        Update Note
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Cancel
-                    </button>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-</div> --}}
-
-<div class="modal fade" id="viewNoteModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title" id="view-note-title"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body">
-
-                <div class="mb-3">
-                    <strong>Description:</strong>
-                    <p id="view-note-description"></p>
-                </div>
-
-                <iframe id="view-note-pdf" width="100%" height="600px" style="border:1px solid #ddd;">
-                </iframe>
-
-            </div>
-
-            <div class="modal-footer">
-                <a href="#" id="view-note-open-pdf" class="btn btn-success" target="_blank">
-                    Open Full PDF
-                </a>
-
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="editNoteModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Note</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <form id="editNoteForm" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-
-                <div class="modal-body">
-
-                    <input type="hidden" name="note_id" id="edit-note-id">
-
-                    <!-- Course -->
-                    <div class="mb-3">
-                        <label class="form-label">Select Course *</label>
-                        <select name="course_id" id="edit-course" class="form-select" required>
-                            @foreach ($courses as $course)
-                                <option value="{{ $course->id }}">
-                                    {{ $course->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- Title -->
-                    <div class="mb-3">
-                        <label class="form-label">Note Title *</label>
-                        <input type="text" name="title" id="edit-title" class="form-control" required>
-                    </div>
-
-                    <!-- Description -->
-                    <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea name="description" id="edit-description" class="form-control" rows="4"></textarea>
                     </div>
 
                 </div>
