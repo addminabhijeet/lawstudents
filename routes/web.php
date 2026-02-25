@@ -29,7 +29,12 @@ Route::get('auth/google', function () {
 })->name('google.login');
 
 Route::get('auth/google/callback', function () {
-    $googleUser = Socialite::driver('google')->user();
+
+    try {
+        $googleUser = Socialite::driver('google')->user();
+    } catch (\Exception $e) {
+        return redirect('/')->with('error', 'Google login failed.');
+    }
 
     $user = User::updateOrCreate(
         ['email' => $googleUser->getEmail()],
