@@ -1,4 +1,4 @@
-@extends('layouts.landing', ['title' => 'Lawsy || Criminal Law || Our Blog 04'])
+@extends('layouts.landing', ['title' => 'Lawsy || Criminal Law || Free Notes'])
 
 @section('content')
   <!--===== WELCOME STARTS =======-->
@@ -8,8 +8,8 @@
     <div class="row">
       <div class="col-lg-3 m-auto">
       <div class="welcome-inner-header text-center">
-        <h1>Our Blog</h1>
-        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Our BLog</a>
+        <h1>Free Notes</h1>
+        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Free Notes</a>
         <img src="/img/elements/elementor20.png" alt="">
       </div>
       </div>
