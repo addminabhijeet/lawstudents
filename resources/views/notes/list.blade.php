@@ -385,16 +385,21 @@
                                             </div>
 
                                             <!-- ACTION BUTTONS -->
-                                            <div class="mt-3 d-flex gap-2">
-                                                <button class="btn btn-sm btn-info view-note-btn"
-                                                    data-id="{{ $note->id }}">
-                                                    View
-                                                </button>
+                                            <div class="mt-3 d-flex flex-column gap-2">
 
-                                                <button class="btn btn-sm btn-warning edit-note-btn"
+                                                <a href="javascript:void(0);" class="btn btn-info w-100 mb-2"
+                                                    id="view-note-{{ $note->id }}" data-id="{{ $note->id }}">
+                                                    <i class="feather-eye me-2"></i>
+                                                    <span>View Note</span>
+                                                </a>
+
+                                                <a href="javascript:void(0);" class="btn btn-warning w-100"
+                                                    id="edit-note-{{ $note->id }}"
                                                     data-id="{{ $note->id }}">
-                                                    Edit
-                                                </button>
+                                                    <i class="feather-edit me-2"></i>
+                                                    <span>Edit Note</span>
+                                                </a>
+
                                             </div>
 
                                         </div>
@@ -973,14 +978,17 @@
         $("#btn-n-add").show();
     });
 
-    $(document).on("click", ".view-note-btn", function() {
-        var noteId = $(this).data("id");
+    $("[id^='view-note-']").on("click", function() {
+        let noteId = $(this).data("id");
         $("#viewNoteModal" + noteId).modal("show");
     });
 
-    $(document).on("click", ".edit-note-btn", function() {
-        var noteId = $(this).data("id");
+    $("[id^='edit-note-']").on("click", function() {
+        let noteId = $(this).data("id");
         $("#editNoteModal" + noteId).modal("show");
+
+        $("#btn-n-save").show();
+        $("#btn-n-add").hide();
     });
 
     // Button add
