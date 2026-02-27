@@ -8,7 +8,7 @@
 
 @if ($number)
     <a href="https://wa.me/{{ $number }}?text={{ $message }}" class="whatsapp-float" target="_blank">
-        <i class="fa fa-whatsapp whatsapp-icon"></i>
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
     <style>
         .whatsapp-float {
