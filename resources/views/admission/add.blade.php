@@ -147,11 +147,6 @@
 
                                 <div class="row">
                                     <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Course Duration</label>
-                                        <input type="text" class="form-control" name="course_duration">
-                                    </div>
-
-                                    <div class="col-lg-6 mb-4">
                                         <label class="form-label">Admission Session *</label>
                                         <input type="text" class="form-control" name="admission_session">
                                     </div>
