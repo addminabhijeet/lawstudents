@@ -7,10 +7,8 @@
 @endphp
 
 @if ($number)
-    <a href="https://wa.me/{{ $number }}?text={{ $message }}"
-       class="whatsapp-float"
-       id="whatsappFloat"
-       target="_blank">
+    <a href="https://wa.me/{{ $number }}?text={{ $message }}" class="whatsapp-float" id="whatsappFloat"
+        target="_blank">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
 
@@ -49,6 +47,7 @@
         const button = document.getElementById("whatsappFloat");
 
         let isDragging = false;
+        let hasMoved = false;
         let offsetX, offsetY;
 
         // Load saved position
@@ -62,6 +61,8 @@
 
         const startDrag = (e) => {
             isDragging = true;
+            hasMoved = false;
+
             const rect = button.getBoundingClientRect();
             offsetX = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
             offsetY = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
@@ -71,6 +72,7 @@
             if (!isDragging) return;
 
             e.preventDefault();
+            hasMoved = true;
 
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -78,7 +80,6 @@
             let left = clientX - offsetX;
             let top = clientY - offsetY;
 
-            // Keep inside screen
             left = Math.max(0, Math.min(window.innerWidth - button.offsetWidth, left));
             top = Math.max(0, Math.min(window.innerHeight - button.offsetHeight, top));
 
@@ -95,7 +96,9 @@
             const rect = button.getBoundingClientRect();
             const snapLeft = rect.left < window.innerWidth / 2;
 
-            button.style.left = snapLeft ? "10px" : (window.innerWidth - button.offsetWidth - 10) + "px";
+            button.style.left = snapLeft ?
+                "10px" :
+                (window.innerWidth - button.offsetWidth - 10) + "px";
 
             // Save position
             localStorage.setItem("whatsappPosition", JSON.stringify({
@@ -104,14 +107,23 @@
             }));
         };
 
+        // Prevent link click if dragged
+        button.addEventListener("click", function(e) {
+            if (hasMoved) {
+                e.preventDefault();
+            }
+        });
+
         // Mouse Events
         button.addEventListener("mousedown", startDrag);
         document.addEventListener("mousemove", drag);
         document.addEventListener("mouseup", endDrag);
 
-        // Touch Events (Mobile)
+        // Touch Events
         button.addEventListener("touchstart", startDrag);
-        document.addEventListener("touchmove", drag, { passive: false });
+        document.addEventListener("touchmove", drag, {
+            passive: false
+        });
         document.addEventListener("touchend", endDrag);
     </script>
 @endif
