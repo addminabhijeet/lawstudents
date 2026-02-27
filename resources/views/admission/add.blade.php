@@ -140,11 +140,6 @@
 
                                 <div class="row">
                                     <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Country *</label>
-                                        <input type="text" class="form-control" name="country" value="India">
-                                    </div>
-
-                                    <div class="col-lg-6 mb-4">
                                         <label class="form-label">Course Selection</label>
                                         <input type="text" class="form-control" name="course_name">
                                     </div>
@@ -172,20 +167,7 @@
                                     <input type="file" class="form-control" name="signature">
                                 </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label">Marksheet</label>
-                                    <input type="file" class="form-control" name="marksheet">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">ID Proof</label>
-                                    <input type="file" class="form-control" name="id_proof">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Remarks</label>
-                                    <textarea class="form-control" name="remarks"></textarea>
-                                </div>
+                                
 
                             </div>
                         </div>
