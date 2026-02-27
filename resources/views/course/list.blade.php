@@ -361,43 +361,94 @@
                     </div>
                 </div>
                 <div class="content-area-body pb-0">
-                    <div class="row note-has-grid" id="note-full-container">
+                    <div id="note-full-container" style="width:100%;">
+
                         @foreach ($categories as $category)
-                            @foreach ($category->courses as $course)
-                                <div
-                                    class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
-                                    <div class="card card-body mb-4 stretch stretch-full">
-                                        <span class="side-stick"></span>
+                            <!-- ================= CATEGORY ================= -->
+                            <div style="margin-bottom:30px; border-bottom:2px solid #eee; padding-bottom:15px;">
 
-                                        <h5 class="note-title text-truncate w-75 mb-1">
-                                            {{ $course->title }}
-                                        </h5>
+                                <h4 style="font-weight:700; margin-bottom:15px;">
+                                    📂 {{ $category->name }}
+                                </h4>
 
-                                        <p class="fs-11 text-muted note-date">
-                                            {{ $course->created_at->format('d F Y') }}
-                                        </p>
+                                {{-- CATEGORY COURSES --}}
+                                @foreach ($category->courses as $course)
+                                    <div class="single-note-item all-category category-{{ $category->id }}"
+                                        style="display:flex; justify-content:space-between; align-items:center;
+                            padding:12px 15px; margin-bottom:10px;
+                            border:1px solid #e5e5e5;
+                            border-radius:8px;
+                            background:#fafafa;">
 
-                                        <div class="note-content flex-grow-1">
-                                            <p class="text-muted note-inner-content text-truncate-3-line">
+                                        <div>
+                                            <h6 style="margin:0; font-weight:600;">
+                                                {{ $course->title }}
+                                            </h6>
+
+                                            <small style="color:#777;">
+                                                {{ $course->created_at->format('d F Y') }}
+                                            </small>
+
+                                            <p style="margin:5px 0 0; color:#666;">
                                                 {{ $course->description }}
                                             </p>
                                         </div>
 
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="badge bg-primary text-truncate w-75 mb-1">
-                                                {{ $category->name }}
-                                            </span>
-
-                                            <span class="fw-bold text-success">
+                                        <div style="text-align:right;">
+                                            <span style="font-weight:700; color:#198754;">
                                                 ₹{{ $course->price }}
                                             </span>
                                         </div>
 
+                                    </div>
+                                @endforeach
+
+
+                                {{-- ================= SUB CATEGORIES ================= --}}
+                                @foreach ($category->children as $child)
+                                    <div style="margin-top:20px; margin-left:20px;">
+
+                                        <h5 style="font-weight:600; margin-bottom:10px;">
+                                            📁 {{ $child->name }}
+                                        </h5>
+
+                                        @foreach ($child->courses as $course)
+                                            <div class="single-note-item all-category category-{{ $category->id }}"
+                                                style="display:flex; justify-content:space-between; align-items:center;
+                                    padding:10px 15px; margin-bottom:8px;
+                                    border:1px solid #ddd;
+                                    border-radius:6px;
+                                    background:#ffffff;">
+
+                                                <div>
+                                                    <h6 style="margin:0; font-weight:500;">
+                                                        {{ $course->title }}
+                                                    </h6>
+
+                                                    <small style="color:#888;">
+                                                        {{ $course->created_at->format('d F Y') }}
+                                                    </small>
+
+                                                    <p style="margin:4px 0 0; color:#777;">
+                                                        {{ $course->description }}
+                                                    </p>
+                                                </div>
+
+                                                <div style="text-align:right;">
+                                                    <span style="font-weight:600; color:#198754;">
+                                                        ₹{{ $course->price }}
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        @endforeach
 
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+
+                            </div>
                         @endforeach
+
                     </div>
                 </div>
             </div>
