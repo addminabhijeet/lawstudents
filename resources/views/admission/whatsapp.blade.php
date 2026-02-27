@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="card shadow-sm border-0">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header text-white">
                 <h5 class="mb-0">WhatsApp Settings</h5>
             </div>
 
