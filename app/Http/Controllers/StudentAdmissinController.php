@@ -8,6 +8,11 @@ use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\Payment;
 use App\Models\WhatsappSetting;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use App\Mail\StudentOtpMail;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class StudentAdmissinController extends Controller
 {
@@ -57,6 +62,16 @@ class StudentAdmissinController extends Controller
 
         if ($admission->admission_status === 'approved') {
 
+            $verifiedAdmission = StudentAdmission::where('id', $admission->id)
+                ->where('email_verified', true)
+                ->where('phone_verified', true)
+                ->first();
+
+            if (!$verifiedAdmission) {
+                return redirect()->back()
+                    ->with('error', 'Email and Phone OTP must be verified before approval.');
+            }
+
             $paymentExists = Payment::where('student_id', $student->id)->exists();
 
             if (!$paymentExists) {
@@ -79,8 +94,65 @@ class StudentAdmissinController extends Controller
             }
         }
 
-
         return redirect()->back()->with('success', 'Admission created successfully.');
+    }
+
+    public function sendEmailOtp(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $otp = rand(100000, 999999);
+
+        Session::put('email_otp', $otp);
+        Session::put('otp_email', $request->email);
+
+        Mail::to($request->email)->send(new StudentOtpMail($otp));
+
+        return response()->json(['success' => true, 'message' => 'Email OTP sent']);
+    }
+
+    public function sendPhoneOtp(Request $request)
+    {
+        $request->validate(['phone' => 'required']);
+
+        $otp = rand(100000, 999999);
+
+        Session::put('phone_otp', $otp);
+        Session::put('otp_phone', $request->phone);
+
+        Http::withHeaders([
+            'authorization' => env('FAST2SMS_API_KEY'),
+            'accept' => 'application/json',
+        ])->post('https://www.fast2sms.com/dev/bulkV2', [
+            'route' => 'v3',
+            'sender_id' => 'FSTSMS',
+            'message' => "Your OTP is $otp",
+            'language' => 'english',
+            'flash' => 0,
+            'numbers' => $request->phone,
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Phone OTP sent']);
+    }
+
+    public function verifyEmailOtp(Request $request)
+    {
+        if ($request->otp == Session::get('email_otp')) {
+            Session::put('email_verified', true);
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Invalid OTP']);
+    }
+
+    public function verifyPhoneOtp(Request $request)
+    {
+        if ($request->otp == Session::get('phone_otp')) {
+            Session::put('phone_verified', true);
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Invalid OTP']);
     }
 
     public function show($id)
@@ -158,7 +230,7 @@ class StudentAdmissinController extends Controller
 
         return redirect()->back()->with('success', 'Admission deleted successfully.');
     }
-    
+
     public function whatsapp()
     {
         $whatsapp = WhatsappSetting::latest()->get();

@@ -46,7 +46,12 @@ class StudentAdmission extends Model
         'marksheet',
         'id_proof',
         'admission_status',
-        'remarks'
+        'remarks',
+        'email_otp',
+        'phone_otp',
+        'otp_expires_at',
+        'email_verified',
+        'phone_verified',
     ];
 
     protected $casts = [

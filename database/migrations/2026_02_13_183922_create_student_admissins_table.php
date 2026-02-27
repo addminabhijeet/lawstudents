@@ -11,17 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_admissins', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('student_admissions', function (Blueprint $table) {
+            $table->string('email_otp')->nullable();
+            $table->string('phone_otp')->nullable();
+            $table->boolean('email_verified')->default(false);
+            $table->boolean('phone_verified')->default(false);
+            $table->timestamp('otp_expires_at')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('student_admissins');
+        Schema::table('student_admissions', function (Blueprint $table) {
+            $table->dropColumn([
+                'email_otp',
+                'phone_otp',
+                'email_verified',
+                'phone_verified',
+                'otp_expires_at'
+            ]);
+        });
     }
 };

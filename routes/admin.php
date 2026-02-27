@@ -102,6 +102,12 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::post('store-notes', [CourseNoteController::class, 'storenotes'])
                 ->name('storenotes');
+
+            Route::post('send-email-otp', [StudentAdmissinController::class, 'sendEmailOtp'])->name('sendemailotp');
+            Route::post('verify-email-otp', [StudentAdmissinController::class, 'verifyEmailOtp'])->name('verifyemailotp');
+
+            Route::post('send-phone-otp', [StudentAdmissinController::class, 'sendPhoneOtp'])->name('sendphoneotp');
+            Route::post('verify-phone-otp', [StudentAdmissinController::class, 'verifyPhoneOtp'])->name('verifyphoneotp');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])

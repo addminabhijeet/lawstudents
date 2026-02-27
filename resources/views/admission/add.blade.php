@@ -62,6 +62,9 @@
                                 <div class="mb-4">
                                     <label class="form-label">Email ID</label>
                                     <input type="email" class="form-control" name="email">
+                                    <button type="button" onclick="sendEmailOtp()">Send Email OTP</button>
+                                    <input type="text" id="emailOtp" placeholder="Enter Email OTP">
+                                    <button type="button" onclick="verifyEmailOtp()">Verify</button>
                                 </div>
 
                                 <div class="mb-4">
@@ -76,6 +79,9 @@
                                 <div class="mb-4">
                                     <label class="form-label">Contact Number</label>
                                     <input type="text" class="form-control" name="phone">
+                                    <button type="button" onclick="sendPhoneOtp()">Send Phone OTP</button>
+                                    <input type="text" id="phoneOtp" placeholder="Enter Phone OTP">
+                                    <button type="button" onclick="verifyPhoneOtp()">Verify</button>
                                 </div>
 
                                 <div class="mb-4">
@@ -259,4 +265,63 @@
 
     <!-- [ Main Content ] end -->
 </main>
+<script>
+    function sendEmailOtp() {
+        fetch("{{ route('admin.sendemailotp') }}", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: document.querySelector('[name=email]').value
+            })
+        }).then(res => res.json()).then(data => alert(data.message));
+    }
+
+    function verifyEmailOtp() {
+        fetch("{{ route('admin.verifyemailotp') }}", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                otp: document.getElementById('emailOtp').value
+            })
+        }).then(res => res.json()).then(data => {
+            if (data.success) alert("Email Verified");
+            else alert("Invalid OTP");
+        });
+    }
+
+    function sendPhoneOtp() {
+        fetch("{{ route('admin.sendphoneotp') }}", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phone: document.querySelector('[name=phone]').value
+            })
+        }).then(res => res.json()).then(data => alert(data.message));
+    }
+
+    function verifyPhoneOtp() {
+        fetch("{{ route('admin.verifyphoneotp') }}", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                otp: document.getElementById('phoneOtp').value
+            })
+        }).then(res => res.json()).then(data => {
+            if (data.success) alert("Phone Verified");
+            else alert("Invalid OTP");
+        });
+    }
+</script>
 @include('layouts.partials.admin.theme')
