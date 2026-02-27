@@ -196,6 +196,12 @@ class RoutingController extends Controller
         return view('payment.view', compact('payment'));
     }
 
+    public function viewidcard($id)
+    {
+        $idcard = Payment::findOrFail($id);
+        return view('payment.idcard', compact('idcard'));
+    }
+
     public function listnotes()
     {
         return view('notes.list');
