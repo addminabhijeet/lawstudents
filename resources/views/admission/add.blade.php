@@ -145,13 +145,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Admission Session *</label>
-                                        <input type="text" class="form-control" name="admission_session">
-                                    </div>
-                                </div>
-
                                 <div class="mb-3">
                                     <label class="form-label">Passport Size Photo (JPEG/PNG)</label>
                                     <input type="file" class="form-control" name="photo">
