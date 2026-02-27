@@ -63,9 +63,6 @@
             isDragging = true;
             hasMoved = false;
 
-            // 🔥 Disable link temporarily while dragging
-            button.style.pointerEvents = "none";
-
             const rect = button.getBoundingClientRect();
             offsetX = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
             offsetY = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
@@ -108,13 +105,9 @@
                 left: button.offsetLeft,
                 top: button.offsetTop
             }));
-
-            setTimeout(() => {
-                button.style.pointerEvents = "auto";
-            }, 50);
         };
 
-        // Extra safety: block click if it was drag
+        // Prevent link click if dragged
         button.addEventListener("click", function(e) {
             if (hasMoved) {
                 e.preventDefault();
