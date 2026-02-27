@@ -44,18 +44,35 @@
                 </div>
             </div>
         </div>
-        <!-- [ page-header ] end -->
-        <!-- [ Main Content ] start -->
-        <form action="{{ route('admin.updateWhatsapp', ['id' => $setting ? $setting->id : 1]) }}" method="POST">
-            @csrf
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">WhatsApp Settings</h5>
+            </div>
 
-            <input type="text" name="whatsapp_number" placeholder="WhatsApp Number"
-                value="{{ $setting ? $setting->whatsapp_number : '' }}">
+            <div class="card-body">
+                <form action="{{ route('admin.updateWhatsapp', ['id' => $setting ? $setting->id : 1]) }}"
+                    method="POST">
+                    @csrf
 
-            <textarea name="pre_message">{{ $setting ? $setting->pre_message : 'Hello LawStudents, I am interested in...' }}</textarea>
+                    <div class="mb-3">
+                        <label class="form-label">WhatsApp Number</label>
+                        <input type="text" name="whatsapp_number" class="form-control" placeholder="WhatsApp Number"
+                            value="{{ $setting ? $setting->whatsapp_number : '' }}">
+                    </div>
 
-            <button type="submit">Save</button>
-        </form>
+                    <div class="mb-3">
+                        <label class="form-label">Pre-filled Message</label>
+                        <textarea name="pre_message" class="form-control" rows="4">{{ $setting ? $setting->pre_message : 'Hello LawStudents, I am interested in...' }}</textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary">
+                            Save Settings
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <!-- [ Main Content ] end -->
