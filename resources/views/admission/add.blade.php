@@ -1,8 +1,6 @@
 @include('layouts.partials.admin.dashboard')
 <main class="nxl-container">
-    <!-- main containts -->
     <div class="nxl-content">
-        <!-- [ page-header ] start -->
         <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
@@ -40,8 +38,6 @@
                 </div>
             </div>
         </div>
-        <!-- [ page-header ] end -->
-        <!-- [ Main Content ] start -->
         <form action="{{ route('admin.registeradmsubmit') }}" method="POST">
             @csrf
 
@@ -67,28 +63,12 @@
                                     <button type="button" onclick="verifyEmailOtp()">Verify</button>
                                 </div>
 
-                                {{-- <div class="mb-4">
-                                    <label class="form-label">Gender *</label>
-                                    <select class="form-control" name="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div> --}}
-
                                 <div class="mb-4">
                                     <label class="form-label">Contact Number</label>
                                     <input type="text" class="form-control" name="phone">
                                     <button type="button" onclick="sendPhoneOtp()">Send Phone OTP</button>
                                     <input type="text" id="phoneOtp" placeholder="Enter Phone OTP">
                                     <button type="button" onclick="verifyPhoneOtp()">Verify</button>
-                                </div>
-
-                                <div class="mb-4">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">DOB *</label>
-                                        <input type="date" class="form-control" name="dob">
-                                    </div>
                                 </div>
 
                                 <div class="mb-4">
@@ -126,25 +106,6 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">City *</label>
-                                        <input type="text" class="form-control" name="city">
-                                    </div>
-
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">State *</label>
-                                        <input type="text" class="form-control" name="state">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Course Selection</label>
-                                        <input type="text" class="form-control" name="course_name">
-                                    </div>
-                                </div>
-
                                 <div class="mb-3">
                                     <label class="form-label">Passport Size Photo (JPEG/PNG)</label>
                                     <input type="file" class="form-control" name="photo">
@@ -154,9 +115,6 @@
                                     <label class="form-label">Signature (JPEG/PNG)</label>
                                     <input type="file" class="form-control" name="signature">
                                 </div>
-
-                                
-
                             </div>
                         </div>
                     </div>
@@ -169,8 +127,6 @@
             </div>
         </form>
     </div>
-
-    <!-- [ Main Content ] end -->
 </main>
 <script>
     function sendEmailOtp() {
