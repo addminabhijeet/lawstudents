@@ -67,14 +67,14 @@
                                     <button type="button" onclick="verifyEmailOtp()">Verify</button>
                                 </div>
 
-                                <div class="mb-4">
+                                {{-- <div class="mb-4">
                                     <label class="form-label">Gender *</label>
                                     <select class="form-control" name="gender">
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                         <option value="other">Other</option>
                                     </select>
-                                </div>
+                                </div> --}}
 
                                 <div class="mb-4">
                                     <label class="form-label">Contact Number</label>
@@ -85,40 +85,15 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="form-label">Alternate Phone</label>
-                                    <input type="text" class="form-control" name="alternate_phone">
-                                </div>
-
-                                <div class="row">
                                     <div class="col-lg-6 mb-4">
                                         <label class="form-label">DOB *</label>
                                         <input type="date" class="form-control" name="dob">
-                                    </div>
-
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Pincode *</label>
-                                        <input type="text" class="form-control" name="pincode">
                                     </div>
                                 </div>
 
                                 <div class="mb-4">
                                     <label class="form-label">Father's / Guardian Name</label>
                                     <input type="text" class="form-control" name="father_name">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Mother Name</label>
-                                    <input type="text" class="form-control" name="mother_name">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Guardian Phone</label>
-                                    <input type="text" class="form-control" name="guardian_phone">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Guardian Email</label>
-                                    <input type="email" class="form-control" name="guardian_email">
                                 </div>
 
                                 <div class="mb-4">
@@ -186,44 +161,6 @@
                                         <input type="text" class="form-control" name="admission_session">
                                     </div>
                                 </div>
-
-                                <hr class="my-4">
-
-                                <div class="mb-3">
-                                    <label class="form-label">Last Qualification *</label>
-                                    <input type="text" class="form-control" name="last_qualification">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Board / University *</label>
-                                    <input type="text" class="form-control" name="board_university">
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6 mb-3">
-                                        <label class="form-label">Passing Year *</label>
-                                        <input type="number" class="form-control" name="passing_year">
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <label class="form-label">Percentage</label>
-                                        <input type="number" class="form-control" name="percentage">
-                                    </div>
-                                </div>
-
-                                <hr class="my-4">
-
-                                <div class="mb-3">
-                                    <label class="form-label">Aadhaar</label>
-                                    <input type="text" class="form-control" name="aadhaar_number">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">PAN</label>
-                                    <input type="text" class="form-control" name="pan_number">
-                                </div>
-
-                                <hr class="my-4">
 
                                 <div class="mb-3">
                                     <label class="form-label">Passport Size Photo (JPEG/PNG)</label>
