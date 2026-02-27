@@ -78,6 +78,9 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('view-payment/{id}', [RoutingController::class, 'viewpayment'])
                 ->name('viewpayment');
+            
+            Route::get('view-idcard/{id}', [RoutingController::class, 'viewidcard'])
+                ->name('viewidcard');
 
             Route::get('courses', [CourseController::class, 'listcourse'])
                 ->name('listcourse');
