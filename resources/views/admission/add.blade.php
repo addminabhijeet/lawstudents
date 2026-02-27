@@ -60,7 +60,7 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Email ID</label>
                                     <input type="email" class="form-control" name="email">
                                 </div>
 
@@ -74,7 +74,7 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="form-label">Phone *</label>
+                                    <label class="form-label">Contact Number</label>
                                     <input type="text" class="form-control" name="phone">
                                 </div>
 
@@ -96,7 +96,7 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="form-label">Father Name</label>
+                                    <label class="form-label">Father's / Guardian Name</label>
                                     <input type="text" class="form-control" name="father_name">
                                 </div>
 
@@ -132,7 +132,7 @@
                             <div class="card-body">
 
                                 <div>
-                                    <label class="form-label">Address *</label>
+                                    <label class="form-label">Address</label>
                                     <div class="row">
                                         <div class="col-lg-6 mb-4">
                                             <input type="text" class="form-control" name="address_line1"
@@ -164,7 +164,7 @@
                                     </div>
 
                                     <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Course Name *</label>
+                                        <label class="form-label">Course Selection</label>
                                         <input type="text" class="form-control" name="course_name">
                                     </div>
                                 </div>
@@ -220,12 +220,12 @@
                                 <hr class="my-4">
 
                                 <div class="mb-3">
-                                    <label class="form-label">Photo</label>
+                                    <label class="form-label">Passport Size Photo (JPEG/PNG)</label>
                                     <input type="file" class="form-control" name="photo">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Signature</label>
+                                    <label class="form-label">Signature (JPEG/PNG)</label>
                                     <input type="file" class="form-control" name="signature">
                                 </div>
 
