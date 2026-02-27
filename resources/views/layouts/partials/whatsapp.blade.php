@@ -10,11 +10,12 @@
     <a href="https://wa.me/{{ $number }}?text={{ $message }}" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
+
     <style>
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
-            left: 20px; /* Changed from right to left */
+            left: 20px;   /* changed from right to left */
             background: #25D366;
             color: white;
             width: 60px;
@@ -24,7 +25,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 999;
+            z-index: 9999;
             text-decoration: none;
         }
 
