@@ -7,6 +7,7 @@ use App\Models\StudentAdmission;
 use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\Payment;
+use App\Models\WhatsappSetting;
 
 class StudentAdmissinController extends Controller
 {
@@ -150,13 +151,30 @@ class StudentAdmissinController extends Controller
         return redirect()->back()->with('success', 'Admission updated successfully.');
     }
 
-
-
     public function destroy($id)
     {
         $admission = StudentAdmission::findOrFail($id);
         $admission->delete();
 
         return redirect()->back()->with('success', 'Admission deleted successfully.');
+    }
+
+    public function whatsapp()
+    {
+        $whatsapp = WhatsappSetting::latest()->get();
+        return view('admission.whatsapp', compact('whatsapp'));
+    }
+
+    public function updateWhatsapp(Request $request)
+    {
+        WhatsappSetting::updateOrCreate(
+            ['id' => 1],
+            [
+                'whatsapp_number' => $request->whatsapp_number,
+                'pre_message' => $request->pre_message
+            ]
+        );
+
+        return back()->with('success', 'WhatsApp settings updated');
     }
 }

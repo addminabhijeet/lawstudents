@@ -1,0 +1,16 @@
+@php
+$setting = $whatsapp->first(); // get first record
+@endphp
+
+<form action="{{ route('admin.updateWhatsapp') }}" method="POST">
+    @csrf
+
+    <input type="text"
+           name="whatsapp_number"
+           placeholder="WhatsApp Number"
+           value="{{ $setting ? $setting->whatsapp_number : '' }}">
+
+    <textarea name="pre_message">{{ $setting ? $setting->pre_message : 'Hello LawStudents, I am interested in...' }}</textarea>
+
+    <button type="submit">Save</button>
+</form>

@@ -18,6 +18,7 @@
 
     @include('layouts.partials.header.navbar')
 
+    @include('layouts.partials.whatsapp')
 
     @yield('content')
 

@@ -77,6 +77,7 @@
                                     Addmission</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add
                                     Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.whatsapp') }}">Whatsapp</a></li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -86,9 +87,11 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Paid Notes</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Paid
+                                    Notes</a>
                             </li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listfreenotes') }}">Free Notes</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listfreenotes') }}">Free
+                                    Notes</a>
                             </li>
                         </ul>
                     </li>

@@ -34,6 +34,12 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('list-admission', [StudentAdmissinController::class, 'index'])
                 ->name('listadmission');
 
+            Route::get('whatsapp', [StudentAdmissinController::class, 'whatsapp'])
+                ->name('whatsapp');
+
+            Route::post('update-whatsapp/{id}', [RoutingController::class, 'updateWhatsapp'])
+                ->name('updateWhatsapp');
+
             Route::get('show-admission', [StudentAdmissinController::class, 'show'])
                 ->name('showadmission');
 
