@@ -24,103 +24,164 @@
         <div class="container">
             <div class="row">
 
-                @foreach ($courses as $course)
-                    @foreach ($course->notes as $note)
-                        <div class="col-lg-4 col-md-6">
-                            <div class="blog-boxarea">
+                <div style="width:100%; max-width:1100px; margin:auto;">
 
-                                {{-- IMAGE / PDF SECTION --}}
-                                <div class="blog-images">
+                    @foreach ($categories as $category)
+                        <div
+                            style="margin-bottom:15px; border:1px solid #e4e6eb; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
 
-                                    @if ($note->file_path)
-                                        <img id="preview-img-{{ $note->id }}"
-                                            src="{{ asset('img/images/blog-img1.png') }}"
-                                            style="width:100%; height:250px; object-fit:cover; display:block;">
+                            <!-- CATEGORY HEADER -->
+                            <div onclick="toggleAccordion('cat{{ $category->id }}', 'cat-group')" class="cat-group"
+                                style="cursor:pointer; padding:18px; background:#ffffff; font-size:18px; font-weight:600; display:flex; justify-content:space-between; align-items:center;">
+                                <span>{{ $category->name }}</span>
+                                <span
+                                    style="background:#25D366; color:#fff; padding:3px 8px; border-radius:20px; font-size:12px;">
+                                    {{ $category->courses->sum(fn($c) => $c->notes->count()) }}
+                                </span>
+                            </div>
 
-                                        <iframe id="pdf-frame-{{ $note->id }}"
-                                            style="width:100%; height:250px; border:none; display:none;">
-                                        </iframe>
+                            <!-- CATEGORY BODY -->
+                            <div id="cat{{ $category->id }}"
+                                style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:#fafafa; padding:0 18px;">
 
-                                        <script>
-                                            (function() {
-                                                var pdfUrl = "{{ route('frontend.viewnotes', $note->id) }}";
-                                                var iframe = document.getElementById("pdf-frame-{{ $note->id }}");
-                                                var image = document.getElementById("preview-img-{{ $note->id }}");
+                                @foreach ($category->courses as $course)
+                                    <div style="margin:12px 0;">
 
-                                                fetch(pdfUrl, {
-                                                        method: 'HEAD'
-                                                    })
-                                                    .then(function(response) {
-                                                        if (response.ok) {
-                                                            iframe.src = pdfUrl + "#toolbar=0&navpanes=0";
-                                                            iframe.style.display = "block";
-                                                            image.style.display = "none";
-                                                        }
-                                                    })
-                                                    .catch(function() {
-                                                        // keep default image
-                                                    });
-                                            })
-                                            ();
-                                        </script>
-                                    @else
-                                        <img src="{{ asset('img/images/blog-img1.png') }}"
-                                            style="width:100%; height:250px; object-fit:cover;">
-                                    @endif
-
-                                    {{-- Optional date badge --}}
-                                    <div class="date-img">
-                                        <img src="{{ asset('img/images/date9.png') }}" alt="">
-                                    </div>
-
-                                </div>
-
-                                {{-- CONTENT SECTION --}}
-                                <div class="blog-all-textarea">
-
-                                    <div class="blog-text-area">
-
-                                        <div class="blog-name-area">
-                                            <img src="{{ asset('img/icons/contact-img1.svg') }}" alt="">
-                                            <a href="#">
-                                                <p>{{ $course->title }}</p>
-                                            </a>
+                                        <!-- COURSE HEADER -->
+                                        <div onclick="toggleAccordion('course{{ $course->id }}', 'course-group')"
+                                            class="course-group"
+                                            style="cursor:pointer; padding:12px; background:#f1f3f6; border-radius:6px; display:flex; justify-content:space-between; align-items:center; font-weight:500;">
+                                            <span>{{ $course->title }}</span>
+                                            <span
+                                                style="font-size:12px; background:#dee2e6; padding:2px 7px; border-radius:12px;">
+                                                {{ $course->notes->count() }}
+                                            </span>
                                         </div>
 
-                                        <div class="blog-name-area">
-                                            <img src="{{ asset('img/icons/tax-img1.svg') }}" alt="">
-                                            <a href="#">
-                                                <p>{{ $note->formatted_size }}</p>
-                                            </a>
+                                        <!-- COURSE BODY -->
+                                        <div id="course{{ $course->id }}"
+                                            style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; padding-left:10px;">
+
+                                            @foreach ($course->notes as $note)
+                                                <div
+                                                    style="margin:8px 0; padding:12px; background:#ffffff; border:1px solid #eee; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
+
+                                                    <div>
+                                                        <div style="font-weight:500;">{{ $note->title }}</div>
+                                                        <div style="font-size:12px; color:#777;">{{ $note->formatted_size }}
+                                                        </div>
+                                                    </div>
+
+                                                    @if (auth()->check())
+                                                        <a href="{{ route('frontend.viewnote', $note->id) }}"
+                                                            style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
+                                                            Download
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('google.login') }}"
+                                                            style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
+                                                            Download
+                                                        </a>
+                                                    @endif
+
+                                                </div>
+                                            @endforeach
+
+                                        </div>
+                                    </div>
+                                @endforeach
+
+
+                                <!-- SUB-CATEGORIES -->
+                                @foreach ($category->children as $child)
+                                    <div style="margin-top:15px; padding-top:10px; border-top:1px dashed #ddd;">
+
+                                        <div onclick="toggleAccordion('sub{{ $child->id }}', 'sub-group')"
+                                            class="sub-group"
+                                            style="cursor:pointer; padding:12px; background:#e9f5ee; border-radius:6px; display:flex; justify-content:space-between; font-weight:600;">
+                                            <span>{{ $child->name }}</span>
+                                        </div>
+
+                                        <div id="sub{{ $child->id }}"
+                                            style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; padding-left:10px;">
+
+                                            @foreach ($child->courses as $childCourse)
+                                                <div style="margin:10px 0;">
+
+                                                    <div onclick="toggleAccordion('childcourse{{ $childCourse->id }}', 'childcourse-group')"
+                                                        class="childcourse-group"
+                                                        style="cursor:pointer; padding:10px; background:#f8f9fa; border-radius:6px; display:flex; justify-content:space-between;">
+                                                        <span>{{ $childCourse->title }}</span>
+                                                    </div>
+
+                                                    <div id="childcourse{{ $childCourse->id }}"
+                                                        style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; padding-left:10px;">
+
+                                                        @foreach ($childCourse->notes as $note)
+                                                            <div
+                                                                style="margin:8px 0; padding:12px; background:#ffffff; border:1px solid #eee; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
+
+                                                                <div>
+                                                                    <div style="font-weight:500;">{{ $note->title }}</div>
+                                                                    <div style="font-size:12px; color:#777;">
+                                                                        {{ $note->formatted_size }}</div>
+                                                                </div>
+
+                                                                @if (auth()->check())
+                                                                    <a href="{{ route('frontend.viewnote', $note->id) }}"
+                                                                        style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
+                                                                        Download
+                                                                    </a>
+                                                                @else
+                                                                    <a href="{{ route('google.login') }}"
+                                                                        style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
+                                                                        Download
+                                                                    </a>
+                                                                @endif
+
+                                                            </div>
+                                                        @endforeach
+
+                                                    </div>
+
+                                                </div>
+                                            @endforeach
+
                                         </div>
 
                                     </div>
-
-                                    <a href="{{ route('frontend.viewnotes', $note->id) }}" target="_blank">
-                                        {{ $note->title }}
-                                    </a>
-
-                                    <p>
-                                        Free downloadable study material for {{ $course->title }} students.
-                                    </p>
-
-                                    @if (auth()->check())
-                                        <a href="{{ route('frontend.viewnote', $note->id) }}" class="readmore">
-                                            Download PDF <i class="fa-light fa-arrow-right"></i>
-                                        </a>
-                                    @else
-                                        <a href="{{ route('google.login') }}" class="readmore">
-                                            Download PDF <i class="fa-light fa-arrow-right"></i>
-                                        </a>
-                                    @endif
-
-                                </div>
+                                @endforeach
 
                             </div>
+
                         </div>
                     @endforeach
-                @endforeach
 
+                </div>
+
+
+                <script>
+                    function toggleAccordion(id, groupClass) {
+
+                        let section = document.getElementById(id);
+                        let isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
+
+                        // Close all in same group
+                        document.querySelectorAll("." + groupClass).forEach(function(header) {
+                            let next = header.nextElementSibling;
+                            if (next) {
+                                next.style.maxHeight = null;
+                            }
+                        });
+
+                        // Toggle selected
+                        if (!isOpen) {
+                            section.style.maxHeight = section.scrollHeight + "px";
+                        } else {
+                            section.style.maxHeight = null;
+                        }
+                    }
+                </script>
             </div>
 
             <div class="col-lg-12 m-auto">
