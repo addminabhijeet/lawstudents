@@ -2,7 +2,7 @@
 $setting = $whatsapp->first();
 @endphp
 
-<form action="{{ route('updateWhatsapp', ['id' => $setting ? $setting->id : 1]) }}" method="POST">
+<form action="{{ route('admin.updateWhatsapp', ['id' => $setting ? $setting->id : 1]) }}" method="POST">
     @csrf
 
     <input type="text"
