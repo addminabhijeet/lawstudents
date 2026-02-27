@@ -158,7 +158,7 @@ class StudentAdmissinController extends Controller
 
         return redirect()->back()->with('success', 'Admission deleted successfully.');
     }
-
+    
     public function whatsapp()
     {
         $whatsapp = WhatsappSetting::latest()->get();
