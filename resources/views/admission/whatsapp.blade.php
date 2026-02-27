@@ -1,8 +1,8 @@
 @php
-$setting = $whatsapp->first(); // get first record
+$setting = $whatsapp->first();
 @endphp
 
-<form action="{{ route('admin.updateWhatsapp') }}" method="POST">
+<form action="{{ route('updateWhatsapp', ['id' => $setting ? $setting->id : 1]) }}" method="POST">
     @csrf
 
     <input type="text"
