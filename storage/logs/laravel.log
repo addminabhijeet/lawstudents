@@ -17943,3 +17943,7 @@ Stack trace:
 [stacktrace]
 #0 {main}
 "} 
+[2026-03-02 16:00:29] local.ERROR: syntax error, unexpected single-quoted string "course_ids", expecting "]" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected single-quoted string \"course_ids\", expecting \"]\" at E:/lawstudents/app/Models/Course.php:28)
+[stacktrace]
+#0 {main}
+"} 

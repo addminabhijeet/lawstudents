@@ -38,7 +38,6 @@ class StudentAdmission extends Model
         'board_university',
         'passing_year',
         'percentage',
-        'course_name',
         'course_duration',
         'admission_session',
         'photo',
@@ -52,6 +51,7 @@ class StudentAdmission extends Model
         'otp_expires_at',
         'email_verified',
         'phone_verified',
+        'course_ids'
     ];
 
     protected $casts = [
@@ -60,6 +60,7 @@ class StudentAdmission extends Model
         'percentage' => 'decimal:2',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'course_ids' => 'array'
     ];
 
     /**
