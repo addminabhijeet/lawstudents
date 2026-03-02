@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\CourseNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Banner;
@@ -28,6 +29,52 @@ class CourseController extends Controller
 
     //     return view('course.list', compact('categories'));
     // }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('q');
+
+        if (strlen($query) < 3) {
+            return response()->json([]);
+        }
+
+        $notes = CourseNote::where('visibility', 'free')
+            ->where('status', 1)
+            ->where('title', 'LIKE', "%{$query}%")
+            ->limit(10)
+            ->get()
+            ->map(function ($note) {
+                return [
+                    'title' => $note->title,
+                    'type' => 'Note',
+                ];
+            });
+
+        $courses = Course::where('is_free', 1)
+            ->where('title', 'LIKE', "%{$query}%")
+            ->limit(10)
+            ->get()
+            ->map(function ($course) {
+                return [
+                    'title' => $course->title,
+                    'type' => 'Course',
+                ];
+            });
+
+        $categories = Category::where('name', 'LIKE', "%{$query}%")
+            ->limit(10)
+            ->get()
+            ->map(function ($category) {
+                return [
+                    'title' => $category->name,
+                    'type' => 'Category',
+                ];
+            });
+
+        return response()->json(
+            $notes->merge($courses)->merge($categories)
+        );
+    }
 
     public function listcourse()
     {

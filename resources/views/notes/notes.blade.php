@@ -26,6 +26,15 @@
 
                 <div style="width:100%; max-width:1100px; margin:auto;">
 
+                    <div class="search-container" style="max-width:600px; margin:0 auto 20px;">
+                        <input type="text" id="noteSearch" class="form-control"
+                            placeholder="Search notes, category, course..." onkeyup="searchNotes(this.value)">
+
+                        <div id="searchSuggestions"
+                            style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none;">
+                        </div>
+                    </div>
+
                     @foreach ($categories as $category)
                         <div
                             style="margin-bottom:15px; border:1px solid #e4e6eb; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
@@ -245,4 +254,35 @@
         });
     </script>
     <!--===== BLOG ENDS =======-->
+    <script>
+        function searchNotes(query) {
+            let suggestionBox = document.getElementById('searchSuggestions');
+
+            if (query.length < 3) {
+                suggestionBox.style.display = 'none';
+                suggestionBox.innerHTML = '';
+                return;
+            }
+
+            fetch(`/search-notes?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+
+                    if (data.length === 0) {
+                        suggestionBox.innerHTML = '<div style="padding:10px;">No results found</div>';
+                    } else {
+                        suggestionBox.innerHTML = data.map(item => `
+                    <div style="padding:10px; border-bottom:1px solid #eee;">
+                        <div style="font-weight:600;">${item.title}</div>
+                        <div style="font-size:12px; color:#777;">
+                            ${item.type}
+                        </div>
+                    </div>
+                `).join('');
+                    }
+
+                    suggestionBox.style.display = 'block';
+                });
+        }
+    </script>
 @endsection
