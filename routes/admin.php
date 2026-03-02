@@ -78,7 +78,7 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('view-payment/{id}', [RoutingController::class, 'viewpayment'])
                 ->name('viewpayment');
-            
+
             Route::get('view-idcard/{id}', [RoutingController::class, 'viewidcard'])
                 ->name('viewidcard');
 
@@ -91,7 +91,8 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('store-banner', [CourseController::class, 'storebanner'])
                 ->name('storebanner');
 
-            Route::get('search-notes', [CourseController::class, 'search']);
+            Route::get('search-notes', [CourseController::class, 'search'])
+                ->name('search');
 
             Route::post('category-store', [CourseController::class, 'storecategory'])
                 ->name('storecategory');
