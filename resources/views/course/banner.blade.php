@@ -1,5 +1,5 @@
 @php
-    $setting = $banner->first();
+    $setting = $banner ? $banner->first() : null;
 @endphp
 
 @include('layouts.partials.admin.dashboard')
