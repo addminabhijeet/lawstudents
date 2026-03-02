@@ -17959,3 +17959,7 @@ Stack trace:
 [stacktrace]
 #0 {main}
 "} 
+[2026-03-02 17:24:24] local.ERROR: Cannot declare class App\Models\StudentAdmission, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Models\\StudentAdmission, because the name is already in use at E:/lawstudents/app/Models/StudentAdmission.php:11)
+[stacktrace]
+#0 {main}
+"} 

@@ -112,16 +112,29 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Course Added</label>
 
-                                    <select name="course_ids[]" class="form-control" multiple>
-                                        @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}"
-                                                @if (isset($admission) && in_array($course->id, $admission->course_ids ?? [])) selected @endif>
-                                                {{ $course->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
+                                        <div class="row">
+                                            @foreach ($courses as $course)
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2 p-2 border rounded">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            name="course_ids[]" value="{{ $course->id }}"
+                                                            id="course{{ $course->id }}">
 
-                                    <small class="text-muted">Hold Ctrl to select multiple courses</small>
+                                                        <label class="form-check-label fw-semibold"
+                                                            for="course{{ $course->id }}">
+                                                            {{ $course->title }}
+                                                            <br>
+                                                            <small class="text-muted">
+                                                                ₹{{ $course->price }} | {{ $course->duration }}
+                                                            </small>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="mb-3">
