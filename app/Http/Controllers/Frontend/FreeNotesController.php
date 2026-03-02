@@ -74,12 +74,16 @@ class FreeNotesController extends Controller
         $notes = CourseNote::where('visibility', 'free')
             ->where('status', 1)
             ->where('title', 'LIKE', "%{$query}%")
+            ->with('course')
             ->limit(10)
             ->get()
             ->map(function ($note) {
                 return [
                     'title' => $note->title,
                     'type' => 'Note',
+                    'note_id' => $note->id,
+                    'course_id' => $note->course_id,
+                    'category_id' => $note->course->category_id ?? null,
                 ];
             });
 
@@ -91,6 +95,8 @@ class FreeNotesController extends Controller
                 return [
                     'title' => $course->title,
                     'type' => 'Course',
+                    'course_id' => $course->id,
+                    'category_id' => $course->category_id,
                 ];
             });
 
@@ -101,6 +107,7 @@ class FreeNotesController extends Controller
                 return [
                     'title' => $category->name,
                     'type' => 'Category',
+                    'category_id' => $category->id,
                 ];
             });
 
@@ -108,7 +115,7 @@ class FreeNotesController extends Controller
             $notes->merge($courses)->merge($categories)
         );
     }
-
+    
     public function viewnote($id)
     {
         $note = CourseNote::findOrFail($id);

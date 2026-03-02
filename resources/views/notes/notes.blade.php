@@ -272,17 +272,55 @@
                         suggestionBox.innerHTML = '<div style="padding:10px;">No results found</div>';
                     } else {
                         suggestionBox.innerHTML = data.map(item => `
-                        <div style="padding:10px; border-bottom:1px solid #eee;">
-                            <div style="font-weight:600;">${item.title}</div>
-                            <div style="font-size:12px; color:#777;">
-                                ${item.type}
-                            </div>
+                    <div style="padding:10px; border-bottom:1px solid #eee; cursor:pointer;"
+                         onclick="openSearchResult(${item.category_id ?? 'null'}, ${item.course_id ?? 'null'}, ${item.note_id ?? 'null'})">
+
+                        <div style="font-weight:600;">${item.title}</div>
+                        <div style="font-size:12px; color:#777;">
+                            ${item.type}
                         </div>
-                    `).join('');
+                    </div>
+                `).join('');
                     }
 
                     suggestionBox.style.display = 'block';
                 });
+        }
+
+        function openSearchResult(categoryId, courseId, noteId) {
+
+            if (!categoryId) return;
+
+            // Open category accordion
+            let categorySection = document.getElementById('cat' + categoryId);
+
+            if (categorySection) {
+                categorySection.style.maxHeight = categorySection.scrollHeight + "px";
+            }
+
+            if (courseId) {
+                let courseSection = document.getElementById('course' + courseId);
+
+                if (courseSection) {
+                    courseSection.style.maxHeight = courseSection.scrollHeight + "px";
+                }
+            }
+
+            if (noteId) {
+                let noteElement = document.getElementById('note-' + noteId);
+
+                if (noteElement) {
+                    noteElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    noteElement.style.background = '#fff3cd';
+
+                    setTimeout(() => noteElement.style.background = '', 2000);
+                }
+            }
+
+            document.getElementById('searchSuggestions').style.display = 'none';
         }
     </script>
 @endsection
