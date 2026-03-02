@@ -110,6 +110,21 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="form-label fw-semibold">Course Added</label>
+
+                                    <select name="course_ids[]" class="form-control" multiple>
+                                        @foreach (\App\Models\Course::where('status', 1)->get() as $course)
+                                            <option value="{{ $course->id }}"
+                                                @if (isset($admission) && in_array($course->id, $admission->course_ids ?? [])) selected @endif>
+                                                {{ $course->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    <small class="text-muted">Hold Ctrl to select multiple courses</small>
+                                </div>
+
+                                <div class="mb-3">
                                     <label class="form-label fw-semibold">Admission Status</label>
                                     <select class="form-select" name="admission_status">
                                         <option value="pending">Pending</option>

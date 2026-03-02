@@ -44,7 +44,6 @@ class StudentAdmissinController extends Controller
             'last_qualification' => 'required|string|max:150',
             'board_university' => 'required|string|max:150',
             'passing_year' => 'required|integer',
-            'course_name' => 'required|string|max:150',
             'admission_session' => 'required|string|max:20',
             'admission_status' => 'required|in:pending,approved,rejected',
         ]);

@@ -94,4 +94,9 @@ class StudentAdmission extends Model
     {
         return $query->where('admission_status', 'rejected');
     }
+
+    public function courses()
+    {
+        return Course::whereIn('id', $this->course_ids ?? []);
+    }
 }
