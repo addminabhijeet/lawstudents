@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Student;
 use App\Models\Payment;
+use App\Models\Course;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 
@@ -164,7 +165,8 @@ class RoutingController extends Controller
 
     public function addadmission()
     {
-        return view('admission.add');
+        $courses = Course::where('status', 1)->get();
+        return view('admission.add', compact('courses'));
     }
 
     public function student()
