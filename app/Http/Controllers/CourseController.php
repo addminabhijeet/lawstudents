@@ -7,6 +7,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Banner;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -50,6 +51,26 @@ class CourseController extends Controller
             'image' => ['required', 'image', 'max:2048'],
         ]);
 
+        // If updating existing banner
+        if ($request->filled('banner_id')) {
+
+            $banner = Banner::findOrFail($request->banner_id);
+
+            // Delete old image
+            if ($banner->image && Storage::disk('public')->exists($banner->image)) {
+                Storage::disk('public')->delete($banner->image);
+            }
+
+            $path = $request->file('image')->store('banners', 'public');
+
+            $banner->update([
+                'image' => $path,
+            ]);
+
+            return back()->with('success', 'Banner updated successfully.');
+        }
+
+        // Create new banner
         $path = $request->file('image')->store('banners', 'public');
 
         Banner::create([
@@ -60,7 +81,6 @@ class CourseController extends Controller
 
         return back()->with('success', 'Banner uploaded successfully.');
     }
-
     // Store Category
     public function storecategory(Request $request)
     {

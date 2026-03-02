@@ -50,24 +50,25 @@
             </div>
 
             <div class="card-body">
-                <form action=""
-                    method="POST">
+                <form action="{{ route('admin.storebanner') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <div class="mb-3">
-                        <label class="form-label">banner Number</label>
-                        <input type="text" name="banner_number" class="form-control" placeholder="banner Number"
-                            value="{{ $setting ? $setting->banner_number : '' }}">
-                    </div>
+                    <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
 
                     <div class="mb-3">
-                        <label class="form-label">Pre-filled Message</label>
-                        <textarea name="pre_message" class="form-control" rows="4">{{ $setting ? $setting->pre_message : 'Hello LawStudents, I am interested in...' }}</textarea>
+                        <label class="form-label">Banner Image</label>
+                        <input type="file" name="image" class="form-control">
+
+                        @if (isset($banner) && $banner->image)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $banner->image) }}" width="150" class="img-thumbnail">
+                            </div>
+                        @endif
                     </div>
 
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">
-                            Save Settings
+                            Save Banner
                         </button>
                     </div>
                 </form>
