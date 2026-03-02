@@ -264,7 +264,7 @@
                 return;
             }
 
-            fetch(`/search-notes?q=${encodeURIComponent(query)}`)
+            fetch(`{{ route('search') }}?q=${encodeURIComponent(query)}`)
                 .then(response => response.json())
                 .then(data => {
 
@@ -272,13 +272,13 @@
                         suggestionBox.innerHTML = '<div style="padding:10px;">No results found</div>';
                     } else {
                         suggestionBox.innerHTML = data.map(item => `
-                    <div style="padding:10px; border-bottom:1px solid #eee;">
-                        <div style="font-weight:600;">${item.title}</div>
-                        <div style="font-size:12px; color:#777;">
-                            ${item.type}
+                        <div style="padding:10px; border-bottom:1px solid #eee;">
+                            <div style="font-weight:600;">${item.title}</div>
+                            <div style="font-size:12px; color:#777;">
+                                ${item.type}
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    `).join('');
                     }
 
                     suggestionBox.style.display = 'block';
