@@ -9,10 +9,10 @@ class Gallery extends Model
 {
     use HasFactory;
 
+    protected $table = 'gallery';
+
     protected $fillable = [
-        'image_1',
-        'image_2',
-        'image_3',
+        'image',
         'status',
         'order',
     ];
