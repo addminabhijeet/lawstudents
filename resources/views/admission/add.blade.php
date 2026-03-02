@@ -113,7 +113,7 @@
                                     <label class="form-label fw-semibold">Course Added</label>
 
                                     <select name="course_ids[]" class="form-control" multiple>
-                                        @foreach (\App\Models\Course::where('status', 1)->get() as $course)
+                                        @foreach ($courses as $course)
                                             <option value="{{ $course->id }}"
                                                 @if (isset($admission) && in_array($course->id, $admission->course_ids ?? [])) selected @endif>
                                                 {{ $course->title }}

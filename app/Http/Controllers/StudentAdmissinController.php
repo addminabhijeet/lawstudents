@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Payment;
 use App\Models\WhatsappSetting;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Course;
 use Carbon\Carbon;
 use App\Mail\StudentOtpMail;
 use Illuminate\Support\Facades\Http;
@@ -25,7 +26,8 @@ class StudentAdmissinController extends Controller
 
     public function create()
     {
-        return view('admission.create');
+        $courses = Course::where('status', 1)->get();
+        return view('admission.create', compact('courses'));
     }
 
     public function registeradmsubmit(Request $request)
@@ -46,6 +48,8 @@ class StudentAdmissinController extends Controller
             'passing_year' => 'required|integer',
             'admission_session' => 'required|string|max:20',
             'admission_status' => 'required|in:pending,approved,rejected',
+            'course_ids' => 'nullable|array',
+            'course_ids.*' => 'exists:courses,id',
         ]);
 
         $student = Student::create([
@@ -56,6 +60,7 @@ class StudentAdmissinController extends Controller
         ]);
 
         $data['student_id'] = $student->id;
+        $data['course_ids'] = $data['course_ids'] ?? [];
 
         $admission = StudentAdmission::create($data);
 
@@ -78,7 +83,7 @@ class StudentAdmissinController extends Controller
                     'student_id' => $student->id,
                     'invoice_number' => 'INV-' . strtoupper(Str::random(6)),
                     'invoice_label' => 'Admission Fee',
-                    'invoice_product' => $admission->course_name,
+                    'invoice_product' => implode(', ', Course::whereIn('id', $admission->course_ids ?? [])->pluck('title')->toArray()),
                     'issue_date' => now(),
                     'due_date' => now()->addDays(7),
                     'to_name' => $admission->full_name,

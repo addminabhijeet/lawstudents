@@ -17947,3 +17947,15 @@ Stack trace:
 [stacktrace]
 #0 {main}
 "} 
+[2026-03-02 16:38:34] local.ERROR: Trait "App\Models\App\Models\Course" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\App\\Models\\Course\" not found at E:/lawstudents/app/Models/StudentAdmission.php:9)
+[stacktrace]
+#0 {main}
+"} 
+[2026-03-02 16:41:28] local.ERROR: Trait "App\Models\App\Models\Course" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\App\\Models\\Course\" not found at E:/lawstudents/app/Models/StudentAdmission.php:11)
+[stacktrace]
+#0 {main}
+"} 
+[2026-03-02 16:41:33] local.ERROR: Trait "App\Models\App\Models\Course" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\App\\Models\\Course\" not found at E:/lawstudents/app/Models/StudentAdmission.php:11)
+[stacktrace]
+#0 {main}
+"} 

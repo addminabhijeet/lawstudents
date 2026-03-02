@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Course;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StudentAdmission extends Model
 {
@@ -95,8 +97,8 @@ class StudentAdmission extends Model
         return $query->where('admission_status', 'rejected');
     }
 
-    public function courses()
+    public function getCoursesAttribute()
     {
-        return Course::whereIn('id', $this->course_ids ?? []);
+        return Course::whereIn('id', $this->course_ids ?? [])->get();
     }
 }
