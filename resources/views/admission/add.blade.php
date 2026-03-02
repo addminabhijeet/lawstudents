@@ -1,129 +1,143 @@
 @include('layouts.partials.admin.dashboard')
-<main class="nxl-container">
-    <div class="nxl-content">
-        <div class="page-header">
-            <div class="page-header-left d-flex align-items-center">
-                <div class="page-header-title">
-                    <h5 class="m-b-10">Proposal</h5>
-                </div>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Create</li>
-                </ul>
+<main class="container-fluid py-4 bg-light">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="fw-bold mb-1">Create Admission Proposal</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb small mb-0">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Create</li>
+                    </ol>
+                </nav>
             </div>
-            <div class="page-header-right ms-auto">
-                <div class="page-header-right-items">
-                    <div class="d-flex d-md-none">
-                        <a href="javascript:void(0)" class="page-header-right-close-toggle">
-                            <i class="feather-arrow-left me-2"></i>
-                            <span>Back</span>
-                        </a>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="javascript:void(0);" class="btn btn-light-brand" data-bs-toggle="offcanvas"
-                            data-bs-target="#proposalSent">
-                            <i class="feather-layers me-2"></i>
-                            <span>Save & Send</span>
-                        </a>
-                        <a href="javascript:void(0);" class="btn btn-primary successAlertMessage">
-                            <i class="feather-save me-2"></i>
-                            <span>Save</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="d-md-none d-flex align-items-center">
-                    <a href="javascript:void(0)" class="page-header-right-open-toggle">
-                        <i class="feather-align-right fs-20"></i>
-                    </a>
-                </div>
+            <div class="d-flex gap-2">
+                <a href="javascript:void(0);" class="btn btn-outline-primary">
+                    <i class="feather-save me-1"></i> Save
+                </a>
+                <a href="javascript:void(0);" class="btn btn-primary">
+                    <i class="feather-send me-1"></i> Save & Send
+                </a>
             </div>
         </div>
-        <form action="{{ route('admin.registeradmsubmit') }}" method="POST">
+
+        <form action="{{ route('admin.registeradmsubmit') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="student_id" value="{{ auth()->id() }}">
 
-            <div class="main-content">
-                <div class="row">
+            <div class="row g-4">
 
-                    <input type="hidden" name="student_id" value="{{ auth()->id() }}">
+                <!-- Left Card -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0 rounded-3">
+                        <div class="card-header bg-white fw-semibold">
+                            Personal Details
+                        </div>
+                        <div class="card-body">
 
-                    <div class="col-xl-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Full Name *</label>
+                                <input type="text" class="form-control form-control-lg" name="full_name">
+                            </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Full Name *</label>
-                                    <input type="text" class="form-control" name="full_name">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Email ID</label>
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Email ID</label>
+                                <div class="input-group mb-2">
                                     <input type="email" class="form-control" name="email">
-                                    <button type="button" onclick="sendEmailOtp()">Send Email OTP</button>
-                                    <input type="text" id="emailOtp" placeholder="Enter Email OTP">
-                                    <button type="button" onclick="verifyEmailOtp()">Verify</button>
+                                    <button type="button" class="btn btn-outline-primary" onclick="sendEmailOtp()">
+                                        Send OTP
+                                    </button>
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Contact Number</label>
+                                <div class="input-group">
+                                    <input type="text" id="emailOtp" class="form-control"
+                                        placeholder="Enter Email OTP">
+                                    <button type="button" class="btn btn-success" onclick="verifyEmailOtp()">
+                                        Verify
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Contact Number</label>
+                                <div class="input-group mb-2">
                                     <input type="text" class="form-control" name="phone">
-                                    <button type="button" onclick="sendPhoneOtp()">Send Phone OTP</button>
-                                    <input type="text" id="phoneOtp" placeholder="Enter Phone OTP">
-                                    <button type="button" onclick="verifyPhoneOtp()">Verify</button>
+                                    <button type="button" class="btn btn-outline-primary" onclick="sendPhoneOtp()">
+                                        Send OTP
+                                    </button>
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Father's / Guardian Name</label>
-                                    <input type="text" class="form-control" name="father_name">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Admission Status</label>
-                                    <select class="form-control" name="admission_status">
-                                        <option value="pending">Pending</option>
-                                        <option value="approved">Approved</option>
-                                        <option value="rejected">Rejected</option>
-                                    </select>
+                                <div class="input-group">
+                                    <input type="text" id="phoneOtp" class="form-control"
+                                        placeholder="Enter Phone OTP">
+                                    <button type="button" class="btn btn-success" onclick="verifyPhoneOtp()">
+                                        Verify
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col-xl-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-
-                                <div>
-                                    <label class="form-label">Address</label>
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-4">
-                                            <input type="text" class="form-control" name="address_line1"
-                                                placeholder="Address Line 1">
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <input type="text" class="form-control" name="address_line2"
-                                                placeholder="Address Line 2">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Passport Size Photo (JPEG/PNG)</label>
-                                    <input type="file" class="form-control" name="photo">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">Signature (JPEG/PNG)</label>
-                                    <input type="file" class="form-control" name="signature">
-                                </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Father's / Guardian Name</label>
+                                <input type="text" class="form-control" name="father_name">
                             </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Admission Status</label>
+                                <select class="form-select" name="admission_status">
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                            </div>
+
                         </div>
                     </div>
-
-                    <div class="col-12 text-end">
-                        <button type="submit" class="btn btn-primary">Submit Admission</button>
-                    </div>
-
                 </div>
+
+                <!-- Right Card -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0 rounded-3">
+                        <div class="card-header bg-white fw-semibold">
+                            Address & Documents
+                        </div>
+                        <div class="card-body">
+
+                            <label class="form-label fw-semibold">Address</label>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="address_line1"
+                                        placeholder="Address Line 1">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="address_line2"
+                                        placeholder="Address Line 2">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Passport Size Photo</label>
+                                <input type="file" class="form-control" name="photo">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Signature</label>
+                                <input type="file" class="form-control" name="signature">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12 text-end mt-3">
+                    <button type="submit" class="btn btn-lg btn-primary px-4 shadow-sm">
+                        Submit Admission
+                    </button>
+                </div>
+
             </div>
         </form>
     </div>
