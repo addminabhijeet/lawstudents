@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Banner;
 
 class CourseController extends Controller
 {
@@ -35,6 +36,30 @@ class CourseController extends Controller
         return view('course.list', compact('categories'));
     }
 
+    public function listbanner()
+    {
+        $banner = Banner::with('banner')
+            ->get();
+
+        return view('course.banner', compact('banner'));
+    }
+
+    public function storebanner(Request $request)
+    {
+        $request->validate([
+            'image' => ['required', 'image', 'max:2048'],
+        ]);
+
+        $path = $request->file('image')->store('banners', 'public');
+
+        Banner::create([
+            'image' => $path,
+            'status' => true,
+            'order' => 0,
+        ]);
+
+        return back()->with('success', 'Banner uploaded successfully.');
+    }
 
     // Store Category
     public function storecategory(Request $request)
