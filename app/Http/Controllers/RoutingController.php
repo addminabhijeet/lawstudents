@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Student;
 use App\Models\Payment;
 use App\Models\Course;
+use App\Models\Banner;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 
@@ -288,6 +289,23 @@ class RoutingController extends Controller
 
         return redirect()->route('admin.liststudent')
             ->with('success', 'Student updated successfully.');
+    }
+
+    public function storebanner(Request $request)
+    {
+        $request->validate([
+            'image' => ['required', 'image', 'max:2048'],
+        ]);
+
+        $path = $request->file('image')->store('banners', 'public');
+
+        Banner::create([
+            'image' => $path,
+            'status' => true,
+            'order' => 0,
+        ]);
+
+        return back()->with('success', 'Banner uploaded successfully.');
     }
 
 
