@@ -47,43 +47,34 @@ class CourseController extends Controller
     public function storebanner(Request $request)
     {
         $request->validate([
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image_1' => ['nullable', 'image', 'max:2048'],
+            'image_2' => ['nullable', 'image', 'max:2048'],
+            'image_3' => ['nullable', 'image', 'max:2048'],
         ]);
 
-        // If banner_id exists → update
-        if ($request->filled('banner_id')) {
+        $banner = Banner::first();
 
-            $banner = Banner::find($request->banner_id);
-
-            if ($banner) {
-
-                if ($request->hasFile('image')) {
-                    $path = $request->file('image')->store('banners', 'public');
-                    $banner->image = $path;
-                }
-
-                $banner->save();
-
-                return back()->with('success', 'Banner updated successfully.');
-            }
+        if (!$banner) {
+            return back()->with('error', 'No banner found to update.');
         }
 
-        // Otherwise → create new banner (old logic preserved)
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('banners', 'public');
-
-            Banner::create([
-                'image' => $path,
-                'status' => true,
-                'order' => 0,
-            ]);
-
-            return back()->with('success', 'Banner uploaded successfully.');
+        if ($request->hasFile('image_1')) {
+            $banner->image_1 = $request->file('image_1')->store('banners', 'public');
         }
 
-        return back()->with('error', 'No image selected.');
+        if ($request->hasFile('image_2')) {
+            $banner->image_2 = $request->file('image_2')->store('banners', 'public');
+        }
+
+        if ($request->hasFile('image_3')) {
+            $banner->image_3 = $request->file('image_3')->store('banners', 'public');
+        }
+
+        $banner->save();
+
+        return back()->with('success', 'Banner updated successfully.');
     }
-    // Store Category
+
     public function storecategory(Request $request)
     {
         $request->validate([

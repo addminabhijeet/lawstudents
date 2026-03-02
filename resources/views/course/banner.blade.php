@@ -54,23 +54,46 @@
                     @csrf
 
                     <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
-                    <div class="mb-3">
-                        <label class="form-label">Banner Image</label>
-                        <input type="file" name="image" class="form-control">
 
-                        @if (isset($banner) && $banner->image)
+                    <div class="mb-3">
+                        <label class="form-label">Banner Image 1</label>
+                        <input type="file" name="image_1" class="form-control">
+
+                        @if ($banner && $banner->image_1)
                             <div class="mt-2">
-                                <img src="{{ asset('storage/' . $banner->image) }}" width="150"
+                                <img src="{{ asset('storage/' . $banner->image_1) }}" width="150"
                                     class="img-thumbnail">
                             </div>
                         @endif
                     </div>
 
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">
-                            Save Banner
-                        </button>
+                    <div class="mb-3">
+                        <label class="form-label">Banner Image 2</label>
+                        <input type="file" name="image_2" class="form-control">
+
+                        @if ($banner && $banner->image_2)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $banner->image_2) }}" width="150"
+                                    class="img-thumbnail">
+                            </div>
+                        @endif
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Banner Image 3</label>
+                        <input type="file" name="image_3" class="form-control">
+
+                        @if ($banner && $banner->image_3)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $banner->image_3) }}" width="150"
+                                    class="img-thumbnail">
+                            </div>
+                        @endif
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Save Banner
+                    </button>
                 </form>
             </div>
         </div>
