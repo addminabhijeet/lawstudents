@@ -145,9 +145,14 @@
 
                                 <!-- Passport Photo -->
                                 <div class="mb-4">
-                                    <label class="form-label fw-semibold">Passport Size Photo (JPEG/PNG)</label>
-                                    <input type="file" class="form-control mb-3" accept="image/*"
-                                        onchange="previewImage(event, 'photoPreview')">
+                                    <label class="form-label fw-semibold">
+                                        Passport Size Photo (JPEG/PNG)
+                                        <small class="text-muted">(Max 2MB)</small>
+                                    </label>
+                                    <input type="file" id="photoInput" class="form-control mb-2" accept="image/*"
+                                        onchange="validateAndPreview(event, 'photoPreview', 2)">
+
+                                    <div class="invalid-feedback" id="photoError"></div>
 
                                     <div class="text-center">
                                         <img id="photoPreview" class="img-thumbnail d-none"
@@ -157,9 +162,14 @@
 
                                 <!-- Signature -->
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Signature (JPEG/PNG)</label>
-                                    <input type="file" class="form-control mb-3" accept="image/*"
-                                        onchange="previewImage(event, 'signPreview')">
+                                    <label class="form-label fw-semibold">
+                                        Signature (JPEG/PNG)
+                                        <small class="text-muted">(Max 1MB)</small>
+                                    </label>
+                                    <input type="file" id="signInput" class="form-control mb-2" accept="image/*"
+                                        onchange="validateAndPreview(event, 'signPreview', 1)">
+
+                                    <div class="invalid-feedback" id="signError"></div>
 
                                     <div class="text-center">
                                         <img id="signPreview" class="img-thumbnail d-none"
@@ -256,6 +266,43 @@
 
             reader.readAsDataURL(input.files[0]);
         }
+    }
+</script>
+<script>
+    function validateAndPreview(event, previewId, maxSizeMB) {
+
+        const input = event.target;
+        const file = input.files[0];
+        const preview = document.getElementById(previewId);
+
+        const errorElement = previewId === 'photoPreview' ?
+            document.getElementById('photoError') :
+            document.getElementById('signError');
+
+        if (!file) return;
+
+        const maxSizeBytes = maxSizeMB * 1024 * 1024;
+
+        // Reset state
+        input.classList.remove('is-invalid');
+        errorElement.textContent = "";
+        preview.classList.add('d-none');
+
+        if (file.size > maxSizeBytes) {
+
+            input.value = ""; // Clear file
+            input.classList.add('is-invalid');
+            errorElement.textContent = "File size exceeds " + maxSizeMB + "MB limit.";
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.classList.remove('d-none');
+        };
+
+        reader.readAsDataURL(file);
     }
 </script>
 @include('layouts.partials.admin.theme')
