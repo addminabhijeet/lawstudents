@@ -1,8 +1,6 @@
 @include('layouts.partials.admin.dashboard')
 <main class="nxl-container">
-    <!-- main containts -->
     <div class="nxl-content">
-        <!-- [ page-header ] start -->
         <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
@@ -40,8 +38,6 @@
                 </div>
             </div>
         </div>
-        <!-- [ page-header ] end -->
-        <!-- [ Main Content ] start -->
         <form method="POST" action="{{ route('admin.updateadmsubmit', $admission->id) }}"
             enctype="multipart/form-data">
             @csrf
@@ -52,24 +48,26 @@
                     <input type="hidden" name="student_id" value="{{ $admission->student_id ?? auth()->id() }}">
 
                     <div class="col-xl-6">
-                        <div class="card stretch stretch-full">
+                        <div class="card shadow-sm">
                             <div class="card-body">
 
-                                <div class="mb-4">
-                                    <label class="form-label">Full Name *</label>
+                                <h6 class="fw-bold mb-4 text-primary">Student Information</h6>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Full Name *</label>
                                     <input type="text" class="form-control" name="full_name"
                                         value="{{ old('full_name', $admission->full_name) }}">
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Email</label>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Email</label>
                                     <input type="email" class="form-control" name="email"
                                         value="{{ old('email', $admission->email) }}">
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Gender *</label>
-                                    <select class="form-control" name="gender">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Gender *</label>
+                                    <select class="form-select" name="gender">
                                         <option value="male"
                                             {{ old('gender', $admission->gender) == 'male' ? 'selected' : '' }}>Male
                                         </option>
@@ -82,235 +80,175 @@
                                     </select>
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Phone *</label>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Phone *</label>
                                     <input type="text" class="form-control" name="phone"
                                         value="{{ old('phone', $admission->phone) }}">
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Alternate Phone</label>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Alternate Phone</label>
                                     <input type="text" class="form-control" name="alternate_phone"
                                         value="{{ old('alternate_phone', $admission->alternate_phone) }}">
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">DOB *</label>
+                                    <div class="col-lg-6 mb-3">
+                                        <label class="form-label fw-semibold">DOB *</label>
                                         <input type="date" class="form-control" name="dob"
                                             value="{{ old('dob', $admission->dob?->format('Y-m-d')) }}">
                                     </div>
 
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Pincode *</label>
+                                    <div class="col-lg-6 mb-3">
+                                        <label class="form-label fw-semibold">Pincode *</label>
                                         <input type="text" class="form-control" name="pincode"
                                             value="{{ old('pincode', $admission->pincode) }}">
                                     </div>
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Father Name</label>
+                                <hr class="my-4">
+
+                                <h6 class="fw-bold mb-3 text-primary">Parent / Guardian Details</h6>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Father Name</label>
                                     <input type="text" class="form-control" name="father_name"
                                         value="{{ old('father_name', $admission->father_name) }}">
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Mother Name</label>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Mother Name</label>
                                     <input type="text" class="form-control" name="mother_name"
                                         value="{{ old('mother_name', $admission->mother_name) }}">
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Guardian Phone</label>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Guardian Phone</label>
                                     <input type="text" class="form-control" name="guardian_phone"
                                         value="{{ old('guardian_phone', $admission->guardian_phone) }}">
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Guardian Email</label>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Guardian Email</label>
                                     <input type="email" class="form-control" name="guardian_email"
                                         value="{{ old('guardian_email', $admission->guardian_email) }}">
                                 </div>
 
-                                <div class="mb-4">
-                                    <label class="form-label">Admission Status</label>
-                                    <select class="form-control" name="admission_status">
-
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Admission Status</label>
+                                    <select class="form-select" name="admission_status">
                                         <option value="pending"
                                             {{ old('admission_status', $admission->admission_status) == 'pending' ? 'selected' : '' }}>
-                                            Pending
-                                        </option>
-
+                                            Pending</option>
                                         <option value="approved"
                                             {{ old('admission_status', $admission->admission_status) == 'approved' ? 'selected' : '' }}>
-                                            Approved
-                                        </option>
-
+                                            Approved</option>
                                         <option value="rejected"
                                             {{ old('admission_status', $admission->admission_status) == 'rejected' ? 'selected' : '' }}>
-                                            Rejected
-                                        </option>
-
+                                            Rejected</option>
                                     </select>
                                 </div>
-
 
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xl-6">
-                        <div class="card stretch stretch-full">
+                        <div class="card shadow-sm">
                             <div class="card-body">
 
-                                <div>
-                                    <label class="form-label">Address *</label>
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-4">
-                                            <input type="text" class="form-control" name="address_line1"
-                                                placeholder="Address Line 1"
-                                                value="{{ old('address_line1', $admission->address_line1) }}">
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <input type="text" class="form-control" name="address_line2"
-                                                placeholder="Address Line 2"
-                                                value="{{ old('address_line2', $admission->address_line2) }}">
-                                        </div>
+                                <h6 class="fw-bold mb-4 text-primary">Address & Course Details</h6>
+
+                                <div class="row">
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" class="form-control" name="address_line1"
+                                            placeholder="Address Line 1"
+                                            value="{{ old('address_line1', $admission->address_line1) }}">
+                                    </div>
+
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" class="form-control" name="address_line2"
+                                            placeholder="Address Line 2"
+                                            value="{{ old('address_line2', $admission->address_line2) }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">City *</label>
-                                        <input type="text" class="form-control" name="city"
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" class="form-control" name="city" placeholder="City"
                                             value="{{ old('city', $admission->city) }}">
                                     </div>
 
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">State *</label>
+                                    <div class="col-lg-6 mb-3">
                                         <input type="text" class="form-control" name="state"
-                                            value="{{ old('state', $admission->state) }}">
+                                            placeholder="State" value="{{ old('state', $admission->state) }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Country *</label>
+                                    <div class="col-lg-6 mb-3">
                                         <input type="text" class="form-control" name="country"
+                                            placeholder="Country"
                                             value="{{ old('country', $admission->country ?? 'India') }}">
                                     </div>
 
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Course Name *</label>
+                                    <div class="col-lg-6 mb-3">
                                         <input type="text" class="form-control" name="course_name"
+                                            placeholder="Course Name"
                                             value="{{ old('course_name', $admission->course_name) }}">
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Course Duration</label>
-                                        <input type="text" class="form-control" name="course_duration"
-                                            value="{{ old('course_duration', $admission->course_duration) }}">
-                                    </div>
-
-                                    <div class="col-lg-6 mb-4">
-                                        <label class="form-label">Admission Session *</label>
-                                        <input type="text" class="form-control" name="admission_session"
-                                            value="{{ old('admission_session', $admission->admission_session) }}">
-                                    </div>
-                                </div>
-
                                 <hr class="my-4">
 
-                                <div class="mb-3">
-                                    <label class="form-label">Last Qualification *</label>
-                                    <input type="text" class="form-control" name="last_qualification"
-                                        value="{{ old('last_qualification', $admission->last_qualification) }}">
-                                </div>
+                                <h6 class="fw-bold mb-3 text-primary">Documents</h6>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Board / University *</label>
-                                    <input type="text" class="form-control" name="board_university"
-                                        value="{{ old('board_university', $admission->board_university) }}">
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6 mb-3">
-                                        <label class="form-label">Passing Year *</label>
-                                        <input type="number" class="form-control" name="passing_year"
-                                            value="{{ old('passing_year', $admission->passing_year) }}">
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <label class="form-label">Percentage</label>
-                                        <input type="number" class="form-control" name="percentage"
-                                            value="{{ old('percentage', $admission->percentage) }}">
-                                    </div>
-                                </div>
-
-                                <hr class="my-4">
-
-                                <div class="mb-3">
-                                    <label class="form-label">Aadhaar</label>
-                                    <input type="text" class="form-control" name="aadhaar_number"
-                                        value="{{ old('aadhaar_number', $admission->aadhaar_number) }}">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label">PAN</label>
-                                    <input type="text" class="form-control" name="pan_number"
-                                        value="{{ old('pan_number', $admission->pan_number) }}">
-                                </div>
-
-                                <hr class="my-4">
-
-                                <div class="mb-3">
-                                    <label class="form-label">Photo</label>
+                                    <label class="form-label fw-semibold">Photo</label>
                                     <input type="file" class="form-control" name="photo">
                                     @if ($admission->photo)
-                                        <img src="{{ asset('storage/' . $admission->photo) }}" alt="Photo"
-                                            width="100" class="mt-2">
+                                        <img src="{{ asset('storage/' . $admission->photo) }}"
+                                            class="img-thumbnail mt-2" style="max-height:120px;">
                                     @endif
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Signature</label>
+                                    <label class="form-label fw-semibold">Signature</label>
                                     <input type="file" class="form-control" name="signature">
                                     @if ($admission->signature)
-                                        <img src="{{ asset('storage/' . $admission->signature) }}" alt="Signature"
-                                            width="100" class="mt-2">
+                                        <img src="{{ asset('storage/' . $admission->signature) }}"
+                                            class="img-thumbnail mt-2" style="max-height:100px;">
                                     @endif
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Marksheet</label>
+                                    <label class="form-label fw-semibold">Marksheet</label>
                                     <input type="file" class="form-control" name="marksheet">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">ID Proof</label>
+                                    <label class="form-label fw-semibold">ID Proof</label>
                                     <input type="file" class="form-control" name="id_proof">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Remarks</label>
-                                    <textarea class="form-control" name="remarks">{{ old('remarks', $admission->remarks) }}</textarea>
+                                    <label class="form-label fw-semibold">Remarks</label>
+                                    <textarea class="form-control" name="remarks" rows="3">{{ old('remarks', $admission->remarks) }}</textarea>
                                 </div>
 
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 text-end">
-                        <button type="submit" class="btn btn-primary">Update Admission</button>
+                    <div class="col-12 text-end mt-3">
+                        <button type="submit" class="btn btn-primary px-4">
+                            Update Admission
+                        </button>
                     </div>
 
                 </div>
             </div>
         </form>
     </div>
-    <!-- [ Main Content ] end -->
-   
 </main>
 @include('layouts.partials.admin.theme')
