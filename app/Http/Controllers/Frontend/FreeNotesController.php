@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\CourseNote;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class FreeNotesController extends Controller
@@ -60,6 +61,52 @@ class FreeNotesController extends Controller
             ->get();
 
         return view('notes.notes', compact('categories', 'courses'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('q');
+
+        if (strlen($query) < 3) {
+            return response()->json([]);
+        }
+
+        $notes = CourseNote::where('visibility', 'free')
+            ->where('status', 1)
+            ->where('title', 'LIKE', "%{$query}%")
+            ->limit(10)
+            ->get()
+            ->map(function ($note) {
+                return [
+                    'title' => $note->title,
+                    'type' => 'Note',
+                ];
+            });
+
+        $courses = Course::where('is_free', 1)
+            ->where('title', 'LIKE', "%{$query}%")
+            ->limit(10)
+            ->get()
+            ->map(function ($course) {
+                return [
+                    'title' => $course->title,
+                    'type' => 'Course',
+                ];
+            });
+
+        $categories = Category::where('name', 'LIKE', "%{$query}%")
+            ->limit(10)
+            ->get()
+            ->map(function ($category) {
+                return [
+                    'title' => $category->name,
+                    'type' => 'Category',
+                ];
+            });
+
+        return response()->json(
+            $notes->merge($courses)->merge($categories)
+        );
     }
 
     public function viewnote($id)

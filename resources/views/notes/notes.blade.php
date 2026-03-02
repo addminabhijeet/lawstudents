@@ -264,7 +264,7 @@
                 return;
             }
 
-            fetch(`{{ route('search') }}?q=${encodeURIComponent(query)}`)
+            fetch(`{{ route('adminsearch') }}?q=${encodeURIComponent(query)}`)
                 .then(response => response.json())
                 .then(data => {
 

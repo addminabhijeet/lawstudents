@@ -20,6 +20,8 @@ Route::middleware(['web'])
         Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnotes'])->name('viewnotes');
         Route::get('gallery', GalleryController::class)->name('gallery');
         Route::get('contact-us', ContactController::class)->name('contact');
+        Route::get('search-notes', [FreeNotesController::class, 'search'])
+            ->name('search');
     });
 
 Route::get('auth/google', function () {
