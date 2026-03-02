@@ -54,14 +54,14 @@
                     @csrf
 
                     <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
-
                     <div class="mb-3">
                         <label class="form-label">Banner Image</label>
                         <input type="file" name="image" class="form-control">
 
                         @if (isset($banner) && $banner->image)
                             <div class="mt-2">
-                                <img src="{{ asset('storage/' . $banner->image) }}" width="150" class="img-thumbnail">
+                                <img src="{{ asset('storage/' . $banner->image) }}" width="150"
+                                    class="img-thumbnail">
                             </div>
                         @endif
                     </div>

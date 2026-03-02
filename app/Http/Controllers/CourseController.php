@@ -39,8 +39,7 @@ class CourseController extends Controller
 
     public function listbanner()
     {
-        $banner = Banner::with('banner')
-            ->get();
+        $banner = Banner::first();
 
         return view('course.banner', compact('banner'));
     }
@@ -48,38 +47,41 @@ class CourseController extends Controller
     public function storebanner(Request $request)
     {
         $request->validate([
-            'image' => ['required', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'max:2048'],
         ]);
 
-        // If updating existing banner
+        // If banner_id exists → update
         if ($request->filled('banner_id')) {
 
-            $banner = Banner::findOrFail($request->banner_id);
+            $banner = Banner::find($request->banner_id);
 
-            // Delete old image
-            if ($banner->image && Storage::disk('public')->exists($banner->image)) {
-                Storage::disk('public')->delete($banner->image);
+            if ($banner) {
+
+                if ($request->hasFile('image')) {
+                    $path = $request->file('image')->store('banners', 'public');
+                    $banner->image = $path;
+                }
+
+                $banner->save();
+
+                return back()->with('success', 'Banner updated successfully.');
             }
-
-            $path = $request->file('image')->store('banners', 'public');
-
-            $banner->update([
-                'image' => $path,
-            ]);
-
-            return back()->with('success', 'Banner updated successfully.');
         }
 
-        // Create new banner
-        $path = $request->file('image')->store('banners', 'public');
+        // Otherwise → create new banner (old logic preserved)
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('banners', 'public');
 
-        Banner::create([
-            'image' => $path,
-            'status' => true,
-            'order' => 0,
-        ]);
+            Banner::create([
+                'image' => $path,
+                'status' => true,
+                'order' => 0,
+            ]);
 
-        return back()->with('success', 'Banner uploaded successfully.');
+            return back()->with('success', 'Banner uploaded successfully.');
+        }
+
+        return back()->with('error', 'No image selected.');
     }
     // Store Category
     public function storecategory(Request $request)
