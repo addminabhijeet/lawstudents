@@ -8,6 +8,7 @@ use App\Models\CourseNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Banner;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
@@ -43,6 +44,44 @@ class CourseController extends Controller
         $banner = Banner::first();
 
         return view('course.banner', compact('banner'));
+    }
+
+    public function listgallery()
+    {
+        $gallery = Gallery::first();
+
+        return view('course.gallery', compact('gallery'));
+    }
+
+    public function storegallery(Request $request)
+    {
+        $request->validate([
+            'image_1' => ['nullable', 'image', 'max:2048'],
+            'image_2' => ['nullable', 'image', 'max:2048'],
+            'image_3' => ['nullable', 'image', 'max:2048'],
+        ]);
+
+        $gallery = Gallery::first();
+
+        if (!$gallery) {
+            return back()->with('error', 'No gallery found to update.');
+        }
+
+        if ($request->hasFile('image_1')) {
+            $gallery->image_1 = $request->file('image_1')->store('gallery', 'public');
+        }
+
+        if ($request->hasFile('image_2')) {
+            $gallery->image_2 = $request->file('image_2')->store('gallery', 'public');
+        }
+
+        if ($request->hasFile('image_3')) {
+            $gallery->image_3 = $request->file('image_3')->store('gallery', 'public');
+        }
+
+        $gallery->save();
+
+        return back()->with('success', 'Gallery updated successfully.');
     }
 
     public function storebanner(Request $request)

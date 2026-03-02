@@ -91,6 +91,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('store-banner', [CourseController::class, 'storebanner'])
                 ->name('storebanner');
 
+            Route::get('gallery', [CourseController::class, 'listgallery'])
+                ->name('listgallery');
+
             Route::post('store-gallery', [CourseController::class, 'storegallery'])
                 ->name('storegallery');
 
