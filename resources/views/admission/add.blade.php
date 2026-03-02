@@ -110,7 +110,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Course Added</label>
+                                    <label class="form-label fw-semibold">Choose from below Course</label>
 
                                     <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
                                         <div class="row">
