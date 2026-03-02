@@ -143,20 +143,33 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
+                                <!-- Passport Photo -->
+                                <div class="mb-4">
                                     <label class="form-label fw-semibold">Passport Size Photo (JPEG/PNG)</label>
-                                    <input type="file" class="form-control">
+                                    <input type="file" class="form-control mb-3" accept="image/*"
+                                        onchange="previewImage(event, 'photoPreview')">
+
+                                    <div class="text-center">
+                                        <img id="photoPreview" class="img-thumbnail d-none"
+                                            style="max-height: 180px;">
+                                    </div>
                                 </div>
 
+                                <!-- Signature -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Signature (JPEG/PNG)</label>
-                                    <input type="file" class="form-control">
+                                    <input type="file" class="form-control mb-3" accept="image/*"
+                                        onchange="previewImage(event, 'signPreview')">
+
+                                    <div class="text-center">
+                                        <img id="signPreview" class="img-thumbnail d-none"
+                                            style="max-height: 150px;">
+                                    </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-
                     <!-- SUBMIT BUTTON -->
                     <div class="col-12 text-end mt-3">
                         <button type="submit" class="btn btn-primary px-4">
@@ -226,6 +239,23 @@
             if (data.success) alert("Phone Verified");
             else alert("Invalid OTP");
         });
+    }
+</script>
+<script>
+    function previewImage(event, previewId) {
+        const input = event.target;
+        const preview = document.getElementById(previewId);
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove('d-none');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 </script>
 @include('layouts.partials.admin.theme')
