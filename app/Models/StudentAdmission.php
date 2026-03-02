@@ -62,7 +62,9 @@ class StudentAdmission extends Model
         'percentage' => 'decimal:2',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        'course_ids' => 'array'
+        'course_ids' => 'array',
+        'email_verified' => 'boolean',
+        'phone_verified' => 'boolean',
     ];
 
     /**
@@ -100,5 +102,10 @@ class StudentAdmission extends Model
     public function getCoursesAttribute()
     {
         return Course::whereIn('id', $this->course_ids ?? [])->get();
+    }
+
+    public function courses()
+    {
+        return Course::whereIn('id', $this->course_ids ?? []);
     }
 }

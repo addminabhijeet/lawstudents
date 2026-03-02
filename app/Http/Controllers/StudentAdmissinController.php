@@ -11,6 +11,8 @@ use App\Models\WhatsappSetting;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Course;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Mail\StudentOtpMail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -32,75 +34,85 @@ class StudentAdmissinController extends Controller
 
     public function registeradmsubmit(Request $request)
     {
-        $data = $request->validate([
-            'student_id' => 'required|exists:students,id',
-            'full_name' => 'required|string|max:150',
-            'email' => 'required|email|max:150|unique:students,email',
-            'dob' => 'required|date',
-            'gender' => 'required',
-            'phone' => 'required|string|max:20',
-            'address_line1' => 'required|string|max:255',
-            'city' => 'required|string|max:100',
-            'state' => 'required|string|max:100',
-            'pincode' => 'required|string|max:10',
-            'last_qualification' => 'required|string|max:150',
-            'board_university' => 'required|string|max:150',
-            'passing_year' => 'required|integer',
-            'admission_session' => 'required|string|max:20',
-            'admission_status' => 'required|in:pending,approved,rejected',
-            'course_ids' => 'nullable|array',
-            'course_ids.*' => 'exists:courses,id',
+        $validated = $request->validate([
+            'full_name' => ['required', 'string', 'max:150'],
+            'email' => ['required', 'email', 'max:150', 'unique:students,email'],
+            'phone' => ['required', 'string', 'max:20'],
+            'address_line1' => ['required', 'string', 'max:255'],
+            'admission_status' => ['required', 'in:pending,approved,rejected'],
+            'course_ids' => ['nullable', 'array'],
+            'course_ids.*' => ['exists:courses,id'],
         ]);
 
-        $student = Student::create([
-            'name'     => $data['full_name'],
-            'username' => Str::slug($data['full_name']) . rand(100, 999),
-            'email'    => $data['email'],
-            'password' => '123456',
-        ]);
+        return DB::transaction(function () use ($validated, $request) {
 
-        $data['student_id'] = $student->id;
-        $data['course_ids'] = $data['course_ids'] ?? [];
 
-        $admission = StudentAdmission::create($data);
+            $student = Student::create([
+                'name'     => $validated['full_name'],
+                'username' => Str::slug($validated['full_name']) . rand(100, 999),
+                'email'    => $validated['email'],
+                'password' => Hash::make(Str::random(10)),
+            ]);
 
-        if ($admission->admission_status === 'approved') {
 
-            $verifiedAdmission = StudentAdmission::where('id', $admission->id)
-                ->where('email_verified', true)
-                ->where('phone_verified', true)
-                ->first();
+            if ($validated['admission_status'] === 'approved') {
 
-            if (!$verifiedAdmission) {
-                return redirect()->back()
-                    ->with('error', 'Email and Phone OTP must be verified before approval.');
+                if (
+                    !$request->boolean('email_verified') ||
+                    !$request->boolean('phone_verified')
+                ) {
+                    abort(422, 'Email and Phone OTP must be verified before approval.');
+                }
             }
 
-            $paymentExists = Payment::where('student_id', $student->id)->exists();
 
-            if (!$paymentExists) {
+            $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
+            $subTotal = $courses->sum('price');
+
+            $discountPercent = $request->input('discount_percent', 0);
+            $discountAmount  = ($subTotal * $discountPercent) / 100;
+            $grandTotal      = $subTotal - $discountAmount;
+
+
+            $admission = StudentAdmission::create([
+                'student_id'      => $student->id,
+                'full_name'       => $validated['full_name'],
+                'email'           => $validated['email'],
+                'phone'           => $validated['phone'],
+                'address_line1'   => $validated['address_line1'],
+                'admission_status' => $validated['admission_status'],
+                'course_ids'      => $validated['course_ids'] ?? [],
+                'email_verified'  => $request->boolean('email_verified'),
+                'phone_verified'  => $request->boolean('phone_verified'),
+            ]);
+
+
+            if ($admission->admission_status === 'approved') {
+
                 Payment::create([
-                    'student_id' => $student->id,
+                    'student_id'     => $student->id,
                     'invoice_number' => 'INV-' . strtoupper(Str::random(6)),
-                    'invoice_label' => 'Admission Fee',
-                    'invoice_product' => implode(', ', Course::whereIn('id', $admission->course_ids ?? [])->pluck('title')->toArray()),
-                    'issue_date' => now(),
-                    'due_date' => now()->addDays(7),
-                    'to_name' => $admission->full_name,
-                    'to_email' => $admission->email,
-                    'to_phone' => $admission->phone,
-                    'to_address' => $admission->address_line1,
-                    'sub_total' => 0,
-                    'grand_total' => 0,
-                    'currency' => 'INR',
+                    'invoice_label'  => 'Admission Fee',
+                    'invoice_product' => $courses->pluck('title')->implode(', '),
+                    'issue_date'     => now(),
+                    'due_date'       => now()->addDays(7),
+                    'to_name'        => $admission->full_name,
+                    'to_email'       => $admission->email,
+                    'to_phone'       => $admission->phone,
+                    'to_address'     => $admission->address_line1,
+                    'sub_total'      => $subTotal,
+                    'discount'       => $discountAmount,
+                    'grand_total'    => $grandTotal,
+                    'currency'       => 'INR',
                     'payment_status' => 'pending',
                 ]);
             }
-        }
 
-        return redirect()->back()->with('success', 'Admission created successfully.');
+            return redirect()
+                ->back()
+                ->with('success', 'Admission created successfully.');
+        });
     }
-
     public function sendEmailOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
