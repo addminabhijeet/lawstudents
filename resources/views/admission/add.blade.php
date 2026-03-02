@@ -73,7 +73,7 @@
                                     </div>
 
                                     <div class="input-group">
-                                        <input type="text" id="emailOtp" class="form-control"
+                                        <input type="text" name="email_otp" id="emailOtp" class="form-control"
                                             placeholder="Enter Email OTP">
                                         <button type="button" onclick="verifyEmailOtp()" class="btn btn-success">
                                             Verify
@@ -95,7 +95,7 @@
                                     </div>
 
                                     <div class="input-group">
-                                        <input type="text" id="phoneOtp" class="form-control"
+                                        <input type="text" name="phone_otp" id="phoneOtp" class="form-control"
                                             placeholder="Enter Phone OTP">
                                         <button type="button" onclick="verifyPhoneOtp()" class="btn btn-success">
                                             Verify
@@ -178,8 +178,8 @@
                                         Passport Size Photo (JPEG/PNG)
                                         <small class="text-muted">(Max 2MB)</small>
                                     </label>
-                                    <input type="file" id="photoInput" class="form-control mb-2" accept="image/*"
-                                        onchange="validateAndPreview(event, 'photoPreview', 2)">
+                                    <input type="file" name="photo" id="photoInput" class="form-control mb-2"
+                                        accept="image/*" onchange="validateAndPreview(event, 'photoPreview', 2)">
 
                                     <div class="invalid-feedback" id="photoError"></div>
 
@@ -195,8 +195,8 @@
                                         Signature (JPEG/PNG)
                                         <small class="text-muted">(Max 1MB)</small>
                                     </label>
-                                    <input type="file" id="signInput" class="form-control mb-2" accept="image/*"
-                                        onchange="validateAndPreview(event, 'signPreview', 1)">
+                                    <input type="file" name="signature" id="signInput" class="form-control mb-2"
+                                        accept="image/*" onchange="validateAndPreview(event, 'signPreview', 1)">
 
                                     <div class="invalid-feedback" id="signError"></div>
 
@@ -206,36 +206,34 @@
                                     </div>
                                 </div>
 
+                                <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Subtotal:</span>
+                                        <span>₹<span id="subtotal">0</span></span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <span>Discount %:</span>
+                                        <input type="number" id="customDiscount" class="form-control"
+                                            min="0" max="100" value="10">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <span>Discount (10%):</span>
+                                        <span>- ₹<span id="discount">0</span></span>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="d-flex justify-content-between fw-bold">
+                                        <span>Total Payable:</span>
+                                        <span>₹<span id="grandtotal">0</span></span>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
-
-                    <div class="card p-3 shadow-sm">
-                        <div class="d-flex justify-content-between">
-                            <span>Subtotal:</span>
-                            <span>₹<span id="subtotal">0</span></span>
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center mt-2">
-                            <span>Discount %:</span>
-                            <input type="number" id="customDiscount" class="form-control" min="0"
-                                max="100" value="10">
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <span>Discount (10%):</span>
-                            <span>- ₹<span id="discount">0</span></span>
-                        </div>
-
-                        <hr>
-
-                        <div class="d-flex justify-content-between fw-bold">
-                            <span>Total Payable:</span>
-                            <span>₹<span id="grandtotal">0</span></span>
                         </div>
                     </div>
 
