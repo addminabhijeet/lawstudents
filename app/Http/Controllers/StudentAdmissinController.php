@@ -27,7 +27,7 @@ class StudentAdmissinController extends Controller
     public function create()
     {
         $courses = Course::where('status', 1)->get();
-        return view('admission.create', compact('courses'));
+        return view('admission.add', compact('courses'));
     }
 
     public function registeradmsubmit(Request $request)
