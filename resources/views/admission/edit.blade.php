@@ -143,7 +143,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Address</label>
                                     <div class="row">
-                                        <div class="cmb-3">
+                                        <div class="mb-3">
                                             <input type="text" class="form-control" name="address_line1"
                                                 placeholder="Address Line 1"
                                                 value="{{ old('address_line1', $admission->address_line1) }}">
