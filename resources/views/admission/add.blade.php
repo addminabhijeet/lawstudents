@@ -132,11 +132,11 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Address</label>
                                     <div class="row">
-                                        <div class="col-lg-6 mb-3">
+                                        <div class="mb-3">
                                             <input type="text" class="form-control" name="address_line1"
                                                 placeholder="Address Line 1">
                                         </div>
-                                        <div class="col-lg-6 mb-3">
+                                        <div class="mb-3">
                                             <input type="text" class="form-control" name="address_line2"
                                                 placeholder="Address Line 2">
                                         </div>
