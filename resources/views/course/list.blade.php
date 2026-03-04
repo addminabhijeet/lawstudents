@@ -1065,21 +1065,23 @@
 </script>
 
 <script>
-    $(".edit-course").on("click", function() {
+    $(document).on("click", ".edit-course", function() {
         let id = $(this).data("id");
 
         $.get("/admin/course-edit/" + id, function(data) {
             $("#edit_course_id").val(data.id);
             $("#edit_category").val(data.category_id);
-            $("#edit_title").val(data.title);
-            $("#edit_description").val(data.description);
-            $("#edit_duration").val(data.duration);
-            $("#edit_discount").val(data.discount);
-            $("#edit_price").val(data.price);
+            $("select[name='category_id']").val(data.category_id);
+            $("input[name='title']").val(data.title);
+            $("textarea[name='description']").val(data.description);
+            $("input[name='duration']").val(data.duration);
+            $("input[name='discount']").val(data.discount);
+            $("input[name='price']").val(data.price);
 
             // set form action dynamically
             $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
 
+            // open modal
             $("#editnotesmodal").modal("show");
         });
     });
