@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseNote;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 use App\Models\Banner;
 use App\Models\Gallery;
-use Illuminate\Support\Facades\Storage;
+
 
 class CourseController extends Controller
 {
@@ -131,23 +132,37 @@ class CourseController extends Controller
         return back()->with('success', 'Category Created Successfully');
     }
 
-
-    // Store Course
     public function storecourse(Request $request)
     {
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'nullable|numeric'
+            'price' => 'nullable|numeric',
+
+            // NEW FIELDS
+            'duration' => 'nullable|integer|min:1',
+            'discount' => 'nullable|numeric|min:0',
+            'brochure' => 'nullable|mimes:pdf|max:2048'
         ]);
+
+        $brochurePath = null;
+
+        if ($request->hasFile('brochure')) {
+            $brochurePath = $request->file('brochure')->store('brochures', 'public');
+        }
 
         Course::create([
             'category_id' => $request->category_id,
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
-            'price' => $request->price
+            'price' => $request->price,
+
+            // NEW FIELDS
+            'duration' => $request->duration,
+            'discount' => $request->discount ?? 0,
+            'brochure' => $brochurePath,
         ]);
 
         return back()->with('success', 'Course Created Successfully');

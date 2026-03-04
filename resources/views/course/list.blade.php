@@ -418,7 +418,7 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="{{ route('admin.storecourse') }}" method="POST">
+                        <form action="{{ route('admin.storecourse') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <!-- Category -->
@@ -444,6 +444,27 @@
                                     <label class="form-label">Course Description</label>
                                     <textarea name="description" class="form-control" minlength="10" rows="4"
                                         placeholder="Enter Course Description"></textarea>
+                                </div>
+
+                                <!-- Duration -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Duration (in Minutes)</label>
+                                    <input type="number" name="duration" class="form-control"
+                                        placeholder="Enter Course Duration">
+                                </div>
+
+                                <!-- Discount -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Discount</label>
+                                    <input type="number" step="0.01" name="discount" class="form-control"
+                                        placeholder="Enter Discount Amount">
+                                </div>
+
+                                <!-- Brochure PDF -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Upload Brochure (PDF)</label>
+                                    <input type="file" name="brochure" class="form-control"
+                                        accept="application/pdf">
                                 </div>
 
                                 <!-- Price -->
