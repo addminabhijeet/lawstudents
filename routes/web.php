@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\FreeNotesController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\CourseController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -16,12 +17,12 @@ Route::middleware(['web'])
         Route::get('', HomeController::class)->name('home');
         Route::get('about-us', AboutController::class)->name('about');
         Route::get('free-notes', FreeNotesController::class)->name('notes');
-        Route::get('view-note/{id}', [FreeNotesController::class, 'viewnote'])->middleware('auth')->name('viewnote');
+        Route::get('view-note/{id}', [FreeNotesController::class, 'viewnote'])->name('viewnote');
         Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnotes'])->name('viewnotes');
+        Route::get('course', CourseController::class)->name('course');
         Route::get('gallery', GalleryController::class)->name('gallery');
         Route::get('contact-us', ContactController::class)->name('contact');
-        Route::get('search-notes', [FreeNotesController::class, 'search'])
-            ->name('search');
+        Route::get('search-notes', [FreeNotesController::class, 'search'])->name('search');
     });
 
 Route::get('auth/google', function () {
