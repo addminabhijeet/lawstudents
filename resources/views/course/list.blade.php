@@ -518,8 +518,7 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="{{ route('admin.updatecourse', ['id' => $course->id]) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form id="editCourseForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <!-- Category -->
@@ -532,6 +531,7 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <input type="hidden" id="edit_course_id" name="id">
 
                                 <!-- Title -->
                                 <div class="col-md-12 mb-3">
@@ -1067,5 +1067,26 @@
         } else {
             parentSelect.disabled = false; // enable select
         }
+    });
+</script>
+
+<script>
+    $(".edit-course").on("click", function() {
+        let id = $(this).data("id");
+
+        $.get("/admin/course/edit/" + id, function(data) {
+            $("#edit_course_id").val(data.id);
+            $("#edit_category").val(data.category_id);
+            $("#edit_title").val(data.title);
+            $("#edit_description").val(data.description);
+            $("#edit_duration").val(data.duration);
+            $("#edit_discount").val(data.discount);
+            $("#edit_price").val(data.price);
+
+            // set form action dynamically
+            $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
+
+            $("#editnotesmodal").modal("show");
+        });
     });
 </script>
