@@ -57,6 +57,6 @@ class CourseController extends Controller
             })
             ->get();
 
-        return view('courses.courses', compact('categories', 'courses'));
+        return view('course.course', compact('categories', 'courses'));
     }
 }
