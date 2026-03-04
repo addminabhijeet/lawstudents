@@ -393,6 +393,20 @@
                                             </span>
                                         </div>
 
+                                        <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
+                                        <div class="d-flex gap-2 mt-2">
+                                            <button class="btn btn-sm btn-warning edit-course"
+                                                data-id="{{ $course->id }}">
+                                                Edit
+                                            </button>
+
+                                            <a href="{{ route('course.delete', $course->id) }}"
+                                                class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete?')">
+                                                Delete
+                                            </a>
+                                        </div>
+                                        <!-- END BUTTONS -->
 
                                     </div>
                                 </div>
@@ -418,7 +432,8 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="{{ route('admin.storecourse') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.storecourse') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <!-- Category -->
