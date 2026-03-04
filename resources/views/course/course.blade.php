@@ -81,9 +81,11 @@
                                                         </div>
                                                     </div>
 
-                                                    <div style="font-weight:500;">Price: ₹{{ $note->price }}</div>
-                                                    <div style="font-size:12px; color:#777;">Discount:
-                                                        ₹{{ $note->discount ?? 0 }}</div>
+                                                    <div>
+                                                        <div style="font-weight:500;">Price: ₹{{ $course->price }}</div>
+                                                        <div style="font-size:12px; color:#777;">Discount:
+                                                            ₹{{ $course->discount ?? 0 }}</div>
+                                                    </div>
 
                                                     @if (auth()->check())
                                                         <a href="{{ route('frontend.viewnote', $note->id) }}"
