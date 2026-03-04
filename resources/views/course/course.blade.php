@@ -92,6 +92,11 @@
                                                             Download
                                                         </a>
                                                     @endif
+                                                    <a href="{{ route('frontend.viewnote', $note->id) }}"
+                                                        style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
+                                                        Enroll Now
+                                                    </a>
+
 
                                                 </div>
                                             @endforeach
