@@ -395,7 +395,7 @@
 
                                         <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
                                         <div class="d-flex gap-2 mt-2">
-                                            <button class="btn btn-sm btn-warning edit-course"
+                                            <button class="btn btn-sm btn-warning edit-course" id="add-notes"
                                                 data-id="{{ $course->id }}">
                                                 Edit
                                             </button>
@@ -493,6 +493,92 @@
                             <!-- Modal Footer -->
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">Add Course</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Body -->
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Edit Course</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="notes-box">
+                    <div class="notes-content">
+                        <form action="{{ route('admin.updatecourse') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <!-- Category -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Select Category</label>
+                                    <select name="category_id" class="form-control" required>
+                                        <option value="">-- Select Category --</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Title -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Course Title</label>
+                                    <input type="text" name="title" class="form-control" minlength="5"
+                                        placeholder="Enter Course Title" required>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Course Description</label>
+                                    <textarea name="description" class="form-control" minlength="10" rows="4"
+                                        placeholder="Enter Course Description"></textarea>
+                                </div>
+
+                                <!-- Duration -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Duration (in Minutes)</label>
+                                    <input type="number" name="duration" class="form-control"
+                                        placeholder="Enter Course Duration">
+                                </div>
+
+                                <!-- Discount -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Discount</label>
+                                    <input type="number" step="0.01" name="discount" class="form-control"
+                                        placeholder="Enter Discount Amount">
+                                </div>
+
+                                <!-- Brochure PDF -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Upload Brochure (PDF)</label>
+                                    <input type="file" name="brochure" class="form-control"
+                                        accept="application/pdf">
+                                </div>
+
+                                <!-- Price -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Price</label>
+                                    <input type="number" step="0.01" name="price" class="form-control"
+                                        placeholder="Enter Course Price">
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Update Course</button>
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
@@ -878,6 +964,12 @@
 
     $("#add-notes").on("click", function(event) {
         $("#addnotesmodal").modal("show");
+        $("#btn-n-save").hide();
+        $("#btn-n-add").show();
+    });
+
+    $("#edit-notes").on("click", function(event) {
+        $("#editnotesmodal").modal("show");
         $("#btn-n-save").hide();
         $("#btn-n-add").show();
     });
