@@ -27,7 +27,6 @@
             <span>About Us</span>
             <h2>Law Students was born from a simple observation: </h2>
             <p>Service providers can differentiate themselves by offering high-quality and reliable services. Airlines, for instance, promote their safety records and.</p>
-            
             <div class="about3-textarea-list">
               <ul>
                 <li>
@@ -47,7 +46,7 @@
               </ul>
             </div>
             <div class="about3-pera-text">
-              <p>Founded in [Year], our company emerged from the recognition that the Socratic Method, complex case law, and high-stakes exams require a specialized approach to tutoring—one that generic academic services simply cannot provide. What began as a small network of top-performing law graduates helping their peers has grown into a premier educational platform dedicated exclusively to legal education.</p>
+              <p>Some services emphasize environmental sustainability as a benefit, Car-sharing services like Zipcar promote reduced emissions and the use of fewer vehicles, contributing to a greener environment.</p>
             </div>
             <div class="div">
               <a href="" class="casebtn1">Request Case Evolution <span><i class="fa-regular fa-arrow-right"></i></span></a>
