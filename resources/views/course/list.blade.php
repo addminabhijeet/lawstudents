@@ -1074,7 +1074,7 @@
     $(".edit-course").on("click", function() {
         let id = $(this).data("id");
 
-        $.get("/admin/course/edit/" + id, function(data) {
+        $.get("/admin/course-edit/" + id, function(data) {
             $("#edit_course_id").val(data.id);
             $("#edit_category").val(data.category_id);
             $("#edit_title").val(data.title);
