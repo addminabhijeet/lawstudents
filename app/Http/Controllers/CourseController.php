@@ -168,7 +168,7 @@ class CourseController extends Controller
         return back()->with('success', 'Course Created Successfully');
     }
 
-    public function updatecourse(Request $request, $id)
+    public function coursedelete(Request $request, $id)
     {
         $request->validate([
             'category_id' => 'required|exists:categories,id',
