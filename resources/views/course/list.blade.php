@@ -395,7 +395,7 @@
 
                                         <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
                                         <div class="d-flex gap-2 mt-2">
-                                            <button class="btn btn-sm btn-warning edit-course" id="add-notes"
+                                            <button class="btn btn-sm btn-warning edit-course"
                                                 data-id="{{ $course->id }}">
                                                 Edit
                                             </button>
