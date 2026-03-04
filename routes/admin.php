@@ -92,10 +92,10 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('storebanner');
 
             Route::post('course-update/{id}', [CourseController::class, 'updatecourse'])
-                ->name('courseupdate');
+                ->name('updatecourse');
 
             Route::get('course-delete/{id}', [CourseController::class, 'deletecourse'])
-                ->name('coursedelete');
+                ->name('deletecourse');
 
             Route::get('gallery', [CourseController::class, 'listgallery'])
                 ->name('listgallery');
