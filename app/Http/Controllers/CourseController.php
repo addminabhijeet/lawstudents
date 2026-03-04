@@ -167,4 +167,47 @@ class CourseController extends Controller
 
         return back()->with('success', 'Course Created Successfully');
     }
+
+    public function updatecourse(Request $request, $id)
+    {
+        $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
+            'duration' => 'nullable|integer|min:1',
+            'discount' => 'nullable|numeric|min:0',
+            'brochure' => 'nullable|mimes:pdf|max:2048'
+        ]);
+
+        $course = Course::findOrFail($id);
+
+        $brochurePath = $course->brochure;
+
+        if ($request->hasFile('brochure')) {
+            $brochurePath = $request->file('brochure')->store('brochures', 'public');
+        }
+
+        $course->update([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'description' => $request->description,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'discount' => $request->discount ?? 0,
+            'brochure' => $brochurePath,
+        ]);
+
+        return back()->with('success', 'Course Updated Successfully');
+    }
+
+    // DELETE COURSE
+    public function deletecourse($id)
+    {
+        $course = Course::findOrFail($id);
+        $course->delete();
+
+        return back()->with('success', 'Course Deleted Successfully');
+    }
 }
