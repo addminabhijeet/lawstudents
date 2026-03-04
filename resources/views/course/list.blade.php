@@ -968,12 +968,6 @@
         $("#btn-n-add").show();
     });
 
-    $("#edit-notes").on("click", function(event) {
-        $("#editnotesmodal").modal("show");
-        $("#btn-n-save").hide();
-        $("#btn-n-add").show();
-    });
-
     $("#add-category").on("click", function(event) {
         $("#addCategoryModal").modal("show");
         $("#btn-n-save").hide();
