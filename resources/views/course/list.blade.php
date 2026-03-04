@@ -518,7 +518,7 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="{{ route('admin.updatecourse') }}" method="POST"
+                        <form action="{{ route('admin.updatecourse', ['id' => $course->id]) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
