@@ -400,7 +400,7 @@
                                                 Edit
                                             </button>
 
-                                            <a href="{{ route('coursedelete', $course->id) }}"
+                                            <a href="{{ route('admin.coursedelete', $course->id) }}"
                                                 class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete?')">
                                                 Delete
