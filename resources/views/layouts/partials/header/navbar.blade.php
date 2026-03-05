@@ -32,8 +32,12 @@
                             </div>
                         </div>
                         <div class="header-elements">
-                            <div class="site-logo">
-                                <a href=""><img src="/img/logo/logo11.png" alt=""></a>
+                            <div class="site-logo"
+                                style="width:150px; height:60px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                <a href="" style="display:block; width:100%; height:100%;">
+                                    <img src="/img/logo/logo11.png" alt=""
+                                        style="width:100%; height:100%; object-fit:contain;">
+                                </a>
                             </div>
                             <div class="main-menu-ex homepage6">
                                 <ul>
