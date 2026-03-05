@@ -40,10 +40,16 @@
     <nav class="nxl-navigation">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="index.html" class="b-brand">
-                    <!-- ========   change your logo hear   ============ -->
-                    <img src="{{ asset('assets/images/logo-full.png') }}" alt="" class="logo logo-lg">
-                    <img src="{{ asset('assets/images/logo-abbr.png') }}" alt="" class="logo logo-sm">
+                <a href="index.html" class="b-brand" style="display:flex; align-items:center; height:60px;">
+
+                    <!-- Large Logo -->
+                    <img src="{{ asset('assets/images/logo-full.png') }}" alt="" class="logo logo-lg"
+                        style="height:50px; width:auto; max-width:180px; object-fit:contain;">
+
+                    <!-- Small Logo -->
+                    <img src="{{ asset('assets/images/logo-abbr.png') }}" alt="" class="logo logo-sm"
+                        style="height:40px; width:auto; max-width:60px; object-fit:contain;">
+
                 </a>
             </div>
             <div class="navbar-content">
@@ -71,10 +77,10 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('student.liststudent') }}">List
                                     Student</a></li>
-                            
+
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listadmission') }}">List
                                     Addmission</a></li>
-                            
+
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -501,7 +507,8 @@
 
                                     <div>
                                         <h6 class="text-dark mb-0">{{ auth('student')->user()?->name }}</h6>
-                                        <span class="fs-12 fw-medium text-muted">{{ auth('student')->user()?->email }}</span>
+                                        <span
+                                            class="fs-12 fw-medium text-muted">{{ auth('student')->user()?->email }}</span>
                                     </div>
                                 </div>
                             </div>
