@@ -968,6 +968,12 @@
         $("#btn-n-add").show();
     });
 
+    $("#edit-course").on("click", function(event) {
+        $("#editnotesmodal").modal("show");
+        $("#btn-n-save").hide();
+        $("#btn-n-add").show();
+    });
+
     $("#add-category").on("click", function(event) {
         $("#addCategoryModal").modal("show");
         $("#btn-n-save").hide();
@@ -1064,7 +1070,7 @@
     });
 </script>
 
-<script>
+{{-- <script>
     $(document).on("click", ".edit-course", function() {
         let id = $(this).data("id");
 
@@ -1078,11 +1084,9 @@
             $("input[name='discount']").val(data.discount);
             $("input[name='price']").val(data.price);
 
-            // set form action dynamically
             $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
 
-            // open modal
             $("#editnotesmodal").modal("show");
         });
     });
-</script>
+</script> --}}
