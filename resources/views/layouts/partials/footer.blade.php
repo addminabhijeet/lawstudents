@@ -7,8 +7,10 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-last-section">
-                                <div class="footer-imgage">
-                                    <img src="/img/logo/logo5.png" alt="">
+                                <div class="footer-imgage"
+                                    style="width:160px; height:70px; display:flex; align-items:center; justify-content:flex-start; overflow:hidden; margin-bottom:15px;">
+                                    <img src="/img/logo/logo5.png" alt=""
+                                        style="width:100%; height:100%; object-fit:contain;">
                                 </div>
                                 <div class="footer-text-area">
                                     <p>Include any additional information that may be relevant or helpful for visitors,
