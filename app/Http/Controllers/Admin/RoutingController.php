@@ -251,6 +251,13 @@ class RoutingController extends Controller
             'password' => 'required|confirmed|min:6',
         ]);
 
+        $lastStudent = \App\Models\Student::latest('id')->first();
+        if ($lastStudent && preg_match('/STU(\d+)/', $lastStudent->username, $matches)) {
+            $data['username'] = 'STU' . str_pad((int)$matches[1] + 1, 5, '0', STR_PAD_LEFT);
+        } else {
+            $data['username'] = 'STU00001';
+        }
+
         $student = Student::create([
             'name' => $data['name'],
             'username' => $data['username'],
@@ -294,7 +301,7 @@ class RoutingController extends Controller
 
         $student->update([
             'name' => $data['name'],
-            'username' => $data['username'],
+            'username' => $student->username,
             'email' => $data['email'],
             'password' => $data['password'] ?? $student->password,
         ]);
@@ -303,10 +310,6 @@ class RoutingController extends Controller
             ->with('success', 'Student updated successfully.');
     }
 
-
-    /**
-     * First level route
-     */
     public function firstLevel(Request $request, $first)
     {
         if (View::exists($first)) {
