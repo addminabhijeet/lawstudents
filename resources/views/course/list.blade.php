@@ -395,10 +395,9 @@
 
                                         <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
                                         <div class="d-flex gap-2 mt-2">
-                                            <a href="javascript:void(0);" 
-                                            class="btn btn-sm btn-warning edit-course"
-                                            data-id="{{ $course->id }}">
-                                            Edit
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-warning edit-course"
+                                                data-id="{{ $course->id }}">
+                                                Edit
                                             </a>
                                             <a href="{{ route('admin.coursedelete', $course->id) }}"
                                                 class="btn btn-sm btn-danger"
@@ -985,7 +984,8 @@
 
             $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
 
-            $("#editnotesmodal").modal("show");
+            var modal = new bootstrap.Modal(document.getElementById('editnotesmodal'));
+            modal.show();
         });
     });
 
