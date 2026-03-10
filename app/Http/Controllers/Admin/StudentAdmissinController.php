@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\StudentAdmission;
 use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\Payment;
+use App\Models\Declaration;
 use App\Models\WhatsappSetting;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Course;
@@ -30,7 +31,9 @@ class StudentAdmissinController extends Controller
     public function create()
     {
         $courses = Course::where('status', 1)->get();
-        return view('admission.add', compact('courses'));
+        $declaration = Declaration::first(); 
+
+        return view('admission.add', compact('courses', 'declaration'));
     }
 
     public function registeradmsubmit(Request $request)

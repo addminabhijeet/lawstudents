@@ -233,6 +233,18 @@
                                     </div>
                                 </div>
 
+                                <!-- Declaration -->
+                                @if (isset($declaration))
+                                    <div class="form-check mt-4">
+                                        <input class="form-check-input" type="checkbox" name="declaration_accept"
+                                            id="declarationCheck" required>
+
+                                        <label class="form-check-label" for="declarationCheck">
+                                            {!! $declaration->declaration !!}
+                                        </label>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
