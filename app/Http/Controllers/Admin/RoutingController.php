@@ -181,21 +181,20 @@ class RoutingController extends Controller
 
     public function liststudent()
     {
-        $students = Student::all();
+        $students = Student::where('deleted', 0)->get();
         return view('student.list', compact('students'));
     }
 
     public function editstudent($id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::where('deleted', 0)->findOrFail($id);
         return view('student.edit', compact('student'));
     }
 
     public function destroystudent($id)
     {
         $student = Student::findOrFail($id);
-        $student->delete();
-
+        $student->update(['deleted' => 1]);
         return redirect()->back()->with('success', 'Student deleted successfully.');
     }
 
