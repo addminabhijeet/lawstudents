@@ -1070,7 +1070,7 @@
     });
 </script>
 
-{{-- <script>
+<script>
     $(document).on("click", ".edit-course", function() {
         let id = $(this).data("id");
 
@@ -1089,4 +1089,4 @@
             $("#editnotesmodal").modal("show");
         });
     });
-</script> --}}
+</script>
