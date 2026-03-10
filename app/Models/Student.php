@@ -23,6 +23,7 @@ class Student extends Authenticatable
         'username',
         'email',
         'password',
+        'deleted'
     ];
 
     // Hidden attributes (e.g., for arrays or JSON)
