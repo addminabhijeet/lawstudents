@@ -10,7 +10,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">Applications</li>
-                    <li class="breadcrumb-item">Add Student</li>
+                    <li class="breadcrumb-item">Student Registration</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -39,7 +39,7 @@
 
                             <div class="text-center mb-4">
                                 <img src="assets/images/logo-abbr.png" width="50" class="mb-3">
-                                <h2 class="fs-20 fw-bolder">Register</h2>
+                                <h2 class="fs-20 fw-bolder">Student Registration</h2>
                                 <p class="fs-12 text-muted">
                                     Let's get you all setup so you can verify your personal account
                                     and begin setting up your profile.
