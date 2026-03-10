@@ -97,8 +97,32 @@
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List</a>
                             </li>
                         </ul>
+
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-at-sign"></i></span>
+                            <span class="nxl-mtext">Notes</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listbanner') }}">Banner</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Paid
+                                    Notes</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listfreenotes') }}">Free
+                                    Notes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-at-sign"></i></span>
+                            <span class="nxl-mtext">Frontend</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listbanner') }}">Banner</a>
                             </li>
                         </ul>
                         <ul class="nxl-submenu">
@@ -110,7 +134,7 @@
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-at-sign"></i></span>
-                            <span class="nxl-mtext">Notes</span><span class="nxl-arrow"><i
+                            <span class="nxl-mtext">Setting</span><span class="nxl-arrow"><i
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
