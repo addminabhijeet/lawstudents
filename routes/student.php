@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\CourseNoteControllerStu;
-use App\Http\Controllers\RoutingControllerStu;
+use App\Http\Controllers\Student\RoutingControllerStu;
 use App\Http\Controllers\StudentPasswordController;
-use App\Http\Controllers\CourseControllerStu;
-use App\Http\Controllers\StudentAdmissinControllerStu;
+use App\Http\Controllers\Student\CourseControllerStu;
+use App\Http\Controllers\Student\StudentAdmissinControllerStu;
 
 
 Route::middleware(['student.auth', 'auth:student'])
