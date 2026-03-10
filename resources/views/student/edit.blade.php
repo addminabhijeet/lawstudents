@@ -91,7 +91,7 @@
 
                                     <div class="col-lg-6 mb-3">
                                         <input type="text" name="username" class="form-control"
-                                            placeholder="Username" value="{{ $username }}" readonly>
+                                            placeholder="Username" value="{{ old('name', $student->username ?? '') }}" readonly>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">

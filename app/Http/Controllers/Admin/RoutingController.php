@@ -188,7 +188,8 @@ class RoutingController extends Controller
     public function editstudent($id)
     {
         $student = Student::where('deleted', 0)->findOrFail($id);
-        return view('student.edit', compact('student'));
+        $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
+        return view('student.edit', compact('student','defaultpassword'));
     }
 
     public function destroystudent($id)
