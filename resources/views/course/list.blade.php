@@ -966,7 +966,6 @@
         $("#btn-n-save").hide();
         $("#btn-n-add").show();
     });
-
     $(document).on("click", ".edit-course", function(event) {
         console.log("Edit button clicked");
 
@@ -975,35 +974,43 @@
         let id = $(this).data("id");
         console.log("Course ID:", id);
 
-        $.get("/admin/course-edit/" + id, function(data) {
+        $.ajax({
+            url: "/admin/course-edit/" + id,
+            type: "POST",
+            data: {
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
 
-            console.log("AJAX response received:", data);
+                console.log("AJAX response received:", data);
 
-            $("#edit_course_id").val(data.id);
-            $("select[name='category_id']").val(data.category_id);
-            $("input[name='title']").val(data.title);
-            $("textarea[name='description']").val(data.description);
-            $("input[name='duration']").val(data.duration);
-            $("input[name='discount']").val(data.discount);
-            $("input[name='price']").val(data.price);
+                $("#edit_course_id").val(data.id);
+                $("select[name='category_id']").val(data.category_id);
+                $("input[name='title']").val(data.title);
+                $("textarea[name='description']").val(data.description);
+                $("input[name='duration']").val(data.duration);
+                $("input[name='discount']").val(data.discount);
+                $("input[name='price']").val(data.price);
 
-            $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
+                $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
 
-            console.log("Opening modal now...");
+                console.log("Opening modal now...");
 
-            var modal = new bootstrap.Modal(document.getElementById('editnotesmodal'));
-            modal.show();
+                var modal = new bootstrap.Modal(document.getElementById('editnotesmodal'));
+                modal.show();
 
-            console.log("Modal show triggered");
+                console.log("Modal show triggered");
+            },
+            error: function(xhr, status, error) {
 
-        }).fail(function(xhr, status, error) {
+                console.error("AJAX request failed");
+                console.error("Status:", status);
+                console.error("Error:", error);
+                console.error("Response:", xhr.responseText);
 
-            console.error("AJAX request failed");
-            console.error("Status:", status);
-            console.error("Error:", error);
-            console.error("Response:", xhr.responseText);
-
+            }
         });
+
     });
 
     $("#add-category").on("click", function(event) {
