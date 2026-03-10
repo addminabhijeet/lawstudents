@@ -968,11 +968,16 @@
     });
 
     $(document).on("click", ".edit-course", function(event) {
+        console.log("Edit button clicked");
+
         event.preventDefault();
 
         let id = $(this).data("id");
+        console.log("Course ID:", id);
 
         $.get("/admin/course-edit/" + id, function(data) {
+
+            console.log("AJAX response received:", data);
 
             $("#edit_course_id").val(data.id);
             $("select[name='category_id']").val(data.category_id);
@@ -984,8 +989,20 @@
 
             $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
 
+            console.log("Opening modal now...");
+
             var modal = new bootstrap.Modal(document.getElementById('editnotesmodal'));
             modal.show();
+
+            console.log("Modal show triggered");
+
+        }).fail(function(xhr, status, error) {
+
+            console.error("AJAX request failed");
+            console.error("Status:", status);
+            console.error("Error:", error);
+            console.error("Response:", xhr.responseText);
+
         });
     });
 
