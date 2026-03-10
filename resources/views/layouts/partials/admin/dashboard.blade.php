@@ -59,6 +59,36 @@
                     </li>
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-send"></i></span>
+                            <span class="nxl-mtext">Applications</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List
+                                    Student</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addstudent') }}">Add
+                                    Student</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List
+                                    Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add
+                                    Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.whatsapp') }}">Whatsapp</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-dollar-sign"></i></span>
+                            <span class="nxl-mtext">Payment</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listpayment') }}">Payment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-cast"></i></span>
                             <span class="nxl-mtext">Course</span><span class="nxl-arrow"><i
                                     class="feather-chevron-right"></i></span>
@@ -79,25 +109,6 @@
                     </li>
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-send"></i></span>
-                            <span class="nxl-mtext">Applications</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
-                        </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List
-                                    Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addstudent') }}">Add
-                                    Student</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List
-                                    Addmission</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add
-                                    Addmission</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.whatsapp') }}">Whatsapp</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-at-sign"></i></span>
                             <span class="nxl-mtext">Notes</span><span class="nxl-arrow"><i
                                     class="feather-chevron-right"></i></span>
@@ -109,17 +120,6 @@
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listfreenotes') }}">Free
                                     Notes</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-dollar-sign"></i></span>
-                            <span class="nxl-mtext">Payment</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
-                        </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listpayment') }}">Payment</a></li>
                         </ul>
                     </li>
                 </ul>
