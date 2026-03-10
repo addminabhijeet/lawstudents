@@ -267,37 +267,7 @@
                                                                         <span>Edit</span>
                                                                     </a>
                                                                 </li>
-                                                                <li>
-                                                                    <a class="dropdown-item printBTN"
-                                                                        href="javascript:void(0)">
-                                                                        <i class="feather feather-printer me-3"></i>
-                                                                        <span>Print</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0)">
-                                                                        <i class="feather feather-clock me-3"></i>
-                                                                        <span>Remind</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="dropdown-divider"></li>
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0)">
-                                                                        <i class="feather feather-archive me-3"></i>
-                                                                        <span>Archive</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0)">
-                                                                        <i
-                                                                            class="feather feather-alert-octagon me-3"></i>
-                                                                        <span>Report Spam</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="dropdown-divider"></li>
+                                                               
                                                                 <li>
                                                                     <a class="dropdown-item"
                                                                         href="javascript:void(0)">
