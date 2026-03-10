@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoutingController;
-use App\Http\Controllers\StudentAdmissinController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Admin\RoutingController;
+use App\Http\Controllers\Admin\StudentAdmissinController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseNoteController;
 
 Route::middleware(['admin.auth'])->group(function () {

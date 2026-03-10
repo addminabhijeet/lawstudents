@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\Admin\RoutingController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\StudentPasswordController;
+use App\Http\Controllers\Admin\StudentPasswordController;
 
 
 // shared auth pages

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Student\CourseNoteControllerStu;
 use App\Http\Controllers\Student\RoutingControllerStu;
-use App\Http\Controllers\StudentPasswordController;
+use App\Http\Controllers\Auth\StudentPasswordController;
 use App\Http\Controllers\Student\CourseControllerStu;
 use App\Http\Controllers\Student\StudentAdmissinControllerStu;
 
