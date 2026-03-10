@@ -966,6 +966,7 @@
         $("#btn-n-save").hide();
         $("#btn-n-add").show();
     });
+
     $(document).on("click", ".edit-course", function(event) {
         console.log("Edit button clicked");
 
@@ -977,9 +978,6 @@
         $.ajax({
             url: "/admin/course-edit/" + id,
             type: "POST",
-            data: {
-                _token: $('meta[name="csrf-token"]').attr('content')
-            },
             success: function(data) {
 
                 console.log("AJAX response received:", data);
