@@ -294,14 +294,12 @@ class RoutingController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string|max:100',
-            'username' => 'required|string|max:100|unique:students,username,' . $student->id,
             'email' => 'required|email|max:150|unique:students,email,' . $student->id,
             'password' => 'nullable|confirmed|min:6',
         ]);
 
         $student->update([
             'name' => $data['name'],
-            'username' => $student->username,
             'email' => $data['email'],
             'password' => $data['password'] ?? $student->password,
         ]);
