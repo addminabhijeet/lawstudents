@@ -395,8 +395,7 @@
 
                                         <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
                                         <div class="d-flex gap-2 mt-2">
-                                            <a href="javascript:void(0)"
-                                                class="btn btn-sm btn-warning edit-course"
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-warning edit-course"
                                                 data-id="{{ $course->id }}">
                                                 Edit
                                             </a>
@@ -968,10 +967,25 @@
         $("#btn-n-add").show();
     });
 
-    $("#edit-course").on("click", function(event) {
-        $("#editnotesmodal").modal("show");
-        $("#btn-n-save").hide();
-        $("#btn-n-add").show();
+    $(".edit-course").on("click", function(event) {
+        event.preventDefault();
+
+        let id = $(this).data("id");
+
+        $.get("/admin/course-edit/" + id, function(data) {
+
+            $("#edit_course_id").val(data.id);
+            $("select[name='category_id']").val(data.category_id);
+            $("input[name='title']").val(data.title);
+            $("textarea[name='description']").val(data.description);
+            $("input[name='duration']").val(data.duration);
+            $("input[name='discount']").val(data.discount);
+            $("input[name='price']").val(data.price);
+
+            $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
+
+            $("#editnotesmodal").modal("show");
+        });
     });
 
     $("#add-category").on("click", function(event) {
@@ -1067,26 +1081,5 @@
         } else {
             parentSelect.disabled = false; // enable select
         }
-    });
-</script>
-
-<script>
-    $(document).on("click", ".edit-course", function() {
-        let id = $(this).data("id");
-
-        $.get("/admin/course-edit/" + id, function(data) {
-            $("#edit_course_id").val(data.id);
-            $("#edit_category").val(data.category_id);
-            $("select[name='category_id']").val(data.category_id);
-            $("input[name='title']").val(data.title);
-            $("textarea[name='description']").val(data.description);
-            $("input[name='duration']").val(data.duration);
-            $("input[name='discount']").val(data.discount);
-            $("input[name='price']").val(data.price);
-
-            $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
-
-            $("#editnotesmodal").modal("show");
-        });
     });
 </script>
