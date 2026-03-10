@@ -170,8 +170,8 @@ class RoutingController extends Controller
     {
         $courses = Course::where('status', 1)->get();
         $declaration = Declaration::first();
-        $defaultpassword = Defaultpassword::first();
-        return view('admission.add', compact('courses', 'declaration', 'defaultpassword'));
+
+        return view('admission.add', compact('courses', 'declaration'));
     }
 
     public function student()
@@ -228,7 +228,7 @@ class RoutingController extends Controller
     {
         // Get the last student username
         $lastStudent = Student::latest('id')->first();
-
+        $defaultpassword = Defaultpassword::first();
         if ($lastStudent && preg_match('/STU(\d+)/', $lastStudent->username, $matches)) {
             $lastNumber = (int) $matches[1];
             $username = 'STU' . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
@@ -236,7 +236,7 @@ class RoutingController extends Controller
             $username = 'STU00001';
         }
 
-        return view('student.add', compact('username'));
+        return view('student.add', compact('username', 'defaultpassword'));
     }
 
     public function admin()
