@@ -53,6 +53,7 @@ class StudentAdmission extends Model
         'otp_expires_at',
         'email_verified',
         'phone_verified',
+        'deleted',
         'course_ids'
     ];
 
