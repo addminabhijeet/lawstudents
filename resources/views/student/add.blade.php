@@ -38,7 +38,6 @@
                         <div class="card-body p-4">
 
                             <div class="text-center mb-4">
-                                <img src="assets/images/logo-abbr.png" width="50" class="mb-3">
                                 <h2 class="fs-20 fw-bolder">Student Registration</h2>
                                 <p class="fs-12 text-muted">
                                     Let's get you all setup so you can verify your personal account
