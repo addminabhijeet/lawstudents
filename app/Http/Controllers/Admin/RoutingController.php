@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Payment;
 use App\Models\Course;
 use App\Models\Declaration;
+use App\Models\Defaultpassword;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 
@@ -169,7 +170,8 @@ class RoutingController extends Controller
     {
         $courses = Course::where('status', 1)->get();
         $declaration = Declaration::first();
-        return view('admission.add', compact('courses', 'declaration'));
+        $defaultpassword = Defaultpassword::first();
+        return view('admission.add', compact('courses', 'declaration', 'defaultpassword'));
     }
 
     public function student()
