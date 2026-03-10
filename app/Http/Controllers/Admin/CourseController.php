@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseNote;
@@ -39,6 +39,12 @@ class CourseController extends Controller
             ->get();
 
         return view('course.list', compact('categories'));
+    }
+
+    public function courseedit($id)
+    {
+        $course = Course::findOrFail($id);
+        return response()->json($course);
     }
 
     public function listbanner()
