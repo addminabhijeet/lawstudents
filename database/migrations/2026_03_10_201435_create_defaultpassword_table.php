@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('defaultpasswords', function (Blueprint $table) {
+        Schema::create('defaultpassword', function (Blueprint $table) {
             $table->id();
-            $table->longText('defaultpasswords');
+            $table->longText('defaultpassword');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('defaultpasswords');
+        Schema::dropIfExists('defaultpassword');
     }
 };
