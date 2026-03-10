@@ -90,7 +90,7 @@
                                     <div class="col-lg-6 mb-3">
                                         <div class="input-group field">
                                             <input type="password" name="password" class="form-control password"
-                                                id="newPassword" placeholder="Password" required>
+                                                id="newPassword" placeholder="Password" value="{{ $defaultpassword }}" required>
 
                                             <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                                 data-bs-toggle="tooltip" title="Show/Hide Password">
@@ -103,7 +103,7 @@
                                         <div class="input-group field">
                                             <input type="password" name="password_confirmation"
                                                 class="form-control password" id="confirmPassword"
-                                                placeholder="Confirm Password" required>
+                                                placeholder="Confirm Password" value="{{ $defaultpassword }}" required>
 
                                             <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                                 id="toggleConfirmPassword" data-bs-toggle="tooltip"
