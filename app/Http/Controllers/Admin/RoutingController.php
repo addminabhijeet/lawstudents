@@ -228,7 +228,7 @@ class RoutingController extends Controller
     {
         // Get the last student username
         $lastStudent = Student::latest('id')->first();
-        $defaultpassword = Defaultpassword::latest('id')->first();
+        $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
         if ($lastStudent && preg_match('/STU(\d+)/', $lastStudent->username, $matches)) {
             $lastNumber = (int) $matches[1];
             $username = 'STU' . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
