@@ -6,11 +6,11 @@
         <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Payment</h5>
+                    <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Payment</li>
+                    <li class="breadcrumb-item">Applications</li>
+                    <li class="breadcrumb-item">Student Admission List</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
