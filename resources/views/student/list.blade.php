@@ -250,33 +250,27 @@
 
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
+
                                                         <a href="{{ route('admin.showstudent', $student->id) }}"
                                                             class="avatar-text avatar-md">
                                                             <i class="feather feather-eye"></i>
                                                         </a>
-                                                        <div class="dropdown">
-                                                            <a href="javascript:void(0)" class="avatar-text avatar-md"
-                                                                data-bs-toggle="dropdown" data-bs-offset="0,21">
-                                                                <i class="feather feather-more-horizontal"></i>
-                                                            </a>
-                                                            <ul class="dropdown-menu">
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="{{ route('admin.editstudent', $student->id) }}">
-                                                                        <i class="feather feather-edit-3 me-3"></i>
-                                                                        <span>Edit</span>
-                                                                    </a>
-                                                                </li>
-                                                               
-                                                                <li>
-                                                                    <a class="dropdown-item"
-                                                                        href="javascript:void(0)">
-                                                                        <i class="feather feather-trash-2 me-3"></i>
-                                                                        <span>Delete</span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+
+                                                        <a href="{{ route('admin.editstudent', $student->id) }}"
+                                                            class="avatar-text avatar-md">
+                                                            <i class="feather feather-edit"></i>
+                                                        </a>
+
+                                                        <form
+                                                            action="{{ route('admin.destroystudent', $student->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button
+                                                                class="avatar-text avatar-md border-0 bg-transparent">
+                                                                <i class="feather feather-trash-2 text-danger"></i>
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
