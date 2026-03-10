@@ -234,7 +234,7 @@
                                 </div>
 
                                 <!-- Declaration -->
-                                @if (isset($declaration))
+                                @if (isset($declaration) && $declaration)
                                     <div class="form-check mt-4">
                                         <input class="form-check-input" type="checkbox" name="declaration_accept"
                                             id="declarationCheck" required>
