@@ -245,13 +245,13 @@
                                                 <td>
                                                     <div>
                                                         <small class="fs-12 fw-normal text-muted">
-                                                            {{ $admission->full_name ?? '-' }}
+                                                            {{ $admission->email ?? '-' }}
                                                         </small>
                                                     </div>
                                                 </td>
 
                                                 <td class="fw-bold text-dark">
-                                                    {{ $admission->email }}
+                                                    {{ $admission->full_name }}
                                                 </td>
 
                                                 <td>
