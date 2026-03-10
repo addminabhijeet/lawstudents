@@ -245,22 +245,22 @@
                                                 <td>
                                                     <div>
                                                         <small class="fs-12 fw-normal text-muted">
-                                                            {{ $admission->name ?? '-' }}
+                                                            {{ $admission->full_name ?? '-' }}
                                                         </small>
                                                     </div>
                                                 </td>
 
                                                 <td class="fw-bold text-dark">
-                                                    {{ $admission->course_name }}
+                                                    {{ $admission->email }}
                                                 </td>
 
                                                 <td>
-                                                    {{ \Carbon\Carbon::parse($admission->created_at)->format('Y-m-d h:iA') }}
+                                                    {{ Carbon::parse($admission->created_at)->format('Y-m-d h:iA') }}
                                                 </td>
 
                                                 <td>
                                                     <div class="badge bg-soft-success text-success">
-                                                        Active
+                                                        {{ $admission->admission_status }}
                                                     </div>
                                                 </td>
 
