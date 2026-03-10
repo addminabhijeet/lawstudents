@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RoutingController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\StudentPasswordController;
+use App\Http\Controllers\Auth\StudentPasswordController;
 
 
 // shared auth pages
