@@ -49,6 +49,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('destroy-admission', [StudentAdmissinController::class, 'destroy'])
                 ->name('destroyadmission');
 
+            Route::get('destroy-student', [StudentAdmissinController::class, 'destroystudent'])
+                ->name('destroystudent');
+
             Route::get('add-payment', [RoutingController::class, 'addpayment'])
                 ->name('addpayment');
 

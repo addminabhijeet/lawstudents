@@ -191,6 +191,14 @@ class RoutingController extends Controller
         return view('student.edit', compact('student'));
     }
 
+    public function destroystudent($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+
+        return redirect()->back()->with('success', 'Student deleted successfully.');
+    }
+
     public function editpayment($id)
     {
         $payment = Payment::findOrFail($id);
