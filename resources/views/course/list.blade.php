@@ -395,8 +395,9 @@
 
                                         <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
                                         <div class="d-flex gap-2 mt-2">
-                                            <a href="{{ route('admin.courseedit', $course->id) }}"
-                                                class="btn btn-sm btn-warning">
+                                            <a href="javascript:void(0)"
+                                                class="btn btn-sm btn-warning edit-course"
+                                                data-id="{{ $course->id }}">
                                                 Edit
                                             </a>
                                             <a href="{{ route('admin.coursedelete', $course->id) }}"
