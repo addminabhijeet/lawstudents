@@ -39,10 +39,6 @@
 
                             <div class="text-center mb-4">
                                 <h2 class="fs-20 fw-bolder">Student Registration</h2>
-                                <p class="fs-12 text-muted">
-                                    Let's get you all setup so you can verify your personal account
-                                    and begin setting up your profile.
-                                </p>
                             </div>
 
                             {{-- Display Login Errors and Validation Messages --}}
