@@ -212,12 +212,10 @@
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th>Invoice</th>
-                                            <th>Client</th>
-                                            <th>Amount</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Name</th>
                                             <th>Date</th>
-                                            <th>Transaction</th>
-                                            <th>Status</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
@@ -236,47 +234,20 @@
                                                     </div>
                                                 </td>
                                                 <td><a href="javascript:void(0)"
-                                                        class="fw-bold">#{{ $student->id }}</a></td>
+                                                        class="fw-bold">{{ $student->username }}</a></td>
                                                 <td>
                                                     <a href="javascript:void(0)" class="hstack gap-3">
-                                                        <div class="avatar-image avatar-md">
-                                                            @if ($student->avatar)
-                                                                <img src="{{ asset('storage/' . $student->avatar) }}"
-                                                                    alt="" class="img-fluid">
-                                                            @else
-                                                                <div
-                                                                    class="avatar-image avatar-md bg-primary text-white">
-                                                                    {{ strtoupper(substr($student->full_name, 0, 1)) }}
-                                                                </div>
-                                                            @endif
-                                                        </div>
                                                         <div>
-                                                            <span
-                                                                class="text-truncate-1-line">{{ $student->full_name }}</span>
                                                             <small
                                                                 class="fs-12 fw-normal text-muted">{{ $student->email }}</small>
                                                         </div>
                                                     </a>
                                                 </td>
                                                 <td class="fw-bold text-dark">
-                                                    ${{ number_format($student->fee ?? 0, 2) }} USD
+                                                    {{ $student->fee }}
                                                 </td>
                                                 <td>{{ $student->created_at->format('Y-m-d, h:iA') }}</td>
-                                                <td><a
-                                                        href="javascript:void(0);">#{{ $student->transaction_id ?? 'N/A' }}</a>
-                                                </td>
-                                                <td>
-                                                    @php
-                                                        $statusClass = match ($student->status ?? 'pending') {
-                                                            'completed' => 'bg-soft-success text-success',
-                                                            'unpaid' => 'bg-soft-warning text-warning',
-                                                            'declined' => 'bg-soft-danger text-danger',
-                                                            default => 'bg-soft-secondary text-secondary',
-                                                        };
-                                                        $statusText = ucfirst($student->status ?? 'Pending');
-                                                    @endphp
-                                                    <div class="badge {{ $statusClass }}">{{ $statusText }}</div>
-                                                </td>
+
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
                                                         <a href="{{ route('admin.showstudent', $student->id) }}"
