@@ -212,11 +212,10 @@
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th>Invoice</th>
-                                            <th>Client</th>
-                                            <th>Amount</th>
+                                            <th>Adm. no.</th>
+                                            <th>Email</th>
+                                            <th>Name</th>
                                             <th>Date</th>
-                                            <th>Transaction</th>
                                             <th>Status</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
@@ -239,16 +238,14 @@
                                                 <td>
                                                     <a href="{{ route('admin.addadmission', $admission->id) }}"
                                                         class="fw-bold">
-                                                        #ADM{{ $admission->id }}
+                                                        {{ $admission->id }}
                                                     </a>
                                                 </td>
 
                                                 <td>
                                                     <div>
-                                                        <span
-                                                            class="text-truncate-1-line">{{ $admission->full_name }}</span>
                                                         <small class="fs-12 fw-normal text-muted">
-                                                            {{ $admission->email ?? '-' }}
+                                                            {{ $admission->name ?? '-' }}
                                                         </small>
                                                     </div>
                                                 </td>
@@ -260,8 +257,6 @@
                                                 <td>
                                                     {{ \Carbon\Carbon::parse($admission->created_at)->format('Y-m-d h:iA') }}
                                                 </td>
-
-                                                <td>#TXN{{ $admission->id }}</td>
 
                                                 <td>
                                                     <div class="badge bg-soft-success text-success">
