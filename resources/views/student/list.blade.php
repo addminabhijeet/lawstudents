@@ -244,7 +244,7 @@
                                                     </a>
                                                 </td>
                                                 <td class="fw-bold text-dark">
-                                                    {{ $student->fee }}
+                                                    {{ $student->name }}
                                                 </td>
                                                 <td>{{ $student->created_at->format('Y-m-d, h:iA') }}</td>
 
