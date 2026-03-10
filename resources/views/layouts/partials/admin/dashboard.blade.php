@@ -68,9 +68,6 @@
                                     Student</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List
                                     Addmission</a></li>
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.addadmission') }}">Add
-                                    Addmission</a></li>
-
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
