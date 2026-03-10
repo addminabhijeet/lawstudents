@@ -49,7 +49,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('destroy-admission', [StudentAdmissinController::class, 'destroy'])
                 ->name('destroyadmission');
 
-            Route::delete('destroy-student/{id}', [StudentAdmissinController::class, 'destroystudent'])
+            Route::delete('destroy-student/{id}', [RoutingController::class, 'destroystudent'])
                 ->name('destroystudent');
 
             Route::get('add-payment', [RoutingController::class, 'addpayment'])
