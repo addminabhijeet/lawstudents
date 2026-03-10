@@ -255,7 +255,7 @@
                                                 </td>
 
                                                 <td>
-                                                    {{ Carbon::parse($admission->created_at)->format('Y-m-d h:iA') }}
+                                                    {{ \Carbon\Carbon::parse($admission->created_at)->format('Y-m-d h:iA') }}
                                                 </td>
 
                                                 <td>
