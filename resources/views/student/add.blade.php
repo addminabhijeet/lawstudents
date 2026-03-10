@@ -43,9 +43,9 @@
         <!-- [ page-header ] end -->
         <!-- [ Main Content ] start -->
         <div class="main-content">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="card stretch stretch-full mt-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card stretch stretch-full">
                         <div class="card-body p-4">
 
                             <div class="text-center mb-4">
@@ -59,7 +59,7 @@
 
                             {{-- Display Login Errors and Validation Messages --}}
                             @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <div class="alert alert-danger alert-dismissible fade show">
                                     <ul class="mb-0">
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -86,49 +86,53 @@
                             <form action="{{ route('admin.registerstusubmit') }}" method="POST" class="mt-4">
                                 @csrf
 
-                                <div class="mb-3">
-                                    <input type="text" name="name" class="form-control" placeholder="Full Name"
-                                        required>
-                                </div>
+                                <div class="row">
 
-                                <div class="mb-3">
-                                    <input type="text" name="username" class="form-control" placeholder="Username"
-                                        required>
-                                </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Full Name" required>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <input type="email" name="email" class="form-control" placeholder="Email"
-                                        required>
-                                </div>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="text" name="username" class="form-control"
+                                            placeholder="Username" required>
+                                    </div>
 
-                                <div class="mb-3 generate-pass">
-                                    <div class="input-group field">
-                                        <input type="password" name="password" class="form-control password"
-                                            id="newPassword" placeholder="Password" required>
+                                    <div class="col-lg-6 mb-3">
+                                        <input type="email" name="email" class="form-control" placeholder="Email"
+                                            required>
+                                    </div>
 
-                                        <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                            data-bs-toggle="tooltip" title="Show/Hide Password">
-                                            <i></i>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="input-group field">
+                                            <input type="password" name="password" class="form-control password"
+                                                id="newPassword" placeholder="Password" required>
+
+                                            <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                                data-bs-toggle="tooltip" title="Show/Hide Password">
+                                                <i></i>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="mb-3">
-                                    <div class="input-group field">
-                                        <input type="password" name="password_confirmation"
-                                            class="form-control password" id="confirmPassword"
-                                            placeholder="Confirm Password" required>
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="input-group field">
+                                            <input type="password" name="password_confirmation"
+                                                class="form-control password" id="confirmPassword"
+                                                placeholder="Confirm Password" required>
 
-                                        <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                            id="toggleConfirmPassword" data-bs-toggle="tooltip"
-                                            title="Show/Hide Password">
-                                            <i class="feather-eye"></i>
+                                            <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                                id="toggleConfirmPassword" data-bs-toggle="tooltip"
+                                                title="Show/Hide Password">
+                                                <i class="feather-eye"></i>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="mt-4">
-                                    <button type="submit" class="btn btn-primary w-100">
+                                    <button type="submit" class="btn btn-primary">
                                         Create Account
                                     </button>
                                 </div>
