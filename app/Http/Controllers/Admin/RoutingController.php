@@ -224,7 +224,17 @@ class RoutingController extends Controller
 
     public function addstudent()
     {
-        return view('student.add');
+        // Get the last student username
+        $lastStudent = Student::latest('id')->first();
+
+        if ($lastStudent && preg_match('/STU(\d+)/', $lastStudent->username, $matches)) {
+            $lastNumber = (int) $matches[1];
+            $username = 'STU' . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+        } else {
+            $username = 'STU00001';
+        }
+
+        return view('student.add', compact('username'));
     }
 
     public function admin()

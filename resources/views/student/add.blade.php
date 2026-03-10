@@ -79,7 +79,7 @@
 
                                     <div class="col-lg-6 mb-3">
                                         <input type="text" name="username" class="form-control"
-                                            placeholder="Username" required>
+                                            placeholder="Username" value="{{ $username }}" readonly>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
