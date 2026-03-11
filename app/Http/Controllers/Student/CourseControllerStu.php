@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Student;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Payment;
@@ -40,14 +40,14 @@ class CourseControllerStu extends Controller
             ->pluck('course_id')
             ->toArray();
 
+        // Show only courses student has paid for
         $categories = Category::whereHas('courses', function ($query) use ($paidCourseIds) {
-            $query->where('is_free', 1)
-                ->orWhereIn('id', $paidCourseIds);
+            $query->whereIn('id', $paidCourseIds);
         })
             ->with(['courses' => function ($query) use ($paidCourseIds) {
-                $query->where('is_free', 1)
-                    ->orWhereIn('id', $paidCourseIds);
-            }])->get();
+                $query->whereIn('id', $paidCourseIds);
+            }])
+            ->get();
 
         return view('coursestu.list', compact('categories'));
     }
