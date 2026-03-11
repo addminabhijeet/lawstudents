@@ -269,7 +269,7 @@
 
                                                 <td>
                                                     <a class="fw-bold">
-                                                        {{ $payment->admno }}
+                                                        {{ $payment->invoice_number }}
                                                     </a>
                                                 </td>
 
