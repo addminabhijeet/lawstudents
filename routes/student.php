@@ -8,7 +8,7 @@ use App\Http\Controllers\Student\CourseControllerStu;
 use App\Http\Controllers\Student\StudentAdmissinControllerStu;
 
 
-Route::middleware(['student.auth', 'auth:student'])
+Route::middleware(['auth:student'])
     ->prefix('student')
     ->name('student.')
     ->group(function () {
