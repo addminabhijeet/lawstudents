@@ -251,11 +251,6 @@
                                                     </a>
                                                 </td>
 
-                                                <td class="fw-bold text-dark">
-                                                    ₹{{ number_format($payment->grand_total, 2) }}
-                                                    {{ $payment->currency }}
-                                                </td>
-
                                                 <td>
                                                     {{ \Carbon\Carbon::parse($payment->created_at)->format('Y-m-d, h:i A') }}
                                                 </td>
