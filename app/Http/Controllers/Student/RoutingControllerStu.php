@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Student;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Student;
 use App\Models\Payment;
+use App\Models\Defaultpassword;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 
@@ -186,6 +187,13 @@ class RoutingControllerStu extends Controller
     {
         $student = Student::findOrFail($id);
         return view('studentstu.edit', compact('student'));
+    }
+
+    public function viewstudent($id)
+    {
+        $student = Student::where('deleted', 0)->findOrFail($id);
+        $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
+        return view('studentstu.view', compact('student', 'defaultpassword'));
     }
 
     public function editpayment($id)

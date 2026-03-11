@@ -22,8 +22,8 @@ Route::middleware(['student.auth', 'auth:student'])
         Route::get('edit-student/{id}', [RoutingControllerStu::class, 'editstudent'])
             ->name('editstudent');
 
-        Route::get('show-student/{id}', [RoutingControllerStu::class, 'showstudent'])
-            ->name('showstudent');
+        Route::get('show-student', [RoutingControllerStu::class, 'viewstudent'])
+            ->name('viewstudent');
 
         Route::get('list-student', [RoutingControllerStu::class, 'liststudent'])
             ->name('liststudent');

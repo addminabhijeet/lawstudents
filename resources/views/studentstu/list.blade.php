@@ -276,7 +276,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="{{ route('student.editstudent', $student->id) }}"
+                                                        <a href="{{ route('student.viewstudent', $student->id) }}"
                                                             class="avatar-text avatar-md">
                                                             <i class="feather feather-eye"></i>
                                                         </a>
