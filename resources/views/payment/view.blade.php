@@ -22,33 +22,13 @@
                     <div class="card invoice-container">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-center">
-                                <a href="javascript:void(0)" class="d-flex me-1"
-                                    data-alert-target="invoicSendMessage">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                        data-bs-trigger="hover" title="Send Invoice">
-                                        <i class="feather feather-send"></i>
-                                    </div>
-                                </a>
                                 <a href="javascript:void(0)" class="d-flex me-1 printBTN">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                        data-bs-trigger="hover" title="Print Invoice"><i
-                                            class="feather feather-printer"></i></div>
-                                </a>
-                                <a href="javascript:void(0)" class="d-flex me-1">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                        data-bs-trigger="hover" title="Add Payment"><i
-                                            class="feather feather-dollar-sign"></i></div>
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                        title="Print Invoice"><i class="feather feather-printer"></i></div>
                                 </a>
                                 <a href="javascript:void(0)" class="d-flex me-1 file-download">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                        data-bs-trigger="hover" title="Download Invoice"><i
-                                            class="feather feather-download"></i></div>
-                                </a>
-                                <a href="invoice-create.html" class="d-flex me-1">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                        data-bs-trigger="hover" title="Edit Invoice">
-                                        <i class="feather feather-edit"></i>
-                                    </div>
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                        title="Download Invoice"><i class="feather feather-download"></i></div>
                                 </a>
                             </div>
                         </div>
