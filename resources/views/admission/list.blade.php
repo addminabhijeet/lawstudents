@@ -236,10 +236,9 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="{{ route('admin.addadmission', $admission->id) }}"
-                                                        class="fw-bold">
-                                                        {{ $admission->id }}
-                                                    </a>
+                                                    <div class="fw-bold">
+                                                        {{ $admission->admno }}
+                                                    </div>
                                                 </td>
 
                                                 <td>
