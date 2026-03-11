@@ -37,7 +37,7 @@
                     enctype="multipart/form-data">
                     @csrf
 
-                    <div class="col-xl-8">
+                    <div class="col-xl-12">
                         <div class="card invoice-container">
                             <div class="card-body p-0">
                                 <div class="px-4 pt-4">
