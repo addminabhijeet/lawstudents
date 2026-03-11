@@ -28,6 +28,8 @@ class StudentAdmissinController extends Controller
         return view('admission.list', compact('admissions'));
     }
 
+
+
     public function addadmission()
     {
         $courses = Course::where('status', 1)->get();
@@ -191,10 +193,11 @@ class StudentAdmissinController extends Controller
         return response()->json(['success' => false, 'message' => 'Invalid OTP']);
     }
 
-    public function show($id)
+    public function showadmission($id)
     {
+        $courses = Course::where('status', 1)->get();
         $admission = StudentAdmission::findOrFail($id);
-        return view('admission.show', compact('admission'));
+        return view('admission.view', compact('courses', 'admission'));
     }
 
     public function edit($id)

@@ -43,7 +43,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('update-whatsapp/{id}', [RoutingController::class, 'updateWhatsapp'])
                 ->name('updateWhatsapp');
 
-            Route::get('show-admission', [StudentAdmissinController::class, 'show'])
+            Route::get('show-admission/{id}', [StudentAdmissinController::class, 'showadmission'])
                 ->name('showadmission');
 
             Route::get('edit-admission/{id}', [StudentAdmissinController::class, 'edit'])
