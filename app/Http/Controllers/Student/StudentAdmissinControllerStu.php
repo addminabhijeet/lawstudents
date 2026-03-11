@@ -95,7 +95,7 @@ class StudentAdmissinControllerStu extends Controller
             ->where('student_id', Auth::guard('student')->id())
             ->firstOrFail();
 
-        return view('admissionsstu.view', compact('admission'));
+        return view('admissionstu.view', compact('admission'));
     }
 
     public function edit($id)
