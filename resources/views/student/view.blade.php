@@ -68,62 +68,55 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('admin.registerstusubmit') }}" method="POST" class="mt-4">
-                                @csrf
 
-                                <div class="row">
 
-                                    <div class="col-lg-6 mb-3">
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="Full Name" value="{{ old('name', $student->name ?? '') }}" required>
-                                    </div>
+                            <div class="row">
 
-                                    <div class="col-lg-6 mb-3">
-                                        <input type="text" name="username" class="form-control"
-                                            placeholder="Username" value="{{ old('name', $student->username ?? '') }}" readonly>
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Email"
-                                            value="{{ old('email', $student->email ?? '') }}" required>
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <div class="input-group field">
-                                            <input type="password" name="password" class="form-control password"
-                                                id="newPassword" placeholder="Password" value="{{ $defaultpassword }}"
-                                                required>
-
-                                            <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                                data-bs-toggle="tooltip" title="Show/Hide Password">
-                                                <i></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 mb-3">
-                                        <div class="input-group field">
-                                            <input type="password" name="password_confirmation"
-                                                class="form-control password" id="confirmPassword"
-                                                placeholder="Confirm Password" value="{{ $defaultpassword }}" required>
-
-                                            <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
-                                                id="toggleConfirmPassword" data-bs-toggle="tooltip"
-                                                title="Show/Hide Password">
-                                                <i class="feather-eye"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                <div class="col-lg-6 mb-3">
+                                    <input type="text" name="name" class="form-control" placeholder="Full Name"
+                                        value="{{ old('name', $student->name ?? '') }}" required>
                                 </div>
 
-                                <div class="mt-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Update Student
-                                    </button>
+                                <div class="col-lg-6 mb-3">
+                                    <input type="text" name="username" class="form-control" placeholder="Username"
+                                        value="{{ old('name', $student->username ?? '') }}" readonly>
                                 </div>
 
-                            </form>
+                                <div class="col-lg-6 mb-3">
+                                    <input type="email" name="email" class="form-control" placeholder="Email"
+                                        value="{{ old('email', $student->email ?? '') }}" required>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="input-group field">
+                                        <input type="password" name="password" class="form-control password"
+                                            id="newPassword" placeholder="Password" value="{{ $defaultpassword }}"
+                                            required>
+
+                                        <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                            data-bs-toggle="tooltip" title="Show/Hide Password">
+                                            <i></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="input-group field">
+                                        <input type="password" name="password_confirmation"
+                                            class="form-control password" id="confirmPassword"
+                                            placeholder="Confirm Password" value="{{ $defaultpassword }}" required>
+
+                                        <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
+                                            id="toggleConfirmPassword" data-bs-toggle="tooltip"
+                                            title="Show/Hide Password">
+                                            <i class="feather-eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
 
                         </div>
                     </div>
