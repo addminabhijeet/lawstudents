@@ -92,7 +92,9 @@ class StudentAdmissinControllerStu extends Controller
     public function viewadmission()
     {
         $admission = StudentAdmission::where('deleted', 0)
-            ->where('id', Auth::id())->findOrFail();
+            ->where('student_id', Auth::id())
+            ->firstOrFail();
+
         return view('admissionsstu.view', compact('admission'));
     }
 
