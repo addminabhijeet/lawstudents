@@ -43,10 +43,17 @@
                                 <h6 class="fw-bold mb-4 text-primary">Student Information</h6>
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Full Name *</label>
+                                    <label class="form-label fw-semibold">Adm No</label>
+                                    <input type="text" name="admno" value="{{ $admno }}" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Full Name</label>
                                     <input type="text" class="form-control" name="full_name"
                                         placeholder="Enter full name">
                                 </div>
+
+                                <input type="text" name="admno" value="{{ $admno }}" readonly>
 
                                 <!-- Email Section -->
                                 <div class="mb-3">
