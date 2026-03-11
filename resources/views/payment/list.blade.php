@@ -288,11 +288,6 @@
                                                             <i class="feather feather-eye"></i>
                                                         </a>
 
-                                                        <a href="{{ route('admin.viewidcard', $payment->id) }}"
-                                                            class="avatar-text avatar-md">
-                                                            <i class="fas fa-id-card"></i>
-                                                        </a>
-
                                                         <a href="{{ route('admin.editpayment', $payment->id) }}"
                                                             class="avatar-text avatar-md">
                                                             <i class="feather feather-edit"></i>
