@@ -89,7 +89,7 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listidcard') }}">List</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.viewidcard') }}">List</a>
                             </li>
                         </ul>
                     </li>
