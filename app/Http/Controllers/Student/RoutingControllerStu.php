@@ -10,6 +10,7 @@ use App\Models\Payment;
 use App\Models\Defaultpassword;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class RoutingControllerStu extends Controller
 {
@@ -191,8 +192,11 @@ class RoutingControllerStu extends Controller
 
     public function viewstudent($id)
     {
+        $id = Auth::id(); // get logged in user id
+
         $student = Student::where('deleted', 0)->findOrFail($id);
         $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
+
         return view('studentstu.view', compact('student', 'defaultpassword'));
     }
 
