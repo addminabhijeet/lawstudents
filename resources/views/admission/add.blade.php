@@ -44,7 +44,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Adm No</label>
-                                    <input type="text" name="admno" value="{{ $admno }}" readonly>
+                                    <input type="text" class="form-control" name="admno" value="{{ $admno }}" readonly>
                                 </div>
 
                                 <div class="mb-3">
