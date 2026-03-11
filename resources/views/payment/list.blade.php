@@ -212,7 +212,6 @@
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th>Adm No</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Amount</th>
@@ -265,6 +264,10 @@
                                                 <td class="fw-bold text-dark">
                                                     ₹{{ number_format($payment->grand_total, 2) }}
                                                     {{ $payment->currency }}
+                                                </td>
+
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($payment->created_at)->format('Y-m-d, h:i A') }}
                                                 </td>
 
                                                 <td>
