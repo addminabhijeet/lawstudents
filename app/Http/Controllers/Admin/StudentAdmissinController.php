@@ -28,7 +28,7 @@ class StudentAdmissinController extends Controller
         return view('admission.list', compact('admissions'));
     }
 
-    public function create()
+    public function addadmission()
     {
         $courses = Course::where('status', 1)->get();
         $declaration = Declaration::first();

@@ -31,7 +31,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('list-student', [RoutingController::class, 'liststudent'])
                 ->name('liststudent');
 
-            Route::get('add-admission', [RoutingController::class, 'addadmission'])
+            Route::get('add-admission', [StudentAdmissinController::class, 'addadmission'])
                 ->name('addadmission');
 
             Route::get('list-admission', [StudentAdmissinController::class, 'index'])
