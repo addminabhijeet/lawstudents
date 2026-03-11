@@ -237,13 +237,13 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="" class="fw-bold">
-                                                        #{{ $payment->admno }}
+                                                    <a class="fw-bold">
+                                                        {{ $payment->admno }}
                                                     </a>
                                                 </td>
 
                                                 <td>
-                                                    <a href="javascript:void(0)" class="hstack gap-3">
+                                                    <a class="hstack gap-3">
                                                         <div class="avatar-image avatar-md bg-primary text-white">
                                                             {{ strtoupper(substr($payment->to_name, 0, 1)) }}
                                                         </div>
