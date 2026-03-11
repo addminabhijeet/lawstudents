@@ -1,4 +1,4 @@
-@include('layouts.partials.admin.dashboard')
+@include('layouts.partials.student.dashboard')
 <main class="nxl-container">
     <div class="nxl-content">
         <div class="page-header">
@@ -339,4 +339,4 @@
         reader.readAsDataURL(file);
     }
 </script>
-@include('layouts.partials.admin.theme')
+@include('layouts.partials.student.theme')
