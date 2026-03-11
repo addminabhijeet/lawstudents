@@ -108,10 +108,6 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="invoice-create.html" class="btn btn-primary">
-                            <i class="feather-plus me-2"></i>
-                            <span>Add Payment</span>
-                        </a>
                     </div>
                 </div>
                 <div class="d-md-none d-flex align-items-center">
