@@ -64,9 +64,11 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.viewstudent') }}">Registration</a></li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('student.viewstudent') }}">Registration</a></li>
 
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.viewadmission') }}">Addmission</a></li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('student.viewadmission') }}">Addmission</a></li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -78,6 +80,17 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('student.viewpayment') }}">Payment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-dollar-sign"></i></span>
+                            <span class="nxl-mtext">ID Card</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listidcard') }}">List</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -99,7 +112,8 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listnotes') }}">Notes</a>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('student.listnotes') }}">Notes</a>
                             </li>
                         </ul>
                     </li>
