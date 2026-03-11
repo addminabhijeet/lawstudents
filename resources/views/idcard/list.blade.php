@@ -282,9 +282,9 @@
 
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="{{ route('admin.viewpayment', $payment->id) }}"
+                                                        <a href="{{ route('admin.viewidcard', $payment->id) }}"
                                                             class="avatar-text avatar-md">
-                                                            <i class="feather feather-eye"></i>
+                                                            <i class="fas fa-id-card"></i>
                                                         </a>
 
                                                         <a href="{{ route('admin.editpayment', $payment->id) }}"
