@@ -31,7 +31,7 @@ class StudentAdmissinController extends Controller
     public function create()
     {
         $courses = Course::where('status', 1)->get();
-        $declaration = Declaration::first(); 
+        $declaration = Declaration::first();
 
         return view('admission.add', compact('courses', 'declaration'));
     }
@@ -117,6 +117,7 @@ class StudentAdmissinController extends Controller
                 ->with('success', 'Admission created successfully.');
         });
     }
+
     public function sendEmailOtp(Request $request)
     {
         $request->validate(['email' => 'required|email']);
@@ -183,8 +184,9 @@ class StudentAdmissinController extends Controller
 
     public function edit($id)
     {
+        $courses = Course::where('status', 1)->get();
         $admission = StudentAdmission::findOrFail($id);
-        return view('admission.edit', compact('admission'));
+        return view('admission.edit', compact('courses', 'admission'));
     }
 
     public function updateadmsubmit(Request $request, $id)
