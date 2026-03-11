@@ -108,10 +108,7 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="invoice-create.html" class="btn btn-primary">
-                            <i class="feather-plus me-2"></i>
-                            <span>Create Invoice</span>
-                        </a>
+
                     </div>
                 </div>
                 <div class="d-md-none d-flex align-items-center">
