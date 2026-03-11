@@ -214,6 +214,7 @@
                                             </th>
                                             <th>Adm No</th>
                                             <th>Name</th>
+                                            <th>Email</th>
                                             <th>Amount</th>
                                             <th>Date</th>
                                             <th>Invoice</th>
@@ -244,13 +245,17 @@
 
                                                 <td>
                                                     <a class="hstack gap-3">
-                                                        <div class="avatar-image avatar-md bg-primary text-white">
-                                                            {{ strtoupper(substr($payment->to_name, 0, 1)) }}
-                                                        </div>
                                                         <div>
                                                             <span class="text-truncate-1-line">
                                                                 {{ $payment->to_name }}
                                                             </span>
+                                                        </div>
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    <a class="hstack gap-3">
+                                                        <div>
                                                             <small class="fs-12 fw-normal text-muted">
                                                                 {{ $payment->to_email }}
                                                             </small>
