@@ -216,7 +216,7 @@
                                             <th>Name</th>
                                             <th>Amount</th>
                                             <th>Date</th>
-                                            <th>Transaction</th>
+                                            <th>Invoice</th>
                                             <th>Status</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
