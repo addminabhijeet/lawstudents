@@ -47,6 +47,7 @@ class StudentAdmission extends Model
         'marksheet',
         'id_proof',
         'admission_status',
+        'admno',
         'remarks',
         'email_otp',
         'phone_otp',
