@@ -53,8 +53,6 @@
                                         placeholder="Enter full name">
                                 </div>
 
-                                <input type="text" name="admno" value="{{ $admno }}" readonly>
-
                                 <!-- Email Section -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Email ID</label>
