@@ -21,17 +21,6 @@
                             <span>Back</span>
                         </a>
                     </div>
-                    <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="javascript:void(0);" class="btn btn-light-brand" data-bs-toggle="offcanvas"
-                            data-bs-target="#proposalSent">
-                            <i class="feather-layers me-2"></i>
-                            <span>Save & Send</span>
-                        </a>
-                        <a href="javascript:void(0);" class="btn btn-primary successAlertMessage">
-                            <i class="feather-save me-2"></i>
-                            <span>Save</span>
-                        </a>
-                    </div>
                 </div>
                 <div class="d-md-none d-flex align-items-center">
                     <a href="javascript:void(0)" class="page-header-right-open-toggle">
@@ -50,40 +39,6 @@
 
                     <div class="col-xl-8">
                         <div class="card invoice-container">
-                            <div class="card-header">
-                                <h5>Invoice Create</h5>
-                                <div class="dropdown">
-                                    <a href="javascript:void(0)" class="btn btn-light-brand dropdown-toggle"
-                                        data-bs-toggle="dropdown" data-bs-offset="0,25">Invoice Templates</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item active">Default</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Simple</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Classic</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Modern</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Untimate</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Essential</a>
-                                        </li>
-                                        <li class="dropdown-divider"></li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Create Template</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Delete Template</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="card-body p-0">
                                 <div class="px-4 pt-4">
                                     <div class="d-md-flex align-items-center justify-content-between">
