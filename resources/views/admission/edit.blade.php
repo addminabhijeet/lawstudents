@@ -271,7 +271,7 @@
                     <!-- SUBMIT BUTTON -->
                     <div class="col-12 text-end mt-3">
                         <button type="submit" class="btn btn-primary px-4">
-                            Submit Admission
+                            Update Admission
                         </button>
                     </div>
 
