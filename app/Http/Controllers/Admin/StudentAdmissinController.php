@@ -33,7 +33,22 @@ class StudentAdmissinController extends Controller
         $courses = Course::where('status', 1)->get();
         $declaration = Declaration::first();
 
-        return view('admission.add', compact('courses', 'declaration'));
+        $year = date('Y');
+
+        $lastAdmission = StudentAdmission::where('admno', 'like', 'LAW' . $year . '%')
+            ->orderBy('admno', 'desc')
+            ->first();
+
+        if ($lastAdmission) {
+            $lastNumber = intval(substr($lastAdmission->admno, -6));
+            $nextNumber = $lastNumber + 1;
+        } else {
+            $nextNumber = 1;
+        }
+
+        $admno = 'LAW' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+        return view('admission.add', compact('courses', 'declaration', 'admno'));
     }
 
     public function registeradmsubmit(Request $request)
