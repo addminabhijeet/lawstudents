@@ -77,7 +77,7 @@
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('student.listpayment') }}">Payment</a></li>
+                                    href="{{ route('student.viewpayment') }}">Payment</a></li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
