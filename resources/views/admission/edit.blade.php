@@ -54,6 +54,12 @@
                                 <h6 class="fw-bold mb-4 text-primary">Student Information</h6>
 
                                 <div class="mb-3">
+                                    <label class="form-label fw-semibold">Adm No</label>
+                                    <input type="text" class="form-control" name="admno"
+                                        value="{{ old('full_name', $admission->admno) }}" readonly>
+                                </div>
+
+                                <div class="mb-3">
                                     <label class="form-label fw-semibold">Full Name *</label>
                                     <input type="text" class="form-control" name="full_name"
                                         value="{{ old('full_name', $admission->full_name) }}"
@@ -86,8 +92,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Contact Number</label>
                                     <input type="text" class="form-control mb-2" name="phone"
-                                        value="{{ old('phone', $admission->phone) }}"
-                                        placeholder="Enter phone number">
+                                        value="{{ old('phone', $admission->phone) }}" placeholder="Enter phone number">
 
                                     <div class="d-flex gap-2 mb-2">
                                         <button type="button" onclick="sendPhoneOtp()"
