@@ -3,32 +3,7 @@
     <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
-            <!-- [ Content Sidebar ] start -->
-            <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
 
-                <div class="content-sidebar-body">
-                    <ul class="nav d-flex flex-column nxl-content-sidebar-item">
-
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
-                                <i class="feather-layers"></i>
-                                <span>All</span>
-                            </a>
-                        </li>
-
-                        @foreach ($categories as $category)
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link note-link"
-                                    id="category-{{ $category->id }}">
-                                    <i class="feather-folder"></i>
-                                    <span>{{ $category->name }}</span>
-                                </a>
-                            </li>
-                        @endforeach
-
-                    </ul>
-                </div>
-            </div>
             <!-- [ Content Sidebar  ] end -->
             <!-- [ Main Area  ] start -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
