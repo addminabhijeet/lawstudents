@@ -211,8 +211,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Amount</th>
-                                            <th>Date</th>
-                                            <th>Invoice</th>
+                                            <th>ID Number</th>
                                             <th>Status</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
