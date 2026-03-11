@@ -5,30 +5,6 @@
         <div class="main-content d-flex">
             <!-- [ Content Sidebar ] start -->
             <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
-                    <h4 class="fw-bolder mb-0">Courses</h4>
-                    <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex">
-                        <i class="feather-x"></i>
-                    </a>
-                </div>
-                <div class="content-sidebar-header">
-                    <!-- Add Courses Button -->
-                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes"
-                        style="display:block; margin-right: 30px;">
-                        <i class="feather-plus me-2"></i>
-                        <span>Add Courses</span>
-                    </a>
-
-                    <!-- Add Category Button -->
-                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category"
-                        style="display:block;">
-                        <i class="feather-plus me-2"></i>
-                        <span>Add Category</span>
-                    </a>
-
-                </div>
-
-
 
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
@@ -142,8 +118,8 @@
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <a href="javascript:void(0)" class="d-flex" data-bs-toggle="dropdown"
-                                data-bs-offset="0,22" data-bs-auto-close="outside" aria-expanded="false">
+                            <a href="javascript:void(0)" class="d-flex" data-bs-toggle="dropdown" data-bs-offset="0,22"
+                                data-bs-auto-close="outside" aria-expanded="false">
                                 <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
                                     title="Tags">
                                     <i class="feather-tag"></i>
