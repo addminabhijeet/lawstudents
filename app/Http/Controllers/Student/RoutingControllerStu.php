@@ -190,7 +190,7 @@ class RoutingControllerStu extends Controller
         return view('studentstu.edit', compact('student'));
     }
 
-    public function viewstudent($id)
+    public function viewstudent()
     {
         $id = Auth::id(); // get logged in user id
 
