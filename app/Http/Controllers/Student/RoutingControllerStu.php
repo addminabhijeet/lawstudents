@@ -205,7 +205,7 @@ class RoutingControllerStu extends Controller
     {
         $payments = Payment::with('student')->latest()->get();
 
-        return view('idcard.list', compact('payments'));
+        return view('idcardstu.idcard', compact('payments'));
     }
 
     public function editpayment($id)
