@@ -212,8 +212,8 @@
                                                     </div>
                                                 </div>
                                             </th>
-                                            <th>Invoice</th>
-                                            <th>Client</th>
+                                            <th>Adm No</th>
+                                            <th>Name</th>
                                             <th>Amount</th>
                                             <th>Date</th>
                                             <th>Transaction</th>
@@ -238,7 +238,7 @@
 
                                                 <td>
                                                     <a href="" class="fw-bold">
-                                                        #{{ $payment->invoice_number }}
+                                                        #{{ $payment->admno }}
                                                     </a>
                                                 </td>
 
