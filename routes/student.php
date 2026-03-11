@@ -70,7 +70,7 @@ Route::middleware(['auth:student'])
         Route::post('update-payment/{id}', [RoutingControllerStu::class, 'updatepayment'])
             ->name('updatepayment');
 
-        Route::get('view-payment/{id}', [RoutingControllerStu::class, 'viewpayment'])
+        Route::get('view-payment', [RoutingControllerStu::class, 'viewpayment'])
             ->name('viewpayment');
 
         Route::get('courses', [CourseControllerStu::class, 'listcourse'])
