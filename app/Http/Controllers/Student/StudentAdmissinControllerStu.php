@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Student;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\StudentAdmission;
 use Illuminate\Support\Str;
 use App\Models\Student;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Auth;
 
 class StudentAdmissinControllerStu extends Controller
 {
@@ -88,10 +89,11 @@ class StudentAdmissinControllerStu extends Controller
         return redirect()->back()->with('success', 'Admission created successfully.');
     }
 
-    public function show($id)
+    public function viewadmission()
     {
-        $admission = StudentAdmission::findOrFail($id);
-        return view('admin.admissions.show', compact('admission'));
+        $admission = StudentAdmission::where('deleted', 0)
+            ->where('id', Auth::id())->findOrFail();
+        return view('admissionsstu.view', compact('admission'));
     }
 
     public function edit($id)

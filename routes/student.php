@@ -22,7 +22,7 @@ Route::middleware(['student.auth', 'auth:student'])
         Route::get('edit-student/{id}', [RoutingControllerStu::class, 'editstudent'])
             ->name('editstudent');
 
-        Route::get('show-student', [RoutingControllerStu::class, 'viewstudent'])
+        Route::get('view-student', [RoutingControllerStu::class, 'viewstudent'])
             ->name('viewstudent');
 
         Route::get('list-student', [RoutingControllerStu::class, 'liststudent'])
@@ -34,8 +34,8 @@ Route::middleware(['student.auth', 'auth:student'])
         Route::get('list-admission', [StudentAdmissinControllerStu::class, 'index'])
             ->name('listadmission');
 
-        Route::get('show-admission', [StudentAdmissinControllerStu::class, 'show'])
-            ->name('showadmission');
+        Route::get('view-admission', [StudentAdmissinControllerStu::class, 'viewadmission'])
+            ->name('viewadmission');
 
         Route::get('edit-admission/{id}', [StudentAdmissinControllerStu::class, 'edit'])
             ->name('editadmission');
