@@ -193,7 +193,7 @@ class RoutingControllerStu extends Controller
     public function viewstudent()
     {
         $student = Student::where('deleted', 0)
-            ->where('id', Auth::id())
+            ->where('id', Auth::guard('student')->id())
             ->firstOrFail();
 
         $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
