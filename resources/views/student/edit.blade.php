@@ -21,17 +21,6 @@
                             <span>Back</span>
                         </a>
                     </div>
-                    <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="javascript:void(0);" class="btn btn-light-brand" data-bs-toggle="offcanvas"
-                            data-bs-target="#proposalSent">
-                            <i class="feather-layers me-2"></i>
-                            <span>Save & Send</span>
-                        </a>
-                        <a href="javascript:void(0);" class="btn btn-primary successAlertMessage">
-                            <i class="feather-save me-2"></i>
-                            <span>Save</span>
-                        </a>
-                    </div>
                 </div>
                 <div class="d-md-none d-flex align-items-center">
                     <a href="javascript:void(0)" class="page-header-right-open-toggle">
