@@ -198,42 +198,6 @@
                 <div class="col-lg-12">
                     <div class="card invoice-container">
                         <div class="card-header">
-                            <div>
-                                <h2 class="fs-16 fw-700 text-truncate-1-line mb-0 mb-sm-1">Invoice Preview</h2>
-                                <div class="dropdown d-none d-sm-block">
-                                    <a href="javascript:void(0)" class="dropdown-toggle d-flex align-items-center"
-                                        data-bs-toggle="dropdown" data-bs-offset="0,25" aria-expanded="false">
-                                        <span class="fs-11 fw-400 text-muted me-2">Invoice Templates</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item active">Default</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Simple</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Classic</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Modern</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Untimate</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Essential</a>
-                                        </li>
-                                        <li class="dropdown-divider"></li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Create Template</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" class="dropdown-item">Delete Template</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="d-flex align-items-center justify-content-center">
                                 <a href="javascript:void(0)" class="d-flex me-1"
                                     data-alert-target="invoicSendMessage">
