@@ -201,6 +201,13 @@ class RoutingControllerStu extends Controller
         return view('studentstu.view', compact('student', 'defaultpassword'));
     }
 
+    public function listidcard()
+    {
+        $payments = Payment::with('student')->latest()->get();
+
+        return view('idcard.list', compact('payments'));
+    }
+
     public function editpayment($id)
     {
         $payment = Payment::findOrFail($id);
