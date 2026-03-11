@@ -269,7 +269,7 @@
 
                                                 <td>
                                                     <a href="javascript:void(0);">
-                                                        #{{ strtoupper(Str::random(10)) }}
+                                                        {{ strtoupper(Str::random(10)) }}
                                                     </a>
                                                 </td>
 
