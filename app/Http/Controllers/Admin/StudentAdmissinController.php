@@ -237,11 +237,21 @@ class StudentAdmissinController extends Controller
         ) {
 
             $paymentExists = Payment::where('student_id', $admission->student_id)->exists();
-
+            $year = date('Y');
+            $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
+                ->orderBy('id', 'desc')
+                ->first();
+            if ($lastInvoice) {
+                $lastNumber = intval(substr($lastInvoice->invoice_number, 7));
+                $nextNumber = $lastNumber + 1;
+            } else {
+                $nextNumber = 1;
+            }
+            $invoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
             if (!$paymentExists) {
                 Payment::create([
                     'student_id' => $admission->student_id,
-                    'invoice_number' => 'INV-' . strtoupper(Str::random(6)),
+                    'invoice_number' => $invoiceNumber,
                     'invoice_label' => 'Admission Fee',
                     'invoice_product' => $admission->course_name,
                     'issue_date' => now(),
