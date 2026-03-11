@@ -5,30 +5,6 @@
         <div class="main-content d-flex">
             <!-- [ Content Sidebar ] start -->
             <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
-                    <h4 class="fw-bolder mb-0">Courses</h4>
-                    <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex">
-                        <i class="feather-x"></i>
-                    </a>
-                </div>
-                <div class="content-sidebar-header">
-                    <!-- Add Courses Button -->
-                    <a href="" class="btn btn-primary w-100" id="add-notes"
-                        style="display:block; margin-right: 30px;">
-                      
-                        <span>Free Courses</span>
-                    </a>
-
-                    <!-- Add Category Button -->
-                    <a href="" class="btn btn-primary w-100" id="add-category"
-                        style="display:block;">
-                        
-                        <span>Paid Courses</span>
-                    </a>
-
-                </div>
-
-
 
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
@@ -50,9 +26,7 @@
                             </li>
                         @endforeach
 
-
                     </ul>
-
                 </div>
             </div>
             <!-- [ Content Sidebar  ] end -->
