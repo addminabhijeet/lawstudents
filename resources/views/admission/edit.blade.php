@@ -41,12 +41,12 @@
         <form method="POST" action="{{ route('admin.updateadmsubmit', $admission->id) }}"
             enctype="multipart/form-data">
             @csrf
-
             <div class="main-content">
                 <div class="row">
 
-                    <input type="hidden" name="student_id" value="{{ $admission->student_id ?? auth()->id() }}">
+                    <input type="hidden" name="student_id" value="{{ auth()->id() }}">
 
+                    <!-- LEFT COLUMN -->
                     <div class="col-xl-6">
                         <div class="card shadow-sm">
                             <div class="card-body">
@@ -56,14 +56,15 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Full Name *</label>
                                     <input type="text" class="form-control" name="full_name"
-                                        value="{{ old('full_name', $admission->full_name) }}">
+                                        value="{{ old('full_name', $admission->full_name) }}"
+                                        placeholder="Enter full name">
                                 </div>
 
+                                <!-- Email Section -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Email ID</label>
-
                                     <input type="email" class="form-control mb-2" name="email"
-                                        placeholder="Enter email" value="{{ old('email', $admission->email) }}">
+                                        value="{{ old('email', $admission->email) }}" placeholder="Enter email">
 
                                     <div class="d-flex gap-2 mb-2">
                                         <button type="button" onclick="sendEmailOtp()"
@@ -73,20 +74,20 @@
                                     </div>
 
                                     <div class="input-group">
-                                        <input type="text" id="emailOtp" class="form-control"
+                                        <input type="text" name="email_otp" id="emailOtp" class="form-control"
                                             placeholder="Enter Email OTP">
-
                                         <button type="button" onclick="verifyEmailOtp()" class="btn btn-success">
                                             Verify
                                         </button>
                                     </div>
                                 </div>
 
+                                <!-- Phone Section -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Contact Number</label>
-
                                     <input type="text" class="form-control mb-2" name="phone"
-                                        placeholder="Enter phone number" value="{{ old('phone', $admission->phone) }}">
+                                        value="{{ old('phone', $admission->phone) }}"
+                                        placeholder="Enter phone number">
 
                                     <div class="d-flex gap-2 mb-2">
                                         <button type="button" onclick="sendPhoneOtp()"
@@ -96,22 +97,49 @@
                                     </div>
 
                                     <div class="input-group">
-                                        <input type="text" id="phoneOtp" class="form-control"
+                                        <input type="text" name="phone_otp" id="phoneOtp" class="form-control"
                                             placeholder="Enter Phone OTP">
-
                                         <button type="button" onclick="verifyPhoneOtp()" class="btn btn-success">
                                             Verify
                                         </button>
                                     </div>
                                 </div>
 
-
-
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Father's / Guardian Name</label>
                                     <input type="text" class="form-control" name="father_name"
                                         placeholder="Enter guardian name"
                                         value="{{ old('father_name', $admission->father_name) }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Choose from below Course</label>
+
+                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
+                                        <div class="row">
+                                            @foreach ($courses as $course)
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2 p-2 border rounded">
+                                                        <input class="form-check-input course-checkbox"
+                                                            type="checkbox" name="course_ids[]"
+                                                            value="{{ $course->id }}"
+                                                            data-price="{{ $course->price }}"
+                                                            id="course{{ $course->id }}">
+
+                                                        <label class="form-check-label fw-semibold"
+                                                            for="course{{ $course->id }}">
+                                                            {{ $course->title }}
+                                                            <br>
+                                                            <small class="text-muted">
+                                                                ₹{{ $course->price }} | {{ $course->duration }}
+                                                            </small>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="mb-3">
@@ -133,13 +161,13 @@
                         </div>
                     </div>
 
+                    <!-- RIGHT COLUMN -->
                     <div class="col-xl-6">
                         <div class="card shadow-sm">
                             <div class="card-body">
 
                                 <h6 class="fw-bold mb-4 text-primary">Address & Documents</h6>
 
-                                <!-- Address -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Address</label>
                                     <div class="row">
@@ -162,8 +190,7 @@
                                         Passport Size Photo (JPEG/PNG)
                                         <small class="text-muted">(Max 2MB)</small>
                                     </label>
-
-                                    <input type="file" id="photoInput" name="photo" class="form-control mb-2"
+                                    <input type="file" name="photo" id="photoInput" class="form-control mb-2"
                                         accept="image/*" onchange="validateAndPreview(event, 'photoPreview', 2)">
 
                                     <div class="invalid-feedback" id="photoError"></div>
@@ -187,33 +214,64 @@
                                         Signature (JPEG/PNG)
                                         <small class="text-muted">(Max 1MB)</small>
                                     </label>
-
-                                    <input type="file" id="signInput" name="signature" class="form-control mb-2"
+                                    <input type="file" name="signature" id="signInput" class="form-control mb-2"
                                         accept="image/*" onchange="validateAndPreview(event, 'signPreview', 1)">
 
                                     <div class="invalid-feedback" id="signError"></div>
 
                                     <div class="text-center">
-
-                                        @if ($admission->signature)
-                                            <img id="signPreview"
-                                                src="{{ asset('storage/' . $admission->signature) }}"
-                                                class="img-thumbnail" style="max-height: 150px;">
-                                        @else
-                                            <img id="signPreview" class="img-thumbnail d-none"
-                                                style="max-height: 150px;">
-                                        @endif
-
+                                        <img id="signPreview" class="img-thumbnail d-none"
+                                            style="max-height: 150px;">
                                     </div>
                                 </div>
+
+                                <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Subtotal:</span>
+                                        <span>₹<span id="subtotal">0</span></span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <span>Discount %:</span>
+                                        <input type="number" id="customDiscount" class="form-control"
+                                            min="0" max="100" value="10">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <span>Discount (10%):</span>
+                                        <span>- ₹<span id="discount">0</span></span>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="d-flex justify-content-between fw-bold">
+                                        <span>Total Payable:</span>
+                                        <span>₹<span id="grandtotal">0</span></span>
+                                    </div>
+                                </div>
+
+                                <!-- Declaration -->
+                                @if (isset($declaration))
+                                    <div class="form-check mt-4">
+                                        <input class="form-check-input" type="checkbox" name="declaration_accept"
+                                            id="declarationCheck" required>
+
+                                        <label class="form-check-label" for="declarationCheck">
+                                            {!! $declaration->declaration !!}
+                                        </label>
+                                    </div>
+                                @endif
 
                             </div>
                         </div>
                     </div>
 
+                    <!-- SUBMIT BUTTON -->
                     <div class="col-12 text-end mt-3">
                         <button type="submit" class="btn btn-primary px-4">
-                            Update Admission
+                            Submit Admission
                         </button>
                     </div>
 
