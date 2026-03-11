@@ -236,12 +236,6 @@
                                                 </td>
 
                                                 <td>
-                                                    <a class="fw-bold">
-                                                        {{ $payment->admno }}
-                                                    </a>
-                                                </td>
-
-                                                <td>
                                                     <a class="hstack gap-3">
                                                         <div>
                                                             <span class="text-truncate-1-line">
