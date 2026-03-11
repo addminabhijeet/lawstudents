@@ -27,251 +27,202 @@
                 </div>
             </div>
         </div>
-        <form method="POST" action="{{ route('admin.updateadmsubmit', $admission->id) }}"
-            enctype="multipart/form-data">
-            @csrf
-            <div class="main-content">
-                <div class="row">
+        <div class="main-content">
+            <div class="row">
 
-                    <input type="hidden" name="student_id" value="{{ auth()->id() }}">
+                <!-- STUDENT PROFILE CARD -->
+                <div class="col-xl-4">
+                    <div class="card shadow-sm border-light">
+                        <div class="card-body text-center">
 
-                    <!-- LEFT COLUMN -->
-                    <div class="col-xl-6">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
+                            @if ($admission->photo)
+                                <img src="{{ asset('storage/' . $admission->photo) }}" class="rounded-circle mb-3"
+                                    style="width:130px;height:130px;object-fit:cover;">
+                            @else
+                                <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
+                                    style="width:130px;height:130px;">
+                            @endif
 
-                                <h6 class="fw-bold mb-4 text-primary">Student Information</h6>
+                            <h5 class="fw-bold mb-1">
+                                {{ $admission->full_name }}
+                            </h5>
 
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Adm No</label>
-                                    <input type="text" class="form-control" name="admno"
-                                        value="{{ old('full_name', $admission->admno) }}" readonly>
+                            <p class="text-muted mb-2">
+                                Admission No
+                            </p>
+
+                            <span class="badge bg-primary fs-6">
+                                {{ $admission->admno }}
+                            </span>
+
+                            <hr>
+
+                            <div class="text-start">
+
+                                <p class="mb-2">
+                                    <strong>Email:</strong><br>
+                                    {{ $admission->email }}
+                                </p>
+
+                                <p class="mb-2">
+                                    <strong>Phone:</strong><br>
+                                    {{ $admission->phone }}
+                                </p>
+
+                                <p class="mb-2">
+                                    <strong>Guardian:</strong><br>
+                                    {{ $admission->father_name }}
+                                </p>
+
+                                <p class="mb-0">
+                                    <strong>Status:</strong><br>
+
+                                    @if ($admission->admission_status == 'approved')
+                                        <span class="badge bg-success">Approved</span>
+                                    @elseif($admission->admission_status == 'pending')
+                                        <span class="badge bg-warning">Pending</span>
+                                    @else
+                                        <span class="badge bg-danger">Rejected</span>
+                                    @endif
+
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STUDENT DETAILS -->
+                <div class="col-xl-8">
+
+                    <div class="card shadow-sm border-light mb-4">
+                        <div class="card-body">
+
+                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                Student Details
+                            </h5>
+
+                            <div class="row mb-3">
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Full Name</label>
+                                    <p class="fw-semibold">{{ $admission->full_name }}</p>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Full Name *</label>
-                                    <input type="text" class="form-control" name="full_name"
-                                        value="{{ old('full_name', $admission->full_name) }}"
-                                        placeholder="Enter full name">
-                                </div>
-
-                                <!-- Email Section -->
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Email ID</label>
-                                    <input type="email" class="form-control mb-2" name="email"
-                                        value="{{ old('email', $admission->email) }}" placeholder="Enter email">
-
-                                    <div class="d-flex gap-2 mb-2">
-                                        <button type="button" onclick="sendEmailOtp()"
-                                            class="btn btn-outline-primary btn-sm">
-                                            Send OTP
-                                        </button>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <input type="text" name="email_otp" id="emailOtp" class="form-control"
-                                            placeholder="Enter Email OTP">
-                                        <button type="button" onclick="verifyEmailOtp()" class="btn btn-success">
-                                            Verify
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Phone Section -->
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Contact Number</label>
-                                    <input type="text" class="form-control mb-2" name="phone"
-                                        value="{{ old('phone', $admission->phone) }}" placeholder="Enter phone number">
-
-                                    <div class="d-flex gap-2 mb-2">
-                                        <button type="button" onclick="sendPhoneOtp()"
-                                            class="btn btn-outline-primary btn-sm">
-                                            Send OTP
-                                        </button>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <input type="text" name="phone_otp" id="phoneOtp" class="form-control"
-                                            placeholder="Enter Phone OTP">
-                                        <button type="button" onclick="verifyPhoneOtp()" class="btn btn-success">
-                                            Verify
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Father's / Guardian Name</label>
-                                    <input type="text" class="form-control" name="father_name"
-                                        placeholder="Enter guardian name"
-                                        value="{{ old('father_name', $admission->father_name) }}">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Choose from below Course</label>
-
-                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
-                                        <div class="row">
-                                            @foreach ($courses as $course)
-                                                <div class="col-md-6">
-                                                    <div class="form-check mb-2 p-2 border rounded">
-                                                        <input class="form-check-input course-checkbox"
-                                                            type="checkbox" name="course_ids[]"
-                                                            value="{{ $course->id }}"
-                                                            data-price="{{ $course->price }}"
-                                                            id="course{{ $course->id }}">
-
-                                                        <label class="form-check-label fw-semibold"
-                                                            for="course{{ $course->id }}">
-                                                            {{ $course->title }}
-                                                            <br>
-                                                            <small class="text-muted">
-                                                                ₹{{ $course->price }} | {{ $course->duration }}
-                                                            </small>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Admission Status</label>
-                                    <select class="form-select" name="admission_status">
-                                        <option value="pending"
-                                            {{ old('admission_status', $admission->admission_status) == 'pending' ? 'selected' : '' }}>
-                                            Pending</option>
-                                        <option value="approved"
-                                            {{ old('admission_status', $admission->admission_status) == 'approved' ? 'selected' : '' }}>
-                                            Approved</option>
-                                        <option value="rejected"
-                                            {{ old('admission_status', $admission->admission_status) == 'rejected' ? 'selected' : '' }}>
-                                            Rejected</option>
-                                    </select>
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Admission No</label>
+                                    <p class="fw-semibold">{{ $admission->admno }}</p>
                                 </div>
 
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- RIGHT COLUMN -->
-                    <div class="col-xl-6">
-                        <div class="card shadow-sm">
-                            <div class="card-body">
+                            <div class="row mb-3">
 
-                                <h6 class="fw-bold mb-4 text-primary">Address & Documents</h6>
-
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Address</label>
-                                    <div class="row">
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" name="address_line1"
-                                                placeholder="Address Line 1"
-                                                value="{{ old('address_line1', $admission->address_line1) }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <input type="text" class="form-control" name="address_line2"
-                                                placeholder="Address Line 2"
-                                                value="{{ old('address_line2', $admission->address_line2) }}">
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Email</label>
+                                    <p class="fw-semibold">{{ $admission->email }}</p>
                                 </div>
 
-                                <!-- Passport Photo -->
-                                <div class="mb-4">
-                                    <label class="form-label fw-semibold">
-                                        Passport Size Photo (JPEG/PNG)
-                                        <small class="text-muted">(Max 2MB)</small>
-                                    </label>
-                                    <input type="file" name="photo" id="photoInput" class="form-control mb-2"
-                                        accept="image/*" onchange="validateAndPreview(event, 'photoPreview', 2)">
-
-                                    <div class="invalid-feedback" id="photoError"></div>
-
-                                    <div class="text-center">
-
-                                        @if ($admission->photo)
-                                            <img id="photoPreview" src="{{ asset('storage/' . $admission->photo) }}"
-                                                class="img-thumbnail" style="max-height: 180px;">
-                                        @else
-                                            <img id="photoPreview" class="img-thumbnail d-none"
-                                                style="max-height: 180px;">
-                                        @endif
-
-                                    </div>
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Phone</label>
+                                    <p class="fw-semibold">{{ $admission->phone }}</p>
                                 </div>
-
-                                <!-- Signature -->
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">
-                                        Signature (JPEG/PNG)
-                                        <small class="text-muted">(Max 1MB)</small>
-                                    </label>
-                                    <input type="file" name="signature" id="signInput" class="form-control mb-2"
-                                        accept="image/*" onchange="validateAndPreview(event, 'signPreview', 1)">
-
-                                    <div class="invalid-feedback" id="signError"></div>
-
-                                    <div class="text-center">
-                                        <img id="signPreview" class="img-thumbnail d-none"
-                                            style="max-height: 150px;">
-                                    </div>
-                                </div>
-
-                                <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
-
-                                <div class="mb-3">
-                                    <div class="d-flex justify-content-between">
-                                        <span>Subtotal:</span>
-                                        <span>₹<span id="subtotal">0</span></span>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <span>Discount %:</span>
-                                        <input type="number" id="customDiscount" class="form-control"
-                                            min="0" max="100" value="10">
-                                    </div>
-
-                                    <div class="d-flex justify-content-between">
-                                        <span>Discount (10%):</span>
-                                        <span>- ₹<span id="discount">0</span></span>
-                                    </div>
-
-                                    <hr>
-
-                                    <div class="d-flex justify-content-between fw-bold">
-                                        <span>Total Payable:</span>
-                                        <span>₹<span id="grandtotal">0</span></span>
-                                    </div>
-                                </div>
-
-                                <!-- Declaration -->
-                                @if (isset($declaration))
-                                    <div class="form-check mt-4">
-                                        <input class="form-check-input" type="checkbox" name="declaration_accept"
-                                            id="declarationCheck" required>
-
-                                        <label class="form-check-label" for="declarationCheck">
-                                            {!! $declaration->declaration !!}
-                                        </label>
-                                    </div>
-                                @endif
 
                             </div>
+
+                            <div class="row mb-3">
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Father / Guardian</label>
+                                    <p class="fw-semibold">{{ $admission->father_name }}</p>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Admission Status</label>
+                                    <p class="fw-semibold text-capitalize">
+                                        {{ $admission->admission_status }}
+                                    </p>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
 
-                    <!-- SUBMIT BUTTON -->
-                    <div class="col-12 text-end mt-3">
-                        <button type="submit" class="btn btn-primary px-4">
-                            Update Admission
-                        </button>
+                    <!-- ADDRESS CARD -->
+                    <div class="card shadow-sm border-light mb-4">
+                        <div class="card-body">
+
+                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                Address Information
+                            </h5>
+
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Address Line 1</label>
+                                    <p class="fw-semibold">
+                                        {{ $admission->address_line1 }}
+                                    </p>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Address Line 2</label>
+                                    <p class="fw-semibold">
+                                        {{ $admission->address_line2 }}
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- DOCUMENTS -->
+                    <div class="card shadow-sm border-light">
+                        <div class="card-body">
+
+                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                Documents
+                            </h5>
+
+                            <div class="row text-center">
+
+                                <div class="col-md-6">
+
+                                    <label class="text-muted small d-block mb-2">
+                                        Passport Photo
+                                    </label>
+
+                                    @if ($admission->photo)
+                                        <img src="{{ asset('storage/' . $admission->photo) }}" class="img-thumbnail"
+                                            style="max-height:180px;">
+                                    @endif
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label class="text-muted small d-block mb-2">
+                                        Signature
+                                    </label>
+
+                                    @if ($admission->signature)
+                                        <img src="{{ asset('storage/' . $admission->signature) }}" class="img-thumbnail"
+                                            style="max-height:150px;">
+                                    @endif
+
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </main>
 
