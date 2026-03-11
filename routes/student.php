@@ -76,8 +76,8 @@ Route::middleware(['auth:student'])
         Route::get('courses', [CourseControllerStu::class, 'listcourse'])
             ->name('listcourse');
 
-        Route::get('list-idcard', [RoutingControllerStu::class, 'listidcard'])
-            ->name('listidcard');
+        Route::get('view-idcard', [RoutingControllerStu::class, 'viewidcard'])
+            ->name('viewidcard');
 
         Route::post('category-store', [CourseControllerStu::class, 'storecategory'])
             ->name('storecategory');
