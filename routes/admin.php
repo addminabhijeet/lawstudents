@@ -88,6 +88,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('view-idcard/{id}', [RoutingController::class, 'viewidcard'])
                 ->name('viewidcard');
 
+            Route::get('list-idcard/{id}', [RoutingController::class, 'listidcard'])
+                ->name('listidcard');
+
             Route::get('courses', [CourseController::class, 'listcourse'])
                 ->name('listcourse');
 

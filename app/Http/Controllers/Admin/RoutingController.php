@@ -52,6 +52,13 @@ class RoutingController extends Controller
         return view('payment.list', compact('payments'));
     }
 
+    public function listidcard()
+    {
+        $payments = Payment::with('student')->latest()->get();
+
+        return view('idcard.list', compact('payments'));
+    }
+
     public function updatepayment(Request $request, $id)
     {
         $payment = Payment::findOrFail($id);
