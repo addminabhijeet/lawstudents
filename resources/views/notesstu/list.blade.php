@@ -5,17 +5,14 @@
         <div class="main-content d-flex">
             <!-- [ Content Sidebar ] start -->
             <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
-
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
-
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
                                 <i class="feather-layers"></i>
                                 <span>All</span>
                             </a>
                         </li>
-
                         @foreach ($categories as $category)
                             <li class="nav-item">
                                 <a href="javascript:void(0)" class="nav-link note-link"
@@ -25,10 +22,7 @@
                                 </a>
                             </li>
                         @endforeach
-
-
                     </ul>
-
                 </div>
             </div>
             <!-- [ Content Sidebar  ] end -->
@@ -63,18 +57,15 @@
                                                 <span class="badge bg-primary text-truncate w-75 mb-1">
                                                     {{ $category->name }}
                                                 </span>
-
                                                 <span class="fw-bold text-success">
                                                     {{ $note->formatted_size }}
                                                 </span>
                                             </div>
-
                                         </div>
                                     </div>
                                 @endforeach
                             @endforeach
                         @endforeach
-
                     </div>
                 </div>
             </div>
@@ -82,306 +73,7 @@
     </div>
 </main>
 @include('layouts.partials.student.theme')
-<div class="modal fade" id="addnotesmodal" tabindex="-1" aria-labelledby="addNotesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
 
-            <div class="modal-header">
-                <h5 class="modal-title" id="addNotesModalLabel">Add Course Note</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <form action="{{ route('admin.storenotes') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row g-3">
-
-                            <!-- LEFT COLUMN -->
-                            <div class="col-md-6">
-
-                                <!-- Course Selection -->
-                                <div class="mb-3">
-                                    <label class="form-label">Select Course *</label>
-                                    <select name="course_id" class="form-select" required>
-                                        <option value="">-- Select Course --</option>
-                                        @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}">
-                                                {{ $course->title }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Note Title -->
-                                <div class="mb-3">
-                                    <label class="form-label">Note Title *</label>
-                                    <input type="text" name="title" class="form-control"
-                                        placeholder="Enter Note Title" minlength="5" required>
-                                </div>
-
-                                <!-- Version -->
-                                <div class="mb-3">
-                                    <label class="form-label">Version</label>
-                                    <input type="text" name="version" class="form-control" placeholder="1.0">
-                                </div>
-
-                            </div>
-
-                            <!-- RIGHT COLUMN -->
-                            <div class="col-md-6">
-
-                                <!-- PDF Upload -->
-                                <div class="mb-3">
-                                    <label class="form-label">Upload PDF *</label>
-                                    <input type="file" name="pdf" class="form-control" accept="application/pdf"
-                                        required>
-                                    <small class="text-muted">Max size: 20MB</small>
-                                </div>
-
-                                <!-- Visibility -->
-                                <div class="mb-3">
-                                    <label class="form-label">Visibility</label>
-                                    <select name="visibility" class="form-select">
-                                        <option value="enrolled" selected>Enrolled Users</option>
-                                        <option value="free">Free</option>
-                                        <option value="paid">Paid</option>
-                                    </select>
-                                </div>
-
-                                <!-- Is Downloadable -->
-                                <div class="form-check mt-4">
-                                    <input class="form-check-input" type="checkbox" name="is_downloadable"
-                                        id="isDownloadable" checked>
-                                    <label class="form-check-label" for="isDownloadable">
-                                        Allow Download
-                                    </label>
-                                </div>
-
-                            </div>
-
-                            <!-- FULL WIDTH DESCRIPTION -->
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Note Description</label>
-                                    <textarea name="description" class="form-control" rows="4" placeholder="Enter Note Description" minlength="20"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Add Note</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-</div>
-
-
-
-<!--! ================================================================ !-->
-<!--! END: Modal Add Notes !-->
-<!--! ================================================================ !-->
-<!--! ================================================================ !-->
-<!--! [Start] Search Modal !-->
-<!--! ================================================================ !-->
-<div class="modal fade-scale" id="searchModal" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-top modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header search-form py-0">
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <i class="feather-search fs-4 text-muted"></i>
-                    </span>
-                    <input type="text" class="form-control search-input-field" placeholder="Search...">
-                    <span class="input-group-text">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </span>
-                </div>
-            </div>
-            <div class="modal-body">
-                <div class="searching-for mb-5">
-                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">I'm searching for...</h4>
-                    <div class="row g-1">
-                        <div class="col-md-4 col-xl-2">
-                            <a href="javascript:void(0);"
-                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
-                                <i class="feather-compass"></i>
-                                <span>Recent</span>
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-xl-2">
-                            <a href="javascript:void(0);"
-                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
-                                <i class="feather-command"></i>
-                                <span>Command</span>
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-xl-2">
-                            <a href="javascript:void(0);"
-                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
-                                <i class="feather-users"></i>
-                                <span>Peoples</span>
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-xl-2">
-                            <a href="javascript:void(0);"
-                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
-                                <i class="feather-file"></i>
-                                <span>Files</span>
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-xl-2">
-                            <a href="javascript:void(0);"
-                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
-                                <i class="feather-video"></i>
-                                <span>Medias</span>
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-xl-2">
-                            <a href="javascript:void(0);"
-                                class="d-flex align-items-center gap-2 px-3 lh-lg border rounded-pill">
-                                <span>More</span>
-                                <i class="feather-chevron-down"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="recent-result mb-5">
-                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">Recnet <span
-                            class="badge small bg-gray-200 rounded ms-1 text-dark">3</span></h4>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-airplay fs-5"></i>
-                            <div class="fs-13 fw-semibold">CRM dashboard redesign</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">/<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-file-plus fs-5"></i>
-                            <div class="fs-13 fw-semibold">Create new eocument</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">N /<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-user-plus fs-5"></i>
-                            <div class="fs-13 fw-semibold">Invite project colleagues</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">P /<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="command-result mb-5">
-                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">Command <span
-                            class="badge small bg-gray-200 rounded ms-1 text-dark">5</span></h4>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-user fs-5"></i>
-                            <div class="fs-13 fw-semibold">My profile</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">P /<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-users fs-5"></i>
-                            <div class="fs-13 fw-semibold">Team profile</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">T /<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-user-plus fs-5"></i>
-                            <div class="fs-13 fw-semibold">Invite colleagues</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">I /<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-briefcase fs-5"></i>
-                            <div class="fs-13 fw-semibold">Create new project</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">CP /<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-life-buoy fs-5"></i>
-                            <div class="fs-13 fw-semibold">Support center</div>
-                        </a>
-                        <a href="javascript:void(0);" class="badge border rounded text-dark">SC /<i
-                                class="feather-command ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="file-result mb-4">
-                    <h4 class="fs-13 fw-normal text-gray-600 mb-3">Files <span
-                            class="badge small bg-gray-200 rounded ms-1 text-dark">3</span></h4>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-folder-plus fs-5"></i>
-                            <div class="fs-13 fw-semibold">CRM Desing Project <span
-                                    class="fs-12 fw-normal text-muted">(56.74 MB)</span></div>
-                        </a>
-                        <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-folder-plus fs-5"></i>
-                            <div class="fs-13 fw-semibold">Admin Dashboard Project <span
-                                    class="fs-12 fw-normal text-muted">(46.83 MB)</span></div>
-                        </a>
-                        <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <a href="javascript:void(0);" class="d-flex align-items-start gap-3">
-                            <i class="feather-folder-plus fs-5"></i>
-                            <div class="fs-13 fw-semibold">CRM Dashboard Project <span
-                                    class="fs-12 fw-normal text-muted">(68.59 MB)</span></div>
-                        </a>
-                        <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="position-fixed" style="right: 5px; bottom: 5px; z-index: 999999">
-    <div id="toast" class="toast bg-black hide" data-bs-delay="3000" role="alert" aria-live="assertive"
-        aria-atomic="true">
-        <div
-            class="toast-header px-3 bg-transparent d-flex align-items-center justify-content-between border-bottom border-light border-opacity-10">
-            <div class="text-white mb-0 mr-auto">Downloading...</div>
-            <a href="javascript:void(0)" class="ms-2 mb-1 close fw-normal" data-bs-dismiss="toast"
-                aria-label="Close">
-                <span class="text-white">&times;</span>
-            </a>
-        </div>
-        <div class="toast-body p-3 text-white">
-            <h6 class="fs-13 text-white">Project.zip</h6>
-            <span class="text-light fs-11">4.2mb of 5.5mb</span>
-        </div>
-        <div class="toast-footer p-3 pt-0 border-top border-light border-opacity-10">
-            <div class="progress mt-3" style="height: 5px">
-                <div class="progress-bar progress-bar-striped progress-bar-animated w-75 bg-dark" role="progressbar"
-                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
 <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
