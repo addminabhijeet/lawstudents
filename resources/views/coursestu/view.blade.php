@@ -276,19 +276,30 @@
 
     function renderPage(num) {
         pdfDoc.getPage(num).then(function(page) {
+
             let canvas = document.getElementById('pdfCanvas');
             let ctx = canvas.getContext('2d');
 
+            let container = document.getElementById('pdfContainer');
+
+            // get original viewport
             let viewport = page.getViewport({
-                scale: 1.5
+                scale: 1
             });
 
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+            // calculate scale to fit container width
+            let scale = container.clientWidth / viewport.width;
+
+            let scaledViewport = page.getViewport({
+                scale: scale
+            });
+
+            canvas.height = scaledViewport.height;
+            canvas.width = scaledViewport.width;
 
             let renderContext = {
                 canvasContext: ctx,
-                viewport: viewport
+                viewport: scaledViewport
             };
 
             page.render(renderContext);
