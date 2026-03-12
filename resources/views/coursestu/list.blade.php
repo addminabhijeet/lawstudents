@@ -1,14 +1,13 @@
 @include('layouts.partials.student.dashboard')
 <main class="nxl-container apps-container apps-notes">
     <div class="nxl-content without-header nxl-full-content">
-        <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
 
-            <!-- [ Content Sidebar  ] end -->
-            <!-- [ Main Area  ] start -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-body pb-0">
-                    <div class="row note-has-grid" id="note-full-container">
+
+                    <div class="row note-has-grid g-4" id="note-full-container">
+
                         @foreach ($categories as $category)
                             @foreach ($category->courses as $course)
                                 <div
@@ -16,42 +15,84 @@
 
                                     <a href="{{ route('student.viewcourse', $course->id) }}"
                                         class="text-decoration-none text-dark">
-                                        <div class="card card-body mb-4 stretch stretch-full">
-                                            <span class="side-stick"></span>
 
-                                            <h5 class="note-title text-truncate w-75 mb-1">
-                                                {{ $course->title }}
-                                            </h5>
+                                        <div class="card h-100 shadow-sm stretch stretch-full">
 
-                                            <p class="fs-11 text-muted note-date">
-                                                {{ $course->created_at->format('d F Y') }}
-                                            </p>
+                                            <!-- COURSE HEADER -->
+                                            <div class="card-body d-flex flex-column">
 
-                                            <div class="note-content flex-grow-1">
-                                                <p class="text-muted note-inner-content text-truncate-3-line">
-                                                    {{ $course->description }}
+                                                <span class="side-stick"></span>
+
+                                                <div class="d-flex align-items-center mb-3">
+
+                                                    <div class="bg-light rounded p-2 me-2">
+                                                        📚
+                                                    </div>
+
+                                                    <h5 class="note-title text-truncate mb-0">
+                                                        {{ $course->title }}
+                                                    </h5>
+
+                                                </div>
+
+                                                <p class="fs-11 text-muted note-date mb-2">
+                                                    {{ $course->created_at->format('d F Y') }}
                                                 </p>
+
+                                                <!-- DESCRIPTION -->
+                                                <div class="note-content flex-grow-1 mb-3">
+
+                                                    <p class="text-muted note-inner-content text-truncate-3-line">
+                                                        {{ $course->description }}
+                                                    </p>
+
+                                                </div>
+
+                                                <!-- COURSE META -->
+                                                <div class="d-flex justify-content-between align-items-center mt-auto">
+
+                                                    <span class="badge bg-light text-dark border">
+                                                        {{ $category->name }}
+                                                    </span>
+
+                                                    <span class="fw-bold text-success fs-5">
+                                                        ₹{{ $course->price }}
+                                                    </span>
+
+                                                </div>
+
                                             </div>
 
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-primary text-truncate w-75 mb-1">
-                                                    {{ $category->name }}
-                                                </span>
+                                            <!-- CARD FOOTER -->
+                                            <div class="card-footer bg-white border-0 pt-0">
 
-                                                <span class="fw-bold text-success">
-                                                    ₹{{ $course->price }}
-                                                </span>
+                                                <div class="d-flex justify-content-between align-items-center">
+
+                                                    <small class="text-muted">
+                                                        View Course
+                                                    </small>
+
+                                                    <span class="badge bg-primary">
+                                                        Open
+                                                    </span>
+
+                                                </div>
+
                                             </div>
 
                                         </div>
+
                                     </a>
 
                                 </div>
                             @endforeach
                         @endforeach
+
                     </div>
+
                 </div>
             </div>
+
         </div>
     </div>
 </main>
