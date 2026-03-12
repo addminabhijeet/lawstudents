@@ -83,13 +83,6 @@
                                                     View
                                                 </button>
 
-                                                @if ($note->is_downloadable)
-                                                    <a href="{{ route('student.downloadnote', $note->id) }}"
-                                                        class="btn btn-sm btn-success">
-                                                        Download
-                                                    </a>
-                                                @endif
-
                                             </div>
 
                                             <!-- Highlight Favourite Notes -->
