@@ -17,8 +17,7 @@ class CourseNoteControllerStu extends Controller
 {
     public function listnotes()
     {
-        $student = Auth::guard('student')->user();
-        $studentId = $student->id;
+        $studentId = Auth::guard('student')->id();
 
         // Get paid course IDs
         $paidCourseIds = Payment::where('student_id', $studentId)
@@ -26,22 +25,21 @@ class CourseNoteControllerStu extends Controller
             ->pluck('course_id')
             ->toArray();
 
-        // Get categories with courses and notes that are wishlisted by this student
-        $categories = Category::whereHas('courses.notes', function ($query) use ($paidCourseIds, $studentId) {
+        // Fetch categories with courses but only notes that are wishlisted by the student
+        $categories = Category::whereHas('courses.notes', function ($query) use ($studentId, $paidCourseIds) {
             $query->whereHas('wishlists', function ($q) use ($studentId) {
                 $q->where('student_id', $studentId);
             });
         })
             ->with([
-                'courses' => function ($query) use ($paidCourseIds, $studentId) {
+                'courses' => function ($query) use ($studentId, $paidCourseIds) {
                     $query->whereHas('notes.wishlists', function ($q) use ($studentId) {
                         $q->where('student_id', $studentId);
-                    })
-                        ->with(['notes' => function ($q) use ($studentId) {
-                            $q->whereHas('wishlists', function ($qq) use ($studentId) {
-                                $qq->where('student_id', $studentId);
-                            });
-                        }]);
+                    })->with(['notes' => function ($q) use ($studentId) {
+                        $q->whereHas('wishlists', function ($qq) use ($studentId) {
+                            $qq->where('student_id', $studentId);
+                        });
+                    }]);
                 },
                 'children' => function ($query) use ($studentId) {
                     $query->whereHas('courses.notes.wishlists', function ($q) use ($studentId) {
@@ -51,24 +49,30 @@ class CourseNoteControllerStu extends Controller
                             'courses' => function ($q) use ($studentId) {
                                 $q->whereHas('notes.wishlists', function ($qq) use ($studentId) {
                                     $qq->where('student_id', $studentId);
-                                })
-                                    ->with(['notes' => function ($qq) use ($studentId) {
-                                        $qq->whereHas('wishlists', function ($qqq) use ($studentId) {
-                                            $qqq->where('student_id', $studentId);
-                                        });
-                                    }]);
+                                })->with(['notes' => function ($qq) use ($studentId) {
+                                    $qq->whereHas('wishlists', function ($qqq) use ($studentId) {
+                                        $qqq->where('student_id', $studentId);
+                                    });
+                                }]);
                             }
                         ]);
                 }
             ])
             ->get();
 
-        // Get only wishlisted notes directly (optional, if you need a flat list)
-        $notes = CourseNote::whereHas('wishlists', function ($q) use ($studentId) {
-            $q->where('student_id', $studentId);
-        })->get();
+        // Fetch courses for listing, only wishlisted notes
+        $courses = Course::where('status', 1)
+            ->whereHas('notes.wishlists', function ($q) use ($studentId) {
+                $q->where('student_id', $studentId);
+            })
+            ->with(['notes' => function ($q) use ($studentId) {
+                $q->whereHas('wishlists', function ($qq) use ($studentId) {
+                    $qq->where('student_id', $studentId);
+                });
+            }])
+            ->get();
 
-        return view('notesstu.list', compact('categories', 'notes'));
+        return view('notesstu.list', compact('categories', 'courses'));
     }
 
     public function storenotes(Request $request)
