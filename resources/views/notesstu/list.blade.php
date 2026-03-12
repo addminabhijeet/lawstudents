@@ -1,120 +1,116 @@
 @include('layouts.partials.student.dashboard')
-<main class="container-fluid py-4">
-    <div class="row">
+<main class="nxl-container apps-container apps-notes">
+    <div class="nxl-content without-header nxl-full-content">
+        <div class="main-content d-flex">
 
-        <!-- Sidebar -->
-        <div class="col-md-3 mb-4">
-            <ul class="nav flex-column nav-pills">
-                <li class="nav-item mb-2">
-                    <a class="nav-link active" href="javascript:void(0)">
-                        <i class="bi bi-heart-fill me-2"></i> Favourites
-                    </a>
-                </li>
-                @foreach ($categories as $category)
-                    <li class="nav-item mb-1">
-                        <a class="nav-link" href="javascript:void(0)" id="category-{{ $category->id }}">
-                            <i class="bi bi-folder-fill me-2"></i> {{ $category->name }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-
-        <!-- Notes Grid -->
-        <div class="col-md-9">
-            <div class="row g-3" id="note-full-container">
-
-                @foreach ($categories as $category)
-                    @foreach ($category->courses as $course)
-                        @php
-                            $wishlistedNotes = $course->notes->filter(function ($note) {
-                                return $note->wishlists->where('student_id', auth()->id())->count() > 0;
-                            });
-                        @endphp
-
-                        @foreach ($wishlistedNotes as $note)
-                            <div class="col-xl-4 col-lg-6 col-md-6">
-                                <div class="card h-100 border-1 shadow-sm">
-
-                                    <div class="card-body d-flex flex-column">
-
-                                        <!-- Title -->
-                                        <h5 class="card-title text-truncate fw-bold">{{ $note->title }}</h5>
-
-                                        <!-- Course & Date -->
-                                        <p class="text-muted small mb-2">
-                                            Course: <strong>{{ $course->title }}</strong> |
-                                            {{ $note->created_at->format('d M Y') }}
-                                        </p>
-
-                                        <!-- Badge & Size -->
-                                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                                            <span class="badge bg-primary">{{ $category->name }}</span>
-                                            <span class="text-success fw-bold">{{ $note->formatted_size }}</span>
-                                        </div>
-
-                                        <!-- Buttons -->
-                                        <div class="mt-auto d-flex gap-2 flex-wrap">
-                                            @php
-                                                $token = Crypt::encrypt(
-                                                    json_encode([
-                                                        'note_id' => $note->id,
-                                                        'ip' => request()->ip(),
-                                                        'expires_at' => now()->addMinutes(5),
-                                                    ]),
-                                                );
-                                            @endphp
-
-                                            <button class="btn btn-sm btn-outline-primary flex-grow-1"
-                                                onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}','{{ $note->id }}')">
-                                                View
-                                            </button>
-
-                                            @if ($note->is_downloadable)
-                                                <a href="{{ route('student.downloadnote', $note->id) }}"
-                                                    class="btn btn-sm btn-success flex-grow-1">
-                                                    Download
-                                                </a>
-                                            @endif
-
-                                            @php
-                                                $isWishlisted = \App\Models\NoteWishlist::where(
-                                                    'student_id',
-                                                    auth()->id(),
-                                                )
-                                                    ->where('note_id', $note->id)
-                                                    ->exists();
-                                            @endphp
-
-                                            <button
-                                                class="btn btn-sm {{ $isWishlisted ? 'btn-danger' : 'btn-outline-danger' }} flex-grow-1 wishlist-btn"
-                                                data-note="{{ $note->id }}">
-                                                ❤
-                                            </button>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Favourite Badge -->
-                                    <div class="position-absolute top-0 end-0 m-2">
-                                        <span class="badge bg-warning text-dark">Favourite</span>
-                                    </div>
-
-                                </div>
-                            </div>
+            <!-- [ Sidebar ] -->
+            <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
+                <div class="content-sidebar-body">
+                    <ul class="nav d-flex flex-column nxl-content-sidebar-item">
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
+                                <i class="feather-heart"></i>
+                                <span>Favourites</span>
+                            </a>
+                        </li>
+                        @foreach ($categories as $category)
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link note-link"
+                                    id="category-{{ $category->id }}">
+                                    <i class="feather-folder"></i>
+                                    <span>{{ $category->name }}</span>
+                                </a>
+                            </li>
                         @endforeach
-                    @endforeach
-                @endforeach
+                    </ul>
+                </div>
+            </div>
 
-                @if ($categories->pluck('courses')->flatten()->pluck('notes')->flatten()->filter(fn($n) => $n->wishlists->where('student_id', auth()->id())->count() > 0)->isEmpty())
-                    <div class="col-12 text-center mt-4">
-                        <p class="text-muted fw-bold">You have no favourite notes yet.</p>
+            <!-- [ Main Area ] -->
+            <div class="content-area" data-scrollbar-target="#psScrollbarInit">
+                <div class="content-area-body pb-0">
+
+                    <div class="row note-has-grid" id="note-full-container">
+
+                        @foreach ($categories as $category)
+                            @foreach ($category->courses as $course)
+                                @php
+                                    $wishlistedNotes = $course->notes->filter(function ($note) {
+                                        return $note->wishlists->where('student_id', auth()->id())->count() > 0;
+                                    });
+                                @endphp
+
+                                @foreach ($wishlistedNotes as $note)
+                                    <div
+                                        class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
+                                        <div class="card card-body mb-4 shadow-sm border-0 rounded-3 position-relative">
+
+                                            <span class="side-stick"></span>
+
+                                            <!-- Note Title -->
+                                            <h5 class="note-title text-truncate w-75 mb-1 fw-bold">
+                                                {{ $note->title }}
+                                            </h5>
+
+                                            <!-- Course and Date -->
+                                            <p class="fs-11 text-muted mb-2">
+                                                Course: <b>{{ $course->title }}</b> |
+                                                {{ $note->created_at->format('d F Y') }}
+                                            </p>
+
+                                            <!-- Note Size & Category -->
+                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                <span class="badge bg-primary text-truncate">
+                                                    {{ $category->name }}
+                                                </span>
+                                                <span class="fw-bold text-success">{{ $note->formatted_size }}</span>
+                                            </div>
+
+                                            <!-- Buttons -->
+                                            <div class="d-flex gap-2 mt-2">
+                                                @php
+                                                    $token = Crypt::encrypt(
+                                                        json_encode([
+                                                            'note_id' => $note->id,
+                                                            'ip' => request()->ip(),
+                                                            'expires_at' => now()->addMinutes(5),
+                                                        ]),
+                                                    );
+                                                @endphp
+
+                                                <button class="btn btn-sm btn-outline-primary"
+                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}','{{ $note->id }}')">
+                                                    View
+                                                </button>
+
+                                                @if ($note->is_downloadable)
+                                                    <a href="{{ route('student.downloadnote', $note->id) }}"
+                                                        class="btn btn-sm btn-success">
+                                                        Download
+                                                    </a>
+                                                @endif
+
+                                            </div>
+
+                                            <!-- Highlight Favourite Notes -->
+                                            <div class="position-absolute top-0 end-0 p-2">
+                                                <span class="badge bg-warning text-dark">Favourite</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endforeach
+                        @endforeach
+
+                        @if ($categories->pluck('courses')->flatten()->pluck('notes')->flatten()->filter(fn($n) => $n->wishlists->where('student_id', auth()->id())->count() > 0)->isEmpty())
+                            <p class="text-muted mt-4 fw-bold text-center">You have no favourite notes yet.</p>
+                        @endif
+
                     </div>
-                @endif
 
+                </div>
             </div>
         </div>
-
     </div>
 </main>
 @include('layouts.partials.student.theme')
