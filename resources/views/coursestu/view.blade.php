@@ -9,7 +9,7 @@
                     <div class="row">
 
                         <!-- LEFT SIDE -->
-                        <div class="col-xl-8 col-lg-8 col-md-12">
+                        <div class="col-12">
 
                             <div class="card mb-4">
                                 <div class="card-body">
