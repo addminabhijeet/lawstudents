@@ -454,14 +454,11 @@
         }
     }
 </script>
-
 <script>
     document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
-
             let noteId = this.dataset.note;
-
-            console.log("Wishlist button clicked for note:", noteId); // Debug
+            console.log("Clicked wishlist for note:", noteId);
 
             fetch("{{ route('student.wishlist') }}", {
                     method: "POST",
@@ -474,13 +471,12 @@
                     })
                 })
                 .then(res => {
-                    console.log("Fetch response status:", res.status); // Debug
-                    if (!res.ok) throw new Error("Network response was not ok: " + res.status);
+                    console.log("Fetch response status:", res.status);
+                    if (!res.ok) throw new Error("Network error: " + res.status);
                     return res.json();
                 })
                 .then(data => {
-                    console.log("AJAX response data:", data); // Debug
-
+                    console.log("Response data:", data);
                     if (data.status === "added") {
                         btn.classList.remove("btn-outline-danger");
                         btn.classList.add("btn-danger");
@@ -492,9 +488,9 @@
                     }
                 })
                 .catch(err => {
-                    console.error("Error in wishlist AJAX request:", err);
+                    console.error("AJAX error:", err);
+                    alert("Error adding to wishlist. Check console for details.");
                 });
-
         });
     });
 </script>

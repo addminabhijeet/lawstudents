@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use App\Models\NoteWishlist;
 use App\Models\NoteProgress;
+use Illuminate\Support\Facades\Log;
 
 class CourseControllerStu extends Controller
 {
@@ -136,23 +137,33 @@ class CourseControllerStu extends Controller
     public function wishlist(Request $request)
     {
         $student = Auth::guard('student')->user();
-        $noteId = $request->note_id;
 
-        $exists = NoteWishlist::where('student_id', $student->id)
-            ->where('note_id', $noteId)
-            ->first();
-
-        if ($exists) {
-            $exists->delete();
-            return response()->json(['status' => 'removed']);
+        if (!$request->has('note_id')) {
+            return response()->json(['status' => 'error', 'message' => 'Note ID missing'], 400);
         }
 
-        NoteWishlist::create([
-            'student_id' => $student->id,
-            'note_id' => $noteId
-        ]);
+        $noteId = $request->note_id;
 
-        return response()->json(['status' => 'added']);
+        try {
+            $exists = NoteWishlist::where('student_id', $student->id)
+                ->where('note_id', $noteId)
+                ->first();
+
+            if ($exists) {
+                $exists->delete();
+                return response()->json(['status' => 'removed']);
+            }
+
+            NoteWishlist::create([
+                'student_id' => $student->id,
+                'note_id' => $noteId
+            ]);
+
+            return response()->json(['status' => 'added']);
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error("Wishlist error: " . $e->getMessage());
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+        }
     }
     public function saveProgress(Request $request)
     {
