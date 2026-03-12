@@ -61,11 +61,6 @@
                                 {{ $idcard->to_name }}
                             </div>
 
-                            <div class="text-muted mb-2" style="font-size:11px;">
-                                {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
-                            </div>
-
-
                             @php
                                 $statusColor = match ($idcard->payment_status) {
                                     'paid' => 'bg-success',
@@ -118,10 +113,6 @@
 
                                     <div style="font-size:10px;font-weight:600;">
                                         Course
-                                    </div>
-
-                                    <div class="text-muted" style="font-size:10px;">
-                                        {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
                                     </div>
 
                                 </div>
