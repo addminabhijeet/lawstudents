@@ -3,6 +3,35 @@
     <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
+            <!-- [ Content Sidebar ] start -->
+            <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
+
+                <div class="content-sidebar-body">
+                    <ul class="nav d-flex flex-column nxl-content-sidebar-item">
+
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
+                                <i class="feather-layers"></i>
+                                <span>All</span>
+                            </a>
+                        </li>
+
+                        @foreach ($categories as $category)
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link note-link"
+                                    id="category-{{ $category->id }}">
+                                    <i class="feather-folder"></i>
+                                    <span>{{ $category->name }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+
+
+                    </ul>
+
+                </div>
+            </div>
+            <!-- [ Content Sidebar  ] end -->
             <!-- [ Main Area  ] start -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-body pb-0">
@@ -10,7 +39,8 @@
                         @foreach ($categories as $category)
                             @foreach ($category->courses as $course)
                                 @foreach ($course->notes as $note)
-                                    <div class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
+                                    <div
+                                        class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
 
                                         <div class="card card-body mb-4 stretch stretch-full">
                                             <span class="side-stick"></span>
@@ -105,8 +135,8 @@
                                 <!-- PDF Upload -->
                                 <div class="mb-3">
                                     <label class="form-label">Upload PDF *</label>
-                                    <input type="file" name="pdf" class="form-control"
-                                        accept="application/pdf" required>
+                                    <input type="file" name="pdf" class="form-control" accept="application/pdf"
+                                        required>
                                     <small class="text-muted">Max size: 20MB</small>
                                 </div>
 
@@ -135,8 +165,7 @@
                             <div class="col-12">
                                 <div class="mb-3">
                                     <label class="form-label">Note Description</label>
-                                    <textarea name="description" class="form-control" rows="4" placeholder="Enter Note Description"
-                                        minlength="20"></textarea>
+                                    <textarea name="description" class="form-control" rows="4" placeholder="Enter Note Description" minlength="20"></textarea>
                                 </div>
                             </div>
 
@@ -148,7 +177,9 @@
                     <button type="submit" class="btn btn-success">Add Note</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                 </div>
+
             </form>
+
         </div>
     </div>
 </div>
