@@ -12,6 +12,11 @@
         user-select: none;
     }
 
+    #pdfContainer {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
     #pdfCanvas {
         display: block;
         margin: auto;
@@ -262,8 +267,11 @@
 
                     <canvas id="pdfCanvas"></canvas>
 
-                    <button onclick="prevPage()">Prev</button>
-                    <button onclick="nextPage()">Next</button>
+                    <div class="text-center mt-2">
+                        <button class="btn btn-sm btn-secondary" onclick="prevPage()">Prev</button>
+                        <span id="pageInfo"></span>
+                        <button class="btn btn-sm btn-primary" onclick="nextPage()">Next</button>
+                    </div>
 
                 </div>
 
@@ -357,6 +365,8 @@
                 })
             });
         });
+        document.getElementById("pageInfo").innerText =
+            "Page " + num + " / " + totalPages;
     }
 
     document.getElementById('pdfModal').addEventListener('hidden.bs.modal', function() {

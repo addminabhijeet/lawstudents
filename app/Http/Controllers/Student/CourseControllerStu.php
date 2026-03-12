@@ -71,6 +71,10 @@ class CourseControllerStu extends Controller
             abort(403, 'Direct access blocked.');
         }
 
+        if (!Auth::guard('student')->check()) {
+            abort(403, 'Unauthorized');
+        }
+
         try {
 
             $data = json_decode(Crypt::decrypt($request->token), true);
