@@ -113,7 +113,7 @@
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('student.listnotes') }}">Favourite</a>
+                                    href="{{ route('student.listnotes') }}">Favorite</a>
                             </li>
                         </ul>
                     </li>
