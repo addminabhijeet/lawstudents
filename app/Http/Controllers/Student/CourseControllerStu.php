@@ -132,10 +132,10 @@ class CourseControllerStu extends Controller
         ]);
     }
 
+    // Inside CourseControllerStu
     public function wishlist(Request $request)
     {
         $student = Auth::guard('student')->user();
-
         $noteId = $request->note_id;
 
         $exists = NoteWishlist::where('student_id', $student->id)
@@ -143,12 +143,8 @@ class CourseControllerStu extends Controller
             ->first();
 
         if ($exists) {
-
             $exists->delete();
-
-            return response()->json([
-                'status' => 'removed'
-            ]);
+            return response()->json(['status' => 'removed']);
         }
 
         NoteWishlist::create([
@@ -156,11 +152,8 @@ class CourseControllerStu extends Controller
             'note_id' => $noteId
         ]);
 
-        return response()->json([
-            'status' => 'added'
-        ]);
+        return response()->json(['status' => 'added']);
     }
-
     public function saveProgress(Request $request)
     {
         $student = Auth::guard('student')->user();
