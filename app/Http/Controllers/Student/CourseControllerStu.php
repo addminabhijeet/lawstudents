@@ -133,7 +133,6 @@ class CourseControllerStu extends Controller
         ]);
     }
 
-    // Inside CourseControllerStu
     public function wishlist(Request $request)
     {
         $student = Auth::guard('student')->user();
@@ -161,21 +160,15 @@ class CourseControllerStu extends Controller
 
             return response()->json(['status' => 'added']);
         } catch (\Exception $e) {
-            // Log full exception
-            \Illuminate\Support\Facades\Log::error("Wishlist error: " . $e->getMessage() .
-                " in " . $e->getFile() . " on line " . $e->getLine() .
-                "\nStack trace:\n" . $e->getTraceAsString());
-
-            // Return full error details in JSON response
+            // Show the full error in JSON response (for dev only)
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
                 'trace' => $e->getTraceAsString()
             ], 500);
         }
     }
+
     public function saveProgress(Request $request)
     {
         $student = Auth::guard('student')->user();
