@@ -388,72 +388,7 @@
         document.getElementById('pdfCanvas').getContext('2d').clearRect(0, 0, 9999, 9999);
     });
 </script>
-<script>
-    document.addEventListener("contextmenu", e => e.preventDefault());
 
-    document.addEventListener("keydown", function(e) {
-
-        if (e.ctrlKey && (e.key === "s" || e.key === "p" || e.key === "u")) {
-            e.preventDefault();
-        }
-
-    });
-    document.addEventListener("keydown", function(e) {
-
-        if (e.key === "F12") {
-            e.preventDefault();
-        }
-
-    });
-    document.addEventListener("keydown", function(e) {
-
-        if (
-            e.key === "PrintScreen" ||
-            (e.ctrlKey && e.shiftKey && e.key === "S") ||
-            (e.metaKey && e.shiftKey && e.key === "S")
-        ) {
-            e.preventDefault();
-            alert("Screenshot disabled for protected content.");
-        }
-
-    });
-    setInterval(function() {
-
-        const threshold = 160;
-
-        if (
-            window.outerWidth - window.innerWidth > threshold ||
-            window.outerHeight - window.innerHeight > threshold
-        ) {
-
-            document.body.innerHTML =
-                "<h2 style='text-align:center;margin-top:200px'>Developer tools blocked</h2>";
-
-        }
-
-    }, 1000);
-
-    document.getElementById("pdfCanvas").addEventListener("dragstart", function(e) {
-        e.preventDefault();
-    });
-    document.getElementById("pdfContainer").addEventListener("contextmenu", function(e) {
-        e.preventDefault();
-    });
-
-    function nextPage() {
-        if (pageNum < totalPages) {
-            pageNum++;
-            renderPage(pageNum);
-        }
-    }
-
-    function prevPage() {
-        if (pageNum > 1) {
-            pageNum--;
-            renderPage(pageNum);
-        }
-    }
-</script>
 <script>
     document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
