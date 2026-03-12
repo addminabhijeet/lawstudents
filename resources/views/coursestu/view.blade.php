@@ -407,16 +407,23 @@
                 })
                 .then(res => {
                     console.log("Fetch response status:", res.status);
-                    if (!res.ok) throw new Error("Network error: " + res.status);
-                    return res.json();
+                    return res.json()
+                        .then(data => {
+                            // log student ID if exists
+                            if (data.student_id) console.log("Student ID from backend:", data
+                                .student_id);
+                            return data;
+                        })
+                        .catch(() => {
+                            console.warn("Response is not JSON");
+                            return {
+                                status: "error",
+                                message: "Invalid JSON response"
+                            };
+                        });
                 })
                 .then(data => {
                     console.log("Response data:", data);
-
-                    // Log the student ID from backend
-                    if (data.student_id) {
-                        console.log("Authenticated student ID:", data.student_id);
-                    }
 
                     if (data.status === "added") {
                         btn.classList.remove("btn-outline-danger");
