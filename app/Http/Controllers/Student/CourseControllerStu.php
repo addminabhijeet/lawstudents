@@ -135,7 +135,6 @@ class CourseControllerStu extends Controller
 
     public function wishlist(Request $request)
     {
-        // Get the authenticated student ID directly
         $studentId = Auth::guard('student')->id();
 
         if (!$request->has('note_id')) {
@@ -153,7 +152,7 @@ class CourseControllerStu extends Controller
                 $exists->delete();
                 return response()->json([
                     'status' => 'removed',
-                    'student_id' => $studentId  // <-- include student id
+                    'student_id' => $studentId
                 ]);
             }
 
@@ -164,14 +163,14 @@ class CourseControllerStu extends Controller
 
             return response()->json([
                 'status' => 'added',
-                'student_id' => $studentId  // <-- include student id
+                'student_id' => $studentId
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
-                'student_id' => $studentId  // <-- include student id for debugging
+                'student_id' => $studentId
             ], 500);
         }
     }

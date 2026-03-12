@@ -393,7 +393,6 @@
     document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             let noteId = this.dataset.note;
-            console.log("Clicked wishlist for note:", noteId);
 
             fetch("{{ route('student.wishlist') }}", {
                     method: "POST",
@@ -405,38 +404,20 @@
                         note_id: noteId
                     })
                 })
-                .then(res => {
-                    console.log("Fetch response status:", res.status);
-                    return res.json()
-                        .then(data => {
-                            // log student ID if exists
-                            if (data.student_id) console.log("Student ID from backend:", data
-                                .student_id);
-                            return data;
-                        })
-                        .catch(() => {
-                            console.warn("Response is not JSON");
-                            return {
-                                status: "error",
-                                message: "Invalid JSON response"
-                            };
-                        });
-                })
+                .then(res => res.json().catch(() => ({
+                    status: "error",
+                    message: "Invalid JSON response"
+                })))
                 .then(data => {
-                    console.log("Response data:", data);
-
                     if (data.status === "added") {
                         btn.classList.remove("btn-outline-danger");
                         btn.classList.add("btn-danger");
                     } else if (data.status === "removed") {
                         btn.classList.remove("btn-danger");
                         btn.classList.add("btn-outline-danger");
-                    } else {
-                        console.warn("Unexpected status:", data.status);
                     }
                 })
-                .catch(err => {
-                    console.error("AJAX error:", err);
+                .catch(() => {
                     alert("Error adding to wishlist. Check console for details.");
                 });
         });
