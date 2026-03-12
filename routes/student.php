@@ -85,6 +85,8 @@ Route::middleware(['auth:student'])
         Route::get('note-download/{id}', [CourseControllerStu::class, 'downloadNote'])
             ->name('downloadnote');
 
+        Route::post('save-progress', [CourseControllerStu::class, 'saveProgress']);
+
         Route::get('view-idcard', [RoutingControllerStu::class, 'viewidcard'])
             ->name('viewidcard');
 

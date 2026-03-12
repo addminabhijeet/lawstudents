@@ -139,7 +139,7 @@
                                                 @endphp
 
                                                 <button class="btn btn-sm btn-outline-primary"
-                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}')">
+                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}','{{ $note->id }}')">
                                                     View
                                                 </button>
 
@@ -206,13 +206,23 @@
 
                                     </ul>
 
-                                    <button class="btn btn-primary w-100 mb-2">
-                                        Start Course
-                                    </button>
+                                    @php
+                                        $progress = \App\Models\NoteProgress::where('student_id', auth()->id())
+                                            ->where('course_id', $course->id)
+                                            ->avg('progress_percent');
+                                    @endphp
 
-                                    <button class="btn btn-outline-secondary w-100">
-                                        Add to Wishlist
-                                    </button>
+                                    @if ($progress)
+                                        <div class="progress mb-2">
+                                            <div class="progress-bar bg-success" style="width:{{ round($progress) }}%">
+                                                {{ round($progress) }}%
+                                            </div>
+                                        </div>
+                                    @else
+                                        <button class="btn btn-primary w-100 mb-2">
+                                            Start Course
+                                        </button>
+                                    @endif
 
                                 </div>
 
@@ -252,6 +262,9 @@
 
                     <canvas id="pdfCanvas"></canvas>
 
+                    <button onclick="prevPage()">Prev</button>
+                    <button onclick="nextPage()">Next</button>
+
                 </div>
 
             </div>
@@ -263,14 +276,22 @@
 <script>
     let pdfDoc = null;
     let pageNum = 1;
+    let totalPages = 0;
 
-    function openPDF(url) {
+    function openPDF(url, noteId) {
+
+        window.currentNoteId = noteId;
+
         pageNum = 1;
+
         let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
         modal.show();
 
         pdfjsLib.getDocument(url).promise.then(function(pdf) {
+
             pdfDoc = pdf;
+            totalPages = pdf.numPages;
+
             renderPage(pageNum);
         });
     }
@@ -322,6 +343,19 @@
 
                 ctx.restore();
             });
+
+            fetch("/student/save-progress", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({
+                    note_id: window.currentNoteId,
+                    page: pageNum,
+                    total_pages: totalPages
+                })
+            });
         });
     }
 
@@ -360,11 +394,16 @@
     });
     setInterval(function() {
 
-        let devtoolsOpen = window.outerWidth - window.innerWidth > 160;
+        const threshold = 160;
 
-        if (devtoolsOpen) {
+        if (
+            window.outerWidth - window.innerWidth > threshold ||
+            window.outerHeight - window.innerHeight > threshold
+        ) {
+
             document.body.innerHTML =
                 "<h2 style='text-align:center;margin-top:200px'>Developer tools blocked</h2>";
+
         }
 
     }, 1000);
@@ -375,5 +414,19 @@
     document.getElementById("pdfContainer").addEventListener("contextmenu", function(e) {
         e.preventDefault();
     });
+
+    function nextPage() {
+        if (pageNum < totalPages) {
+            pageNum++;
+            renderPage(pageNum);
+        }
+    }
+
+    function prevPage() {
+        if (pageNum > 1) {
+            pageNum--;
+            renderPage(pageNum);
+        }
+    }
 </script>
 @include('layouts.partials.student.theme')

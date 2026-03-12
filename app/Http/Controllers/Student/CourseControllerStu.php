@@ -12,6 +12,7 @@ use App\Models\CourseNote;
 use App\Models\StudentActivity;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
+use App\Models\NoteProgress;
 
 class CourseControllerStu extends Controller
 {
@@ -124,6 +125,30 @@ class CourseControllerStu extends Controller
             'Expires' => '0',
             'X-Frame-Options' => 'DENY',
         ]);
+    }
+
+    public function saveProgress(Request $request)
+    {
+        $student = Auth::guard('student')->user();
+
+        $note = CourseNote::findOrFail($request->note_id);
+
+        $progress = NoteProgress::firstOrCreate([
+            'student_id' => $student->id,
+            'note_id' => $note->id
+        ], [
+            'course_id' => $note->course_id,
+            'total_pages' => $request->total_pages
+        ]);
+
+        $progress->viewed_pages = max($progress->viewed_pages, $request->page);
+
+        $progress->progress_percent =
+            ($progress->viewed_pages / $progress->total_pages) * 100;
+
+        $progress->save();
+
+        return response()->json(['status' => 'ok']);
     }
 
 
