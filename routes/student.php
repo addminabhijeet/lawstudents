@@ -76,6 +76,9 @@ Route::middleware(['auth:student'])
         Route::get('courses', [CourseControllerStu::class, 'listcourse'])
             ->name('listcourse');
 
+        Route::get('view-courses', [CourseControllerStu::class, 'viewcourse'])
+            ->name('viewcourse');
+
         Route::get('view-idcard', [RoutingControllerStu::class, 'viewidcard'])
             ->name('viewidcard');
 

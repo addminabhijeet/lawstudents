@@ -52,6 +52,28 @@ class CourseControllerStu extends Controller
         return view('coursestu.list', compact('categories'));
     }
 
+    public function viewcourse()
+    {
+        $student = Auth::guard('student')->user();
+
+        // Get paid course IDs of logged in student
+        $paidCourseIds = Payment::where('student_id', $student->id)
+            ->where('payment_status', 'paid')
+            ->pluck('course_id')
+            ->toArray();
+
+        // Show only courses student has paid for
+        $categories = Category::whereHas('courses', function ($query) use ($paidCourseIds) {
+            $query->whereIn('id', $paidCourseIds);
+        })
+            ->with(['courses' => function ($query) use ($paidCourseIds) {
+                $query->whereIn('id', $paidCourseIds);
+            }])
+            ->get();
+
+        return view('coursestu.list', compact('categories'));
+    }
+
 
     // Store Category
     public function storecategory(Request $request)
