@@ -19,122 +19,117 @@
 
             <div class="row justify-content-center">
 
-                <!-- Fixed ID card width -->
                 <div class="col-auto">
 
                     <!-- PVC CARD -->
-                    <div class="card shadow border-0" style="width:260px; min-height:420px;">
+                    <div class="card shadow border-0" style="width:260px; min-height:430px; overflow:hidden;">
 
-                        <!-- HEADER -->
-                        <div class="card-header bg-primary text-white text-center py-2">
+                        <!-- TOP STRIPE -->
+                        <div class="bg-primary text-white text-center py-2">
 
-                            <div class="d-flex justify-content-center align-items-center gap-2">
+                            <img src="{{ asset('assets/images/logo.png') }}" height="28" class="mb-1">
 
-                                <img src="{{ asset('assets/images/logo.png') }}" height="28">
+                            <div style="font-size:12px;font-weight:600;">
+                                STUDENT ID CARD
+                            </div>
 
-                                <div class="text-start">
-                                    <strong style="font-size:12px;">STUDENT ID CARD</strong>
-                                    <div style="font-size:10px">Official Identification</div>
-                                </div>
-
+                            <div style="font-size:10px;opacity:0.9;">
+                                Official Identification
                             </div>
 
                         </div>
 
 
                         <!-- BODY -->
-                        <div class="card-body py-3">
+                        <div class="card-body text-center py-3">
 
-                            <div class="row">
+                            <!-- PHOTO -->
+                            <div class="d-flex justify-content-center mb-2">
 
-                                <!-- PHOTO -->
-                                <div class="col-4 text-center">
+                                <div class="d-flex align-items-center justify-content-center bg-light rounded-circle shadow"
+                                    style="width:80px;height:80px;">
 
-                                    <div class="d-flex align-items-center justify-content-center bg-light rounded shadow"
-                                        style="width:70px;height:70px;margin:auto;">
-
-                                        <i class="feather-user" style="font-size:30px;"></i>
-
-                                    </div>
-
-                                    @php
-                                        $statusColor = match ($idcard->payment_status) {
-                                            'paid' => 'bg-success',
-                                            'failed' => 'bg-danger',
-                                            'cancelled' => 'bg-secondary',
-                                            default => 'bg-warning',
-                                        };
-                                    @endphp
-
-                                    <span class="badge {{ $statusColor }} mt-1" style="font-size:9px;">
-                                        {{ ucfirst($idcard->payment_status) }}
-                                    </span>
-
-                                </div>
-
-
-                                <!-- DETAILS -->
-                                <div class="col-8">
-
-                                    <h6 class="fw-bold mb-1" style="font-size:13px;">
-                                        {{ $idcard->to_name }}
-                                    </h6>
-
-                                    <div class="text-muted mb-1" style="font-size:10px">
-                                        {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
-                                    </div>
-
-                                    <div style="font-size:10px">
-
-                                        <div>
-                                            <strong>ID:</strong>
-                                            {{ $idcard->invoice_number }}
-                                        </div>
-
-                                        <div>
-                                            <strong>Email:</strong>
-                                            {{ $idcard->to_email }}
-                                        </div>
-
-                                        <div>
-                                            <strong>Phone:</strong>
-                                            {{ $idcard->to_phone }}
-                                        </div>
-
-                                        <div>
-                                            <strong>Issue:</strong>
-                                            {{ optional($idcard->issue_date)->format('d M Y') }}
-                                        </div>
-
-                                    </div>
+                                    <i class="feather-user" style="font-size:32px;"></i>
 
                                 </div>
 
                             </div>
 
+
+                            <!-- NAME -->
+                            <div style="font-weight:600;font-size:14px;">
+                                {{ $idcard->to_name }}
+                            </div>
+
+                            <div class="text-muted mb-2" style="font-size:11px;">
+                                {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
+                            </div>
+
+
+                            @php
+                                $statusColor = match ($idcard->payment_status) {
+                                    'paid' => 'bg-success',
+                                    'failed' => 'bg-danger',
+                                    'cancelled' => 'bg-secondary',
+                                    default => 'bg-warning',
+                                };
+                            @endphp
+
+                            <span class="badge {{ $statusColor }}" style="font-size:9px;">
+                                {{ ucfirst($idcard->payment_status) }}
+                            </span>
+
                             <hr class="my-2">
+
+
+                            <!-- STUDENT INFO -->
+                            <div class="text-start px-2" style="font-size:11px;">
+
+                                <div class="mb-1">
+                                    <strong>ID :</strong>
+                                    {{ $idcard->invoice_number }}
+                                </div>
+
+                                <div class="mb-1">
+                                    <strong>Email :</strong>
+                                    {{ $idcard->to_email }}
+                                </div>
+
+                                <div class="mb-1">
+                                    <strong>Phone :</strong>
+                                    {{ $idcard->to_phone }}
+                                </div>
+
+                                <div class="mb-1">
+                                    <strong>Issue :</strong>
+                                    {{ optional($idcard->issue_date)->format('d M Y') }}
+                                </div>
+
+                            </div>
+
+
+                            <hr class="my-2">
+
 
                             <!-- COURSE + QR -->
                             <div class="row align-items-center">
 
-                                <div class="col-7">
+                                <div class="col-7 text-start">
 
-                                    <div style="font-size:10px">
-                                        <strong>Course</strong>
+                                    <div style="font-size:10px;font-weight:600;">
+                                        Course
                                     </div>
 
-                                    <div class="text-muted" style="font-size:10px">
+                                    <div class="text-muted" style="font-size:10px;">
                                         {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
                                     </div>
 
                                 </div>
 
-
-                                <!-- QR -->
                                 <div class="col-5 text-end">
 
                                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data={{ $idcard->invoice_number }}"
-                                        width="60" height="60">
+                                        width="55" height="55">
 
                                 </div>
 
@@ -143,11 +138,11 @@
                         </div>
 
 
-                        <!-- FOOTER -->
-                        <div class="card-footer text-center bg-light py-2">
+                        <!-- FOOTER STRIP -->
+                        <div class="bg-light text-center py-2">
 
-                            <small style="font-size:9px" class="text-muted">
-                                Scan QR to verify student
+                            <small class="text-muted" style="font-size:9px;">
+                                Scan QR to verify student ID
                             </small>
 
                         </div>
