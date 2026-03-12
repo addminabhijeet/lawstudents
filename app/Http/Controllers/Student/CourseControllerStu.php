@@ -59,13 +59,17 @@ class CourseControllerStu extends Controller
         return view('coursestu.view', compact('course'));
     }
 
-    public function viewNote($id)
+    public function viewNote(Request $request, $id)
     {
+        // Block direct link
+        if (!$request->has('viewer')) {
+            abort(403, 'Direct access blocked.');
+        }
+
         $student = Auth::guard('student')->user();
 
         $note = CourseNote::with('course')->findOrFail($id);
 
-        // Check if student purchased the course
         $payment = Payment::where('student_id', $student->id)
             ->where('course_id', $note->course_id)
             ->where('payment_status', 'paid')

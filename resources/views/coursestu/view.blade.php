@@ -197,13 +197,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <div class="modal-body p-0">
+            <div class="modal-body p-0 position-relative">
 
-                <iframe id="pdfFrame"
-                    src=""
-                    width="100%"
-                    height="600px"
-                    style="border:none;">
+                <!-- Watermark -->
+                <div id="pdfWatermark"
+                    style="position:absolute; top:10px; right:15px; z-index:5;
+                    background:rgba(255,255,255,0.7); padding:6px 10px; font-size:11px;
+                    border-radius:4px; pointer-events:none;">
+                    <b>LAW NOTES</b><br>
+                    Downloaded by: {{ Auth::guard('student')->user()->email ?? 'student' }}
+                </div>
+
+                <!-- Viewer Controls -->
+                <div style="position:absolute; top:10px; left:10px; z-index:5;">
+                    <button class="btn btn-sm btn-primary" onclick="printPDF()">Print</button>
+                    <button class="btn btn-sm btn-success" onclick="downloadPDF()">Download</button>
+                </div>
+
+                <iframe id="pdfFrame" src="" width="100%" height="600px" style="border:none;">
                 </iframe>
 
             </div>
@@ -212,12 +223,116 @@
     </div>
 </div>
 <script>
+    function openPDF(url) {
+
+        document.getElementById('pdfFrame').src = url;
+
+        let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+        modal.show();
+    }
+</script>
+<script>
+    document.addEventListener("contextmenu", function(e) {
+        if (document.getElementById("pdfModal").classList.contains("show")) {
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener("keydown", function(e) {
+
+        // Disable CTRL+S / CTRL+P / CTRL+U
+        if ((e.ctrlKey && e.key === "s") ||
+            (e.ctrlKey && e.key === "p") ||
+            (e.ctrlKey && e.key === "u")) {
+            e.preventDefault();
+        }
+
+    });
+</script>
+<script>
 function openPDF(url) {
 
-    document.getElementById('pdfFrame').src = url;
+    let token = btoa(Date.now()); // simple temporary token
+
+    document.getElementById('pdfFrame').src = url + '?viewer=' + token;
 
     let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
     modal.show();
+
+    trackPageView(url);
 }
+
+function trackPageView(url)
+{
+    fetch("/student/pdf-view-log", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({
+            pdf:url,
+            student:"{{ Auth::guard('student')->id() }}"
+        })
+    });
+}
+</script>
+<script>
+
+let progressTracked = 0;
+
+document.getElementById("pdfFrame").addEventListener("load", function(){
+
+    let iframe = this;
+
+    iframe.contentWindow.addEventListener("scroll", function(){
+
+        let scrollTop = iframe.contentWindow.scrollY;
+        let height = iframe.contentDocument.body.scrollHeight;
+        let view = iframe.contentWindow.innerHeight;
+
+        let percent = Math.round((scrollTop / (height-view))*100);
+
+        if(percent > progressTracked + 10){
+            progressTracked = percent;
+
+            fetch("/student/pdf-progress",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "X-CSRF-TOKEN":"{{ csrf_token() }}"
+                },
+                body:JSON.stringify({
+                    progress:percent
+                })
+            });
+        }
+
+    });
+
+});
+
+</script>
+<script>
+function printPDF(){
+    let frame = document.getElementById("pdfFrame");
+    frame.contentWindow.print();
+}
+</script>
+<script>
+
+let currentPDF = "";
+
+function openPDF(url){
+    currentPDF = url;
+    document.getElementById('pdfFrame').src = url;
+    let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+    modal.show();
+}
+
+function downloadPDF(){
+    window.open(currentPDF.replace("viewnote","downloadnote"));
+}
+
 </script>
 @include('layouts.partials.student.theme')
