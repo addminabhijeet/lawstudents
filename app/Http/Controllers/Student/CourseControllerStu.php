@@ -12,6 +12,7 @@ use App\Models\CourseNote;
 use App\Models\StudentActivity;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
+use App\Models\NoteWishlist;
 use App\Models\NoteProgress;
 
 class CourseControllerStu extends Controller
@@ -128,6 +129,35 @@ class CourseControllerStu extends Controller
             'Pragma' => 'no-cache',
             'Expires' => '0',
             'X-Frame-Options' => 'DENY',
+        ]);
+    }
+
+    public function toggleWishlist(Request $request)
+    {
+        $student = Auth::guard('student')->user();
+
+        $noteId = $request->note_id;
+
+        $exists = NoteWishlist::where('student_id', $student->id)
+            ->where('note_id', $noteId)
+            ->first();
+
+        if ($exists) {
+
+            $exists->delete();
+
+            return response()->json([
+                'status' => 'removed'
+            ]);
+        }
+
+        NoteWishlist::create([
+            'student_id' => $student->id,
+            'note_id' => $noteId
+        ]);
+
+        return response()->json([
+            'status' => 'added'
         ]);
     }
 

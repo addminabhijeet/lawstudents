@@ -143,6 +143,20 @@
                                                     );
                                                 @endphp
 
+                                                @php
+                                                    $isWishlisted = \App\Models\NoteWishlist::where(
+                                                        'student_id',
+                                                        auth()->id(),
+                                                    )
+                                                        ->where('note_id', $note->id)
+                                                        ->exists();
+                                                @endphp
+
+                                                <button class="btn btn-sm btn-outline-danger wishlist-btn"
+                                                    data-note="{{ $note->id }}">
+                                                    ❤
+                                                </button>
+
                                                 <button class="btn btn-sm btn-outline-primary"
                                                     onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}','{{ $note->id }}')">
                                                     View
@@ -438,5 +452,46 @@
             renderPage(pageNum);
         }
     }
+</script>
+
+<script>
+    document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
+
+        btn.addEventListener('click', function() {
+
+            let noteId = this.dataset.note;
+
+            fetch("{{ route('student.note.wishlist') }}", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    },
+
+                    body: JSON.stringify({
+                        note_id: noteId
+                    })
+
+                })
+                .then(res => res.json())
+                .then(data => {
+
+                    if (data.status === "added") {
+                        btn.classList.remove("btn-outline-danger");
+                        btn.classList.add("btn-danger");
+                    }
+
+                    if (data.status === "removed") {
+                        btn.classList.remove("btn-danger");
+                        btn.classList.add("btn-outline-danger");
+                    }
+
+                });
+
+        });
+
+    });
 </script>
 @include('layouts.partials.student.theme')
