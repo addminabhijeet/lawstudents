@@ -35,7 +35,6 @@
                                 @foreach ($course->notes as $note)
                                     <div
                                         class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
-
                                         <div class="card card-body mb-4 stretch stretch-full">
                                             <span class="side-stick"></span>
 
@@ -61,6 +60,33 @@
                                                     {{ $note->formatted_size }}
                                                 </span>
                                             </div>
+
+                                            <div class="d-flex gap-2 mt-2">
+
+                                                @php
+                                                    // Generate encrypted token for PDF viewer
+                                                    $token = Crypt::encrypt(
+                                                        json_encode([
+                                                            'note_id' => $note->id,
+                                                            'ip' => request()->ip(),
+                                                            'expires_at' => now()->addMinutes(5),
+                                                        ]),
+                                                    );
+                                                @endphp
+
+                                                <button class="btn btn-sm btn-outline-primary"
+                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}','{{ $note->id }}')">
+                                                    View
+                                                </button>
+
+                                                @if ($note->is_downloadable)
+                                                    <a href="{{ route('student.downloadnote', $note->id) }}"
+                                                        class="btn btn-sm btn-success">
+                                                        Download
+                                                    </a>
+                                                @endif
+                                            </div>
+
                                         </div>
                                     </div>
                                 @endforeach
