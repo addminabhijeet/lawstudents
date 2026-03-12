@@ -239,9 +239,7 @@
 
                 <div id="pdfContainer" class="pdf-protected-viewer">
 
-                    <div id="watermark">
-                        {{ auth()->guard('student')->user()->name }}
-                    </div>
+
 
                     <canvas id="pdfCanvas"></canvas>
 
