@@ -49,8 +49,12 @@
                                 <!-- PHOTO -->
                                 <div class="col-4 text-center">
 
-                                    <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" class="rounded shadow"
-                                        width="90" height="90">
+                                    <div class="d-flex align-items-center justify-content-center bg-light rounded shadow"
+                                        style="width:90px;height:90px;margin:auto;">
+
+                                        <i class="feather-user" style="font-size:40px;"></i>
+
+                                    </div>
 
                                     @php
                                         $statusColor = match ($idcard->payment_status) {
