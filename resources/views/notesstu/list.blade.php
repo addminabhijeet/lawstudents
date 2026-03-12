@@ -3,6 +3,7 @@
     <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
+
             <!-- [ Content Sidebar ] start -->
             <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-sidebar-body">
@@ -10,7 +11,7 @@
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
                                 <i class="feather-layers"></i>
-                                <span>All</span>
+                                <span>All Favourites</span>
                             </a>
                         </li>
                         @foreach ($categories as $category)
@@ -25,14 +26,24 @@
                     </ul>
                 </div>
             </div>
-            <!-- [ Content Sidebar  ] end -->
-            <!-- [ Main Area  ] start -->
+            <!-- [ Content Sidebar ] end -->
+
+            <!-- [ Main Area ] start -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-body pb-0">
+
                     <div class="row note-has-grid" id="note-full-container">
+
                         @foreach ($categories as $category)
                             @foreach ($category->courses as $course)
-                                @foreach ($course->notes as $note)
+                                @php
+                                    // Filter only wishlisted notes for the current student
+                                    $wishlistedNotes = $course->notes->filter(function ($note) {
+                                        return $note->wishlists->where('student_id', auth()->id())->count() > 0;
+                                    });
+                                @endphp
+
+                                @foreach ($wishlistedNotes as $note)
                                     <div
                                         class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
                                         <div class="card card-body mb-4 stretch stretch-full">
@@ -64,7 +75,6 @@
                                             <div class="d-flex gap-2 mt-2">
 
                                                 @php
-                                                    // Generate encrypted token for PDF viewer
                                                     $token = Crypt::encrypt(
                                                         json_encode([
                                                             'note_id' => $note->id,
@@ -86,15 +96,22 @@
                                                     </a>
                                                 @endif
                                             </div>
-
                                         </div>
                                     </div>
                                 @endforeach
                             @endforeach
                         @endforeach
+
+                        @if ($categories->pluck('courses')->flatten()->pluck('notes')->flatten()->filter(fn($n) => $n->wishlists->where('student_id', auth()->id())->count() > 0)->isEmpty())
+                            <p class="text-muted mt-4">No favourite notes found.</p>
+                        @endif
+
                     </div>
+
                 </div>
             </div>
+            <!-- [ Main Area ] end -->
+
         </div>
     </div>
 </main>
