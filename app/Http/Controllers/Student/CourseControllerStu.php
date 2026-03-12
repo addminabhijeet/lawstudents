@@ -138,42 +138,5 @@ class CourseControllerStu extends Controller
         return response()->download($filePath, $note->title . '.pdf');
     }
 
-    // Store Category
-    public function storecategory(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|exists:categories,id'
-        ]);
-
-        Category::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'parent_id' => $request->parent_id
-        ]);
-
-        return back()->with('success', 'Category Created Successfully');
-    }
-
-
-    // Store Course
-    public function storecourse(Request $request)
-    {
-        $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'nullable|numeric'
-        ]);
-
-        Course::create([
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'description' => $request->description,
-            'price' => $request->price
-        ]);
-
-        return back()->with('success', 'Course Created Successfully');
-    }
+    
 }
