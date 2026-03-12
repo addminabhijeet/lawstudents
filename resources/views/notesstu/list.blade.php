@@ -52,12 +52,17 @@
                                                 {{ $note->title }}
                                             </h5>
 
+                                            <!-- Course and Date -->
+                                            <p class="fs-11 text-muted mb-2">
+                                                Course: <b>{{ $course->title }}</b>
+                                            </p>
+
                                             <!-- Note Size & Category -->
                                             <div class="d-flex align-items-center gap-2 mb-2">
                                                 <span class="badge bg-primary text-truncate">
                                                     {{ $category->name }}
                                                 </span>
-
+                                                
                                             </div>
 
                                             <!-- Buttons -->
