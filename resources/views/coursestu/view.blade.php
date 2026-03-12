@@ -1,4 +1,34 @@
 @include('layouts.partials.student.dashboard')
+
+<style>
+    .pdf-protected-viewer {
+        position: relative;
+        height: 600px;
+        overflow: auto;
+        background: #f4f6f9;
+    }
+
+    .pdf-protected-viewer {
+        user-select: none;
+    }
+
+    #pdfCanvas {
+        display: block;
+        margin: auto;
+    }
+
+    #watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-30deg);
+        font-size: 40px;
+        color: rgba(0, 0, 0, 0.1);
+        pointer-events: none;
+        user-select: none;
+    }
+</style>
+
 <main class="nxl-container apps-container apps-notes">
     <div class="nxl-content without-header nxl-full-content">
 
@@ -199,25 +229,66 @@
 
             <div class="modal-body p-0">
 
-                <iframe id="pdfFrame"
-                    src=""
-                    width="100%"
-                    height="600px"
-                    style="border:none;">
-                </iframe>
+                <div id="pdfContainer" class="pdf-protected-viewer">
+
+                    <div id="watermark">
+                        {{ auth()->guard('student')->user()->name }} | Protected Content
+                    </div>
+
+                    <canvas id="pdfCanvas"></canvas>
+
+                </div>
 
             </div>
 
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-function openPDF(url) {
+    let pdfDoc = null;
+    let pageNum = 1;
 
-    document.getElementById('pdfFrame').src = url;
+    function openPDF(url) {
+        let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+        modal.show();
 
-    let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
-    modal.show();
-}
+        pdfjsLib.getDocument(url).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            renderPage(pageNum);
+        });
+    }
+
+    function renderPage(num) {
+        pdfDoc.getPage(num).then(function(page) {
+            let canvas = document.getElementById('pdfCanvas');
+            let ctx = canvas.getContext('2d');
+
+            let viewport = page.getViewport({
+                scale: 1.5
+            });
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            let renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+
+            page.render(renderContext);
+        });
+    }
+</script>
+<script>
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
+    document.addEventListener("keydown", function(e) {
+
+        if (e.ctrlKey && (e.key === "s" || e.key === "p" || e.key === "u")) {
+            e.preventDefault();
+        }
+
+    });
 </script>
 @include('layouts.partials.student.theme')
