@@ -63,7 +63,7 @@
                                                 <span class="badge bg-primary text-truncate">
                                                     {{ $category->name }}
                                                 </span>
-                                                <span class="fw-bold text-success">{{ $note->formatted_size }}</span>
+                                                
                                             </div>
 
                                             <!-- Buttons -->
