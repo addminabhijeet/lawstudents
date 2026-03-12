@@ -461,6 +461,8 @@
 
             let noteId = this.dataset.note;
 
+            console.log("Wishlist button clicked for note:", noteId); // Debug
+
             fetch("{{ route('student.wishlist') }}", {
                     method: "POST",
                     headers: {
@@ -471,15 +473,26 @@
                         note_id: noteId
                     })
                 })
-                .then(res => res.json())
+                .then(res => {
+                    console.log("Fetch response status:", res.status); // Debug
+                    if (!res.ok) throw new Error("Network response was not ok: " + res.status);
+                    return res.json();
+                })
                 .then(data => {
+                    console.log("AJAX response data:", data); // Debug
+
                     if (data.status === "added") {
                         btn.classList.remove("btn-outline-danger");
                         btn.classList.add("btn-danger");
                     } else if (data.status === "removed") {
                         btn.classList.remove("btn-danger");
                         btn.classList.add("btn-outline-danger");
+                    } else {
+                        console.warn("Unexpected status:", data.status);
                     }
+                })
+                .catch(err => {
+                    console.error("Error in wishlist AJAX request:", err);
                 });
 
         });
