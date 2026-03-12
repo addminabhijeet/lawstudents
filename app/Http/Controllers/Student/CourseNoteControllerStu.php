@@ -15,62 +15,60 @@ use Smalot\PdfParser\Parser;
 
 class CourseNoteControllerStu extends Controller
 {
-
     public function listnotes()
     {
-
         $student = Auth::guard('student')->user();
+        $studentId = $student->id;
 
         // Get paid course IDs
-        $paidCourseIds = Payment::where('student_id', $student->id)
+        $paidCourseIds = Payment::where('student_id', $studentId)
             ->where('payment_status', 'paid')
             ->pluck('course_id')
             ->toArray();
 
-        $categories = Category::whereHas('courses.notes', function ($query) use ($paidCourseIds) {
-            $query->where(function ($q) use ($paidCourseIds) {
-                $q->where('is_free', 1)
-                    ->orWhereIn('id', $paidCourseIds);
+        // Get categories with courses and notes that are wishlisted by this student
+        $categories = Category::whereHas('courses.notes', function ($query) use ($paidCourseIds, $studentId) {
+            $query->whereHas('wishlists', function ($q) use ($studentId) {
+                $q->where('student_id', $studentId);
             });
         })
             ->with([
-                'courses' => function ($query) use ($paidCourseIds) {
-                    $query->whereHas('notes')
-                        ->where(function ($q) use ($paidCourseIds) {
-                            $q->where('is_free', 1)
-                                ->orWhereIn('id', $paidCourseIds);
-                        })
-                        ->with('notes');
+                'courses' => function ($query) use ($paidCourseIds, $studentId) {
+                    $query->whereHas('notes.wishlists', function ($q) use ($studentId) {
+                        $q->where('student_id', $studentId);
+                    })
+                        ->with(['notes' => function ($q) use ($studentId) {
+                            $q->whereHas('wishlists', function ($qq) use ($studentId) {
+                                $qq->where('student_id', $studentId);
+                            });
+                        }]);
                 },
-                'children' => function ($query) use ($paidCourseIds) {
-                    $query->whereHas('courses.notes', function ($q) use ($paidCourseIds) {
-                        $q->where(function ($qq) use ($paidCourseIds) {
-                            $qq->where('is_free', 1)
-                                ->orWhereIn('id', $paidCourseIds);
-                        });
+                'children' => function ($query) use ($studentId) {
+                    $query->whereHas('courses.notes.wishlists', function ($q) use ($studentId) {
+                        $q->where('student_id', $studentId);
                     })
                         ->with([
-                            'courses' => function ($q) use ($paidCourseIds) {
-                                $q->whereHas('notes')
-                                    ->where(function ($qq) use ($paidCourseIds) {
-                                        $qq->where('is_free', 1)
-                                            ->orWhereIn('id', $paidCourseIds);
-                                    })
-                                    ->with('notes');
+                            'courses' => function ($q) use ($studentId) {
+                                $q->whereHas('notes.wishlists', function ($qq) use ($studentId) {
+                                    $qq->where('student_id', $studentId);
+                                })
+                                    ->with(['notes' => function ($qq) use ($studentId) {
+                                        $qq->whereHas('wishlists', function ($qqq) use ($studentId) {
+                                            $qqq->where('student_id', $studentId);
+                                        });
+                                    }]);
                             }
                         ]);
                 }
             ])
             ->get();
 
-        $courses = Course::where('status', 1)
-            ->where(function ($q) use ($paidCourseIds) {
-                $q->where('is_free', 1)
-                    ->orWhereIn('id', $paidCourseIds);
-            })
-            ->get();
+        // Get only wishlisted notes directly (optional, if you need a flat list)
+        $notes = CourseNote::whereHas('wishlists', function ($q) use ($studentId) {
+            $q->where('student_id', $studentId);
+        })->get();
 
-        return view('notesstu.list', compact('categories', 'courses'));
+        return view('notesstu.list', compact('categories', 'notes'));
     }
 
     public function storenotes(Request $request)

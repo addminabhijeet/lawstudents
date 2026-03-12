@@ -39,4 +39,9 @@ class CourseNote extends Model
 
         return round($size / 1024, 2) . ' KB';
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(NoteWishlist::class, 'note_id');
+    }
 }
