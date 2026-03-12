@@ -1,8 +1,8 @@
 @include('layouts.partials.student.dashboard')
 <main class="nxl-container">
-    <!-- main containts -->
     <div class="nxl-content">
-        <!-- [ page-header ] start -->
+
+        <!-- PAGE HEADER -->
         <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
@@ -14,169 +14,147 @@
                 </ul>
             </div>
         </div>
-        <div id="collapseOne" class="accordion-collapse collapse page-header-collapse">
-            <div class="accordion-body pb-2">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">Paid</span>
-                                        <span class="fs-20 fw-bold d-block">78/100</span>
-                                    </a>
-                                    <div class="badge bg-soft-success text-success">
-                                        <i class="feather-arrow-up fs-10 me-1"></i>
-                                        <span>36.85%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">Unpaid</span>
-                                        <span class="fs-20 fw-bold d-block">38/50</span>
-                                    </a>
-                                    <div class="badge bg-soft-danger text-danger">
-                                        <i class="feather-arrow-down fs-10 me-1"></i>
-                                        <span>23.45%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">Overdue</span>
-                                        <span class="fs-20 fw-bold d-block">15/30</span>
-                                    </a>
-                                    <div class="badge bg-soft-success text-success">
-                                        <i class="feather-arrow-up fs-10 me-1"></i>
-                                        <span>25.44%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <a href="javascript:void(0);" class="fw-bold d-block">
-                                        <span class="d-block">Draft</span>
-                                        <span class="fs-20 fw-bold d-block">3/10</span>
-                                    </a>
-                                    <div class="badge bg-soft-danger text-danger">
-                                        <i class="feather-arrow-down fs-10 me-1"></i>
-                                        <span>12.68%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- [ page-header ] end -->
-        <!-- [ Main Content ] start -->
+
         <div class="main-content container-lg py-5">
+
             <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="card shadow-lg border-0" style="border-radius:15px; overflow:hidden;">
 
-                        <!-- Header -->
-                        <div class="card-header text-center bg-primary text-white py-4">
-                            <h4 class="mb-0 fw-bold">ID CARD</h4>
-                        </div>
+                <div class="col-md-4">
 
-                        <!-- Body -->
-                        <div class="card-body text-center">
+                    <!-- PVC CARD -->
+                    <div class="card shadow border-0">
 
-                            <!-- Profile Image (Optional Placeholder) -->
-                            <div class="mb-3">
-                                <img src="{{ asset('assets/images/user/avatar-1.jpg') }}"
-                                    class="rounded-circle shadow" width="120" height="120" alt="User">
+                        <!-- HEADER -->
+                        <div class="card-header bg-primary text-white text-center py-2">
+
+                            <div class="d-flex justify-content-center align-items-center gap-2">
+
+                                <img src="{{ asset('assets/images/logo.png') }}" height="30">
+
+                                <div class="text-start">
+                                    <strong>STUDENT ID CARD</strong>
+                                    <div style="font-size:11px">Official Identification</div>
+                                </div>
+
                             </div>
 
-                            <h5 class="fw-bold text-dark mb-1">
-                                {{ $idcard->to_name }}
-                            </h5>
+                        </div>
 
-                            <p class="text-muted mb-2">
-                                {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
-                            </p>
 
-                            <hr>
+                        <!-- BODY -->
+                        <div class="card-body py-3">
 
-                            <div class="text-start px-4">
+                            <div class="row">
 
-                                <div class="mb-2">
-                                    <strong>ID No :</strong>
-                                    <span class="text-muted">
-                                        {{ $idcard->invoice_number }}
-                                    </span>
-                                </div>
+                                <!-- PHOTO -->
+                                <div class="col-4 text-center">
 
-                                <div class="mb-2">
-                                    <strong>Email :</strong>
-                                    <span class="text-muted">
-                                        {{ $idcard->to_email }}
-                                    </span>
-                                </div>
+                                    <img src="{{ asset('assets/images/user/avatar-1.jpg') }}" class="rounded shadow"
+                                        width="90" height="90">
 
-                                <div class="mb-2">
-                                    <strong>Phone :</strong>
-                                    <span class="text-muted">
-                                        {{ $idcard->to_phone }}
-                                    </span>
-                                </div>
-
-                                <div class="mb-2">
-                                    <strong>Status :</strong>
                                     @php
                                         $statusColor = match ($idcard->payment_status) {
-                                            'paid' => 'text-success',
-                                            'failed' => 'text-danger',
-                                            'cancelled' => 'text-secondary',
-                                            default => 'text-warning',
+                                            'paid' => 'bg-success',
+                                            'failed' => 'bg-danger',
+                                            'cancelled' => 'bg-secondary',
+                                            default => 'bg-warning',
                                         };
                                     @endphp
 
-                                    <span class="fw-bold {{ $statusColor }}">
+                                    <span class="badge {{ $statusColor }} mt-1">
                                         {{ ucfirst($idcard->payment_status) }}
                                     </span>
+
                                 </div>
 
-                                <div class="mb-2">
-                                    <strong>Issue Date :</strong>
-                                    <span class="text-muted">
-                                        {{ optional($idcard->issue_date)->format('d M, Y') }}
-                                    </span>
+
+                                <!-- DETAILS -->
+                                <div class="col-8">
+
+                                    <h6 class="fw-bold mb-1">
+                                        {{ $idcard->to_name }}
+                                    </h6>
+
+                                    <div class="text-muted mb-1" style="font-size:12px">
+                                        {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
+                                    </div>
+
+                                    <div style="font-size:12px">
+
+                                        <div>
+                                            <strong>ID:</strong>
+                                            {{ $idcard->invoice_number }}
+                                        </div>
+
+                                        <div>
+                                            <strong>Email:</strong>
+                                            {{ $idcard->to_email }}
+                                        </div>
+
+                                        <div>
+                                            <strong>Phone:</strong>
+                                            {{ $idcard->to_phone }}
+                                        </div>
+
+                                        <div>
+                                            <strong>Issue:</strong>
+                                            {{ optional($idcard->issue_date)->format('d M Y') }}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <hr class="my-2">
+
+                            <!-- COURSE + QR -->
+                            <div class="row align-items-center">
+
+                                <div class="col-7">
+
+                                    <div style="font-size:12px">
+                                        <strong>Course</strong>
+                                    </div>
+
+                                    <div class="text-muted" style="font-size:12px">
+                                        {{ ucfirst(str_replace('_', ' ', $idcard->payment_method)) }}
+                                    </div>
+
+                                </div>
+
+
+                                <!-- QR -->
+                                <div class="col-5 text-end">
+
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data={{ $idcard->invoice_number }}"
+                                        width="70" height="70">
+
                                 </div>
 
                             </div>
 
                         </div>
 
-                        <!-- Footer -->
-                        <div class="card-footer text-center bg-light py-3">
-                            <small class="text-muted">
-                                This is a system generated ID Card.
+
+                        <!-- FOOTER -->
+                        <div class="card-footer text-center bg-light py-2">
+
+                            <small style="font-size:11px" class="text-muted">
+                                Scan QR to verify student
                             </small>
+
                         </div>
 
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
-    <!-- [ Main Content ] end -->
 </main>
 @include('layouts.partials.student.theme')
