@@ -132,6 +132,7 @@
                                                     $token = Crypt::encrypt(
                                                         json_encode([
                                                             'note_id' => $note->id,
+                                                            'ip' => request()->ip(),
                                                             'expires_at' => now()->addMinutes(5),
                                                         ]),
                                                     );
@@ -302,7 +303,25 @@
                 viewport: scaledViewport
             };
 
-            page.render(renderContext);
+            page.render(renderContext).promise.then(function() {
+
+                let watermarkText =
+                    "{{ auth()->guard('student')->user()->name }} - {{ auth()->guard('student')->user()->email }}";
+
+                ctx.font = "28px Arial";
+                ctx.fillStyle = "rgba(150,150,150,0.20)";
+                ctx.textAlign = "center";
+
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(-Math.PI / 6);
+
+                for (let y = -canvas.height; y < canvas.height; y += 200) {
+                    ctx.fillText(watermarkText, 0, y);
+                }
+
+                ctx.restore();
+            });
         });
     }
 
@@ -326,6 +345,35 @@
             e.preventDefault();
         }
 
+    });
+    document.addEventListener("keydown", function(e) {
+
+        if (
+            e.key === "PrintScreen" ||
+            (e.ctrlKey && e.shiftKey && e.key === "S") ||
+            (e.metaKey && e.shiftKey && e.key === "S")
+        ) {
+            e.preventDefault();
+            alert("Screenshot disabled for protected content.");
+        }
+
+    });
+    setInterval(function() {
+
+        let devtoolsOpen = window.outerWidth - window.innerWidth > 160;
+
+        if (devtoolsOpen) {
+            document.body.innerHTML =
+                "<h2 style='text-align:center;margin-top:200px'>Developer tools blocked</h2>";
+        }
+
+    }, 1000);
+
+    document.getElementById("pdfCanvas").addEventListener("dragstart", function(e) {
+        e.preventDefault();
+    });
+    document.getElementById("pdfContainer").addEventListener("contextmenu", function(e) {
+        e.preventDefault();
     });
 </script>
 @include('layouts.partials.student.theme')

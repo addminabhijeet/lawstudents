@@ -77,6 +77,10 @@ class CourseControllerStu extends Controller
             abort(403);
         }
 
+        if ($data['ip'] != $request->ip()) {
+            abort(403, 'Invalid viewer location.');
+        }
+
         if (Carbon::parse($data['expires_at'])->isPast()) {
             abort(403, 'Viewer link expired.');
         }
@@ -104,6 +108,9 @@ class CourseControllerStu extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="viewer.pdf"',
             'Cache-Control' => 'no-store, no-cache, must-revalidate',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
+            'X-Frame-Options' => 'DENY',
         ]);
     }
 
@@ -137,6 +144,4 @@ class CourseControllerStu extends Controller
 
         return response()->download($filePath, $note->title . '.pdf');
     }
-
-    
 }
