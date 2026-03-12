@@ -8,7 +8,6 @@
             <div class="col-lg-8">
 
                 <div class="card mb-4">
-                    <img src="{{ asset('storage/' . $course->thumbnail) }}" class="card-img-top">
 
                     <div class="card-body">
 
@@ -26,6 +25,22 @@
                             Duration : {{ $course->duration }}
                         </p>
 
+                        <p>
+                            <b>Price :</b>
+                            ₹{{ $course->price }}
+                        </p>
+
+                        <p>
+                            <b>Instructor :</b>
+                            {{ $course->instructor_id }}
+                        </p>
+
+                        <p>
+                            <b>Total Notes :</b>
+                            {{ $course->notes->count() }}
+                        </p>
+
+
                         <hr>
 
                         <h5>Description</h5>
@@ -33,6 +48,8 @@
                         <p>
                             {{ $course->description }}
                         </p>
+
+
 
                     </div>
                 </div>
@@ -91,47 +108,8 @@
 
             </div>
 
-
-            <!-- RIGHT SIDEBAR -->
-            <div class="col-lg-4">
-
-                <div class="card">
-
-                    <div class="card-body">
-
-                        <h4>Course Information</h4>
-
-                        <hr>
-
-                        <p>
-                            <b>Price :</b>
-                            ₹{{ $course->price }}
-                        </p>
-
-                        <p>
-                            <b>Instructor :</b>
-                            {{ $course->instructor_id }}
-                        </p>
-
-                        <p>
-                            <b>Total Notes :</b>
-                            {{ $course->notes->count() }}
-                        </p>
-
-                        <p>
-                            <b>Status :</b>
-                            Active
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
 
     </div>
 </main>
 @include('layouts.partials.student.theme')
-
