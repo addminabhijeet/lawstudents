@@ -1,17 +1,16 @@
 @include('layouts.partials.student.dashboard')
 <main class="nxl-container apps-container apps-notes">
     <div class="nxl-content without-header nxl-full-content">
-        <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
 
-            <!-- [ Content Sidebar ] start -->
+            <!-- [ Sidebar ] -->
             <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
-                                <i class="feather-layers"></i>
-                                <span>All Favourites</span>
+                                <i class="feather-heart"></i>
+                                <span>Favourites</span>
                             </a>
                         </li>
                         @foreach ($categories as $category)
@@ -26,9 +25,8 @@
                     </ul>
                 </div>
             </div>
-            <!-- [ Content Sidebar ] end -->
 
-            <!-- [ Main Area ] start -->
+            <!-- [ Main Area ] -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-body pb-0">
 
@@ -37,7 +35,6 @@
                         @foreach ($categories as $category)
                             @foreach ($category->courses as $course)
                                 @php
-                                    // Filter only wishlisted notes for the current student
                                     $wishlistedNotes = $course->notes->filter(function ($note) {
                                         return $note->wishlists->where('student_id', auth()->id())->count() > 0;
                                     });
@@ -46,34 +43,31 @@
                                 @foreach ($wishlistedNotes as $note)
                                     <div
                                         class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
-                                        <div class="card card-body mb-4 stretch stretch-full">
+                                        <div class="card card-body mb-4 shadow-sm border-0 rounded-3 position-relative">
+
                                             <span class="side-stick"></span>
 
-                                            <h5 class="note-title text-truncate w-75 mb-1">
+                                            <!-- Note Title -->
+                                            <h5 class="note-title text-truncate w-75 mb-1 fw-bold">
                                                 {{ $note->title }}
                                             </h5>
 
-                                            <p class="fs-11 text-muted note-date">
+                                            <!-- Course and Date -->
+                                            <p class="fs-11 text-muted mb-2">
+                                                Course: <b>{{ $course->title }}</b> |
                                                 {{ $note->created_at->format('d F Y') }}
                                             </p>
 
-                                            <div class="note-content flex-grow-1">
-                                                <p class="text-muted text-truncate-3-line">
-                                                    Course: {{ $course->title }}
-                                                </p>
-                                            </div>
-
-                                            <div class="d-flex align-items-center gap-2">
-                                                <span class="badge bg-primary text-truncate w-75 mb-1">
+                                            <!-- Note Size & Category -->
+                                            <div class="d-flex align-items-center gap-2 mb-2">
+                                                <span class="badge bg-primary text-truncate">
                                                     {{ $category->name }}
                                                 </span>
-                                                <span class="fw-bold text-success">
-                                                    {{ $note->formatted_size }}
-                                                </span>
+                                                <span class="fw-bold text-success">{{ $note->formatted_size }}</span>
                                             </div>
 
+                                            <!-- Buttons -->
                                             <div class="d-flex gap-2 mt-2">
-
                                                 @php
                                                     $token = Crypt::encrypt(
                                                         json_encode([
@@ -95,6 +89,12 @@
                                                         Download
                                                     </a>
                                                 @endif
+
+                                            </div>
+
+                                            <!-- Highlight Favourite Notes -->
+                                            <div class="position-absolute top-0 end-0 p-2">
+                                                <span class="badge bg-warning text-dark">Favourite</span>
                                             </div>
                                         </div>
                                     </div>
@@ -103,15 +103,13 @@
                         @endforeach
 
                         @if ($categories->pluck('courses')->flatten()->pluck('notes')->flatten()->filter(fn($n) => $n->wishlists->where('student_id', auth()->id())->count() > 0)->isEmpty())
-                            <p class="text-muted mt-4">No favourite notes found.</p>
+                            <p class="text-muted mt-4 fw-bold text-center">You have no favourite notes yet.</p>
                         @endif
 
                     </div>
 
                 </div>
             </div>
-            <!-- [ Main Area ] end -->
-
         </div>
     </div>
 </main>
