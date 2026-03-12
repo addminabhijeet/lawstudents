@@ -52,26 +52,26 @@ class CourseControllerStu extends Controller
         return view('coursestu.list', compact('categories'));
     }
 
-    public function viewcourse()
+    public function viewcourse($id)
     {
         $student = Auth::guard('student')->user();
 
-        // Get paid course IDs of logged in student
-        $paidCourseIds = Payment::where('student_id', $student->id)
+        // Check if student purchased this course
+        $payment = Payment::where('student_id', $student->id)
+            ->where('course_id', $id)
             ->where('payment_status', 'paid')
-            ->pluck('course_id')
-            ->toArray();
+            ->first();
 
-        // Show only courses student has paid for
-        $categories = Category::whereHas('courses', function ($query) use ($paidCourseIds) {
-            $query->whereIn('id', $paidCourseIds);
-        })
-            ->with(['courses' => function ($query) use ($paidCourseIds) {
-                $query->whereIn('id', $paidCourseIds);
-            }])
-            ->get();
+        if (!$payment) {
+            abort(403, 'You have not purchased this course.');
+        }
 
-        return view('coursestu.list', compact('categories'));
+        // Load course with category and notes
+        $course = Course::with(['category', 'notes' => function ($query) {
+            $query->where('status', 1);
+        }])->findOrFail($id);
+
+        return view('coursestu.view', compact('course'));
     }
 
 

@@ -1,54 +1,136 @@
 @include('layouts.partials.student.dashboard')
 <main class="nxl-container apps-container apps-notes">
-    <div class="nxl-content without-header nxl-full-content">
-        <!-- [ Main Content ] start -->
-        <div class="main-content d-flex">
+    <div class="container py-4">
 
-            <!-- [ Content Sidebar  ] end -->
-            <!-- [ Main Area  ] start -->
-            <div class="content-area" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-area-body pb-0">
-                    <div class="row note-has-grid" id="note-full-container">
-                        @foreach ($categories as $category)
-                            @foreach ($category->courses as $course)
-                                <div
-                                    class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
-                                    <div class="card card-body mb-4 stretch stretch-full">
-                                        <span class="side-stick"></span>
+        <div class="row">
 
-                                        <h5 class="note-title text-truncate w-75 mb-1">
-                                            {{ $course->title }}
-                                        </h5>
+            <!-- LEFT SIDE -->
+            <div class="col-lg-8">
 
-                                        <p class="fs-11 text-muted note-date">
-                                            {{ $course->created_at->format('d F Y') }}
-                                        </p>
+                <div class="card mb-4">
+                    <img src="{{ asset('storage/' . $course->thumbnail) }}" class="card-img-top">
 
-                                        <div class="note-content flex-grow-1">
-                                            <p class="text-muted note-inner-content text-truncate-3-line">
-                                                {{ $course->description }}
-                                            </p>
-                                        </div>
+                    <div class="card-body">
 
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="badge bg-primary text-truncate w-75 mb-1">
-                                                {{ $category->name }}
-                                            </span>
+                        <h2 class="fw-bold">{{ $course->title }}</h2>
 
-                                            <span class="fw-bold text-success">
-                                                ₹{{ $course->price }}
-                                            </span>
-                                        </div>
+                        <p class="text-muted">
+                            Category : <b>{{ $course->category->name }}</b>
+                        </p>
 
+                        <p class="text-muted">
+                            Level : {{ $course->level }}
+                        </p>
 
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endforeach
+                        <p class="text-muted">
+                            Duration : {{ $course->duration }}
+                        </p>
+
+                        <hr>
+
+                        <h5>Description</h5>
+
+                        <p>
+                            {{ $course->description }}
+                        </p>
+
                     </div>
                 </div>
+
+
+                <!-- COURSE NOTES -->
+                <div class="card">
+
+                    <div class="card-header">
+                        <h4 class="mb-0">Course Materials</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        @forelse($course->notes as $note)
+                            <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+
+                                <div>
+
+                                    <h6 class="mb-1">{{ $note->title }}</h6>
+
+                                    <small class="text-muted">
+                                        {{ $note->formatted_size }}
+                                        |
+                                        {{ $note->page_count }} pages
+                                    </small>
+
+                                </div>
+
+                                <div>
+
+                                    <a href="{{ asset('storage/' . $note->file_path) }}" target="_blank"
+                                        class="btn btn-sm btn-primary">
+                                        View
+                                    </a>
+
+                                    @if ($note->is_downloadable)
+                                        <a href="{{ asset('storage/' . $note->file_path) }}" download
+                                            class="btn btn-sm btn-success">
+                                            Download
+                                        </a>
+                                    @endif
+
+                                </div>
+
+                            </div>
+
+                        @empty
+
+                            <p class="text-muted">No materials available.</p>
+                        @endforelse
+
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <!-- RIGHT SIDEBAR -->
+            <div class="col-lg-4">
+
+                <div class="card">
+
+                    <div class="card-body">
+
+                        <h4>Course Information</h4>
+
+                        <hr>
+
+                        <p>
+                            <b>Price :</b>
+                            ₹{{ $course->price }}
+                        </p>
+
+                        <p>
+                            <b>Instructor :</b>
+                            {{ $course->instructor_id }}
+                        </p>
+
+                        <p>
+                            <b>Total Notes :</b>
+                            {{ $course->notes->count() }}
+                        </p>
+
+                        <p>
+                            <b>Status :</b>
+                            Active
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 </main>
 @include('layouts.partials.student.theme')
@@ -66,8 +148,7 @@
                     </span>
                     <input type="text" class="form-control search-input-field" placeholder="Search...">
                     <span class="input-group-text">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </span>
                 </div>
             </div>
