@@ -244,40 +244,6 @@
 </script>
 
 <script>
-    document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            let noteId = this.dataset.note;
-
-            fetch("{{ route('student.wishlist') }}", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                    },
-                    body: JSON.stringify({
-                        note_id: noteId
-                    })
-                })
-                .then(res => res.json().catch(() => ({
-                    status: "error",
-                    message: "Invalid JSON response"
-                })))
-                .then(data => {
-                    if (data.status === "added") {
-                        btn.classList.remove("btn-outline-danger");
-                        btn.classList.add("btn-danger");
-                    } else if (data.status === "removed") {
-                        btn.classList.remove("btn-danger");
-                        btn.classList.add("btn-outline-danger");
-                    }
-                })
-                .catch(() => {
-                    alert("Error adding to wishlist. Check console for details.");
-                });
-        });
-    });
-</script>
-<script>
     document.addEventListener("contextmenu", e => e.preventDefault());
 
     document.addEventListener("keydown", function(e) {
