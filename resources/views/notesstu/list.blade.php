@@ -65,12 +65,12 @@
 
                                             </div>
 
-                                            @if ($note->is_downloadable)
+                                           
                                                 <a href="{{ route('student.downloadnote', $note->id) }}"
                                                     class="btn btn-sm btn-success flex-grow-1">
                                                     Download
                                                 </a>
-                                            @endif
+                                           
 
                                             <!-- Buttons -->
                                             <div class="d-flex gap-2 mt-2">
