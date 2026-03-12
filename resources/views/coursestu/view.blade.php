@@ -97,13 +97,13 @@
 
                                             <div class="d-flex gap-2">
 
-                                                <a href="{{ asset('storage/' . $note->file_path) }}" target="_blank"
-                                                    class="btn btn-sm btn-outline-primary">
+                                                <button class="btn btn-sm btn-outline-primary"
+                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}')">
                                                     View
-                                                </a>
+                                                </button>
 
                                                 @if ($note->is_downloadable)
-                                                    <a href="{{ asset('storage/' . $note->file_path) }}" download
+                                                    <a href="{{ route('student.downloadnote', $note->id) }}"
                                                         class="btn btn-sm btn-success">
                                                         Download
                                                     </a>
@@ -188,4 +188,36 @@
 
     </div>
 </main>
+<div class="modal fade" id="pdfModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">PDF Viewer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body p-0">
+
+                <iframe id="pdfFrame"
+                    src=""
+                    width="100%"
+                    height="600px"
+                    style="border:none;">
+                </iframe>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+function openPDF(url) {
+
+    document.getElementById('pdfFrame').src = url;
+
+    let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+    modal.show();
+}
+</script>
 @include('layouts.partials.student.theme')

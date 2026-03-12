@@ -9,6 +9,8 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Models\CourseNote;
+use Illuminate\Support\Facades\Response;
 
 class CourseControllerStu extends Controller
 {
@@ -55,6 +57,62 @@ class CourseControllerStu extends Controller
         }])->findOrFail($id);
 
         return view('coursestu.view', compact('course'));
+    }
+
+    public function viewNote($id)
+    {
+        $student = Auth::guard('student')->user();
+
+        $note = CourseNote::with('course')->findOrFail($id);
+
+        // Check if student purchased the course
+        $payment = Payment::where('student_id', $student->id)
+            ->where('course_id', $note->course_id)
+            ->where('payment_status', 'paid')
+            ->first();
+
+        if (!$payment) {
+            abort(403, 'You do not have access to this note.');
+        }
+
+        $filePath = storage_path('app/public/' . $note->file_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->file($filePath);
+    }
+
+
+    public function downloadNote($id)
+    {
+        $student = Auth::guard('student')->user();
+
+        $note = CourseNote::with('course')->findOrFail($id);
+
+        $payment = Payment::where('student_id', $student->id)
+            ->where('course_id', $note->course_id)
+            ->where('payment_status', 'paid')
+            ->first();
+
+        if (!$payment) {
+            abort(403, 'You do not have access to this note.');
+        }
+
+        if (!$note->is_downloadable) {
+            abort(403, 'Download not allowed.');
+        }
+
+        $note->increment('download_count');
+
+        $filePath = storage_path('app/public/' . $note->file_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->download($filePath, $note->title . '.pdf');
     }
 
 
