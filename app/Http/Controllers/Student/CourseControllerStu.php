@@ -135,7 +135,8 @@ class CourseControllerStu extends Controller
 
     public function wishlist(Request $request)
     {
-        $student = Auth::guard('student')->user();
+        // Get the authenticated student ID directly
+        $studentId = Auth::guard('student')->id();
 
         if (!$request->has('note_id')) {
             return response()->json(['status' => 'error', 'message' => 'Note ID missing'], 400);
@@ -144,7 +145,7 @@ class CourseControllerStu extends Controller
         $noteId = $request->note_id;
 
         try {
-            $exists = NoteWishlist::where('student_id', $student->id)
+            $exists = NoteWishlist::where('student_id', $studentId)
                 ->where('note_id', $noteId)
                 ->first();
 
@@ -154,7 +155,7 @@ class CourseControllerStu extends Controller
             }
 
             NoteWishlist::create([
-                'student_id' => $student->id,
+                'student_id' => $studentId,
                 'note_id' => $noteId
             ]);
 
