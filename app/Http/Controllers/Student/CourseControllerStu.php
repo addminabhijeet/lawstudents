@@ -161,8 +161,19 @@ class CourseControllerStu extends Controller
 
             return response()->json(['status' => 'added']);
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error("Wishlist error: " . $e->getMessage());
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+            // Log full exception
+            \Illuminate\Support\Facades\Log::error("Wishlist error: " . $e->getMessage() .
+                " in " . $e->getFile() . " on line " . $e->getLine() .
+                "\nStack trace:\n" . $e->getTraceAsString());
+
+            // Return full error details in JSON response
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ], 500);
         }
     }
     public function saveProgress(Request $request)
