@@ -151,7 +151,10 @@ class CourseControllerStu extends Controller
 
             if ($exists) {
                 $exists->delete();
-                return response()->json(['status' => 'removed']);
+                return response()->json([
+                    'status' => 'removed',
+                    'student_id' => $studentId  // <-- include student id
+                ]);
             }
 
             NoteWishlist::create([
@@ -159,13 +162,16 @@ class CourseControllerStu extends Controller
                 'note_id' => $noteId
             ]);
 
-            return response()->json(['status' => 'added']);
+            return response()->json([
+                'status' => 'added',
+                'student_id' => $studentId  // <-- include student id
+            ]);
         } catch (\Exception $e) {
-            // Show the full error in JSON response (for dev only)
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
+                'trace' => $e->getTraceAsString(),
+                'student_id' => $studentId  // <-- include student id for debugging
             ], 500);
         }
     }

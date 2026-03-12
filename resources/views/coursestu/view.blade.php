@@ -412,6 +412,12 @@
                 })
                 .then(data => {
                     console.log("Response data:", data);
+
+                    // Log the student ID from backend
+                    if (data.student_id) {
+                        console.log("Authenticated student ID:", data.student_id);
+                    }
+
                     if (data.status === "added") {
                         btn.classList.remove("btn-outline-danger");
                         btn.classList.add("btn-danger");
