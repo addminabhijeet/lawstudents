@@ -14,7 +14,7 @@
                                 <div
                                     class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
 
-                                    <a href="{{ route('viewcourse', $course->id) }}"
+                                    <a href="{{ route('student.viewcourse', $course->id) }}"
                                         class="text-decoration-none text-dark">
                                         <div class="card card-body mb-4 stretch stretch-full">
                                             <span class="side-stick"></span>
