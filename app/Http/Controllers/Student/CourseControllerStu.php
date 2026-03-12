@@ -100,7 +100,11 @@ class CourseControllerStu extends Controller
             abort(404, 'File not found.');
         }
 
-        return response()->file($filePath);
+        return response()->file($filePath, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="viewer.pdf"',
+            'Cache-Control' => 'no-store, no-cache, must-revalidate',
+        ]);
     }
 
 

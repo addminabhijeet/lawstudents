@@ -19,12 +19,14 @@
 
     #watermark {
         position: absolute;
-        top: 40%;
-        left: 20%;
-        font-size: 40px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-30deg);
+        font-size: 38px;
         opacity: 0.15;
-        transform: rotate(-30deg);
         pointer-events: none;
+        white-space: nowrap;
+        text-align: center;
     }
 </style>
 
@@ -239,7 +241,13 @@
 
                 <div id="pdfContainer" class="pdf-protected-viewer">
 
-
+                    <div id="watermark">
+                        {{ auth()->guard('student')->user()->name }}
+                        <br>
+                        {{ auth()->guard('student')->user()->email }}
+                        <br>
+                        {{ now()->format('d M Y H:i') }}
+                    </div>
 
                     <canvas id="pdfCanvas"></canvas>
 
@@ -297,6 +305,13 @@
     document.addEventListener("keydown", function(e) {
 
         if (e.ctrlKey && (e.key === "s" || e.key === "p" || e.key === "u")) {
+            e.preventDefault();
+        }
+
+    });
+    document.addEventListener("keydown", function(e) {
+
+        if (e.key === "F12") {
             e.preventDefault();
         }
 
