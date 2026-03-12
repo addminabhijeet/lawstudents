@@ -19,13 +19,12 @@
 
     #watermark {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-30deg);
+        top: 40%;
+        left: 20%;
         font-size: 40px;
-        color: rgba(0, 0, 0, 0.1);
+        opacity: 0.15;
+        transform: rotate(-30deg);
         pointer-events: none;
-        user-select: none;
     }
 </style>
 
@@ -127,8 +126,17 @@
 
                                             <div class="d-flex gap-2">
 
+                                                @php
+                                                    $token = Crypt::encrypt(
+                                                        json_encode([
+                                                            'note_id' => $note->id,
+                                                            'expires_at' => now()->addMinutes(5),
+                                                        ]),
+                                                    );
+                                                @endphp
+
                                                 <button class="btn btn-sm btn-outline-primary"
-                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}')">
+                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}')">
                                                     View
                                                 </button>
 
@@ -232,7 +240,7 @@
                 <div id="pdfContainer" class="pdf-protected-viewer">
 
                     <div id="watermark">
-                        {{ auth()->guard('student')->user()->name }} | Protected Content
+                        {{ auth()->guard('student')->user()->name }}
                     </div>
 
                     <canvas id="pdfCanvas"></canvas>
@@ -250,6 +258,7 @@
     let pageNum = 1;
 
     function openPDF(url) {
+        pageNum = 1;
         let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
         modal.show();
 
@@ -279,6 +288,10 @@
             page.render(renderContext);
         });
     }
+
+    document.getElementById('pdfModal').addEventListener('hidden.bs.modal', function() {
+        document.getElementById('pdfCanvas').getContext('2d').clearRect(0, 0, 9999, 9999);
+    });
 </script>
 <script>
     document.addEventListener("contextmenu", e => e.preventDefault());

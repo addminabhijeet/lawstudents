@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CourseNote;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Crypt;
+use Carbon\Carbon;
 
 class CourseControllerStu extends Controller
 {
@@ -19,13 +21,11 @@ class CourseControllerStu extends Controller
     {
         $student = Auth::guard('student')->user();
 
-        // Get paid course IDs of logged in student
         $paidCourseIds = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
             ->pluck('course_id')
             ->toArray();
 
-        // Show only courses student has paid for
         $categories = Category::whereHas('courses', function ($query) use ($paidCourseIds) {
             $query->whereIn('id', $paidCourseIds);
         })
@@ -37,11 +37,11 @@ class CourseControllerStu extends Controller
         return view('coursestu.list', compact('categories'));
     }
 
+
     public function viewcourse($id)
     {
         $student = Auth::guard('student')->user();
 
-        // Check if student purchased this course
         $payment = Payment::where('student_id', $student->id)
             ->where('course_id', $id)
             ->where('payment_status', 'paid')
@@ -51,7 +51,6 @@ class CourseControllerStu extends Controller
             abort(403, 'You have not purchased this course.');
         }
 
-        // Load course with category and notes
         $course = Course::with(['category', 'notes' => function ($query) {
             $query->where('status', 1);
         }])->findOrFail($id);
@@ -59,16 +58,32 @@ class CourseControllerStu extends Controller
         return view('coursestu.view', compact('course'));
     }
 
+
     public function viewNote(Request $request, $id)
     {
-        // Block direct link
-        if (!$request->has('viewer')) {
+        if (!$request->has('token')) {
             abort(403, 'Direct access blocked.');
+        }
+
+        try {
+
+            $data = json_decode(Crypt::decrypt($request->token), true);
+        } catch (\Exception $e) {
+
+            abort(403, 'Invalid token.');
+        }
+
+        if ($data['note_id'] != $id) {
+            abort(403);
+        }
+
+        if (Carbon::parse($data['expires_at'])->isPast()) {
+            abort(403, 'Viewer link expired.');
         }
 
         $student = Auth::guard('student')->user();
 
-        $note = CourseNote::with('course')->findOrFail($id);
+        $note = CourseNote::findOrFail($id);
 
         $payment = Payment::where('student_id', $student->id)
             ->where('course_id', $note->course_id)
@@ -118,7 +133,6 @@ class CourseControllerStu extends Controller
 
         return response()->download($filePath, $note->title . '.pdf');
     }
-
 
     // Store Category
     public function storecategory(Request $request)
