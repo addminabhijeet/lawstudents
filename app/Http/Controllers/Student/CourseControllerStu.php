@@ -7,10 +7,9 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CourseNote;
-use Illuminate\Support\Facades\Response;
+use App\Models\StudentActivity;
 use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 
@@ -54,6 +53,12 @@ class CourseControllerStu extends Controller
         $course = Course::with(['category', 'notes' => function ($query) {
             $query->where('status', 1);
         }])->findOrFail($id);
+
+        StudentActivity::create([
+            'student_id' => $student->id,
+            'course_id' => $course->id,
+            'activity_type' => 'view_course'
+        ]);
 
         return view('coursestu.view', compact('course'));
     }
@@ -104,6 +109,13 @@ class CourseControllerStu extends Controller
             abort(404, 'File not found.');
         }
 
+        StudentActivity::create([
+            'student_id' => $student->id,
+            'course_id' => $note->course_id,
+            'note_id' => $note->id,
+            'activity_type' => 'view_note'
+        ]);
+
         return response()->file($filePath, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="viewer.pdf"',
@@ -141,6 +153,13 @@ class CourseControllerStu extends Controller
         if (!file_exists($filePath)) {
             abort(404, 'File not found.');
         }
+
+        StudentActivity::create([
+            'student_id' => $student->id,
+            'course_id' => $note->course_id,
+            'note_id' => $note->id,
+            'activity_type' => 'download_note'
+        ]);
 
         return response()->download($filePath, $note->title . '.pdf');
     }
