@@ -461,7 +461,7 @@
 
             let noteId = this.dataset.note;
 
-            fetch("{{ route('student.note.wishlist') }}", {
+            fetch("{{ route('student.wishlist') }}", {
 
                     method: "POST",
 

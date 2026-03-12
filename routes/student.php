@@ -79,6 +79,9 @@ Route::middleware(['auth:student'])
         Route::get('view-courses/{id}', [CourseControllerStu::class, 'viewcourse'])
             ->name('viewcourse');
 
+        Route::post('wishlist', [CourseControllerStu::class, 'toggleWishlist'])
+            ->name('wishlist');
+
         Route::get('note-view/{id}', [CourseControllerStu::class, 'viewNote'])
             ->name('viewnote');
 
