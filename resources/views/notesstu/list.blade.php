@@ -58,14 +58,6 @@
                                                 {{ $note->created_at->format('d F Y') }}
                                             </p>
 
-                                            <!-- Note Size & Category -->
-                                            <div class="d-flex align-items-center gap-2 mb-2">
-                                                <span class="badge bg-primary text-truncate">
-                                                    {{ $category->name }}
-                                                </span>
-                                                
-                                            </div>
-
                                             <!-- Buttons -->
                                             <div class="d-flex gap-2 mt-2">
                                                 @php
