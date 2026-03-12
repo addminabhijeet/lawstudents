@@ -132,7 +132,7 @@ class CourseControllerStu extends Controller
         ]);
     }
 
-    public function toggleWishlist(Request $request)
+    public function wishlist(Request $request)
     {
         $student = Auth::guard('student')->user();
 
