@@ -11,7 +11,9 @@ class GalleryController extends Controller
 {
     public function __invoke(): View
     {
-        return view('gallery.gallery');
+        $gallery = Gallery::active()->get();
+
+        return view('gallery.gallery', compact('gallery'));
     }
 
     public function listgallery()

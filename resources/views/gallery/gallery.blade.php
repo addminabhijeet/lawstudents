@@ -23,153 +23,38 @@
     <div class="team2-section-area team-inner sp3">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img1.png" alt="">
+
+                @foreach ($gallery as $item)
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team2-parent-boxarea">
+                            <div class="team2-boxarea">
+                                <div class="team2images">
+
+                                    <img src="{{ asset('storage/app/public/' . $item->image) }}" alt="">
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Alex Fargusion</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
+
+                            <div class="team2-textarea">
+
+                                <div class="teamsname">
+                                    <a>
+                                        {{ $item->description }}
+                                    </a>
+                                </div>
+
+                                <div class="shareicon">
+                                    <a href="#">
+                                        <i class="fa-light fa-share-nodes"></i>
+                                    </a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img2.png" alt="">
-                            </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Richad Stones</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img3.png" alt="">
-                            </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Pep Gurdiola</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img4.png" alt="">
-                            </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Richad Stones</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img5.png" alt="">
-                            </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Alex Fargusion</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img6.png" alt="">
-                            </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Richad Stones</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img7.png" alt="">
-                            </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Pep Gurdiola</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="team2-parent-boxarea">
-                        <div class="team2-boxarea">
-                            <div class="team2images">
-                                <img src="/img/images/team-inner-img8.png" alt="">
-                            </div>
-                        </div>
-                        <div class="team2-textarea">
-                            <div class="teamsname">
-                                <a href=" team1">Richad Stones</a>
-                            </div>
-                            <div class="shareicon">
-                                <a href="#"><i class="fa-light fa-share-nodes"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
     </div>
     <!--===== TEAM ENDS =======-->
