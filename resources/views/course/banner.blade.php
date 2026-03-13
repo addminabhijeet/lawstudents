@@ -42,8 +42,7 @@
 
                                         @if ($banner && $banner->image_1)
                                             <div class="mt-2">
-                                                <img src="{{ asset('storage/' . $banner->image_1) }}" width="150"
-                                                    class="img-thumbnail">
+                                                <img src="{{ asset('storage/app/public/' . $banner->image_1) }}" width="150">
                                             </div>
                                         @endif
                                     </div>
@@ -54,8 +53,7 @@
 
                                         @if ($banner && $banner->image_2)
                                             <div class="mt-2">
-                                                <img src="{{ asset('storage/' . $banner->image_2) }}" width="150"
-                                                    class="img-thumbnail">
+                                                <img src="{{ asset('storage/app/public/' . $banner->image_2) }}" width="150">
                                             </div>
                                         @endif
                                     </div>
@@ -66,7 +64,7 @@
 
                                         @if ($banner && $banner->image_3)
                                             <div class="mt-2">
-                                                <img src="{{ asset('storage/' . $banner->image_3) }}" width="150"
+                                                <img src="{{ asset('storage/app/public/' . $banner->image_3) }}" width="150"
                                                     class="img-thumbnail">
                                             </div>
                                         @endif
