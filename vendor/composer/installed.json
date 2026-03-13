@@ -1917,17 +1917,17 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v5.24.3",
-            "version_normalized": "5.24.3.0",
+            "version": "v5.25.0",
+            "version_normalized": "5.25.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "0feb62267e7b8abc68593ca37639ad302728c129"
+                "reference": "231f572e1a37c9ca1fb8085e9fb8608285beafb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/0feb62267e7b8abc68593ca37639ad302728c129",
-                "reference": "0feb62267e7b8abc68593ca37639ad302728c129",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/231f572e1a37c9ca1fb8085e9fb8608285beafb3",
+                "reference": "231f572e1a37c9ca1fb8085e9fb8608285beafb3",
                 "shasum": ""
             },
             "require": {
@@ -1947,7 +1947,7 @@
                 "phpstan/phpstan": "^1.12.23",
                 "phpunit/phpunit": "^8.0|^9.3|^10.4|^11.5|^12.0"
             },
-            "time": "2026-02-21T13:32:50+00:00",
+            "time": "2026-02-27T13:56:35+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
