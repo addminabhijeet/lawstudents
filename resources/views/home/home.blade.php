@@ -9,7 +9,7 @@
     <div class="slider-carousel-area owl-carousel car">
         @foreach ($banners as $banner)
             <div class="welcome7-section-area"
-                style="background-image: url('{{ $banner->image ? asset('storage/' . $banner->image) : asset('img/images/image.jpeg') }}');
+                style="background-image: url('{{ $banner->image ? asset('storage/app/public/' . $banner->image) : asset('img/images/image.jpeg') }}');
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
