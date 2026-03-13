@@ -7,16 +7,49 @@
 
     <!-- ===== WELCOME STARTS ======= -->
     <div class="slider-carousel-area owl-carousel car">
-        @foreach ($banners as $banner)
+
+        @if ($banner && $banner->image_1)
             <div class="welcome7-section-area"
-                style="background-image: url('{{ $banner->image ? asset('storage/app/public/' . $banner->image) : asset('img/images/image.jpeg') }}');
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                min-height: 600px;">
+                style="background-image: url('{{ asset('storage/app/public/' . $banner->image_1) }}');
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            min-height:600px;">
             </div>
-        @endforeach
+        @endif
+
+        @if ($banner && $banner->image_2)
+            <div class="welcome7-section-area"
+                style="background-image: url('{{ asset('storage/app/public/' . $banner->image_2) }}');
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            min-height:600px;">
+            </div>
+        @endif
+
+        @if ($banner && $banner->image_3)
+            <div class="welcome7-section-area"
+                style="background-image: url('{{ asset('storage/app/public/' . $banner->image_3) }}');
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            min-height:600px;">
+            </div>
+        @endif
+
     </div>
+
+    <script>
+        $('.car').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            items: 1
+        });
+    </script>
     <!-- ===== WELCOME ENDS ======= -->
 
     <!-- ===== ABOUT STARTS ======= -->
