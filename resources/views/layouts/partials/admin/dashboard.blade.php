@@ -9,7 +9,7 @@
     <meta name="keyword" content="">
     <meta name="author" content="theme_ocean">
 
-    <title>Duralux || Leads View</title>
+    <title>Law Students || Leads View</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">

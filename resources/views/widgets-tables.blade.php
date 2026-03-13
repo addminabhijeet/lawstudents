@@ -10,7 +10,7 @@
     <meta name="author" content="theme_ocean">
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Duralux || Widgets Tables</title>
+    <title>Law Students || Widgets Tables</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -263,7 +263,7 @@
                     <div class="card-body">
                         <i class="feather-sunrise fs-4 text-dark"></i>
                         <h6 class="mt-4 text-dark fw-bolder">Downloading Center</h6>
-                        <p class="fs-11 my-3 text-dark">Duralux is a production ready CRM to get started up and running easily.</p>
+                        <p class="fs-11 my-3 text-dark">Law Students is a production ready CRM to get started up and running easily.</p>
                         <a href="javascript:void(0);" class="btn btn-primary text-dark w-100">Download Now</a>
                     </div>
                 </div>
@@ -758,8 +758,8 @@
                                             <div class="mb-4 rounded-3 border">
                                                 <img src="assets/images/banner/mockup.png" alt="" class="img-fluid rounded-3">
                                             </div>
-                                            <h6 class="fw-bolder">Duralux - Admin Dashboard UiKit</h6>
-                                            <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started Duralux with Duralux up and running. Duralux bootstrap template docs helps you to get started with simple html codes.</p>
+                                            <h6 class="fw-bolder">Law Students - Admin Dashboard UiKit</h6>
+                                            <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started Law Students with Law Students up and running. Law Students bootstrap template docs helps you to get started with simple html codes.</p>
                                             <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started &rarr;</a>
                                         </div>
                                         <!--! [End] v-pills-general !-->
@@ -1008,7 +1008,7 @@
                                                         <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                     </div>
                                                     <div class="mt-4">
-                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Duralux &rarr;</a>
+                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students &rarr;</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1399,7 +1399,7 @@
                                                                     <div class="p-3 bg-soft-dark text-dark rounded d-lg-flex align-items-center justify-content-between">
                                                                         <div class="fs-13">
                                                                             <i class="feather-star me-2"></i>
-                                                                            <span>View all services on Duralux.</span>
+                                                                            <span>View all services on Law Students.</span>
                                                                         </div>
                                                                         <div class="mt-2 mt-lg-0">
                                                                             <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
@@ -1575,7 +1575,7 @@
                                                                 <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                             </div>
                                                             <div class="mt-4">
-                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Duralux &rarr;</a>
+                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students &rarr;</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2711,7 +2711,7 @@
                                                             <a href="javascript:void(0);" class="mb-2 d-block">
                                                                 <span>CRM Dashboard Redesign</span>
                                                             </a>
-                                                            <p class="fs-12 text-muted mb-0">Management of project under "Duralux" brand</p>
+                                                            <p class="fs-12 text-muted mb-0">Management of project under "Law Students" brand</p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2743,9 +2743,9 @@
                                                         <span class="wd-10 ht-10 bg-gray-400 rounded-circle d-inline-block me-2 lh-base"></span>
                                                         <div class="border-3 border-start rounded ps-3">
                                                             <a href="javascript:void(0);" class="mb-2 d-block">
-                                                                <span>Duralux CRM Admin Project</span>
+                                                                <span>Law Students CRM Admin Project</span>
                                                             </a>
-                                                            <p class="fs-12 text-muted mb-0">Duralux CRM Dashbaord Project</p>
+                                                            <p class="fs-12 text-muted mb-0">Law Students CRM Dashbaord Project</p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -2811,9 +2811,9 @@
                                                         <span class="wd-10 ht-10 bg-gray-400 rounded-circle d-inline-block me-2 lh-base"></span>
                                                         <div class="border-3 border-start rounded ps-3">
                                                             <a href="javascript:void(0);" class="mb-2 d-block">
-                                                                <span>Duralux CRM Dashbaord Project</span>
+                                                                <span>Law Students CRM Dashbaord Project</span>
                                                             </a>
-                                                            <p class="fs-12 text-muted mb-0">Duralux CRM Dashbaord Project</p>
+                                                            <p class="fs-12 text-muted mb-0">Law Students CRM Dashbaord Project</p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -3001,7 +3001,7 @@
                                                     <a href="javascript:void(0);">#456987</a>
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);">Duralux public pnnouncement <span class="fs-12 fw-normal text-muted">(20/02/2023)</span> </a>
+                                                    <a href="javascript:void(0);">Law Students public pnnouncement <span class="fs-12 fw-normal text-muted">(20/02/2023)</span> </a>
                                                     <p class="fs-12 text-muted text-truncate-1-line tickets-sort-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                                                     <div class="tickets-list-action d-flex align-items-center gap-3">
                                                         <a href="javascript:void(0);">View</a>
@@ -5068,7 +5068,7 @@
                                                     <div class="avatar-text bg-gray-200">04</div>
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);">Duralux public pnnouncement <span class="fs-12 fw-normal text-muted">(20/02/2023)</span> </a>
+                                                    <a href="javascript:void(0);">Law Students public pnnouncement <span class="fs-12 fw-normal text-muted">(20/02/2023)</span> </a>
                                                     <p class="fs-12 text-muted mt-2 text-truncate-1-line tasks-sort-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                                                     <div class="tasks-list-action d-flex align-items-center gap-3">
                                                         <a href="javascript:void(0);">Start</a>

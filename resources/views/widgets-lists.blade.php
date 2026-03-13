@@ -10,7 +10,7 @@
     <meta name="author" content="theme_ocean">
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Duralux || Widgets Lists</title>
+    <title>Law Students || Widgets Lists</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
@@ -262,7 +262,7 @@
                     <div class="card-body">
                         <i class="feather-sunrise fs-4 text-dark"></i>
                         <h6 class="mt-4 text-dark fw-bolder">Downloading Center</h6>
-                        <p class="fs-11 my-3 text-dark">Duralux is a production ready CRM to get started up and running easily.</p>
+                        <p class="fs-11 my-3 text-dark">Law Students is a production ready CRM to get started up and running easily.</p>
                         <a href="javascript:void(0);" class="btn btn-primary text-dark w-100">Download Now</a>
                     </div>
                 </div>
@@ -757,8 +757,8 @@
                                             <div class="mb-4 rounded-3 border">
                                                 <img src="assets/images/banner/mockup.png" alt="" class="img-fluid rounded-3">
                                             </div>
-                                            <h6 class="fw-bolder">Duralux - Admin Dashboard UiKit</h6>
-                                            <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started Duralux with Duralux up and running. Duralux bootstrap template docs helps you to get started with simple html codes.</p>
+                                            <h6 class="fw-bolder">Law Students - Admin Dashboard UiKit</h6>
+                                            <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started Law Students with Law Students up and running. Law Students bootstrap template docs helps you to get started with simple html codes.</p>
                                             <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started &rarr;</a>
                                         </div>
                                         <!--! [End] v-pills-general !-->
@@ -1007,7 +1007,7 @@
                                                         <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                     </div>
                                                     <div class="mt-4">
-                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Duralux &rarr;</a>
+                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students &rarr;</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1398,7 +1398,7 @@
                                                                     <div class="p-3 bg-soft-dark text-dark rounded d-lg-flex align-items-center justify-content-between">
                                                                         <div class="fs-13">
                                                                             <i class="feather-star me-2"></i>
-                                                                            <span>View all services on Duralux.</span>
+                                                                            <span>View all services on Law Students.</span>
                                                                         </div>
                                                                         <div class="mt-2 mt-lg-0">
                                                                             <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
@@ -1574,7 +1574,7 @@
                                                                 <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                             </div>
                                                             <div class="mt-4">
-                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Duralux &rarr;</a>
+                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students &rarr;</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -3290,7 +3290,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between border-3 border-start border-warning rounded w-100">
                                         <div class="mx-3">
-                                            <a href="javascript:void(0);" class="fw-semibold mb-1 text-truncate-1-line">Create Duralux CRM Logo</a>
+                                            <a href="javascript:void(0);" class="fw-semibold mb-1 text-truncate-1-line">Create Law Students CRM Logo</a>
                                             <div class="fs-12 fw-normal text-muted text-truncate-1-line">Due in 2 days</div>
                                         </div>
                                         <a href="javascript:void(0);" class="badge bg-soft-warning text-warning">New</a>
@@ -3842,7 +3842,7 @@
                                         <div class="d-flex gap-4 justify-content-between">
                                             <div>
                                                 <div class="mb-2 text-truncate-1-line"><a href="javascript:void(0)" class="fw-semibold text-dark">New orders placed #987456</a></div>
-                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Duralux is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
+                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Law Students is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
                                                 <div>
                                                     <a href="javascript:void(0)" class="badge text-success border border-dashed border-gray-500">design</a>
                                                     <a href="javascript:void(0)" class="badge text-danger border border-dashed border-gray-500">html</a>
@@ -3857,7 +3857,7 @@
                                         <div class="d-flex gap-4 justify-content-between">
                                             <div>
                                                 <div class="mb-2 text-truncate-1-line"><a href="javascript:void(0)" class="fw-semibold text-dark">New orders placed #987456</a></div>
-                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Duralux is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
+                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Law Students is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
                                                 <div>
                                                     <a href="javascript:void(0)" class="badge text-teal border border-dashed border-gray-500">dashboard</a>
                                                     <a href="javascript:void(0)" class="badge text-danger border border-dashed border-gray-500">html</a>
@@ -3871,8 +3871,8 @@
                                     <li class="feed-item feed-item-danger">
                                         <div class="d-flex gap-4 justify-content-between">
                                             <div>
-                                                <div class="mb-2 text-truncate-1-line"><a href="javascript:void(0)" class="fw-semibold text-dark">Event start soon #Duralux</a></div>
-                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Duralux is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
+                                                <div class="mb-2 text-truncate-1-line"><a href="javascript:void(0)" class="fw-semibold text-dark">Event start soon #Law Students</a></div>
+                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Law Students is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
                                                 <div class="img-group lh-0 ms-2 justify-content-start">
                                                     <a href="javascript:void(0)" class="avatar-image avatar-sm" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Janette Dalton">
                                                         <img src="assets/images/avatar/2.png" class="img-fluid" alt="image">
@@ -3902,7 +3902,7 @@
                                         <div class="d-flex gap-4 justify-content-between">
                                             <div>
                                                 <div class="mb-2 text-truncate-1-line"><a href="javascript:void(0)" class="fw-semibold text-dark">New orders placed #987456</a></div>
-                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Duralux is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
+                                                <p class="fs-12 text-muted mb-3 text-truncate-2-line">Law Students is a clean bootstrap admin dashboard, frontend and webapps template pack that built with most popular bootstrap framework and modern technology's.</p>
                                                 <div>
                                                     <a href="javascript:void(0)" class="badge text-teal border border-dashed border-gray-500">dashboard</a>
                                                     <a href="javascript:void(0)" class="badge text-danger border border-dashed border-gray-500">html</a>
@@ -3969,7 +3969,7 @@
                                     <li class="d-flex justify-content-between feed-item feed-item-info">
                                         <div>
                                             <span class="text-truncate-1-line lead_date">5+ friends join this group <span class="date">[April 20, 2023]</span></span>
-                                            <span class="text">Joined the group <a href="javascript:void(0);" class="fw-bold text-primary">"Duralux"</a></span>
+                                            <span class="text">Joined the group <a href="javascript:void(0);" class="fw-bold text-primary">"Law Students"</a></span>
                                         </div>
                                         <div class="ms-3 d-flex gap-2 align-items-center">
                                             <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Make Read"><i class="feather feather-check fs-12"></i></a>
@@ -4002,7 +4002,7 @@
                                     <li class="d-flex justify-content-between feed-item feed-item-primary">
                                         <div>
                                             <span class="text-truncate-1-line lead_date">New event are coming soon <span class="date">[April 23, 2023]</span></span>
-                                            <span class="text">Attending the event <a href="javascript:void(0);" class="fw-bold text-primary">"Duralux Event"</a></span>
+                                            <span class="text">Attending the event <a href="javascript:void(0);" class="fw-bold text-primary">"Law Students Event"</a></span>
                                         </div>
                                         <div class="ms-3 d-flex gap-2 align-items-center">
                                             <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Make Read"><i class="feather feather-check fs-12"></i></a>
@@ -4013,7 +4013,7 @@
                                     <li class="d-flex justify-content-between feed-item feed-item-info">
                                         <div>
                                             <span class="text-truncate-1-line lead_date">5+ friends join this group <span class="date">[April 20, 2023]</span></span>
-                                            <span class="text">Joined the group <a href="javascript:void(0);" class="fw-bold text-primary">"Duralux"</a></span>
+                                            <span class="text">Joined the group <a href="javascript:void(0);" class="fw-bold text-primary">"Law Students"</a></span>
                                         </div>
                                         <div class="ms-3 d-flex gap-2 align-items-center">
                                             <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Make Read"><i class="feather feather-check fs-12"></i></a>
@@ -4024,7 +4024,7 @@
                                     <li class="d-flex justify-content-between feed-item feed-item-danger">
                                         <div>
                                             <span class="text-truncate-1-line lead_date">New meeting joining are pending <span class="date">[April 23, 2023]</span></span>
-                                            <span class="text">Duralux meeting <a href="javascript:void(0);" class="badge bg-soft-warning text-warning ms-1">Join</a></span>
+                                            <span class="text">Law Students meeting <a href="javascript:void(0);" class="badge bg-soft-warning text-warning ms-1">Join</a></span>
                                         </div>
                                         <div class="ms-3 d-flex gap-2 align-items-center">
                                             <a href="javascript:void(0);" class="avatar-text avatar-sm" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Make Read"><i class="feather feather-check fs-12"></i></a>
@@ -4589,7 +4589,7 @@
                                                     <a href="javascript:void(0);">#456987</a>
                                                 </td>
                                                 <td>
-                                                    <a href="javascript:void(0);">Duralux public pnnouncement <span class="fs-12 fw-normal text-muted">(20/02/2023)</span> </a>
+                                                    <a href="javascript:void(0);">Law Students public pnnouncement <span class="fs-12 fw-normal text-muted">(20/02/2023)</span> </a>
                                                     <p class="fs-12 text-muted text-truncate-1-line tickets-sort-desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                                                     <div class="tickets-list-action d-flex align-items-center gap-3">
                                                         <a href="javascript:void(0);">View</a>
