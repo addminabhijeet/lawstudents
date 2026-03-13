@@ -88,8 +88,8 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listidcard') }}">List</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listidcard') }}">List</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nxl-item nxl-hasmenu">
@@ -140,8 +140,13 @@
                                     href="{{ route('admin.whatsapp') }}">Whatsapp</a>
                             </li>
                         </ul>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.admindetails') }}">Admin</a>
+                            </li>
+                        </ul>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
