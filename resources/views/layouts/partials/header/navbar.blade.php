@@ -20,23 +20,25 @@
                                 <div class="col-lg-4">
                                     @php
                                         $user = \App\Models\User::first();
+                                        $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
+                                        $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
                                     @endphp
 
                                     <div class="social-area">
                                         <ul>
                                             <li>
-                                                <a href="mailto:{{ $user->webemail }}">
+                                                <a href="mailto:{{ $email }}">
                                                     <img src="/img/icons/email3.svg" alt="">
-                                                    {{ $user->webemail }}
+                                                    {{ $email }}
                                                 </a>
                                             </li>
                                         </ul>
 
                                         <ul class="list">
                                             <li>
-                                                <a href="tel:{{ $user->mobile }}">
+                                                <a href="tel:{{ $mobile }}">
                                                     <img src="/img/icons/phone3.svg" alt="">
-                                                    {{ $user->mobile }}
+                                                    {{ $mobile }}
                                                 </a>
                                             </li>
                                         </ul>
