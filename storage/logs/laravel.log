@@ -19652,3 +19652,1251 @@ Stack trace:
 #7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
 #8 {main}
 "} 
+[2026-03-13 18:50:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:50:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:51:01] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:51:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:51:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:52:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:53:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:53:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:54:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:54:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:55:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:56:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:56:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:57:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:58:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:59:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 18:59:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:00:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:01:01] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:01:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:01:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:02:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:03:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:04:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:05:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:06:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:07:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:07:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:08:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:08:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:09:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:10:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:10:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:11:01] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:11:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:12:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:12:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:13:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:14:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:14:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:15:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:16:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:16:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:17:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:17:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:18:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:19:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:20:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:20:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:21:01] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:21:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:21:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:22:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:22:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:23:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:24:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:25:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:26:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:27:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:27:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:28:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:29:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:30:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:31:01] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:31:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:32:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:33:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:34:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:35:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:35:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:36:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:37:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:37:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:38:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:39:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:39:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:40:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:41:01] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:41:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:42:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:42:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:43:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:43:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:44:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:45:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:46:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:46:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:47:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:48:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:48:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:49:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:49:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:50:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:50:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:51:01] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:51:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:51:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:52:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:52:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:53:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:53:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:54:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:55:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
+[2026-03-13 19:56:03] local.ERROR: Class "Laravel\Socialite\SocialiteServiceProvider" not found {"exception":"[object] (Error(code: 0): Class \"Laravel\\Socialite\\SocialiteServiceProvider\" not found at E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:205)
+[stacktrace]
+#0 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(141): Illuminate/Foundation/ProviderRepository->createProvider('Laravel//Sociali...')
+#1 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate/Foundation/ProviderRepository->compileManifest(Array)
+#2 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(871): Illuminate/Foundation/ProviderRepository->load(Array)
+#3 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(37): Illuminate/Foundation/Application->registerConfiguredProviders()
+#4 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(342): Illuminate/Foundation/Bootstrap/RegisterProviders->bootstrap(Object(Illuminate/Foundation/Application))
+#5 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(494): Illuminate/Foundation/Application->bootstrapWith(Array)
+#6 E:/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(196): Illuminate/Foundation/Console/Kernel->bootstrap()
+#7 Command line code(1): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#8 {main}
+"} 
