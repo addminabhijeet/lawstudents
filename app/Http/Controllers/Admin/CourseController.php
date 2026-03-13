@@ -43,12 +43,13 @@ class CourseController extends Controller
 
         return view('course.gallery', compact('gallery'));
     }
-
+    
     public function storegallery(Request $request)
     {
         $request->validate([
             'image' => ['required'],
             'image.*' => ['image', 'max:2048'],
+            'description' => ['nullable', 'string'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -59,6 +60,7 @@ class CourseController extends Controller
 
                 Gallery::create([
                     'image' => $path,
+                    'description' => $request->description,
                     'status' => 1,
                     'order' => 0,
                 ]);
