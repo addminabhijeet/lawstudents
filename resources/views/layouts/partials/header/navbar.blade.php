@@ -101,8 +101,10 @@
                                                     <img src="/img/icons/email1.svg" alt="">
                                                 </div>
                                                 <div class="phone-side">
-                                                    <a href="mailto:demoLaw Students@gmail.com">demoLaw Students@gmail.com</a> <br>
-                                                    <a href="mailtodemoLaw Students@gmail.com">demoLaw Students@gmail.com</a>
+                                                    <a href="mailto:demoLaw Students@gmail.com">demoLaw
+                                                        Students@gmail.com</a> <br>
+                                                    <a href="mailtodemoLaw Students@gmail.com">demoLaw
+                                                        Students@gmail.com</a>
                                                 </div>
                                             </div>
                                             <div class="sidebar-author-area">
@@ -110,7 +112,8 @@
                                                     <img src="/img/icons/loctaion1.svg" alt="">
                                                 </div>
                                                 <div class="phone-side">
-                                                    <a href="mailto:demoLaw Students@gmail.com">8708 Technology Forest Pl
+                                                    <a href="mailto:demoLaw Students@gmail.com">8708 Technology Forest
+                                                        Pl
                                                         Suite <br> 125 -G, The Woodlands, TX 77381</a> <br>
 
                                                 </div>
@@ -272,32 +275,8 @@
                                     11201,United States</a>
                             </div>
                         </div>
-
                     </div>
-                    <div class="single-footer single-footer-menu single-footer4">
-                        <h3>Social Links</h3>
-
-                        <div class="social-links-mobile-menu5">
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-
                 </div>
-
             </div>
         </div>
     </div>
