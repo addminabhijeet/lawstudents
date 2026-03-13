@@ -1,4 +1,4 @@
-@extends('layouts.landing', ['title' => 'Lawsy || Criminal Law || Our Blog 01'])
+@extends('layouts.landing', ['title' => 'Law Students || Criminal Law || Our Blog 01'])
 
 @section('content')
   <!--===== WELCOME STARTS =======-->

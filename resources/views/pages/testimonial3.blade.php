@@ -1,4 +1,4 @@
-@extends('layouts.landing' , ['title' => 'Lawsy || Criminal Law || Testimonials'])
+@extends('layouts.landing' , ['title' => 'Law Students || Criminal Law || Testimonials'])
 
 @section('content')
   <!--===== WELCOME STARTS =======-->
@@ -40,7 +40,7 @@
                 </div>
                 <div class="nav-content-area">
                   <a href="{{ route('second', ['pages', 'team1']) }}">Alexander Arnold</a>
-                  <p>Owner Lawsy Lawyer</p>
+                  <p>Owner Law Students Lawyer</p>
                 </div>
               </div>
             </div>

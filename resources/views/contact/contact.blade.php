@@ -1,4 +1,4 @@
-@extends('layouts.landing', ['title' => 'Lawsy || Criminal Law || Contact Us'])
+@extends('layouts.landing', ['title' => 'Law Students || Criminal Law || Contact Us'])
 
 @section('content')
   <!--===== WELCOME STARTS =======-->
@@ -70,7 +70,7 @@
         </div>
         <div class="col-lg-6">
           <div class="contact-content-area">
-          <h2>Connect with Our Lawsy Lawyer Legal Team Today</h2>
+          <h2>Connect with Our Law Students Lawyer Legal Team Today</h2>
           <p>At Law Firm Name, we understand the urgency and importance of your legal & concerns. Our team of dedicated attorneys is here to provide you with lawyer a personalized guidance and support. Whether you're facing criminal charges, an DUI allegations, or need assistance with traffic violations, our commitment is to advocate for your rights. Contact us today to schedule a consultation and take the first step towards safeguarding your future.</p>
           <p>When legal issues arise, having a dedicated and experienced legal team by your side can make all the difference. At [Law Firm Name], we prioritize your needs and strive to provide exceptional legal counsel tailored to your unique.</p>
           <a href="#" class="welcome-btn3">Meet Our Lawyer <i class="fa-light fa-arrow-right"></i></a>

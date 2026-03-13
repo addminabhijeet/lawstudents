@@ -1,4 +1,4 @@
-@extends('layouts.landing' , ['title' => 'Lawsy || Criminal Law || About'])
+@extends('layouts.landing' , ['title' => 'Law Students || Criminal Law || About'])
 
 @section('content')
   <!-- ===== WELCOME STARTS======= -->
@@ -128,7 +128,7 @@
         <div class="col-lg-12 m-auto">
           <div class="history-header text-center">
             <span>Company History</span>
-            <h2>Our Lawsy History</h2>
+            <h2>Our Law Students History</h2>
           </div>
         </div>
       </div>
@@ -161,7 +161,7 @@
                     <div class="tabs-history-content">
                       <h2>2017 - Founded In Los Angeles</h2>
                       <p>
-                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -184,7 +184,7 @@
                     <div class="tabs-history-content">
                       <h2>2018 - Founded In Los Angeles</h2>
                       <p>
-                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -207,7 +207,7 @@
                     <div class="tabs-history-content">
                       <h2>2019 - Founded In Los Angeles</h2>
                       <p>
-                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -230,7 +230,7 @@
                     <div class="tabs-history-content">
                       <h2>2020 - Founded In Los Angeles</h2>
                       <p>
-                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -253,7 +253,7 @@
                     <div class="tabs-history-content">
                       <h2>2021 - Founded In Los Angeles</h2>
                       <p>
-                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -276,7 +276,7 @@
                     <div class="tabs-history-content">
                       <h2>2022 - Founded In Los Angeles</h2>
                       <p>
-                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -299,7 +299,7 @@
                     <div class="tabs-history-content">
                       <h2>2023 - Founded In Los Angeles</h2>
                       <p>
-                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span>The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.

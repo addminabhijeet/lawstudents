@@ -44,7 +44,7 @@
                                 <h3>Get In Touch</h3>
                                 <ul>
                                     <li><img src="/img/icons/footer-email2.svg" alt=""><a
-                                            href="maito:demolawsy@gmail.com">demolawsy@gmail.com</a></li>
+                                            href="maito:demoLaw Students@gmail.com">demoLaw Students@gmail.com</a></li>
                                     <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">8708
                                             Technology Forest <br> Pl Suite 125 -G, The <br> Woodlands, TX 77381</a>
                                     </li>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="copyright-pera">
-                    <p>© Copyright 2024 Lawsy Lawyer</p>
+                    <p>© Copyright 2024 Law Students Lawyer</p>
                     <a href="#">Privacy Policy</a>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-@extends('layouts.landing' , ['title' => 'Lawsy || Criminal Law || Practice Single'])
+@extends('layouts.landing' , ['title' => 'Law Students || Criminal Law || Practice Single'])
 
 @section('content')
   <!--===== WELCOME STARTS =======-->
@@ -34,7 +34,7 @@
               <p> intricacies of domestic violence cases to the gravity of homicide defense, our seasoned attorneys law bring forth a reservoir of experience and unwavering commitment to every client's cause. We always meticulously dissect cases involving drug offenses, theft, and property crimes, employing strategic.</p>
             </div>
             <div class="service-left-text2">
-              <h2>Why Choose Our Lawsy Law?</h2>
+              <h2>Why Choose Our Law Students Law?</h2>
               <p>In the intricate tapestry of criminal defense law, our firm stands as a fortress of advocacy, where the pursuit of justice intertwines with a profound commitment to safeguarding the rights and futures of our clients. With a legacy rooted in resilience and legal acumen, multifaceted practice law lawyer.</p>
               <p> Encompasses an extensive array of specialized areas, ensuring that no legal challenge is beyond our expertise. From the complexities of defending clients in cases involving assault and battery to the law delicate nuances of juvenile offenses, our adept attorneys navigate each legal terrain with precision.</p>
               <h4>Dedicated Criminal Defense Lawyers Ready to Defend:</h4>

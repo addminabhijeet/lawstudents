@@ -1,4 +1,4 @@
-@extends('layouts.landing' , ['title' => 'Lawsy || Criminal Law || 01'])
+@extends('layouts.landing' , ['title' => 'Law Students || Criminal Law || 01'])
 
 @section('content')
   <!-- ===== WELCOME STARTS ======= -->
@@ -199,7 +199,7 @@
                     <h4>Federal Crime</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -218,7 +218,7 @@
                     <h4>Federal Crime</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -237,7 +237,7 @@
                     <h4>Federal Crime</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -256,7 +256,7 @@
                     <h4>Federal Crime</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
@@ -275,7 +275,7 @@
                     <h4>Federal Crime</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or lawsy law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
                       </p>
                       <p>
                         <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.

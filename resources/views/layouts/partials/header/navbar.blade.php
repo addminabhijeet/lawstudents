@@ -101,8 +101,8 @@
                                                     <img src="/img/icons/email1.svg" alt="">
                                                 </div>
                                                 <div class="phone-side">
-                                                    <a href="mailto:demolawsy@gmail.com">demolawsy@gmail.com</a> <br>
-                                                    <a href="mailtodemolawsy@gmail.com">demolawsy@gmail.com</a>
+                                                    <a href="mailto:demoLaw Students@gmail.com">demoLaw Students@gmail.com</a> <br>
+                                                    <a href="mailtodemoLaw Students@gmail.com">demoLaw Students@gmail.com</a>
                                                 </div>
                                             </div>
                                             <div class="sidebar-author-area">
@@ -110,7 +110,7 @@
                                                     <img src="/img/icons/loctaion1.svg" alt="">
                                                 </div>
                                                 <div class="phone-side">
-                                                    <a href="mailto:demolawsy@gmail.com">8708 Technology Forest Pl
+                                                    <a href="mailto:demoLaw Students@gmail.com">8708 Technology Forest Pl
                                                         Suite <br> 125 -G, The Woodlands, TX 77381</a> <br>
 
                                                 </div>

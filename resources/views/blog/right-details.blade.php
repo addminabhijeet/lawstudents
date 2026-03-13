@@ -1,4 +1,4 @@
-@extends('layouts.landing', ['title' => 'Lawsy || Criminal Law || Our Blog Details'])
+@extends('layouts.landing', ['title' => 'Law Students || Criminal Law || Our Blog Details'])
 
 @section('content')
   <!--===== WELCOME STARTS=======-->
@@ -80,7 +80,7 @@
             </div>
             <div class="nav-content-area">
             <a href="#">Alexander Arnold</a>
-            <p>Owner Lawsy Lawyer</p>
+            <p>Owner Law Students Lawyer</p>
             </div>
           </div>
           </div>

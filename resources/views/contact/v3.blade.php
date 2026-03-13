@@ -1,4 +1,4 @@
-@extends('layouts.landing', ['title' => 'Lawsy || Criminal Law || Contact Us'])
+@extends('layouts.landing', ['title' => 'Law Students || Criminal Law || Contact Us'])
 
 @section('content')
   <!--===== WELCOME STARTS =======-->
@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-lg-5 m-auto">
       <div class="contact3-header text-center">
-        <h2>Connect with Our Lawsy Lawyer Legal Team Today</h2>
+        <h2>Connect with Our Law Students Lawyer Legal Team Today</h2>
         <p>When legal issues arise, having a dedicated & experienced legal team by your side can make all the difference. At Law Firm Name, we prioritize your .</p>
       </div>
       </div>
