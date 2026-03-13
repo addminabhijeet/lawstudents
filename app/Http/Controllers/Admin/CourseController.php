@@ -43,8 +43,42 @@ class CourseController extends Controller
 
         return view('course.gallery', compact('gallery'));
     }
-    
+
     public function storegallery(Request $request)
+    {
+        $request->validate([
+            'image' => ['required'],
+            'image.*' => ['image', 'max:2048'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            foreach ($request->file('image') as $file) {
+
+                $path = $file->store('gallery', 'public');
+
+                Gallery::create([
+                    'image' => $path,
+                    'description' => $request->description,
+                    'status' => 1,
+                    'order' => 0,
+                ]);
+            }
+        }
+
+        return back()->with('success', 'Gallery images uploaded successfully.');
+    }
+
+
+    public function admindetails()
+    {
+        $gallery = Gallery::first();
+
+        return view('course.admin', compact('gallery'));
+    }
+
+    public function storedetails(Request $request)
     {
         $request->validate([
             'image' => ['required'],
