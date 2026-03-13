@@ -74,16 +74,16 @@ class CourseController extends Controller
 
     public function admindetails()
     {
-        $gallery = User::first();
+        $admin = User::first();
 
-        return view('course.admin', compact('gallery'));
+        return view('course.admin', compact('admin'));
     }
 
     public function editdetails($id)
     {
-        $gallery = User::findOrFail($id);
+        $admin = User::findOrFail($id);
 
-        return view('course.edit', compact('gallery'));
+        return view('course.edit', compact('admin'));
     }
 
     public function storedetails(Request $request)

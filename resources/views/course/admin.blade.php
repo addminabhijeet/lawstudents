@@ -28,64 +28,86 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('admin.storegallery') }}" method="POST"
+                            <form action="{{ route('admin.updatedetails', $admin->id ?? '') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
                                     <label class="form-label">Images</label>
 
-                                    <input type="file" name="image" class="form-control" multiple>
+                                    <input type="file" name="image" class="form-control">
+
+                                    @if (!empty($admin->image))
+                                        <img src="{{ asset('storage/' . $admin->image) }}" width="120" class="mt-2">
+                                    @endif
 
                                 </div>
+
 
                                 <div class="mb-3">
                                     <label class="form-label">Description</label>
 
-                                    <textarea name="description" class="form-control" rows="3" placeholder="Enter image description"></textarea>
+                                    <textarea name="description" class="form-control" rows="3">{{ $admin->description ?? '' }}</textarea>
 
                                 </div>
+
 
                                 <div class="mb-3">
-                                    <input type="text" name="name" class="form-control" placeholder="Name">
-
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{ $admin->name ?? '' }}" placeholder="Name">
                                 </div>
+
 
                                 <div class="mb-3">
-                                    <input type="text" name="mobile" class="form-control" placeholder="Mobile">
-
+                                    <input type="text" name="mobile" class="form-control"
+                                        value="{{ $admin->mobile ?? '' }}" placeholder="Mobile">
                                 </div>
 
-                                <div class="mb-3">
-                                    <input type="email" name="webemail" class="form-control" placeholder="Email">
-                                </div>
 
                                 <div class="mb-3">
-                                    <input type="text" name="webaddress" class="form-control" placeholder="Website">
+                                    <input type="email" name="webemail" class="form-control"
+                                        value="{{ $admin->webemail ?? '' }}" placeholder="Email">
                                 </div>
 
-                                <div class="mb-3">
-                                    <input type="text" name="linkedin" class="form-control" placeholder="LinkedIn">
-                                </div>
 
                                 <div class="mb-3">
-                                    <input type="text" name="facebook" class="form-control" placeholder="Facebook">
+                                    <input type="text" name="webaddress" class="form-control"
+                                        value="{{ $admin->webaddress ?? '' }}" placeholder="Website">
                                 </div>
 
-                                <div class="mb-3">
-                                    <input type="text" name="instagram" class="form-control" placeholder="Instagram">
-                                </div>
 
                                 <div class="mb-3">
-                                    <input type="text" name="pinterest" class="form-control" placeholder="Pinterest">
+                                    <input type="text" name="linkedin" class="form-control"
+                                        value="{{ $admin->linkedin ?? '' }}" placeholder="LinkedIn">
                                 </div>
 
+
                                 <div class="mb-3">
-                                    <input type="text" name="twitter" class="form-control" placeholder="Twitter">
+                                    <input type="text" name="facebook" class="form-control"
+                                        value="{{ $admin->facebook ?? '' }}" placeholder="Facebook">
                                 </div>
+
+
+                                <div class="mb-3">
+                                    <input type="text" name="instagram" class="form-control"
+                                        value="{{ $admin->instagram ?? '' }}" placeholder="Instagram">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <input type="text" name="pinterest" class="form-control"
+                                        value="{{ $admin->pinterest ?? '' }}" placeholder="Pinterest">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <input type="text" name="twitter" class="form-control"
+                                        value="{{ $admin->twitter ?? '' }}" placeholder="Twitter">
+                                </div>
+
 
                                 <button type="submit" class="btn btn-primary">
-                                    Save Gallery
+                                    Update
                                 </button>
 
                             </form>
