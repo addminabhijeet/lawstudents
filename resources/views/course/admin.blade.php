@@ -33,7 +33,7 @@
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label class="form-label">Gallery Images</label>
+                                    <label class="form-label">Images</label>
 
                                     <input type="file" name="image" class="form-control" multiple>
 

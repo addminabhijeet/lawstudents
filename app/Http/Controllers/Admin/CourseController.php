@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use App\Models\User;
 use App\Models\Gallery;
 
 
@@ -73,14 +74,14 @@ class CourseController extends Controller
 
     public function admindetails()
     {
-        $gallery = Gallery::first();
+        $gallery = User::first();
 
         return view('course.admin', compact('gallery'));
     }
 
     public function editdetails($id)
     {
-        $gallery = Gallery::findOrFail($id);
+        $gallery = User::findOrFail($id);
 
         return view('course.edit', compact('gallery'));
     }
@@ -108,7 +109,7 @@ class CourseController extends Controller
 
                 $path = $file->store('admin', 'public');
 
-                Gallery::create([
+                User::create([
                     'image' => $path,
                     'description' => $request->description,
                     'name' => $request->name,
@@ -128,30 +129,30 @@ class CourseController extends Controller
     }
 
     public function updatedetails(Request $request, $id)
-{
-    $gallery = Gallery::findOrFail($id);
+    {
+        $gallery = User::findOrFail($id);
 
-    if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
 
-        $path = $request->file('image')->store('gallery','public');
-        $gallery->image = $path;
+            $path = $request->file('image')->store('gallery', 'public');
+            $gallery->image = $path;
+        }
+
+        $gallery->update([
+            'description' => $request->description,
+            'name' => $request->name,
+            'mobile' => $request->mobile,
+            'webemail' => $request->webemail,
+            'webaddress' => $request->webaddress,
+            'linkedin' => $request->linkedin,
+            'facebook' => $request->facebook,
+            'instagram' => $request->instagram,
+            'pinterest' => $request->pinterest,
+            'twitter' => $request->twitter,
+        ]);
+
+        return back()->with('success', 'Gallery updated successfully');
     }
-
-    $gallery->update([
-        'description' => $request->description,
-        'name' => $request->name,
-        'mobile' => $request->mobile,
-        'webemail' => $request->webemail,
-        'webaddress' => $request->webaddress,
-        'linkedin' => $request->linkedin,
-        'facebook' => $request->facebook,
-        'instagram' => $request->instagram,
-        'pinterest' => $request->pinterest,
-        'twitter' => $request->twitter,
-    ]);
-
-    return back()->with('success','Gallery updated successfully');
-}
 
     public function storebanner(Request $request)
     {
