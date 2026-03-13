@@ -15,23 +15,6 @@ use App\Models\Gallery;
 
 class CourseController extends Controller
 {
-    // Show All Categories with Courses
-    // public function listcourse()
-    // {
-    //     $categories = Category::with([
-    //         'children',
-    //         'courses' => function ($query) {
-    //             $query->where('status', 1)
-    //                 ->orderBy('created_at', 'desc');
-    //         }
-    //     ])
-    //         ->whereNull('parent_id')
-    //         ->where('status', 1)
-    //         ->orderBy('sort_order')
-    //         ->get();
-
-    //     return view('course.list', compact('categories'));
-    // }
 
     public function listcourse()
     {
