@@ -49,17 +49,18 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-4">
+            <div class="row mt-4">
 
-            @foreach (\App\Models\Gallery::latest()->get() as $img)
-                <div class="col-md-2 mb-3">
-                    <img src="{{ asset('storage/app/public/' . $img->image) }}" class="img-thumbnail"
-                        style="width:100%; height:120px; object-fit:cover;">
-                </div>
-            @endforeach
+                @foreach (\App\Models\Gallery::latest()->get() as $img)
+                    <div class="col-md-2 mb-3">
+                        <img src="{{ asset('storage/app/public/' . $img->image) }}" class="img-thumbnail"
+                            style="width:100%; height:120px; object-fit:cover;">
+                    </div>
+                @endforeach
 
+            </div>
         </div>
+
     </div>
 
     <!-- [ Main Content ] end -->
