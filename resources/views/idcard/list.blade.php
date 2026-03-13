@@ -192,113 +192,68 @@
         <div class="main-content">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card stretch stretch-full">
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-hover" id="paymentList">
-                                    <thead>
-                                        <tr>
-                                            <th class="wd-30">
-                                                <div class="btn-group mb-1">
-                                                    <div class="custom-control custom-checkbox ms-1">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="checkAllPayment">
-                                                        <label class="custom-control-label"
-                                                            for="checkAllPayment"></label>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Date</th>
-                                            <th>ID Number</th>
-                                            <th>Status</th>
-                                            <th class="text-end">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($payments as $key => $payment)
-                                            <tr class="single-item">
-                                                <td>
-                                                    <div class="item-checkbox ms-1">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox"
-                                                                class="custom-control-input checkbox"
-                                                                id="checkBox_{{ $key }}">
-                                                            <label class="custom-control-label"
-                                                                for="checkBox_{{ $key }}"></label>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                    <div class="card stretch stretch-full shadow-sm border-0">
 
-                                                <td>
-                                                    <a class="hstack gap-3">
-                                                        <div>
-                                                            <span class="text-truncate-1-line">
-                                                                {{ $payment->to_name }}
-                                                            </span>
-                                                        </div>
-                                                    </a>
-                                                </td>
-
-                                                <td>
-                                                    <a class="hstack gap-3">
-                                                        <div>
-                                                            <small class="fs-12 fw-normal text-muted">
-                                                                {{ $payment->to_email }}
-                                                            </small>
-                                                        </div>
-                                                    </a>
-                                                </td>
-
-                                                <td>
-                                                    {{ \Carbon\Carbon::parse($payment->created_at)->format('Y-m-d, h:i A') }}
-                                                </td>
-
-                                                <td>
-                                                    <a class="fw-bold">
-                                                        {{ $payment->invoice_number }}
-                                                    </a>
-                                                </td>
-
-                                                <td>
-                                                    @if ($payment->payment_status == 'paid')
-                                                        <div class="badge bg-soft-success text-success">Completed</div>
-                                                    @elseif($payment->payment_status == 'pending')
-                                                        <div class="badge bg-soft-warning text-warning">Pending</div>
-                                                    @elseif($payment->payment_status == 'failed')
-                                                        <div class="badge bg-soft-danger text-danger">Failed</div>
-                                                    @else
-                                                        <div class="badge bg-soft-secondary text-secondary">
-                                                            {{ ucfirst($payment->payment_status) }}
-                                                        </div>
-                                                    @endif
-                                                </td>
-
-                                                <td>
-                                                    <div class="hstack gap-2 justify-content-end">
-                                                        <a href="{{ route('admin.viewidcard', $payment->id) }}"
-                                                            class="avatar-text avatar-md">
-                                                            <i class="fas fa-id-card"></i>
-                                                        </a>
-
-                                                        <a href="{{ route('admin.editpayment', $payment->id) }}"
-                                                            class="avatar-text avatar-md">
-                                                            <i class="feather feather-edit"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="8" class="text-center">No Payments Found</td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-
-                                </table>
-                            </div>
+                        <div class="card-header text-white">
+                            <h5 class="mb-0">Banner Settings</h5>
                         </div>
+
+                        <div class="card-body">
+                            <form action="{{ route('admin.storebanner') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+
+                                <input type="hidden" name="banner_id" value="{{ $banner->id ?? '' }}">
+
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Banner Image 1</label>
+                                        <input type="file" name="image_1" class="form-control">
+
+                                        @if ($banner && $banner->image_1)
+                                            <div class="mt-2">
+                                                <img src="{{ asset('storage/' . $banner->image_1) }}" width="150"
+                                                    class="img-thumbnail">
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Banner Image 2</label>
+                                        <input type="file" name="image_2" class="form-control">
+
+                                        @if ($banner && $banner->image_2)
+                                            <div class="mt-2">
+                                                <img src="{{ asset('storage/' . $banner->image_2) }}" width="150"
+                                                    class="img-thumbnail">
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Banner Image 3</label>
+                                        <input type="file" name="image_3" class="form-control">
+
+                                        @if ($banner && $banner->image_3)
+                                            <div class="mt-2">
+                                                <img src="{{ asset('storage/' . $banner->image_3) }}" width="150"
+                                                    class="img-thumbnail">
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                </div>
+
+                                <div class="text-end mt-3">
+                                    <button type="submit" class="btn btn-primary">
+                                        Save Banner
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
