@@ -112,8 +112,8 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('gallery', [CourseController::class, 'listgallery'])
                 ->name('listgallery');
 
-            Route::post('store-details', [CourseController::class, 'storedetails'])
-                ->name('storedetails');
+            Route::post('admin-details', [CourseController::class, 'admindetails'])
+                ->name('admindetails');
 
             Route::get('update-details', [CourseController::class, 'updatedetails'])
                 ->name('updatedetails');
