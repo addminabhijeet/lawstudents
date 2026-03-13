@@ -13,7 +13,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Banner</li>
+                    <li class="breadcrumb-item">Gallery</li>
                     <li class="breadcrumb-item">Update</li>
                 </ul>
             </div>
@@ -24,7 +24,7 @@
                     <div class="card stretch stretch-full shadow-sm border-0">
 
                         <div class="card-header text-white">
-                            <h5 class="mb-0">Banner Settings</h5>
+                            <h5 class="mb-0">Gallery Settings</h5>
                         </div>
 
                         <div class="card-body">
@@ -32,29 +32,33 @@
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                <input type="hidden" name="gallery_id" value="{{ $gallery->id ?? '' }}">
-
                                 <div class="mb-3">
-                                    <label class="form-label">Gallery Image</label>
-                                    <input type="file" name="image_1" class="form-control">
+                                    <label class="form-label">Gallery Images</label>
 
-                                    @if ($gallery && $gallery->image)
-                                        <div class="mt-2">
-                                            <img src="{{ asset('storage/' . $gallery->image_1) }}" width="150"
-                                                class="img-thumbnail">
-                                        </div>
-                                    @endif
+                                    <input type="file" name="image[]" class="form-control" multiple>
+
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">
                                     Save Gallery
                                 </button>
+
                             </form>
                         </div>
 
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row mt-4">
+
+            @foreach (\App\Models\Gallery::latest()->get() as $img)
+                <div class="col-md-2 mb-3">
+                    <img src="{{ asset('storage/' . $img->image) }}" class="img-thumbnail"
+                        style="width:100%; height:120px; object-fit:cover;">
+                </div>
+            @endforeach
+
         </div>
     </div>
 

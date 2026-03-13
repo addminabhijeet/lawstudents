@@ -47,32 +47,25 @@ class CourseController extends Controller
     public function storegallery(Request $request)
     {
         $request->validate([
-            'image_1' => ['nullable', 'image', 'max:2048'],
-            'image_2' => ['nullable', 'image', 'max:2048'],
-            'image_3' => ['nullable', 'image', 'max:2048'],
+            'image' => ['required'],
+            'image.*' => ['image', 'max:2048'],
         ]);
 
-        $gallery = Gallery::first();
+        if ($request->hasFile('image')) {
 
-        if (!$gallery) {
-            return back()->with('error', 'No gallery found to update.');
+            foreach ($request->file('image') as $file) {
+
+                $path = $file->store('gallery', 'public');
+
+                Gallery::create([
+                    'image' => $path,
+                    'status' => 1,
+                    'order' => 0,
+                ]);
+            }
         }
 
-        if ($request->hasFile('image_1')) {
-            $gallery->image_1 = $request->file('image_1')->store('gallery', 'public');
-        }
-
-        if ($request->hasFile('image_2')) {
-            $gallery->image_2 = $request->file('image_2')->store('gallery', 'public');
-        }
-
-        if ($request->hasFile('image_3')) {
-            $gallery->image_3 = $request->file('image_3')->store('gallery', 'public');
-        }
-
-        $gallery->save();
-
-        return back()->with('success', 'Gallery updated successfully.');
+        return back()->with('success', 'Gallery images uploaded successfully.');
     }
 
     public function storebanner(Request $request)
