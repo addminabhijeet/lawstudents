@@ -123,9 +123,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="theme-btnarea">
-                                        <a href="#" class="welcome5-btn">Contact Us</a>
-                                    </div>
+
                                     <h3 class="sidebar-heading">Social Links</h3>
                                     <ul class="social-links">
                                         <li><a href="{{ $linkedin }}"><i class="fa-brands fa-linkedin"></i></a></li>
