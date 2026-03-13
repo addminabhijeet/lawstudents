@@ -263,7 +263,21 @@ class RoutingController extends Controller
 
     public function admin()
     {
-        return view('dashboard.admin');
+        $studentsCount = \App\Models\Student::count();
+        $admissionsCount = \App\Models\StudentAdmission::count();
+        $paymentsCount = \App\Models\Payment::count();
+        $idCardsCount = \App\Models\StudentAdmission::whereNotNull('admno')->count();
+        $coursesCount = \App\Models\Course::count();
+        $notesCount = \App\Models\CourseNote::count();
+
+        return view('dashboard.admin', compact(
+            'studentsCount',
+            'admissionsCount',
+            'paymentsCount',
+            'idCardsCount',
+            'coursesCount',
+            'notesCount'
+        ));
     }
 
     public function registerstusubmit(Request $request): RedirectResponse
