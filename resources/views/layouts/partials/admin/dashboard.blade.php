@@ -546,8 +546,10 @@
                         <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/avatar/1.png') }}" alt="user-image"
-                                        class="img-fluid user-avtar">
+                                    @if (!empty($admin->image))
+                                        <img src="{{ asset('storage/app/public/' . $admin->image) }}"
+                                            alt="user-image" class="img-fluid user-avtar">
+                                    @endif
 
                                     <div>
                                         <h6 class="text-dark mb-0">{{ auth('admin')->user()?->name }}</h6>
