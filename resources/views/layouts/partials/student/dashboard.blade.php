@@ -505,7 +505,7 @@
                             </div>
                         </div>
                     </div> --}}
-                    
+
                     <div class="dropdown nxl-h-item">
                         <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
                             data-bs-auto-close="outside">
@@ -530,22 +530,7 @@
                                 <i class="feather-user"></i>
                                 <span>Profile Details</span>
                             </a>
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="feather-activity"></i>
-                                <span>Activity Feed</span>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="feather-dollar-sign"></i>
-                                <span>Billing Details</span>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="feather-bell"></i>
-                                <span>Notifications</span>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="feather-settings"></i>
-                                <span>Account Settings</span>
-                            </a>
+                            
                             <div class="dropdown-divider"></div>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                 style="display: none;">
