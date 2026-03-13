@@ -537,19 +537,17 @@
                     <div class="dropdown nxl-h-item">
                         <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
                             data-bs-auto-close="outside">
-                            @if (!empty($admin->image))
-                                <img src="{{ asset('storage/app/public/' . $admin->image) }}" alt="user-image"
-                                    class="img-fluid user-avtar me-0">
-                            @endif
+                            <img src="{{ !empty($admin->image) ? asset('storage/app/public/' . $admin->image) : asset('assets/images/avatar/1.png') }}"
+                                alt="user-image" class="img-fluid user-avtar me-0"
+                                onerror="this.src='{{ asset('assets/images/avatar/1.png') }}';">
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex align-items-center">
-                                    @if (!empty($admin->image))
-                                        <img src="{{ asset('storage/app/public/' . $admin->image) }}"
-                                            alt="user-image" class="img-fluid user-avtar">
-                                    @endif
+                                    <img src="{{ !empty($admin->image) ? asset('storage/app/public/' . $admin->image) : asset('assets/images/avatar/1.png') }}"
+                                        alt="user-image" class="img-fluid user-avtar"
+                                        onerror="this.src='{{ asset('assets/images/avatar/1.png') }}';">
 
                                     <div>
                                         <h6 class="text-dark mb-0">{{ auth('admin')->user()?->name }}</h6>
