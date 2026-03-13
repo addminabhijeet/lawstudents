@@ -13,7 +13,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Gallery</li>
+                    <li class="breadcrumb-item">Whatsapp</li>
                     <li class="breadcrumb-item">Update</li>
                 </ul>
             </div>
@@ -24,7 +24,7 @@
                     <div class="card stretch stretch-full shadow-sm border-0">
 
                         <div class="card-header text-white">
-                            <h5 class="mb-0">Gallery Settings</h5>
+                            <h5 class="mb-0">Whatsapp Settings</h5>
                         </div>
 
                         <div class="card-body">
