@@ -554,14 +554,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="{{ route('admin.admindetails') }}" class="dropdown-item">
                                 <i class="feather-user"></i>
                                 <span>Profile Details</span>
-                            </a>
-                            
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="feather-settings"></i>
-                                <span>Account Settings</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
