@@ -35,7 +35,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Gallery Images</label>
 
-                                    <input type="file" name="image[]" class="form-control" multiple>
+                                    <input type="file" name="image" class="form-control" multiple>
 
                                 </div>
 
@@ -44,6 +44,44 @@
 
                                     <textarea name="description" class="form-control" rows="3" placeholder="Enter image description"></textarea>
 
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="name" class="form-control" placeholder="Name">
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="mobile" class="form-control" placeholder="Mobile">
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="email" name="webemail" class="form-control" placeholder="Email">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="webaddress" class="form-control" placeholder="Website">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="linkedin" class="form-control" placeholder="LinkedIn">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="facebook" class="form-control" placeholder="Facebook">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="instagram" class="form-control" placeholder="Instagram">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="pinterest" class="form-control" placeholder="Pinterest">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" name="twitter" class="form-control" placeholder="Twitter">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">

@@ -78,31 +78,80 @@ class CourseController extends Controller
         return view('course.admin', compact('gallery'));
     }
 
+    public function editdetails($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+
+        return view('course.edit', compact('gallery'));
+    }
+
     public function storedetails(Request $request)
     {
         $request->validate([
             'image' => ['required'],
             'image.*' => ['image', 'max:2048'],
             'description' => ['nullable', 'string'],
+            'name' => ['nullable', 'string'],
+            'mobile' => ['nullable', 'string'],
+            'webemail' => ['nullable', 'email'],
+            'webaddress' => ['nullable', 'string'],
+            'linkedin' => ['nullable', 'string'],
+            'facebook' => ['nullable', 'string'],
+            'instagram' => ['nullable', 'string'],
+            'pinterest' => ['nullable', 'string'],
+            'twitter' => ['nullable', 'string'],
         ]);
 
         if ($request->hasFile('image')) {
 
             foreach ($request->file('image') as $file) {
 
-                $path = $file->store('gallery', 'public');
+                $path = $file->store('admin', 'public');
 
                 Gallery::create([
                     'image' => $path,
                     'description' => $request->description,
-                    'status' => 1,
-                    'order' => 0,
+                    'name' => $request->name,
+                    'mobile' => $request->mobile,
+                    'webemail' => $request->webemail,
+                    'webaddress' => $request->webaddress,
+                    'linkedin' => $request->linkedin,
+                    'facebook' => $request->facebook,
+                    'instagram' => $request->instagram,
+                    'pinterest' => $request->pinterest,
+                    'twitter' => $request->twitter,
                 ]);
             }
         }
 
         return back()->with('success', 'Gallery images uploaded successfully.');
     }
+
+    public function updatedetails(Request $request, $id)
+{
+    $gallery = Gallery::findOrFail($id);
+
+    if ($request->hasFile('image')) {
+
+        $path = $request->file('image')->store('gallery','public');
+        $gallery->image = $path;
+    }
+
+    $gallery->update([
+        'description' => $request->description,
+        'name' => $request->name,
+        'mobile' => $request->mobile,
+        'webemail' => $request->webemail,
+        'webaddress' => $request->webaddress,
+        'linkedin' => $request->linkedin,
+        'facebook' => $request->facebook,
+        'instagram' => $request->instagram,
+        'pinterest' => $request->pinterest,
+        'twitter' => $request->twitter,
+    ]);
+
+    return back()->with('success','Gallery updated successfully');
+}
 
     public function storebanner(Request $request)
     {
