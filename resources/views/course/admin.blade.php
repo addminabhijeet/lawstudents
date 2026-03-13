@@ -52,54 +52,72 @@
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Name</label>
+
                                     <input type="text" name="name" class="form-control"
                                         value="{{ $admin->name ?? '' }}" placeholder="Name">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Mobile</label>
+
                                     <input type="text" name="mobile" class="form-control"
                                         value="{{ $admin->mobile ?? '' }}" placeholder="Mobile">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Email</label>
+
                                     <input type="email" name="webemail" class="form-control"
                                         value="{{ $admin->webemail ?? '' }}" placeholder="Email">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Address</label>
+
                                     <input type="text" name="webaddress" class="form-control"
                                         value="{{ $admin->webaddress ?? '' }}" placeholder="Website">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">LinkedIn</label>
+
                                     <input type="text" name="linkedin" class="form-control"
                                         value="{{ $admin->linkedin ?? '' }}" placeholder="LinkedIn">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Facebook Link</label>
+
                                     <input type="text" name="facebook" class="form-control"
                                         value="{{ $admin->facebook ?? '' }}" placeholder="Facebook">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Instagram Link</label>
+
                                     <input type="text" name="instagram" class="form-control"
                                         value="{{ $admin->instagram ?? '' }}" placeholder="Instagram">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Pinterest Link</label>
+
                                     <input type="text" name="pinterest" class="form-control"
                                         value="{{ $admin->pinterest ?? '' }}" placeholder="Pinterest">
                                 </div>
 
 
                                 <div class="mb-3">
+                                    <label class="form-label">Twitter Link</label>
+
                                     <input type="text" name="twitter" class="form-control"
                                         value="{{ $admin->twitter ?? '' }}" placeholder="Twitter">
                                 </div>
