@@ -100,13 +100,7 @@
                                     <div class="sidebar-content">
                                         <p>{{ $description }}</p>
                                     </div>
-                                    <ul class="sidebar-menu list-unstyled">
-                                        <li><a href="{{ route('frontend.about') }}">About Us</a></li>
-                                        <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
-                                        <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
-                                        <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
-                                        <li><a href="{{ route('login') }}">Login</a></li>
-                                    </ul>
+
                                     <div class="sidebar-contact-header">
                                         <h3>Contact Info</h3>
                                         <div class="sidebar-footer-area">
