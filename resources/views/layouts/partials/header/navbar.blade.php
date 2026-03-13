@@ -22,6 +22,15 @@
                                         $user = \App\Models\User::first();
                                         $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
                                         $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
+                                        $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
+                                        $pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
+                                        $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
+                                        $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
+                                        $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+                                        $description = !empty($user->description)
+                                            ? $user->description
+                                            : 'Revolutionize Your Future: Harness the Power of Technology for Unparalleled
+                                            Growth and Success!';
                                     @endphp
 
                                     <div class="social-area">
@@ -89,8 +98,7 @@
                                         </a>
                                     </div>
                                     <div class="sidebar-content">
-                                        <p>Revolutionize Your Future: Harness the Power of Technology for Unparalleled
-                                            Growth and Success!</p>
+                                        <p>{{ $description }}</p>
                                     </div>
                                     <ul class="sidebar-menu list-unstyled">
                                         <li><a href="{{ route('frontend.about') }}">About Us</a></li>
@@ -107,8 +115,7 @@
                                                     <img src="/img/icons/phone1.svg" alt="">
                                                 </div>
                                                 <div class="phone-side">
-                                                    <a href="tel:123-456-7890">123-456-7890</a> <br>
-                                                    <a href="tel:123-456-7890">123-456-7890</a>
+                                                    <a href="tel:{{ $mobile }}">{{ $mobile }}</a>
                                                 </div>
                                             </div>
                                             <div class="sidebar-author-area">
@@ -116,23 +123,10 @@
                                                     <img src="/img/icons/email1.svg" alt="">
                                                 </div>
                                                 <div class="phone-side">
-                                                    <a href="mailto:demoLaw Students@gmail.com">demoLaw
-                                                        Students@gmail.com</a> <br>
-                                                    <a href="mailtodemoLaw Students@gmail.com">demoLaw
-                                                        Students@gmail.com</a>
+                                                    <a href="mailto:{{ $email }}">{{ $email }}</a>
                                                 </div>
                                             </div>
-                                            <div class="sidebar-author-area">
-                                                <div class="phone-side">
-                                                    <img src="/img/icons/loctaion1.svg" alt="">
-                                                </div>
-                                                <div class="phone-side">
-                                                    <a href="mailto:demoLaw Students@gmail.com">8708 Technology Forest
-                                                        Pl
-                                                        Suite <br> 125 -G, The Woodlands, TX 77381</a> <br>
 
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="theme-btnarea">
@@ -140,11 +134,11 @@
                                     </div>
                                     <h3 class="sidebar-heading">Social Links</h3>
                                     <ul class="social-links">
-                                        <li><a href="#!"><i class="fa-brands fa-linkedin"></i></a></li>
-                                        <li><a href="#!"><i class="fa-brands fa-facebook"></i></a></li>
-                                        <li><a href="#!"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                        <li><a href="#!"><i class="fa-brands fa-instagram"></i></a></li>
-                                        <li><a href="#!"><i class="fa-brands fa-pinterest"></i></a></li>
+                                        <li><a href="{{ $linkedin }}"><i class="fa-brands fa-linkedin"></i></a></li>
+                                        <li><a href="{{ $facebook }}"><i class="fa-brands fa-facebook"></i></a></li>
+                                        <li><a href="{{ $twitter }}"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                        <li><a href="{{ $instagram }}"><i class="fa-brands fa-instagram"></i></a></li>
+                                        <li><a href="{{ $pinterest }}"><i class="fa-brands fa-pinterest"></i></a></li>
                                     </ul>
                                 </div>
                                 <nav class="side-mobile-menu">
