@@ -1,5 +1,5 @@
 @php
-    $setting = $gallery ? $gallery->first() : null;
+    $setting = $admin ? $admin->first() : null;
 @endphp
 
 @include('layouts.partials.admin.dashboard')
