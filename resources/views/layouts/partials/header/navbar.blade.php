@@ -18,14 +18,29 @@
                                 </div>
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-4">
+                                    @php
+                                        use App\Models\User;
+
+                                        $user = User::where('status', 1)->orderBy('order')->first();
+                                    @endphp
+
                                     <div class="social-area">
                                         <ul>
-                                            <li><a href="mailto:info@lawexample.com"><img src="/img/icons/email3.svg"
-                                                        alt="">info@lawexample.com</a></li>
+                                            <li>
+                                                <a href="mailto:{{ $user->webemail }}">
+                                                    <img src="/img/icons/email3.svg" alt="">
+                                                    {{ $user->webemail }}
+                                                </a>
+                                            </li>
                                         </ul>
+
                                         <ul class="list">
-                                            <li><a href="tel:(555)123-4567"><img src="/img/icons/phone3.svg"
-                                                        alt="">(555) 123-4567</a></li>
+                                            <li>
+                                                <a href="tel:{{ $user->mobile }}">
+                                                    <img src="/img/icons/phone3.svg" alt="">
+                                                    {{ $user->mobile }}
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
