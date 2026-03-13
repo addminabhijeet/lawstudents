@@ -19,9 +19,7 @@
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-4">
                                     @php
-                                        use App\Models\User;
-
-                                        $user = User::where('status', 1)->orderBy('order')->first();
+                                        $user = \App\Models\User::first();
                                     @endphp
 
                                     <div class="social-area">
