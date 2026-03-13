@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function __invoke(): View
     {
-        $banner = Banner::active()->get();
+        $banner = Banner::active()->first();
         return view('home.home', compact('banner'));
     }
 }

@@ -6,6 +6,10 @@
     @include('layouts.partials.header.navbar')
 
     <!-- ===== WELCOME STARTS ======= -->
+    @php
+        $banner = $banner instanceof \Illuminate\Support\Collection ? $banner->first() : $banner;
+    @endphp
+
     <div class="slider-carousel-area owl-carousel car">
 
         @if ($banner && $banner->image_1)
