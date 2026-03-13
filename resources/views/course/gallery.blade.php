@@ -54,7 +54,7 @@
 
             @foreach (\App\Models\Gallery::latest()->get() as $img)
                 <div class="col-md-2 mb-3">
-                    <img src="{{ asset('storage/' . $img->image) }}" class="img-thumbnail"
+                    <img src="{{ asset('storage/app/public/' . $img->image) }}" class="img-thumbnail"
                         style="width:100%; height:120px; object-fit:cover;">
                 </div>
             @endforeach
