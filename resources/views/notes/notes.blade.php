@@ -174,12 +174,19 @@
                 document.addEventListener("DOMContentLoaded", function() {
 
                     function openAllAccordions() {
-                        document.querySelectorAll('[id^="cat"], [id^="course"], [id^="sub"], [id^="childcourse"]').forEach(function(el) {
-                            el.style.maxHeight = el.scrollHeight + "px";
+
+                        const sections = document.querySelectorAll(
+                            '[id^="cat"], [id^="course"], [id^="sub"], [id^="childcourse"]'
+                        );
+
+                        sections.forEach(function(el) {
+                            el.style.maxHeight = "none"; // fully open
+                            el.style.overflow = "visible";
                         });
+
                     }
 
-                    // run once after page loads
+                    // run after DOM fully renders
                     setTimeout(openAllAccordions, 200);
 
                 });
