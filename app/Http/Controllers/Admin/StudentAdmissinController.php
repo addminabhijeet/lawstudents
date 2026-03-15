@@ -202,12 +202,54 @@ class StudentAdmissinController extends Controller
     {
         $courses = Course::where('status', 1)->get();
         $admission = StudentAdmission::findOrFail($id);
+
+        // Generate admno if empty
+        if (empty($admission->admno)) {
+
+            $year = date('Y');
+
+            $lastAdmission = StudentAdmission::where('admno', 'like', 'LAW' . $year . '%')
+                ->orderBy('admno', 'desc')
+                ->first();
+
+            if ($lastAdmission) {
+                $lastNumber = intval(substr($lastAdmission->admno, -6));
+                $nextNumber = $lastNumber + 1;
+            } else {
+                $nextNumber = 1;
+            }
+
+            $admno = 'LAW' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+            $admission->admno = $admno;
+            $admission->save();
+        }
+
         return view('admission.edit', compact('courses', 'admission'));
     }
-
+    
     public function updateadmsubmit(Request $request, $id)
     {
         $admission = StudentAdmission::findOrFail($id);
+
+        // Generate admno if empty
+        if (empty($admission->admno)) {
+
+            $year = date('Y');
+
+            $lastAdmission = StudentAdmission::where('admno', 'like', 'LAW' . $year . '%')
+                ->orderBy('admno', 'desc')
+                ->first();
+
+            if ($lastAdmission) {
+                $lastNumber = intval(substr($lastAdmission->admno, -6));
+                $nextNumber = $lastNumber + 1;
+            } else {
+                $nextNumber = 1;
+            }
+
+            $admission->admno = 'LAW' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+        }
 
         $oldStatus = $admission->admission_status;
 
