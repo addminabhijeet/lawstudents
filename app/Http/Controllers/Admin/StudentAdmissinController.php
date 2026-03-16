@@ -227,7 +227,7 @@ class StudentAdmissinController extends Controller
 
         return view('admission.edit', compact('courses', 'admission'));
     }
-    
+
     public function updateadmsubmit(Request $request, $id)
     {
         $admission = StudentAdmission::findOrFail($id);
@@ -253,23 +253,50 @@ class StudentAdmissinController extends Controller
 
         $oldStatus = $admission->admission_status;
 
+        // Validation
         $data = $request->validate([
             'full_name' => 'required|string|max:150',
-            'email' => 'required|email|max:150|unique:students,email,' . $admission->student_id,
-            'dob' => 'required|date',
-            'gender' => 'required',
-            'phone' => 'required|string|max:20',
-            'address_line1' => 'required|string|max:255',
-            'city' => 'required|string|max:100',
-            'state' => 'required|string|max:100',
-            'pincode' => 'required|string|max:10',
-            'last_qualification' => 'required|string|max:150',
-            'board_university' => 'required|string|max:150',
-            'passing_year' => 'required|integer',
-            'course_name' => 'required|string|max:150',
-            'admission_session' => 'required|string|max:20',
+            'email' => 'nullable|email|max:150',
+            'phone' => 'nullable|string|max:20',
+            'father_name' => 'nullable|string|max:150',
+
+            'address_line1' => 'nullable|string|max:255',
+            'address_line2' => 'nullable|string|max:255',
+
+            'course_ids' => 'nullable|array',
+
             'admission_status' => 'required|in:pending,approved,rejected',
+
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'signature' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
         ]);
+
+        if ($request->has('course_ids')) {
+            $data['course_ids'] = $request->course_ids;
+        }
+
+
+        if ($request->hasFile('photo')) {
+
+            if ($admission->photo && file_exists(storage_path('app/public/' . $admission->photo))) {
+                unlink(storage_path('app/public/' . $admission->photo));
+            }
+
+            $photoPath = $request->file('photo')->store('students/photos', 'public');
+
+            $data['photo'] = $photoPath;
+        }
+
+        if ($request->hasFile('signature')) {
+
+            if ($admission->signature && file_exists(storage_path('app/public/' . $admission->signature))) {
+                unlink(storage_path('app/public/' . $admission->signature));
+            }
+
+            $signPath = $request->file('signature')->store('students/signatures', 'public');
+
+            $data['signature'] = $signPath;
+        }
 
         $admission->update($data);
 
@@ -279,31 +306,55 @@ class StudentAdmissinController extends Controller
         ) {
 
             $paymentExists = Payment::where('student_id', $admission->student_id)->exists();
+
             $year = date('Y');
+
             $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
                 ->orderBy('id', 'desc')
                 ->first();
+
             if ($lastInvoice) {
                 $lastNumber = intval(substr($lastInvoice->invoice_number, 7));
                 $nextNumber = $lastNumber + 1;
             } else {
                 $nextNumber = 1;
             }
+
             $invoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+            $subtotal = 0;
+            $courseTitles = [];
+
+            if ($admission->course_ids) {
+
+                $courses = Course::whereIn('id', $admission->course_ids)->get();
+
+                foreach ($courses as $course) {
+                    $subtotal += $course->price;
+                    $courseTitles[] = $course->title;
+                }
+            }
+
             if (!$paymentExists) {
+
                 Payment::create([
                     'student_id' => $admission->student_id,
+
                     'invoice_number' => $invoiceNumber,
                     'invoice_label' => 'Admission Fee',
-                    'invoice_product' => $admission->course_name,
+                    'invoice_product' => implode(', ', $courseTitles),
+
                     'issue_date' => now(),
                     'due_date' => now()->addDays(7),
+
                     'to_name' => $admission->full_name,
                     'to_email' => $admission->email,
                     'to_phone' => $admission->phone,
                     'to_address' => $admission->address_line1,
-                    'sub_total' => 0,
-                    'grand_total' => 0,
+
+                    'sub_total' => $subtotal,
+                    'grand_total' => $subtotal,
+
                     'currency' => 'INR',
                     'payment_status' => 'pending',
                 ]);
