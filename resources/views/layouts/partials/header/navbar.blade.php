@@ -8,14 +8,14 @@
                         <div class="header-top-border"
                             style="background-image: url(/img/bacground/header7-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
                             <div class="row">
-                                <div class="col-lg-6">
+                                {{-- <div class="col-lg-6">
                                     <div class="top-content-area">
                                         <div class="content">
                                             <p>Start your journey into the world of law today.<a
                                                     href="{{ route('frontend.contact') }}">Contact Us</a></p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-2"></div>
                                 <div class="col-lg-4">
                                     @php
