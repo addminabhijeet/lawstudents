@@ -1,7 +1,6 @@
 @extends('layouts.landing', ['title' => 'Law Students || Criminal Law || Our Team'])
 
 @section('content')
-
     <!-- ===== WELCOME STARTS ======= -->
     @php
         $banner = $banner instanceof \Illuminate\Support\Collection ? $banner->first() : $banner;
@@ -96,26 +95,30 @@
                             Your Learning Journey
                         </h2>
                         <p data-aos="fade-left" data-aos-duration="900">
-                            Our courses are designed by experienced legal professionals who are not just instructors; 
+                            Our courses are designed by experienced legal professionals who are not just instructors;
                             <br /> they are your mentors, your guides, and your partners in mastering the law.
                         </p>
                         <h3 data-aos="fade-left" data-aos-duration="1000">Why Choose Our Courses?</h3>
                         <div class="list-about" data-aos="fade-left" data-aos-duration="1100">
                             <ul>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Comprehensive Legal Knowledge</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Comprehensive
+                                        Legal Knowledge</a>
                                 </li>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Simplified Learning</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Simplified
+                                        Learning</a>
                                 </li>
                             </ul>
 
                             <ul>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Step-by-Step Guidance</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Step-by-Step
+                                        Guidance</a>
                                 </li>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Specialized Modules</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Specialized
+                                        Modules</a>
                                 </li>
                             </ul>
                         </div>
@@ -136,30 +139,31 @@
             <div class="row">
                 <div class="col-lg-4 m-auto">
                     <div class="service7-header-area text-center">
-                        <span data-aos="fade-up" data-aos-duration="800">Practice Areas</span>
+                        <span data-aos="fade-up" data-aos-duration="800">Our Courses</span>
                         <h2 data-aos="fade-up" data-aos-duration="1000">
-                            Every Case: Our Law Firm Delivers
-                            <span class="defence">Results</span>
+                            Learn Law With Confidence
+                            <span class="defence">Expert Guidance</span>
                         </h2>
                     </div>
                 </div>
             </div>
             <div class="row">
+                <!-- Course 1 -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="800">
                     <div class="service7-box-area">
                         <div class="service7-boxarea">
                             <div class="service-images">
-                                <img src="/img/images/service7-img1.png" alt="" />
+                                <img src="/img/images/service7-img1.png" alt="Criminal Law Course" />
                             </div>
                             <div class="service7-author-area">
                                 <div class="service-icons">
                                     <img src="/img/icons/service7-img1.svg" alt="" />
                                 </div>
                                 <div class="service-7-content">
-                                    <a href="">Auto Accidents</a>
+                                    <a href="">Criminal Law</a>
                                     <div class="service7-content">
-                                        <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best
-                                            team.</p>
+                                        <p>Master the fundamentals of criminal law with real-world case examples and
+                                            practical guidance.</p>
                                         <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -168,21 +172,22 @@
                     </div>
                 </div>
 
+                <!-- Course 2 -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1000">
                     <div class="service7-box-area">
                         <div class="service7-boxarea">
                             <div class="service-images">
-                                <img src="/img/images/service7-img2.png" alt="" />
+                                <img src="/img/images/service7-img2.png" alt="Family Law Course" />
                             </div>
                             <div class="service7-author-area">
                                 <div class="service-icons">
                                     <img src="/img/icons/service7-img2.svg" alt="" />
                                 </div>
                                 <div class="service-7-content">
-                                    <a href="">Workplace Injuries</a>
+                                    <a href="">Family Law</a>
                                     <div class="service7-content">
-                                        <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best
-                                            team.</p>
+                                        <p>Learn child custody, divorce, and support laws with step-by-step guidance from
+                                            experts.</p>
                                         <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -191,21 +196,22 @@
                     </div>
                 </div>
 
+                <!-- Course 3 -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200">
                     <div class="service7-box-area">
                         <div class="service7-boxarea">
                             <div class="service-images">
-                                <img src="/img/images/service7-img3.png" alt="" />
+                                <img src="/img/images/service7-img3.png" alt="Civil Law Course" />
                             </div>
                             <div class="service7-author-area">
                                 <div class="service-icons">
                                     <img src="/img/icons/service7-img3.svg" alt="" />
                                 </div>
                                 <div class="service-7-content">
-                                    <a href="">Medical Malpractice</a>
+                                    <a href="">Civil Law</a>
                                     <div class="service7-content">
-                                        <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best
-                                            team.</p>
+                                        <p>Understand contracts, property law, and civil rights through engaging lessons and
+                                            case studies.</p>
                                         <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -214,21 +220,22 @@
                     </div>
                 </div>
 
+                <!-- Course 4 -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1400">
                     <div class="service7-box-area">
                         <div class="service7-boxarea">
                             <div class="service-images">
-                                <img src="/img/images/service7-img4.png" alt="" />
+                                <img src="/img/images/service7-img4.png" alt="Corporate Law Course" />
                             </div>
                             <div class="service7-author-area">
                                 <div class="service-icons">
                                     <img src="/img/icons/service7-img4.svg" alt="" />
                                 </div>
                                 <div class="service-7-content">
-                                    <a href="">Slip and Fall Accidents</a>
+                                    <a href="">Corporate Law</a>
                                     <div class="service7-content">
-                                        <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best
-                                            team.</p>
+                                        <p>Gain expertise in company law, compliance, and business regulations through
+                                            practical examples.</p>
                                         <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -237,21 +244,22 @@
                     </div>
                 </div>
 
+                <!-- Course 5 -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1600">
                     <div class="service7-box-area">
                         <div class="service7-boxarea">
                             <div class="service-images">
-                                <img src="/img/images/service7-img5.png" alt="" />
+                                <img src="/img/images/service7-img5.png" alt="Environmental Law Course" />
                             </div>
                             <div class="service7-author-area">
                                 <div class="service-icons">
                                     <img src="/img/icons/service7-img5.svg" alt="" />
                                 </div>
                                 <div class="service-7-content">
-                                    <a href="">Product Liability</a>
+                                    <a href="">Environmental Law</a>
                                     <div class="service7-content">
-                                        <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best
-                                            team.</p>
+                                        <p>Explore laws protecting the environment and sustainable practices with real-world
+                                            case studies.</p>
                                         <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -260,21 +268,22 @@
                     </div>
                 </div>
 
+                <!-- Course 6 -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1800">
                     <div class="service7-box-area">
                         <div class="service7-boxarea">
                             <div class="service-images">
-                                <img src="/img/images/service7-img6.png" alt="" />
+                                <img src="/img/images/service7-img6.png" alt="Intellectual Property Law Course" />
                             </div>
                             <div class="service7-author-area">
                                 <div class="service-icons">
                                     <img src="/img/icons/service7-img6.svg" alt="" />
                                 </div>
                                 <div class="service-7-content">
-                                    <a href="">Wrongful Death</a>
+                                    <a href="">Intellectual Property Law</a>
                                     <div class="service7-content">
-                                        <p>Focused Legal Expertise: Our team lawyer specializes in criminal defense best
-                                            team.</p>
+                                        <p>Learn patents, copyrights, and trademarks from industry experts with hands-on
+                                            exercises.</p>
                                         <a href="">Read More <i class="fa-regular fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -1185,6 +1194,4 @@
         </div>
     </div>
     <!-- ===== CTA ENDS ======= -->
-
-
 @endsection
