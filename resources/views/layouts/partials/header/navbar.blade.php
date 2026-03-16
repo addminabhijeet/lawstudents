@@ -71,7 +71,9 @@
                                     <!-- <li><a href="{{ route('frontend.course') }}">Course</a></li> -->
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
-                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li> <a href="{{ route('login') }}" class="btn btn-primary">
+                                            Login
+                                        </a></li>
                                 </ul>
                             </div>
                             <div class="contact-3 d-lg-block d-none">
@@ -123,11 +125,16 @@
 
                                     <h3 class="sidebar-heading">Social Links</h3>
                                     <ul class="social-links">
-                                        <li><a href="{{ $linkedin }}"><i class="fa-brands fa-linkedin"></i></a></li>
-                                        <li><a href="{{ $facebook }}"><i class="fa-brands fa-facebook"></i></a></li>
-                                        <li><a href="{{ $twitter }}"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                        <li><a href="{{ $instagram }}"><i class="fa-brands fa-instagram"></i></a></li>
-                                        <li><a href="{{ $pinterest }}"><i class="fa-brands fa-pinterest"></i></a></li>
+                                        <li><a href="{{ $linkedin }}"><i class="fa-brands fa-linkedin"></i></a>
+                                        </li>
+                                        <li><a href="{{ $facebook }}"><i class="fa-brands fa-facebook"></i></a>
+                                        </li>
+                                        <li><a href="{{ $twitter }}"><i class="fa-brands fa-x-twitter"></i></a>
+                                        </li>
+                                        <li><a href="{{ $instagram }}"><i class="fa-brands fa-instagram"></i></a>
+                                        </li>
+                                        <li><a href="{{ $pinterest }}"><i class="fa-brands fa-pinterest"></i></a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <nav class="side-mobile-menu">
