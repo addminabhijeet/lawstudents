@@ -23,25 +23,23 @@ class CourseControllerStu extends Controller
     {
         $student = Auth::guard('student')->user();
 
-        // Get all paid payments for this student
-        $paidPayments = Payment::where('student_id', $student->id)
+        // Get all paid payments for the student
+        $payments = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
-            ->pluck('course_id'); // This returns collection of comma-separated strings
+            ->pluck('course_id'); // this returns a collection of strings like "11,12,13"
 
+        // Flatten all course IDs into a single array of integers
         $paidCourseIds = [];
-
-        // Flatten all course IDs into a single array
-        foreach ($paidPayments as $paymentCourses) {
-            if ($paymentCourses) {
-                $ids = explode(',', $paymentCourses);
+        foreach ($payments as $courseIdsString) {
+            if ($courseIdsString) {
+                $ids = explode(',', $courseIdsString);
                 $paidCourseIds = array_merge($paidCourseIds, $ids);
             }
         }
+        $paidCourseIds = array_map('intval', $paidCourseIds); // convert all to integers
+        $paidCourseIds = array_unique($paidCourseIds); // remove duplicates
 
-        // Remove duplicates and make sure they are integers
-        $paidCourseIds = array_map('intval', array_unique($paidCourseIds));
-
-        // Get categories with only paid courses
+        // Get categories that have at least one paid course
         $categories = Category::whereHas('courses', function ($query) use ($paidCourseIds) {
             $query->whereIn('id', $paidCourseIds);
         })
