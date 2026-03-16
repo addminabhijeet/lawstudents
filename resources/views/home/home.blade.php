@@ -92,39 +92,35 @@
                     <div class="about7-header-area">
                         <span data-aos="fade-left" data-aos-duration="600">About Us</span>
                         <h2 data-aos="fade-left" data-aos-duration="800">
-                            Trusted Criminal Defense <span class="defence">Lawyers</span>
-                            Ready to Fight
+                            Trusted Law Experts<span class="defence">Guiding</span>
+                            Your Learning Journey
                         </h2>
                         <p data-aos="fade-left" data-aos-duration="900">
-                            Our experienced divorce lawyers are not just legal professionals; <br /> they are your
-                            advocates, your confidants, and your partners Law
+                            Our courses are designed by experienced legal professionals who are not just instructors; 
+                            <br /> they are your mentors, your guides, and your partners in mastering the law.
                         </p>
-                        <h3 data-aos="fade-left" data-aos-duration="1000">Our Best Service Benefits :</h3>
+                        <h3 data-aos="fade-left" data-aos-duration="1000">Why Choose Our Courses?</h3>
                         <div class="list-about" data-aos="fade-left" data-aos-duration="1100">
                             <ul>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Legal
-                                        Expertise</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Comprehensive Legal Knowledge</a>
                                 </li>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Reduced
-                                        Stress</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Simplified Learning</a>
                                 </li>
                             </ul>
 
                             <ul>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Paperwork &
-                                        Documentation</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Step-by-Step Guidance</a>
                                 </li>
                                 <li>
-                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Child Custody
-                                        And Support</a>
+                                    <a href="#"><img src="/img/icons/check-img7.svg" alt="" />Specialized Modules</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="div" data-aos="fade-left" data-aos-duration="1200">
-                            <a href="" class="welcome6-btn">Legal Support Needed<i
+                            <a href="" class="welcome6-btn">Ongoing Support<i
                                     class="fa-regular fa-arrow-right"></i></a>
                         </div>
                     </div>
