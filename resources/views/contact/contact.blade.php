@@ -20,6 +20,23 @@
     <!--===== WELCOME ENDS =======-->
 
     <!--===== CONTACT STARTS =======-->
+
+    @php
+        $user = \App\Models\User::first();
+        $address = !empty($user->webaddress) ? $user->webaddress : 'email@gmail.com';
+        $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
+        $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
+        $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
+        $pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
+        $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
+        $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
+        $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+        $description = !empty($user->description)
+            ? $user->description
+            : 'Revolutionize Your Future: Harness the Power of Technology for Unparalleled
+                                            Growth and Success!';
+    @endphp
+
     <div class="contact1-section-area sp1">
         <div class="container">
             <div class="row">
@@ -99,8 +116,7 @@
                                         </div>
                                         <div class="content">
                                             <h4>Contact Us</h4>
-                                            <a href="#">8708 Technology Forest Pl Suite 125 -G, The Woodlands, TX
-                                                77381</a>
+                                            <a>{{ $address }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +129,7 @@
                                         </div>
                                         <div class="content">
                                             <h4>Call or text</h4>
-                                            <a href="123-456-7890">123-456-7890</a>
+                                            <a href="{{ $mobile }}">{{ $mobile }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +142,7 @@
                                         </div>
                                         <div class="content">
                                             <h4>Email us today</h4>
-                                            <a href="info@taxvice.com">info@taxvice.com</a>
+                                            <a href="{{ $email }}">{{ $email }}</a>
                                         </div>
                                     </div>
                                 </div>
