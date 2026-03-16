@@ -240,6 +240,7 @@
                                     </div>
 
                                     <input type="hidden" name="remamount" id="remamount">
+                                    <input type="hidden" name="course_id" id="course_id">
                                 </div>
 
                                 <!-- Declaration -->
@@ -398,11 +399,16 @@
 
             let subtotal = 0;
 
+            let selectedCourse = [];
+
             checkboxes.forEach(cb => {
                 if (cb.checked) {
                     subtotal += parseFloat(cb.dataset.price);
+                    selectedCourse.push(cb.value);
                 }
             });
+
+            document.getElementById('course_id').value = selectedCourse.join(',');
 
             let discountPercent = parseFloat(discountInput.value) || 0;
             let discount = subtotal * (discountPercent / 100);

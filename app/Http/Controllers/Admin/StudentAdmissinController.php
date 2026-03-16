@@ -102,7 +102,7 @@ class StudentAdmissinController extends Controller
             $discountPercent = $request->input('discount_percent', 0);
             $discountAmount  = ($subTotal * $discountPercent) / 100;
             $grandTotal      = $subTotal - $discountAmount;
-
+            $courseId = $validated['course_ids'][0] ?? null;
 
             $admission = StudentAdmission::create([
                 'student_id'      => $student->id,
@@ -124,6 +124,7 @@ class StudentAdmissinController extends Controller
 
                 Payment::create([
                     'student_id'     => $student->id,
+                    'course_id'       => $courseId,
                     'invoice_number' => 'INV-' . strtoupper(Str::random(6)),
                     'invoice_label'  => 'Admission Fee',
                     'invoice_product' => $courses->pluck('title')->implode(', '),
