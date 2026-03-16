@@ -44,7 +44,8 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Adm No</label>
-                                    <input type="text" class="form-control" name="admno" value="{{ $admno }}" readonly>
+                                    <input type="text" class="form-control" name="admno"
+                                        value="{{ $admno }}" readonly>
                                 </div>
 
                                 <div class="mb-3">
@@ -225,6 +226,18 @@
                                         <span>Total Payable:</span>
                                         <span>₹<span id="grandtotal">0</span></span>
                                     </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Paid Amount:</span>
+                                        <input type="number" name="paidamount" id="paidamount"
+                                            class="form-control w-50" placeholder="Enter paid amount" min="0"
+                                            value="0">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Remaining Amount:</span>
+                                        <span>₹<span id="remainingamount">0</span></span>
+                                    </div>
                                 </div>
 
                                 <!-- Declaration -->
@@ -376,8 +389,11 @@
         const discountEl = document.getElementById('discount');
         const grandTotalEl = document.getElementById('grandtotal');
         const discountInput = document.getElementById('customDiscount');
+        const paidInput = document.getElementById('paidamount');
+        const remainingEl = document.getElementById('remainingamount');
 
         function calculateFees() {
+
             let subtotal = 0;
 
             checkboxes.forEach(cb => {
@@ -390,9 +406,15 @@
             let discount = subtotal * (discountPercent / 100);
             let grandTotal = subtotal - discount;
 
+            let paid = parseFloat(paidInput.value) || 0;
+            let remaining = grandTotal - paid;
+
+            if (remaining < 0) remaining = 0;
+
             subtotalEl.innerText = subtotal.toFixed(2);
             discountEl.innerText = discount.toFixed(2);
             grandTotalEl.innerText = grandTotal.toFixed(2);
+            remainingEl.innerText = remaining.toFixed(2);
         }
 
         checkboxes.forEach(cb => {
@@ -400,6 +422,7 @@
         });
 
         discountInput.addEventListener('input', calculateFees);
+        paidInput.addEventListener('input', calculateFees);
 
     });
 </script>

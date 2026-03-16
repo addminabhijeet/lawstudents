@@ -101,6 +101,8 @@ class StudentAdmissinController extends Controller
                 'address_line1'   => $validated['address_line1'],
                 'admission_status' => $validated['admission_status'],
                 'course_ids'      => $validated['course_ids'] ?? [],
+                'paidamount'      => $request->paidamount ?? 0, 
+                'remamount'      => $request->remamount ?? 0, 
                 'email_verified'  => $request->boolean('email_verified'),
                 'phone_verified'  => $request->boolean('phone_verified'),
             ]);
