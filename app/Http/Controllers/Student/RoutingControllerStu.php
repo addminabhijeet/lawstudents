@@ -243,9 +243,9 @@ class RoutingControllerStu extends Controller
 
     public function viewpayment()
     {
-        $payments = Auth::guard('student')->user()->payments;
+        $payment = Auth::guard('student')->user()->payments;
 
-        return view('paymentstu.view', compact('payments'));
+        return view('paymentstu.view', compact('payment'));
     }
 
     public function listnotes()
