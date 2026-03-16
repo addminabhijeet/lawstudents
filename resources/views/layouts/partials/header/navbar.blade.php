@@ -76,9 +76,6 @@
                             </div>
                             <div class="contact-3 d-lg-block d-none">
                                 <div class="consulting2 consulting3">
-                                    <div class="search-icon header__search header-search-btn">
-                                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-                                    </div>
                                     <div class="marginsp1"></div>
                                     <a class="header__bar hamburger_menu header__bar-icon header_bar5"
                                         href="javascript:void(0);">
