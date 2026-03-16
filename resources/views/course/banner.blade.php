@@ -37,35 +37,37 @@
                                 <div class="row">
 
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Banner Image 1</label>
+                                        <label class="form-label">Banner Image 1 (1920 x 1000)</label>
                                         <input type="file" name="image_1" class="form-control">
 
                                         @if ($banner && $banner->image_1)
                                             <div class="mt-2">
-                                                <img src="{{ asset('storage/app/public/' . $banner->image_1) }}" width="150">
+                                                <img src="{{ asset('storage/app/public/' . $banner->image_1) }}"
+                                                    width="150">
                                             </div>
                                         @endif
                                     </div>
 
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Banner Image 2</label>
+                                        <label class="form-label">Banner Image 2 (1920 x 1000)</label>
                                         <input type="file" name="image_2" class="form-control">
 
                                         @if ($banner && $banner->image_2)
                                             <div class="mt-2">
-                                                <img src="{{ asset('storage/app/public/' . $banner->image_2) }}" width="150">
+                                                <img src="{{ asset('storage/app/public/' . $banner->image_2) }}"
+                                                    width="150">
                                             </div>
                                         @endif
                                     </div>
 
                                     <div class="col-md-4 mb-3">
-                                        <label class="form-label">Banner Image 3</label>
+                                        <label class="form-label">Banner Image 3 (1920 x 1000)</label>
                                         <input type="file" name="image_3" class="form-control">
 
                                         @if ($banner && $banner->image_3)
                                             <div class="mt-2">
-                                                <img src="{{ asset('storage/app/public/' . $banner->image_3) }}" width="150"
-                                                    class="img-thumbnail">
+                                                <img src="{{ asset('storage/app/public/' . $banner->image_3) }}"
+                                                    width="150" class="img-thumbnail">
                                             </div>
                                         @endif
                                     </div>
