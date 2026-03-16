@@ -509,14 +509,18 @@
                     <div class="dropdown nxl-h-item">
                         <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
                             data-bs-auto-close="outside">
-                            <img src="{{ $admission->photo ? asset('storage/app/public/' . $admission->photo) : asset('assets/images/avatar/1.png') }}"
+                            <img src="{{ auth('student')->user()?->admission?->photo
+                                ? asset('storage/app/public/' . auth('student')->user()->admission->photo)
+                                : asset('assets/images/avatar/1.png') }}"
                                 class="img-fluid user-avtar" alt="user-image">
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $admission->photo ? asset('storage/app/public/' . $admission->photo) : asset('assets/images/avatar/1.png') }}"
+                                    <img src="{{ auth('student')->user()?->admission?->photo
+                                        ? asset('storage/app/public/' . auth('student')->user()->admission->photo)
+                                        : asset('assets/images/avatar/1.png') }}"
                                         class="img-fluid user-avtar" alt="user-image">
 
                                     <div>
