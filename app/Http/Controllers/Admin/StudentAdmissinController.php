@@ -12,7 +12,7 @@ use App\Models\Declaration;
 use App\Models\WhatsappSetting;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Course;
-use Carbon\Carbon;
+use App\Models\Defaultpassword;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Mail\StudentOtpMail;
@@ -66,11 +66,22 @@ class StudentAdmissinController extends Controller
         return DB::transaction(function () use ($validated, $request) {
 
 
+            // Generate username like STU00001
+            $lastStudent = Student::latest('id')->first();
+            $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
+
+            if ($lastStudent && preg_match('/STU(\d+)/', $lastStudent->username, $matches)) {
+                $lastNumber = (int) $matches[1];
+                $username = 'STU' . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+            } else {
+                $username = 'STU00001';
+            }
+
             $student = Student::create([
                 'name'     => $validated['full_name'],
-                'username' => Str::slug($validated['full_name']) . rand(100, 999),
+                'username' => $username,
                 'email'    => $validated['email'],
-                'password' => Hash::make(Str::random(10)),
+                'password' => Hash::make($defaultpassword),
             ]);
 
 
