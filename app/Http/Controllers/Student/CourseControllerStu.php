@@ -51,23 +51,26 @@ class CourseControllerStu extends Controller
         return view('coursestu.list', compact('categories'));
     }
 
-
     public function viewcourse($id)
     {
         $student = Auth::guard('student')->user();
 
+        // Check if the student has a payment containing this course
         $payment = Payment::where('student_id', $student->id)
-            ->where('course_id', $id)
             ->where('payment_status', 'paid')
+            ->whereRaw("FIND_IN_SET(?, course_id)", [$id])
             ->first();
 
         if (!$payment) {
             abort(403, 'You have not purchased this course.');
         }
 
-        $course = Course::with(['category', 'notes' => function ($query) {
-            $query->where('status', 1);
-        }])->findOrFail($id);
+        $course = Course::with([
+            'category',
+            'notes' => function ($query) {
+                $query->where('status', 1);
+            }
+        ])->findOrFail($id);
 
         StudentActivity::create([
             'student_id' => $student->id,
