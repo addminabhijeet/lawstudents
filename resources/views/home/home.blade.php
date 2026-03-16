@@ -625,10 +625,10 @@
             <div class="row">
                 <div class="col-lg-6 m-auto">
                     <div class="testimonial7-haeder text-center">
-                        <span data-aos="fade-up" data-aos-duration="800">Our Testimonials</span>
+                        <span data-aos="fade-up" data-aos-duration="800">What Our Students Say</span>
                         <h2 data-aos="fade-up" data-aos-duration="1000">
-                            From Client to Advocates, Dedicated Legal
-                            <span class="defence">Trust</span>
+                            From Learners to Legal Experts, Trusted
+                            <span class="defence">Feedback</span>
                         </h2>
                     </div>
                 </div>
@@ -636,335 +636,130 @@
             <div class="row">
                 <div class="col-lg-12" data-aos="fade-down" data-aos-duration="1000">
                     <div class="testimonial7-main-area owl-carousel">
+                        <!-- Testimonial 1 -->
                         <div class="testimonial7-area">
                             <div class="quito7-img">
                                 <img src="/img/icons/quito10.svg" alt="" />
                             </div>
                             <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><span>(5) Rating</span></a></li>
                             </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
+                            <p>"This law course transformed my understanding of criminal law. The instructors are clear,
+                                practical, and engaging."</p>
                             <div class="mans-img-area">
                                 <div class="img">
-                                    <img src="/img/images/testimonial7-img1.png" alt="" />
+                                    <img src="/img/images/testimonial7-img1.png" alt="Student 1" />
                                 </div>
                                 <div class="img-content">
                                     <a href="#">Shakib Al Hasan</a>
-                                    <p>@personal injury law</p>
+                                    <p>@Criminal Law Student</p>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Testimonial 2 -->
                         <div class="testimonial7-area">
                             <div class="quito7-img">
                                 <img src="/img/icons/quito10.svg" alt="" />
                             </div>
                             <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><span>(5) Rating</span></a></li>
                             </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
+                            <p>"I gained hands-on knowledge in corporate law that helped me start my own legal consultancy."
+                            </p>
                             <div class="mans-img-area">
                                 <div class="img">
-                                    <img src="/img/images/testimonial7-img2.png" alt="" />
+                                    <img src="/img/images/testimonial7-img2.png" alt="Student 2" />
                                 </div>
                                 <div class="img-content">
                                     <a href="#">Tanzid Tamim</a>
-                                    <p>@business law</p>
+                                    <p>@Corporate Law Student</p>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Testimonial 3 -->
                         <div class="testimonial7-area">
                             <div class="quito7-img">
                                 <img src="/img/icons/quito10.svg" alt="" />
                             </div>
                             <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><span>(5) Rating</span></a></li>
                             </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
+                            <p>"The personal injury law modules helped me land my first internship in a top law firm."</p>
                             <div class="mans-img-area">
                                 <div class="img">
-                                    <img src="/img/images/testimonial7-img3.png" alt="" />
+                                    <img src="/img/images/testimonial7-img3.png" alt="Student 3" />
                                 </div>
                                 <div class="img-content">
                                     <a href="#">Taskin Ahmed</a>
-                                    <p>@workplace injury</p>
+                                    <p>@Personal Injury Law Student</p>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Testimonial 4 -->
                         <div class="testimonial7-area">
                             <div class="quito7-img">
                                 <img src="/img/icons/quito10.svg" alt="" />
                             </div>
                             <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><span>(5) Rating</span></a></li>
                             </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
+                            <p>"I highly recommend this course for anyone looking to strengthen their knowledge of workplace
+                                law."</p>
                             <div class="mans-img-area">
                                 <div class="img">
-                                    <img src="/img/images/testimonial7-img1.png" alt="" />
+                                    <img src="/img/images/testimonial7-img1.png" alt="Student 4" />
                                 </div>
                                 <div class="img-content">
                                     <a href="#">Shakib Al Hasan</a>
-                                    <p>@personal injury law</p>
+                                    <p>@Workplace Law Student</p>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Testimonial 5 -->
                         <div class="testimonial7-area">
                             <div class="quito7-img">
                                 <img src="/img/icons/quito10.svg" alt="" />
                             </div>
                             <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                                <li><a href="#"><span>(5) Rating</span></a></li>
                             </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
+                            <p>"The instructors' real-life examples made learning law easy and applicable."</p>
                             <div class="mans-img-area">
                                 <div class="img">
-                                    <img src="/img/images/testimonial7-img2.png" alt="" />
+                                    <img src="/img/images/testimonial7-img2.png" alt="Student 5" />
                                 </div>
                                 <div class="img-content">
                                     <a href="#">Tanzid Tamim</a>
-                                    <p>@business law</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="testimonial7-area">
-                            <div class="quito7-img">
-                                <img src="/img/icons/quito10.svg" alt="" />
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
-                            </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
-                            <div class="mans-img-area">
-                                <div class="img">
-                                    <img src="/img/images/testimonial7-img3.png" alt="" />
-                                </div>
-                                <div class="img-content">
-                                    <a href="#">Taskin Ahmed</a>
-                                    <p>@workplace injury</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="testimonial7-area">
-                            <div class="quito7-img">
-                                <img src="/img/icons/quito10.svg" alt="" />
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
-                            </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
-                            <div class="mans-img-area">
-                                <div class="img">
-                                    <img src="/img/images/testimonial7-img1.png" alt="" />
-                                </div>
-                                <div class="img-content">
-                                    <a href="#">Shakib Al Hasan</a>
-                                    <p>@personal injury law</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="testimonial7-area">
-                            <div class="quito7-img">
-                                <img src="/img/icons/quito10.svg" alt="" />
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
-                            </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
-                            <div class="mans-img-area">
-                                <div class="img">
-                                    <img src="/img/images/testimonial7-img2.png" alt="" />
-                                </div>
-                                <div class="img-content">
-                                    <a href="#">Tanzid Tamim</a>
-                                    <p>@business law</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="testimonial7-area">
-                            <div class="quito7-img">
-                                <img src="/img/icons/quito10.svg" alt="" />
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa-solid fa-star"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>(5) Rating</span></a>
-                                </li>
-                            </ul>
-                            <p>"I was lost in a legal maze until I found Law Firm Name. Their dedication and expertise guide
-                                me through a hard case challenging case, their team's support.</p>
-                            <div class="mans-img-area">
-                                <div class="img">
-                                    <img src="/img/images/testimonial7-img3.png" alt="" />
-                                </div>
-                                <div class="img-content">
-                                    <a href="#">Taskin Ahmed</a>
-                                    <p>@workplace injury</p>
+                                    <p>@General Law Student</p>
                                 </div>
                             </div>
                         </div>
@@ -975,107 +770,7 @@
     </div>
     <!-- ===== TESTIMONIAL ENDS ======= -->
 
-    <!-- ===== CONTACT STARTS ======= -->
-    <div class="contact7-section-area sp1"
-        style="background-image: url(/img/images/contact-bg1.png); background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 m-auto">
-                    <div class="contact7-header text-center">
-                        <span data-aos="fade-up" data-aos-duration="800">Contact Us</span>
-                        <h2 data-aos="fade-up" data-aos-duration="1000">
-                            Connect Our Legal
-                            <span class="defence">Experts</span>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="contact-submit-area">
-                        <h3 data-aos="fade-up" data-aos-duration="800">Send us a Message</h3>
-                        <p data-aos="fade-up" data-aos-duration="1000">As a fellow small business owner, we know the
-                            fulfillment that an a best to comes from running & own business contact our service to Finance.
-                        </p>
-                        <div class="row" data-aos="fade-up" data-aos-duration="1000">
-                            <div class="col-lg-6">
-                                <div class="contact-info">
-                                    <input type="text" placeholder="Full Name*" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="contact-info">
-                                    <input type="text" placeholder="Email*" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="contact-info">
-                                    <input type="text" placeholder="Phone*" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="contact-info">
-                                    <textarea placeholder="Message*" cols="30" rows="10"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="contact-info subject">
-                                    <input type="text" placeholder="Subject*" />
-                                </div>
-                            </div>
-                            <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1200">
-                                <div class="contact-info">
-                                    <button type="submit">Free Case Evolution <i
-                                            class="fa-regular fa-arrow-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="contact-main-boxarea">
-                        <div class="div" data-aos="fade-up" data-aos-duration="800">
-                            <div class="contact-box-area">
-                                <div class="contact-icon">
-                                    <img src="/img/icons/clock1.svg" alt="" />
-                                </div>
-                                <div class="contact-content">
-                                    <h4>Contact us</h4>
-                                    <a href="#">8708 Technology Forest Pl Suite 125 -G, The <br /> Woodlands, TX
-                                        77381</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space20"></div>
-                        <div class="div" data-aos="fade-up" data-aos-duration="1000">
-                            <div class="contact-box-area">
-                                <div class="contact-icon">
-                                    <img src="/img/icons/phone2.svg" alt="" />
-                                </div>
-                                <div class="contact-content">
-                                    <h4>Call or text</h4>
-                                    <a href="tel:123-456-7890">123-456-7890</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space20"></div>
-                        <div class="div" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="contact-box-area">
-                                <div class="contact-icon">
-                                    <img src="/img/icons/email2.svg" alt="" />
-                                </div>
-                                <div class="contact-content">
-                                    <h4>Email us today</h4>
-                                    <a href="mailto:info@taxvice.com">info@taxvice.com</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ===== CONTACT ENDS ======= -->
+    
 
     <!-- ===== CTA STARTS ======= -->
     <div class="cta7-section-area">
