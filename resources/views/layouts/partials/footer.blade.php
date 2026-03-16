@@ -90,7 +90,7 @@
                     </div>
                 </div>
                 <div class="copyright-pera">
-                    <p>© Copyright 2024 Law Students Lawyer</p>
+                    <p>© Copyright 2024 Law Students</p>
                     <a href="#">Privacy Policy</a>
                 </div>
             </div>
