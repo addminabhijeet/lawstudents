@@ -172,9 +172,36 @@ class RoutingControllerStu extends Controller
 
     public function student()
     {
-        return view('dashboard.student');
-    }
+        $student = auth()->guard('student')->user();
 
+        // Registration (student account exists)
+        $registration = $student ? 'Yes' : 'No';
+
+        // Admission
+        $admission = StudentAdmission::where('student_id', $student->id)->exists() ? 'Yes' : 'No';
+
+        // Payment
+        $payment = Payment::where('student_id', $student->id)
+            ->where('payment_status', 'paid')
+            ->exists() ? 'Yes' : 'No';
+
+        // Invoice
+        $invoice = Payment::where('student_id', $student->id)->exists() ? 'Yes' : 'No';
+
+        // ID Card (example: admission approved)
+        $idcard = StudentAdmission::where('student_id', $student->id)
+            ->where('admission_status', 'approved')
+            ->exists() ? 'Yes' : 'No';
+
+        return view('dashboard.student', compact(
+            'registration',
+            'admission',
+            'payment',
+            'invoice',
+            'idcard'
+        ));
+    }
+    
     public function liststudent()
     {
         $student = auth('student')->user();
