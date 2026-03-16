@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div class="col-lg-6">
-                                            <label class="text-muted small mb-1">Username</label>
+                                            <label class="text-muted small mb-1">Username / Registration No.</label>
                                             <p class="mb-0 fw-semibold">{{ old('name', $student->username ?? '') }}</p>
                                         </div>
                                     </div>
