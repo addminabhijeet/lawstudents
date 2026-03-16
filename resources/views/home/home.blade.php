@@ -536,8 +536,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Repeat as needed -->
                     </div>
                 </div>
             </div>
