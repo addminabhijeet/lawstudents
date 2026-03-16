@@ -238,6 +238,8 @@
                                         <span class="fw-semibold">Remaining Amount:</span>
                                         <span>₹<span id="remainingamount">0</span></span>
                                     </div>
+
+                                    <input type="hidden" name="remamount" id="remamount">
                                 </div>
 
                                 <!-- Declaration -->
@@ -415,6 +417,8 @@
             discountEl.innerText = discount.toFixed(2);
             grandTotalEl.innerText = grandTotal.toFixed(2);
             remainingEl.innerText = remaining.toFixed(2);
+
+            document.getElementById('remamount').value = remaining.toFixed(2);
         }
 
         checkboxes.forEach(cb => {
