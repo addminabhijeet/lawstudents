@@ -45,7 +45,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Adm No</label>
                                     <input type="text" class="form-control" name="admno"
-                                        value="{{ old('full_name', $admission->admno) }}" readonly>
+                                        value="{{ old('admno', $admission->admno) }}" readonly>
                                 </div>
 
                                 <div class="mb-3">
@@ -379,7 +379,7 @@
         // Reset state
         input.classList.remove('is-invalid');
         errorElement.textContent = "";
-        preview.classList.add('d-none');
+        preview.classList.remove('d-none');
 
         if (file.size > maxSizeBytes) {
 
@@ -430,6 +430,9 @@
         });
 
         discountInput.addEventListener('input', calculateFees);
+
+        // ADD THIS
+        calculateFees();
 
     });
 </script>
