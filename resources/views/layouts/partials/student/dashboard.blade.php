@@ -516,8 +516,8 @@
                         <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
                             <div class="dropdown-header">
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('assets/images/avatar/1.png') }}" alt="user-image"
-                                        class="img-fluid user-avtar">
+                                    <img src="{{ $admission->photo ? asset('storage/app/public/' . $admission->photo) : asset('assets/images/avatar/1.png') }}"
+                                        class="img-fluid user-avtar" alt="user-image">
 
                                     <div>
                                         <h6 class="text-dark mb-0">{{ auth('student')->user()?->name }}</h6>
@@ -530,7 +530,7 @@
                                 <i class="feather-user"></i>
                                 <span>Profile Details</span>
                             </a>
-                            
+
                             <div class="dropdown-divider"></div>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                 style="display: none;">
