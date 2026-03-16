@@ -1,6 +1,10 @@
 @extends('layouts.landing', ['title' => 'Law Students || Criminal Law || Our Team'])
 
 @section('content')
+    @include('layouts.partials.loader', ['loader' => 'preloader7'])
+
+    @include('layouts.partials.header.navbar')
+
     <!-- ===== WELCOME STARTS ======= -->
     @php
         $banner = $banner instanceof \Illuminate\Support\Collection ? $banner->first() : $banner;
@@ -11,69 +15,34 @@
         @if ($banner && $banner->image_1)
             <div class="welcome7-section-area"
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_1) }}');
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    width: 100%;
-                    min-height: 600px;
-
-                ">
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            min-height:600px;">
             </div>
         @endif
 
         @if ($banner && $banner->image_2)
             <div class="welcome7-section-area"
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_2) }}');
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    width: 100%;
-                    min-height: 600px;
-
-                ">
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            min-height:600px;">
             </div>
         @endif
 
         @if ($banner && $banner->image_3)
             <div class="welcome7-section-area"
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_3) }}');
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    width: 100%;
-                    min-height: 600px;
-
-                ">
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
+            min-height:600px;">
             </div>
         @endif
 
     </div>
-
-    <style>
-        /* Desktop & large screens */
-        .welcome7-section-area {
-            width: 100%;
-            min-height: 600px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* Tablet screens */
-        @media (max-width: 1024px) {
-            .welcome7-section-area {
-                min-height: 450px;
-            }
-        }
-
-        /* Mobile screens */
-        @media (max-width: 768px) {
-            .welcome7-section-area {
-                min-height: 300px;
-                /* shorter for mobile */
-            }
-        }
-    </style>
 
     <script>
         $('.car').owlCarousel({
@@ -1223,4 +1192,6 @@
         </div>
     </div>
     <!-- ===== CTA ENDS ======= -->
+
+
 @endsection
