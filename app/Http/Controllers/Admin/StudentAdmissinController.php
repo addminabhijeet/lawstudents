@@ -95,6 +95,7 @@ class StudentAdmissinController extends Controller
 
             $admission = StudentAdmission::create([
                 'student_id'      => $student->id,
+                'admno'           => $request->admno,
                 'full_name'       => $validated['full_name'],
                 'email'           => $validated['email'],
                 'phone'           => $validated['phone'],
