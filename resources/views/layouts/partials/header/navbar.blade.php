@@ -71,9 +71,12 @@
                                     <!-- <li><a href="{{ route('frontend.course') }}">Course</a></li> -->
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
-                                    <li> <a href="{{ route('login') }}" class="btn btn-primary">
+                                    <li>
+                                        <a href="{{ route('login') }}" class="btn"
+                                            style="background-color:#ff5722; color:#fff; border-color:#ff5722;">
                                             Login
-                                        </a></li>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="contact-3 d-lg-block d-none">
