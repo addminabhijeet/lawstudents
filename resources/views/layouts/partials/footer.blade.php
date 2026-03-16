@@ -64,8 +64,7 @@
                                 <ul>
                                     <li><img src="/img/icons/footer-email2.svg" alt=""><a
                                             href="maito:{{ $email }}">{{ $email }}</a></li>
-                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">8708
-                                            Technology Forest <br> Pl Suite 125 -G, The <br> Woodlands, TX 77381</a>
+                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">{{ $webaddress }}</a>
                                     </li>
                                     <li><img src="/img/icons/footer-phn.svg" alt=""><a
                                             href="tel:{{ $mobile }}">{{ $mobile }}</a></li>
