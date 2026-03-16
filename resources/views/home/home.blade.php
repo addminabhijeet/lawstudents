@@ -92,7 +92,7 @@
                     <div class="about7-header-area">
                         <span data-aos="fade-left" data-aos-duration="600">About Us</span>
                         <h2 data-aos="fade-left" data-aos-duration="800">
-                            Trusted Law Experts<span class="defence">Guiding</span>
+                            Trusted Law Experts<span class="defence"> Guiding</span>
                             Your Learning Journey
                         </h2>
                         <p data-aos="fade-left" data-aos-duration="900">
