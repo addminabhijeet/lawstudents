@@ -8,7 +8,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Create</li>
+                    <li class="breadcrumb-item">Edit</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -115,10 +115,12 @@
                                             <div class="col-md-6">
                                                 <div class="form-check mb-2 p-2 border rounded">
                                                     <input class="form-check-input course-checkbox"
-                                                        type="checkbox" name="course_ids[]"
+                                                        type="checkbox"
+                                                        name="course_ids[]"
                                                         value="{{ $course->id }}"
                                                         data-price="{{ $course->price }}"
-                                                        id="course{{ $course->id }}">
+                                                        id="course{{ $course->id }}"
+                                                        {{ in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : '' }}>
 
                                                     <label class="form-check-label fw-semibold"
                                                         for="course{{ $course->id }}">
@@ -214,8 +216,16 @@
                                     <div class="invalid-feedback" id="signError"></div>
 
                                     <div class="text-center">
-                                        <img id="signPreview" class="img-thumbnail d-none"
-                                            style="max-height: 150px;">
+                                        @if ($admission->signature)
+                                        <img id="signPreview"
+                                            src="{{ asset('storage/' . $admission->signature) }}"
+                                            class="img-thumbnail"
+                                            style="max-height:150px;">
+                                        @else
+                                        <img id="signPreview"
+                                            class="img-thumbnail d-none"
+                                            style="max-height:150px;">
+                                        @endif
                                     </div>
                                 </div>
 
