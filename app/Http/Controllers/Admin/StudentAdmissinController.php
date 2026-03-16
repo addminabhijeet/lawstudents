@@ -360,8 +360,13 @@ class StudentAdmissinController extends Controller
 
             if (!$paymentExists) {
 
+                $courseId = !empty($admission->course_ids)
+                    ? implode(',', $admission->course_ids)
+                    : null;
+
                 Payment::create([
                     'student_id' => $admission->student_id,
+                    'course_id'  => $courseId,
 
                     'invoice_number' => $invoiceNumber,
                     'invoice_label' => 'Admission Fee',
