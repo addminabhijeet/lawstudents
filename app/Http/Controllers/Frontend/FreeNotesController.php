@@ -28,7 +28,9 @@ class FreeNotesController extends Controller
                         ->with(['notes' => function ($q) {
                             $q->where('visibility', 'free')
                                 ->where('status', 1);
-                        }]);
+                        }])
+                        ->orderBy('created_at', 'desc') // optional ordering
+                        ->paginate(6); // <-- paginate courses, 6 per page
                 },
                 'children' => function ($query) {
                     $query->whereHas('courses.notes', function ($q) {
@@ -45,7 +47,9 @@ class FreeNotesController extends Controller
                                     ->with(['notes' => function ($n) {
                                         $n->where('visibility', 'free')
                                             ->where('status', 1);
-                                    }]);
+                                    }])
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(6);
                             }
                         ]);
                 }
@@ -58,7 +62,8 @@ class FreeNotesController extends Controller
                 $query->where('visibility', 'free')
                     ->where('status', 1);
             })
-            ->get();
+            ->orderBy('created_at', 'desc')
+            ->paginate(12); // <-- main courses pagination
 
         return view('notes.notes', compact('categories', 'courses'));
     }
@@ -115,7 +120,7 @@ class FreeNotesController extends Controller
             $notes->merge($courses)->merge($categories)
         );
     }
-    
+
     public function viewnote($id)
     {
         $note = CourseNote::findOrFail($id);
