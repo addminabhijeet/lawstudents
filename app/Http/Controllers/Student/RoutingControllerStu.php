@@ -230,8 +230,10 @@ class RoutingControllerStu extends Controller
 
     public function viewidcard()
     {
-        $idcard = Payment::where('id', Auth::guard('student')->id())
+        $idcard = Payment::where('student_id', Auth::guard('student')->id())
+            ->latest()
             ->firstOrFail();
+
         return view('idcardstu.idcard', compact('idcard'));
     }
 
