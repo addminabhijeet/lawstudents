@@ -1,9 +1,6 @@
 @extends('layouts.landing', ['title' => 'Law Students || Criminal Law || Our Team'])
 
 @section('content')
-    @include('layouts.partials.loader', ['loader' => 'preloader7'])
-
-    @include('layouts.partials.header.navbar')
 
     <!-- ===== WELCOME STARTS ======= -->
     @php
