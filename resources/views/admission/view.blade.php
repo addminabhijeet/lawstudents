@@ -36,8 +36,8 @@
                         <div class="card-body text-center">
 
                             @if ($admission->photo)
-                                <img src="{{ asset('storage/' . $admission->photo) }}" class="rounded-circle mb-3"
-                                    style="width:130px;height:130px;object-fit:cover;">
+                                <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                    class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
                             @else
                                 <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
                                     style="width:130px;height:130px;">
@@ -196,8 +196,8 @@
                                     </label>
 
                                     @if ($admission->photo)
-                                        <img src="{{ asset('storage/' . $admission->photo) }}" class="img-thumbnail"
-                                            style="max-height:180px;">
+                                        <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                            class="img-thumbnail" style="max-height:180px;">
                                     @endif
 
                                 </div>
@@ -209,8 +209,8 @@
                                     </label>
 
                                     @if ($admission->signature)
-                                        <img src="{{ asset('storage/' . $admission->signature) }}" class="img-thumbnail"
-                                            style="max-height:150px;">
+                                        <img src="{{ asset('storage/app/public/' . $admission->signature) }}"
+                                            class="img-thumbnail" style="max-height:150px;">
                                     @endif
 
                                 </div>
