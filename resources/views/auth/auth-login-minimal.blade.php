@@ -45,7 +45,7 @@
                         <img src="assets/images/logo-abbr.png" alt="" class="img-fluid">
                     </div>
                     <div class="card-body p-sm-5">
-                        <h2 class="fs-20 fw-bolder mb-4">Login</h2>
+                        <h2 class="fs-20 fw-bolder mb-4 text-center">Login</h2>
 
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
