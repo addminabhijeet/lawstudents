@@ -92,18 +92,6 @@
                                             <label class="text-muted small mb-1">Email</label>
                                             <p class="mb-0 fw-semibold">{{ old('email', $student->email ?? '') }}</p>
                                         </div>
-
-                                        <div class="col-lg-6">
-                                            <label class="text-muted small mb-1">Password</label>
-                                            <p class="mb-0 fw-semibold">{{ $defaultpassword }}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-lg-6">
-                                            <label class="text-muted small mb-1">Confirm Password</label>
-                                            <p class="mb-0 fw-semibold">{{ $defaultpassword }}</p>
-                                        </div>
                                     </div>
 
                                 </div>
