@@ -112,24 +112,24 @@
                                     <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
                                         <div class="row">
                                             @foreach ($courses as $course)
-                                                <div class="col-md-6">
-                                                    <div class="form-check mb-2 p-2 border rounded">
-                                                        <input class="form-check-input course-checkbox"
-                                                            type="checkbox" name="course_ids[]"
-                                                            value="{{ $course->id }}"
-                                                            data-price="{{ $course->price }}"
-                                                            id="course{{ $course->id }}">
+                                            <div class="col-md-6">
+                                                <div class="form-check mb-2 p-2 border rounded">
+                                                    <input class="form-check-input course-checkbox"
+                                                        type="checkbox" name="course_ids[]"
+                                                        value="{{ $course->id }}"
+                                                        data-price="{{ $course->price }}"
+                                                        id="course{{ $course->id }}">
 
-                                                        <label class="form-check-label fw-semibold"
-                                                            for="course{{ $course->id }}">
-                                                            {{ $course->title }}
-                                                            <br>
-                                                            <small class="text-muted">
-                                                                ₹{{ $course->price }} | {{ $course->duration }}
-                                                            </small>
-                                                        </label>
-                                                    </div>
+                                                    <label class="form-check-label fw-semibold"
+                                                        for="course{{ $course->id }}">
+                                                        {{ $course->title }}
+                                                        <br>
+                                                        <small class="text-muted">
+                                                            ₹{{ $course->price }} | {{ $course->duration }}
+                                                        </small>
+                                                    </label>
                                                 </div>
+                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -192,11 +192,11 @@
                                     <div class="text-center">
 
                                         @if ($admission->photo)
-                                            <img id="photoPreview" src="{{ asset('storage/' . $admission->photo) }}"
-                                                class="img-thumbnail" style="max-height: 180px;">
+                                        <img id="photoPreview" src="{{ asset('storage/' . $admission->photo) }}"
+                                            class="img-thumbnail" style="max-height: 180px;">
                                         @else
-                                            <img id="photoPreview" class="img-thumbnail d-none"
-                                                style="max-height: 180px;">
+                                        <img id="photoPreview" class="img-thumbnail d-none"
+                                            style="max-height: 180px;">
                                         @endif
 
                                     </div>
@@ -248,14 +248,14 @@
 
                                 <!-- Declaration -->
                                 @if (isset($declaration))
-                                    <div class="form-check mt-4">
-                                        <input class="form-check-input" type="checkbox" name="declaration_accept"
-                                            id="declarationCheck" required>
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" name="declaration_accept"
+                                        id="declarationCheck" required>
 
-                                        <label class="form-check-label" for="declarationCheck">
-                                            {!! $declaration->declaration !!}
-                                        </label>
-                                    </div>
+                                    <label class="form-check-label" for="declarationCheck">
+                                        {!! $declaration->declaration !!}
+                                    </label>
+                                </div>
                                 @endif
 
                             </div>
@@ -387,5 +387,40 @@
 
         reader.readAsDataURL(file);
     }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const checkboxes = document.querySelectorAll('.course-checkbox');
+        const subtotalEl = document.getElementById('subtotal');
+        const discountEl = document.getElementById('discount');
+        const grandTotalEl = document.getElementById('grandtotal');
+        const discountInput = document.getElementById('customDiscount');
+
+        function calculateFees() {
+            let subtotal = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    subtotal += parseFloat(cb.dataset.price);
+                }
+            });
+
+            let discountPercent = parseFloat(discountInput.value) || 0;
+            let discount = subtotal * (discountPercent / 100);
+            let grandTotal = subtotal - discount;
+
+            subtotalEl.innerText = subtotal.toFixed(2);
+            discountEl.innerText = discount.toFixed(2);
+            grandTotalEl.innerText = grandTotal.toFixed(2);
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', calculateFees);
+        });
+
+        discountInput.addEventListener('input', calculateFees);
+
+    });
 </script>
 @include('layouts.partials.admin.theme')
