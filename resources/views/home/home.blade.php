@@ -549,10 +549,10 @@
             <div class="row">
                 <div class="col-lg-6 m-auto">
                     <div class="team6-header text-center">
-                        <span data-aos="fade-up" data-aos-duration="800">Our Experienced Team</span>
+                        <span data-aos="fade-up" data-aos-duration="800">Meet Our Expert Instructors</span>
                         <h2 data-aos="fade-up" data-aos-duration="1000">
-                            Defend Your Rights Our Dedicated Legal
-                            <span class="defence">Team</span>
+                            Learn From the Best in
+                            <span class="defence">Legal Education</span>
                         </h2>
                     </div>
                 </div>
@@ -562,32 +562,17 @@
                     <div class="team6-main-boxarea">
                         <div class="team6-boxarea">
                             <div class="team6-img">
-                                <img src="/img/images/team6-img1.png" alt="" />
+                                <img src="/img/images/team6-img1.png" alt="Instructor 1" />
                             </div>
                             <div class="team6-images">
                                 <img src="/img/bacground/polygon3.png" alt="" class="polygon3" />
                                 <img src="/img/bacground/polygon4.png" alt="" class="polygon4" />
                             </div>
-                            <div class="social-links">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                         <div class="team-content text-center">
-                            <a href="">Jofra Archer</a>
-                            <p>Founder Partner</p>
+                            <a href="">Prof. Jofra Archer</a>
+                            <p>Criminal Law Specialist</p>
                         </div>
                     </div>
                 </div>
@@ -596,32 +581,17 @@
                     <div class="team6-main-boxarea">
                         <div class="team6-boxarea">
                             <div class="team6-img">
-                                <img src="/img/images/team6-img2.png" alt="" />
+                                <img src="/img/images/team6-img2.png" alt="Instructor 2" />
                             </div>
                             <div class="team6-images">
                                 <img src="/img/bacground/polygon3.png" alt="" class="polygon3" />
                                 <img src="/img/bacground/polygon4.png" alt="" class="polygon4" />
                             </div>
-                            <div class="social-links">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                         <div class="team-content text-center">
-                            <a href="">Mitchel Starc</a>
-                            <p>Senior Attorneys</p>
+                            <a href="">Dr. Mitchel Starc</a>
+                            <p>Corporate & Business Law</p>
                         </div>
                     </div>
                 </div>
@@ -630,32 +600,17 @@
                     <div class="team6-main-boxarea">
                         <div class="team6-boxarea">
                             <div class="team6-img">
-                                <img src="/img/images/team6-img1.png" alt="" />
+                                <img src="/img/images/team6-img1.png" alt="Instructor 3" />
                             </div>
                             <div class="team6-images">
                                 <img src="/img/bacground/polygon3.png" alt="" class="polygon3" />
                                 <img src="/img/bacground/polygon4.png" alt="" class="polygon4" />
                             </div>
-                            <div class="social-links">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+
                         </div>
                         <div class="team-content text-center">
                             <a href="">MD. Saifuddin</a>
-                            <p>Personal Injury Law</p>
+                            <p>Personal Injury Law Expert</p>
                         </div>
                     </div>
                 </div>
