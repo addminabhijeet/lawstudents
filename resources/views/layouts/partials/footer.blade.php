@@ -12,15 +12,34 @@
                                     <img src="/img/logo/logo5.png" alt=""
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </div>
+
+                                @php
+                                    $user = \App\Models\User::first();
+                                    $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
+                                    $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
+                                    $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
+                                    $pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
+                                    $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
+                                    $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
+                                    $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+                                    $description = !empty($user->description)
+                                        ? $user->description
+                                        : 'Revolutionize Your Future: Harness the Power of Technology for Unparalleled
+                                            Growth and Success!';
+                                @endphp
+
                                 <div class="footer-text-area">
-                                    <p>Include any additional information that may be relevant or helpful for visitors,
-                                        such as FAQs, pricing options.</p>
+                                    <p>{{ $description }}</p>
                                     <div class="social-list-area">
                                         <ul>
-                                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-                                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                            <li><a href="{{ $facebook }}"><i
+                                                        class="fa-brands fa-facebook-f"></i></a></li>
+                                            <li><a href="{{ $twitter }}"><i class="fa-brands fa-x-twitter"></i></a>
+                                            </li>
+                                            <li><a href="{{ $linkedin }}"><i class="fa-brands fa-linkedin"></i></a>
+                                            </li>
+                                            <li><a href="{{ $instagram }}"><i class="fa-brands fa-instagram"></i></a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -44,12 +63,12 @@
                                 <h3>Get In Touch</h3>
                                 <ul>
                                     <li><img src="/img/icons/footer-email2.svg" alt=""><a
-                                            href="maito:demoLaw Students@gmail.com">demoLaw Students@gmail.com</a></li>
+                                            href="maito:{{ $email }}">{{ $email }}</a></li>
                                     <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">8708
                                             Technology Forest <br> Pl Suite 125 -G, The <br> Woodlands, TX 77381</a>
                                     </li>
                                     <li><img src="/img/icons/footer-phn.svg" alt=""><a
-                                            href="tel:123-456-7890">123-456-7890</a></li>
+                                            href="tel:{{ $mobile }}">{{ $mobile }}</a></li>
                                 </ul>
                             </div>
                         </div>
