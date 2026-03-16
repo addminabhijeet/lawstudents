@@ -11,33 +11,39 @@
         @if ($banner && $banner->image_1)
             <div class="welcome7-section-area"
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_1) }}');
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 100%;
-                min-height: 600px;">
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 100%;
+                    min-height: 600px;
+
+                ">
             </div>
         @endif
 
         @if ($banner && $banner->image_2)
             <div class="welcome7-section-area"
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_2) }}');
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 100%;
-                min-height: 600px;">
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 100%;
+                    min-height: 600px;
+
+                ">
             </div>
         @endif
 
         @if ($banner && $banner->image_3)
             <div class="welcome7-section-area"
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_3) }}');
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 100%;
-                min-height: 600px;">
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    width: 100%;
+                    min-height: 600px;
+
+                ">
             </div>
         @endif
 
