@@ -107,9 +107,9 @@ class CourseController extends Controller
     public function storebanner(Request $request)
     {
         $request->validate([
-            'image_1' => ['nullable', 'image', 'max:2048'],
-            'image_2' => ['nullable', 'image', 'max:2048'],
-            'image_3' => ['nullable', 'image', 'max:2048'],
+            'image_1' => ['nullable', 'image', ],
+            'image_2' => ['nullable', 'image', ],
+            'image_3' => ['nullable', 'image', ],
         ]);
 
         $banner = Banner::first();
