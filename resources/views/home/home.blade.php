@@ -91,7 +91,7 @@
                     <div class="about7-header-area">
                         <span data-aos="fade-left" data-aos-duration="600">About Us</span>
                         <h2 data-aos="fade-left" data-aos-duration="800">
-                            Trusted Law Experts<span class="defence"> Guiding</span>
+                            Trusted Law Experts <span class="defence"> Guiding</span>
                             Your Learning Journey
                         </h2>
                         <p data-aos="fade-left" data-aos-duration="900">
@@ -304,24 +304,26 @@
                     <div class="work7-header text-center">
                         <span data-aos="fade-up" data-aos-duration="800">How It Works</span>
                         <h2 data-aos="fade-up" data-aos-duration="1000">
-                            Experience Criminal Defense Attorneys Ready to
-                            <span class="defence">Fight</span>
+                            Learn Law Effectively with Our Expert
+                            <span class="defence">Guidance</span>
                         </h2>
                     </div>
                 </div>
             </div>
             <div class="row">
+                <!-- Step 1 & 2 -->
                 <div class="col-lg-3">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="space50"></div>
                             <div class="work-author-box" data-aos="fade-right" data-aos-duration="1000">
                                 <div class="work-content">
-                                    <a href="">Consultation & Assessment</a>
-                                    <p>Schedule a consultation where we are law discuss your case detail.</p>
+                                    <a href="">Enroll & Get Orientation</a>
+                                    <p>Sign up for your course and get an introduction to the curriculum and learning
+                                        platform.</p>
                                 </div>
                                 <div class="works-icon">
-                                    <img src="/img/icons/works-img1.svg" alt="" />
+                                    <img src="/img/icons/works-img1.svg" alt="Orientation Icon" />
                                 </div>
                                 <div class="point">
                                     <h2>01</h2>
@@ -332,11 +334,12 @@
                         <div class="col-lg-12">
                             <div class="work-author-box" data-aos="fade-right" data-aos-duration="1200">
                                 <div class="work-content">
-                                    <a href="">Tailored Legal Strategies</a>
-                                    <p>Our firm provides aggressive is representation in court coupled</p>
+                                    <a href="">Structured Learning Modules</a>
+                                    <p>Follow step-by-step lessons covering all key areas of law with practical examples.
+                                    </p>
                                 </div>
                                 <div class="works-icon icon2">
-                                    <img src="/img/icons/work-img2.svg" alt="" />
+                                    <img src="/img/icons/work-img2.svg" alt="Modules Icon" />
                                 </div>
                                 <div class="point">
                                     <h2>02</h2>
@@ -345,11 +348,13 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Center Image -->
                 <div class="col-lg-6">
                     <div class="works-modify-area">
                         <div class="work-img">
-                            <img src="/img/images/works-img1.png" alt="" class="works-img1" data-aos="zoom-out"
-                                data-aos-duration="1000" />
+                            <img src="/img/images/works-img1.png" alt="Learning Illustration" class="works-img1"
+                                data-aos="zoom-out" data-aos-duration="1000" />
                             <img src="/img/elements/elementor35.png" alt=""
                                 class="elementor35 aniamtion-key-5" />
                         </div>
@@ -359,17 +364,20 @@
                         <img src="/img/elements/elementor39.png" alt="" class="elementor39 d-none d-lg-block" />
                     </div>
                 </div>
+
+                <!-- Step 3 & 4 -->
                 <div class="col-lg-3">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="space50"></div>
                             <div class="work-author-box box2" data-aos="fade-left" data-aos-duration="1000">
                                 <div class="work-content">
-                                    <a href="">Implementation Execution</a>
-                                    <p>Expect clear and open lawyer communication at every step.</p>
+                                    <a href="">Practice & Assess</a>
+                                    <p>Apply your learning through quizzes, case studies, and exercises to reinforce
+                                        understanding.</p>
                                 </div>
                                 <div class="works-icon icon3">
-                                    <img src="/img/icons/works-img3.svg" alt="" />
+                                    <img src="/img/icons/works-img3.svg" alt="Practice Icon" />
                                 </div>
                                 <div class="point">
                                     <h2>03</h2>
@@ -380,11 +388,12 @@
                         <div class="col-lg-12">
                             <div class="work-author-box box2" data-aos="fade-left" data-aos-duration="1200">
                                 <div class="work-content">
-                                    <a href="">Our Legal Support</a>
-                                    <p>Your satisfaction and peace of a lawyer mind matter most to us.</p>
+                                    <a href="">Mentorship & Support</a>
+                                    <p>Get expert guidance, feedback, and support to master legal concepts and boost your
+                                        confidence.</p>
                                 </div>
                                 <div class="works-icon icon4">
-                                    <img src="/img/icons/works-img4.svg" alt="" />
+                                    <img src="/img/icons/works-img4.svg" alt="Support Icon" />
                                 </div>
                                 <div class="point">
                                     <h2>04</h2>
