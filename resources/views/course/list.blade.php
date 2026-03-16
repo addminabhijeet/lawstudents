@@ -25,11 +25,7 @@
                         <i class="feather-plus me-2"></i>
                         <span>Add Category</span>
                     </a>
-
                 </div>
-
-
-
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
 
@@ -49,10 +45,7 @@
                                 </a>
                             </li>
                         @endforeach
-
-
                     </ul>
-
                 </div>
             </div>
             <!-- [ Content Sidebar  ] end -->
@@ -80,92 +73,6 @@
                                             placeholder="Search...">
                                     </div>
                                 </form>
-                            </div>
-                            <a href="javascript:void(0)" class="d-none d-sm-flex">
-                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    title="Newest">
-                                    <i class="feather feather-chevron-left"></i>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0)" class="d-none d-sm-flex">
-                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    title="Oldest">
-                                    <i class="feather feather-chevron-right"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown d-none d-sm-flex">
-                                <a href="javascript:void(0)"
-                                    class="btn btn-light-brand btn-sm rounded-pill dropdown-toggle"
-                                    data-bs-toggle="dropdown" data-bs-offset="0,23">Newest</a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="javascript:void(0)">Title</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)">Priority</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)">Category</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)">Time & Date</a></li>
-                                    <li class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item active" href="javascript:void(0)">Newest</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)">Oldest</a></li>
-                                    <li class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)">Ascending</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)">Descending</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown d-none d-sm-flex">
-                                <a href="javascript:void(0)" class="d-flex" data-bs-toggle="dropdown"
-                                    data-bs-offset="0,22" data-bs-auto-close="outside">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                        data-bs-trigger="hover" title="More Options">
-                                        <i class="feather feather-more-vertical"></i>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-plus me-3"></i>
-                                        <span>Add to Group</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-user-plus me-3"></i>
-                                        <span>Add to Contact</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-eye-off me-3"></i>
-                                        <span>Make as Unread</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-sliders me-3"></i>
-                                        <span>Filter Messages</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-archive me-3"></i>
-                                        <span>Make as Archive</span>
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-slash me-3"></i>
-                                        <span>Report Spam</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-sliders me-3"></i>
-                                        <span>Report phishing</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-download me-3"></i>
-                                        <span>Download Messages</span>
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-bell-off me-3"></i>
-                                        <span>Mute Conversion</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-slash me-3"></i>
-                                        <span>Block Conversion</span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="feather feather-trash-2 me-3"></i>
-                                        <span>Delete Conversion</span>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -216,7 +123,6 @@
                                             </a>
                                         </div>
                                         <!-- END BUTTONS -->
-
                                     </div>
                                 </div>
                             @endforeach
@@ -309,7 +215,6 @@
                 </div>
             </div>
             <!-- End Modal Body -->
-
         </div>
     </div>
 </div>
@@ -395,7 +300,6 @@
                 </div>
             </div>
             <!-- End Modal Body -->
-
         </div>
     </div>
 </div>
@@ -442,7 +346,6 @@
                             <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="modal-footer">
@@ -453,7 +356,6 @@
                         Cancel
                     </button>
                 </div>
-
             </form>
         </div>
     </div>
