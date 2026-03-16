@@ -112,26 +112,24 @@
                                     <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
                                         <div class="row">
                                             @foreach ($courses as $course)
-                                            <div class="col-md-6">
-                                                <div class="form-check mb-2 p-2 border rounded">
-                                                    <input class="form-check-input course-checkbox"
-                                                        type="checkbox"
-                                                        name="course_ids[]"
-                                                        value="{{ $course->id }}"
-                                                        data-price="{{ $course->price }}"
-                                                        id="course{{ $course->id }}"
-                                                        {{ in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : '' }}>
+                                                <div class="col-md-6">
+                                                    <div class="form-check mb-2 p-2 border rounded">
+                                                        <input class="form-check-input course-checkbox" type="checkbox"
+                                                            name="course_ids[]" value="{{ $course->id }}"
+                                                            data-price="{{ $course->price }}"
+                                                            id="course{{ $course->id }}"
+                                                            {{ in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : '' }}>
 
-                                                    <label class="form-check-label fw-semibold"
-                                                        for="course{{ $course->id }}">
-                                                        {{ $course->title }}
-                                                        <br>
-                                                        <small class="text-muted">
-                                                            ₹{{ $course->price }} | {{ $course->duration }}
-                                                        </small>
-                                                    </label>
+                                                        <label class="form-check-label fw-semibold"
+                                                            for="course{{ $course->id }}">
+                                                            {{ $course->title }}
+                                                            <br>
+                                                            <small class="text-muted">
+                                                                ₹{{ $course->price }} | {{ $course->duration }}
+                                                            </small>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -194,11 +192,11 @@
                                     <div class="text-center">
 
                                         @if ($admission->photo)
-                                        <img id="photoPreview" src="{{ asset('storage/' . $admission->photo) }}"
-                                            class="img-thumbnail" style="max-height: 180px;">
+                                            <img id="photoPreview" src="{{ asset('storage/' . $admission->photo) }}"
+                                                class="img-thumbnail" style="max-height: 180px;">
                                         @else
-                                        <img id="photoPreview" class="img-thumbnail d-none"
-                                            style="max-height: 180px;">
+                                            <img id="photoPreview" class="img-thumbnail d-none"
+                                                style="max-height: 180px;">
                                         @endif
 
                                     </div>
@@ -217,14 +215,12 @@
 
                                     <div class="text-center">
                                         @if ($admission->signature)
-                                        <img id="signPreview"
-                                            src="{{ asset('storage/' . $admission->signature) }}"
-                                            class="img-thumbnail"
-                                            style="max-height:150px;">
+                                            <img id="signPreview"
+                                                src="{{ asset('storage/' . $admission->signature) }}"
+                                                class="img-thumbnail" style="max-height:150px;">
                                         @else
-                                        <img id="signPreview"
-                                            class="img-thumbnail d-none"
-                                            style="max-height:150px;">
+                                            <img id="signPreview" class="img-thumbnail d-none"
+                                                style="max-height:150px;">
                                         @endif
                                     </div>
                                 </div>
@@ -254,18 +250,34 @@
                                         <span>Total Payable:</span>
                                         <span>₹<span id="grandtotal">0</span></span>
                                     </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Paid Amount:</span>
+                                        <input type="number" name="paidamount" id="paidamount"
+                                            class="form-control w-50" min="0"
+                                            value="{{ old('paidamount', $admission->paidamount ?? 0) }}">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Remaining Amount:</span>
+                                        <span>₹<span
+                                                id="remainingamount">{{ old('remamount', $admission->remamount ?? 0) }}</span></span>
+                                    </div>
+
+                                    <input type="hidden" name="remamount" id="remamount"
+                                        value="{{ old('remamount', $admission->remamount ?? 0) }}">
                                 </div>
 
                                 <!-- Declaration -->
                                 @if (isset($declaration))
-                                <div class="form-check mt-4">
-                                    <input class="form-check-input" type="checkbox" name="declaration_accept"
-                                        id="declarationCheck" required>
+                                    <div class="form-check mt-4">
+                                        <input class="form-check-input" type="checkbox" name="declaration_accept"
+                                            id="declarationCheck" required>
 
-                                    <label class="form-check-label" for="declarationCheck">
-                                        {!! $declaration->declaration !!}
-                                    </label>
-                                </div>
+                                        <label class="form-check-label" for="declarationCheck">
+                                            {!! $declaration->declaration !!}
+                                        </label>
+                                    </div>
                                 @endif
 
                             </div>
@@ -408,6 +420,7 @@
         const discountInput = document.getElementById('customDiscount');
 
         function calculateFees() {
+
             let subtotal = 0;
 
             checkboxes.forEach(cb => {
@@ -420,16 +433,24 @@
             let discount = subtotal * (discountPercent / 100);
             let grandTotal = subtotal - discount;
 
+            let paid = parseFloat(document.getElementById('paidamount')?.value) || 0;
+            let remaining = grandTotal - paid;
+
+            if (remaining < 0) remaining = 0;
+
             subtotalEl.innerText = subtotal.toFixed(2);
             discountEl.innerText = discount.toFixed(2);
             grandTotalEl.innerText = grandTotal.toFixed(2);
+
+            document.getElementById('remainingamount').innerText = remaining.toFixed(2);
+            document.getElementById('remamount').value = remaining.toFixed(2);
         }
 
         checkboxes.forEach(cb => {
             cb.addEventListener('change', calculateFees);
         });
 
-        discountInput.addEventListener('input', calculateFees);
+        document.getElementById('paidamount')?.addEventListener('input', calculateFees);
 
         // ADD THIS
         calculateFees();
