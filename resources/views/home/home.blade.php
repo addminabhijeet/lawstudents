@@ -16,7 +16,7 @@
                     background-size: cover;
                     width: 100%;
                     min-height: 600px;
-height: 60vh; 
+
                 ">
             </div>
         @endif
@@ -29,7 +29,7 @@ height: 60vh;
                     background-size: cover;
                     width: 100%;
                     min-height: 600px;
-height: 60vh; 
+
                 ">
             </div>
         @endif
@@ -42,12 +42,38 @@ height: 60vh;
                     background-size: cover;
                     width: 100%;
                     min-height: 600px;
-height: 60vh; 
+
                 ">
             </div>
         @endif
 
     </div>
+
+    <style>
+        /* Desktop & large screens */
+        .welcome7-section-area {
+            width: 100%;
+            min-height: 600px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Tablet screens */
+        @media (max-width: 1024px) {
+            .welcome7-section-area {
+                min-height: 450px;
+            }
+        }
+
+        /* Mobile screens */
+        @media (max-width: 768px) {
+            .welcome7-section-area {
+                min-height: 300px;
+                /* shorter for mobile */
+            }
+        }
+    </style>
 
     <script>
         $('.car').owlCarousel({
