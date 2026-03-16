@@ -1,4 +1,4 @@
-@include('layouts.partials.student.dashboard')
+@include('layouts.partials.admin.dashboard')
 <main class="nxl-container">
     <!-- main containts -->
     <div class="nxl-content">
@@ -12,6 +12,21 @@
                     <li class="breadcrumb-item">Applications</li>
                     <li class="breadcrumb-item">View Student Registration</li>
                 </ul>
+            </div>
+            <div class="page-header-right ms-auto">
+                <div class="page-header-right-items">
+                    <div class="d-flex d-md-none">
+                        <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                            <i class="feather-arrow-left me-2"></i>
+                            <span>Back</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-md-none d-flex align-items-center">
+                    <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                        <i class="feather-align-right fs-20"></i>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- [ page-header ] end -->
@@ -90,8 +105,12 @@
                                             <p class="mb-0 fw-semibold">{{ $defaultpassword }}</p>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -105,18 +124,21 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             function togglePassword(toggleId, inputId) {
                 let toggle = document.getElementById(toggleId);
                 let input = document.getElementById(inputId);
+
                 if (toggle && input) {
                     toggle.addEventListener('click', function() {
                         input.type = input.type === 'password' ? 'text' : 'password';
                     });
                 }
             }
+
             togglePassword('toggleNewPassword', 'newPassword');
             togglePassword('toggleConfirmPassword', 'confirmPassword');
         });
     </script>
 </main>
-@include('layouts.partials.student.theme')
+@include('layouts.partials.admin.theme')
