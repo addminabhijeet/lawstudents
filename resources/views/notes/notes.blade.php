@@ -194,8 +194,45 @@
             </div>
 
             <div class="col-lg-12 m-auto">
-                <div class="pagination-area text-center">
-                    {{ $courses->links('vendor.pagination.bootstrap-5') }}
+                <div class="pagination-area">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+
+                            {{-- Previous Page Link --}}
+                            @if ($courses->onFirstPage())
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fa-regular fa-angle-left"></i></span>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $courses->previousPageUrl() }}">
+                                        <i class="fa-regular fa-angle-left"></i>
+                                    </a>
+                                </li>
+                            @endif
+
+                            {{-- Pagination Elements --}}
+                            @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
+                                <li class="page-item {{ $page == $courses->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            {{-- Next Page Link --}}
+                            @if ($courses->hasMorePages())
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $courses->nextPageUrl() }}">
+                                        <i class="fa-regular fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="page-item disabled">
+                                    <span class="page-link"><i class="fa-regular fa-angle-right"></i></span>
+                                </li>
+                            @endif
+
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
