@@ -192,7 +192,8 @@
                                     <div class="text-center">
 
                                         @if ($admission->photo)
-                                            <img id="photoPreview" src="{{ asset('storage/' . $admission->photo) }}"
+                                            <img id="photoPreview"
+                                                src="{{ asset('storage/app/public/' . $admission->photo) }}"
                                                 class="img-thumbnail" style="max-height: 180px;">
                                         @else
                                             <img id="photoPreview" class="img-thumbnail d-none"
@@ -216,7 +217,7 @@
                                     <div class="text-center">
                                         @if ($admission->signature)
                                             <img id="signPreview"
-                                                src="{{ asset('storage/' . $admission->signature) }}"
+                                                src="{{ asset('storage/app/public/' . $admission->signature) }}"
                                                 class="img-thumbnail" style="max-height:150px;">
                                         @else
                                             <img id="signPreview" class="img-thumbnail d-none"
