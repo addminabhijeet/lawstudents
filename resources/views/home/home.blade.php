@@ -16,7 +16,7 @@
                     background-size: cover;
                     width: 100%;
                     min-height: 600px;
-
+height: 60vh; 
                 ">
             </div>
         @endif
@@ -29,7 +29,7 @@
                     background-size: cover;
                     width: 100%;
                     min-height: 600px;
-
+height: 60vh; 
                 ">
             </div>
         @endif
@@ -42,7 +42,7 @@
                     background-size: cover;
                     width: 100%;
                     min-height: 600px;
-
+height: 60vh; 
                 ">
             </div>
         @endif
