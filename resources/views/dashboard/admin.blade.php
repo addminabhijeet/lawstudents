@@ -13,13 +13,13 @@
                     <li class="breadcrumb-item">Count View</li>
                 </ul>
             </div>
-            
+
         </div>
         <!-- [ page-header ] end -->
         <!-- [ Main Content ] start -->
         <div class="main-content">
             <div class="row">
-                <!-- [Total Students] start -->
+                <!-- Total Students -->
                 <div class="col-xxl-3 col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
@@ -35,13 +35,27 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Students</h3>
                                     </div>
                                 </div>
+                                <a href="javascript:void(0);">
+                                    <i class="feather-more-vertical"></i>
+                                </a>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="fs-12 fw-medium text-muted text-truncate-1-line">Students</span>
+                                    <div class="w-100 text-end">
+                                        <span class="fs-12 text-dark">{{ $studentsCount }}</span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-2 ht-3">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- [Total Students] end -->
 
-                <!-- Repeat similar structure for Admissions -->
+                <!-- Total Admissions -->
                 <div class="col-xxl-3 col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
@@ -57,12 +71,27 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Admissions</h3>
                                     </div>
                                 </div>
+                                <a href="javascript:void(0);">
+                                    <i class="feather-more-vertical"></i>
+                                </a>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="fs-12 fw-medium text-muted">Admissions</span>
+                                    <div class="w-100 text-end">
+                                        <span class="fs-12 text-dark">{{ $admissionsCount }}</span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-2 ht-3">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 100%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Payments -->
+                <!-- Total Payments -->
                 <div class="col-xxl-3 col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
@@ -78,12 +107,27 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Payments</h3>
                                     </div>
                                 </div>
+                                <a href="javascript:void(0);">
+                                    <i class="feather-more-vertical"></i>
+                                </a>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="fs-12 fw-medium text-muted">Payments</span>
+                                    <div class="w-100 text-end">
+                                        <span class="fs-12 text-dark">{{ $paymentsCount }}</span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-2 ht-3">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ID Cards -->
+                <!-- Total ID Cards -->
                 <div class="col-xxl-3 col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
@@ -99,12 +143,27 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total ID Cards</h3>
                                     </div>
                                 </div>
+                                <a href="javascript:void(0);">
+                                    <i class="feather-more-vertical"></i>
+                                </a>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="fs-12 fw-medium text-muted">ID Cards</span>
+                                    <div class="w-100 text-end">
+                                        <span class="fs-12 text-dark">{{ $idCardsCount }}</span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-2 ht-3">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Courses -->
+                <!-- Total Courses -->
                 <div class="col-xxl-3 col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
@@ -120,12 +179,28 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Courses</h3>
                                     </div>
                                 </div>
+                                <a href="javascript:void(0);">
+                                    <i class="feather-more-vertical"></i>
+                                </a>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="fs-12 fw-medium text-muted">Courses</span>
+                                    <div class="w-100 text-end">
+                                        <span class="fs-12 text-dark">{{ $coursesCount }}</span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-2 ht-3">
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 100%">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Notes -->
+                <!-- Total Notes -->
                 <div class="col-xxl-3 col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
@@ -140,6 +215,21 @@
                                         </div>
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Notes</h3>
                                     </div>
+                                </div>
+                                <a href="javascript:void(0);">
+                                    <i class="feather-more-vertical"></i>
+                                </a>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="fs-12 fw-medium text-muted">Notes</span>
+                                    <div class="w-100 text-end">
+                                        <span class="fs-12 text-dark">{{ $notesCount }}</span>
+                                    </div>
+                                </div>
+                                <div class="progress mt-2 ht-3">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"></div>
                                 </div>
                             </div>
                         </div>

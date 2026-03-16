@@ -6,11 +6,11 @@
         <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Dashboard</h5>
+                    <h5 class="m-b-10">Student</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item">Details</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -26,11 +26,6 @@
                             <span class="reportrange-picker-field"></span>
                         </div>
                         <div class="dropdown filter-dropdown">
-                            <a class="btn btn-md btn-light-brand" data-bs-toggle="dropdown" data-bs-offset="0, 10"
-                                data-bs-auto-close="outside">
-                                <i class="feather-filter me-2"></i>
-                                <span>Filter</span>
-                            </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <div class="dropdown-item">
                                     <div class="custom-control custom-checkbox">
