@@ -102,7 +102,9 @@ class StudentAdmissinController extends Controller
             $discountPercent = $request->input('discount_percent', 0);
             $discountAmount  = ($subTotal * $discountPercent) / 100;
             $grandTotal      = $subTotal - $discountAmount;
-            $courseId = $validated['course_ids'][0] ?? null;
+            $courseId = !empty($validated['course_ids'])
+                ? implode(',', $validated['course_ids'])
+                : null;
 
             $admission = StudentAdmission::create([
                 'student_id'      => $student->id,
