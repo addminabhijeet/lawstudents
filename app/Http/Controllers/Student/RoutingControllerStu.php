@@ -201,7 +201,7 @@ class RoutingControllerStu extends Controller
             'idcard'
         ));
     }
-    
+
     public function liststudent()
     {
         $student = auth('student')->user();
@@ -243,9 +243,9 @@ class RoutingControllerStu extends Controller
 
     public function viewpayment()
     {
-        $payment = Payment::where('id', Auth::guard('student')
-            ->id())->firstOrFail();
-        return view('paymentstu.view', compact('payment'));
+        $payments = Auth::guard('student')->user()->payments;
+
+        return view('paymentstu.view', compact('payments'));
     }
 
     public function listnotes()
