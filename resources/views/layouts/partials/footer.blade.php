@@ -15,6 +15,7 @@
 
                                 @php
                                     $user = \App\Models\User::first();
+                                    $address = !empty($user->webaddress) ? $user->webaddress : 'email@gmail.com';
                                     $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
                                     $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
                                     $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
@@ -64,7 +65,7 @@
                                 <ul>
                                     <li><img src="/img/icons/footer-email2.svg" alt=""><a
                                             href="maito:{{ $email }}">{{ $email }}</a></li>
-                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">{{ $webaddress }}</a>
+                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">{{ $address }}</a>
                                     </li>
                                     <li><img src="/img/icons/footer-phn.svg" alt=""><a
                                             href="tel:{{ $mobile }}">{{ $mobile }}</a></li>
