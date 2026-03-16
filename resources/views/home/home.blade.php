@@ -413,10 +413,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="case-study-header">
-                        <span data-aos="fade-up" data-aos-duration="800">Our Case Studies</span>
+                        <span data-aos="fade-up" data-aos-duration="800">Student Success Stories</span>
                         <h2 data-aos="fade-up" data-aos-duration="1000">
-                            Defense: Seasoned Lawyers Fighting for Your
-                            <span class="defence">Freedom</span>
+                            Law Learning: Expert Courses Helping You
+                            <span class="defence">Excel</span>
                         </h2>
                     </div>
                 </div>
@@ -424,10 +424,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="casestudy-carousel-area owl-carousel">
+
                         <div class="case7-study-area">
                             <div class="case-study7-boxarea">
                                 <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img1.png" alt="" />
+                                    <img src="/img/images/casestudy-carousel-img1.png"
+                                        alt="Criminal Law Course Success" />
                                 </div>
                                 <div class="polygon-author"
                                     style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
@@ -437,7 +439,7 @@
                                     </div>
                                 </div>
                                 <div class="case-study-carousel-content text-center">
-                                    <a href="">Precision Legal Counsel</a>
+                                    <a href="">Criminal Law Mastery</a>
                                 </div>
                             </div>
                         </div>
@@ -445,7 +447,7 @@
                         <div class="case7-study-area">
                             <div class="case-study7-boxarea">
                                 <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img2.png" alt="" />
+                                    <img src="/img/images/casestudy-carousel-img2.png" alt="Family Law Course Success" />
                                 </div>
                                 <div class="polygon-author"
                                     style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
@@ -455,7 +457,7 @@
                                     </div>
                                 </div>
                                 <div class="case-study-carousel-content text-center">
-                                    <a href="">Vanguard Legal Advocates</a>
+                                    <a href="">Family Law Excellence</a>
                                 </div>
                             </div>
                         </div>
@@ -463,7 +465,8 @@
                         <div class="case7-study-area">
                             <div class="case-study7-boxarea">
                                 <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img3.png" alt="" />
+                                    <img src="/img/images/casestudy-carousel-img3.png"
+                                        alt="Corporate Law Course Success" />
                                 </div>
                                 <div class="polygon-author"
                                     style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
@@ -473,7 +476,7 @@
                                     </div>
                                 </div>
                                 <div class="case-study-carousel-content text-center">
-                                    <a href="">Paramount Legal Services</a>
+                                    <a href="">Corporate Law Achievers</a>
                                 </div>
                             </div>
                         </div>
@@ -481,7 +484,8 @@
                         <div class="case7-study-area">
                             <div class="case-study7-boxarea">
                                 <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img1.png" alt="" />
+                                    <img src="/img/images/casestudy-carousel-img1.png"
+                                        alt="Intellectual Property Law Success" />
                                 </div>
                                 <div class="polygon-author"
                                     style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
@@ -491,24 +495,7 @@
                                     </div>
                                 </div>
                                 <div class="case-study-carousel-content text-center">
-                                    <a href="">Elite Counsel Solutions</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="case7-study-area">
-                            <div class="case-study7-boxarea">
-                                <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img1.png" alt="" />
-                                </div>
-                                <div class="polygon-author"
-                                    style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
-                                    <div class="polygon-arrow">
-                                        <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
-                                        <a href="">Read More</a>
-                                    </div>
-                                </div>
-                                <div class="case-study-carousel-content text-center">
-                                    <a href="">Precision Legal Counsel</a>
+                                    <a href="">Intellectual Property Mastery</a>
                                 </div>
                             </div>
                         </div>
@@ -516,7 +503,8 @@
                         <div class="case7-study-area">
                             <div class="case-study7-boxarea">
                                 <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img2.png" alt="" />
+                                    <img src="/img/images/casestudy-carousel-img2.png"
+                                        alt="Environmental Law Course Success" />
                                 </div>
                                 <div class="polygon-author"
                                     style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
@@ -526,7 +514,7 @@
                                     </div>
                                 </div>
                                 <div class="case-study-carousel-content text-center">
-                                    <a href="">Vanguard Legal Advocates</a>
+                                    <a href="">Environmental Law Achievements</a>
                                 </div>
                             </div>
                         </div>
@@ -534,7 +522,7 @@
                         <div class="case7-study-area">
                             <div class="case-study7-boxarea">
                                 <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img3.png" alt="" />
+                                    <img src="/img/images/casestudy-carousel-img3.png" alt="Civil Law Course Success" />
                                 </div>
                                 <div class="polygon-author"
                                     style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
@@ -544,28 +532,12 @@
                                     </div>
                                 </div>
                                 <div class="case-study-carousel-content text-center">
-                                    <a href="">Paramount Legal Services</a>
+                                    <a href="">Civil Law Success Stories</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="case7-study-area">
-                            <div class="case-study7-boxarea">
-                                <div class="case-study-casousel-img">
-                                    <img src="/img/images/casestudy-carousel-img1.png" alt="" />
-                                </div>
-                                <div class="polygon-author"
-                                    style="background-image: url(/img/elements/elementor33.svg); background-position: center; background-repeat: no-repeat; background-size: cover; display: inline-block;">
-                                    <div class="polygon-arrow">
-                                        <span><a href=""><i class="fa-regular fa-arrow-right"></i></a></span>
-                                        <a href="">Read More</a>
-                                    </div>
-                                </div>
-                                <div class="case-study-carousel-content text-center">
-                                    <a href="">Elite Counsel Solutions</a>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Repeat as needed -->
                     </div>
                 </div>
             </div>
