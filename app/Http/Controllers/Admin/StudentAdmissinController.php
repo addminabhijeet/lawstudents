@@ -74,15 +74,15 @@ class StudentAdmissinController extends Controller
             ]);
 
 
-            if ($validated['admission_status'] === 'approved') {
+            // if ($validated['admission_status'] === 'approved') {
 
-                if (
-                    !$request->boolean('email_verified') ||
-                    !$request->boolean('phone_verified')
-                ) {
-                    abort(422, 'Email and Phone OTP must be verified before approval.');
-                }
-            }
+            //     if (
+            //         !$request->boolean('email_verified') ||
+            //         !$request->boolean('phone_verified')
+            //     ) {
+            //         abort(422, 'Email and Phone OTP must be verified before approval.');
+            //     }
+            // }
 
 
             $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
