@@ -102,8 +102,8 @@ class StudentAdmissinController extends Controller
             $discountPercent = $request->input('discount_percent', 0);
             $discountAmount  = ($subTotal * $discountPercent) / 100;
             $grandTotal      = $subTotal - $discountAmount;
-            $courseId = !empty($validated['course_ids'])
-                ? implode(',', $validated['course_ids'])
+            $courseId = !empty($admission->course_ids) && is_array($admission->course_ids)
+                ? implode(',', $admission->course_ids)
                 : null;
 
             $admission = StudentAdmission::create([
@@ -358,35 +358,33 @@ class StudentAdmissinController extends Controller
                 }
             }
 
-            if (!$paymentExists) {
 
-                $courseId = !empty($admission->course_ids)
-                    ? implode(',', $admission->course_ids)
-                    : null;
 
-                Payment::create([
+            $courseId = !empty($admission->course_ids) && is_array($admission->course_ids)
+                ? implode(',', $admission->course_ids)
+                : null;
+
+            Payment::updateOrCreate(
+                [
                     'student_id' => $admission->student_id,
-                    'course_id'  => $courseId,
-
+                    'invoice_label' => 'Admission Fee'
+                ],
+                [
+                    'course_id' => $courseId,
                     'invoice_number' => $invoiceNumber,
-                    'invoice_label' => 'Admission Fee',
                     'invoice_product' => implode(', ', $courseTitles),
-
                     'issue_date' => now(),
                     'due_date' => now()->addDays(7),
-
                     'to_name' => $admission->full_name,
                     'to_email' => $admission->email,
                     'to_phone' => $admission->phone,
                     'to_address' => $admission->address_line1,
-
                     'sub_total' => $subtotal,
                     'grand_total' => $subtotal,
-
                     'currency' => 'INR',
                     'payment_status' => 'pending',
-                ]);
-            }
+                ]
+            );
         }
 
         return redirect()->back()->with('success', 'Admission updated successfully.');
