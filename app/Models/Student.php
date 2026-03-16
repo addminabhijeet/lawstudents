@@ -77,4 +77,8 @@ class Student extends Authenticatable
         return $this->hasMany(Payment::class, 'student_id');
     }
 
+    public function admission()
+    {
+        return $this->hasOne(StudentAdmission::class, 'student_id');
+    }
 }
