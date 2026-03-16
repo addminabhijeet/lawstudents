@@ -101,8 +101,8 @@ class StudentAdmissinController extends Controller
                 'address_line1'   => $validated['address_line1'],
                 'admission_status' => $validated['admission_status'],
                 'course_ids'      => $validated['course_ids'] ?? [],
-                'paidamount'      => $request->paidamount ?? 0, 
-                'remamount'      => $request->remamount ?? 0, 
+                'paidamount'      => $request->paidamount ?? 0,
+                'remamount'      => $request->remamount ?? 0,
                 'email_verified'  => $request->boolean('email_verified'),
                 'phone_verified'  => $request->boolean('phone_verified'),
             ]);
@@ -271,7 +271,13 @@ class StudentAdmissinController extends Controller
 
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'signature' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+
+            'paidamount' => 'nullable|numeric|min:0',
+            'remamount' => 'nullable|numeric|min:0',
         ]);
+
+        $data['paidamount'] = $request->paidamount ?? 0;
+        $data['remamount'] = $request->remamount ?? 0;
 
         if ($request->has('course_ids')) {
             $data['course_ids'] = $request->course_ids;
