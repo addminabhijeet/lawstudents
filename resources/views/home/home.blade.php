@@ -13,21 +13,21 @@
             @if ($banner && $banner->image_1)
                 <div class="carousel-item active text-center">
                     <img src="{{ asset('storage/app/public/' . $banner->image_1) }}" class="img-fluid"
-                        style="width:100%; height:600px; object-fit:contain;">
+                        style="width:100%; height:100px;">
                 </div>
             @endif
 
             @if ($banner && $banner->image_2)
                 <div class="carousel-item {{ !$banner->image_1 ? 'active' : '' }} text-center">
                     <img src="{{ asset('storage/app/public/' . $banner->image_2) }}" class="img-fluid"
-                        style="width:100%; height:600px; object-fit:contain;">
+                        style="width:100%; height:100px;">
                 </div>
             @endif
 
             @if ($banner && $banner->image_3)
                 <div class="carousel-item {{ !$banner->image_1 && !$banner->image_2 ? 'active' : '' }} text-center">
                     <img src="{{ asset('storage/app/public/' . $banner->image_3) }}" class="img-fluid"
-                        style="width:100%; height:600px; object-fit:contain;">
+                        style="width:100%; height:100px;">
                 </div>
             @endif
 
