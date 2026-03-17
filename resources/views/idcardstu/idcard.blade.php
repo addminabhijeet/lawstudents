@@ -22,7 +22,7 @@
                 </div>
             @endif
 
-            @if (!$notFound && $payment)
+            @if (!$notFound && $idcard)
                 <div class="row justify-content-center">
 
                     <div class="col-auto">
