@@ -248,6 +248,11 @@
 
                                     <hr>
 
+                                    <!-- Hidden fields for backend -->
+                                    <input type="hidden" name="discount_percent" id="discountPercentInput"
+                                        value="10">
+                                    <input type="hidden" name="discount" id="discountInput" value="0">
+
                                     <div class="d-flex justify-content-between fw-bold">
                                         <span>Total Payable:</span>
                                         <span>₹<span id="grandtotal">0.00</span></span>
@@ -454,6 +459,10 @@
             grandTotalEl.innerText = grandTotal.toFixed(2);
             remainingEl.innerText = remaining.toFixed(2);
             hiddenRemInput.value = remaining.toFixed(2);
+
+            // Update hidden inputs for backend
+            document.getElementById('discountPercentInput').value = discountPercent.toFixed(2);
+            document.getElementById('discountInput').value = discount.toFixed(2);
         }
 
         // Event listeners
