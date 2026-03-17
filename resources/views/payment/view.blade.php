@@ -167,7 +167,7 @@
                                     <tbody>
                                         @php $subTotal = 0; @endphp
 
-                                        @if ($payment->items && count($payment->items) > 0)
+                                        @if ($payment->items)
                                             @foreach ($payment->items as $item)
                                                 @php
                                                     $amount = $item['qty'] * $item['price'];
@@ -184,52 +184,46 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                        @else
-                                            {{-- fallback for single course breakdown --}}
-                                            <tr>
-                                                <td>{{ $payment->invoice_product }}</td>
-                                                <td>{{ $payment->invoice_product }}</td>
-                                                <td>{{ $payment->currency }}
-                                                    {{ number_format($payment->sub_total, 2) }}</td>
-                                                <td>1</td>
-                                                <td class="text-dark fw-semibold">
-                                                    {{ $payment->currency }}
-                                                    {{ number_format($payment->sub_total, 2) }}
-                                                </td>
-                                            </tr>
                                         @endif
 
                                         <tr>
                                             <td colspan="3"></td>
                                             <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Sub Total</td>
                                             <td class="fw-bold text-dark bg-gray-100">
-                                                {{ $payment->currency }} {{ number_format($payment->sub_total, 2) }}
+                                                + {{ $payment->currency }} {{ number_format($payment->sub_total, 2) }}
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td colspan="3"></td>
-                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Discount
-                                                ({{ $payment->discount }}%)</td>
+                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">
+                                                Discount ({{ $payment->discount }}%)
+                                            </td>
                                             <td class="fw-bold text-success bg-gray-100">
                                                 - {{ $payment->currency }} {{ number_format($payment->discount, 2) }}
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td colspan="3"></td>
-                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Tax
-                                                ({{ $payment->tax_percentage }}%)</td>
+                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">
+                                                Tax ({{ $payment->tax_percentage }}%)
+                                            </td>
                                             <td class="fw-bold text-dark bg-gray-100">
                                                 + {{ $payment->currency }}
                                                 {{ number_format($payment->tax_amount, 2) }}
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td colspan="3"></td>
-                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Grand Total</td>
+                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Grand Amount</td>
                                             <td class="fw-bolder text-dark bg-gray-100">
-                                                {{ $payment->currency }} {{ number_format($payment->grand_total, 2) }}
+                                                = {{ $payment->currency }}
+                                                {{ number_format($payment->grand_total, 2) }}
                                             </td>
                                         </tr>
+
                                     </tbody>
                                 </table>
                             </div>
