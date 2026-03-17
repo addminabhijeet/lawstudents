@@ -75,7 +75,7 @@
                                 <div class="contact-content-area">
                                     <h2>Our Esteemed Clientele & Learners</h2>
                                     <p>
-                                        At Law School Name, we take pride in serving a diverse clientele including aspiring
+                                        At Law Students, we take pride in serving a diverse clientele including aspiring
                                         lawyers,
                                         law students, working professionals, and legal enthusiasts. Our courses are trusted
                                         by individuals
