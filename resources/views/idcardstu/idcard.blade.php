@@ -31,7 +31,7 @@
                         <div class="card shadow border-0" style="width:260px; min-height:430px; overflow:hidden;">
 
                             <!-- TOP STRIPE -->
-                            <div style="background:#6a1b1a; color:#fff;" class="text-center py-2">
+                            <div style="background:#4e342e; color:#fff;" class="text-center py-2">
 
                                 <img src="{{ asset('assets/images/logo-full.png') }}" height="28" class="mb-1">
 
