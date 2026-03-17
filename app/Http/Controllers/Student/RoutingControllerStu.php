@@ -236,7 +236,7 @@ class RoutingControllerStu extends Controller
 
     public function viewidcard()
     {
-        $image = StudentAdmission::where('student_id', Auth::guard('student')->id())
+        $admission = StudentAdmission::where('student_id', Auth::guard('student')->id())
             ->latest()
             ->first();
 
