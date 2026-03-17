@@ -228,7 +228,10 @@ class RoutingController extends Controller
     public function viewidcard($id)
     {
         $idcard = Payment::findOrFail($id);
-        return view('idcard.idcard', compact('idcard'));
+
+        $admission = StudentAdmission::where('student_id', $idcard->student_id)->firstOrFail();
+
+        return view('idcard.idcard', compact('idcard', 'admission'));
     }
 
     public function listnotes()
