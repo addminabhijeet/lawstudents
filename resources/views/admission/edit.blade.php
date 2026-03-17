@@ -226,12 +226,13 @@
                                     </div>
                                 </div>
 
+                                <!-- Fee Structure Section -->
                                 <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
 
                                 <div class="mb-3">
                                     <div class="d-flex justify-content-between">
                                         <span>Subtotal:</span>
-                                        <span>₹<span id="subtotal">0</span></span>
+                                        <span>₹<span id="subtotal">0.00</span></span>
                                     </div>
 
                                     <div class="d-flex justify-content-between align-items-center mt-2">
@@ -241,15 +242,15 @@
                                     </div>
 
                                     <div class="d-flex justify-content-between">
-                                        <span>Discount (10%):</span>
-                                        <span>- ₹<span id="discount">0</span></span>
+                                        <span>Discount:</span>
+                                        <span>- ₹<span id="discount">0.00</span></span>
                                     </div>
 
                                     <hr>
 
                                     <div class="d-flex justify-content-between fw-bold">
                                         <span>Total Payable:</span>
-                                        <span>₹<span id="grandtotal">0</span></span>
+                                        <span>₹<span id="grandtotal">0.00</span></span>
                                     </div>
 
                                     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -419,43 +420,49 @@
         const discountEl = document.getElementById('discount');
         const grandTotalEl = document.getElementById('grandtotal');
         const discountInput = document.getElementById('customDiscount');
+        const paidInput = document.getElementById('paidamount');
+        const remainingEl = document.getElementById('remainingamount');
+        const hiddenRemInput = document.getElementById('remamount');
 
         function calculateFees() {
-
+            // Calculate subtotal
             let subtotal = 0;
-
             checkboxes.forEach(cb => {
-                if (cb.checked) {
-                    subtotal += parseFloat(cb.dataset.price);
-                }
+                if (cb.checked) subtotal += parseFloat(cb.dataset.price) || 0;
             });
 
+            // Discount
             let discountPercent = parseFloat(discountInput.value) || 0;
+            if (discountPercent < 0) discountPercent = 0;
+            if (discountPercent > 100) discountPercent = 100;
+
             let discount = subtotal * (discountPercent / 100);
+
+            // Grand total
             let grandTotal = subtotal - discount;
 
-            let paid = parseFloat(document.getElementById('paidamount')?.value) || 0;
-            let remaining = grandTotal - paid;
+            // Paid and remaining
+            let paid = parseFloat(paidInput.value) || 0;
+            if (paid < 0) paid = 0;
 
+            let remaining = grandTotal - paid;
             if (remaining < 0) remaining = 0;
 
+            // Update DOM
             subtotalEl.innerText = subtotal.toFixed(2);
             discountEl.innerText = discount.toFixed(2);
             grandTotalEl.innerText = grandTotal.toFixed(2);
-
-            document.getElementById('remainingamount').innerText = remaining.toFixed(2);
-            document.getElementById('remamount').value = remaining.toFixed(2);
+            remainingEl.innerText = remaining.toFixed(2);
+            hiddenRemInput.value = remaining.toFixed(2);
         }
 
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', calculateFees);
-        });
+        // Event listeners
+        checkboxes.forEach(cb => cb.addEventListener('change', calculateFees));
+        discountInput.addEventListener('input', calculateFees);
+        paidInput.addEventListener('input', calculateFees);
 
-        document.getElementById('paidamount')?.addEventListener('input', calculateFees);
-
-        // ADD THIS
+        // Initial calculation on page load
         calculateFees();
-
     });
 </script>
 @include('layouts.partials.admin.theme')
