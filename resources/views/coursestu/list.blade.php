@@ -7,7 +7,7 @@
                 <div class="content-area-body pb-0">
                     @if ($notFound)
                         <div class="alert alert-warning text-center">
-                            <strong>Please Complete Your Payment</strong>
+                            <strong>Please Complete Your Payment to get Course</strong>
                         </div>
                     @endif
 
