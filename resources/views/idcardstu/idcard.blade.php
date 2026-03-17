@@ -70,7 +70,7 @@
 
 
                                 <!-- STUDENT INFO -->
-                                <div class="text-start px-2" style="font-size:11px; font-weight:600;">
+                                <div class="text-start px-2 text-center" style="font-size:11px; font-weight:600;">
 
                                     <div class="mb-1">
                                         <strong>ID :</strong>
