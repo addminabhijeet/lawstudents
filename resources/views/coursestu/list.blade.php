@@ -11,7 +11,7 @@
                         </div>
                     @endif
 
-                    @if (!$notFound && $payment)
+                    @if (!$notFound && $categories)
                         <div class="row note-has-grid g-4" id="note-full-container">
 
                             @foreach ($categories as $category)
