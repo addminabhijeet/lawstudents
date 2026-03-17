@@ -87,10 +87,8 @@ class StudentAdmissinController extends Controller
 
             $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
             $subTotal = $courses->sum('price');
-
-            // Take discount values directly from request
-            $discountPercent = $request->input('discount_percent', 0); // from form
-            $discountAmount  = $request->input('discount', ($subTotal * $discountPercent) / 100); // fallback to calculation
+            $discountPercent = (float) ($request->input('discount_percent') ?? 0);
+            $discountAmount  = (float) ($request->input('discount') ?? 0);
             $grandTotal      = $subTotal - $discountAmount;
 
             // create admission
@@ -127,8 +125,8 @@ class StudentAdmissinController extends Controller
                     'to_phone'         => $admission->phone,
                     'to_address'       => $admission->address_line1,
                     'sub_total'        => $subTotal,
-                    'discount'         => (float) $discountAmount,
-                    'discount_percent' => (float) $discountPercent,
+                    'discount'         => $discountAmount,
+                    'discount_percent' => $discountPercent,
                     'grand_total'      => $grandTotal,
                     'currency'         => 'INR',
                     'payment_status'   => $paidAmount >= $grandTotal ? 'paid' : 'partial',
