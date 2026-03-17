@@ -39,10 +39,6 @@
                                     STUDENT ID CARD
                                 </div>
 
-                                <div style="font-size:10px;opacity:0.9;">
-                                    Official Identification
-                                </div>
-
                             </div>
 
 
