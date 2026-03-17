@@ -88,9 +88,8 @@ class StudentAdmissinController extends Controller
             $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
             $subTotal = $courses->sum('price');
 
-            // ✅ Read discount fields directly from request
-            $discountPercent = (float) ($request->input('discount_percent') ?? 0);
-            $discountAmount  = (float) ($request->input('discount') ?? ($subTotal * ($discountPercent / 100)));
+            $discountPercent = (float) $request->input('discount_percent', 0); // default 0
+            $discountAmount  = (float) $request->input('discount', $subTotal * ($discountPercent / 100));
             $grandTotal      = $subTotal - $discountAmount;
 
             // create admission
@@ -131,7 +130,7 @@ class StudentAdmissinController extends Controller
                     'discount_percent' => $discountPercent,
                     'grand_total'      => $grandTotal,
                     'currency'         => 'INR',
-                    'payment_status'   => $paidAmount >= $grandTotal ? 'paid' : 'partial',
+                    'payment_status'   => $paidAmount >= $grandTotal ? 'paid' : ($paidAmount > 0 ? 'partial' : 'pending'),
                     'paid_amount'      => $paidAmount,
                     'remaining_amount' => $remainingAmount,
                 ]);
