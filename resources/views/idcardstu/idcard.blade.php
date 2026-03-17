@@ -103,7 +103,7 @@
 
                                     <div class="col-5 d-flex justify-content-center">
 
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($idcard->invoice_number) }}"
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ urlencode($idcard->invoice_number) }}"
                                             style="width:55px; height:55px; object-fit:contain;">
                                     </div>
 
