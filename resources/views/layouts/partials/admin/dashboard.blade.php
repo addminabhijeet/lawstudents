@@ -57,11 +57,13 @@
                     <li class="nxl-item nxl-caption">
                         <label>Navigation</label>
                     </li>
+
+                    <!-- Applications -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-send"></i></span>
-                            <span class="nxl-mtext">Applications</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
+                            <span class="nxl-micon"><i class="feather-file-text"></i></span>
+                            <span class="nxl-mtext">Applications</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List
@@ -70,76 +72,85 @@
                                     Addmission</a></li>
                         </ul>
                     </li>
+
+                    <!-- Payment -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-dollar-sign"></i></span>
-                            <span class="nxl-mtext">Payment</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
+                            <span class="nxl-micon"><i class="feather-credit-card"></i></span>
+                            <span class="nxl-mtext">Payment</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listpayment') }}">Payment</a></li>
                         </ul>
                     </li>
+
+                    <!-- ID Card -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-dollar-sign"></i></span>
-                            <span class="nxl-mtext">ID Card</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
+                            <span class="nxl-micon"><i class="feather-id-card"></i></span>
+                            <span class="nxl-mtext">ID Card</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listidcard') }}">List</a>
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Course -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-cast"></i></span>
-                            <span class="nxl-mtext">Course</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
+                            <span class="nxl-micon"><i class="feather-book-open"></i></span>
+                            <span class="nxl-mtext">Course</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List</a>
                             </li>
                         </ul>
-
                     </li>
+
+                    <!-- Notes -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-at-sign"></i></span>
-                            <span class="nxl-mtext">Notes</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
+                            <span class="nxl-micon"><i class="feather-edit"></i></span>
+                            <span class="nxl-mtext">Notes</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Notes</a>
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Frontend -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-at-sign"></i></span>
-                            <span class="nxl-mtext">Frontend</span><span class="nxl-arrow"><i
-                                    class="feather-chevron-right"></i></span>
+                            <span class="nxl-micon"><i class="feather-layout"></i></span>
+                            <span class="nxl-mtext">Frontend</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
+
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listbanner') }}">Banner</a>
-                            </li>
+                                    href="{{ route('admin.listbanner') }}">Banner</a></li>
                         </ul>
+
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listgallery') }}">Gallery</a>
-                            </li>
+                                    href="{{ route('admin.listgallery') }}">Gallery</a></li>
                         </ul>
+
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.whatsapp') }}">Whatsapp</a>
-                            </li>
+                                    href="{{ route('admin.whatsapp') }}">Whatsapp</a></li>
                         </ul>
+
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.admindetails') }}">Admin</a>
-                            </li>
+                                    href="{{ route('admin.admindetails') }}">Admin</a></li>
                         </ul>
                     </li>
 
