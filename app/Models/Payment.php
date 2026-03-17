@@ -42,7 +42,9 @@ class Payment extends Model
 
         'payment_method',
         'payment_status',
+        'paid_amount',
 
+        'remaining_amount',
         'invoice_note',
         'late_fees',
         'client_note_enabled',
@@ -61,6 +63,8 @@ class Payment extends Model
         'late_fees' => 'boolean',
         'client_note_enabled' => 'boolean',
         'save_payment' => 'boolean',
+        'paid_amount' => 'decimal:2',
+        'remaining_amount' => 'decimal:2',
     ];
 
     /**
