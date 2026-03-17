@@ -106,13 +106,13 @@ class CourseController extends Controller
     public function storebanner(Request $request)
     {
         $request->validate([
-            'image_1' => ['nullable', 'image', 'dimensions:width=1425,height=600'],
-            'image_2' => ['nullable', 'image', 'dimensions:width=1425,height=600'],
-            'image_3' => ['nullable', 'image', 'dimensions:width=1425,height=600'],
+            'image_1' => ['nullable', 'image', 'dimensions:width=1920,height=1080'],
+            'image_2' => ['nullable', 'image', 'dimensions:width=1920,height=1080'],
+            'image_3' => ['nullable', 'image', 'dimensions:width=1920,height=1080'],
         ], [
-            'image_1.dimensions' => 'Image 1 must be exactly 1425 x 600 pixels.',
-            'image_2.dimensions' => 'Image 2 must be exactly 1425 x 600 pixels.',
-            'image_3.dimensions' => 'Image 3 must be exactly 1425 x 600 pixels.',
+            'image_1.dimensions' => 'Image 1 must be exactly 1920 x 1080 pixels.',
+            'image_2.dimensions' => 'Image 2 must be exactly 1920 x 1080 pixels.',
+            'image_3.dimensions' => 'Image 3 must be exactly 1920 x 1080 pixels.',
         ]);
 
         $banner = Banner::first();
