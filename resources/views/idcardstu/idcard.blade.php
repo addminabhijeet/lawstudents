@@ -104,7 +104,7 @@
                                     <div class="col-5 d-flex justify-content-center">
 
                                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($idcard->invoice_number) }}"
-                                            style="width:100px; height:100px; object-fit:contain;">
+                                            style="width:90px; height:90px; object-fit:contain;">
                                     </div>
 
                                 </div>
