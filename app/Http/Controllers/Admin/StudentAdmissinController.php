@@ -27,7 +27,7 @@ class StudentAdmissinController extends Controller
         $admissions = StudentAdmission::latest()->get();
         return view('admission.list', compact('admissions'));
     }
-    
+
     public function addadmission()
     {
         $courses = Course::where('status', 1)->get();
@@ -127,8 +127,8 @@ class StudentAdmissinController extends Controller
                     'to_phone'         => $admission->phone,
                     'to_address'       => $admission->address_line1,
                     'sub_total'        => $subTotal,
-                    'discount'         => $discountAmount,
-                    'discount_percent' => $discountPercent,
+                    'discount'         => (float) $discountAmount,
+                    'discount_percent' => (float) $discountPercent,
                     'grand_total'      => $grandTotal,
                     'currency'         => 'INR',
                     'payment_status'   => $paidAmount >= $grandTotal ? 'paid' : 'partial',
