@@ -49,63 +49,66 @@
                                 </div>
                             @endif
 
-                            {{-- Display Login Errors and Validation Messages --}}
-                            @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                </div>
-                            @endif
-
-                            @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show">
-                                    {{ session('error') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                </div>
-                            @endif
-
-                            @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show">
-                                    {{ session('success') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                </div>
-                            @endif
-
-
-
-                            <div class="card border-light shadow-sm mb-4">
-                                <div class="card-body">
-
-                                    <h5 class="fw-bold mb-3 text-primary border-bottom pb-2">Student Details</h5>
-
-                                    <div class="row mb-3">
-                                        <div class="col-lg-6">
-                                            <label class="text-muted small mb-1">Full Name</label>
-                                            <p class="mb-0 fw-semibold">{{ old('name', $student->name ?? '') }}</p>
-                                        </div>
-
-                                        <div class="col-lg-6">
-                                            <label class="text-muted small mb-1">Username / Registration No.</label>
-                                            <p class="mb-0 fw-semibold">{{ old('name', $student->username ?? '') }}</p>
-                                        </div>
+                            @if (!$notFound && $student)
+                                {{-- Display Login Errors and Validation Messages --}}
+                                @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible fade show">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                     </div>
+                                @endif
 
-                                    <div class="row mb-3">
-                                        <div class="col-lg-6">
-                                            <label class="text-muted small mb-1">Email</label>
-                                            <p class="mb-0 fw-semibold">{{ old('email', $student->email ?? '') }}</p>
-                                        </div>
+                                @if (session('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show">
+                                        {{ session('error') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                     </div>
+                                @endif
 
+                                @if (session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                @endif
+
+
+
+                                <div class="card border-light shadow-sm mb-4">
+                                    <div class="card-body">
+
+                                        <h5 class="fw-bold mb-3 text-primary border-bottom pb-2">Student Details</h5>
+
+                                        <div class="row mb-3">
+                                            <div class="col-lg-6">
+                                                <label class="text-muted small mb-1">Full Name</label>
+                                                <p class="mb-0 fw-semibold">{{ old('name', $student->name ?? '') }}</p>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <label class="text-muted small mb-1">Username / Registration No.</label>
+                                                <p class="mb-0 fw-semibold">{{ old('name', $student->username ?? '') }}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-lg-6">
+                                                <label class="text-muted small mb-1">Email</label>
+                                                <p class="mb-0 fw-semibold">{{ old('email', $student->email ?? '') }}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </div>
 
 
-
+                            @endif
                         </div>
                     </div>
                 </div>
