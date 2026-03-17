@@ -41,15 +41,7 @@
 
                             <div class="d-flex justify-content-center mb-2">
 
-                                <div class="d-flex align-items-center justify-content-center bg-light rounded-circle shadow"
-                                    style="width:80px;height:80px;">
 
-                                    
-                                        <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                            style="width:100%; height:100%; object-fit:cover;">
-                        
-
-                                </div>
 
                             </div>
 
