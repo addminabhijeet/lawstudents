@@ -33,24 +33,30 @@
                                             Growth and Success!';
                                     @endphp
 
-                                    <div class="social-area">
-                                        <ul>
-                                            <li>
-                                                <a href="mailto:{{ $email }}">
+                                    <div class="social-area"
+                                        style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+
+                                        <ul style="display:flex; align-items:center; margin:0; padding:0;">
+                                            <li style="list-style:none;">
+                                                <a href="mailto:{{ $email }}"
+                                                    style="display:flex; align-items:center; gap:8px;">
                                                     <img src="/img/icons/email3.svg" alt="">
                                                     {{ $email }}
                                                 </a>
                                             </li>
                                         </ul>
 
-                                        <ul class="list">
-                                            <li>
-                                                <a href="tel:{{ $mobile }}">
+                                        <ul class="list"
+                                            style="display:flex; align-items:center; margin:0; padding:0;">
+                                            <li style="list-style:none;">
+                                                <a href="tel:{{ $mobile }}"
+                                                    style="display:flex; align-items:center; gap:8px;">
                                                     <img src="/img/icons/phone3.svg" alt="">
                                                     {{ $mobile }}
                                                 </a>
                                             </li>
                                         </ul>
+
                                     </div>
                                 </div>
                             </div>
