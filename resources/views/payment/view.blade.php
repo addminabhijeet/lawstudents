@@ -64,7 +64,7 @@
                                         <h2 class="fs-4 fw-bold text-primary">Invoice</h2>
                                         <div>
                                             <span class="fw-bold text-dark">Invoice:</span>
-                                            <span class="fw-bold text-primary">#{{ $payment->invoice_number }}</span>
+                                            <span class="fw-bold text-primary">{{ $payment->invoice_number }}</span>
                                         </div>
                                         <div>
                                             <span class="fw-bold text-dark">Due Date:</span>
