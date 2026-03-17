@@ -34,7 +34,7 @@
                                     @endphp
 
                                     <div class="social-area"
-                                        style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+                                        style="display:flex; align-items:center; gap:20px; flex-wrap:nowrap; white-space:nowrap;">
 
                                         <ul style="display:flex; align-items:center; margin:0; padding:0;">
                                             <li style="list-style:none;">
