@@ -33,7 +33,7 @@
                             <!-- TOP STRIPE -->
                             <div class="bg-primary text-white text-center py-2">
 
-                                <img src="{{ asset('assets/images/logo.png') }}" height="28" class="mb-1">
+                                <img src="{{ asset('assets/images/logo-full.png') }}" height="28" class="mb-1">
 
                                 <div style="font-size:12px;font-weight:600;">
                                     STUDENT ID CARD
