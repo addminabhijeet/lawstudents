@@ -36,7 +36,8 @@
                             <div class="px-4 pt-4">
                                 <div class="d-sm-flex align-items-center justify-content-between">
                                     <div>
-                                        <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">Law Students</div>
+                                        <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">Law Students
+                                        </div>
                                         <address class="text-muted">
                                             P.O. Box 18728,<br>
                                             DeLorean New York<br>
@@ -100,40 +101,52 @@
                                     <div class="mt-4 mt-sm-0">
                                         <h2 class="fs-16 fw-bold text-dark mb-3">Payment Details:</h2>
                                         <div class="text-muted lh-lg">
+
                                             <div>
                                                 <span class="text-muted">Total Due:</span>
                                                 <span class="fw-bold text-dark">
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->grand_total, 2) }}
                                                 </span>
-
                                             </div>
+
                                             <div>
-                                                <span class="text-muted">Payout Status:</span>
+                                                <span class="text-muted">Paid Amount:</span>
+                                                <span class="fw-bold text-success">
+                                                    {{ $payment->currency }}
+                                                    {{ number_format($payment->paidamount ?? 0, 2) }}
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <span class="text-muted">Remaining Amount:</span>
+                                                <span class="fw-bold text-warning">
+                                                    {{ $payment->currency }}
+                                                    {{ number_format($payment->remamount ?? $payment->grand_total, 2) }}
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <span class="text-muted">Payment Status:</span>
                                                 @php
                                                     $statusColor = match ($payment->payment_status) {
                                                         'paid' => 'text-success',
+                                                        'partial' => 'text-warning',
                                                         'failed' => 'text-danger',
                                                         'cancelled' => 'text-secondary',
-                                                        default => 'text-warning',
+                                                        default => 'text-dark',
                                                     };
                                                 @endphp
-
                                                 <span class="fw-bold {{ $statusColor }}">
                                                     {{ ucfirst($payment->payment_status) }}
                                                 </span>
+                                            </div>
 
-                                            </div>
-                                            <div>
-                                                <span class="text-muted">Card Holder:</span>
-                                                <span class="fw-bold text-dark">Alexandra Della</span>
-                                            </div>
                                             <div>
                                                 <span class="text-muted">Payment Method:</span>
                                                 <span class="fw-bold text-dark">
                                                     {{ ucfirst(str_replace('_', ' ', $payment->payment_method)) }}
                                                 </span>
-
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +167,7 @@
                                     <tbody>
                                         @php $subTotal = 0; @endphp
 
-                                        @if ($payment->items)
+                                        @if ($payment->items && count($payment->items) > 0)
                                             @foreach ($payment->items as $item)
                                                 @php
                                                     $amount = $item['qty'] * $item['price'];
@@ -171,46 +184,52 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                        @else
+                                            {{-- fallback for single course breakdown --}}
+                                            <tr>
+                                                <td>{{ $payment->invoice_product }}</td>
+                                                <td>{{ $payment->invoice_product }}</td>
+                                                <td>{{ $payment->currency }}
+                                                    {{ number_format($payment->sub_total, 2) }}</td>
+                                                <td>1</td>
+                                                <td class="text-dark fw-semibold">
+                                                    {{ $payment->currency }}
+                                                    {{ number_format($payment->sub_total, 2) }}
+                                                </td>
+                                            </tr>
                                         @endif
 
                                         <tr>
                                             <td colspan="3"></td>
                                             <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Sub Total</td>
                                             <td class="fw-bold text-dark bg-gray-100">
-                                                + {{ $payment->currency }} {{ number_format($payment->sub_total, 2) }}
+                                                {{ $payment->currency }} {{ number_format($payment->sub_total, 2) }}
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td colspan="3"></td>
-                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">
-                                                Discount ({{ $payment->discount }}%)
-                                            </td>
+                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Discount
+                                                ({{ $payment->discount }}%)</td>
                                             <td class="fw-bold text-success bg-gray-100">
                                                 - {{ $payment->currency }} {{ number_format($payment->discount, 2) }}
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td colspan="3"></td>
-                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">
-                                                Tax ({{ $payment->tax_percentage }}%)
-                                            </td>
+                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Tax
+                                                ({{ $payment->tax_percentage }}%)</td>
                                             <td class="fw-bold text-dark bg-gray-100">
                                                 + {{ $payment->currency }}
                                                 {{ number_format($payment->tax_amount, 2) }}
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td colspan="3"></td>
-                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Grand Amount</td>
+                                            <td class="fw-semibold text-dark bg-gray-100 text-lg-end">Grand Total</td>
                                             <td class="fw-bolder text-dark bg-gray-100">
-                                                = {{ $payment->currency }}
-                                                {{ number_format($payment->grand_total, 2) }}
+                                                {{ $payment->currency }} {{ number_format($payment->grand_total, 2) }}
                                             </td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
