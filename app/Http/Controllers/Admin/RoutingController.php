@@ -58,109 +58,109 @@ class RoutingController extends Controller
 
         return view('idcard.list', compact('payments'));
     }
-
     public function updatepayment(Request $request, $id)
     {
-        $payment = Payment::findOrFail($id);
+        foreach ($request->payments as $payData) {
 
-        $validated = $request->validate([
-            'invoice_label'     => 'nullable|string|max:255',
-            'invoice_number'    => 'required|string|max:255',
-            'invoice_product'   => 'nullable|string|max:255',
+            $payment = Payment::findOrFail($payData['id']);
 
-            'issue_date'        => 'required|date',
-            'due_date'          => 'required|date|after_or_equal:issue_date',
+            $validated = validator($payData, [
+                'invoice_label'     => 'nullable|string|max:255',
+                'invoice_number'    => 'required|string|max:255',
+                'invoice_product'   => 'nullable|string|max:255',
 
-            'from_name'         => 'required|string|max:255',
-            'from_email'        => 'nullable|email|max:255',
-            'from_phone'        => 'nullable|string|max:20',
-            'from_address'      => 'nullable|string',
+                'issue_date'        => 'required|date',
+                'due_date'          => 'required|date|after_or_equal:issue_date',
 
-            'to_name'           => 'required|string|max:255',
-            'to_email'          => 'nullable|email|max:255',
-            'to_phone'          => 'nullable|string|max:20',
-            'to_address'        => 'nullable|string',
+                'from_name'         => 'required|string|max:255',
+                'from_email'        => 'nullable|email|max:255',
+                'from_phone'        => 'nullable|string|max:20',
+                'from_address'      => 'nullable|string',
 
-            'items'                     => 'required|array|min:1',
-            'items.*.product'           => 'required|string|max:255',
-            'items.*.qty'               => 'required|numeric|min:1',
-            'items.*.price'             => 'required|numeric|min:0',
+                'to_name'           => 'required|string|max:255',
+                'to_email'          => 'nullable|email|max:255',
+                'to_phone'          => 'nullable|string|max:20',
+                'to_address'        => 'nullable|string',
 
-            'tax_percentage'    => 'nullable|numeric|min:0',
-            'discount'          => 'nullable|numeric|min:0',
+                'items'                     => 'required|array|min:1',
+                'items.*.product'           => 'required|string|max:255',
+                'items.*.qty'               => 'required|numeric|min:1',
+                'items.*.price'             => 'required|numeric|min:0',
 
-            'currency'          => 'required|string|max:10',
-            'payment_method'    => 'nullable|string|in:debit,paypal',
+                'tax_percentage'    => 'nullable|numeric|min:0',
+                'discount'          => 'nullable|numeric|min:0',
 
-            'invoice_note'      => 'nullable|string',
-        ]);
+                'currency'          => 'required|string|max:10',
+                'payment_method'    => 'nullable|string|in:debit,paypal',
 
-        $subTotal = 0;
-        $items = [];
+                'invoice_note'      => 'nullable|string',
+            ])->validate();
 
-        foreach ($validated['items'] as $item) {
+            $subTotal = 0;
+            $items = [];
 
-            $qty = (float) $item['qty'];
-            $price = (float) $item['price'];
-            $total = $qty * $price;
+            foreach ($validated['items'] as $item) {
 
-            $subTotal += $total;
+                $qty = (float) $item['qty'];
+                $price = (float) $item['price'];
+                $total = $qty * $price;
 
-            $items[] = [
-                'product' => $item['product'],
-                'qty'     => $qty,
-                'price'   => $price,
-                'total'   => $total,
-            ];
+                $subTotal += $total;
+
+                $items[] = [
+                    'product' => $item['product'],
+                    'qty'     => $qty,
+                    'price'   => $price,
+                    'total'   => $total,
+                ];
+            }
+
+            $taxPercentage = (float) ($validated['tax_percentage'] ?? 0);
+            $taxAmount = ($subTotal * $taxPercentage) / 100;
+
+            $discount = (float) ($validated['discount'] ?? 0);
+
+            $grandTotal = $subTotal + $taxAmount - $discount;
+
+            $payment->update([
+                'invoice_label'     => $validated['invoice_label'] ?? null,
+                'invoice_number'    => $validated['invoice_number'],
+                'invoice_product'   => $validated['invoice_product'] ?? null,
+
+                'issue_date'        => $validated['issue_date'],
+                'due_date'          => $validated['due_date'],
+
+                'from_name'         => $validated['from_name'],
+                'from_email'        => $validated['from_email'] ?? null,
+                'from_phone'        => $validated['from_phone'] ?? null,
+                'from_address'      => $validated['from_address'] ?? null,
+
+                'to_name'           => $validated['to_name'],
+                'to_email'          => $validated['to_email'] ?? null,
+                'to_phone'          => $validated['to_phone'] ?? null,
+                'to_address'        => $validated['to_address'] ?? null,
+
+                'items'             => $items,
+
+                'sub_total'         => $subTotal,
+                'tax_percentage'    => $taxPercentage,
+                'tax_amount'        => $taxAmount,
+                'discount'          => $discount,
+                'grand_total'       => $grandTotal,
+
+                'currency'          => $validated['currency'],
+                'payment_method'    => $validated['payment_method'] ?? null,
+                'invoice_note'      => $validated['invoice_note'] ?? null,
+
+                'late_fees'         => isset($payData['late_fees']),
+                'client_note_enabled' => isset($payData['client_note_enabled']),
+                'save_payment'      => isset($payData['save_payment']),
+            ]);
         }
-
-        $taxPercentage = (float) ($validated['tax_percentage'] ?? 0);
-        $taxAmount = ($subTotal * $taxPercentage) / 100;
-
-        $discount = (float) ($validated['discount'] ?? 0);
-
-        $grandTotal = $subTotal + $taxAmount - $discount;
-
-        $payment->update([
-            'invoice_label'     => $validated['invoice_label'] ?? null,
-            'invoice_number'    => $validated['invoice_number'],
-            'invoice_product'   => $validated['invoice_product'] ?? null,
-
-            'issue_date'        => $validated['issue_date'],
-            'due_date'          => $validated['due_date'],
-
-            'from_name'         => $validated['from_name'],
-            'from_email'        => $validated['from_email'] ?? null,
-            'from_phone'        => $validated['from_phone'] ?? null,
-            'from_address'      => $validated['from_address'] ?? null,
-
-            'to_name'           => $validated['to_name'],
-            'to_email'          => $validated['to_email'] ?? null,
-            'to_phone'          => $validated['to_phone'] ?? null,
-            'to_address'        => $validated['to_address'] ?? null,
-
-            'items'             => $items,
-
-            'sub_total'         => $subTotal,
-            'tax_percentage'    => $taxPercentage,
-            'tax_amount'        => $taxAmount,
-            'discount'          => $discount,
-            'grand_total'       => $grandTotal,
-
-            'currency'          => $validated['currency'],
-
-            'payment_method'    => $validated['payment_method'] ?? null,
-
-            'invoice_note'      => $validated['invoice_note'] ?? null,
-
-            'late_fees'         => $request->has('late_fees'),
-            'client_note_enabled' => $request->has('client_note_enabled'),
-            'save_payment'      => $request->has('save_payment'),
-        ]);
 
         return redirect()
             ->route('admin.listpayment')
-            ->with('success', 'Payment updated successfully.');
+            ->with('success', 'All payments updated successfully.');
     }
 
     public function addpayment()
