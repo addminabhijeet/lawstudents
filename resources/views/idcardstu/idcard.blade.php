@@ -31,11 +31,11 @@
                         <div class="card shadow border-0" style="width:260px; min-height:430px; overflow:hidden;">
 
                             <!-- TOP STRIPE -->
-                            <div class="bg-primary text-white text-center py-2">
+                            <div style="background:#0b1f3a; color:#fff;" class="text-center py-2">
 
                                 <img src="{{ asset('assets/images/logo-full.png') }}" height="28" class="mb-1">
 
-                                <div style="font-size:12px;font-weight:600;">
+                                <div style="font-size:12px;font-weight:600; letter-spacing:0.5px;">
                                     STUDENT ID CARD
                                 </div>
 
