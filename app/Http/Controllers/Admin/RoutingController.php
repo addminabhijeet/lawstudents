@@ -216,7 +216,11 @@ class RoutingController extends Controller
     public function editpayment($id)
     {
         $payment = Payment::findOrFail($id);
-        return view('payment.edit', compact('payment'));
+
+        // Get all payments of the same student
+        $allPayments = Payment::where('student_id', $payment->student_id)->get();
+
+        return view('payment.edit', compact('payment', 'allPayments'));
     }
 
     public function viewpayment($id)
