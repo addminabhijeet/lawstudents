@@ -50,7 +50,7 @@ class StudentAdmissinController extends Controller
 
         return view('admission.add', compact('courses', 'declaration', 'admno'));
     }
-    
+
     public function registeradmsubmit(Request $request)
     {
         $validated = $request->validate([
@@ -345,38 +345,49 @@ class StudentAdmissinController extends Controller
             }
         }
 
-
         $courseId = !empty($admission->course_ids) && is_array($admission->course_ids)
             ? implode(',', $admission->course_ids)
             : null;
 
-        $paidAmount = $request->paidamount ?? 0;
-        $remainingAmount = $request->remamount ?? ($subtotal - $paidAmount);
+        // Calculate courses subtotal
+        $courses = Course::whereIn('id', $admission->course_ids ?? [])->get();
+        $subTotal = $courses->sum('price');
 
-        // Determine payment status
-        $paymentStatus = $paidAmount >= $subtotal ? 'paid' : ($paidAmount > 0 ? 'partial' : 'pending');
+        // Discount fields from request
+        $discountPercent = (float) ($request->input('discount_percent') ?? 0);
+        $discountAmount  = (float) ($request->input('discount') ?? ($subTotal * ($discountPercent / 100)));
+        $grandTotal      = $subTotal - $discountAmount;
+
+        // Paid and remaining amounts
+        $paidAmount      = (float) ($request->paidamount ?? 0);
+        $remainingAmount = (float) ($request->remamount ?? ($grandTotal - $paidAmount));
+
+        // Payment status
+        $paymentStatus = $paidAmount >= $grandTotal ? 'paid' : ($paidAmount > 0 ? 'partial' : 'pending');
 
         Payment::updateOrCreate(
             [
-                'student_id' => $admission->student_id,
+                'student_id'    => $admission->student_id,
                 'invoice_label' => 'Admission Fee'
             ],
             [
-                'course_id' => $courseId,
-                'invoice_number' => $invoiceNumber,
-                'invoice_product' => implode(', ', $courseTitles),
-                'issue_date' => now(),
-                'due_date' => now()->addDays(7),
-                'to_name' => $admission->full_name,
-                'to_email' => $admission->email,
-                'to_phone' => $admission->phone,
-                'to_address' => $admission->address_line1,
-                'sub_total' => $subtotal,
-                'grand_total' => $subtotal,
-                'paid_amount' => $paidAmount,
+                'course_id'        => !empty($admission->course_ids) ? implode(',', $admission->course_ids) : null,
+                'invoice_number'   => 'INV-' . strtoupper(Str::random(6)),
+                'invoice_product'  => $courses->pluck('title')->implode(', '),
+                'issue_date'       => now(),
+                'due_date'         => now()->addDays(7),
+                'to_name'          => $admission->full_name,
+                'to_email'         => $admission->email,
+                'to_phone'         => $admission->phone,
+                'to_address'       => $admission->address_line1,
+                'sub_total'        => $subTotal,
+                'discount'         => $discountAmount,
+                'discount_percent' => $discountPercent,
+                'grand_total'      => $grandTotal,
+                'currency'         => 'INR',
+                'payment_status'   => $paymentStatus,
+                'paid_amount'      => $paidAmount,
                 'remaining_amount' => $remainingAmount,
-                'currency' => 'INR',
-                'payment_status' => $paymentStatus,
             ]
         );
 
