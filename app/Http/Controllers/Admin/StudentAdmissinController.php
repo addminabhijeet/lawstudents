@@ -116,23 +116,24 @@ class StudentAdmissinController extends Controller
                 $remainingAmount = $request->remamount ?? ($grandTotal - $paidAmount);
 
                 Payment::create([
-                    'student_id'      => $student->id,
-                    'course_id'       => $courseId,
-                    'invoice_number'  => 'INV-' . strtoupper(Str::random(6)),
-                    'invoice_label'   => 'Admission Fee',
-                    'invoice_product' => $courses->pluck('title')->implode(', '),
-                    'issue_date'      => now(),
-                    'due_date'        => now()->addDays(7),
-                    'to_name'         => $admission->full_name,
-                    'to_email'        => $admission->email,
-                    'to_phone'        => $admission->phone,
-                    'to_address'      => $admission->address_line1,
-                    'sub_total'       => $subTotal,
-                    'discount'        => $discountAmount,
-                    'grand_total'     => $grandTotal,
-                    'currency'        => 'INR',
-                    'payment_status'  => $paidAmount >= $grandTotal ? 'paid' : 'partial', // mark paid/partial
-                    'paid_amount'     => $paidAmount,
+                    'student_id'       => $student->id,
+                    'course_id'        => $courseId,
+                    'invoice_number'   => 'INV-' . strtoupper(Str::random(6)),
+                    'invoice_label'    => 'Admission Fee',
+                    'invoice_product'  => $courses->pluck('title')->implode(', '),
+                    'issue_date'       => now(),
+                    'due_date'         => now()->addDays(7),
+                    'to_name'          => $admission->full_name,
+                    'to_email'         => $admission->email,
+                    'to_phone'         => $admission->phone,
+                    'to_address'       => $admission->address_line1,
+                    'sub_total'        => $subTotal,
+                    'discount'         => $discountAmount,                  // already storing amount
+                    'discount_percent' => $discountPercent,                 // new field for percentage
+                    'grand_total'      => $grandTotal,
+                    'currency'         => 'INR',
+                    'payment_status'   => $paidAmount >= $grandTotal ? 'paid' : 'partial',
+                    'paid_amount'      => $paidAmount,
                     'remaining_amount' => $remainingAmount,
                 ]);
             }

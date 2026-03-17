@@ -49,6 +49,7 @@ class Payment extends Model
         'late_fees',
         'client_note_enabled',
         'save_payment',
+        'discount_percent',
     ];
 
     protected $casts = [
@@ -65,6 +66,7 @@ class Payment extends Model
         'save_payment' => 'boolean',
         'paid_amount' => 'decimal:2',
         'remaining_amount' => 'decimal:2',
+        'discount_percent' => 'decimal:2',
     ];
 
     /**

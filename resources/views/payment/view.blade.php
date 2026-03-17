@@ -103,7 +103,24 @@
                                         <div class="text-muted lh-lg">
 
                                             <div>
-                                                <span class="text-muted">Total Due:</span>
+                                                <span class="text-muted">Subtotal:</span>
+                                                <span class="fw-bold text-dark">
+                                                    {{ $payment->currency }} {{ number_format($payment->sub_total, 2) }}
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <span class="text-muted">Discount:</span>
+                                                <span class="fw-bold text-success">
+                                                    {{ $payment->currency }} {{ number_format($payment->discount, 2) }}
+                                                    @if ($payment->discount_percent)
+                                                        ({{ $payment->discount_percent }}%)
+                                                    @endif
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <span class="text-muted">Grand Total:</span>
                                                 <span class="fw-bold text-dark">
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->grand_total, 2) }}
@@ -123,22 +140,6 @@
                                                 <span class="fw-bold text-warning">
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->remaining_amount, 2) }}
-                                                </span>
-                                            </div>
-
-                                            <div>
-                                                <span class="text-muted">Discount:</span>
-                                                <span class="fw-bold text-success">
-                                                    {{ $payment->currency }}
-                                                    {{ number_format($payment->discount, 2) }}
-                                                </span>
-                                            </div>
-
-                                            <div>
-                                                <span class="text-muted">Grand Total:</span>
-                                                <span class="fw-bold text-dark">
-                                                    {{ $payment->currency }}
-                                                    {{ number_format($payment->grand_total, 2) }}
                                                 </span>
                                             </div>
 
@@ -164,6 +165,7 @@
                                                     {{ ucfirst(str_replace('_', ' ', $payment->payment_method)) }}
                                                 </span>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
