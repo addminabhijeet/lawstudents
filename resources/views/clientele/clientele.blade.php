@@ -28,8 +28,8 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6">
                                 <div class="contact-submit-area">
-                                    <h3>Send Us A Message</h3>
-                                    <p>Our response time is within 30 minutes during business hours</p>
+                                    <h3>Join Our Clientele Network</h3>
+                                    <p>We respond within 30 minutes during business hours to guide you better</p>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="contact-inner">
@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="contact-inner">
-                                                <input type="number" placeholder="Phone NUmber">
+                                                <input type="number" placeholder="Phone Number">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -53,17 +53,18 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="contact-inner">
-                                                <input type="text" placeholder="Service Type">
+                                                <input type="text"
+                                                    placeholder="Interested Course (Criminal / Corporate / Traffic Law)">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="contact-inner">
-                                                <textarea placeholder="Message" cols="30" rows="10"></textarea>
+                                                <textarea placeholder="Tell us about your learning goals or queries" cols="30" rows="10"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="contact-inner">
-                                                <button type="submit">Free Case Evulation <i
+                                                <button type="submit">Join Our Clientele <i
                                                         class="fa-light fa-arrow-right"></i></button>
                                             </div>
                                         </div>
@@ -72,34 +73,38 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="contact-content-area">
-                                    <h2>Connect with Our Law Experts and Mentors Today</h2>
+                                    <h2>Our Esteemed Clientele & Learners</h2>
                                     <p>
-                                        At Law School Name, we understand the importance of personalized guidance in your
-                                        legal education. Our team of experienced instructors and mentors is here to provide
-                                        you with support and practical insights. Whether you're exploring criminal law,
-                                        corporate law, or traffic law courses, our commitment is to help you succeed in your
-                                        legal career.
+                                        At Law School Name, we take pride in serving a diverse clientele including aspiring
+                                        lawyers,
+                                        law students, working professionals, and legal enthusiasts. Our courses are trusted
+                                        by individuals
+                                        who aim to build a strong foundation in legal studies and advance their careers in
+                                        law.
                                     </p>
                                     <p>
-                                        When learning law, having a dedicated and knowledgeable team by your side can make
-                                        all the difference. At Law School Name, we prioritize your growth and provide
-                                        exceptional mentorship tailored to your goals.
+                                        Our clientele includes students preparing for judiciary exams, professionals
+                                        enhancing their legal
+                                        expertise, and individuals seeking practical knowledge in criminal, corporate, and
+                                        traffic law.
+                                        We are committed to delivering high-quality education and real-world insights to
+                                        every learner.
                                     </p>
 
                                     <!-- Grid Wrapper -->
                                     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
 
-                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                        <a href="#" class="welcome-btn3">Student Testimonials<i
                                                 class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                        <a href="#" class="welcome-btn3">Corporate Clients<i
                                                 class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                        <a href="#" class="welcome-btn3">Success Stories<i
                                                 class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                        <a href="#" class="welcome-btn3">Course Brochure<i
                                                 class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                        <a href="#" class="welcome-btn3">Placement Records<i
                                                 class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                        <a href="#" class="welcome-btn3">View Certifications<i
                                                 class="fa-light fa-arrow-right"></i></a>
 
                                     </div>
