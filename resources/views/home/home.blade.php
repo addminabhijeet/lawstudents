@@ -13,7 +13,7 @@
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_1) }}');
             background-position:center;
             background-repeat:no-repeat;
-            background-size:cover;
+            background-size:contain;
             min-height:600px;">
             </div>
         @endif
@@ -23,7 +23,7 @@
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_2) }}');
             background-position:center;
             background-repeat:no-repeat;
-            background-size:cover;
+            background-size:contain;
             min-height:600px;">
             </div>
         @endif
@@ -33,7 +33,7 @@
                 style="background-image: url('{{ asset('storage/app/public/' . $banner->image_3) }}');
             background-position:center;
             background-repeat:no-repeat;
-            background-size:cover;
+            background-size:contain;
             min-height:600px;">
             </div>
         @endif
@@ -769,5 +769,4 @@
         </div>
     </div>
     <!-- ===== TESTIMONIAL ENDS ======= -->
-
 @endsection
