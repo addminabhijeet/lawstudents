@@ -8,8 +8,8 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-last-section">
                                 <div class="footer-imgage"
-                                    style="width:160px; height:70px; display:flex; align-items:center; justify-content:flex-start; overflow:hidden; margin-bottom:15px;">
-                                    <img src="/img/logo/logo5.png" alt=""
+                                    style="width:350px; height:90px; display:flex; align-items:center; justify-content:flex-start; overflow:hidden; margin-bottom:15px;">
+                                    <img src="assets/images/logo-full.png" alt=""
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </div>
 
@@ -65,7 +65,8 @@
                                 <ul>
                                     <li><img src="/img/icons/footer-email2.svg" alt=""><a
                                             href="maito:{{ $email }}">{{ $email }}</a></li>
-                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a href="#">{{ $address }}</a>
+                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a
+                                            href="#">{{ $address }}</a>
                                     </li>
                                     <li><img src="/img/icons/footer-phn.svg" alt=""><a
                                             href="tel:{{ $mobile }}">{{ $mobile }}</a></li>
