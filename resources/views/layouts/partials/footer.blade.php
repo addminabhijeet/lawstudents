@@ -6,9 +6,9 @@
                 <div class="footer-all-section-area sp5">
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
-                            <div class="footer-last-section">
+                            <div class="footer-last-section text-center">
                                 <div class="footer-imgage"
-                                    style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:15px; margin-left:auto; margin-right:auto;">
+                                    style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin:0 auto 15px;">
                                     <img src="assets/images/logo-full.png" alt=""
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </div>
@@ -29,10 +29,11 @@
                                             Growth and Success!';
                                 @endphp
 
-                                <div class="footer-text-area">
+                                <div class="footer-text-area text-center">
                                     <p>{{ $description }}</p>
+
                                     <div class="social-list-area">
-                                        <ul>
+                                        <ul style="display:flex; justify-content:center; padding:0;">
                                             <li><a href="{{ $facebook }}"><i
                                                         class="fa-brands fa-facebook-f"></i></a></li>
                                             <li><a href="{{ $twitter }}"><i class="fa-brands fa-x-twitter"></i></a>
