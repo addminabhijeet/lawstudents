@@ -95,6 +95,12 @@
                                                 class="fa-light fa-arrow-right"></i></a>
                                         <a href="#" class="welcome-btn3">View Pdf<i
                                                 class="fa-light fa-arrow-right"></i></a>
+                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                                class="fa-light fa-arrow-right"></i></a>
+                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                                class="fa-light fa-arrow-right"></i></a>
+                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                                class="fa-light fa-arrow-right"></i></a>
 
                                     </div>
 
