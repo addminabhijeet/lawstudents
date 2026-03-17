@@ -2,16 +2,16 @@
 <main class="nxl-container apps-container apps-notes">
     <div class="nxl-content without-header nxl-full-content">
         <div class="main-content d-flex">
-            @if ($notFound)
-                <div class="alert alert-warning text-center">
-                    <strong>Please Complete Your Payment</strong>
-                </div>
-            @endif
 
-            @if (!$notFound && $payment)
-                <div class="content-area" data-scrollbar-target="#psScrollbarInit">
-                    <div class="content-area-body pb-0">
+            <div class="content-area" data-scrollbar-target="#psScrollbarInit">
+                <div class="content-area-body pb-0">
+                    @if ($notFound)
+                        <div class="alert alert-warning text-center">
+                            <strong>Please Complete Your Payment</strong>
+                        </div>
+                    @endif
 
+                    @if (!$notFound && $payment)
                         <div class="row note-has-grid g-4" id="note-full-container">
 
                             @foreach ($categories as $category)
@@ -94,12 +94,10 @@
                                     </div>
                                 @endforeach
                             @endforeach
-
                         </div>
-
-                    </div>
+                    @endif
                 </div>
-            @endif
+            </div>
         </div>
     </div>
 </main>
