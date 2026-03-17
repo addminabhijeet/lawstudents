@@ -8,7 +8,7 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-last-section">
                                 <div class="footer-imgage"
-                                    style="width:350px; height:90px; display:flex; align-items:center; justify-content:flex-start; overflow:hidden; margin-bottom:15px;">
+                                    style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:15px; margin-left:auto; margin-right:auto;">
                                     <img src="assets/images/logo-full.png" alt=""
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </div>
