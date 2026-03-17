@@ -29,6 +29,11 @@
         </div>
         <div class="main-content">
             <div class="row">
+                @if ($notFound)
+                    <div class="alert alert-warning text-center">
+                        <strong>Please Complete Your Admission</strong>
+                    </div>
+                @endif
 
                 <!-- STUDENT PROFILE CARD -->
                 <div class="col-xl-4">
