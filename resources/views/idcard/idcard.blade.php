@@ -44,10 +44,10 @@
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded-circle shadow"
                                     style="width:80px;height:80px;">
 
-                                    
-                                        <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                            style="width:100%; height:100%; object-fit:cover;">
-                        
+
+                                    <img src="{{ !empty($admission->photo) ? asset('storage/' . $admission->photo) : asset('assets/images/default-user.png') }}"
+                                        style="width:100%; height:100%; object-fit:cover;">
+
 
                                 </div>
 
