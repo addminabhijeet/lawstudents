@@ -59,7 +59,7 @@
                             <div class="site-logo"
                                 style="width:150px; height:60px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
                                 <a href="" style="display:block; width:100%; height:100%;">
-                                    <img src="/img/logo/logo11.png" alt=""
+                                    <img src="assets/images/logo-full.png" alt=""
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </a>
                             </div>
@@ -68,7 +68,7 @@
                                     <li><a href="{{ route('frontend.home') }}" class=" mainhome">Home</a></li>
                                     <li><a href="{{ route('frontend.about') }}">About Us</a></li>
                                     <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
-                                    <!-- <li><a href="{{ route('frontend.course') }}">Course</a></li> -->
+                                    <li><a href="{{ route('frontend.course') }}">Clientele</a></li>
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
                                     <li>
