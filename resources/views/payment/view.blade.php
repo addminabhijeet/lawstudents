@@ -114,7 +114,7 @@
                                                 <span class="text-muted">Paid Amount:</span>
                                                 <span class="fw-bold text-success">
                                                     {{ $payment->currency }}
-                                                    {{ number_format($payment->paidamount ?? 0, 2) }}
+                                                    {{ number_format($payment->paid_amount, 2) }}
                                                 </span>
                                             </div>
 
@@ -122,7 +122,23 @@
                                                 <span class="text-muted">Remaining Amount:</span>
                                                 <span class="fw-bold text-warning">
                                                     {{ $payment->currency }}
-                                                    {{ number_format($payment->remamount ?? $payment->grand_total, 2) }}
+                                                    {{ number_format($payment->remaining_amount, 2) }}
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <span class="text-muted">Discount:</span>
+                                                <span class="fw-bold text-success">
+                                                    {{ $payment->currency }}
+                                                    {{ number_format($payment->discount, 2) }}
+                                                </span>
+                                            </div>
+
+                                            <div>
+                                                <span class="text-muted">Grand Total:</span>
+                                                <span class="fw-bold text-dark">
+                                                    {{ $payment->currency }}
+                                                    {{ number_format($payment->grand_total, 2) }}
                                                 </span>
                                             </div>
 

@@ -74,4 +74,9 @@ class Payment extends Model
     {
         return $this->belongsTo(Student::class, 'student_id');
     }
+
+    public function getRemainingAmountAttribute($value)
+    {
+        return $value ?? ($this->grand_total - $this->paid_amount);
+    }
 }
