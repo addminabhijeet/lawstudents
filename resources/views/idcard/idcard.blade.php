@@ -44,12 +44,10 @@
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded-circle shadow"
                                     style="width:80px;height:80px;">
 
-                                    @if (!empty($admission?->photo))
+                                    
                                         <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
                                             style="width:100%; height:100%; object-fit:cover;">
-                                    @else
-                                        <i class="feather-user" style="font-size:32px;"></i>
-                                    @endif
+                        
 
                                 </div>
 
