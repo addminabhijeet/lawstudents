@@ -236,6 +236,8 @@ class RoutingControllerStu extends Controller
 
     public function viewidcard()
     {
+        $admission = null;
+
         $admission = StudentAdmission::where('student_id', Auth::guard('student')->id())
             ->latest()
             ->first();
