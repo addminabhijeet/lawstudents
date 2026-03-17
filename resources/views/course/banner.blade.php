@@ -40,6 +40,10 @@
                                         <label class="form-label">Banner Image 1 (1425 X 600)</label>
                                         <input type="file" name="image_1" class="form-control">
 
+                                        @error('image_1')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+
                                         @if ($banner && $banner->image_1)
                                             <div class="mt-2">
                                                 <img src="{{ asset('storage/app/public/' . $banner->image_1) }}"
@@ -52,6 +56,10 @@
                                         <label class="form-label">Banner Image 2 (1425 X 600)</label>
                                         <input type="file" name="image_2" class="form-control">
 
+                                        @error('image_2')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+
                                         @if ($banner && $banner->image_2)
                                             <div class="mt-2">
                                                 <img src="{{ asset('storage/app/public/' . $banner->image_2) }}"
@@ -63,6 +71,10 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">Banner Image 3 (1425 X 600)</label>
                                         <input type="file" name="image_3" class="form-control">
+
+                                        @error('image_3')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
 
                                         @if ($banner && $banner->image_3)
                                             <div class="mt-2">
