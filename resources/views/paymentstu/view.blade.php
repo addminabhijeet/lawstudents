@@ -19,6 +19,11 @@
         <div class="main-content container-lg">
             <div class="row">
                 <div class="col-lg-12">
+                    @if ($notFound)
+                        <div class="alert alert-warning text-center">
+                            <strong>Please Complete Your Payment</strong>
+                        </div>
+                    @endif
                     <div class="card invoice-container">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-center">
@@ -32,11 +37,7 @@
                                 </a>
                             </div>
                         </div>
-                        @if ($notFound)
-                            <div class="alert alert-warning text-center">
-                                <strong>Please Complete Your Payment</strong>
-                            </div>
-                        @endif
+
                         <div class="card-body p-0">
                             <div class="px-4 pt-4">
                                 <div class="d-sm-flex align-items-center justify-content-between">
