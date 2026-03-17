@@ -18,10 +18,10 @@
         <div class="main-content container-lg py-5">
             @if ($notFound)
                 <div class="alert alert-warning text-center">
-                    <strong>Please Complete Your Payment</strong>
+                    <strong>Please Complete Your Payment to get ID Card</strong>
                 </div>
             @endif
-            
+
             @if (!$notFound && $payment)
                 <div class="row justify-content-center">
 
