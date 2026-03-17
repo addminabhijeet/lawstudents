@@ -66,19 +66,6 @@
                                     {{ $idcard->to_name }}
                                 </div>
 
-                                @php
-                                    $statusColor = match ($idcard->payment_status) {
-                                        'paid' => 'bg-success',
-                                        'failed' => 'bg-danger',
-                                        'cancelled' => 'bg-secondary',
-                                        default => 'bg-warning',
-                                    };
-                                @endphp
-
-                                <span class="badge {{ $statusColor }}" style="font-size:9px;">
-                                    {{ ucfirst($idcard->payment_status) }}
-                                </span>
-
                                 <hr class="my-2">
 
 
@@ -117,7 +104,18 @@
                                     <div class="col-7 text-start">
 
                                         <div style="font-size:10px;font-weight:600;">
-                                            Course
+                                            @php
+                                                $statusColor = match ($idcard->payment_status) {
+                                                    'paid' => 'bg-success',
+                                                    'failed' => 'bg-danger',
+                                                    'cancelled' => 'bg-secondary',
+                                                    default => 'bg-warning',
+                                                };
+                                            @endphp
+
+                                            <span class="badge {{ $statusColor }}" style="font-size:9px;">
+                                                {{ ucfirst($idcard->payment_status) }}
+                                            </span>
                                         </div>
 
                                     </div>
