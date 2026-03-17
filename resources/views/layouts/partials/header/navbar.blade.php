@@ -57,7 +57,7 @@
                         </div>
                         <div class="header-elements">
                             <div class="site-logo"
-                                style="width:150px; height:60px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
                                 <a href="" style="display:block; width:100%; height:100%;">
                                     <img src="assets/images/logo-full.png" alt=""
                                         style="width:100%; height:100%; object-fit:contain;">
