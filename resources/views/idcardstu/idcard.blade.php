@@ -70,7 +70,7 @@
 
 
                                 <!-- STUDENT INFO -->
-                                <div class="text-start px-2" style="font-size:11px;">
+                                <div class="text-start px-2" style="font-size:11px; font-weight:600;">
 
                                     <div class="mb-1">
                                         <strong>ID :</strong>
@@ -103,7 +103,7 @@
 
                                     <div class="col-5 d-flex justify-content-center">
 
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ urlencode($idcard->invoice_number) }}"
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ urlencode($idcard->invoice_number) }}"
                                             style="width:90px; height:90px; object-fit:contain;">
                                     </div>
 
