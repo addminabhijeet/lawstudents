@@ -84,18 +84,6 @@ class StudentAdmissinController extends Controller
                 'password' => Hash::make($defaultpassword),
             ]);
 
-
-            // if ($validated['admission_status'] === 'approved') {
-
-            //     if (
-            //         !$request->boolean('email_verified') ||
-            //         !$request->boolean('phone_verified')
-            //     ) {
-            //         abort(422, 'Email and Phone OTP must be verified before approval.');
-            //     }
-            // }
-
-
             $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
             $subTotal = $courses->sum('price');
 
@@ -124,23 +112,28 @@ class StudentAdmissinController extends Controller
 
             if ($admission->admission_status === 'approved') {
 
+                $paidAmount = $request->paidamount ?? 0;
+                $remainingAmount = $request->remamount ?? ($grandTotal - $paidAmount);
+
                 Payment::create([
-                    'student_id'     => $student->id,
+                    'student_id'      => $student->id,
                     'course_id'       => $courseId,
-                    'invoice_number' => 'INV-' . strtoupper(Str::random(6)),
-                    'invoice_label'  => 'Admission Fee',
+                    'invoice_number'  => 'INV-' . strtoupper(Str::random(6)),
+                    'invoice_label'   => 'Admission Fee',
                     'invoice_product' => $courses->pluck('title')->implode(', '),
-                    'issue_date'     => now(),
-                    'due_date'       => now()->addDays(7),
-                    'to_name'        => $admission->full_name,
-                    'to_email'       => $admission->email,
-                    'to_phone'       => $admission->phone,
-                    'to_address'     => $admission->address_line1,
-                    'sub_total'      => $subTotal,
-                    'discount'       => $discountAmount,
-                    'grand_total'    => $grandTotal,
-                    'currency'       => 'INR',
-                    'payment_status' => 'pending',
+                    'issue_date'      => now(),
+                    'due_date'        => now()->addDays(7),
+                    'to_name'         => $admission->full_name,
+                    'to_email'        => $admission->email,
+                    'to_phone'        => $admission->phone,
+                    'to_address'      => $admission->address_line1,
+                    'sub_total'       => $subTotal,
+                    'discount'        => $discountAmount,
+                    'grand_total'     => $grandTotal,
+                    'currency'        => 'INR',
+                    'payment_status'  => $paidAmount >= $grandTotal ? 'paid' : 'partial', // mark paid/partial
+                    'paid_amount'     => $paidAmount,
+                    'remaining_amount' => $remainingAmount,
                 ]);
             }
 
@@ -357,6 +350,12 @@ class StudentAdmissinController extends Controller
             ? implode(',', $admission->course_ids)
             : null;
 
+        $paidAmount = $request->paidamount ?? 0;
+        $remainingAmount = $request->remamount ?? ($subtotal - $paidAmount);
+
+        // Determine payment status
+        $paymentStatus = $paidAmount >= $subtotal ? 'paid' : ($paidAmount > 0 ? 'partial' : 'pending');
+
         Payment::updateOrCreate(
             [
                 'student_id' => $admission->student_id,
@@ -374,8 +373,10 @@ class StudentAdmissinController extends Controller
                 'to_address' => $admission->address_line1,
                 'sub_total' => $subtotal,
                 'grand_total' => $subtotal,
+                'paid_amount' => $paidAmount,
+                'remaining_amount' => $remainingAmount,
                 'currency' => 'INR',
-                'payment_status' => 'pending',
+                'payment_status' => $paymentStatus,
             ]
         );
 
