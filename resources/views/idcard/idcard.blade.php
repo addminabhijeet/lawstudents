@@ -25,16 +25,12 @@
                     <div class="card shadow border-0" style="width:260px; min-height:430px; overflow:hidden;">
 
                         <!-- TOP STRIPE -->
-                        <div class="bg-primary text-white text-center py-2">
+                        <div style="background:#4e342e; color:#fff;" class="text-center py-2">
 
-                            <img src="{{ asset('assets/images/logo.png') }}" height="28" class="mb-1">
+                            <img src="{{ asset('assets/images/logo-full.png') }}" height="28" class="mb-1">
 
-                            <div style="font-size:12px;font-weight:600;">
+                            <div style="font-size:12px;font-weight:600; letter-spacing:0.5px;">
                                 STUDENT ID CARD
-                            </div>
-
-                            <div style="font-size:10px;opacity:0.9;">
-                                Official Identification
                             </div>
 
                         </div>
@@ -43,42 +39,32 @@
                         <!-- BODY -->
                         <div class="card-body text-center py-3">
 
-                            <!-- PHOTO -->
                             <div class="d-flex justify-content-center mb-2">
 
                                 <div class="d-flex align-items-center justify-content-center bg-light rounded-circle shadow"
                                     style="width:80px;height:80px;">
 
-                                    <i class="feather-user" style="font-size:32px;"></i>
+                                    @if (!empty($admission?->photo))
+                                        <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    @else
+                                        <i class="feather-user" style="font-size:32px;"></i>
+                                    @endif
 
                                 </div>
 
                             </div>
-
 
                             <!-- NAME -->
                             <div style="font-weight:600;font-size:14px;">
                                 {{ $idcard->to_name }}
                             </div>
 
-                            @php
-                                $statusColor = match ($idcard->payment_status) {
-                                    'paid' => 'bg-success',
-                                    'failed' => 'bg-danger',
-                                    'cancelled' => 'bg-secondary',
-                                    default => 'bg-warning',
-                                };
-                            @endphp
-
-                            <span class="badge {{ $statusColor }}" style="font-size:9px;">
-                                {{ ucfirst($idcard->payment_status) }}
-                            </span>
-
                             <hr class="my-2">
 
 
                             <!-- STUDENT INFO -->
-                            <div class="text-start px-2" style="font-size:11px;">
+                            <div class="text-start px-2 text-center" style="font-size:11px; font-weight:600;">
 
                                 <div class="mb-1">
                                     <strong>ID :</strong>
@@ -107,21 +93,12 @@
 
 
                             <!-- COURSE + QR -->
-                            <div class="row align-items-center">
+                            <div class="row align-items-center text-center justify-content-center">
 
-                                <div class="col-7 text-start">
+                                <div class="col-5 d-flex justify-content-center">
 
-                                    <div style="font-size:10px;font-weight:600;">
-                                        Course
-                                    </div>
-
-                                </div>
-
-                                <div class="col-5 text-end">
-
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data={{ $idcard->invoice_number }}"
-                                        width="55" height="55">
-
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ urlencode($idcard->invoice_number) }}"
+                                        style="width:90px; height:90px; object-fit:contain;">
                                 </div>
 
                             </div>
