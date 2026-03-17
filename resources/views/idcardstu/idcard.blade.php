@@ -101,25 +101,6 @@
                                 <!-- COURSE + QR -->
                                 <div class="row align-items-center text-center justify-content-center">
 
-                                    <div class="col-7 d-flex justify-content-center">
-
-                                        <div style="font-size:10px;font-weight:600;">
-                                            @php
-                                                $statusColor = match ($idcard->payment_status) {
-                                                    'paid' => 'bg-success',
-                                                    'failed' => 'bg-danger',
-                                                    'cancelled' => 'bg-secondary',
-                                                    default => 'bg-warning',
-                                                };
-                                            @endphp
-
-                                            <span class="badge {{ $statusColor }}" style="font-size:9px;">
-                                                {{ ucfirst($idcard->payment_status) }}
-                                            </span>
-                                        </div>
-
-                                    </div>
-
                                     <div class="col-5 d-flex justify-content-center">
 
                                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ urlencode($idcard->invoice_number) }}"
