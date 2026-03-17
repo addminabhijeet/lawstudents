@@ -99,9 +99,9 @@
 
 
                                 <!-- COURSE + QR -->
-                                <div class="row align-items-center">
+                                <div class="row align-items-center text-center justify-content-center">
 
-                                    <div class="col-7 text-start">
+                                    <div class="col-7 d-flex justify-content-center">
 
                                         <div style="font-size:10px;font-weight:600;">
                                             @php
@@ -120,11 +120,10 @@
 
                                     </div>
 
-                                    <div class="col-5 text-end">
+                                    <div class="col-5 d-flex justify-content-center">
 
                                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ urlencode($idcard->invoice_number) }}"
-                                            width="55" height="55">
-
+                                            style="width:55px; height:55px; object-fit:contain;">
                                     </div>
 
                                 </div>
