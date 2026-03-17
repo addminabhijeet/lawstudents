@@ -85,8 +85,19 @@
                                         all the difference. At Law School Name, we prioritize your growth and provide
                                         exceptional mentorship tailored to your goals.
                                     </p>
-                                    <a href="#" class="welcome-btn3">Meet Our Mentors <i
-                                            class="fa-light fa-arrow-right"></i></a>
+
+                                    <!-- Grid Wrapper -->
+                                    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+
+                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                                class="fa-light fa-arrow-right"></i></a>
+                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                                class="fa-light fa-arrow-right"></i></a>
+                                        <a href="#" class="welcome-btn3">View Pdf<i
+                                                class="fa-light fa-arrow-right"></i></a>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
