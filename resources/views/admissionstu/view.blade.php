@@ -34,6 +34,7 @@
                         <strong>Please Complete Your Admission</strong>
                     </div>
                 @endif
+                
                 @if (!$notFound && $admission)
                     <!-- STUDENT PROFILE CARD -->
                     <div class="col-xl-4">
