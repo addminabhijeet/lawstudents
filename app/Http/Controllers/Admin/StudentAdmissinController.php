@@ -27,7 +27,7 @@ class StudentAdmissinController extends Controller
         $admissions = StudentAdmission::latest()->get();
         return view('admission.list', compact('admissions'));
     }
-
+    
     public function addadmission()
     {
         $courses = Course::where('status', 1)->get();
@@ -61,10 +61,11 @@ class StudentAdmissinController extends Controller
             'admission_status' => ['required', 'in:pending,approved,rejected'],
             'course_ids' => ['nullable', 'array'],
             'course_ids.*' => ['exists:courses,id'],
+            'discount_percent' => ['nullable', 'numeric', 'min:0', 'max:100'],
+            'discount' => ['nullable', 'numeric', 'min:0'],
         ]);
 
         return DB::transaction(function () use ($validated, $request) {
-
 
             // Generate username like STU00001
             $lastStudent = Student::latest('id')->first();
@@ -83,12 +84,13 @@ class StudentAdmissinController extends Controller
                 'email'    => $validated['email'],
                 'password' => Hash::make($defaultpassword),
             ]);
+
             $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
             $subTotal = $courses->sum('price');
 
-            // calculate discount
-            $discountPercent = $request->input('customDiscount', 0); // or 'discount_percent' from form
-            $discountAmount  = ($subTotal * $discountPercent) / 100;
+            // Take discount values directly from request
+            $discountPercent = $request->input('discount_percent', 0); // from form
+            $discountAmount  = $request->input('discount', ($subTotal * $discountPercent) / 100); // fallback to calculation
             $grandTotal      = $subTotal - $discountAmount;
 
             // create admission
@@ -112,7 +114,6 @@ class StudentAdmissinController extends Controller
                 $paidAmount = $request->paidamount ?? 0;
                 $remainingAmount = $request->remamount ?? ($grandTotal - $paidAmount);
 
-                // correctly save discount and discount_percent
                 Payment::create([
                     'student_id'       => $student->id,
                     'course_id'        => !empty($validated['course_ids']) ? implode(',', $validated['course_ids']) : null,
@@ -126,8 +127,8 @@ class StudentAdmissinController extends Controller
                     'to_phone'         => $admission->phone,
                     'to_address'       => $admission->address_line1,
                     'sub_total'        => $subTotal,
-                    'discount'         => $discountAmount,     
-                    'discount_percent' => $discountPercent,    
+                    'discount'         => $discountAmount,
+                    'discount_percent' => $discountPercent,
                     'grand_total'      => $grandTotal,
                     'currency'         => 'INR',
                     'payment_status'   => $paidAmount >= $grandTotal ? 'paid' : 'partial',

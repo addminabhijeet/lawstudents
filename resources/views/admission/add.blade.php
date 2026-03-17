@@ -202,7 +202,8 @@
                                 </div>
 
                                 <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
-
+                                <input type="hidden" name="discount_percent" id="formDiscountPercent">
+                                <input type="hidden" name="discount" id="formDiscount">
                                 <div class="mb-3">
                                     <div class="d-flex justify-content-between">
                                         <span>Subtotal:</span>
@@ -396,9 +397,7 @@
         const remainingEl = document.getElementById('remainingamount');
 
         function calculateFees() {
-
             let subtotal = 0;
-
             let selectedCourse = [];
 
             checkboxes.forEach(cb => {
@@ -416,7 +415,6 @@
 
             let paid = parseFloat(paidInput.value) || 0;
             let remaining = grandTotal - paid;
-
             if (remaining < 0) remaining = 0;
 
             subtotalEl.innerText = subtotal.toFixed(2);
@@ -425,6 +423,10 @@
             remainingEl.innerText = remaining.toFixed(2);
 
             document.getElementById('remamount').value = remaining.toFixed(2);
+
+            // Update hidden fields
+            document.getElementById('formDiscountPercent').value = discountPercent;
+            document.getElementById('formDiscount').value = discount.toFixed(2);
         }
 
         checkboxes.forEach(cb => {
