@@ -6,50 +6,58 @@
         $banner = $banner instanceof \Illuminate\Support\Collection ? $banner->first() : $banner;
     @endphp
 
-    <div class="slider-carousel-area owl-carousel car">
+    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
 
-        @if ($banner && $banner->image_1)
-            <div class="welcome7-section-area"
-                style="background-image: url('{{ asset('storage/app/public/' . $banner->image_1) }}');
-            background-position:center;
-            background-repeat:no-repeat;
-            background-size:contain;
-            min-height:600px;">
-            </div>
-        @endif
+        <div class="carousel-inner">
 
-        @if ($banner && $banner->image_2)
-            <div class="welcome7-section-area"
-                style="background-image: url('{{ asset('storage/app/public/' . $banner->image_2) }}');
-            background-position:center;
-            background-repeat:no-repeat;
-            background-size:contain;
-            min-height:600px;">
-            </div>
-        @endif
+            @if ($banner && $banner->image_1)
+                <div class="carousel-item active">
+                    <div class="welcome7-section-area"
+                        style="background-image: url('{{ asset('storage/app/public/' . $banner->image_1) }}');
+                    background-position:center;
+                    background-repeat:no-repeat;
+                    background-size:contain;
+                    min-height:600px;">
+                    </div>
+                </div>
+            @endif
 
-        @if ($banner && $banner->image_3)
-            <div class="welcome7-section-area"
-                style="background-image: url('{{ asset('storage/app/public/' . $banner->image_3) }}');
-            background-position:center;
-            background-repeat:no-repeat;
-            background-size:contain;
-            min-height:600px;">
-            </div>
-        @endif
+            @if ($banner && $banner->image_2)
+                <div class="carousel-item {{ !$banner->image_1 ? 'active' : '' }}">
+                    <div class="welcome7-section-area"
+                        style="background-image: url('{{ asset('storage/app/public/' . $banner->image_2) }}');
+                    background-position:center;
+                    background-repeat:no-repeat;
+                    background-size:contain;
+                    min-height:600px;">
+                    </div>
+                </div>
+            @endif
+
+            @if ($banner && $banner->image_3)
+                <div class="carousel-item {{ !$banner->image_1 && !$banner->image_2 ? 'active' : '' }}">
+                    <div class="welcome7-section-area"
+                        style="background-image: url('{{ asset('storage/app/public/' . $banner->image_3) }}');
+                    background-position:center;
+                    background-repeat:no-repeat;
+                    background-size:contain;
+                    min-height:600px;">
+                    </div>
+                </div>
+            @endif
+
+        </div>
+
+        <!-- Optional Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
 
     </div>
-
-    <script>
-        $('.car').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: false,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            items: 1
-        });
-    </script>
     <!-- ===== WELCOME ENDS ======= -->
 
     <!-- ===== ABOUT STARTS ======= -->
