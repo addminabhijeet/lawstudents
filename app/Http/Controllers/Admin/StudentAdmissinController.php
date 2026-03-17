@@ -83,41 +83,39 @@ class StudentAdmissinController extends Controller
                 'email'    => $validated['email'],
                 'password' => Hash::make($defaultpassword),
             ]);
-
             $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
             $subTotal = $courses->sum('price');
 
-            $discountPercent = $request->input('discount_percent', 0);
+            // calculate discount
+            $discountPercent = $request->input('customDiscount', 0); // or 'discount_percent' from form
             $discountAmount  = ($subTotal * $discountPercent) / 100;
             $grandTotal      = $subTotal - $discountAmount;
-            $courseId = !empty($admission->course_ids) && is_array($admission->course_ids)
-                ? implode(',', $admission->course_ids)
-                : null;
 
+            // create admission
             $admission = StudentAdmission::create([
-                'student_id'      => $student->id,
-                'admno'           => $request->admno,
-                'full_name'       => $validated['full_name'],
-                'email'           => $validated['email'],
-                'phone'           => $validated['phone'],
-                'address_line1'   => $validated['address_line1'],
+                'student_id'       => $student->id,
+                'admno'            => $request->admno,
+                'full_name'        => $validated['full_name'],
+                'email'            => $validated['email'],
+                'phone'            => $validated['phone'],
+                'address_line1'    => $validated['address_line1'],
                 'admission_status' => $validated['admission_status'],
-                'course_ids'      => $validated['course_ids'] ?? [],
-                'paidamount'      => $request->paidamount ?? 0,
-                'remamount'      => $request->remamount ?? 0,
-                'email_verified'  => $request->boolean('email_verified'),
-                'phone_verified'  => $request->boolean('phone_verified'),
+                'course_ids'       => $validated['course_ids'] ?? [],
+                'paidamount'       => $request->paidamount ?? 0,
+                'remamount'        => $request->remamount ?? 0,
+                'email_verified'   => $request->boolean('email_verified'),
+                'phone_verified'   => $request->boolean('phone_verified'),
             ]);
-
 
             if ($admission->admission_status === 'approved') {
 
                 $paidAmount = $request->paidamount ?? 0;
                 $remainingAmount = $request->remamount ?? ($grandTotal - $paidAmount);
 
+                // correctly save discount and discount_percent
                 Payment::create([
                     'student_id'       => $student->id,
-                    'course_id'        => $courseId,
+                    'course_id'        => !empty($validated['course_ids']) ? implode(',', $validated['course_ids']) : null,
                     'invoice_number'   => 'INV-' . strtoupper(Str::random(6)),
                     'invoice_label'    => 'Admission Fee',
                     'invoice_product'  => $courses->pluck('title')->implode(', '),
@@ -128,8 +126,8 @@ class StudentAdmissinController extends Controller
                     'to_phone'         => $admission->phone,
                     'to_address'       => $admission->address_line1,
                     'sub_total'        => $subTotal,
-                    'discount'         => $discountAmount,                  // already storing amount
-                    'discount_percent' => $discountPercent,                 // new field for percentage
+                    'discount'         => $discountAmount,     
+                    'discount_percent' => $discountPercent,    
                     'grand_total'      => $grandTotal,
                     'currency'         => 'INR',
                     'payment_status'   => $paidAmount >= $grandTotal ? 'paid' : 'partial',
