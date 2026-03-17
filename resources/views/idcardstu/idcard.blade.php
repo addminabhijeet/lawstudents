@@ -122,7 +122,7 @@
 
                                     <div class="col-5 text-end">
 
-                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data={{ $idcard->invoice_number }}"
+                                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data={{ urlencode($idcard->invoice_number) }}"
                                             width="55" height="55">
 
                                     </div>
