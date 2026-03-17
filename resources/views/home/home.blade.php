@@ -11,51 +11,27 @@
         <div class="carousel-inner">
 
             @if ($banner && $banner->image_1)
-                <div class="carousel-item active">
-                    <div class="welcome7-section-area"
-                        style="background-image: url('{{ asset('storage/app/public/' . $banner->image_1) }}');
-                    background-position:center;
-                    background-repeat:no-repeat;
-                    background-size:contain;
-                    min-height:600px;">
-                    </div>
+                <div class="carousel-item active text-center">
+                    <img src="{{ asset('storage/app/public/' . $banner->image_1) }}" class="img-fluid"
+                        style="width:100%; height:600px; object-fit:contain;">
                 </div>
             @endif
 
             @if ($banner && $banner->image_2)
-                <div class="carousel-item {{ !$banner->image_1 ? 'active' : '' }}">
-                    <div class="welcome7-section-area"
-                        style="background-image: url('{{ asset('storage/app/public/' . $banner->image_2) }}');
-                    background-position:center;
-                    background-repeat:no-repeat;
-                    background-size:contain;
-                    min-height:600px;">
-                    </div>
+                <div class="carousel-item {{ !$banner->image_1 ? 'active' : '' }} text-center">
+                    <img src="{{ asset('storage/app/public/' . $banner->image_2) }}" class="img-fluid"
+                        style="width:100%; height:600px; object-fit:contain;">
                 </div>
             @endif
 
             @if ($banner && $banner->image_3)
-                <div class="carousel-item {{ !$banner->image_1 && !$banner->image_2 ? 'active' : '' }}">
-                    <div class="welcome7-section-area"
-                        style="background-image: url('{{ asset('storage/app/public/' . $banner->image_3) }}');
-                    background-position:center;
-                    background-repeat:no-repeat;
-                    background-size:contain;
-                    min-height:600px;">
-                    </div>
+                <div class="carousel-item {{ !$banner->image_1 && !$banner->image_2 ? 'active' : '' }} text-center">
+                    <img src="{{ asset('storage/app/public/' . $banner->image_3) }}" class="img-fluid"
+                        style="width:100%; height:600px; object-fit:contain;">
                 </div>
             @endif
 
         </div>
-
-        <!-- Optional Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
 
     </div>
     <!-- ===== WELCOME ENDS ======= -->
