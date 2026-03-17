@@ -32,11 +32,17 @@
                                 </a>
                             </div>
                         </div>
+                        @if ($notFound)
+                            <div class="alert alert-warning text-center">
+                                <strong>Please Complete Your Payment</strong>
+                            </div>
+                        @endif
                         <div class="card-body p-0">
                             <div class="px-4 pt-4">
                                 <div class="d-sm-flex align-items-center justify-content-between">
                                     <div>
-                                        <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">Law Students</div>
+                                        <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">Law Students
+                                        </div>
                                         <address class="text-muted">
                                             P.O. Box 18728,<br>
                                             DeLorean New York<br>
