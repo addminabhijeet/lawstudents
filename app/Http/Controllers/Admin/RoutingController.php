@@ -58,39 +58,42 @@ class RoutingController extends Controller
 
         return view('idcard.list', compact('payments'));
     }
+    
     public function updatepayment(Request $request, $id)
     {
+        if (!$request->has('payments')) {
+            return back()->with('error', 'No payments data received');
+        }
+
         foreach ($request->payments as $payData) {
 
-            $payment = Payment::findOrFail($payData['id']);
+            if (!isset($payData['id'])) continue;
 
+            $payment = Payment::find($payData['id']);
+            if (!$payment) continue;
+
+            // ✅ Safe validation (only validate fields that exist in form)
             $validated = validator($payData, [
                 'invoice_label'     => 'nullable|string|max:255',
                 'invoice_number'    => 'required|string|max:255',
                 'invoice_product'   => 'nullable|string|max:255',
 
-                'issue_date'        => 'required|date',
-                'due_date'          => 'required|date|after_or_equal:issue_date',
+                'issue_date'        => 'nullable|date',
+                'due_date'          => 'nullable|date',
 
-                'from_name'         => 'required|string|max:255',
-                'from_email'        => 'nullable|email|max:255',
-                'from_phone'        => 'nullable|string|max:20',
-                'from_address'      => 'nullable|string',
+                // ⚠️ make optional (important fix)
+                'from_name'         => 'nullable|string|max:255',
+                'to_name'           => 'nullable|string|max:255',
 
-                'to_name'           => 'required|string|max:255',
-                'to_email'          => 'nullable|email|max:255',
-                'to_phone'          => 'nullable|string|max:20',
-                'to_address'        => 'nullable|string',
-
-                'items'                     => 'required|array|min:1',
-                'items.*.product'           => 'required|string|max:255',
-                'items.*.qty'               => 'required|numeric|min:1',
-                'items.*.price'             => 'required|numeric|min:0',
+                'items'                     => 'nullable|array',
+                'items.*.product'           => 'nullable|string|max:255',
+                'items.*.qty'               => 'nullable|numeric|min:1',
+                'items.*.price'             => 'nullable|numeric|min:0',
 
                 'tax_percentage'    => 'nullable|numeric|min:0',
                 'discount'          => 'nullable|numeric|min:0',
 
-                'currency'          => 'required|string|max:10',
+                'currency'          => 'nullable|string|max:10',
                 'payment_method'    => 'nullable|string|in:debit,paypal',
 
                 'invoice_note'      => 'nullable|string',
@@ -99,20 +102,22 @@ class RoutingController extends Controller
             $subTotal = 0;
             $items = [];
 
-            foreach ($validated['items'] as $item) {
+            if (!empty($validated['items'])) {
+                foreach ($validated['items'] as $item) {
 
-                $qty = (float) $item['qty'];
-                $price = (float) $item['price'];
-                $total = $qty * $price;
+                    $qty = (float) ($item['qty'] ?? 0);
+                    $price = (float) ($item['price'] ?? 0);
+                    $total = $qty * $price;
 
-                $subTotal += $total;
+                    $subTotal += $total;
 
-                $items[] = [
-                    'product' => $item['product'],
-                    'qty'     => $qty,
-                    'price'   => $price,
-                    'total'   => $total,
-                ];
+                    $items[] = [
+                        'product' => $item['product'] ?? '',
+                        'qty'     => $qty,
+                        'price'   => $price,
+                        'total'   => $total,
+                    ];
+                }
             }
 
             $taxPercentage = (float) ($validated['tax_percentage'] ?? 0);
@@ -123,24 +128,17 @@ class RoutingController extends Controller
             $grandTotal = $subTotal + $taxAmount - $discount;
 
             $payment->update([
-                'invoice_label'     => $validated['invoice_label'] ?? null,
+                'invoice_label'     => $validated['invoice_label'] ?? $payment->invoice_label,
                 'invoice_number'    => $validated['invoice_number'],
-                'invoice_product'   => $validated['invoice_product'] ?? null,
+                'invoice_product'   => $validated['invoice_product'] ?? $payment->invoice_product,
 
-                'issue_date'        => $validated['issue_date'],
-                'due_date'          => $validated['due_date'],
+                'issue_date'        => $validated['issue_date'] ?? $payment->issue_date,
+                'due_date'          => $validated['due_date'] ?? $payment->due_date,
 
-                'from_name'         => $validated['from_name'],
-                'from_email'        => $validated['from_email'] ?? null,
-                'from_phone'        => $validated['from_phone'] ?? null,
-                'from_address'      => $validated['from_address'] ?? null,
+                'from_name'         => $validated['from_name'] ?? $payment->from_name,
+                'to_name'           => $validated['to_name'] ?? $payment->to_name,
 
-                'to_name'           => $validated['to_name'],
-                'to_email'          => $validated['to_email'] ?? null,
-                'to_phone'          => $validated['to_phone'] ?? null,
-                'to_address'        => $validated['to_address'] ?? null,
-
-                'items'             => $items,
+                'items'             => $items ?: $payment->items,
 
                 'sub_total'         => $subTotal,
                 'tax_percentage'    => $taxPercentage,
@@ -148,9 +146,9 @@ class RoutingController extends Controller
                 'discount'          => $discount,
                 'grand_total'       => $grandTotal,
 
-                'currency'          => $validated['currency'],
-                'payment_method'    => $validated['payment_method'] ?? null,
-                'invoice_note'      => $validated['invoice_note'] ?? null,
+                'currency'          => $validated['currency'] ?? $payment->currency,
+                'payment_method'    => $validated['payment_method'] ?? $payment->payment_method,
+                'invoice_note'      => $validated['invoice_note'] ?? $payment->invoice_note,
 
                 'late_fees'         => isset($payData['late_fees']),
                 'client_note_enabled' => isset($payData['client_note_enabled']),
