@@ -34,198 +34,195 @@
                         <strong>Please Complete Your Admission</strong>
                     </div>
                 @endif
+                @if (!$notFound && $payment)
+                    <!-- STUDENT PROFILE CARD -->
+                    <div class="col-xl-4">
+                        <div class="card shadow-sm border-light">
+                            <div class="card-body text-center">
 
-                <!-- STUDENT PROFILE CARD -->
-                <div class="col-xl-4">
-                    <div class="card shadow-sm border-light">
-                        <div class="card-body text-center">
+                                @if ($admission->photo)
+                                    <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                        class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
+                                @else
+                                    <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
+                                        style="width:130px;height:130px;">
+                                @endif
 
-                            @if ($admission->photo)
-                                <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                    class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
-                            @else
-                                <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
-                                    style="width:130px;height:130px;">
-                            @endif
+                                <h5 class="fw-bold mb-1">
+                                    {{ $admission->full_name }}
+                                </h5>
 
-                            <h5 class="fw-bold mb-1">
-                                {{ $admission->full_name }}
-                            </h5>
-
-                            <p class="text-muted mb-2">
-                                Admission No
-                            </p>
-
-                            <span class="badge bg-primary fs-6">
-                                {{ $admission->admno }}
-                            </span>
-
-                            <hr>
-
-                            <div class="text-start">
-
-                                <p class="mb-2">
-                                    <strong>Email:</strong><br>
-                                    {{ $admission->email }}
+                                <p class="text-muted mb-2">
+                                    Admission No
                                 </p>
 
-                                <p class="mb-2">
-                                    <strong>Phone:</strong><br>
-                                    {{ $admission->phone }}
-                                </p>
+                                <span class="badge bg-primary fs-6">
+                                    {{ $admission->admno }}
+                                </span>
 
-                                <p class="mb-2">
-                                    <strong>Guardian:</strong><br>
-                                    {{ $admission->father_name }}
-                                </p>
+                                <hr>
 
-                                <p class="mb-0">
-                                    <strong>Status:</strong><br>
+                                <div class="text-start">
 
-                                    @if ($admission->admission_status == 'approved')
-                                        <span class="badge bg-success">Approved</span>
-                                    @elseif($admission->admission_status == 'pending')
-                                        <span class="badge bg-warning">Pending</span>
-                                    @else
-                                        <span class="badge bg-danger">Rejected</span>
-                                    @endif
-
-                                </p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STUDENT DETAILS -->
-                <div class="col-xl-8">
-
-                    <div class="card shadow-sm border-light mb-4">
-                        <div class="card-body">
-
-                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                Student Details
-                            </h5>
-
-                            <div class="row mb-3">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Full Name</label>
-                                    <p class="fw-semibold">{{ $admission->full_name }}</p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Admission No</label>
-                                    <p class="fw-semibold">{{ $admission->admno }}</p>
-                                </div>
-
-                            </div>
-
-                            <div class="row mb-3">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Email</label>
-                                    <p class="fw-semibold">{{ $admission->email }}</p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Phone</label>
-                                    <p class="fw-semibold">{{ $admission->phone }}</p>
-                                </div>
-
-                            </div>
-
-                            <div class="row mb-3">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Father / Guardian</label>
-                                    <p class="fw-semibold">{{ $admission->father_name }}</p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Admission Status</label>
-                                    <p class="fw-semibold text-capitalize">
-                                        {{ $admission->admission_status }}
+                                    <p class="mb-2">
+                                        <strong>Email:</strong><br>
+                                        {{ $admission->email }}
                                     </p>
-                                </div>
 
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- ADDRESS CARD -->
-                    <div class="card shadow-sm border-light mb-4">
-                        <div class="card-body">
-
-                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                Address Information
-                            </h5>
-
-                            <div class="row">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Address Line 1</label>
-                                    <p class="fw-semibold">
-                                        {{ $admission->address_line1 }}
+                                    <p class="mb-2">
+                                        <strong>Phone:</strong><br>
+                                        {{ $admission->phone }}
                                     </p>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Address Line 2</label>
-                                    <p class="fw-semibold">
-                                        {{ $admission->address_line2 }}
+                                    <p class="mb-2">
+                                        <strong>Guardian:</strong><br>
+                                        {{ $admission->father_name }}
                                     </p>
-                                </div>
 
-                            </div>
+                                    <p class="mb-0">
+                                        <strong>Status:</strong><br>
 
-                        </div>
-                    </div>
+                                        @if ($admission->admission_status == 'approved')
+                                            <span class="badge bg-success">Approved</span>
+                                        @elseif($admission->admission_status == 'pending')
+                                            <span class="badge bg-warning">Pending</span>
+                                        @else
+                                            <span class="badge bg-danger">Rejected</span>
+                                        @endif
 
-                    <!-- DOCUMENTS -->
-                    <div class="card shadow-sm border-light">
-                        <div class="card-body">
-
-                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                Documents
-                            </h5>
-
-                            <div class="row text-center">
-
-                                <div class="col-md-6">
-
-                                    <label class="text-muted small d-block mb-2">
-                                        Passport Photo
-                                    </label>
-
-                                    @if ($admission->photo)
-                                        <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                            class="img-thumbnail" style="max-height:180px;">
-                                    @endif
-
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    <label class="text-muted small d-block mb-2">
-                                        Signature
-                                    </label>
-
-                                    @if ($admission->signature)
-                                        <img src="{{ asset('storage/app/public/' . $admission->signature) }}"
-                                            class="img-thumbnail" style="max-height:150px;">
-                                    @endif
+                                    </p>
 
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
 
-                </div>
+                    <!-- STUDENT DETAILS -->
+                    <div class="col-xl-8">
+
+                        <div class="card shadow-sm border-light mb-4">
+                            <div class="card-body">
+
+                                <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                    Student Details
+                                </h5>
+
+                                <div class="row mb-3">
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Full Name</label>
+                                        <p class="fw-semibold">{{ $admission->full_name }}</p>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Admission No</label>
+                                        <p class="fw-semibold">{{ $admission->admno }}</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-3">
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Email</label>
+                                        <p class="fw-semibold">{{ $admission->email }}</p>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Phone</label>
+                                        <p class="fw-semibold">{{ $admission->phone }}</p>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-3">
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Father / Guardian</label>
+                                        <p class="fw-semibold">{{ $admission->father_name }}</p>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Admission Status</label>
+                                        <p class="fw-semibold text-capitalize">
+                                            {{ $admission->admission_status }}
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- ADDRESS CARD -->
+                        <div class="card shadow-sm border-light mb-4">
+                            <div class="card-body">
+
+                                <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                    Address Information
+                                </h5>
+
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Address Line 1</label>
+                                        <p class="fw-semibold">
+                                            {{ $admission->address_line1 }}
+                                        </p>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label class="text-muted small">Address Line 2</label>
+                                        <p class="fw-semibold">
+                                            {{ $admission->address_line2 }}
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- DOCUMENTS -->
+                        <div class="card shadow-sm border-light">
+                            <div class="card-body">
+
+                                <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                    Documents
+                                </h5>
+
+                                <div class="row text-center">
+
+                                    <div class="col-md-6">
+
+                                        <label class="text-muted small d-block mb-2">
+                                            Passport Photo
+                                        </label>
+
+                                        @if ($admission->photo)
+                                            <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                                class="img-thumbnail" style="max-height:180px;">
+                                        @endif
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <label class="text-muted small d-block mb-2">
+                                            Signature
+                                        </label>
+
+                                        @if ($admission->signature)
+                                            <img src="{{ asset('storage/app/public/' . $admission->signature) }}"
+                                                class="img-thumbnail" style="max-height:150px;">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
