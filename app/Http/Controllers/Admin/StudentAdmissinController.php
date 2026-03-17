@@ -50,7 +50,7 @@ class StudentAdmissinController extends Controller
 
         return view('admission.add', compact('courses', 'declaration', 'admno'));
     }
-
+    
     public function registeradmsubmit(Request $request)
     {
         $validated = $request->validate([
@@ -87,8 +87,10 @@ class StudentAdmissinController extends Controller
 
             $courses = Course::whereIn('id', $validated['course_ids'] ?? [])->get();
             $subTotal = $courses->sum('price');
+
+            // ✅ Read discount fields directly from request
             $discountPercent = (float) ($request->input('discount_percent') ?? 0);
-            $discountAmount  = (float) ($request->input('discount') ?? 0);
+            $discountAmount  = (float) ($request->input('discount') ?? ($subTotal * ($discountPercent / 100)));
             $grandTotal      = $subTotal - $discountAmount;
 
             // create admission
