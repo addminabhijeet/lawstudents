@@ -42,6 +42,13 @@
                                 <h2 class="fs-20 fw-bolder">Student Registration</h2>
                             </div>
 
+                            {{-- Show message if student not found --}}
+                            @if ($notFound)
+                                <div class="alert alert-warning text-center">
+                                    <strong>Please Complete Your Registration</strong>
+                                </div>
+                            @endif
+
                             {{-- Display Login Errors and Validation Messages --}}
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show">

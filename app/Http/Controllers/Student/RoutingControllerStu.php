@@ -221,11 +221,17 @@ class RoutingControllerStu extends Controller
     {
         $student = Student::where('deleted', 0)
             ->where('id', Auth::guard('student')->id())
-            ->firstOrFail();
+            ->first();
 
         $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
 
-        return view('studentstu.view', compact('student', 'defaultpassword'));
+        $notFound = false;
+
+        if (!$student) {
+            $notFound = true;
+        }
+
+        return view('studentstu.view', compact('student', 'defaultpassword', 'notFound'));
     }
 
     public function viewidcard()
