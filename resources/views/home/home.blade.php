@@ -34,6 +34,21 @@
         </div>
 
     </div>
+
+    <style>
+        #bannerCarousel,
+        #bannerCarousel .carousel-inner,
+        #bannerCarousel .carousel-item {
+            width: 100%;
+        }
+
+        #bannerCarousel .carousel-item img {
+            width: 100%;
+            height: 600px;
+            object-fit: contain;
+            display: block;
+        }
+    </style>
     <!-- ===== WELCOME ENDS ======= -->
 
     <!-- ===== ABOUT STARTS ======= -->
