@@ -34,7 +34,7 @@
                         <strong>Please Complete Your Admission</strong>
                     </div>
                 @endif
-                @if (!$notFound && $payment)
+                @if (!$notFound && $admission)
                     <!-- STUDENT PROFILE CARD -->
                     <div class="col-xl-4">
                         <div class="card shadow-sm border-light">
