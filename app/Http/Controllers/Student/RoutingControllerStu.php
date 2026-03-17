@@ -236,6 +236,10 @@ class RoutingControllerStu extends Controller
 
     public function viewidcard()
     {
+        $image = StudentAdmission::where('student_id', Auth::guard('student')->id())
+            ->latest()
+            ->first();
+
         $idcard = Payment::where('student_id', Auth::guard('student')->id())
             ->latest()
             ->first();
@@ -246,7 +250,7 @@ class RoutingControllerStu extends Controller
             $notFound = true;
         }
 
-        return view('idcardstu.idcard', compact('idcard', 'notFound'));
+        return view('idcardstu.idcard', compact('idcard', 'notFound', 'admission'));
     }
 
     public function editpayment($id)
