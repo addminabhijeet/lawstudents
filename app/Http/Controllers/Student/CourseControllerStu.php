@@ -26,9 +26,9 @@ class CourseControllerStu extends Controller
         // Get all paid payments for the student
         $payments = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
-            ->pluck('course_id'); // this returns a collection of strings like "11,12,13"
+            ->pluck('course_id');
 
-        // Flatten all course IDs into a single array of integers
+        // Flatten course IDs
         $paidCourseIds = [];
         foreach ($payments as $courseIdsString) {
             if ($courseIdsString) {
@@ -36,10 +36,11 @@ class CourseControllerStu extends Controller
                 $paidCourseIds = array_merge($paidCourseIds, $ids);
             }
         }
-        $paidCourseIds = array_map('intval', $paidCourseIds); // convert all to integers
-        $paidCourseIds = array_unique($paidCourseIds); // remove duplicates
 
-        // Get categories that have at least one paid course
+        $paidCourseIds = array_map('intval', $paidCourseIds);
+        $paidCourseIds = array_unique($paidCourseIds);
+
+        // Get categories with paid courses
         $categories = Category::whereHas('courses', function ($query) use ($paidCourseIds) {
             $query->whereIn('id', $paidCourseIds);
         })
@@ -48,7 +49,12 @@ class CourseControllerStu extends Controller
             }])
             ->get();
 
-        return view('coursestu.list', compact('categories'));
+        $notFound = false;
+        if (empty($paidCourseIds) || $categories->isEmpty()) {
+            $notFound = true;
+        }
+
+        return view('coursestu.list', compact('categories', 'notFound'));
     }
 
     public function viewcourse($id)

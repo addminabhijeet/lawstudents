@@ -2,97 +2,104 @@
 <main class="nxl-container apps-container apps-notes">
     <div class="nxl-content without-header nxl-full-content">
         <div class="main-content d-flex">
+            @if ($notFound)
+                <div class="alert alert-warning text-center">
+                    <strong>Please Complete Your Payment</strong>
+                </div>
+            @endif
 
-            <div class="content-area" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-area-body pb-0">
+            @if (!$notFound && $payment)
+                <div class="content-area" data-scrollbar-target="#psScrollbarInit">
+                    <div class="content-area-body pb-0">
 
-                    <div class="row note-has-grid g-4" id="note-full-container">
+                        <div class="row note-has-grid g-4" id="note-full-container">
 
-                        @foreach ($categories as $category)
-                            @foreach ($category->courses as $course)
-                                <div
-                                    class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
+                            @foreach ($categories as $category)
+                                @foreach ($category->courses as $course)
+                                    <div
+                                        class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
 
-                                    <a href="{{ route('student.viewcourse', $course->id) }}"
-                                        class="text-decoration-none text-dark">
+                                        <a href="{{ route('student.viewcourse', $course->id) }}"
+                                            class="text-decoration-none text-dark">
 
-                                        <div class="card h-100 shadow-sm stretch stretch-full">
+                                            <div class="card h-100 shadow-sm stretch stretch-full">
 
-                                            <!-- COURSE HEADER -->
-                                            <div class="card-body d-flex flex-column">
+                                                <!-- COURSE HEADER -->
+                                                <div class="card-body d-flex flex-column">
 
-                                                <span class="side-stick"></span>
+                                                    <span class="side-stick"></span>
 
-                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="d-flex align-items-center mb-3">
 
-                                                    <div class="bg-light rounded p-2 me-2">
-                                                        📚
+                                                        <div class="bg-light rounded p-2 me-2">
+                                                            📚
+                                                        </div>
+
+                                                        <h5 class="note-title text-truncate mb-0">
+                                                            {{ $course->title }}
+                                                        </h5>
+
                                                     </div>
 
-                                                    <h5 class="note-title text-truncate mb-0">
-                                                        {{ $course->title }}
-                                                    </h5>
-
-                                                </div>
-
-                                                <p class="fs-11 text-muted note-date mb-2">
-                                                    {{ $course->created_at->format('d F Y') }}
-                                                </p>
-
-                                                <!-- DESCRIPTION -->
-                                                <div class="note-content flex-grow-1 mb-3">
-
-                                                    <p class="text-muted note-inner-content text-truncate-3-line">
-                                                        {{ $course->description }}
+                                                    <p class="fs-11 text-muted note-date mb-2">
+                                                        {{ $course->created_at->format('d F Y') }}
                                                     </p>
 
+                                                    <!-- DESCRIPTION -->
+                                                    <div class="note-content flex-grow-1 mb-3">
+
+                                                        <p class="text-muted note-inner-content text-truncate-3-line">
+                                                            {{ $course->description }}
+                                                        </p>
+
+                                                    </div>
+
+                                                    <!-- COURSE META -->
+                                                    <div
+                                                        class="d-flex justify-content-between align-items-center mt-auto">
+
+                                                        <span class="badge bg-light text-dark border">
+                                                            {{ $category->name }}
+                                                        </span>
+
+                                                        <span class="fw-bold text-success fs-5">
+                                                            ₹{{ $course->price }}
+                                                        </span>
+
+                                                    </div>
+
                                                 </div>
 
-                                                <!-- COURSE META -->
-                                                <div class="d-flex justify-content-between align-items-center mt-auto">
+                                                <!-- CARD FOOTER -->
+                                                <div class="card-footer bg-white border-0 pt-0">
 
-                                                    <span class="badge bg-light text-dark border">
-                                                        {{ $category->name }}
-                                                    </span>
+                                                    <div class="d-flex justify-content-between align-items-center">
 
-                                                    <span class="fw-bold text-success fs-5">
-                                                        ₹{{ $course->price }}
-                                                    </span>
+                                                        <small class="text-muted">
+                                                            View Course
+                                                        </small>
+
+                                                        <span class="badge bg-primary">
+                                                            Open
+                                                        </span>
+
+                                                    </div>
 
                                                 </div>
 
                                             </div>
 
-                                            <!-- CARD FOOTER -->
-                                            <div class="card-footer bg-white border-0 pt-0">
+                                        </a>
 
-                                                <div class="d-flex justify-content-between align-items-center">
-
-                                                    <small class="text-muted">
-                                                        View Course
-                                                    </small>
-
-                                                    <span class="badge bg-primary">
-                                                        Open
-                                                    </span>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </a>
-
-                                </div>
+                                    </div>
+                                @endforeach
                             @endforeach
-                        @endforeach
+
+                        </div>
 
                     </div>
-
                 </div>
-            </div>
-
+            @endif
         </div>
     </div>
 </main>
