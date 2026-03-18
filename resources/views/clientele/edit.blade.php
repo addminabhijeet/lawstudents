@@ -30,16 +30,7 @@
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                <!-- Upload new PDFs (same as Add form) -->
-                                <div class="mb-3">
-                                    <label for="pdfs" class="form-label">Upload PDF(s)</label>
-                                    <input type="file" name="pdfs[]" id="pdfs" class="form-control" multiple>
-                                    @error('pdfs.*')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <!-- Existing PDFs (optional links, no complex fields) -->
+                                <!-- Existing PDFs (display only, no editing) -->
                                 @if (!empty($clientele->pdfs))
                                     <div class="mb-3">
                                         <label class="form-label">Existing PDFs</label>
@@ -52,6 +43,15 @@
                                         @endforeach
                                     </div>
                                 @endif
+
+                                <!-- Upload new PDFs (same as Add form) -->
+                                <div class="mb-3">
+                                    <label for="pdfs" class="form-label">Upload PDF(s)</label>
+                                    <input type="file" name="pdfs[]" id="pdfs" class="form-control" multiple>
+                                    @error('pdfs.*')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
 
                                 <!-- Description / Button Name -->
                                 <div class="mb-3">
