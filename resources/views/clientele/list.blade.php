@@ -218,7 +218,73 @@
                                             <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
-                                    
+                                    <tbody>
+                                        @forelse ($clienteles as $clientele)
+                                            @php
+                                                // Make sure $pdfs is always an array of arrays
+                                                $pdfs = [];
+                                                if (!empty($clientele->pdfs)) {
+                                                    $pdfs[] = [
+                                                        'file' => $clientele->pdfs,
+                                                        'description' => $clientele->description,
+                                                    ];
+                                                }
+                                            @endphp
+
+                                            @if (!empty($pdfs))
+                                                @foreach ($pdfs as $key => $item)
+                                                    <tr class="single-item">
+                                                        <td>
+                                                            <div class="item-checkbox ms-1">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox"
+                                                                        class="custom-control-input checkbox"
+                                                                        id="checkBox_{{ $clientele->id }}_{{ $key }}">
+                                                                    <label class="custom-control-label"
+                                                                        for="checkBox_{{ $clientele->id }}_{{ $key }}"></label>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
+
+                                                        <td>{{ $item['description'] ?? 'No description' }}</td>
+
+                                                        <td>{{ \Carbon\Carbon::parse($clientele->created_at)->format('Y-m-d, h:i A') }}
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="hstack gap-2 justify-content-end">
+                                                                <a href="{{ asset('storage/' . $item['file']) }}"
+                                                                    target="_blank"
+                                                                    class="btn btn-sm btn-primary">View</a>
+
+                                                                <form method="POST"
+                                                                    action="{{ route('admin.clientelefiledelete', [$clientele->id]) }}"
+                                                                    class="d-inline">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <input type="hidden" name="file"
+                                                                        value="{{ $item['file'] }}">
+                                                                    <button type="submit"
+                                                                        class="btn btn-sm btn-danger"
+                                                                        onclick="return confirm('Delete this file?')">Delete</button>
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td colspan="5" class="text-center">No Files Found</td>
+                                                </tr>
+                                            @endif
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">No Clienteles Found</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
