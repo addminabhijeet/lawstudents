@@ -47,7 +47,10 @@ class CourseController extends Controller
 
         if ($request->hasFile('pdf')) {
             foreach ($request->file('pdf') as $file) {
-                $path = $file->store('clientele', 'public');
+                // Keep the original file name
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs('clientele', $originalName, 'public');
+
                 Clientele::create([
                     'pdfs' => $path,
                     'description' => $request->description,
