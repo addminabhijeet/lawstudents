@@ -25,6 +25,12 @@ class CourseController extends Controller
         return view('course.list', compact('categories'));
     }
 
+    public function listclientele()
+    {
+
+        return view('clientele.list');
+    }
+
     public function courseedit($id)
     {
         $course = Course::findOrFail($id);

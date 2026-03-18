@@ -94,6 +94,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('courses', [CourseController::class, 'listcourse'])
                 ->name('listcourse');
 
+            Route::get('list-clientele', [CourseController::class, 'listclientele'])
+                ->name('listclientele');
+
             Route::get('banner', [CourseController::class, 'listbanner'])
                 ->name('listbanner');
 
