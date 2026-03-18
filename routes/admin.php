@@ -100,7 +100,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('add-clientele', [CourseController::class, 'addclientele'])
                 ->name('addclientele');
 
-            Route::get('store-clientele', [CourseController::class, 'storeclientele'])
+            Route::post('store-clientele', [CourseController::class, 'storeclientele'])
                 ->name('storeclientele');
 
             Route::delete('delete-clientele', [CourseController::class, 'clientelefiledelete'])
