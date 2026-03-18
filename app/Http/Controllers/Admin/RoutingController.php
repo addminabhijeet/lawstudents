@@ -58,7 +58,7 @@ class RoutingController extends Controller
 
         return view('idcard.list', compact('payments'));
     }
-    
+
     public function updatepayment(Request $request, $id)
     {
         if (!$request->has('payments')) {
@@ -72,7 +72,7 @@ class RoutingController extends Controller
             $payment = Payment::find($payData['id']);
             if (!$payment) continue;
 
-            // ✅ Safe validation (only validate fields that exist in form)
+            // ✅ Safe validation
             $validated = validator($payData, [
                 'invoice_label'     => 'nullable|string|max:255',
                 'invoice_number'    => 'required|string|max:255',
@@ -81,14 +81,13 @@ class RoutingController extends Controller
                 'issue_date'        => 'nullable|date',
                 'due_date'          => 'nullable|date',
 
-                // ⚠️ make optional (important fix)
                 'from_name'         => 'nullable|string|max:255',
                 'to_name'           => 'nullable|string|max:255',
 
-                'items'                     => 'nullable|array',
-                'items.*.product'           => 'nullable|string|max:255',
-                'items.*.qty'               => 'nullable|numeric|min:1',
-                'items.*.price'             => 'nullable|numeric|min:0',
+                'items'             => 'nullable|array',
+                'items.*.product'   => 'nullable|string|max:255',
+                'items.*.qty'       => 'nullable|numeric|min:1',
+                'items.*.price'     => 'nullable|numeric|min:0',
 
                 'tax_percentage'    => 'nullable|numeric|min:0',
                 'discount'          => 'nullable|numeric|min:0',
@@ -97,6 +96,7 @@ class RoutingController extends Controller
                 'payment_method'    => 'nullable|string|in:debit,paypal',
 
                 'invoice_note'      => 'nullable|string',
+                'paid_amount'       => 'nullable|numeric|min:0',
             ])->validate();
 
             $subTotal = 0;
@@ -104,7 +104,6 @@ class RoutingController extends Controller
 
             if (!empty($validated['items'])) {
                 foreach ($validated['items'] as $item) {
-
                     $qty = (float) ($item['qty'] ?? 0);
                     $price = (float) ($item['price'] ?? 0);
                     $total = $qty * $price;
@@ -127,6 +126,14 @@ class RoutingController extends Controller
 
             $grandTotal = $subTotal + $taxAmount - $discount;
 
+            // Paid amount from request
+            $paidAmount = (float) ($validated['paid_amount'] ?? 0);
+            $remainingAmount = $grandTotal - $paidAmount;
+
+            // Payment status based on paid_amount
+            $paymentStatus = $paidAmount >= $grandTotal ? 'paid' : ($paidAmount > 0 ? 'partial' : 'pending');
+
+            // Update existing payment
             $payment->update([
                 'invoice_label'     => $validated['invoice_label'] ?? $payment->invoice_label,
                 'invoice_number'    => $validated['invoice_number'],
@@ -150,10 +157,69 @@ class RoutingController extends Controller
                 'payment_method'    => $validated['payment_method'] ?? $payment->payment_method,
                 'invoice_note'      => $validated['invoice_note'] ?? $payment->invoice_note,
 
+                'paid_amount'       => $paidAmount,
+                'remaining_amount'  => $remainingAmount,
+                'payment_status'    => $paymentStatus,
+
                 'late_fees'         => isset($payData['late_fees']),
                 'client_note_enabled' => isset($payData['client_note_enabled']),
                 'save_payment'      => isset($payData['save_payment']),
             ]);
+
+            // ✅ If payment is partial, create a new payment for the remaining balance
+            if ($paymentStatus === 'partial' && $remainingAmount > 0) {
+
+                // Check if a "Remaining" payment already exists
+                $exists = Payment::where('student_id', $payment->student_id)
+                    ->where('invoice_label', $payment->invoice_label . ' (Remaining)')
+                    ->exists();
+
+                if (!$exists) {
+                    $year = date('Y');
+
+                    // Generate next invoice number
+                    $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
+                        ->orderBy('id', 'desc')
+                        ->first();
+
+                    if ($lastInvoice) {
+                        $lastNumber = intval(substr($lastInvoice->invoice_number, 7));
+                        $nextNumber = $lastNumber + 1;
+                    } else {
+                        $nextNumber = 1;
+                    }
+
+                    $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+                    Payment::create([
+                        'student_id'      => $payment->student_id,
+                        'invoice_label'   => $payment->invoice_label . ' (Remaining)',
+
+                        'invoice_number'  => $nextInvoiceNumber,
+                        'invoice_product' => $payment->invoice_product,
+
+                        'issue_date'      => now(),
+                        'due_date'        => $payment->due_date ?? now()->addDays(7),
+
+                        'to_name'         => $payment->to_name,
+                        'to_email'        => $payment->to_email,
+                        'to_phone'        => $payment->to_phone,
+                        'to_address'      => $payment->to_address,
+
+                        'sub_total'       => $subTotal,
+                        'tax_percentage'  => $taxPercentage,
+                        'tax_amount'      => $taxAmount,
+                        'discount'        => $discount,
+                        'grand_total'     => $grandTotal,
+
+                        'currency'        => $payment->currency,
+                        'payment_status'  => 'pending',
+
+                        'paid_amount'     => null,
+                        'remaining_amount' => $remainingAmount,
+                    ]);
+                }
+            }
         }
 
         return redirect()
