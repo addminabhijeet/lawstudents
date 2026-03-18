@@ -3,13 +3,13 @@
     <!-- main containts -->
     <div class="nxl-content">
         <!-- [ page-header ] start -->
-        <div class="page-header">
+                <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Clientele</li>
+                    <li class="breadcrumb-item">Applications</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -108,6 +108,10 @@
                                 </a>
                             </div>
                         </div>
+                        <a href="{{ route('admin.addstudent') }}" class="btn btn-primary">
+                            <i class="feather-plus me-2"></i>
+                            <span>Add Student</span>
+                        </a>
                     </div>
                 </div>
                 <div class="d-md-none d-flex align-items-center">
