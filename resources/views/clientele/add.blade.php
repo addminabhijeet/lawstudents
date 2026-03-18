@@ -3,7 +3,7 @@
     <!-- main containts -->
     <div class="nxl-content">
         <!-- [ page-header ] start -->
-                <div class="page-header">
+        <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
                     <h5 class="m-b-10">Admin</h5>
@@ -199,27 +199,34 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="clienteleList">
-                                    <thead>
-                                        <tr>
-                                            <th class="wd-30">
-                                                <div class="btn-group mb-1">
-                                                    <div class="custom-control custom-checkbox ms-1">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="checkAllClientele">
-                                                        <label class="custom-control-label"
-                                                            for="checkAllClientele"></label>
-                                                    </div>
-                                                </div>
-                                            </th>
-                                            <th>File Name</th>
-                                            <th>Description</th>
-                                            <th>Date Uploaded</th>
-                                            <th class="text-end">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                </table>
+                                <form action="{{ route('admin.clientele.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+
+                                    <div class="mb-3">
+                                        <label for="pdf" class="form-label">Upload PDF(s)</label>
+                                        <input type="file" name="pdf[]" id="pdf" class="form-control"
+                                            multiple>
+                                        @error('pdf')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                        @error('pdf.*')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Description (optional)</label>
+                                        <textarea name="description" id="description" class="form-control" rows="3">{{ old('description') }}</textarea>
+                                        @error('description')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Add Clientele</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
