@@ -40,19 +40,16 @@ class CourseController extends Controller
     public function storeclientele(Request $request)
     {
         $request->validate([
-            'pdf' => ['required'],              // Single or multiple files
-            'pdf.*' => ['file', 'mimes:pdf'],   // Validate PDF files
+            'pdf' => ['required'],
+            'pdf.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
 
         if ($request->hasFile('pdf')) {
             foreach ($request->file('pdf') as $file) {
-                // Store each PDF
                 $path = $file->store('clientele', 'public');
-
-                // Create a separate row for each PDF
                 Clientele::create([
-                    'pdfs' => $path,                   // store file path as text
+                    'pdfs' => $path,
                     'description' => $request->description,
                 ]);
             }
