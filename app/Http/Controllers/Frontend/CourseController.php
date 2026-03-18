@@ -11,6 +11,6 @@ class CourseController extends Controller
 {
     public function __invoke(): View
     {
-        return view('clientele.clientele');
+        return view('course.course');
     }
 }
