@@ -46,10 +46,6 @@
                                 <div
                                     style="padding:15px; font-size:18px; font-weight:600; display:flex; justify-content:space-between; align-items:center; background:#f9f9f9;">
                                     <span>{{ $category->name }}</span>
-                                    <span
-                                        style="background:#25D366; color:#fff; padding:3px 8px; border-radius:20px; font-size:12px;">
-                                        {{ $category->courses->sum(fn($c) => $c->notes->count()) }}
-                                    </span>
                                 </div>
 
                                 <!-- COURSES GRID -->
@@ -72,17 +68,6 @@
                                             </div>
 
                                             <div style="margin-top:10px; display:flex; gap:5px; flex-wrap:wrap;">
-                                                @if (auth()->check())
-                                                    <a href="{{ route('frontend.viewnote', $course->notes->first()->id ?? 0) }}"
-                                                        style="flex:1; text-align:center; background:#25D366; color:#fff; padding:6px 0; border-radius:20px; font-size:12px; text-decoration:none;">
-                                                        Download
-                                                    </a>
-                                                @else
-                                                    <a href="{{ route('google.login') }}"
-                                                        style="flex:1; text-align:center; background:#25D366; color:#fff; padding:6px 0; border-radius:20px; font-size:12px; text-decoration:none;">
-                                                        Download
-                                                    </a>
-                                                @endif
                                                 <a href="{{ route('frontend.viewnote', $course->notes->first()->id ?? 0) }}"
                                                     style="flex:1; text-align:center; background:#25D366; color:#fff; padding:6px 0; border-radius:20px; font-size:12px; text-decoration:none;">
                                                     Enroll Now
