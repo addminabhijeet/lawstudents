@@ -14,8 +14,4 @@ class Clientele extends Model
         'pdfs', // JSON column to store multiple PDF paths
     ];
 
-    // Cast PDFs JSON automatically to array
-    protected $casts = [
-        'pdfs' => 'array',
-    ];
 }

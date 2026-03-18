@@ -216,8 +216,19 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($clienteles as $clientele)
-                                            @if (!empty($clientele->pdfs))
-                                                @foreach ($clientele->pdfs as $key => $item)
+                                            @php
+                                                // Make sure $pdfs is always an array of arrays
+                                                $pdfs = [];
+                                                if (!empty($clientele->pdfs)) {
+                                                    $pdfs[] = [
+                                                        'file' => $clientele->pdfs,
+                                                        'description' => $clientele->description,
+                                                    ];
+                                                }
+                                            @endphp
+
+                                            @if (!empty($pdfs))
+                                                @foreach ($pdfs as $key => $item)
                                                     <tr class="single-item">
                                                         <td>
                                                             <div class="item-checkbox ms-1">
@@ -231,16 +242,11 @@
                                                             </div>
                                                         </td>
 
-                                                        <td>
-                                                            {{ pathinfo($item['file'], PATHINFO_FILENAME) }}
-                                                        </td>
+                                                        <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
 
-                                                        <td>
-                                                            {{ $item['description'] ?? $clientele->description }}
-                                                        </td>
+                                                        <td>{{ $item['description'] ?? 'No description' }}</td>
 
-                                                        <td>
-                                                            {{ \Carbon\Carbon::parse($clientele->created_at)->format('Y-m-d, h:i A') }}
+                                                        <td>{{ \Carbon\Carbon::parse($clientele->created_at)->format('Y-m-d, h:i A') }}
                                                         </td>
 
                                                         <td>
@@ -269,11 +275,7 @@
                                                     <td colspan="5" class="text-center">No Files Found</td>
                                                 </tr>
                                             @endif
-                                        @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center">No Clienteles Found</td>
-                                            </tr>
-                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
