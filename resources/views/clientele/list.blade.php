@@ -255,7 +255,7 @@
 
                                                         <td>
                                                             <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ asset('storage/' . $item['file']) }}"
+                                                                <a href="{{ asset('storage/app/public/' . $item['file']) }}"
                                                                     target="_blank"
                                                                     class="btn btn-sm btn-primary">View</a>
 
