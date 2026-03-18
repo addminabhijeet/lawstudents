@@ -51,14 +51,14 @@
                                         <div class="d-md-flex justify-content-end gap-4">
                                             <div class="form-group">
                                                 <label>Issue Date:</label>
-                                                <input class="form-control"
+                                                <input class="form-control" type="date"
                                                     name="payments[{{ $pIndex }}][issue_date]"
                                                     value="{{ optional($payment->issue_date)->format('Y-m-d') }}">
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Due Date:</label>
-                                                <input class="form-control"
+                                                <input class="form-control" type="date"
                                                     name="payments[{{ $pIndex }}][due_date]"
                                                     value="{{ optional($payment->due_date)->format('Y-m-d') }}">
                                             </div>
@@ -68,23 +68,199 @@
                                     <hr>
 
                                     <!-- BASIC INFO -->
-                                    <div class="px-4 row">
-                                        <div class="col-xl-4">
+                                    <div class="px-4 row g-3">
+                                        <div class="col-md-3">
+                                            <label>Invoice Label</label>
                                             <input type="text" class="form-control"
                                                 name="payments[{{ $pIndex }}][invoice_label]"
                                                 value="{{ $payment->invoice_label }}">
                                         </div>
 
-                                        <div class="col-xl-4">
+                                        <div class="col-md-3">
+                                            <label>Invoice Number</label>
                                             <input type="text" class="form-control"
                                                 name="payments[{{ $pIndex }}][invoice_number]"
                                                 value="{{ $payment->invoice_number }}">
                                         </div>
 
-                                        <div class="col-xl-4">
+                                        <div class="col-md-3">
+                                            <label>Invoice Product</label>
                                             <input type="text" class="form-control"
                                                 name="payments[{{ $pIndex }}][invoice_product]"
                                                 value="{{ $payment->invoice_product }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>Course ID(s)</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][course_id]"
+                                                value="{{ $payment->course_id }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>From Name</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][from_name]"
+                                                value="{{ $payment->from_name }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>From Email</label>
+                                            <input type="email" class="form-control"
+                                                name="payments[{{ $pIndex }}][from_email]"
+                                                value="{{ $payment->from_email }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>From Phone</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][from_phone]"
+                                                value="{{ $payment->from_phone }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>From Address</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][from_address]"
+                                                value="{{ $payment->from_address }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>To Name</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][to_name]"
+                                                value="{{ $payment->to_name }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>To Email</label>
+                                            <input type="email" class="form-control"
+                                                name="payments[{{ $pIndex }}][to_email]"
+                                                value="{{ $payment->to_email }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>To Phone</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][to_phone]"
+                                                value="{{ $payment->to_phone }}">
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label>To Address</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][to_address]"
+                                                value="{{ $payment->to_address }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Sub Total</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][sub_total]"
+                                                value="{{ $payment->sub_total }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Tax %</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][tax_percentage]"
+                                                value="{{ $payment->tax_percentage }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Tax Amount</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][tax_amount]"
+                                                value="{{ $payment->tax_amount }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Discount</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][discount]"
+                                                value="{{ $payment->discount }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Discount %</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][discount_percent]"
+                                                value="{{ $payment->discount_percent }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Grand Total</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][grand_total]"
+                                                value="{{ $payment->grand_total }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Currency</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][currency]"
+                                                value="{{ $payment->currency }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Payment Method</label>
+                                            <input type="text" class="form-control"
+                                                name="payments[{{ $pIndex }}][payment_method]"
+                                                value="{{ $payment->payment_method }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Payment Status</label>
+                                            <select class="form-control"
+                                                name="payments[{{ $pIndex }}][payment_status]">
+                                                <option value="pending"
+                                                    {{ $payment->payment_status == 'pending' ? 'selected' : '' }}>
+                                                    Pending</option>
+                                                <option value="partial"
+                                                    {{ $payment->payment_status == 'partial' ? 'selected' : '' }}>
+                                                    Partial</option>
+                                                <option value="paid"
+                                                    {{ $payment->payment_status == 'paid' ? 'selected' : '' }}>Paid
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Paid Amount</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][paid_amount]"
+                                                value="{{ $payment->paid_amount }}">
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Remaining Amount</label>
+                                            <input type="number" step="0.01" class="form-control"
+                                                name="payments[{{ $pIndex }}][remaining_amount]"
+                                                value="{{ $payment->remaining_amount }}">
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Invoice Note</label>
+                                            <textarea class="form-control" name="payments[{{ $pIndex }}][invoice_note]">{{ $payment->invoice_note }}</textarea>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Late Fees</label>
+                                            <input type="checkbox" name="payments[{{ $pIndex }}][late_fees]"
+                                                value="1" {{ $payment->late_fees ? 'checked' : '' }}>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Client Note Enabled</label>
+                                            <input type="checkbox"
+                                                name="payments[{{ $pIndex }}][client_note_enabled]"
+                                                value="1" {{ $payment->client_note_enabled ? 'checked' : '' }}>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Save Payment</label>
+                                            <input type="checkbox" name="payments[{{ $pIndex }}][save_payment]"
+                                                value="1" {{ $payment->save_payment ? 'checked' : '' }}>
                                         </div>
                                     </div>
 
@@ -124,7 +300,8 @@
                                                         <td>
                                                             <input type="number"
                                                                 name="payments[{{ $pIndex }}][items][{{ $i }}][price]"
-                                                                class="form-control" value="{{ $item['price'] ?? 0 }}">
+                                                                class="form-control"
+                                                                value="{{ $item['price'] ?? 0 }}">
                                                         </td>
                                                     </tr>
                                                 @endforeach
