@@ -103,6 +103,12 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('store-clientele', [CourseController::class, 'storeclientele'])
                 ->name('storeclientele');
 
+            Route::get('edit-clientele/{id}', [CourseController::class, 'editclientele'])
+                ->name('editclientele');
+
+            Route::post('update-clientele', [CourseController::class, 'updateclientele'])
+                ->name('updateclientele');
+
             Route::delete('delete-clientele', [CourseController::class, 'clientelefiledelete'])
                 ->name('clientelefiledelete');
 
