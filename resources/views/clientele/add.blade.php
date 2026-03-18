@@ -8,7 +8,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Applications</li>
+                    <li class="breadcrumb-item">Clientele</li>
                     <li class="breadcrumb-item">Add Clientele</li>
                 </ul>
             </div>
