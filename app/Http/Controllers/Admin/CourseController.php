@@ -78,7 +78,7 @@ class CourseController extends Controller
         return redirect()->route('admin.listclientele')->with('success', 'Clientele updated successfully.');
     }
 
-    public function deleteclientele(Request $request, $id)
+    public function clientelefiledelete(Request $request, $id)
     {
         $clientele = Clientele::findOrFail($id);
 
