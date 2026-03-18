@@ -77,29 +77,29 @@ class CourseController extends Controller
 
         $clientele = Clientele::findOrFail($id);
 
-        // Add new PDFs like the store method
+        // Update PDFs if new files are uploaded
         if ($request->hasFile('pdfs')) {
+            $pdfPaths = [];
+
             foreach ($request->file('pdfs') as $file) {
-                // Keep the original file name
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs('clientele', $originalName, 'public');
-
-                Clientele::create([
-                    'pdfs' => $path,
-                    'description' => $request->description,
-                ]);
+                $pdfPaths[] = $path;
             }
+
+            // Save as JSON if multiple PDFs
+            $clientele->pdfs = json_encode($pdfPaths);
         }
 
-        // Optionally update the main description of the current record
-        $clientele->update([
-            'description' => $request->description ?? $clientele->description,
-        ]);
+        // Update description
+        $clientele->description = $request->description ?? $clientele->description;
+
+        $clientele->save();
 
         return redirect()->route('admin.listclientele')
-            ->with('success', 'Clientele PDFs uploaded successfully.');
+            ->with('success', 'Clientele PDFs updated successfully.');
     }
-    
+
     public function clientelefiledelete(Request $request, $id)
     {
         $clientele = Clientele::findOrFail($id);
