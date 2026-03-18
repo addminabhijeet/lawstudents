@@ -199,7 +199,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <form action="{{ route('admin.clientele.store') }}" method="POST"
+                                <form action="{{ route('admin.storeclientele') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
 
