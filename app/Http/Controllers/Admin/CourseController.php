@@ -37,6 +37,30 @@ class CourseController extends Controller
         return view('clientele.add');
     }
 
+    public function storeclientele(Request $request)
+    {
+        $request->validate([
+            'pdf' => ['required'],              // Single or multiple files
+            'pdf.*' => ['file', 'mimes:pdf'],   // Validate PDF files
+            'description' => ['nullable', 'string'],
+        ]);
+
+        if ($request->hasFile('pdf')) {
+            foreach ($request->file('pdf') as $file) {
+                // Store each PDF
+                $path = $file->store('clientele', 'public');
+
+                // Create a separate row for each PDF
+                Clientele::create([
+                    'pdfs' => $path,                   // store file path as text
+                    'description' => $request->description,
+                ]);
+            }
+        }
+
+        return back()->with('success', 'Clientele pdfs uploaded successfully.');
+    }
+
     public function editclientele($id)
     {
         $clientele = Clientele::findOrFail($id);
