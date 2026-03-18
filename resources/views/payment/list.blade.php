@@ -218,16 +218,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($payments as $key => $payment)
+                                        @php
+                                            $groupedPayments = $payments->groupBy('student_id');
+                                        @endphp
+
+                                        @forelse($groupedPayments as $studentId => $studentPayments)
+                                            @php
+                                                $firstPayment = $studentPayments->first();
+                                            @endphp
                                             <tr class="single-item">
                                                 <td>
                                                     <div class="item-checkbox ms-1">
                                                         <div class="custom-control custom-checkbox">
                                                             <input type="checkbox"
                                                                 class="custom-control-input checkbox"
-                                                                id="checkBox_{{ $key }}">
+                                                                id="checkBox_{{ $studentId }}">
                                                             <label class="custom-control-label"
-                                                                for="checkBox_{{ $key }}"></label>
+                                                                for="checkBox_{{ $studentId }}"></label>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -236,7 +243,7 @@
                                                     <a class="hstack gap-3">
                                                         <div>
                                                             <span class="text-truncate-1-line">
-                                                                {{ $payment->to_name }}
+                                                                {{ $firstPayment->to_name }}
                                                             </span>
                                                         </div>
                                                     </a>
@@ -246,49 +253,55 @@
                                                     <a class="hstack gap-3">
                                                         <div>
                                                             <small class="fs-12 fw-normal text-muted">
-                                                                {{ $payment->to_email }}
+                                                                {{ $firstPayment->to_email }}
                                                             </small>
                                                         </div>
                                                     </a>
                                                 </td>
 
                                                 <td class="fw-bold text-dark">
-                                                    ₹{{ number_format($payment->grand_total, 2) }}
-                                                    {{ $payment->currency }}
+                                                    ₹{{ number_format($studentPayments->sum('grand_total'), 2) }}
+                                                    {{ $firstPayment->currency }}
                                                 </td>
 
                                                 <td>
-                                                    {{ \Carbon\Carbon::parse($payment->created_at)->format('Y-m-d, h:i A') }}
+                                                    {{ \Carbon\Carbon::parse($firstPayment->created_at)->format('Y-m-d, h:i A') }}
                                                 </td>
 
                                                 <td>
+                                                    {{-- Show first invoice number --}}
                                                     <a class="fw-bold">
-                                                        {{ $payment->invoice_number }}
+                                                        {{ $firstPayment->invoice_number }}
                                                     </a>
                                                 </td>
 
                                                 <td>
-                                                    @if ($payment->payment_status == 'paid')
+                                                    @if ($firstPayment->payment_status == 'paid')
                                                         <div class="badge bg-soft-success text-success">Completed</div>
-                                                    @elseif($payment->payment_status == 'pending')
+                                                    @elseif($firstPayment->payment_status == 'pending')
                                                         <div class="badge bg-soft-warning text-warning">Pending</div>
-                                                    @elseif($payment->payment_status == 'failed')
+                                                    @elseif($firstPayment->payment_status == 'failed')
                                                         <div class="badge bg-soft-danger text-danger">Failed</div>
                                                     @else
                                                         <div class="badge bg-soft-secondary text-secondary">
-                                                            {{ ucfirst($payment->payment_status) }}
+                                                            {{ ucfirst($firstPayment->payment_status) }}
                                                         </div>
                                                     @endif
                                                 </td>
 
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
-                                                        <a href="{{ route('admin.viewpayment', $payment->id) }}"
-                                                            class="avatar-text avatar-md">
-                                                            <i class="feather feather-eye"></i>
-                                                        </a>
+                                                        {{-- View buttons for each payment --}}
+                                                        @foreach ($studentPayments as $payment)
+                                                            <a href="{{ route('admin.viewpayment', $payment->id) }}"
+                                                                class="avatar-text avatar-md"
+                                                                title="View #{{ $payment->invoice_number }}">
+                                                                <i class="feather feather-eye"></i>
+                                                            </a>
+                                                        @endforeach
 
-                                                        <a href="{{ route('admin.editpayment', $payment->id) }}"
+                                                        {{-- Single Edit button for student --}}
+                                                        <a href="{{ route('admin.editpayment', $firstPayment->id) }}"
                                                             class="avatar-text avatar-md">
                                                             <i class="feather feather-edit"></i>
                                                         </a>
