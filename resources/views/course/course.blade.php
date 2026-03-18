@@ -35,165 +35,113 @@
                         </div>
                     </div>
 
-                    @foreach ($categories as $category)
-                        <div class="card mb-4 shadow-sm">
+                    <div class="category-grid"
+                        style="display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:20px;">
 
-                            <!-- CATEGORY HEADER -->
-                            <div class="card-header d-flex justify-content-between align-items-center"
-                                style="cursor:pointer;" onclick="toggleAccordion('cat{{ $category->id }}', 'cat-group')">
-                                <h5 class="mb-0">{{ $category->name }}</h5>
-                                <span
-                                    class="badge bg-success">{{ $category->courses->sum(fn($c) => $c->notes->count()) }}</span>
-                            </div>
+                        @foreach ($categories as $category)
+                            <div class="category-card"
+                                style="border:1px solid #e4e6eb; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.05); background:#fff;">
 
-                            <!-- CATEGORY BODY -->
-                            <div id="cat{{ $category->id }}" class="collapse">
-                                <div class="card-body">
+                                <!-- CATEGORY HEADER -->
+                                <div
+                                    style="padding:15px; font-size:18px; font-weight:600; display:flex; justify-content:space-between; align-items:center; background:#f9f9f9;">
+                                    <span>{{ $category->name }}</span>
+                                    <span
+                                        style="background:#25D366; color:#fff; padding:3px 8px; border-radius:20px; font-size:12px;">
+                                        {{ $category->courses->sum(fn($c) => $c->notes->count()) }}
+                                    </span>
+                                </div>
 
-                                    <div class="row g-3">
-                                        @foreach ($category->courses as $course)
-                                            <div class="col-md-4">
-                                                <div class="card h-100">
-                                                    <!-- COURSE HEADER -->
-                                                    <div class="card-header d-flex justify-content-between align-items-center"
-                                                        style="cursor:pointer;"
-                                                        onclick="toggleAccordion('course{{ $course->id }}', 'course-group')">
-                                                        <span>{{ $course->title }}</span>
-                                                        <span
-                                                            class="badge bg-secondary">{{ $course->notes->count() }}</span>
-                                                    </div>
+                                <!-- COURSES GRID -->
+                                <div class="courses-grid"
+                                    style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:15px; padding:15px;">
+                                    @foreach ($category->courses as $course)
+                                        <div class="course-card"
+                                            style="border:1px solid #eee; border-radius:8px; padding:12px; background:#ffffff; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
 
-                                                    <!-- COURSE BODY -->
-                                                    <div id="course{{ $course->id }}" class="collapse card-body">
-                                                        @foreach ($course->notes as $note)
-                                                            <div class="card mb-2">
-                                                                <div class="card-body d-flex flex-column">
-                                                                    <div class="d-flex justify-content-between mb-2">
-                                                                        <div>
-                                                                            <h6 class="card-title mb-1">{{ $note->title }}
-                                                                            </h6>
-                                                                            <small
-                                                                                class="text-muted">{{ $note->formatted_size }}</small>
-                                                                        </div>
-                                                                        <div class="text-end">
-                                                                            <div>Price: ₹{{ $course->price }}</div>
-                                                                            <div>Discount: ₹{{ $course->discount ?? 0 }}
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="d-flex gap-2 mt-auto">
-                                                                        @if (auth()->check())
-                                                                            <a href="{{ route('frontend.viewnote', $note->id) }}"
-                                                                                class="btn btn-success btn-sm flex-grow-1">
-                                                                                Download
-                                                                            </a>
-                                                                        @else
-                                                                            <a href="{{ route('google.login') }}"
-                                                                                class="btn btn-success btn-sm flex-grow-1">
-                                                                                Download
-                                                                            </a>
-                                                                        @endif
-                                                                        <a href="{{ route('frontend.viewnote', $note->id) }}"
-                                                                            class="btn btn-success btn-sm flex-grow-1">
-                                                                            Enroll Now
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
+                                            <div>
+                                                <h4 style="font-size:16px; font-weight:600; margin-bottom:5px;">
+                                                    {{ $course->title }}</h4>
+                                                <div style="font-size:12px; color:#555; margin-bottom:8px;">
+                                                    Notes: {{ $course->notes->count() }}
                                                 </div>
+                                                <div style="font-size:12px; color:#777;">Price: ₹{{ $course->price ?? 0 }}
+                                                </div>
+                                                <div style="font-size:12px; color:#777;">Discount:
+                                                    ₹{{ $course->discount ?? 0 }}</div>
                                             </div>
-                                        @endforeach
-                                    </div>
 
-                                    <!-- SUB-CATEGORIES -->
+                                            <div style="margin-top:10px; display:flex; gap:5px; flex-wrap:wrap;">
+                                                @if (auth()->check())
+                                                    <a href="{{ route('frontend.viewnote', $course->notes->first()->id ?? 0) }}"
+                                                        style="flex:1; text-align:center; background:#25D366; color:#fff; padding:6px 0; border-radius:20px; font-size:12px; text-decoration:none;">
+                                                        Download
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('google.login') }}"
+                                                        style="flex:1; text-align:center; background:#25D366; color:#fff; padding:6px 0; border-radius:20px; font-size:12px; text-decoration:none;">
+                                                        Download
+                                                    </a>
+                                                @endif
+                                                <a href="{{ route('frontend.viewnote', $course->notes->first()->id ?? 0) }}"
+                                                    style="flex:1; text-align:center; background:#25D366; color:#fff; padding:6px 0; border-radius:20px; font-size:12px; text-decoration:none;">
+                                                    Enroll Now
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+
+                                    <!-- CHILD CATEGORIES -->
                                     @foreach ($category->children as $child)
-                                        <div class="mt-4">
-                                            <div class="card bg-light mb-2" style="cursor:pointer;"
-                                                onclick="toggleAccordion('sub{{ $child->id }}', 'sub-group')">
-                                                <div class="card-body d-flex justify-content-between font-weight-bold">
-                                                    <span>{{ $child->name }}</span>
-                                                </div>
-                                            </div>
+                                        <div class="child-category-card"
+                                            style="border:1px solid #eee; border-radius:8px; padding:12px; background:#f0fdf4; display:flex; flex-direction:column;">
 
-                                            <div id="sub{{ $child->id }}" class="collapse">
-                                                <div class="row g-3">
-                                                    @foreach ($child->courses as $childCourse)
-                                                        <div class="col-md-4">
-                                                            <div class="card h-100">
-                                                                <div class="card-header" style="cursor:pointer;"
-                                                                    onclick="toggleAccordion('childcourse{{ $childCourse->id }}', 'childcourse-group')">
-                                                                    {{ $childCourse->title }}
-                                                                </div>
+                                            <h5 style="font-size:14px; font-weight:600; margin-bottom:8px;">
+                                                {{ $child->name }}</h5>
 
-                                                                <div id="childcourse{{ $childCourse->id }}"
-                                                                    class="collapse card-body">
-                                                                    @foreach ($childCourse->notes as $note)
-                                                                        <div class="card mb-2">
-                                                                            <div class="card-body d-flex flex-column">
-                                                                                <div>
-                                                                                    <h6 class="card-title mb-1">
-                                                                                        {{ $note->title }}</h6>
-                                                                                    <small
-                                                                                        class="text-muted">{{ $note->formatted_size }}</small>
-                                                                                </div>
-                                                                                <div class="d-flex gap-2 mt-2">
-                                                                                    @if (auth()->check())
-                                                                                        <a href="{{ route('frontend.viewnote', $note->id) }}"
-                                                                                            class="btn btn-success btn-sm flex-grow-1">
-                                                                                            Download
-                                                                                        </a>
-                                                                                    @else
-                                                                                        <a href="{{ route('google.login') }}"
-                                                                                            class="btn btn-success btn-sm flex-grow-1">
-                                                                                            Download
-                                                                                        </a>
-                                                                                    @endif
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
-                                                                </div>
+                                            <div class="child-courses-grid"
+                                                style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:10px;">
+                                                @foreach ($child->courses as $childCourse)
+                                                    <div class="course-card"
+                                                        style="border:1px solid #ddd; border-radius:6px; padding:10px; background:#ffffff; display:flex; flex-direction:column; justify-content:space-between;">
 
-                                                            </div>
+                                                        <div>
+                                                            <h6 style="font-size:14px; font-weight:500; margin-bottom:5px;">
+                                                                {{ $childCourse->title }}</h6>
+                                                            <div style="font-size:12px; color:#555;">Notes:
+                                                                {{ $childCourse->notes->count() }}</div>
                                                         </div>
-                                                    @endforeach
-                                                </div>
+
+                                                        <div style="margin-top:8px; display:flex; gap:5px; flex-wrap:wrap;">
+                                                            @foreach ($childCourse->notes as $note)
+                                                                @if (auth()->check())
+                                                                    <a href="{{ route('frontend.viewnote', $note->id) }}"
+                                                                        style="flex:1; text-align:center; background:#25D366; color:#fff; padding:4px 0; border-radius:20px; font-size:11px; text-decoration:none;">
+                                                                        Download
+                                                                    </a>
+                                                                @else
+                                                                    <a href="{{ route('google.login') }}"
+                                                                        style="flex:1; text-align:center; background:#25D366; color:#fff; padding:4px 0; border-radius:20px; font-size:11px; text-decoration:none;">
+                                                                        Download
+                                                                    </a>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+
+                                                    </div>
+                                                @endforeach
                                             </div>
+
                                         </div>
                                     @endforeach
 
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
+                    </div>
                 </div>
-
-
-                <script>
-                    function toggleAccordion(id, groupClass) {
-
-                        let section = document.getElementById(id);
-                        let isOpen = section.style.maxHeight && section.style.maxHeight !== "0px";
-
-                        // Close all in same group
-                        document.querySelectorAll("." + groupClass).forEach(function(header) {
-                            let next = header.nextElementSibling;
-                            if (next) {
-                                next.style.maxHeight = null;
-                            }
-                        });
-
-                        // Toggle selected
-                        if (!isOpen) {
-                            section.style.maxHeight = section.scrollHeight + "px";
-                        } else {
-                            section.style.maxHeight = null;
-                        }
-                    }
-                </script>
             </div>
 
             <div class="col-lg-12 m-auto">
