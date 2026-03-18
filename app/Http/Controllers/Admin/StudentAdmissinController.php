@@ -390,6 +390,44 @@ class StudentAdmissinController extends Controller
             ]
         );
 
+        // Create an extra payment record if payment is partial
+        if ($paymentStatus === 'partial') {
+
+            // ✅ Check if a "Remaining" invoice with blank paid_amount already exists
+            $exists = Payment::where('student_id', $admission->student_id)
+                ->whereNull('paid_amount')
+                ->exists();
+
+            if (! $exists) {
+                Payment::create([
+                    'student_id'      => $admission->student_id,
+                    'invoice_label'   => 'Admission Fee (Remaining)',
+
+                    'course_id'       => !empty($admission->course_ids) ? implode(',', $admission->course_ids) : null,
+                    'invoice_number'  => 'INV-' . strtoupper(Str::random(6)),
+                    'invoice_product' => $courses->pluck('title')->implode(', '),
+
+                    'issue_date'      => now(),
+                    'due_date'        => now()->addDays(7),
+
+                    'to_name'         => $admission->full_name,
+                    'to_email'        => $admission->email,
+                    'to_phone'        => $admission->phone,
+                    'to_address'      => $admission->address_line1,
+
+                    'sub_total'       => $subTotal,
+                    'discount'        => $discountAmount,
+                    'discount_percent' => $discountPercent,
+                    'grand_total'     => $grandTotal,
+
+                    'currency'        => 'INR',
+                    'payment_status'  => 'pending',
+
+                    'paid_amount'     => null,
+                    'remaining_amount' => $remainingAmount,
+                ]);
+            }
+        }
         return redirect()->back()->with('success', 'Admission updated successfully.');
     }
 
