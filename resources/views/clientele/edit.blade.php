@@ -30,17 +30,15 @@
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                <!-- Existing PDFs (display only, no editing) -->
+                                <!-- Existing PDF (display only, single file as string) -->
                                 @if (!empty($clientele->pdfs))
                                     <div class="mb-3">
-                                        <label class="form-label">Existing PDFs</label>
-                                        @foreach ($clientele->pdfs as $pdf)
-                                            <div class="mb-1">
-                                                <a href="{{ asset('storage/' . $pdf['file']) }}" target="_blank">
-                                                    {{ pathinfo($pdf['file'], PATHINFO_BASENAME) }}
-                                                </a>
-                                            </div>
-                                        @endforeach
+                                        <label class="form-label">Existing PDF</label>
+                                        <div class="mb-1">
+                                            <a href="{{ asset('storage/' . $clientele->pdfs) }}" target="_blank">
+                                                {{ pathinfo($clientele->pdfs, PATHINFO_BASENAME) }}
+                                            </a>
+                                        </div>
                                     </div>
                                 @endif
 
