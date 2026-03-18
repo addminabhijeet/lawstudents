@@ -98,7 +98,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('listclientele');
 
             Route::delete('delete-clientele', [CourseController::class, 'deleteclientele'])
-                ->name('deleteclientele');
+                ->name('clientelefiledelete');
 
             Route::get('banner', [CourseController::class, 'listbanner'])
                 ->name('listbanner');
