@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
-use App\Models\CourseNote;
+use App\Models\Clientele;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -27,8 +27,79 @@ class CourseController extends Controller
 
     public function listclientele()
     {
+        $clienteles = Clientele::latest()->get();
+        return view('clientele.list', compact('clienteles'));
+    }
 
-        return view('clientele.list');
+    public function editclientele($id)
+    {
+        $clientele = Clientele::findOrFail($id);
+        return view('clientele.edit', compact('clientele'));
+    }
+
+    public function updateclientele(Request $request, $id)
+    {
+        $clientele = Clientele::findOrFail($id);
+
+        $request->validate([
+            'description' => 'nullable|string',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240', // 10MB max
+            'pdf_descriptions.*' => 'nullable|string',
+        ]);
+
+        $existingPdfs = $clientele->pdfs ?? [];
+
+        // Update existing descriptions
+        if ($request->has('pdf_descriptions') && !empty($existingPdfs)) {
+            foreach ($request->pdf_descriptions as $index => $desc) {
+                if (isset($existingPdfs[$index])) {
+                    $existingPdfs[$index]['description'] = $desc;
+                }
+            }
+        }
+
+        // Add new PDFs
+        if ($request->hasFile('pdfs')) {
+            foreach ($request->file('pdfs') as $i => $file) {
+                $path = $file->store('clientele', 'public');
+                $desc = $request->pdf_descriptions[$i] ?? '';
+                $existingPdfs[] = [
+                    'file' => $path,
+                    'description' => $desc,
+                ];
+            }
+        }
+
+        $clientele->update([
+            'description' => $request->description ?? $clientele->description,
+            'pdfs' => $existingPdfs,
+        ]);
+
+        return redirect()->route('admin.listclientele')->with('success', 'Clientele updated successfully.');
+    }
+
+    public function deleteclientele(Request $request, $id)
+    {
+        $clientele = Clientele::findOrFail($id);
+
+        $fileToDelete = $request->input('file');
+
+        if (!$fileToDelete) {
+            return back()->with('error', 'No file specified for deletion.');
+        }
+
+        $pdfs = $clientele->pdfs ?? [];
+        $updatedPdfs = [];
+
+        foreach ($pdfs as $pdf) {
+            if ($pdf['file'] !== $fileToDelete) {
+                $updatedPdfs[] = $pdf;
+            }
+        }
+
+        $clientele->update(['pdfs' => $updatedPdfs]);
+
+        return back()->with('success', 'File deleted successfully.');
     }
 
     public function courseedit($id)

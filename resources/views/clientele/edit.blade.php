@@ -52,48 +52,51 @@
             <!-- [ Main Area  ] start -->
             <div class="content-area-body pb-0">
                 <div class="row note-has-grid">
-                    @forelse ($clienteles as $clientele)
+                    <form action="{{ route('admin.updateclientele', $clientele->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label>Description</label>
+                            <textarea name="description" class="form-control" rows="3">{{ $clientele->description }}</textarea>
+                        </div>
+
+                        <h5>Existing PDFs</h5>
                         @if (!empty($clientele->pdfs))
-                            @foreach ($clientele->pdfs as $item)
-                                <div class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item">
-                                    <div class="card card-body mb-4 stretch stretch-full">
-                                        <span class="side-stick"></span>
+                            @foreach ($clientele->pdfs as $index => $pdf)
+                                <div class="mb-2">
+                                    <a href="{{ asset('storage/' . $pdf['file']) }}"
+                                        target="_blank">{{ pathinfo($pdf['file'], PATHINFO_FILENAME) }}</a>
+                                    <input type="text" name="pdf_descriptions[{{ $index }}]"
+                                        class="form-control mt-1" value="{{ $pdf['description'] ?? '' }}"
+                                        placeholder="Description">
 
-                                        <h5 class="note-title text-truncate w-75 mb-1">
-                                            {{ pathinfo($item['file'], PATHINFO_FILENAME) }}
-                                        </h5>
-
-                                        <p class="fs-11 text-muted note-date">
-                                            Uploaded: {{ $clientele->created_at->format('d F Y') }}
-                                        </p>
-
-                                        <div class="note-content flex-grow-1">
-                                            <p class="text-muted note-inner-content text-truncate-3-line">
-                                                {{ $item['description'] ?? '' }}
-                                            </p>
-                                        </div>
-
-                                        <div class="d-flex gap-2 mt-2">
-                                            <a href="{{ asset('storage/' . $item['file']) }}" target="_blank"
-                                                class="btn btn-sm btn-primary">View</a>
-                                            {{-- Optional: Delete individual file --}}
-                                            <form method="POST"
-                                                action="{{ route('admin.clientelefiledelete', [$clientele->id]) }}"
-                                                class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input type="hidden" name="file" value="{{ $item['file'] }}">
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Delete this file?')">Delete</button>
-                                            </form>
-                                        </div>
-                                    </div>
+                                    <form method="POST"
+                                        action="{{ route('admin.clientelefiledelete', $clientele->id) }}"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="file" value="{{ $pdf['file'] }}">
+                                        <button type="submit" class="btn btn-sm btn-danger mt-1">Delete</button>
+                                    </form>
                                 </div>
                             @endforeach
                         @endif
-                    @empty
-                        <p class="text-center">No Clientele Files Found</p>
-                    @endforelse
+
+                        <h5>Add New PDFs</h5>
+                        <div id="newPdfsContainer">
+                            <div class="mb-2">
+                                <input type="file" name="pdfs[]" class="form-control">
+                                <input type="text" name="pdf_descriptions[]" class="form-control mt-1"
+                                    placeholder="Description">
+                            </div>
+                        </div>
+
+                        <button type="button" id="addPdfBtn" class="btn btn-sm btn-secondary mb-3">Add Another
+                            PDF</button>
+
+                        <button type="submit" class="btn btn-primary">Update Clientele</button>
+                    </form>
                 </div>
             </div>
         </div>
