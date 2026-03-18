@@ -55,7 +55,8 @@ class CourseController extends Controller
             }
         }
 
-        return back()->with('success', 'Clientele pdfs uploaded successfully.');
+        return redirect()->route('admin.listclientele')
+            ->with('success', 'Clientele PDFs uploaded successfully.');
     }
 
     public function editclientele($id)
