@@ -30,7 +30,7 @@
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label for="pdf" class="form-label">Upload PDF(s)</label>
+                                    <label for="pdf" class="form-label">Upload PDF</label>
                                     <input type="file" name="pdf[]" id="pdf" class="form-control" multiple>
                                     @error('pdf')
                                         <small class="text-danger">{{ $message }}</small>
@@ -41,7 +41,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">Description (optional)</label>
+                                    <label for="description" class="form-label">Button Name</label>
                                     <textarea name="description" id="description" class="form-control" rows="3">{{ old('description') }}</textarea>
                                     @error('description')
                                         <small class="text-danger">{{ $message }}</small>

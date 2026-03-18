@@ -213,7 +213,7 @@
                                                 </div>
                                             </th>
                                             <th>File Name</th>
-                                            <th>Description</th>
+                                            <th>Button Name</th>
                                             <th>Date Uploaded</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
