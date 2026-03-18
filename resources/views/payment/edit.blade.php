@@ -46,7 +46,7 @@
 
                                     <!-- HEADER -->
                                     <div class="px-4 pt-4">
-                                        <h5 class="fw-bold text-primary">Payment #{{ $payment->invoice_number }}</h5>
+                                        <h5 class="fw-bold text-primary">Payment {{ $payment->invoice_number }}</h5>
 
                                         <div class="d-md-flex justify-content-end gap-4">
                                             <div class="form-group">
