@@ -31,6 +31,12 @@ class CourseController extends Controller
         return view('clientele.list', compact('clienteles'));
     }
 
+    public function addclientele()
+    {
+
+        return view('clientele.add');
+    }
+
     public function editclientele($id)
     {
         $clientele = Clientele::findOrFail($id);
