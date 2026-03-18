@@ -30,31 +30,30 @@
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                <!-- Existing PDFs -->
-                                @if (!empty($clientele->pdfs))
-                                    <div class="mb-3">
-                                        <label class="form-label">Existing PDFs</label>
-                                        @foreach ($clientele->pdfs as $index => $pdf)
-                                            <div class="mb-2">
-                                                <a href="{{ asset('storage/' . $pdf['file']) }}"
-                                                    target="_blank">{{ pathinfo($pdf['file'], PATHINFO_BASENAME) }}</a>
-                                                <input type="text" name="pdf_descriptions[{{ $index }}]"
-                                                    class="form-control mt-1" value="{{ $pdf['description'] ?? '' }}"
-                                                    placeholder="Description">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                @endif
-
-                                <!-- Upload new PDFs -->
+                                <!-- Upload new PDFs (same as Add form) -->
                                 <div class="mb-3">
-                                    <label for="pdfs" class="form-label">Add New PDF(s)</label>
+                                    <label for="pdfs" class="form-label">Upload PDF(s)</label>
                                     <input type="file" name="pdfs[]" id="pdfs" class="form-control" multiple>
                                     @error('pdfs.*')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
+                                <!-- Existing PDFs (optional links, no complex fields) -->
+                                @if (!empty($clientele->pdfs))
+                                    <div class="mb-3">
+                                        <label class="form-label">Existing PDFs</label>
+                                        @foreach ($clientele->pdfs as $pdf)
+                                            <div class="mb-1">
+                                                <a href="{{ asset('storage/' . $pdf['file']) }}" target="_blank">
+                                                    {{ pathinfo($pdf['file'], PATHINFO_BASENAME) }}
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                                <!-- Description / Button Name -->
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Button Name / Description</label>
                                     <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $clientele->description) }}</textarea>
