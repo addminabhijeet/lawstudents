@@ -256,11 +256,9 @@
                                                         <td>
                                                             <div class="hstack gap-2 justify-content-end">
                                                                 <a href="{{ route('admin.editclientele', [$clientele->id]) }}"
-                                                                    target="_blank"
                                                                     class="btn btn-sm btn-primary">Edit</a>
 
                                                                 <a href="{{ asset('storage/app/public/' . $item['file']) }}"
-                                                                    target="_blank"
                                                                     class="btn btn-sm btn-primary">View</a>
 
                                                                 <form method="POST"
