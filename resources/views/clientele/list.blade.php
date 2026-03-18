@@ -3,7 +3,7 @@
     <!-- main containts -->
     <div class="nxl-content">
         <!-- [ page-header ] start -->
-                <div class="page-header">
+        <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
                     <h5 class="m-b-10">Admin</h5>
@@ -255,6 +255,10 @@
 
                                                         <td>
                                                             <div class="hstack gap-2 justify-content-end">
+                                                                <a href="{{ route('admin.editclientele', [$clientele->id]) }}"
+                                                                    target="_blank"
+                                                                    class="btn btn-sm btn-primary">Edit</a>
+
                                                                 <a href="{{ asset('storage/app/public/' . $item['file']) }}"
                                                                     target="_blank"
                                                                     class="btn btn-sm btn-primary">View</a>
