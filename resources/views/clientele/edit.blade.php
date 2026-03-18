@@ -9,7 +9,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">Clientele</li>
-                    <li class="breadcrumb-item">Add Clientele</li>
+                    <li class="breadcrumb-item">Edit Clientele</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
