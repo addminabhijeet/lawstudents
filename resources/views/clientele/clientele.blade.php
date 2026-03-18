@@ -93,20 +93,21 @@
 
                                     <!-- Grid Wrapper -->
                                     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
-
-                                        <a href="#" class="welcome-btn3">Student Testimonials<i
-                                                class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">Corporate Clients<i
-                                                class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">Success Stories<i
-                                                class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">Course Brochure<i
-                                                class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">Placement Records<i
-                                                class="fa-light fa-arrow-right"></i></a>
-                                        <a href="#" class="welcome-btn3">View Certifications<i
-                                                class="fa-light fa-arrow-right"></i></a>
-
+                                        @foreach ($clienteles as $clientele)
+                                            @if (is_array(json_decode($clientele->pdfs)))
+                                                @foreach (json_decode($clientele->pdfs) as $pdf)
+                                                    <a href="{{ asset('storage/app/public/' . $pdf) }}" class="welcome-btn3"
+                                                        target="_blank">
+                                                        {{ $clientele->description }}<i class="fa-light fa-arrow-right"></i>
+                                                    </a>
+                                                @endforeach
+                                            @else
+                                                <a href="{{ asset('storage/app/public/' . $clientele->pdfs) }}"
+                                                    class="welcome-btn3" target="_blank">
+                                                    {{ $clientele->description }}<i class="fa-light fa-arrow-right"></i>
+                                                </a>
+                                            @endif
+                                        @endforeach
                                     </div>
 
                                 </div>
