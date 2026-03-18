@@ -70,45 +70,36 @@ class CourseController extends Controller
 
     public function updateclientele(Request $request, $id)
     {
-        $clientele = Clientele::findOrFail($id);
-
         $request->validate([
             'description' => 'nullable|string',
             'pdfs.*' => 'nullable|file|mimes:pdf|max:10240', // 10MB max
-            'pdf_descriptions.*' => 'nullable|string',
         ]);
 
-        $existingPdfs = $clientele->pdfs ?? [];
+        $clientele = Clientele::findOrFail($id);
 
-        // Update existing descriptions
-        if ($request->has('pdf_descriptions') && !empty($existingPdfs)) {
-            foreach ($request->pdf_descriptions as $index => $desc) {
-                if (isset($existingPdfs[$index])) {
-                    $existingPdfs[$index]['description'] = $desc;
-                }
-            }
-        }
-
-        // Add new PDFs
+        // Add new PDFs like the store method
         if ($request->hasFile('pdfs')) {
-            foreach ($request->file('pdfs') as $i => $file) {
-                $path = $file->store('clientele', 'public');
-                $desc = $request->pdf_descriptions[$i] ?? '';
-                $existingPdfs[] = [
-                    'file' => $path,
-                    'description' => $desc,
-                ];
+            foreach ($request->file('pdfs') as $file) {
+                // Keep the original file name
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs('clientele', $originalName, 'public');
+
+                Clientele::create([
+                    'pdfs' => $path,
+                    'description' => $request->description,
+                ]);
             }
         }
 
+        // Optionally update the main description of the current record
         $clientele->update([
             'description' => $request->description ?? $clientele->description,
-            'pdfs' => $existingPdfs,
         ]);
 
-        return redirect()->route('admin.listclientele')->with('success', 'Clientele updated successfully.');
+        return redirect()->route('admin.listclientele')
+            ->with('success', 'Clientele PDFs uploaded successfully.');
     }
-
+    
     public function clientelefiledelete(Request $request, $id)
     {
         $clientele = Clientele::findOrFail($id);
