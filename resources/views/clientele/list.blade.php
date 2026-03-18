@@ -275,7 +275,11 @@
                                                     <td colspan="5" class="text-center">No Files Found</td>
                                                 </tr>
                                             @endif
-
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">No Clienteles Found</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -287,4 +291,3 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
-
