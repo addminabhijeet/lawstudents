@@ -371,7 +371,7 @@ class StudentAdmissinController extends Controller
             ],
             [
                 'course_id'        => !empty($admission->course_ids) ? implode(',', $admission->course_ids) : null,
-                'invoice_number'   => 'INV-' . strtoupper(Str::random(6)),
+                'invoice_number'   => $invoiceNumber,
                 'invoice_product'  => $courses->pluck('title')->implode(', '),
                 'issue_date'       => now(),
                 'due_date'         => now()->addDays(7),
@@ -399,12 +399,13 @@ class StudentAdmissinController extends Controller
                 ->exists();
 
             if (! $exists) {
+                $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber + 1, 6, '0', STR_PAD_LEFT);
                 Payment::create([
                     'student_id'      => $admission->student_id,
                     'invoice_label'   => 'Admission Fee (Remaining)',
 
                     'course_id'       => !empty($admission->course_ids) ? implode(',', $admission->course_ids) : null,
-                    'invoice_number'  => 'INV-' . strtoupper(Str::random(6)),
+                    'invoice_number'  => $nextInvoiceNumber,
                     'invoice_product' => $courses->pluck('title')->implode(', '),
 
                     'issue_date'      => now(),
