@@ -33,23 +33,23 @@
                             <div class="card invoice-container">
 
                                 <div class="card-header">
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <a href="javascript:void(0);" class="d-flex me-1 printBTN"
-                                            onclick="printInvoice(this.closest('.invoice-container'))">
-                                            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                                title="Print Invoice">
-                                                <i class="feather feather-printer"></i>
-                                            </div>
-                                        </a>
+                                    <!-- Print button -->
+                                    <a href="javascript:void(0);" class="d-flex me-1 printBTN"
+                                        onclick="printInvoice(this.closest('.invoice-container'))">
+                                        <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                            title="Print Invoice">
+                                            <i class="feather feather-printer"></i>
+                                        </div>
+                                    </a>
 
-                                        <a href="{{ route('student.invoicedownload', $payment->id) }}"
-                                            class="d-flex me-1 file-download">
-                                            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                                title="Download Invoice">
-                                                <i class="feather feather-download"></i>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    <!-- Download button -->
+                                    <a href="javascript:void(0);" class="d-flex me-1 file-download"
+                                        onclick="downloadInvoice(this.closest('.invoice-container'))">
+                                        <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                            title="Download Invoice">
+                                            <i class="feather feather-download"></i>
+                                        </div>
+                                    </a>
                                 </div>
 
                                 <div class="card-body p-0">
@@ -290,11 +290,13 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
+<!-- Add this in your blade file before </body> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
 <script>
     function printInvoice(invoiceElement) {
         // Get the inner container starting from card-body
         var bodyContent = invoiceElement.querySelector('.card-body.p-0');
-        if (!bodyContent) return; // safety check
+        if (!bodyContent) return;
 
         // Clone only the card-body content
         var printContents = bodyContent.cloneNode(true);
@@ -302,29 +304,55 @@
         // Open a new window
         var printWindow = window.open('', '', 'height=800,width=1200');
 
-        // Start HTML for print
         printWindow.document.write('<html><head><title>Invoice</title>');
 
-        // Include all CSS from your main page to keep design intact
+        // Include all CSS
         Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
             printWindow.document.write(node.outerHTML);
         });
 
         printWindow.document.write('</head><body>');
 
-        // Append the cloned card-body
         printWindow.document.body.appendChild(printContents);
 
         printWindow.document.write('</body></html>');
 
         printWindow.document.close();
         printWindow.focus();
-
-        // Trigger print
         printWindow.print();
+    }
 
-        // Optional: keep window open if user wants to inspect before printing
-        // printWindow.close(); 
+    function downloadInvoice(invoiceElement) {
+        // Get the inner container starting from card-body
+        var bodyContent = invoiceElement.querySelector('.card-body.p-0');
+        if (!bodyContent) return;
+
+        // Clone only the card-body content
+        var pdfContent = bodyContent.cloneNode(true);
+
+        // Optional: wrap in a container to preserve spacing
+        var container = document.createElement('div');
+        container.appendChild(pdfContent);
+
+        // Generate PDF using html2pdf
+        var opt = {
+            margin: 0.5,
+            filename: 'invoice.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        };
+
+        html2pdf().set(opt).from(container).save();
     }
 </script>
 @include('layouts.partials.student.theme')
