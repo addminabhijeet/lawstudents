@@ -193,10 +193,7 @@
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->sub_total, 2) }}
                                                 </td>
-                                            </tr>
 
-                                            {{-- Discount --}}
-                                            <tr>
                                                 <td class="fw-semibold text-dark text-end">
                                                     Discount ({{ $payment->discount_percent ?? 0 }}%)
                                                 </td>
@@ -204,10 +201,7 @@
                                                     - {{ $payment->currency }}
                                                     {{ number_format($payment->discount, 2) }}
                                                 </td>
-                                            </tr>
 
-                                            {{-- Tax --}}
-                                            <tr>
                                                 <td class="fw-semibold text-dark text-end">
                                                     Tax ({{ $payment->tax_percentage }}%)
                                                 </td>
@@ -215,10 +209,7 @@
                                                     + {{ $payment->currency }}
                                                     {{ number_format($payment->tax_amount, 2) }}
                                                 </td>
-                                            </tr>
 
-                                            {{-- Grand Total --}}
-                                            <tr>
                                                 <td class="fw-bold text-dark text-end">Grand Amount</td>
                                                 <td class="fw-bolder text-dark text-end">
                                                     {{ $payment->currency }}
