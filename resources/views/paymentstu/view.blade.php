@@ -334,10 +334,10 @@
             filename: filename,
             image: {
                 type: 'jpeg',
-                quality: 2
+                quality: 5
             },
             html2canvas: {
-                scale: 2
+                scale: 5
             },
             jsPDF: {
                 unit: 'in',
