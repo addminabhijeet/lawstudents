@@ -1,4 +1,7 @@
 @include('layouts.partials.student.dashboard')
+@php
+    $user = \App\Models\User::first();
+@endphp
 <main class="nxl-container">
     <!-- main containts -->
     <div class="nxl-content">
@@ -52,11 +55,14 @@
                                                         <img src="{{ asset('assets/images/logo-full.png') }}"
                                                             class="img-fluid" style="max-height: 60px;" alt="Logo">
                                                     </div>
-
                                                     <address class="text-muted">
-                                                        P.O. Box 18728,<br>
-                                                        DeLorean New York<br>
-                                                        VAT No: 2617 348 2752
+                                                        @if (!empty($user?->webaddress))
+                                                            {{ $user->webaddress }}
+                                                        @else
+                                                            P.O. Box 18728,<br>
+                                                            DeLorean New York<br>
+                                                            VAT No: 2617 348 2752
+                                                        @endif
                                                     </address>
                                                 </div>
                                                 <div class="lh-lg pt-3 pt-sm-0">
@@ -256,10 +262,6 @@
                                                 </ul>
                                             </div>
                                             <div class="text-center">
-                                                @php
-                                                    $user = \App\Models\User::first();
-                                                @endphp
-
                                                 @if ($user && $user->accsign)
                                                     <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
                                                         class="img-fluid wd-100" alt="signature">
