@@ -284,6 +284,7 @@
                                         <hr style="border-top: 1px solid #ddd;">
                                     </div>
                                 @endif
+                            </div>
                         @endforeach
                     @endif
                 </div>
