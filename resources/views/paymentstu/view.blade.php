@@ -322,11 +322,16 @@
         // Clone the invoice content
         var pdfContent = bodyContent.cloneNode(true);
 
-        // Wrap in a container
+        // Wrap in a detached container
         var container = document.createElement('div');
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
         container.appendChild(pdfContent);
 
-        // Sanitize the filename to remove spaces and special chars
+        // Append to body temporarily
+        document.body.appendChild(container);
+
+        // Sanitize filename
         var safeName = toName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var safeInvoice = invoiceNumber.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var filename = `invoice_${safeName}_${safeInvoice}.pdf`;
@@ -349,8 +354,11 @@
             }
         };
 
-        // Generate and save the PDF
-        html2pdf().set(opt).from(container).save();
+        // Generate PDF
+        html2pdf().set(opt).from(container).save().finally(() => {
+            // Remove temporary container
+            container.remove();
+        });
     }
 </script>
 @include('layouts.partials.student.theme')
