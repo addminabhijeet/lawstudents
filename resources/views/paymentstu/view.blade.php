@@ -280,8 +280,8 @@
                                     </div>
                                 </div>
                                 @if (!$loop->last)
-                                    <div class="my-4">
-                                        <hr style="border-top: 2px dashed #ccc;">
+                                    <div style="margin: 40px 0;">
+                                        <hr style="border-top: 1px solid #ddd;">
                                     </div>
                                 @endif
                         @endforeach
