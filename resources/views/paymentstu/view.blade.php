@@ -48,31 +48,16 @@
                                         <div class="px-4 pt-4">
                                             <div class="d-sm-flex align-items-center justify-content-between">
                                                 <div>
-                                                    <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">Law
-                                                        Students
+                                                    <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">
+                                                        <img src="assets/images/logo-full.png"
+                                                            class="img-fluid" style="max-height: 60px;" alt="Logo">
                                                     </div>
+
                                                     <address class="text-muted">
                                                         P.O. Box 18728,<br>
                                                         DeLorean New York<br>
                                                         VAT No: 2617 348 2752
                                                     </address>
-                                                    <div class="d-flex gap-2">
-                                                        <a href="javascript:void(0);" class="avatar-text avatar-sm">
-                                                            <i class="feather-facebook"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);" class="avatar-text avatar-sm">
-                                                            <i class="feather-twitter"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);" class="avatar-text avatar-sm">
-                                                            <i class="feather-instagram"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);" class="avatar-text avatar-sm">
-                                                            <i class="feather-linkedin"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);" class="avatar-text avatar-sm">
-                                                            <i class="feather-github"></i>
-                                                        </a>
-                                                    </div>
                                                 </div>
                                                 <div class="lh-lg pt-3 pt-sm-0">
                                                     <h2 class="fs-4 fw-bold text-primary">Invoice</h2>
@@ -272,7 +257,7 @@
                                             </div>
                                             <div class="text-center">
                                                 @php
-                                                    $user = \App\Models\User::first(); 
+                                                    $user = \App\Models\User::first();
                                                 @endphp
 
                                                 @if ($user && $user->accsign)
