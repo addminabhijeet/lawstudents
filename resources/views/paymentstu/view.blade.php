@@ -44,7 +44,7 @@
 
                                     <!-- Download button -->
                                     <a href="javascript:void(0);" class="d-flex me-1 file-download"
-                                        onclick="downloadInvoice(this.closest('.invoice-container'))">
+                                        onclick="downloadInvoice(this.closest('.invoice-container'), '{{ $payment->to_name }}', '{{ $payment->invoice_number }}')">
                                         <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                             title="Download Invoice">
                                             <i class="feather feather-download"></i>
@@ -322,38 +322,27 @@
         printWindow.print();
     }
 
-    function downloadInvoice(invoiceElement) {
-        // Get the inner container starting from card-body
+    function downloadInvoice(invoiceElement, toName, invoiceNumber) {
         var bodyContent = invoiceElement.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Clone only the card-body content
         var pdfContent = bodyContent.cloneNode(true);
-
-        // Optional: wrap in a container to preserve spacing
         var container = document.createElement('div');
         container.appendChild(pdfContent);
 
-        // Get recipient name and invoice number for filename
-        var toName = invoiceElement.querySelector('.text-sm-end address')?.textContent.trim().split('\n')[0] ||
-            'invoice';
-        var invoiceNumber = invoiceElement.querySelector('.fw-bold.text-primary')?.textContent.trim() || '';
-
-        // Clean filename (remove spaces or special chars)
+        // Clean filename
         var safeName = toName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var safeInvoice = invoiceNumber.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
-
         var filename = `invoice_${safeName}_${safeInvoice}.pdf`;
 
-        // Generate PDF using html2pdf
         var opt = {
             filename: filename,
             image: {
                 type: 'jpeg',
-                quality: 5
+                quality: 2
             },
             html2canvas: {
-                scale: 5
+                scale: 2
             },
             jsPDF: {
                 unit: 'in',
