@@ -156,74 +156,70 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Service</th>
-                                                <th>Description</th>
-                                                <th>Rate</th>
-                                                <th>QTY</th>
-                                                <th>Amount</th>
+                                                <th>Enrolled Courses</th>
+                                                <th class="text-end">Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php $subTotal = 0; @endphp
 
                                             @if ($payment->items)
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <strong>Enrolled Courses</strong>
-                                                        <ul class="mb-0 mt-2">
-                                                            @foreach ($payment->items as $item)
-                                                                @php
-                                                                    $amount = $item['qty'] * $item['price'];
-                                                                    $subTotal += $amount;
-                                                                @endphp
-                                                                <li>
-                                                                    {{ $item['product'] }}
-                                                                    <span class="float-end">
-                                                                        {{ $payment->currency }}
-                                                                        {{ number_format($amount, 2) }}
-                                                                    </span>
-                                                                </li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($payment->items as $item)
+                                                    @php
+                                                        $amount = $item['qty'] * $item['price'];
+                                                        $subTotal += $amount;
+                                                    @endphp
+                                                    <tr>
+                                                        <td>
+                                                            {{ $item['product'] }}
+                                                        </td>
+                                                        <td class="text-end fw-semibold">
+                                                            {{ $payment->currency }} {{ number_format($amount, 2) }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             @endif
 
+                                            {{-- Sub Total --}}
                                             <tr>
-                                                <td class="fw-semibold text-end">Sub Total</td>
-                                                <td class="fw-bold">
+                                                <td class="fw-semibold text-dark text-end">Sub Total</td>
+                                                <td class="fw-bold text-dark text-end">
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->sub_total, 2) }}
                                                 </td>
                                             </tr>
 
+                                            {{-- Discount --}}
                                             <tr>
-                                                <td class="fw-semibold text-end">
-                                                    Discount ({{ $payment->discount_percent }}%)
+                                                <td class="fw-semibold text-dark text-end">
+                                                    Discount ({{ $payment->discount_percent ?? 0 }}%)
                                                 </td>
-                                                <td class="fw-bold text-success">
+                                                <td class="fw-bold text-success text-end">
                                                     - {{ $payment->currency }}
                                                     {{ number_format($payment->discount, 2) }}
                                                 </td>
                                             </tr>
 
+                                            {{-- Tax --}}
                                             <tr>
-                                                <td class="fw-semibold text-end">
+                                                <td class="fw-semibold text-dark text-end">
                                                     Tax ({{ $payment->tax_percentage }}%)
                                                 </td>
-                                                <td class="fw-bold">
+                                                <td class="fw-bold text-dark text-end">
                                                     + {{ $payment->currency }}
                                                     {{ number_format($payment->tax_amount, 2) }}
                                                 </td>
                                             </tr>
 
+                                            {{-- Grand Total --}}
                                             <tr>
-                                                <td class="fw-semibold text-end">Grand Amount</td>
-                                                <td class="fw-bolder">
+                                                <td class="fw-bold text-dark text-end">Grand Amount</td>
+                                                <td class="fw-bolder text-dark text-end">
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->grand_total, 2) }}
                                                 </td>
                                             </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
