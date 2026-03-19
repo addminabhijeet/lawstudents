@@ -44,7 +44,7 @@
 
                                     <!-- Download button -->
                                     <a href="javascript:void(0);" class="d-flex me-1 file-download"
-                                        onclick="downloadInvoice('invoice-body-{{ $payment->invoice_number }}', '{{ $payment->to_name }}', '{{ $payment->invoice_number }}')">
+                                        onclick="downloadInvoice('invoice-body-{{ $payment->invoice_number }}')">
                                         <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                             title="Download Invoice">
                                             <i class="feather feather-download"></i>
@@ -315,45 +315,80 @@
         printWindow.print();
     }
 
-    function downloadInvoice(invoiceBodyId, toName, invoiceNumber) {
-        var bodyContent = document.getElementById(invoiceBodyId);
-        if (!bodyContent) return;
+    function downloadInvoice(invoiceBodyId) {
+    var bodyContent = document.getElementById(invoiceBodyId);
+    if (!bodyContent) return;
 
-        // Clone the content
-        var pdfContent = bodyContent.cloneNode(true);
+    // Clone the content
+    var pdfContent = bodyContent.cloneNode(true);
 
-        // Create temporary container
-        var container = document.createElement('div');
-        container.style.position = 'absolute';
-        container.style.left = '-9999px';
-        container.appendChild(pdfContent);
-        document.body.appendChild(container);
+    // Create temporary container
+    var container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.left = '-9999px';
+    container.appendChild(pdfContent);
+    document.body.appendChild(container);
 
-        // Filename
-        var safeName = toName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
-        var safeInvoice = invoiceNumber.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
-        var filename = `invoice_${safeName}_${safeInvoice}.pdf`;
+    // Generate a filename dynamically from the ID (optional)
+    var filename = invoiceBodyId + '.pdf';
 
-        // PDF options
-        var opt = {
-            filename: filename,
-            margin: 0.5,
-            image: {
-                type: 'jpeg',
-                quality: 0.98
-            },
-            html2canvas: {
-                scale: 2
-            },
-            jsPDF: {
-                unit: 'in',
-                format: 'a4',
-                orientation: 'portrait'
-            }
-        };
+    // PDF options
+    var opt = {
+        filename: filename,
+        margin: 0.5,
+        image: {
+            type: 'jpeg',
+            quality: 0.98
+        },
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {function downloadInvoice(invoiceBodyId) {
+    var bodyContent = document.getElementById(invoiceBodyId);
+    if (!bodyContent) return;
 
-        // Generate PDF
-        html2pdf().set(opt).from(container).save().finally(() => container.remove());
-    }
+    // Clone the content
+    var pdfContent = bodyContent.cloneNode(true);
+
+    // Create temporary container
+    var container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.left = '-9999px';
+    container.appendChild(pdfContent);
+    document.body.appendChild(container);
+
+    // Generate a filename dynamically from the ID (optional)
+    var filename = invoiceBodyId + '.pdf';
+
+    // PDF options
+    var opt = {
+        filename: filename,
+        margin: 0.5,
+        image: {
+            type: 'jpeg',
+            quality: 0.98
+        },
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: 'in',
+            format: 'a4',
+            orientation: 'portrait'
+        }
+    };
+
+    // Generate PDF
+    html2pdf().set(opt).from(container).save().finally(() => container.remove());
+}
+            unit: 'in',
+            format: 'a4',
+            orientation: 'portrait'
+        }
+    };
+
+    // Generate PDF
+    html2pdf().set(opt).from(container).save().finally(() => container.remove());
+}
 </script>
 @include('layouts.partials.student.theme')
