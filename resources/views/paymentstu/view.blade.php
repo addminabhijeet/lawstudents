@@ -271,8 +271,18 @@
                                                 </ul>
                                             </div>
                                             <div class="text-center">
-                                                <img src="assets/images/general/signature.png"
-                                                    class="img-fluid wd-100" alt="image">
+                                                @php
+                                                    $user = \App\Models\User::first(); 
+                                                @endphp
+
+                                                @if ($user && $user->accsign)
+                                                    <img src="{{ asset('storage/' . $user->accsign) }}"
+                                                        class="img-fluid wd-100" alt="signature">
+                                                @else
+                                                    <img src="assets/images/general/signature.png"
+                                                        class="img-fluid wd-100" alt="default signature">
+                                                @endif
+
                                                 <h6 class="fs-13 fw-bold mt-2">Account Manager</h6>
                                                 <p class="fs-11 fw-semibold text-muted">26 MAY 2023, 10:35PM</p>
                                             </div>
