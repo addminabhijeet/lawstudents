@@ -287,13 +287,12 @@
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
 
-
+                                                        {{-- Single ID card view (only first payment) --}}
                                                         <a href="{{ route('admin.viewidcard', $firstPayment->id) }}"
                                                             class="avatar-text avatar-md"
-                                                            title="ID #{{ $payment->invoice_number }}">
+                                                            title="ID #{{ $firstPayment->invoice_number }}">
                                                             <i class="fas fa-id-card"></i>
                                                         </a>
-
 
                                                         {{-- Single edit --}}
                                                         <a href="{{ route('admin.editpayment', $firstPayment->id) }}"
