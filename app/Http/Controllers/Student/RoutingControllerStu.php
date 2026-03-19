@@ -11,6 +11,7 @@ use App\Models\Defaultpassword;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RoutingControllerStu extends Controller
 {
@@ -265,11 +266,33 @@ class RoutingControllerStu extends Controller
     {
         $payments = Payment::where('student_id', Auth::guard('student')->id())->latest()->get();
 
-        $payment = $payments->first(); // keep old variable for compatibility
+        $payment = $payments->first();
 
         $notFound = $payments->isEmpty();
 
         return view('paymentstu.view', compact('payment', 'payments', 'notFound'));
+    }
+
+    public function invoiceprint($id)
+    {
+        $payment = Payment::with('student')->findOrFail($id);
+        $user = $payment->student;
+
+        $pdf = Pdf::loadView('paymentstu.view-pdf', compact('payment', 'user'))
+            ->setPaper('a4', 'portrait');
+
+        return $pdf->stream("invoice_{$payment->invoice_number}.pdf");
+    }
+
+    public function invoicedownload($id)
+    {
+        $payment = Payment::with('student')->findOrFail($id);
+        $user = $payment->student;
+
+        $pdf = Pdf::loadView('paymentstu.view-pdf', compact('payment', 'user'))
+            ->setPaper('a4', 'portrait');
+
+        return $pdf->download("invoice_{$payment->invoice_number}.pdf");
     }
 
     public function listnotes()
@@ -356,46 +379,5 @@ class RoutingControllerStu extends Controller
 
         return redirect()->route('admin.liststudent')
             ->with('success', 'Student updated successfully.');
-    }
-
-
-    /**
-     * First level route
-     */
-    public function firstLevel(Request $request, $first)
-    {
-        if (View::exists($first)) {
-            return view($first);
-        }
-
-        abort(404);
-    }
-
-    /**
-     * Second level route
-     */
-    public function secondLevel(Request $request, $first, $second)
-    {
-        $view = $first . '.' . $second;
-
-        if (View::exists($view)) {
-            return view($view);
-        }
-
-        abort(404);
-    }
-
-    /**
-     * Third level route
-     */
-    public function thirdLevel(Request $request, $first, $second, $third)
-    {
-        $view = $first . '.' . $second . '.' . $third;
-
-        if (View::exists($view)) {
-            return view($view);
-        }
-
-        abort(404);
     }
 }

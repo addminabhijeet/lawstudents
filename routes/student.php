@@ -104,6 +104,12 @@ Route::middleware(['auth:student'])
 
         Route::post('store-notes', [CourseNoteControllerStu::class, 'storenotes'])
             ->name('storenotes');
+
+        Route::get('invoice-print/{id}', [RoutingControllerStu::class, 'invoiceprint'])
+            ->name('invoiceprint');
+            
+        Route::get('invoice-download/{id}', [RoutingControllerStu::class, 'invoicedownload'])
+            ->name('invoicedownload');
     });
 
 Route::get('/legacy-student', [RoutingControllerStu::class, 'student'])
