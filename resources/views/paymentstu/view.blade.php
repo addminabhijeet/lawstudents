@@ -44,7 +44,7 @@
 
                                     <!-- Download button -->
                                     <a href="javascript:void(0);" class="d-flex me-1 file-download"
-                                        onclick="downloadInvoice(this.closest('.invoice-container'), '{{ $payment->to_name }}', '{{ $payment->invoice_number }}')">
+                                        onclick="downloadInvoice('invoice-body-{{ $payment->invoice_number }}', '{{ $payment->to_name }}', '{{ $payment->invoice_number }}')">
                                         <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                             title="Download Invoice">
                                             <i class="feather feather-download"></i>
@@ -52,7 +52,7 @@
                                     </a>
                                 </div>
 
-                                <div class="card-body p-0">
+                                <div class="card-body p-0" id="invoice-body-{{ $payment->invoice_number }}">
                                     <div class="px-4 pt-4">
                                         <div class="d-sm-flex align-items-center justify-content-between">
                                             <div>
@@ -315,23 +315,21 @@
         printWindow.print();
     }
 
-    function downloadInvoice(invoiceElement, toName, invoiceNumber) {
-        var bodyContent = invoiceElement.querySelector('.card-body.p-0');
+    function downloadInvoice(invoiceBodyId, toName, invoiceNumber) {
+        var bodyContent = document.getElementById(invoiceBodyId);
         if (!bodyContent) return;
 
-        // Clone the invoice content
+        // Clone the content
         var pdfContent = bodyContent.cloneNode(true);
 
-        // Wrap in a detached container
+        // Create temporary container
         var container = document.createElement('div');
         container.style.position = 'absolute';
         container.style.left = '-9999px';
         container.appendChild(pdfContent);
-
-        // Append to body temporarily
         document.body.appendChild(container);
 
-        // Sanitize filename
+        // Filename
         var safeName = toName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var safeInvoice = invoiceNumber.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var filename = `invoice_${safeName}_${safeInvoice}.pdf`;
@@ -339,9 +337,10 @@
         // PDF options
         var opt = {
             filename: filename,
+            margin: 0.5,
             image: {
                 type: 'jpeg',
-                quality: 2
+                quality: 0.98
             },
             html2canvas: {
                 scale: 2
@@ -354,10 +353,7 @@
         };
 
         // Generate PDF
-        html2pdf().set(opt).from(container).save().finally(() => {
-            // Remove temporary container
-            container.remove();
-        });
+        html2pdf().set(opt).from(container).save().finally(() => container.remove());
     }
 </script>
 @include('layouts.partials.student.theme')
