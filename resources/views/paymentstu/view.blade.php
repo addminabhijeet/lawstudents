@@ -316,79 +316,41 @@
     }
 
     function downloadInvoice(invoiceBodyId) {
-    var bodyContent = document.getElementById(invoiceBodyId);
-    if (!bodyContent) return;
+        var bodyContent = document.getElementById(invoiceBodyId);
+        if (!bodyContent) return;
 
-    // Clone the content
-    var pdfContent = bodyContent.cloneNode(true);
+        // Clone the content
+        var pdfContent = bodyContent.cloneNode(true);
 
-    // Create temporary container
-    var container = document.createElement('div');
-    container.style.position = 'absolute';
-    container.style.left = '-9999px';
-    container.appendChild(pdfContent);
-    document.body.appendChild(container);
+        // Create temporary container
+        var container = document.createElement('div');
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
+        container.appendChild(pdfContent);
+        document.body.appendChild(container);
 
-    // Generate a filename dynamically from the ID (optional)
-    var filename = invoiceBodyId + '.pdf';
+        // Generate a filename dynamically from the ID (optional)
+        var filename = invoiceBodyId + '.pdf';
 
-    // PDF options
-    var opt = {
-        filename: filename,
-        margin: 0.5,
-        image: {
-            type: 'jpeg',
-            quality: 0.98
-        },
-        html2canvas: {
-            scale: 2
-        },
-        jsPDF: {function downloadInvoice(invoiceBodyId) {
-    var bodyContent = document.getElementById(invoiceBodyId);
-    if (!bodyContent) return;
+        // PDF options
+        var opt = {
+            filename: filename,
+            image: {
+                type: 'jpeg',
+                quality: 2
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        };
 
-    // Clone the content
-    var pdfContent = bodyContent.cloneNode(true);
-
-    // Create temporary container
-    var container = document.createElement('div');
-    container.style.position = 'absolute';
-    container.style.left = '-9999px';
-    container.appendChild(pdfContent);
-    document.body.appendChild(container);
-
-    // Generate a filename dynamically from the ID (optional)
-    var filename = invoiceBodyId + '.pdf';
-
-    // PDF options
-    var opt = {
-        filename: filename,
-        margin: 0.5,
-        image: {
-            type: 'jpeg',
-            quality: 0.98
-        },
-        html2canvas: {
-            scale: 2
-        },
-        jsPDF: {
-            unit: 'in',
-            format: 'a4',
-            orientation: 'portrait'
-        }
-    };
-
-    // Generate PDF
-    html2pdf().set(opt).from(container).save().finally(() => container.remove());
-}
-            unit: 'in',
-            format: 'a4',
-            orientation: 'portrait'
-        }
-    };
-
-    // Generate PDF
-    html2pdf().set(opt).from(container).save().finally(() => container.remove());
-}
+        // Generate PDF
+        html2pdf().set(opt).from(container).save().finally(() => container.remove());
+    }
 </script>
 @include('layouts.partials.student.theme')
