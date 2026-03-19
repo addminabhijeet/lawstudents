@@ -34,25 +34,30 @@
 
                                 <div class="card-header">
                                     <!-- Print button -->
-                                    <a href="javascript:void(0);" class="d-flex me-1 printBTN"
-                                        onclick="printInvoice(this.closest('.invoice-container'))">
-                                        <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                            title="Print Invoice">
-                                            <i class="feather feather-printer"></i>
-                                        </div>
-                                    </a>
+                                    <div class="card-header">
+                                        <!-- Print button -->
+                                        <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
+                                            class="d-flex me-1 printBTN"
+                                            onclick="printInvoice(document.getElementById('invoice-body-{{ $payment->id }}'))">
+                                            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                                title="Print Invoice">
+                                                <i class="feather feather-printer"></i>
+                                            </div>
+                                        </a>
 
-                                    <!-- Download button -->
-                                    <a href="javascript:void(0);" class="d-flex me-1 file-download"
-                                        onclick="downloadInvoice(this.closest('.invoice-container'))">
-                                        <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                            title="Download Invoice">
-                                            <i class="feather feather-download"></i>
-                                        </div>
-                                    </a>
+                                        <!-- Download button -->
+                                        <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
+                                            class="d-flex me-1 file-download"
+                                            onclick="downloadInvoice('invoice-body-{{ $payment->id }}')">
+                                            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                                title="Download Invoice">
+                                                <i class="feather feather-download"></i>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
 
-                                <div class="card-body p-0" id="invoice-body-{{ $payment->invoice_number }}">
+                                <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
                                     <div class="px-4 pt-4">
                                         <div class="d-sm-flex align-items-center justify-content-between">
                                             <div>
@@ -315,11 +320,8 @@
         printWindow.print();
     }
 
-    function downloadInvoice(invoiceElement) {
-        if (!invoiceElement) return;
-
-        // Get the inner container starting from card-body (like printInvoice)
-        var bodyContent = invoiceElement.querySelector('.card-body.p-0');
+    function downloadInvoice(invoiceBodyId) {
+        var bodyContent = document.getElementById(invoiceBodyId);
         if (!bodyContent) return;
 
         // Clone the content
@@ -332,16 +334,15 @@
         container.appendChild(pdfContent);
         document.body.appendChild(container);
 
-        // Generate a filename using invoice number or container ID
-        var invoiceNumber = invoiceElement.querySelector('.text-primary')?.innerText || 'invoice';
-        var filename = 'invoice_' + invoiceNumber.trim().replace(/\s+/g, '_') + '.pdf';
+        // Generate a filename dynamically from the ID (optional)
+        var filename = invoiceBodyId + '.pdf';
 
         // PDF options
         var opt = {
             filename: filename,
             image: {
                 type: 'jpeg',
-                quality: 0.98
+                quality: 2
             },
             html2canvas: {
                 scale: 2
