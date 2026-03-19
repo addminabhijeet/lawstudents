@@ -44,7 +44,7 @@
 
                                     <!-- Download button -->
                                     <a href="javascript:void(0);" class="d-flex me-1 file-download"
-                                        onclick="downloadInvoice('invoice-body-{{ $payment->invoice_number }}')">
+                                        onclick="downloadInvoice(this.closest('.invoice-container'))">
                                         <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                             title="Download Invoice">
                                             <i class="feather feather-download"></i>
@@ -315,8 +315,11 @@
         printWindow.print();
     }
 
-    function downloadInvoice(invoiceBodyId) {
-        var bodyContent = document.getElementById(invoiceBodyId);
+    function downloadInvoice(invoiceElement) {
+        if (!invoiceElement) return;
+
+        // Get the inner container starting from card-body (like printInvoice)
+        var bodyContent = invoiceElement.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
         // Clone the content
@@ -329,15 +332,16 @@
         container.appendChild(pdfContent);
         document.body.appendChild(container);
 
-        // Generate a filename dynamically from the ID (optional)
-        var filename = invoiceBodyId + '.pdf';
+        // Generate a filename using invoice number or container ID
+        var invoiceNumber = invoiceElement.querySelector('.text-primary')?.innerText || 'invoice';
+        var filename = 'invoice_' + invoiceNumber.trim().replace(/\s+/g, '_') + '.pdf';
 
         // PDF options
         var opt = {
             filename: filename,
             image: {
                 type: 'jpeg',
-                quality: 2
+                quality: 0.98
             },
             html2canvas: {
                 scale: 2
