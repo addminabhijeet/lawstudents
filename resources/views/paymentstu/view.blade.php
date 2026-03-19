@@ -38,7 +38,7 @@
                                         <!-- Print button -->
                                         <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
                                             class="d-flex me-1 printBTN"
-                                            onclick="printInvoice(document.getElementById('invoice-body-{{ $payment->id }}'))">
+                                            onclick="printInvoice(this.closest('.invoice-container'))">
                                             <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                                 title="Print Invoice">
                                                 <i class="feather feather-printer"></i>
@@ -48,7 +48,7 @@
                                         <!-- Download button -->
                                         <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
                                             class="d-flex me-1 file-download"
-                                            onclick="downloadInvoice('invoice-body-{{ $payment->id }}')">
+                                            onclick="downloadInvoice(this.closest('.invoice-container'))">
                                             <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                                 title="Download Invoice">
                                                 <i class="feather feather-download"></i>
@@ -293,15 +293,16 @@
 <!-- Add this in your blade file before </body> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
 <script>
-    function printInvoice(invoiceElement) {
-        // Get the inner container starting from card-body
-        var bodyContent = invoiceElement.querySelector('.card-body.p-0');
+    function printInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Get the inner card-body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
         var printContents = bodyContent.cloneNode(true);
 
         var printWindow = window.open('', '', 'height=800,width=1200');
-
         printWindow.document.write('<html><head><title>Invoice</title>');
 
         // Include all CSS
@@ -310,9 +311,7 @@
         });
 
         printWindow.document.write('</head><body>');
-
         printWindow.document.body.appendChild(printContents);
-
         printWindow.document.write('</body></html>');
 
         printWindow.document.close();
@@ -320,24 +319,26 @@
         printWindow.print();
     }
 
-    function downloadInvoice(invoiceBodyId) {
-        var bodyContent = document.getElementById(invoiceBodyId);
+    function downloadInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Get the inner card-body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Clone the content
         var pdfContent = bodyContent.cloneNode(true);
 
-        // Create temporary container
+        // Temporary off-screen container
         var container = document.createElement('div');
         container.style.position = 'absolute';
         container.style.left = '-9999px';
         container.appendChild(pdfContent);
         document.body.appendChild(container);
 
-        // Generate a filename dynamically from the ID (optional)
-        var filename = invoiceBodyId + '.pdf';
+        // Filename from invoice number
+        var invoiceId = bodyContent.id || 'invoice';
+        var filename = invoiceId + '.pdf';
 
-        // PDF options
         var opt = {
             filename: filename,
             image: {
@@ -354,7 +355,6 @@
             }
         };
 
-        // Generate PDF
         html2pdf().set(opt).from(container).save().finally(() => container.remove());
     }
 </script>
