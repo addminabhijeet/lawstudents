@@ -257,7 +257,7 @@
                                                     issuance.</li>
                                                 <li># Payments can be made via cheque, credit/debit card, or online bank
                                                     transfer.</li>
-                                                
+
                                                 <li># This invoice is computer-generated and does not require a physical
                                                     signature.</li>
                                             </ul>
@@ -293,10 +293,8 @@
         var bodyContent = invoiceElement.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Clone only the card-body content
         var printContents = bodyContent.cloneNode(true);
 
-        // Open a new window
         var printWindow = window.open('', '', 'height=800,width=1200');
 
         printWindow.document.write('<html><head><title>Invoice</title>');
@@ -321,23 +319,28 @@
         var bodyContent = invoiceElement.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
+        // Clone the invoice content
         var pdfContent = bodyContent.cloneNode(true);
+
+        // Wrap in a container
         var container = document.createElement('div');
         container.appendChild(pdfContent);
 
-        // Clean filename
+        // Sanitize the filename to remove spaces and special chars
         var safeName = toName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var safeInvoice = invoiceNumber.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var filename = `invoice_${safeName}_${safeInvoice}.pdf`;
 
+        // PDF options
         var opt = {
             filename: filename,
+            margin: 0.5,
             image: {
                 type: 'jpeg',
-                quality: 5
+                quality: 0.98
             },
             html2canvas: {
-                scale: 5
+                scale: 2
             },
             jsPDF: {
                 unit: 'in',
@@ -346,6 +349,7 @@
             }
         };
 
+        // Generate and save the PDF
         html2pdf().set(opt).from(container).save();
     }
 </script>
