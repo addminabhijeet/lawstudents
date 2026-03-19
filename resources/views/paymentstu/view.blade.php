@@ -251,14 +251,19 @@
                                     </div>
                                     <div class="px-4 pt-4 d-sm-flex align-items-center justify-content-between">
                                         <div class="mb-5 mb-sm-0">
-                                            <h6 class="fs-13 fw-bold mb-3">Terms &amp; Conditions:</h6>
+                                            <h6 class="fs-13 fw-bold mb-3">Tarm &amp; Condition :</h6>
                                             <ul class="list-unstyled lh-lg fs-12">
-                                                <li># All payments are due within 7 days from the date of invoice
-                                                    issuance.</li>
-                                                <li># Payments can be made via cheque, credit/debit card, or online bank
-                                                    transfer.</li>
-
-                                                <li># This invoice is computer-generated and does not require a physical
+                                                <li># All accounts are to be paid within 7 days from receipt of
+                                                    invoice.
+                                                </li>
+                                                <li># To be paid by cheque or credit card or direct payment online.
+                                                </li>
+                                                <li># If account is not paid within 7 days the credits details
+                                                    supplied as
+                                                    confirmation.
+                                                </li>
+                                                <li># This is computer generated receipt and does not require
+                                                    physical
                                                     signature.</li>
                                             </ul>
                                         </div>
@@ -293,8 +298,10 @@
         var bodyContent = invoiceElement.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
+        // Clone only the card-body content
         var printContents = bodyContent.cloneNode(true);
 
+        // Open a new window
         var printWindow = window.open('', '', 'height=800,width=1200');
 
         printWindow.document.write('<html><head><title>Invoice</title>');
@@ -315,37 +322,38 @@
         printWindow.print();
     }
 
-    function downloadInvoice(invoiceElement, toName, invoiceNumber) {
+    function downloadInvoice(invoiceElement) {
+        // Get the inner container starting from card-body
         var bodyContent = invoiceElement.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Clone the invoice content
+        // Clone only the card-body content
         var pdfContent = bodyContent.cloneNode(true);
 
-        // Wrap in a detached container
+        // Optional: wrap in a container to preserve spacing
         var container = document.createElement('div');
-        container.style.position = 'absolute';
-        container.style.left = '-9999px';
         container.appendChild(pdfContent);
 
-        // Append to body temporarily
-        document.body.appendChild(container);
+        // Get recipient name and invoice number for filename
+        var toName = invoiceElement.querySelector('.text-sm-end address')?.textContent.trim().split('\n')[0] ||
+            'invoice';
+        var invoiceNumber = invoiceElement.querySelector('.fw-bold text-primary')?.textContent.trim() || '';
 
-        // Sanitize filename
+        // Clean filename (remove spaces or special chars)
         var safeName = toName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
         var safeInvoice = invoiceNumber.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+
         var filename = `invoice_${safeName}_${safeInvoice}.pdf`;
 
-        // PDF options
+        // Generate PDF using html2pdf
         var opt = {
             filename: filename,
-            margin: 0.5,
             image: {
                 type: 'jpeg',
-                quality: 0.98
+                quality: 5
             },
             html2canvas: {
-                scale: 2
+                scale: 5
             },
             jsPDF: {
                 unit: 'in',
@@ -354,11 +362,7 @@
             }
         };
 
-        // Generate PDF
-        html2pdf().set(opt).from(container).save().finally(() => {
-            // Remove temporary container
-            container.remove();
-        });
+        html2pdf().set(opt).from(container).save();
     }
 </script>
 @include('layouts.partials.student.theme')
