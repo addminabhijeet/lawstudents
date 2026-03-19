@@ -275,9 +275,11 @@ class RoutingControllerStu extends Controller
 
     public function invoiceprint($id)
     {
-        $payment = Payment::with('student')->findOrFail($id);
-        $user = $payment->student;
-        $notFound = $payment->isEmpty();
+        $payments = Payment::where('student_id', Auth::guard('student')->id())->latest()->get();
+
+        $payment = $payments->first();
+
+        $notFound = $payments->isEmpty();
 
         $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user', 'notFound'))
             ->setPaper('a4', 'portrait');
@@ -287,9 +289,11 @@ class RoutingControllerStu extends Controller
 
     public function invoicedownload($id)
     {
-        $payment = Payment::with('student')->findOrFail($id);
-        $user = $payment->student;
-        $notFound = $payment->isEmpty();
+        $payments = Payment::where('student_id', Auth::guard('student')->id())->latest()->get();
+
+        $payment = $payments->first();
+
+        $notFound = $payments->isEmpty();
 
         $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user', 'notFound'))
             ->setPaper('a4', 'portrait');
