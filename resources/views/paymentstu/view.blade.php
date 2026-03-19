@@ -57,7 +57,7 @@
                                                     </div>
                                                     <address class="text-muted">
                                                         @if (!empty($user?->webaddress))
-                                                            {!! collect(explode(' ', $user->webaddress))->chunk(3)->map(fn($chunk) => implode(' ', $chunk))->implode('<br>') !!}
+                                                            {!! collect(explode(' ', $user->webaddress))->chunk(3)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                                         @else
                                                             P.O. Box 18728,<br>
                                                             DeLorean New York<br>
