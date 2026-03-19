@@ -279,6 +279,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if (!$loop->last)
+                                    <div class="my-4">
+                                        <hr style="border-top: 2px dashed #ccc;">
+                                    </div>
+                                @endif
                         @endforeach
                     @endif
                 </div>
