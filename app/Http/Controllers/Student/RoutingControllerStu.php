@@ -263,15 +263,13 @@ class RoutingControllerStu extends Controller
 
     public function viewpayment()
     {
-        $payment = Payment::where('student_id', Auth::guard('student')->id())->first();
+        $payments = Payment::where('student_id', Auth::guard('student')->id())->latest()->get();
 
-        $notFound = false;
+        $payment = $payments->first(); // keep old variable for compatibility
 
-        if (!$payment) {
-            $notFound = true;
-        }
+        $notFound = $payments->isEmpty();
 
-        return view('paymentstu.view', compact('payment', 'notFound'));
+        return view('paymentstu.view', compact('payment', 'payments', 'notFound'));
     }
 
     public function listnotes()
