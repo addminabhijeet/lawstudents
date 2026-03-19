@@ -57,11 +57,16 @@
                                                     </div>
                                                     <address class="text-muted">
                                                         @if (!empty($user?->webaddress))
-                                                            {!! collect(explode(' ', $user->webaddress))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
+                                                            {!! collect(explode(' ', $user->webaddress))->chunk(3)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
+                                                            <br>
+                                                            Mobile: {{ $user->mobile ?? '-' }}<br>
+                                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
                                                         @else
                                                             P.O. Box 18728,<br>
                                                             DeLorean New York<br>
-                                                            VAT No: 2617 348 2752
+                                                            VAT No: 2617 348 2752<br>
+                                                            Mobile: {{ $user->mobile ?? '-' }}<br>
+                                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
                                                         @endif
                                                     </address>
                                                 </div>
