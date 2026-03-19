@@ -336,7 +336,6 @@
 
         // Generate PDF using html2pdf
         var opt = {
-            margin: 0.5,
             filename: 'invoice.pdf',
             image: {
                 type: 'jpeg',
