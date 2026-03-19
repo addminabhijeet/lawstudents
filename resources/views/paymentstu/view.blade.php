@@ -156,7 +156,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Enrolled Courses</th>
+                                                <th class="border-end">Enrolled Courses</th>
                                                 <th class="text-end">Amount</th>
                                             </tr>
                                         </thead>
@@ -175,7 +175,7 @@
                                                         $totalAmount += $course->price;
                                                     @endphp
                                                     <tr>
-                                                        <td>
+                                                        <td class="border-end">
                                                             {{ $course->title }}
                                                         </td>
                                                         <td class="text-end fw-semibold">
@@ -186,14 +186,9 @@
                                                 @endforeach
                                             @endif
 
-                                            {{-- 🔥 Separator Line --}}
-                                            <tr>
-                                                <td colspan="2" style="border-top: 2px solid #dee2e6;"></td>
-                                            </tr>
-
                                             {{-- Sub Total --}}
                                             <tr>
-                                                <td class="fw-semibold text-dark text-end">Sub Total</td>
+                                                <td class="fw-semibold text-dark text-end border-end">Sub Total</td>
                                                 <td class="fw-bold text-dark text-end">
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->sub_total, 2) }}
@@ -202,7 +197,7 @@
 
                                             {{-- Discount --}}
                                             <tr>
-                                                <td class="fw-semibold text-dark text-end">
+                                                <td class="fw-semibold text-dark text-end border-end">
                                                     Discount ({{ $payment->discount_percent ?? 0 }}%)
                                                 </td>
                                                 <td class="fw-bold text-success text-end">
@@ -213,7 +208,7 @@
 
                                             {{-- Tax --}}
                                             <tr>
-                                                <td class="fw-semibold text-dark text-end">
+                                                <td class="fw-semibold text-dark text-end border-end">
                                                     Tax ({{ $payment->tax_percentage }}%)
                                                 </td>
                                                 <td class="fw-bold text-dark text-end">
@@ -224,7 +219,7 @@
 
                                             {{-- Grand Total --}}
                                             <tr>
-                                                <td class="fw-bold text-dark text-end">Grand Amount</td>
+                                                <td class="fw-bold text-dark text-end border-end">Grand Amount</td>
                                                 <td class="fw-bolder text-dark text-end">
                                                     {{ $payment->currency }}
                                                     {{ number_format($payment->grand_total, 2) }}
