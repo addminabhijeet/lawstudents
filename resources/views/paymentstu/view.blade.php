@@ -34,15 +34,20 @@
 
                                 <div class="card-header">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <a href="javascript:void(0)" class="d-flex me-1 printBTN">
+                                        <a href="{{ route('invoiceprint', $payment->id) }}" class="d-flex me-1 printBTN"
+                                            target="_blank">
                                             <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                                data-bs-trigger="hover" title="Print Invoice"><i
-                                                    class="feather feather-printer"></i></div>
+                                                title="Print Invoice">
+                                                <i class="feather feather-printer"></i>
+                                            </div>
                                         </a>
-                                        <a href="javascript:void(0)" class="d-flex me-1 file-download">
+
+                                        <a href="{{ route('invoicedownload', $payment->id) }}"
+                                            class="d-flex me-1 file-download">
                                             <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                                data-bs-trigger="hover" title="Download Invoice"><i
-                                                    class="feather feather-download"></i></div>
+                                                title="Download Invoice">
+                                                <i class="feather feather-download"></i>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
