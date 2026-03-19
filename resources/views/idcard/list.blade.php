@@ -287,14 +287,13 @@
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
 
-                                                        {{-- Multiple ID card view buttons --}}
-                                                        @foreach ($studentPayments as $payment)
-                                                            <a href="{{ route('admin.viewidcard', $payment->id) }}"
-                                                                class="avatar-text avatar-md"
-                                                                title="ID #{{ $payment->invoice_number }}">
-                                                                <i class="fas fa-id-card"></i>
-                                                            </a>
-                                                        @endforeach
+
+                                                        <a href="{{ route('admin.viewidcard', $firstPayment->id) }}"
+                                                            class="avatar-text avatar-md"
+                                                            title="ID #{{ $payment->invoice_number }}">
+                                                            <i class="fas fa-id-card"></i>
+                                                        </a>
+
 
                                                         {{-- Single edit --}}
                                                         <a href="{{ route('admin.editpayment', $firstPayment->id) }}"
