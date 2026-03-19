@@ -53,28 +53,63 @@
                                     style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:15px; padding:15px;">
                                     @foreach ($category->courses as $course)
                                         <div class="course-card"
-                                            style="border:1px solid #eee; border-radius:8px; padding:12px; background:#ffffff; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+                                            style="border:1px solid #eee; border-radius:12px; padding:16px; background:#ffffff; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:transform 0.2s ease, box-shadow 0.2s ease;">
 
                                             <div>
-                                                <h4 style="font-size:16px; font-weight:600; margin-bottom:5px;">
-                                                    {{ $course->title }}</h4>
-                                                <div style="font-size:12px; color:#555; margin-bottom:8px;">
+                                                <h4 style="font-size:16px; font-weight:700; margin-bottom:6px; color:#222;">
+                                                    {{ $course->title }}
+                                                </h4>
+
+                                                <div style="font-size:13px; color:#555; margin-bottom:6px;">
                                                     Notes: {{ $course->notes->count() }}
                                                 </div>
-                                                <div style="font-size:12px; color:#777;">Price: ₹{{ $course->price ?? 0 }}
+
+                                                <div style="font-size:13px; color:#777; margin-bottom:4px;">
+                                                    Price: <span
+                                                        style="font-weight:600; color:#000;">₹{{ $course->price ?? 0 }}</span>
                                                 </div>
-                                                <div style="font-size:12px; color:#777;">Discount:
-                                                    ₹{{ $course->discount ?? 0 }}</div>
+
+                                                <div style="font-size:13px; color:#777;">
+                                                    Discount: <span
+                                                        style="font-weight:600; color:#FF4C4C;">₹{{ $course->discount ?? 0 }}</span>
+                                                </div>
                                             </div>
 
-                                            <div style="margin-top:10px; display:flex; gap:5px; flex-wrap:wrap;">
+                                            <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
                                                 <a href="{{ route('frontend.viewnote', $course->notes->first()->id ?? 0) }}"
-                                                    style="flex:1; text-align:center; background:#25D366; color:#fff; padding:6px 0; border-radius:20px; font-size:12px; text-decoration:none;">
+                                                    style="flex:1; text-align:center; background: linear-gradient(135deg, #25D366, #128C7E); color:#fff; padding:8px 0; border-radius:25px; font-size:13px; text-decoration:none; font-weight:600; box-shadow:0 2px 5px rgba(0,0,0,0.15); transition:transform 0.2s ease, box-shadow 0.2s ease;">
                                                     Enroll Now
                                                 </a>
                                             </div>
-
                                         </div>
+
+                                        <script>
+                                            // Hover effect for card
+                                            const cards = document.querySelectorAll('.course-card');
+                                            cards.forEach(card => {
+                                                card.addEventListener('mouseenter', () => {
+                                                    card.style.transform = 'translateY(-4px)';
+                                                    card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.15)';
+                                                });
+                                                card.addEventListener('mouseleave', () => {
+                                                    card.style.transform = 'translateY(0)';
+                                                    card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                                                });
+                                            });
+
+                                            // Hover effect for button
+                                            const buttons = document.querySelectorAll('.course-card a');
+                                            buttons.forEach(btn => {
+                                                btn.addEventListener('mouseenter', () => {
+                                                    btn.style.transform = 'scale(1.05)';
+                                                    btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+                                                });
+                                                btn.addEventListener('mouseleave', () => {
+                                                    btn.style.transform = 'scale(1)';
+                                                    btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.15)';
+                                                });
+                                            });
+                                        </script>
                                     @endforeach
 
                                     <!-- CHILD CATEGORIES -->
