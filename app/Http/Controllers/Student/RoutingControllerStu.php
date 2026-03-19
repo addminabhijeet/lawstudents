@@ -273,34 +273,6 @@ class RoutingControllerStu extends Controller
         return view('paymentstu.view', compact('payment', 'payments', 'notFound'));
     }
 
-    public function invoiceprint($id)
-    {
-        $payments = Payment::where('student_id', Auth::guard('student')->id())->latest()->get();
-
-        $payment = $payments->first();
-
-        $notFound = $payments->isEmpty();
-
-        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'payments', 'notFound'))
-            ->setPaper('a4', 'portrait');
-
-        return $pdf->stream("invoice_{$payment->invoice_number}.pdf");
-    }
-
-    public function invoicedownload($id)
-    {
-        $payments = Payment::where('student_id', Auth::guard('student')->id())->latest()->get();
-
-        $payment = $payments->first();
-
-        $notFound = $payments->isEmpty();
-
-        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'payments', 'notFound'))
-            ->setPaper('a4', 'portrait');
-
-        return $pdf->download("invoice_{$payment->invoice_number}.pdf");
-    }
-
     public function listnotes()
     {
         return view('notes.list');
