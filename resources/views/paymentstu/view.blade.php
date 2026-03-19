@@ -279,11 +279,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if (!$loop->last)
-                                    <div style="margin: 40px 0;">
-                                        <hr style="border-top: 1px solid #ddd;">
-                                    </div>
-                                @endif
                             </div>
                         @endforeach
                     @endif
