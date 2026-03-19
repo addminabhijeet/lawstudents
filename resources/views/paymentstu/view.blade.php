@@ -161,20 +161,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php $subTotal = 0; @endphp
 
-                                            @if ($payment->items)
-                                                @foreach ($payment->items as $item)
+                                            @php $totalAmount = 0; @endphp
+
+                                            @if ($payment && $payment->course)
+                                                @php
+                                                    $courseIds = explode(',', $payment->course_id);
+                                                    $courses = \App\Models\Course::whereIn('id', $courseIds)->get();
+                                                @endphp
+
+                                                @foreach ($courses as $course)
                                                     @php
-                                                        $amount = $item['qty'] * $item['price'];
-                                                        $subTotal += $amount;
+                                                        $totalAmount += $course->price;
                                                     @endphp
                                                     <tr>
                                                         <td>
-                                                            {{ $item['product'] }}
+                                                            {{ $course->title }}
                                                         </td>
                                                         <td class="text-end fw-semibold">
-                                                            {{ $payment->currency }} {{ number_format($amount, 2) }}
+                                                            {{ $payment->currency }}
+                                                            {{ number_format($course->price, 2) }}
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -219,6 +225,7 @@
                                                     {{ number_format($payment->grand_total, 2) }}
                                                 </td>
                                             </tr>
+
 
                                         </tbody>
                                     </table>

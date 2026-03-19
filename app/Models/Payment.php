@@ -81,4 +81,9 @@ class Payment extends Model
     {
         return $value ?? ($this->grand_total - $this->paid_amount);
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
+    }
 }
