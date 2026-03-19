@@ -334,15 +334,26 @@
         var container = document.createElement('div');
         container.appendChild(pdfContent);
 
+        // Get recipient name and invoice number for filename
+        var toName = invoiceElement.querySelector('.text-sm-end address')?.textContent.trim().split('\n')[0] ||
+            'invoice';
+        var invoiceNumber = invoiceElement.querySelector('.fw-bold.text-primary')?.textContent.trim() || '';
+
+        // Clean filename (remove spaces or special chars)
+        var safeName = toName.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+        var safeInvoice = invoiceNumber.replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+
+        var filename = `invoice_${safeName}_${safeInvoice}.pdf`;
+
         // Generate PDF using html2pdf
         var opt = {
-            filename: 'invoice.pdf',
+            filename: filename,
             image: {
                 type: 'jpeg',
-                quality: 0.98
+                quality: 5
             },
             html2canvas: {
-                scale: 2
+                scale: 5
             },
             jsPDF: {
                 unit: 'in',
