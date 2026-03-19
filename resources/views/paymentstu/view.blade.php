@@ -261,10 +261,6 @@
                                                     courses may be suspended until full payment is made.</li>
                                                 <li># This invoice is computer-generated and does not require a physical
                                                     signature.</li>
-                                                <li># All course materials remain the intellectual property of the
-                                                    provider and are for the purchaser's personal use only.</li>
-                                                <li># Refunds or cancellations are subject to the provider’s refund
-                                                    policy as outlined on the website.</li>
                                             </ul>
                                         </div>
                                         <div class="text-center">
