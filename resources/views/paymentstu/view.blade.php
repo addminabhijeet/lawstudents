@@ -72,13 +72,14 @@
                                                         <span
                                                             class="fw-bold text-primary">{{ $payment->invoice_number }}</span>
                                                     </div>
-                                                    <div>
-                                                        <span class="fw-bold text-dark">Due Date:</span>
-                                                        <span class="text-muted">
-                                                            {{ optional($payment->due_date)->format('d M, Y') }}
-                                                        </span>
-
-                                                    </div>
+                                                    @if ($payment->payment_status !== 'paid')
+                                                        <div>
+                                                            <span class="fw-bold text-dark">Due Date:</span>
+                                                            <span class="text-muted">
+                                                                {{ optional($payment->due_date)->format('d M, Y') }}
+                                                            </span>
+                                                        </div>
+                                                    @endif
                                                     <div>
                                                         <span class="fw-bold text-dark">Issued Date:</span>
                                                         <span class="text-muted">
