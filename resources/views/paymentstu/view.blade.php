@@ -34,8 +34,8 @@
 
                                 <div class="card-header">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <a href="{{ route('student.invoiceprint', $payment->id) }}" class="d-flex me-1 printBTN"
-                                            target="_blank">
+                                        <a href="javascript:void(0);" class="d-flex me-1 printBTN"
+                                            onclick="printInvoice(this.closest('.invoice-container'))">
                                             <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                                 title="Print Invoice">
                                                 <i class="feather feather-printer"></i>
@@ -290,4 +290,30 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
+<script>
+    function printInvoice(invoiceElement) {
+        // Clone the invoice card
+        var printContents = invoiceElement.cloneNode(true);
+
+        // Open a new window
+        var printWindow = window.open('', '', 'height=800,width=800');
+
+        // Add necessary styles
+        printWindow.document.write('<html><head><title>Invoice</title>');
+        printWindow.document.write('<link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">'); // Add your CSS
+        printWindow.document.write('<style>body{margin:0;padding:20px;} .invoice-container{margin:0;}</style>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(printContents.outerHTML);
+        printWindow.document.write('</body></html>');
+
+        printWindow.document.close();
+        printWindow.focus();
+
+        // Trigger print
+        printWindow.print();
+
+        // Optional: close window after printing
+        printWindow.close();
+    }
+</script>
 @include('layouts.partials.student.theme')
