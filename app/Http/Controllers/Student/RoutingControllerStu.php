@@ -277,8 +277,9 @@ class RoutingControllerStu extends Controller
     {
         $payment = Payment::with('student')->findOrFail($id);
         $user = $payment->student;
+        $notFound = $payment->isEmpty();
 
-        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user'))
+        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user', 'notFound'))
             ->setPaper('a4', 'portrait');
 
         return $pdf->stream("invoice_{$payment->invoice_number}.pdf");
@@ -288,8 +289,9 @@ class RoutingControllerStu extends Controller
     {
         $payment = Payment::with('student')->findOrFail($id);
         $user = $payment->student;
+        $notFound = $payment->isEmpty();
 
-        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user'))
+        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user', 'notFound'))
             ->setPaper('a4', 'portrait');
 
         return $pdf->download("invoice_{$payment->invoice_number}.pdf");
