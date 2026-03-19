@@ -27,7 +27,7 @@
 
                     @if (!$notFound && $payments->count())
                         @foreach ($payments as $payment)
-                            <div class="card invoice-container mb-5">
+                            <div class="card invoice-container">
                                 <div class="card invoice-container">
                                     <div class="card-header">
                                         <div class="d-flex align-items-center justify-content-center">
