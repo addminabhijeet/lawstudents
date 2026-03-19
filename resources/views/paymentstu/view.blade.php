@@ -251,20 +251,20 @@
                                     </div>
                                     <div class="px-4 pt-4 d-sm-flex align-items-center justify-content-between">
                                         <div class="mb-5 mb-sm-0">
-                                            <h6 class="fs-13 fw-bold mb-3">Tarm &amp; Condition :</h6>
+                                            <h6 class="fs-13 fw-bold mb-3">Terms &amp; Conditions:</h6>
                                             <ul class="list-unstyled lh-lg fs-12">
-                                                <li># All accounts are to be paid within 7 days from receipt of
-                                                    invoice.
-                                                </li>
-                                                <li># To be paid by cheque or credit card or direct payment online.
-                                                </li>
-                                                <li># If account is not paid within 7 days the credits details
-                                                    supplied as
-                                                    confirmation.
-                                                </li>
-                                                <li># This is computer generated receipt and does not require
-                                                    physical
+                                                <li># All payments are due within 7 days from the date of invoice
+                                                    issuance.</li>
+                                                <li># Payments can be made via cheque, credit/debit card, or online bank
+                                                    transfer.</li>
+                                                <li># If payment is not received within 7 days, access to enrolled
+                                                    courses may be suspended until full payment is made.</li>
+                                                <li># This invoice is computer-generated and does not require a physical
                                                     signature.</li>
+                                                <li># All course materials remain the intellectual property of the
+                                                    provider and are for the purchaser's personal use only.</li>
+                                                <li># Refunds or cancellations are subject to the provider’s refund
+                                                    policy as outlined on the website.</li>
                                             </ul>
                                         </div>
                                         <div class="text-center">
