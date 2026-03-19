@@ -257,8 +257,7 @@
                                                     issuance.</li>
                                                 <li># Payments can be made via cheque, credit/debit card, or online bank
                                                     transfer.</li>
-                                                <li># If payment is not received within 7 days, access to enrolled
-                                                    courses may be suspended until full payment is made.</li>
+                                                
                                                 <li># This invoice is computer-generated and does not require a physical
                                                     signature.</li>
                                             </ul>
