@@ -276,7 +276,7 @@
                                                 @endphp
 
                                                 @if ($user && $user->accsign)
-                                                    <img src="{{ asset('storage/' . $user->accsign) }}"
+                                                    <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
                                                         class="img-fluid wd-100" alt="signature">
                                                 @else
                                                     <img src="assets/images/general/signature.png"
