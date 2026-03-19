@@ -292,8 +292,12 @@
 </main>
 <script>
     function printInvoice(invoiceElement) {
-        // Clone the invoice card
-        var printContents = invoiceElement.cloneNode(true);
+        // Get the inner container starting from card-body
+        var bodyContent = invoiceElement.querySelector('.card-body.p-0');
+        if (!bodyContent) return; // safety check
+
+        // Clone only the card-body content
+        var printContents = bodyContent.cloneNode(true);
 
         // Open a new window
         var printWindow = window.open('', '', 'height=800,width=1200');
@@ -301,14 +305,14 @@
         // Start HTML for print
         printWindow.document.write('<html><head><title>Invoice</title>');
 
-        // Include all CSS from your main page
+        // Include all CSS from your main page to keep design intact
         Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
             printWindow.document.write(node.outerHTML);
         });
 
         printWindow.document.write('</head><body>');
 
-        // Add cloned invoice
+        // Append the cloned card-body
         printWindow.document.body.appendChild(printContents);
 
         printWindow.document.write('</body></html>');
