@@ -54,7 +54,7 @@ class RoutingController extends Controller
 
     public function listidcard()
     {
-        $payments = StudentAdmission::with('student')->latest()->get();
+        $payments = Payment::with('student')->latest()->get();
 
         return view('idcard.list', compact('payments'));
     }
