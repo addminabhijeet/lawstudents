@@ -53,15 +53,19 @@
                                     style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:15px; padding:15px;">
                                     @foreach ($category->courses as $course)
                                         <div class="course-card"
-                                            style="border:1px solid #eee; border-radius:12px; padding:16px; background:#ffffff; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+                                            style="border:1px solid #eee; border-radius:20px; padding:16px; background: linear-gradient(145deg, #ffffff, #f9f9f9); 
+            display:flex; flex-direction:column; justify-content:space-between; box-shadow: 0 6px 12px rgba(0,0,0,0.08); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;">
 
                                             <div>
-                                                <h4 style="font-size:16px; font-weight:700; margin-bottom:6px; color:#222;">
+                                                <h4
+                                                    style="font-size:16px; font-weight:700; margin-bottom:6px; color:#222; line-height:1.3;">
                                                     {{ $course->title }}
                                                 </h4>
 
-                                                <div style="font-size:13px; color:#555; margin-bottom:6px;">
-                                                    Notes: {{ $course->notes->count() }}
+                                                <div
+                                                    style="font-size:13px; color:#555; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+                                                    📄 Notes: {{ $course->notes->count() }}
                                                 </div>
 
                                                 <div style="font-size:13px; color:#777; margin-bottom:4px;">
@@ -77,7 +81,9 @@
 
                                             <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
                                                 <a href="{{ route('frontend.viewnote', $course->notes->first()->id ?? 0) }}"
-                                                    style="flex:1; text-align:center; background: linear-gradient(135deg, #25D366, #128C7E); color:#fff; padding:8px 0; border-radius:25px; font-size:13px; text-decoration:none; font-weight:600; box-shadow:0 2px 5px rgba(0,0,0,0.15); transition:transform 0.2s ease, box-shadow 0.2s ease;">
+                                                    style="flex:1; text-align:center; background: linear-gradient(135deg, #25D366, #128C7E); 
+                  color:#fff; padding:10px 0; border-radius:30px; font-size:13px; text-decoration:none; 
+                  font-weight:600; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                                                     Enroll Now
                                                 </a>
                                             </div>
@@ -88,12 +94,12 @@
                                             const cards = document.querySelectorAll('.course-card');
                                             cards.forEach(card => {
                                                 card.addEventListener('mouseenter', () => {
-                                                    card.style.transform = 'translateY(-4px)';
-                                                    card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.15)';
+                                                    card.style.transform = 'translateY(-6px)';
+                                                    card.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)';
                                                 });
                                                 card.addEventListener('mouseleave', () => {
                                                     card.style.transform = 'translateY(0)';
-                                                    card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+                                                    card.style.boxShadow = '0 6px 12px rgba(0,0,0,0.08)';
                                                 });
                                             });
 
@@ -101,12 +107,12 @@
                                             const buttons = document.querySelectorAll('.course-card a');
                                             buttons.forEach(btn => {
                                                 btn.addEventListener('mouseenter', () => {
-                                                    btn.style.transform = 'scale(1.05)';
-                                                    btn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+                                                    btn.style.transform = 'scale(1.08)';
+                                                    btn.style.boxShadow = '0 6px 12px rgba(0,0,0,0.2)';
                                                 });
                                                 btn.addEventListener('mouseleave', () => {
                                                     btn.style.transform = 'scale(1)';
-                                                    btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.15)';
+                                                    btn.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
                                                 });
                                             });
                                         </script>
