@@ -49,7 +49,7 @@
                                             <div class="d-sm-flex align-items-center justify-content-between">
                                                 <div>
                                                     <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">
-                                                        <img src="assets/images/logo-full.png"
+                                                        <img src="{{ asset('assets/images/logo-full.png') }}"
                                                             class="img-fluid" style="max-height: 60px;" alt="Logo">
                                                     </div>
 
