@@ -296,14 +296,21 @@
         var printContents = invoiceElement.cloneNode(true);
 
         // Open a new window
-        var printWindow = window.open('', '', 'height=800,width=800');
+        var printWindow = window.open('', '', 'height=800,width=1200');
 
-        // Add necessary styles
+        // Start HTML for print
         printWindow.document.write('<html><head><title>Invoice</title>');
-        printWindow.document.write('<link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">'); // Add your CSS
-        printWindow.document.write('<style>body{margin:0;padding:20px;} .invoice-container{margin:0;}</style>');
-        printWindow.document.write('</head><body >');
-        printWindow.document.write(printContents.outerHTML);
+
+        // Include all CSS from your main page
+        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
+            printWindow.document.write(node.outerHTML);
+        });
+
+        printWindow.document.write('</head><body>');
+
+        // Add cloned invoice
+        printWindow.document.body.appendChild(printContents);
+
         printWindow.document.write('</body></html>');
 
         printWindow.document.close();
@@ -312,8 +319,8 @@
         // Trigger print
         printWindow.print();
 
-        // Optional: close window after printing
-        printWindow.close();
+        // Optional: keep window open if user wants to inspect before printing
+        // printWindow.close(); 
     }
 </script>
 @include('layouts.partials.student.theme')
