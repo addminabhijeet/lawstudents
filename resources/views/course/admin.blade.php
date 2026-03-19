@@ -28,7 +28,8 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('admin.updatedetails', $admin->id ?? 1) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.updatedetails', $admin->id ?? 1) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
@@ -37,7 +38,8 @@
                                     <input type="file" name="image" class="form-control">
 
                                     @if (!empty($admin->image))
-                                        <img src="{{ asset('storage/app/public/' . $admin->image) }}" width="120" class="mt-2">
+                                        <img src="{{ asset('storage/app/public/' . $admin->image) }}" width="120"
+                                            class="mt-2">
                                     @endif
 
                                 </div>
@@ -80,6 +82,18 @@
 
                                     <input type="text" name="webaddress" class="form-control"
                                         value="{{ $admin->webaddress ?? '' }}" placeholder="Website">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Accountant Signature</label>
+
+                                    <input type="file" name="accsign" class="form-control">
+
+                                    @if (!empty($admin->accsign))
+                                        <img src="{{ asset('storage/app/public/' . $admin->accsign) }}" width="120"
+                                            class="mt-2">
+                                    @endif
+
                                 </div>
 
 

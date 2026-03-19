@@ -33,6 +33,7 @@ class User extends Authenticatable
         'twitter',
         'status',
         'order',
+        'accsign',
         'image'
     ];
 
