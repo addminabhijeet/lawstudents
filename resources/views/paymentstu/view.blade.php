@@ -34,7 +34,7 @@
 
                                 <div class="card-header">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <a href="{{ route('invoiceprint', $payment->id) }}" class="d-flex me-1 printBTN"
+                                        <a href="{{ route('student.invoiceprint', $payment->id) }}" class="d-flex me-1 printBTN"
                                             target="_blank">
                                             <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                                 title="Print Invoice">
@@ -42,7 +42,7 @@
                                             </div>
                                         </a>
 
-                                        <a href="{{ route('invoicedownload', $payment->id) }}"
+                                        <a href="{{ route('student.invoicedownload', $payment->id) }}"
                                             class="d-flex me-1 file-download">
                                             <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                                 title="Download Invoice">
