@@ -281,7 +281,7 @@ class RoutingControllerStu extends Controller
 
         $notFound = $payments->isEmpty();
 
-        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user', 'notFound'))
+        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'payments', 'notFound'))
             ->setPaper('a4', 'portrait');
 
         return $pdf->stream("invoice_{$payment->invoice_number}.pdf");
@@ -295,7 +295,7 @@ class RoutingControllerStu extends Controller
 
         $notFound = $payments->isEmpty();
 
-        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'user', 'notFound'))
+        $pdf = Pdf::loadView('paymentstu.view', compact('payment', 'payments', 'notFound'))
             ->setPaper('a4', 'portrait');
 
         return $pdf->download("invoice_{$payment->invoice_number}.pdf");
