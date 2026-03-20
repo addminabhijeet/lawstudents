@@ -201,17 +201,17 @@ class RoutingController extends Controller
                         'to_phone'         => $payment->to_phone,
                         'to_address'       => $payment->to_address,
 
-                        'sub_total'        => $subTotal,
-                        'tax_percentage'   => $taxPercentage,
-                        'tax_amount'       => $taxAmount,
-                        'discount'         => $discount,
-                        'grand_total'      => $grandTotal,
+                        'sub_total'        => $remainingAmount,
+                        'tax_percentage'   => null,
+                        'tax_amount'       => null,
+                        'discount'         => null,
+                        'grand_total'      => $remainingAmount,
 
                         'currency'         => $payment->currency,
                         'payment_status'   => 'pending',
 
                         'paid_amount'      => null,
-                        'remaining_amount' => $remainingAmount,
+                        'remaining_amount' => null,
                     ]);
                 }
             }
