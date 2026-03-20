@@ -416,16 +416,16 @@ class StudentAdmissinController extends Controller
                     'to_phone'        => $admission->phone,
                     'to_address'      => $admission->address_line1,
 
-                    'sub_total'       => $subTotal,
-                    'discount'        => $discountAmount,
-                    'discount_percent' => $discountPercent,
-                    'grand_total'     => $grandTotal,
+                    'sub_total'       => $remainingAmount,
+                    'discount'        => null,
+                    'discount_percent' => null,
+                    'grand_total'     => $remainingAmount,
 
                     'currency'        => 'INR',
                     'payment_status'  => 'pending',
 
                     'paid_amount'     => null,
-                    'remaining_amount' => $remainingAmount,
+                    'remaining_amount' => null,
                 ]);
             }
         }
