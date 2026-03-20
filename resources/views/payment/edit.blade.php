@@ -173,56 +173,7 @@
                                             <label>Invoice Note</label>
                                             <textarea class="form-control" name="payments[{{ $pIndex }}][invoice_note]">{{ $payment->invoice_note }}</textarea>
                                         </div>
-
-
                                     </div>
-
-                                    <hr>
-
-                                    <!-- ITEMS -->
-                                    <div class="px-4">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Product</th>
-                                                    <th>Qty</th>
-                                                    <th>Price</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php $items = $payment->items ?? []; @endphp
-
-                                                @foreach ($items as $i => $item)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-
-                                                        <td>
-                                                            <input type="text"
-                                                                name="payments[{{ $pIndex }}][items][{{ $i }}][product]"
-                                                                class="form-control"
-                                                                value="{{ $item['product'] ?? '' }}">
-                                                        </td>
-
-                                                        <td>
-                                                            <input type="number"
-                                                                name="payments[{{ $pIndex }}][items][{{ $i }}][qty]"
-                                                                class="form-control" value="{{ $item['qty'] ?? 1 }}">
-                                                        </td>
-
-                                                        <td>
-                                                            <input type="number"
-                                                                name="payments[{{ $pIndex }}][items][{{ $i }}][price]"
-                                                                class="form-control"
-                                                                value="{{ $item['price'] ?? 0 }}">
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
