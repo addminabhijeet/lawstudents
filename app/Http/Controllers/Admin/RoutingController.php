@@ -188,7 +188,7 @@ class RoutingController extends Controller
 
                     Payment::create([
                         'student_id'       => $payment->student_id,
-                        'invoice_label'    => $payment->invoice_label . ' (Remaining)',
+                        'invoice_label'    => $payment->invoice_label,
 
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $payment->invoice_product,
