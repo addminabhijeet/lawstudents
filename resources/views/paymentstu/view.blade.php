@@ -151,13 +151,6 @@
                                                         <span class="text-muted">Card Holder:</span>
                                                         <span class="fw-bold text-dark">Alexandra Della</span>
                                                     </div>
-                                                    <div>
-                                                        <span class="text-muted">Payment Method:</span>
-                                                        <span class="fw-bold text-dark">
-                                                            {{ ucfirst(str_replace('_', ' ', $payment->payment_method)) }}
-                                                        </span>
-
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
