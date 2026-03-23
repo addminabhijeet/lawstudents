@@ -154,16 +154,24 @@
                                                 </option>
                                             </select>
                                         </div>
+                                        @php
+                                            $latestId = collect($allPayments)
+                                                ->where('student_id', $payment->student_id)
+                                                ->max('id');
+                                        @endphp
+
+                                        <input type="hidden" name="payments[{{ $pIndex }}][id]"
+                                            value="{{ $payment->id }}">
 
                                         <div class="col-md-2">
                                             <label>Paid Amount</label>
-                                            <input type="number" step="0.01" class="form-control paid-amount"
+                                            <input type="number" step="0.01"
+                                                class="form-control paid-amount {{ $payment->id == $latestId ? 'latest-payment' : '' }}"
                                                 name="payments[{{ $pIndex }}][paid_amount]"
                                                 value="{{ $payment->paid_amount }}"
                                                 max="{{ $payment->remaining_amount }}"
                                                 data-max="{{ $payment->remaining_amount }}">
 
-                                            <!-- ✅ Error message -->
                                             <small class="text-danger d-none error-msg">
                                                 Paid amount cannot be greater than remaining amount
                                             </small>
@@ -198,6 +206,9 @@
 
 <script>
     document.addEventListener('input', function(e) {
+
+        if (!e.target.classList.contains('latest-payment')) return;
+
         if (e.target.classList.contains('paid-amount')) {
 
             let max = parseFloat(e.target.getAttribute('data-max')) || 0;
@@ -208,12 +219,10 @@
             if (value > max) {
                 e.target.value = max;
 
-                // Show error
                 errorMsg.classList.remove('d-none');
                 e.target.classList.add('is-invalid');
 
             } else {
-                // Hide error
                 errorMsg.classList.add('d-none');
                 e.target.classList.remove('is-invalid');
             }
