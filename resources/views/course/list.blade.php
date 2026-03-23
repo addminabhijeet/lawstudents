@@ -37,11 +37,17 @@
                         </li>
 
                         @foreach ($categories as $category)
-                            <li class="nav-item">
+                            <li class="nav-item d-flex justify-content-between align-items-center">
                                 <a href="javascript:void(0)" class="nav-link note-link"
                                     id="category-{{ $category->id }}">
                                     <i class="feather-folder"></i>
                                     <span>{{ $category->name }}</span>
+                                </a>
+
+                                <!-- EDIT BUTTON -->
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                    data-id="{{ $category->id }}">
+                                    <i class="feather-edit"></i>
                                 </a>
                             </li>
                         @endforeach
@@ -231,6 +237,61 @@
     </div>
 </div>
 
+<div class="modal fade" id="editCategoryModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form id="editCategoryForm" method="POST">
+                @csrf
+
+                <input type="hidden" name="id" id="edit_category_id">
+
+                <div class="modal-body">
+
+                    <!-- Category Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Category Name</label>
+                        <input type="text" name="name" id="edit_category_name" class="form-control" required>
+                    </div>
+
+                    <!-- Parent Category -->
+                    <div class="mb-3">
+                        <label class="form-label">Parent Category</label>
+                        <select name="parent_id" id="edit_parent_id" class="form-control">
+                            <option value="">-- Main Category --</option>
+
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="editMainCategoryCheck">
+                            <label class="form-check-label">Set as Main Category</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                        Update Category
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="editnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -246,7 +307,7 @@
                     <div class="notes-content">
                         <form id="editCourseForm" method="POST" enctype="multipart/form-data">
                             @csrf
-                        
+
                             <div class="row">
                                 <input type="hidden" name="id" id="edit_course_id">
                                 <!-- Category -->
@@ -838,5 +899,48 @@
                 console.error("Error:", xhr.responseText);
             }
         });
+    });
+</script>
+
+<script>
+    $(document).on("click", ".edit-category", function() {
+
+        let id = $(this).data("id");
+
+        $.ajax({
+            url: "/admin/category-edit/" + id,
+            type: "GET",
+            success: function(data) {
+
+                $("#edit_category_id").val(data.id);
+                $("#edit_category_name").val(data.name);
+                $("#edit_parent_id").val(data.parent_id);
+
+                // Set form action
+                $("#editCategoryForm").attr("action", "/admin/category-update/" + data.id);
+
+                // Handle main category checkbox
+                if (!data.parent_id) {
+                    $("#editMainCategoryCheck").prop("checked", true);
+                    $("#edit_parent_id").prop("disabled", true);
+                } else {
+                    $("#editMainCategoryCheck").prop("checked", false);
+                    $("#edit_parent_id").prop("disabled", false);
+                }
+
+                $("#editCategoryModal").modal("show");
+            }
+        });
+
+    });
+
+    // checkbox logic
+    $("#editMainCategoryCheck").on("change", function() {
+        if (this.checked) {
+            $("#edit_parent_id").val("");
+            $("#edit_parent_id").prop("disabled", true);
+        } else {
+            $("#edit_parent_id").prop("disabled", false);
+        }
     });
 </script>

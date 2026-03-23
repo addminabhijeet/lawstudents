@@ -124,6 +124,12 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('course-delete/{id}', [CourseController::class, 'coursedelete'])
                 ->name('coursedelete');
 
+            Route::get('category-edit/{id}', [CourseController::class, 'editCategory'])
+                ->name('editCategory');
+
+            Route::post('category-update/{id}', [CourseController::class, 'updateCategory'])
+                ->name('updateCategory');
+
             Route::get('gallery', [CourseController::class, 'listgallery'])
                 ->name('listgallery');
 

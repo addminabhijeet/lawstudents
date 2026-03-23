@@ -265,6 +265,29 @@ class CourseController extends Controller
         return back()->with('success', 'Category Created Successfully');
     }
 
+    public function editCategory($id)
+    {
+        return Category::findOrFail($id);
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:categories,id'
+        ]);
+
+        $category = Category::findOrFail($id);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'parent_id' => $request->parent_id
+        ]);
+
+        return back()->with('success', 'Category Updated Successfully');
+    }
+
     public function storecourse(Request $request)
     {
         $request->validate([
