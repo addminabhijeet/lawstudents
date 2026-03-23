@@ -32,7 +32,7 @@
                         <li class="nav-item">
                             <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
                                 <i class="feather-layers"></i>
-                                <span>All</span>
+                                <span>All Category</span>
                             </a>
                         </li>
 
