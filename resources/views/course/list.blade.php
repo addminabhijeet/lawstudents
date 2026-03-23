@@ -56,8 +56,8 @@
                         <div class="hstack gap-2">
                             <div class="hstack">
                                 <a href="javascript:void(0)" class="search-form-open-toggle">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                        data-bs-trigger="hover" title="Search">
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                        title="Search">
                                         <i class="feather feather-search"></i>
                                     </div>
                                 </a>
@@ -74,6 +74,18 @@
                                     </div>
                                 </form>
                             </div>
+                            <a href="javascript:void(0)" class="d-none d-sm-flex">
+                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                    title="Newest">
+                                    <i class="feather feather-chevron-left"></i>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0)" class="d-none d-sm-flex">
+                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                    title="Oldest">
+                                    <i class="feather feather-chevron-right"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -147,8 +159,7 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="{{ route('admin.storecourse') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('admin.storecourse') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <!-- Category -->
