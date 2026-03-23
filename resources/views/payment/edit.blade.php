@@ -167,10 +167,13 @@
 
                                         <div class="col-md-2">
                                             <label>Paid Amount</label>
+
                                             <input type="number" step="0.01"
-                                                class="form-control paid-amount {{ $payment->id == $latestId ? 'latest-payment' : '' }}"
+                                                id="{{ $payment->id == $latestId ? 'latest-paid-amount' : '' }}"
+                                                class="form-control paid-amount"
                                                 name="payments[{{ $pIndex }}][paid_amount]"
                                                 value="{{ $payment->paid_amount }}"
+                                                {{ $payment->id != $latestId ? 'readonly' : '' }}
                                                 max="{{ $payment->remaining_amount }}"
                                                 data-max="{{ $payment->remaining_amount }}">
 
@@ -178,7 +181,7 @@
                                                 Paid amount cannot be greater than remaining amount
                                             </small>
                                         </div>
-
+                                        
                                         <div class="col-md-2">
                                             <label>Remaining Amount</label>
                                             <input type="number" step="0.01" class="form-control"
@@ -207,7 +210,11 @@
 </main>
 
 <script>
-    document.querySelectorAll('.paid-amount.latest-payment').forEach(function(input) {
+    document.addEventListener('DOMContentLoaded', function() {
+
+        let input = document.getElementById('latest-paid-amount');
+
+        if (!input) return;
 
         input.addEventListener('input', function() {
 
