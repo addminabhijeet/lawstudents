@@ -831,7 +831,7 @@
     });
 </script>
 
-<sript>
+<script>
     $(document).on("click", ".edit-course", function(e) {
     e.preventDefault();
 
