@@ -202,8 +202,8 @@
                                 </div>
 
                                 <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
-                                <input type="hidden" name="discount_percent" id="formDiscountPercent">
-                                <input type="hidden" name="discount" id="formDiscount">
+                               <input type="hidden" name="discount_percent" id="formDiscountPercent" value="10">
+                                <input type="hidden" name="discount" id="formDiscount" value="0">
                                 <div class="mb-3">
                                     <div class="d-flex justify-content-between">
                                         <span>Subtotal:</span>
@@ -240,10 +240,7 @@
                                     </div>
 
                                     <input type="hidden" name="remamount" id="remamount" value="0">
-                                    <input type="hidden" name="course_id" id="course_id">
-                                    <input type="hidden" name="discount_percent" id="discountPercentInput"
-                                        value="10">
-                                    <input type="hidden" name="discount" id="discountInput" value="0">
+                                    
                                 </div>
 
                                 <!-- Declaration -->
