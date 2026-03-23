@@ -112,7 +112,8 @@ class RoutingController extends Controller
 
                 $exists = Payment::where('student_id', $payment->student_id)
                     ->where('invoice_label', 'Remaining Payment')
-                    ->where('payment_status', 'pending')
+                    ->where('grand_total', $remainingAmount)
+                    ->whereDate('created_at', now()->toDateString())
                     ->exists();
 
                 if (!$exists) {
