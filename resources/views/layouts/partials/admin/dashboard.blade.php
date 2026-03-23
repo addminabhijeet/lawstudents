@@ -136,7 +136,7 @@
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listclientele') }}">Clientele</a>
+                                    href="{{ route('admin.listclientele') }}">List</a>
                             </li>
                         </ul>
                     </li>
