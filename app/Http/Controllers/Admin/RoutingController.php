@@ -103,7 +103,12 @@ class RoutingController extends Controller
                 'payment_status'   => $paymentStatus,
             ]);
 
-            if ($paymentStatus === 'partial' && $remainingAmount > 0) {
+            if (
+                $paymentStatus === 'partial' &&
+                $remainingAmount > 0 &&
+                !empty($paidAmount) &&
+                $paidAmount > 0
+            ) {
 
                 $exists = Payment::where('student_id', $payment->student_id)
                     ->where('invoice_label', 'Remaining Payment')
