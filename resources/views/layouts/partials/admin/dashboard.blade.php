@@ -521,3 +521,43 @@
     <!--! ================================================================ !-->
     <!--! [Start] Main Content !-->
     <!--! ================================================================ !-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // Wait for template JS to finish
+            setTimeout(function() {
+
+                let currentUrl = window.location.href;
+
+                document.querySelectorAll('.nxl-item.nxl-hasmenu').forEach(function(menu) {
+
+                    let links = menu.querySelectorAll('a.nxl-link');
+                    let isActive = false;
+
+                    links.forEach(function(link) {
+                        if (link.href === currentUrl) {
+                            isActive = true;
+                        }
+                    });
+
+                    // ✅ If NOT current page → FORCE CLOSE
+                    if (!isActive) {
+                        menu.classList.remove('active', 'nxl-trigger');
+
+                        let submenu = menu.querySelector('.nxl-submenu');
+                        if (submenu) submenu.style.display = "none";
+                    }
+
+                    // ✅ If current page → OPEN ONLY THIS
+                    else {
+                        menu.classList.add('active', 'nxl-trigger');
+
+                        let submenu = menu.querySelector('.nxl-submenu');
+                        if (submenu) submenu.style.display = "block";
+                    }
+
+                });
+
+            }, 200); // delay is IMPORTANT
+        });
+    </script>
