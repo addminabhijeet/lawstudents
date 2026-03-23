@@ -162,6 +162,11 @@
                                                 value="{{ $payment->paid_amount }}"
                                                 max="{{ $payment->remaining_amount }}"
                                                 data-max="{{ $payment->remaining_amount }}">
+
+                                            <!-- ✅ Error message -->
+                                            <small class="text-danger d-none error-msg">
+                                                Paid amount cannot be greater than remaining amount
+                                            </small>
                                         </div>
 
                                         <div class="col-md-2">
@@ -198,9 +203,19 @@
             let max = parseFloat(e.target.getAttribute('data-max')) || 0;
             let value = parseFloat(e.target.value) || 0;
 
+            let errorMsg = e.target.parentElement.querySelector('.error-msg');
+
             if (value > max) {
                 e.target.value = max;
-                alert('Paid amount cannot be greater than remaining amount');
+
+                // Show error
+                errorMsg.classList.remove('d-none');
+                e.target.classList.add('is-invalid');
+
+            } else {
+                // Hide error
+                errorMsg.classList.add('d-none');
+                e.target.classList.remove('is-invalid');
             }
         }
     });
