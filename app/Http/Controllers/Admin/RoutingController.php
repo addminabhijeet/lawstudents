@@ -72,6 +72,13 @@ class RoutingController extends Controller
             $currentPayment = Payment::find($payData['id']);
             if (!$currentPayment) continue;
 
+            $latestPaymentId = Payment::where('student_id', $currentPayment->student_id)
+                ->max('id');
+
+            if ($currentPayment->id != $latestPaymentId) {
+                continue;
+            }
+
             $payment = Payment::where('student_id', $currentPayment->student_id)
                 ->orderBy('id', 'desc')
                 ->first();
