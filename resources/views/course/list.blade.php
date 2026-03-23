@@ -246,6 +246,7 @@
                     <div class="notes-content">
                         <form id="editCourseForm" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <input type="hidden" name="id" id="edit_course_id">
                                 <!-- Category -->
@@ -292,6 +293,7 @@
                                     <label class="form-label">Upload Brochure (PDF)</label>
                                     <input type="file" name="brochure" class="form-control"
                                         accept="application/pdf">
+                                    <div id="existingBrochure" class="mb-2"></div>
                                 </div>
 
                                 <!-- Price -->
@@ -800,20 +802,37 @@
             type: "GET",
             success: function(data) {
 
-                // Fill data correctly (scoped to edit modal)
-                $("#editnotesmodal input[name='id']").val(data.id);
-                $("#editnotesmodal select[name='category_id']").val(data.category_id);
-                $("#editnotesmodal input[name='title']").val(data.title);
-                $("#editnotesmodal textarea[name='description']").val(data.description);
-                $("#editnotesmodal input[name='duration']").val(data.duration);
-                $("#editnotesmodal input[name='discount']").val(data.discount);
-                $("#editnotesmodal input[name='price']").val(data.price);
+                let modal = $("#editnotesmodal");
+
+                // Set values safely
+                modal.find("input[name='id']").val(data.id);
+                modal.find("select[name='category_id']").val(data.category_id);
+                modal.find("input[name='title']").val(data.title);
+                modal.find("textarea[name='description']").val(data.description);
+                modal.find("input[name='duration']").val(data.duration);
+                modal.find("input[name='discount']").val(data.discount);
+                modal.find("input[name='price']").val(data.price);
 
                 // Set form action
                 $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
 
+                // Show existing brochure
+                if (data.brochure) {
+                    $("#existingBrochure").html(`
+                    <a href="/storage/${data.brochure}" target="_blank" class="text-primary">
+                        View Current Brochure
+                    </a>
+                `);
+                } else {
+                    $("#existingBrochure").html(
+                        `<span class="text-muted">No brochure uploaded</span>`);
+                }
+
+                // Reset file input
+                modal.find("input[name='brochure']").val("");
+
                 // Show modal
-                $("#editnotesmodal").modal("show");
+                modal.modal("show");
             },
             error: function(xhr) {
                 console.error("Error:", xhr.responseText);
