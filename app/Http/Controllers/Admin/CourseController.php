@@ -25,6 +25,19 @@ class CourseController extends Controller
         return view('course.list', compact('categories'));
     }
 
+    public function editcourse($id)
+    {
+        $course = Course::find($id);
+
+        if (!$course) {
+            return response()->json([
+                'error' => 'Course not found'
+            ], 404);
+        }
+
+        return response()->json($course);
+    }
+
     public function listclientele()
     {
         $clienteles = Clientele::latest()->get();
@@ -122,12 +135,6 @@ class CourseController extends Controller
         $clientele->update(['pdfs' => $updatedPdfs]);
 
         return back()->with('success', 'File deleted successfully.');
-    }
-
-    public function courseedit($id)
-    {
-        $course = Course::findOrFail($id);
-        return response()->json($course);
     }
 
     public function listbanner()
@@ -292,6 +299,53 @@ class CourseController extends Controller
         ]);
 
         return back()->with('success', 'Course Created Successfully');
+    }
+
+    public function updatecourse(Request $request, $id)
+    {
+        $course = Course::find($id);
+
+        if (!$course) {
+            return back()->with('error', 'Course not found');
+        }
+
+        $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
+
+            // SAME VALIDATION (no change)
+            'duration' => 'nullable|integer|min:1',
+            'discount' => 'nullable|numeric|min:0',
+            'brochure' => 'nullable|mimes:pdf|max:2048'
+        ]);
+
+        // Handle brochure update
+        if ($request->hasFile('brochure')) {
+            // delete old brochure (optional but recommended)
+            if ($course->brochure && Storage::disk('public')->exists($course->brochure)) {
+                Storage::disk('public')->delete($course->brochure);
+            }
+
+            $brochurePath = $request->file('brochure')->store('brochures', 'public');
+            $course->brochure = $brochurePath;
+        }
+
+        // Update data (same structure as store)
+        $course->update([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'description' => $request->description,
+            'price' => $request->price,
+
+            // NEW FIELDS
+            'duration' => $request->duration,
+            'discount' => $request->discount ?? 0,
+        ]);
+
+        return back()->with('success', 'Course Updated Successfully');
     }
 
     public function coursedelete(Request $request, $id)
