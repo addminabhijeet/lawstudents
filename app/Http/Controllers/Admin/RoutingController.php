@@ -72,7 +72,6 @@ class RoutingController extends Controller
             $payment = Payment::find($payData['id']);
             if (!$payment) continue;
 
-            // ✅ Safe validation
             $validated = validator($payData, [
                 'invoice_label'     => 'nullable|string|max:255',
                 'invoice_number'    => 'required|string|max:255',
@@ -82,27 +81,38 @@ class RoutingController extends Controller
                 'due_date'          => 'nullable|date',
 
                 'from_name'         => 'nullable|string|max:255',
+
                 'to_name'           => 'nullable|string|max:255',
+                'to_email'          => 'nullable|email|max:255',
+                'to_phone'          => 'nullable|string|max:50',
+                'to_address'        => 'nullable|string',
 
                 'items'             => 'nullable|array',
                 'items.*.product'   => 'nullable|string|max:255',
                 'items.*.qty'       => 'nullable|numeric|min:1',
                 'items.*.price'     => 'nullable|numeric|min:0',
 
+                'sub_total'         => 'nullable|numeric|min:0',
                 'tax_percentage'    => 'nullable|numeric|min:0',
+                'tax_amount'        => 'nullable|numeric|min:0',
+
                 'discount'          => 'nullable|numeric|min:0',
+                'discount_percent'  => 'nullable|numeric|min:0',
+
+                'grand_total'       => 'nullable|numeric|min:0',
 
                 'currency'          => 'nullable|string|max:10',
-                'payment_method'    => 'nullable|string|in:debit,paypal',
+                'payment_method'    => 'nullable|string|in:debit_card,paypal',
+
+                'payment_status'    => 'nullable|in:pending,partial,paid',
 
                 'invoice_note'      => 'nullable|string',
                 'paid_amount'       => 'nullable|numeric|min:0',
             ])->validate();
 
-            $subTotal = 0;
-            $items = [];
+            $subTotal = $validated['sub_total'] ?? 0;
 
-            if (!empty($validated['items'])) {
+            if ($subTotal == 0 && !empty($validated['items'])) {
                 foreach ($validated['items'] as $item) {
                     $qty = (float) ($item['qty'] ?? 0);
                     $price = (float) ($item['price'] ?? 0);
@@ -120,23 +130,21 @@ class RoutingController extends Controller
             }
 
             $taxPercentage = (float) ($validated['tax_percentage'] ?? 0);
-            $taxAmount = ($subTotal * $taxPercentage) / 100;
+
+            $taxAmount = $validated['tax_amount'] ?? (($subTotal * $taxPercentage) / 100);
 
             $discount = (float) ($validated['discount'] ?? 0);
 
-            $grandTotal = $subTotal + $taxAmount - $discount;
+            $grandTotal = $validated['grand_total'] ?? ($subTotal + $taxAmount - $discount);
 
-            // ✅ Only update paid_amount if request provides a value
             $paidAmount = array_key_exists('paid_amount', $validated) && $validated['paid_amount'] !== null
                 ? (float) $validated['paid_amount']
-                : $payment->paid_amount; // keep original if null
+                : $payment->paid_amount;
 
             $remainingAmount = $grandTotal - ($paidAmount ?? 0);
 
-            // Payment status based on paid_amount
             $paymentStatus = ($paidAmount ?? 0) >= $grandTotal ? 'paid' : (($paidAmount ?? 0) > 0 ? 'partial' : 'pending');
 
-            // Update existing payment
             $payment->update([
                 'invoice_label'       => $validated['invoice_label'] ?? $payment->invoice_label,
                 'invoice_number'      => $validated['invoice_number'],
@@ -146,7 +154,11 @@ class RoutingController extends Controller
                 'due_date'            => $validated['due_date'] ?? $payment->due_date,
 
                 'from_name'           => $validated['from_name'] ?? $payment->from_name,
+
                 'to_name'             => $validated['to_name'] ?? $payment->to_name,
+                'to_email'            => $validated['to_email'] ?? $payment->to_email,
+                'to_phone'            => $validated['to_phone'] ?? $payment->to_phone,
+                'to_address'          => $validated['to_address'] ?? $payment->to_address,
 
                 'items'               => $items ?: $payment->items,
 
@@ -154,22 +166,24 @@ class RoutingController extends Controller
                 'tax_percentage'      => $taxPercentage,
                 'tax_amount'          => $taxAmount,
                 'discount'            => $discount,
+                'discount_percent'    => $validated['discount_percent'] ?? $payment->discount_percent,
                 'grand_total'         => $grandTotal,
 
                 'currency'            => $validated['currency'] ?? $payment->currency,
                 'payment_method'      => $validated['payment_method'] ?? $payment->payment_method,
+
+                'payment_status'      => $paymentStatus, // keep your logic priority
+
                 'invoice_note'        => $validated['invoice_note'] ?? $payment->invoice_note,
 
                 'paid_amount'         => $paidAmount,
                 'remaining_amount'    => $remainingAmount,
-                'payment_status'      => $paymentStatus,
 
                 'late_fees'           => isset($payData['late_fees']),
                 'client_note_enabled' => isset($payData['client_note_enabled']),
                 'save_payment'        => isset($payData['save_payment']),
             ]);
 
-            // ✅ Partial payment: create remaining invoice if needed
             if ($paymentStatus === 'partial' && $remainingAmount > 0) {
 
                 $exists = Payment::where('student_id', $payment->student_id)
