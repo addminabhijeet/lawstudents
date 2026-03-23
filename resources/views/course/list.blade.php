@@ -691,49 +691,7 @@
         $("#btn-n-add").show();
     });
 
-    $(document).on("click", ".edit-course", function(event) {
-        console.log("Edit button clicked");
 
-        event.preventDefault();
-
-        let id = $(this).data("id");
-        console.log("Course ID:", id);
-
-        $.ajax({
-            url: "/admin/course-edit/" + id,
-            type: "POST",
-            success: function(data) {
-
-                console.log("AJAX response received:", data);
-
-                $("#edit_course_id").val(data.id);
-                $("select[name='category_id']").val(data.category_id);
-                $("input[name='title']").val(data.title);
-                $("textarea[name='description']").val(data.description);
-                $("input[name='duration']").val(data.duration);
-                $("input[name='discount']").val(data.discount);
-                $("input[name='price']").val(data.price);
-
-                $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
-
-                console.log("Opening modal now...");
-
-                var modal = new bootstrap.Modal(document.getElementById('editnotesmodal'));
-                modal.show();
-
-                console.log("Modal show triggered");
-            },
-            error: function(xhr, status, error) {
-
-                console.error("AJAX request failed");
-                console.error("Status:", status);
-                console.error("Error:", error);
-                console.error("Response:", xhr.responseText);
-
-            }
-        });
-
-    });
 
     $("#add-category").on("click", function(event) {
         $("#addCategoryModal").modal("show");
@@ -833,29 +791,33 @@
 
 <script>
     $(document).on("click", ".edit-course", function(e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    let id = $(this).data("id");
+        let id = $(this).data("id");
 
-    $.ajax({
-    url: "/admin/course-edit/" + id,
-    type: "GET", // ✅ use GET (clean)
-    success: function(data) {
+        $.ajax({
+            url: "/admin/course-edit/" + id,
+            type: "GET",
+            success: function(data) {
 
-    $("#edit_course_id").val(data.id);
-    $("#edit_category_id").val(data.category_id);
-    $("#edit_title").val(data.title);
-    $("#edit_description").val(data.description);
-    $("#edit_duration").val(data.duration);
-    $("#edit_discount").val(data.discount);
-    $("#edit_price").val(data.price);
+                // Fill data correctly (scoped to edit modal)
+                $("#editnotesmodal input[name='id']").val(data.id);
+                $("#editnotesmodal select[name='category_id']").val(data.category_id);
+                $("#editnotesmodal input[name='title']").val(data.title);
+                $("#editnotesmodal textarea[name='description']").val(data.description);
+                $("#editnotesmodal input[name='duration']").val(data.duration);
+                $("#editnotesmodal input[name='discount']").val(data.discount);
+                $("#editnotesmodal input[name='price']").val(data.price);
 
-    // ✅ set update URL
-    $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
+                // Set form action
+                $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
 
-    let modal = new bootstrap.Modal(document.getElementById('editnotesmodal'));
-    modal.show();
-    }
+                // Show modal
+                $("#editnotesmodal").modal("show");
+            },
+            error: function(xhr) {
+                console.error("Error:", xhr.responseText);
+            }
+        });
     });
-    });
-</sript>
+</script>
