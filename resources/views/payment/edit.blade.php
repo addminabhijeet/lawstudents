@@ -36,7 +36,11 @@
                 <form method="POST" action="{{ route('admin.updatepayment', $payment->id) }}"
                     enctype="multipart/form-data">
                     @csrf
-
+                    @php
+                        $latestPayments = $allPayments->groupBy('student_id')->map(function ($items) {
+                            return $items->max('id');
+                        });
+                    @endphp
                     @foreach ($allPayments as $pIndex => $payment)
                         <input type="hidden" name="payments[{{ $pIndex }}][id]" value="{{ $payment->id }}">
 
@@ -155,9 +159,7 @@
                                             </select>
                                         </div>
                                         @php
-                                            $latestId = collect($allPayments)
-                                                ->where('student_id', $payment->student_id)
-                                                ->max('id');
+                                            $latestId = $latestPayments[$payment->student_id] ?? null;
                                         @endphp
 
                                         <input type="hidden" name="payments[{{ $pIndex }}][id]"
@@ -207,25 +209,23 @@
 <script>
     document.addEventListener('input', function(e) {
 
+        if (!e.target.classList.contains('paid-amount')) return;
         if (!e.target.classList.contains('latest-payment')) return;
 
-        if (e.target.classList.contains('paid-amount')) {
+        let max = parseFloat(e.target.dataset.max) || 0;
+        let value = parseFloat(e.target.value) || 0;
 
-            let max = parseFloat(e.target.getAttribute('data-max')) || 0;
-            let value = parseFloat(e.target.value) || 0;
+        let errorMsg = e.target.closest('.col-md-2').querySelector('.error-msg');
 
-            let errorMsg = e.target.parentElement.querySelector('.error-msg');
+        if (value > max) {
+            e.target.value = max;
 
-            if (value > max) {
-                e.target.value = max;
+            errorMsg.classList.remove('d-none');
+            e.target.classList.add('is-invalid');
 
-                errorMsg.classList.remove('d-none');
-                e.target.classList.add('is-invalid');
-
-            } else {
-                errorMsg.classList.add('d-none');
-                e.target.classList.remove('is-invalid');
-            }
+        } else {
+            errorMsg.classList.add('d-none');
+            e.target.classList.remove('is-invalid');
         }
     });
 </script>
