@@ -10,7 +10,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">Applications</li>
-                    <li class="breadcrumb-item">List</li>
+                    <li class="breadcrumb-item">List Students</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
