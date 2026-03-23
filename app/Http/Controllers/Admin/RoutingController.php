@@ -298,45 +298,125 @@ class RoutingController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:100',
-            'username' => 'required|string|max:100|unique:students,username',
             'email' => 'required|email|max:150|unique:students,email',
             'password' => 'required|confirmed|min:6',
         ]);
 
+        // Generate username
         $lastStudent = \App\Models\Student::latest('id')->first();
         if ($lastStudent && preg_match('/STU(\d+)/', $lastStudent->username, $matches)) {
-            $data['username'] = 'STU' . str_pad((int)$matches[1] + 1, 5, '0', STR_PAD_LEFT);
+            $username = 'STU' . str_pad((int)$matches[1] + 1, 5, '0', STR_PAD_LEFT);
         } else {
-            $data['username'] = 'STU00001';
+            $username = 'STU00001';
         }
 
+        // Create Student
         $student = Student::create([
             'name' => $data['name'],
-            'username' => $data['username'],
+            'username' => $username,
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
 
-        StudentAdmission::create([
+        // Create Admission
+        $admission = StudentAdmission::create([
             'student_id' => $student->id,
-            'full_name' => $data['name'],
-            'email' => $data['email'],
-            'dob' => null,
-            'gender' => null,
-            'phone' => null,
-            'address_line1' => null,
-            'city' => null,
-            'state' => null,
-            'pincode' => null,
-            'last_qualification' => null,
-            'board_university' => null,
-            'passing_year' => null,
-            'course_name' => null,
-            'admission_session' => null,
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'father_name' => $request->father_name,
+            'address_line1' => $request->address_line1,
+            'address_line2' => $request->address_line2,
+            'course_ids' => $request->course_ids,
+            'admission_status' => $request->admission_status,
+            'paidamount' => $request->paidamount ?? 0,
+            'remamount' => $request->remamount ?? 0,
         ]);
 
-        return redirect()->route('admin.addstudent')
-            ->with('success', 'Student registration successful.');
+        // ===============================
+        // PAYMENT LOGIC (same as update)
+        // ===============================
+
+        $year = date('Y');
+
+        $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
+            ->orderBy('id', 'desc')
+            ->first();
+
+        $nextNumber = $lastInvoice
+            ? intval(substr($lastInvoice->invoice_number, 7)) + 1
+            : 1;
+
+        $invoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+        $courses = Course::whereIn('id', $request->course_ids ?? [])->get();
+
+        $subTotal = $courses->sum('price');
+
+        $discountPercent = (float) ($request->discount_percent ?? 0);
+        $discountAmount  = (float) ($request->discount ?? ($subTotal * ($discountPercent / 100)));
+        $grandTotal      = $subTotal - $discountAmount;
+
+        $paidAmount      = (float) ($request->paidamount ?? 0);
+        $remainingAmount = (float) ($request->remamount ?? ($grandTotal - $paidAmount));
+
+        $paymentStatus = $paidAmount >= $grandTotal
+            ? 'paid'
+            : ($paidAmount > 0 ? 'partial' : 'pending');
+
+        Payment::create([
+            'student_id'      => $student->id,
+            'invoice_label'   => 'Admission Fee',
+            'course_id'       => !empty($request->course_ids) ? implode(',', $request->course_ids) : null,
+            'invoice_number'  => $invoiceNumber,
+            'invoice_product' => $courses->pluck('title')->implode(', '),
+
+            'issue_date'      => now(),
+            'due_date'        => now()->addDays(7),
+
+            'to_name'         => $request->full_name,
+            'to_email'        => $request->email,
+            'to_phone'        => $request->phone,
+            'to_address'      => $request->address_line1,
+
+            'sub_total'       => $subTotal,
+            'discount'        => $discountAmount,
+            'discount_percent' => $discountPercent,
+            'grand_total'     => $grandTotal,
+
+            'currency'        => 'INR',
+            'payment_status'  => $paymentStatus,
+            'paid_amount'     => $paidAmount,
+            'remaining_amount' => $remainingAmount,
+        ]);
+
+        // ✅ Handle partial payment (same logic)
+        if ($paymentStatus === 'partial') {
+
+            Payment::create([
+                'student_id'      => $student->id,
+                'invoice_label'   => 'Admission Fee (Remaining)',
+                'course_id'       => !empty($request->course_ids) ? implode(',', $request->course_ids) : null,
+                'invoice_number'  => 'INV' . $year . str_pad($nextNumber + 1, 6, '0', STR_PAD_LEFT),
+                'invoice_product' => $courses->pluck('title')->implode(', '),
+
+                'issue_date'      => now(),
+                'due_date'        => now()->addDays(7),
+
+                'to_name'         => $request->full_name,
+                'to_email'        => $request->email,
+                'to_phone'        => $request->phone,
+                'to_address'      => $request->address_line1,
+
+                'sub_total'       => $remainingAmount,
+                'grand_total'     => $remainingAmount,
+
+                'currency'        => 'INR',
+                'payment_status'  => 'pending',
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Student + Admission + Payment created successfully.');
     }
 
 

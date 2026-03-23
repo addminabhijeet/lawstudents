@@ -231,8 +231,7 @@
                                     <div class="d-flex justify-content-between align-items-center mt-3">
                                         <span class="fw-semibold">Paid Amount:</span>
                                         <input type="number" name="paidamount" id="paidamount"
-                                            class="form-control w-50" placeholder="Enter paid amount" min="0"
-                                            value="0">
+                                            class="form-control w-50" min="0" value="0">
                                     </div>
 
                                     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -240,8 +239,11 @@
                                         <span>₹<span id="remainingamount">0</span></span>
                                     </div>
 
-                                    <input type="hidden" name="remamount" id="remamount">
+                                    <input type="hidden" name="remamount" id="remamount" value="0">
                                     <input type="hidden" name="course_id" id="course_id">
+                                    <input type="hidden" name="discount_percent" id="discountPercentInput"
+                                        value="10">
+                                    <input type="hidden" name="discount" id="discountInput" value="0">
                                 </div>
 
                                 <!-- Declaration -->
