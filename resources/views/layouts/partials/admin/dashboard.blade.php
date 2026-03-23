@@ -81,8 +81,8 @@
                             <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listpayment') }}">List</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listpayment') }}">List</a>
+                            </li>
                         </ul>
                     </li>
 
@@ -129,12 +129,13 @@
                     <!-- Clientele -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-edit"></i></span>
+                            <span class="nxl-micon"><i class="feather-users"></i></span>
                             <span class="nxl-mtext">Clientele</span>
                             <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listclientele') }}">Clientele</a>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listclientele') }}">Clientele</a>
                             </li>
                         </ul>
                     </li>
