@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- [ page-header ] end -->
         <!-- [ Main Content ] start -->
         <div class="main-content">
@@ -60,8 +60,7 @@
                                                 <td>
                                                     <div class="item-checkbox ms-1">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox"
-                                                                class="custom-control-input checkbox"
+                                                            <input type="checkbox" class="custom-control-input checkbox"
                                                                 id="checkBox_{{ $key }}">
                                                             <label class="custom-control-label"
                                                                 for="checkBox_{{ $key }}"></label>
@@ -124,6 +123,12 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        @if ($admission->isEmpty())
+                                            <tr>
+                                                <td colspan="8" class="text-center text-muted">No students admissions found.
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
