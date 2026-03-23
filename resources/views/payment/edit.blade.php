@@ -157,9 +157,11 @@
 
                                         <div class="col-md-2">
                                             <label>Paid Amount</label>
-                                            <input type="number" step="0.01" class="form-control"
+                                            <input type="number" step="0.01" class="form-control paid-amount"
                                                 name="payments[{{ $pIndex }}][paid_amount]"
-                                                value="{{ $payment->paid_amount }}">
+                                                value="{{ $payment->paid_amount }}"
+                                                max="{{ $payment->remaining_amount }}"
+                                                data-max="{{ $payment->remaining_amount }}">
                                         </div>
 
                                         <div class="col-md-2">
@@ -188,4 +190,19 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
+
+<script>
+    document.addEventListener('input', function(e) {
+        if (e.target.classList.contains('paid-amount')) {
+
+            let max = parseFloat(e.target.getAttribute('data-max')) || 0;
+            let value = parseFloat(e.target.value) || 0;
+
+            if (value > max) {
+                e.target.value = max;
+                alert('Paid amount cannot be greater than remaining amount');
+            }
+        }
+    });
+</script>
 @include('layouts.partials.admin.theme')
