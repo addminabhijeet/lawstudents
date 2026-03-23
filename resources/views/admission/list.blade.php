@@ -123,7 +123,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        @if ($admission->isEmpty())
+                                        @if ($admissions->isEmpty())
                                             <tr>
                                                 <td colspan="8" class="text-center text-muted">No students admissions found.
                                                 </td>
