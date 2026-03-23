@@ -104,11 +104,12 @@ class RoutingController extends Controller
                 'currency'          => 'nullable|string|max:10',
                 'payment_method'    => 'nullable|string|in:debit_card,paypal',
 
-                'payment_status'    => 'nullable|in:pending,partial,paid',
-
                 'invoice_note'      => 'nullable|string',
                 'paid_amount'       => 'nullable|numeric|min:0',
             ])->validate();
+
+            // ✅ ALWAYS reset items array (important fix)
+            $items = [];
 
             $subTotal = $validated['sub_total'] ?? 0;
 
@@ -130,21 +131,29 @@ class RoutingController extends Controller
             }
 
             $taxPercentage = (float) ($validated['tax_percentage'] ?? 0);
-
             $taxAmount = $validated['tax_amount'] ?? (($subTotal * $taxPercentage) / 100);
-
             $discount = (float) ($validated['discount'] ?? 0);
 
             $grandTotal = $validated['grand_total'] ?? ($subTotal + $taxAmount - $discount);
 
-            $paidAmount = array_key_exists('paid_amount', $validated) && $validated['paid_amount'] !== null
+            // ✅ FIX: safe paid amount handling
+            $paidAmount = isset($validated['paid_amount'])
                 ? (float) $validated['paid_amount']
-                : $payment->paid_amount;
+                : (float) ($payment->paid_amount ?? 0);
 
-            $remainingAmount = $grandTotal - ($paidAmount ?? 0);
+            // ❗ Prevent overpayment bug
+            if ($paidAmount > $grandTotal) {
+                $paidAmount = $grandTotal;
+            }
 
-            $paymentStatus = ($paidAmount ?? 0) >= $grandTotal ? 'paid' : (($paidAmount ?? 0) > 0 ? 'partial' : 'pending');
+            $remainingAmount = $grandTotal - $paidAmount;
 
+            // ✅ payment status logic (unchanged)
+            $paymentStatus = $paidAmount >= $grandTotal
+                ? 'paid'
+                : ($paidAmount > 0 ? 'partial' : 'pending');
+
+            // ✅ UPDATE PAYMENT
             $payment->update([
                 'invoice_label'       => $validated['invoice_label'] ?? $payment->invoice_label,
                 'invoice_number'      => $validated['invoice_number'],
@@ -160,7 +169,7 @@ class RoutingController extends Controller
                 'to_phone'            => $validated['to_phone'] ?? $payment->to_phone,
                 'to_address'          => $validated['to_address'] ?? $payment->to_address,
 
-                'items'               => $items ?: $payment->items,
+                'items'               => !empty($items) ? $items : $payment->items,
 
                 'sub_total'           => $subTotal,
                 'tax_percentage'      => $taxPercentage,
@@ -172,7 +181,7 @@ class RoutingController extends Controller
                 'currency'            => $validated['currency'] ?? $payment->currency,
                 'payment_method'      => $validated['payment_method'] ?? $payment->payment_method,
 
-                'payment_status'      => $paymentStatus, // keep your logic priority
+                'payment_status'      => $paymentStatus,
 
                 'invoice_note'        => $validated['invoice_note'] ?? $payment->invoice_note,
 
@@ -184,13 +193,30 @@ class RoutingController extends Controller
                 'save_payment'        => isset($payData['save_payment']),
             ]);
 
+            // ✅ FIX: Remove old remaining invoice if fully paid
+            if ($paymentStatus === 'paid') {
+                Payment::where('student_id', $payment->student_id)
+                    ->where('invoice_label', $payment->invoice_label . ' (Remaining)')
+                    ->delete();
+            }
+
+            // ✅ PARTIAL PAYMENT → CREATE REMAINING INVOICE
             if ($paymentStatus === 'partial' && $remainingAmount > 0) {
 
-                $exists = Payment::where('student_id', $payment->student_id)
-                    ->where('invoice_label', $payment->invoice_label . ' (Remaining)')
-                    ->exists();
+                $remainingLabel = $payment->invoice_label . ' (Remaining)';
 
-                if (!$exists) {
+                $exists = Payment::where('student_id', $payment->student_id)
+                    ->where('invoice_label', $remainingLabel)
+                    ->first();
+
+                // ✅ UPDATE existing remaining invoice instead of duplicate
+                if ($exists) {
+                    $exists->update([
+                        'sub_total'   => $remainingAmount,
+                        'grand_total' => $remainingAmount,
+                    ]);
+                } else {
+
                     $year = date('Y');
 
                     $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
@@ -198,11 +224,12 @@ class RoutingController extends Controller
                         ->first();
 
                     $nextNumber = $lastInvoice ? intval(substr($lastInvoice->invoice_number, 7)) + 1 : 1;
+
                     $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
 
                     Payment::create([
                         'student_id'       => $payment->student_id,
-                        'invoice_label'    => $payment->invoice_label,
+                        'invoice_label'    => $remainingLabel,
 
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $payment->invoice_product,
@@ -216,16 +243,10 @@ class RoutingController extends Controller
                         'to_address'       => $payment->to_address,
 
                         'sub_total'        => $remainingAmount,
-                        'tax_percentage'   => null,
-                        'tax_amount'       => null,
-                        'discount'         => null,
                         'grand_total'      => $remainingAmount,
 
                         'currency'         => $payment->currency,
                         'payment_status'   => 'pending',
-
-                        'paid_amount'      => null,
-                        'remaining_amount' => null,
                     ]);
                 }
             }
