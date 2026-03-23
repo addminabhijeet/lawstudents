@@ -270,6 +270,20 @@ class CourseController extends Controller
         return Category::findOrFail($id);
     }
 
+    public function deleteCategory($id)
+    {
+        $category = Category::findOrFail($id);
+
+        // Optional safety: prevent delete if courses exist
+        if ($category->courses()->count() > 0) {
+            return back()->with('error', 'Cannot delete category with courses');
+        }
+
+        $category->delete();
+
+        return back()->with('success', 'Category Deleted Successfully');
+    }
+
     public function updateCategory(Request $request, $id)
     {
         $request->validate([

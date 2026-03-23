@@ -127,6 +127,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('category-edit/{id}', [CourseController::class, 'editCategory'])
                 ->name('editCategory');
 
+            Route::delete('category-delete/{id}', [CourseController::class, 'deleteCategory'])
+                ->name('deleteCategory');
+
             Route::post('category-update/{id}', [CourseController::class, 'updateCategory'])
                 ->name('updateCategory');
 

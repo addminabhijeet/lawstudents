@@ -44,11 +44,19 @@
                                     <span>{{ $category->name }}</span>
                                 </a>
 
-                                <!-- EDIT BUTTON -->
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
-                                    data-id="{{ $category->id }}">
-                                    <i class="feather-edit"></i>
-                                </a>
+                                <div class="d-flex gap-1">
+                                    <!-- EDIT -->
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-edit"></i>
+                                    </a>
+
+                                    <!-- DELETE -->
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-trash-2"></i>
+                                    </a>
+                                </div>
                             </li>
                         @endforeach
                     </ul>
@@ -233,6 +241,39 @@
                 </div>
             </div>
             <!-- End Modal Body -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title text-danger">Delete Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form id="deleteCategoryForm" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <div class="modal-body text-center">
+                    <h6>Are you sure you want to delete this category?</h6>
+                    <p class="text-muted">This action cannot be undone.</p>
+                </div>
+
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-danger">
+                        Yes, Delete
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+
+            </form>
+
         </div>
     </div>
 </div>
@@ -942,5 +983,18 @@
         } else {
             $("#edit_parent_id").prop("disabled", false);
         }
+    });
+</script>
+
+<script>
+    $(document).on("click", ".delete-category", function() {
+
+        let id = $(this).data("id");
+
+        // Set form action dynamically
+        $("#deleteCategoryForm").attr("action", "/admin/category-delete/" + id);
+
+        // Show modal
+        $("#deleteCategoryModal").modal("show");
     });
 </script>
