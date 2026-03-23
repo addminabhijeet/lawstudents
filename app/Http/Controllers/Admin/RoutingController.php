@@ -69,153 +69,48 @@ class RoutingController extends Controller
 
             if (!isset($payData['id'])) continue;
 
-            $payment = Payment::find($payData['id']);
+            $currentPayment = Payment::find($payData['id']);
+            if (!$currentPayment) continue;
+
+            $payment = Payment::where('student_id', $currentPayment->student_id)
+                ->orderBy('id', 'desc')
+                ->first();
+
             if (!$payment) continue;
 
             $validated = validator($payData, [
-                'invoice_label'     => 'nullable|string|max:255',
-                'invoice_number'    => 'required|string|max:255',
-                'invoice_product'   => 'nullable|string|max:255',
-
-                'issue_date'        => 'nullable|date',
-                'due_date'          => 'nullable|date',
-
-                'from_name'         => 'nullable|string|max:255',
-
-                'to_name'           => 'nullable|string|max:255',
-                'to_email'          => 'nullable|email|max:255',
-                'to_phone'          => 'nullable|string|max:50',
-                'to_address'        => 'nullable|string',
-
-                'items'             => 'nullable|array',
-                'items.*.product'   => 'nullable|string|max:255',
-                'items.*.qty'       => 'nullable|numeric|min:1',
-                'items.*.price'     => 'nullable|numeric|min:0',
-
-                'sub_total'         => 'nullable|numeric|min:0',
-                'tax_percentage'    => 'nullable|numeric|min:0',
-                'tax_amount'        => 'nullable|numeric|min:0',
-
-                'discount'          => 'nullable|numeric|min:0',
-                'discount_percent'  => 'nullable|numeric|min:0',
-
-                'grand_total'       => 'nullable|numeric|min:0',
-
-                'currency'          => 'nullable|string|max:10',
-                'payment_method'    => 'nullable|string|in:debit_card,paypal',
-
-                'invoice_note'      => 'nullable|string',
-                'paid_amount'       => 'nullable|numeric|min:0',
+                'due_date'    => 'nullable|date',
+                'paid_amount' => 'nullable|numeric|min:0',
             ])->validate();
 
-            // ✅ ALWAYS reset items array (important fix)
-            $items = [];
+            $dueDate = $validated['due_date'] ?? $payment->due_date;
 
-            $subTotal = $validated['sub_total'] ?? 0;
-
-            if ($subTotal == 0 && !empty($validated['items'])) {
-                foreach ($validated['items'] as $item) {
-                    $qty = (float) ($item['qty'] ?? 0);
-                    $price = (float) ($item['price'] ?? 0);
-                    $total = $qty * $price;
-
-                    $subTotal += $total;
-
-                    $items[] = [
-                        'product' => $item['product'] ?? '',
-                        'qty'     => $qty,
-                        'price'   => $price,
-                        'total'   => $total,
-                    ];
-                }
-            }
-
-            $taxPercentage = (float) ($validated['tax_percentage'] ?? 0);
-            $taxAmount = $validated['tax_amount'] ?? (($subTotal * $taxPercentage) / 100);
-            $discount = (float) ($validated['discount'] ?? 0);
-
-            $grandTotal = $validated['grand_total'] ?? ($subTotal + $taxAmount - $discount);
-
-            // ✅ FIX: safe paid amount handling
-            $paidAmount = isset($validated['paid_amount'])
+            $paidAmount = array_key_exists('paid_amount', $validated) && $validated['paid_amount'] !== null
                 ? (float) $validated['paid_amount']
-                : (float) ($payment->paid_amount ?? 0);
+                : $payment->paid_amount;
 
-            // ❗ Prevent overpayment bug
-            if ($paidAmount > $grandTotal) {
-                $paidAmount = $grandTotal;
-            }
+            $grandTotal = $payment->grand_total;
+            $remainingAmount = $grandTotal - ($paidAmount ?? 0);
 
-            $remainingAmount = $grandTotal - $paidAmount;
-
-            // ✅ payment status logic (unchanged)
-            $paymentStatus = $paidAmount >= $grandTotal
+            $paymentStatus = ($paidAmount >= $grandTotal)
                 ? 'paid'
                 : ($paidAmount > 0 ? 'partial' : 'pending');
 
-            // ✅ UPDATE PAYMENT
             $payment->update([
-                'invoice_label'       => $validated['invoice_label'] ?? $payment->invoice_label,
-                'invoice_number'      => $validated['invoice_number'],
-                'invoice_product'     => $validated['invoice_product'] ?? $payment->invoice_product,
-
-                'issue_date'          => $validated['issue_date'] ?? $payment->issue_date,
-                'due_date'            => $validated['due_date'] ?? $payment->due_date,
-
-                'from_name'           => $validated['from_name'] ?? $payment->from_name,
-
-                'to_name'             => $validated['to_name'] ?? $payment->to_name,
-                'to_email'            => $validated['to_email'] ?? $payment->to_email,
-                'to_phone'            => $validated['to_phone'] ?? $payment->to_phone,
-                'to_address'          => $validated['to_address'] ?? $payment->to_address,
-
-                'items'               => !empty($items) ? $items : $payment->items,
-
-                'sub_total'           => $subTotal,
-                'tax_percentage'      => $taxPercentage,
-                'tax_amount'          => $taxAmount,
-                'discount'            => $discount,
-                'discount_percent'    => $validated['discount_percent'] ?? $payment->discount_percent,
-                'grand_total'         => $grandTotal,
-
-                'currency'            => $validated['currency'] ?? $payment->currency,
-                'payment_method'      => $validated['payment_method'] ?? $payment->payment_method,
-
-                'payment_status'      => $paymentStatus,
-
-                'invoice_note'        => $validated['invoice_note'] ?? $payment->invoice_note,
-
-                'paid_amount'         => $paidAmount,
-                'remaining_amount'    => $remainingAmount,
-
-                'late_fees'           => isset($payData['late_fees']),
-                'client_note_enabled' => isset($payData['client_note_enabled']),
-                'save_payment'        => isset($payData['save_payment']),
+                'due_date'         => $dueDate,
+                'paid_amount'      => $paidAmount,
+                'remaining_amount' => $remainingAmount,
+                'payment_status'   => $paymentStatus,
             ]);
 
-            // ✅ FIX: Remove old remaining invoice if fully paid
-            if ($paymentStatus === 'paid') {
-                Payment::where('student_id', $payment->student_id)
-                    ->where('invoice_label', $payment->invoice_label . ' (Remaining)')
-                    ->delete();
-            }
-
-            // ✅ PARTIAL PAYMENT → CREATE REMAINING INVOICE
             if ($paymentStatus === 'partial' && $remainingAmount > 0) {
 
-                $remainingLabel = $payment->invoice_label . ' (Remaining)';
-
                 $exists = Payment::where('student_id', $payment->student_id)
-                    ->where('invoice_label', $remainingLabel)
-                    ->first();
+                    ->where('invoice_label', 'Remaining Payment')
+                    ->where('payment_status', 'pending')
+                    ->exists();
 
-                // ✅ UPDATE existing remaining invoice instead of duplicate
-                if ($exists) {
-                    $exists->update([
-                        'sub_total'   => $remainingAmount,
-                        'grand_total' => $remainingAmount,
-                    ]);
-                } else {
+                if (!$exists) {
 
                     $year = date('Y');
 
@@ -223,19 +118,22 @@ class RoutingController extends Controller
                         ->orderBy('id', 'desc')
                         ->first();
 
-                    $nextNumber = $lastInvoice ? intval(substr($lastInvoice->invoice_number, 7)) + 1 : 1;
+                    $nextNumber = $lastInvoice
+                        ? intval(substr($lastInvoice->invoice_number, 7)) + 1
+                        : 1;
 
                     $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
 
                     Payment::create([
                         'student_id'       => $payment->student_id,
-                        'invoice_label'    => $remainingLabel,
+                        'course_id'        => $payment->course_id,
 
+                        'invoice_label'    => 'Remaining Payment',
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $payment->invoice_product,
 
                         'issue_date'       => now(),
-                        'due_date'         => $payment->due_date ?? now()->addDays(7),
+                        'due_date'         => $dueDate ?? now()->addDays(7),
 
                         'to_name'          => $payment->to_name,
                         'to_email'         => $payment->to_email,
@@ -246,12 +144,14 @@ class RoutingController extends Controller
                         'grand_total'      => $remainingAmount,
 
                         'currency'         => $payment->currency,
+
                         'payment_status'   => 'pending',
+                        'paid_amount'      => 0,
+                        'remaining_amount' => $remainingAmount,
                     ]);
                 }
             }
         }
-
         return redirect()
             ->route('admin.listpayment')
             ->with('success', 'All payments updated successfully.');
