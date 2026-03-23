@@ -124,10 +124,10 @@
 
                                         <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
                                         <div class="d-flex gap-2 mt-2">
-                                            {{-- <a href="javascript:void(0);" class="btn btn-sm btn-warning edit-course"
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-warning edit-course"
                                                 data-id="{{ $course->id }}">
                                                 Edit
-                                            </a> --}}
+                                            </a>
                                             <a href="{{ route('admin.coursedelete', $course->id) }}"
                                                 class="btn btn-sm btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete?')">
@@ -159,7 +159,8 @@
             <div class="modal-body">
                 <div class="notes-box">
                     <div class="notes-content">
-                        <form action="{{ route('admin.storecourse') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.storecourse') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <!-- Category -->
@@ -246,6 +247,7 @@
                         <form id="editCourseForm" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+                                <input type="hidden" name="id" id="edit_course_id">
                                 <!-- Category -->
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Select Category</label>
@@ -256,7 +258,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <input type="hidden" id="edit_course_id" name="id">
 
                                 <!-- Title -->
                                 <div class="col-md-12 mb-3">
@@ -829,3 +830,32 @@
         }
     });
 </script>
+
+<sript>
+    $(document).on("click", ".edit-course", function(e) {
+    e.preventDefault();
+
+    let id = $(this).data("id");
+
+    $.ajax({
+    url: "/admin/course-edit/" + id,
+    type: "GET", // ✅ use GET (clean)
+    success: function(data) {
+
+    $("#edit_course_id").val(data.id);
+    $("#edit_category_id").val(data.category_id);
+    $("#edit_title").val(data.title);
+    $("#edit_description").val(data.description);
+    $("#edit_duration").val(data.duration);
+    $("#edit_discount").val(data.discount);
+    $("#edit_price").val(data.price);
+
+    // ✅ set update URL
+    $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
+
+    let modal = new bootstrap.Modal(document.getElementById('editnotesmodal'));
+    modal.show();
+    }
+    });
+    });
+</sript>
