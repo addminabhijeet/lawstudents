@@ -133,7 +133,7 @@
 
                                         @empty
                                             <tr>
-                                                <td colspan="8" class="text-center">No Payments Found</td>
+                                                <td colspan="8" class="text-center">No ID Card Found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
