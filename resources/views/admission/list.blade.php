@@ -13,16 +13,6 @@
                     <li class="breadcrumb-item">List Admissions</li>
                 </ul>
             </div>
-            <div class="page-header-right ms-auto">
-                <div class="page-header-right-items">
-                    <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addadmission') }}" class="btn btn-primary">
-                            <i class="feather-plus me-2"></i>
-                            <span>Add Admission</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- [ page-header ] end -->
