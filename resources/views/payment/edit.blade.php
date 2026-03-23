@@ -207,26 +207,27 @@
 </main>
 
 <script>
-    document.addEventListener('input', function(e) {
+    document.querySelectorAll('.paid-amount.latest-payment').forEach(function(input) {
 
-        if (!e.target.classList.contains('paid-amount')) return;
-        if (!e.target.classList.contains('latest-payment')) return;
+        input.addEventListener('input', function() {
 
-        let max = parseFloat(e.target.dataset.max) || 0;
-        let value = parseFloat(e.target.value) || 0;
+            let max = parseFloat(this.dataset.max) || 0;
+            let value = parseFloat(this.value) || 0;
 
-        let errorMsg = e.target.closest('.col-md-2').querySelector('.error-msg');
+            let errorMsg = this.closest('.col-md-2').querySelector('.error-msg');
 
-        if (value > max) {
-            e.target.value = max;
+            if (value > max) {
+                this.value = max;
 
-            errorMsg.classList.remove('d-none');
-            e.target.classList.add('is-invalid');
+                errorMsg.classList.remove('d-none');
+                this.classList.add('is-invalid');
 
-        } else {
-            errorMsg.classList.add('d-none');
-            e.target.classList.remove('is-invalid');
-        }
+            } else {
+                errorMsg.classList.add('d-none');
+                this.classList.remove('is-invalid');
+            }
+        });
+
     });
 </script>
 @include('layouts.partials.admin.theme')
