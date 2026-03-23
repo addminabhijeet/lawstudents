@@ -246,7 +246,7 @@
                     <div class="notes-content">
                         <form id="editCourseForm" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
+                        
                             <div class="row">
                                 <input type="hidden" name="id" id="edit_course_id">
                                 <!-- Category -->
