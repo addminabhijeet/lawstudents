@@ -127,15 +127,20 @@
                     </li>
 
                     <!-- Clientele -->
-                    <li class="nxl-item nxl-hasmenu">
+                    <li
+                        class="nxl-item nxl-hasmenu {{ request()->routeIs('admin.listclientele') ? 'active nxl-trigger' : '' }}">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-users"></i></span>
                             <span class="nxl-mtext">Clientele</span>
                             <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listclientele') }}">Clientele</a>
+                        <ul class="nxl-submenu"
+                            style="{{ request()->routeIs('admin.listclientele') ? 'display:block;' : '' }}">
+                            <li class="nxl-item">
+                                <a class="nxl-link {{ request()->routeIs('admin.listclientele') ? 'active' : '' }}"
+                                    href="{{ route('admin.listclientele') }}">
+                                    Clientele
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -151,10 +156,19 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listbanner') }}">Banner</a></li>
+                        </ul>
+
+                        <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listgallery') }}">Gallery</a></li>
+                        </ul>
+
+                        <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.whatsapp') }}">Whatsapp</a></li>
+                        </ul>
+
+                        <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.admindetails') }}">Admin</a></li>
                         </ul>
