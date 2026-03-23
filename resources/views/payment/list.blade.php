@@ -210,9 +210,6 @@
                                             </th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Amount</th>
-                                            <th>Date</th>
-                                            <th>Invoice</th>
                                             <th>Status</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
@@ -256,22 +253,6 @@
                                                                 {{ $firstPayment->to_email }}
                                                             </small>
                                                         </div>
-                                                    </a>
-                                                </td>
-
-                                                <td class="fw-bold text-dark">
-                                                    ₹{{ number_format($studentPayments->sum('grand_total'), 2) }}
-                                                    {{ $firstPayment->currency }}
-                                                </td>
-
-                                                <td>
-                                                    {{ \Carbon\Carbon::parse($firstPayment->created_at)->format('Y-m-d, h:i A') }}
-                                                </td>
-
-                                                <td>
-                                                    {{-- Show first invoice number --}}
-                                                    <a class="fw-bold">
-                                                        {{ $firstPayment->invoice_number }}
                                                     </a>
                                                 </td>
 
