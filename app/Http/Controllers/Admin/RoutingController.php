@@ -152,7 +152,7 @@ class RoutingController extends Controller
                         'currency'         => $payment->currency,
 
                         'payment_status'   => 'pending',
-                        'paid_amount'      => 0,
+                        'paid_amount'      => null,
                         'remaining_amount' => $remainingAmount,
                     ]);
                 }
