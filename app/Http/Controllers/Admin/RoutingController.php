@@ -196,7 +196,7 @@ class RoutingController extends Controller
 
     public function liststudent()
     {
-        $students = Student::where('deleted', 0)->get();
+        $students = Student::where('deleted', 0)->paginate(10);
         return view('student.list', compact('students'));
     }
 
