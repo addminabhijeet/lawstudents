@@ -24,7 +24,8 @@ class StudentAdmissinController extends Controller
 
     public function index()
     {
-        $admissions = StudentAdmission::latest()->get();
+        $admissions = StudentAdmission::latest()->paginate(10);
+
         return view('admission.list', compact('admissions'));
     }
 

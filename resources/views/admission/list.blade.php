@@ -99,13 +99,45 @@
                                         @endforeach
                                         @if ($admissions->isEmpty())
                                             <tr>
-                                                <td colspan="8" class="text-center text-muted">No students admissions
+                                                <td colspan="8" class="text-center text-muted">No admissions admissions
                                                     found.
                                                 </td>
                                             </tr>
                                         @endif
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <nav>
+                                        <ul class="pagination pagination-sm mb-0">
+                                            <!-- Previous Page -->
+                                            <li class="page-item {{ $admissions->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $admissions->previousPageUrl() }}"
+                                                    aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </a>
+                                            </li>
+
+                                            <!-- Page Numbers -->
+                                            @foreach ($admissions->getUrlRange(1, $admissions->lastPage()) as $page => $url)
+                                                <li
+                                                    class="page-item {{ $admissions->currentPage() == $page ? 'active' : '' }}">
+                                                    <a class="page-link"
+                                                        href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            <!-- Next Page -->
+                                            <li class="page-item {{ !$admissions->hasMorePages() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $admissions->nextPageUrl() }}"
+                                                    aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
