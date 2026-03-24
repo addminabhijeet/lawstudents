@@ -417,7 +417,8 @@ class RoutingController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Student + Admission + Payment created successfully.');
+        return redirect()->route('editadmission', ['id' => $admission->id])
+                 ->with('success', 'Student Registed successfully, Now Fill Admission details.');
     }
 
 
