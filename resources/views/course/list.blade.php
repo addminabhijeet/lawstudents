@@ -30,7 +30,10 @@
                             </a>
                         </li>
 
-                        @foreach ($categories as $category)
+                        <!-- 🔹 Main Categories -->
+                        <li class="nav-item mt-2 px-2 text-muted small fw-bold">Main Categories</li>
+
+                        @foreach ($categories->whereNull('parent_id') as $category)
                             <li class="nav-item d-flex justify-content-between align-items-center">
                                 <a href="javascript:void(0)" class="nav-link note-link"
                                     id="category-{{ $category->id }}">
@@ -39,13 +42,37 @@
                                 </a>
 
                                 <div class="d-flex gap-1">
-                                    <!-- EDIT -->
                                     <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
                                         data-id="{{ $category->id }}">
                                         <i class="feather-edit"></i>
                                     </a>
 
-                                    <!-- DELETE -->
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-trash-2"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        @endforeach
+
+
+                        <!-- 🔹 Sub Categories -->
+                        <li class="nav-item mt-3 px-2 text-muted small fw-bold">Sub Categories</li>
+
+                        @foreach ($categories->whereNotNull('parent_id') as $category)
+                            <li class="nav-item d-flex justify-content-between align-items-center">
+                                <a href="javascript:void(0)" class="nav-link note-link"
+                                    id="category-{{ $category->id }}">
+                                    <i class="feather-folder"></i>
+                                    <span>{{ $category->name }}</span>
+                                </a>
+
+                                <div class="d-flex gap-1">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-edit"></i>
+                                    </a>
+
                                     <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
                                         data-id="{{ $category->id }}">
                                         <i class="feather-trash-2"></i>
