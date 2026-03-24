@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- [ page-header ] end -->
         <!-- [ Main Content ] start -->
         <div class="main-content">
@@ -36,7 +36,7 @@
                                 <table class="table table-hover" id="paymentList">
                                     <thead>
                                         <tr>
-                                            
+                                            <th class="wd-30">#</th>
                                             <th>Username</th>
                                             <th>Email</th>
                                             <th>Name</th>
@@ -47,7 +47,9 @@
                                     <tbody>
                                         @foreach ($students as $student)
                                             <tr class="single-item">
-                                                
+                                                <td>
+                                                    {{ $loop->iteration }}
+                                                </td>
                                                 <td><a href="javascript:void(0)"
                                                         class="fw-bold">{{ $student->username }}</a></td>
                                                 <td>
@@ -76,8 +78,7 @@
                                                             <i class="feather feather-edit"></i>
                                                         </a>
 
-                                                        <form
-                                                            action="{{ route('admin.destroystudent', $student->id) }}"
+                                                        <form action="{{ route('admin.destroystudent', $student->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
