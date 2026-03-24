@@ -73,24 +73,29 @@
                                 <div class="row">
 
                                     <div class="col-lg-6 mb-3">
-                                        <input type="text" name="name" class="form-control"
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="text" name="name" id="name" class="form-control"
                                             placeholder="Full Name" required>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
-                                        <input type="text" name="username" class="form-control"
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" name="username" id="username" class="form-control"
                                             placeholder="Username" value="{{ $username }}" readonly>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Email"
-                                            required>
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            placeholder="Email" required>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
+                                        <label for="newPassword" class="form-label">Password</label>
                                         <div class="input-group field">
                                             <input type="password" name="password" class="form-control password"
-                                                id="newPassword" placeholder="Password" value="{{ $defaultpassword }}" required>
+                                                id="newPassword" placeholder="Password" value="{{ $defaultpassword }}"
+                                                required>
 
                                             <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                                 data-bs-toggle="tooltip" title="Show/Hide Password">
@@ -100,6 +105,7 @@
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
+                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
                                         <div class="input-group field">
                                             <input type="password" name="password_confirmation"
                                                 class="form-control password" id="confirmPassword"
