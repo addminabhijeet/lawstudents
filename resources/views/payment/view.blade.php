@@ -22,13 +22,8 @@
         <div class="main-content container-lg">
             <div class="row">
                 <div class="col-lg-12">
-                    @if ($notFound)
-                        <div class="alert alert-warning text-center">
-                            <strong>Please Complete Your Payment</strong>
-                        </div>
-                    @endif
 
-                    @if (!$notFound && $payments->count())
+                    @if ($payments->count())
                         @foreach ($payments as $payment)
                             <div class="card invoice-container">
 
