@@ -83,7 +83,11 @@
 
                                         <div class="col-lg-6">
                                             <label class="text-muted small mb-1">Username</label>
-                                            <p class="mb-0 fw-semibold">{{ old('name', $student->username ?? '') }}</p>
+                                            <p class="mb-0 fw-semibold">
+                                                <span class="badge bg-primary fs-6">
+                                                    {{ old('name', $student->username ?? '') }}
+                                                </span>
+                                            </p>
                                         </div>
                                     </div>
 
