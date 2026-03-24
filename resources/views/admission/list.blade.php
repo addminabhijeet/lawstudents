@@ -26,16 +26,7 @@
                                 <table class="table table-hover" id="paymentList">
                                     <thead>
                                         <tr>
-                                            <th class="wd-30">
-                                                <div class="btn-group mb-1">
-                                                    <div class="custom-control custom-checkbox ms-1">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="checkAllPayment">
-                                                        <label class="custom-control-label"
-                                                            for="checkAllPayment"></label>
-                                                    </div>
-                                                </div>
-                                            </th>
+                                            <th class="wd-30">#</th>
                                             <th>Adm. no.</th>
                                             <th>Email</th>
                                             <th>Name</th>
@@ -48,14 +39,7 @@
                                         @foreach ($admissions as $key => $admission)
                                             <tr class="single-item">
                                                 <td>
-                                                    <div class="item-checkbox ms-1">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input checkbox"
-                                                                id="checkBox_{{ $key }}">
-                                                            <label class="custom-control-label"
-                                                                for="checkBox_{{ $key }}"></label>
-                                                        </div>
-                                                    </div>
+                                                    {{ $loop->iteration }}
                                                 </td>
 
                                                 <td>
@@ -115,7 +99,8 @@
                                         @endforeach
                                         @if ($admissions->isEmpty())
                                             <tr>
-                                                <td colspan="8" class="text-center text-muted">No students admissions found.
+                                                <td colspan="8" class="text-center text-muted">No students admissions
+                                                    found.
                                                 </td>
                                             </tr>
                                         @endif
