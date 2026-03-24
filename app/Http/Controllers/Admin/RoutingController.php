@@ -210,7 +210,7 @@ class RoutingController extends Controller
     public function viewstudent($id)
     {
         $student = Student::where('deleted', 0)->findOrFail($id);
-        $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
+        $defaultpassword = User::first()->value('defaultpass');
         return view('student.view', compact('student', 'defaultpassword'));
     }
 
@@ -418,7 +418,7 @@ class RoutingController extends Controller
         }
 
         return redirect()->route('admin.editadmission', ['id' => $admission->id])
-                 ->with('success', 'Student Registed successfully, Now Fill Admission details.');
+            ->with('success', 'Student Registed successfully, Now Fill Admission details.');
     }
 
 
@@ -441,5 +441,4 @@ class RoutingController extends Controller
         return redirect()->route('admin.liststudent')
             ->with('success', 'Student updated successfully.');
     }
-
 }
