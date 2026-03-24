@@ -99,32 +99,8 @@
                                         @endif
                                     </tbody>
                                 </table>
-                                <div class="d-flex justify-content-between mt-3">
-                                    <!-- Previous Button -->
-                                    @if ($students->onFirstPage())
-                                        <button class="btn btn-outline-secondary" disabled>
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                    @else
-                                        <a href="{{ $students->previousPageUrl() }}" class="btn btn-outline-secondary">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </a>
-                                    @endif
-
-                                    <!-- Next Button -->
-                                    @if ($students->hasMorePages())
-                                        <a href="{{ $students->nextPageUrl() }}" class="btn btn-outline-secondary">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </a>
-                                    @else
-                                        <button class="btn btn-outline-secondary" disabled>
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
-                                    @endif
+                                <div class="d-flex justify-content-end mt-3">
+                                    {{ $students->links('pagination::bootstrap-5') }}
                                 </div>
                             </div>
                         </div>
