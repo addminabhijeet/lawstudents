@@ -26,16 +26,7 @@
                                 <table class="table table-hover" id="paymentList">
                                     <thead>
                                         <tr>
-                                            <th class="wd-30">
-                                                <div class="btn-group mb-1">
-                                                    <div class="custom-control custom-checkbox ms-1">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="checkAllPayment">
-                                                        <label class="custom-control-label"
-                                                            for="checkAllPayment"></label>
-                                                    </div>
-                                                </div>
-                                            </th>
+                                            <th class="wd-30">#</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Status</th>
@@ -53,14 +44,7 @@
                                             @endphp
                                             <tr class="single-item">
                                                 <td>
-                                                    <div class="item-checkbox ms-1">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input checkbox"
-                                                                id="checkBox_{{ $studentId }}">
-                                                            <label class="custom-control-label"
-                                                                for="checkBox_{{ $studentId }}"></label>
-                                                        </div>
-                                                    </div>
+                                                    {{ $loop->iteration }}
                                                 </td>
 
                                                 <td>
