@@ -42,16 +42,7 @@
                                 <table class="table table-hover" id="clienteleList">
                                     <thead>
                                         <tr>
-                                            <th class="wd-30">
-                                                <div class="btn-group mb-1">
-                                                    <div class="custom-control custom-checkbox ms-1">
-                                                        <input type="checkbox" class="custom-control-input"
-                                                            id="checkAllClientele">
-                                                        <label class="custom-control-label"
-                                                            for="checkAllClientele"></label>
-                                                    </div>
-                                                </div>
-                                            </th>
+                                            <th class="wd-30">#</th>
                                             <th>File Name</th>
                                             <th>Button Name</th>
                                             <th>Date Uploaded</th>
@@ -75,15 +66,7 @@
                                                 @foreach ($pdfs as $key => $item)
                                                     <tr class="single-item">
                                                         <td>
-                                                            <div class="item-checkbox ms-1">
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox"
-                                                                        class="custom-control-input checkbox"
-                                                                        id="checkBox_{{ $clientele->id }}_{{ $key }}">
-                                                                    <label class="custom-control-label"
-                                                                        for="checkBox_{{ $clientele->id }}_{{ $key }}"></label>
-                                                                </div>
-                                                            </div>
+                                                            {{ $loop->iteration }}
                                                         </td>
 
                                                         <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
