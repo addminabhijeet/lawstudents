@@ -74,21 +74,28 @@
                                 <div class="row">
 
                                     <div class="col-lg-6 mb-3">
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="Full Name" value="{{ old('name', $student->name ?? '') }}" required>
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="text" name="name" id="name" class="form-control"
+                                            placeholder="Full Name" value="{{ old('name', $student->name ?? '') }}"
+                                            required>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
-                                        <input type="text" name="username" class="form-control"
-                                            placeholder="Username" value="{{ old('name', $student->username ?? '') }}" readonly>
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" name="username" id="username" class="form-control"
+                                            placeholder="Username" value="{{ old('name', $student->username ?? '') }}"
+                                            readonly>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Email"
-                                            value="{{ old('email', $student->email ?? '') }}" required>
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            placeholder="Email" value="{{ old('email', $student->email ?? '') }}"
+                                            required>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
+                                        <label for="newPassword" class="form-label">Password</label>
                                         <div class="input-group field">
                                             <input type="password" name="password" class="form-control password"
                                                 id="newPassword" placeholder="Password" value="{{ $defaultpassword }}"
@@ -102,6 +109,7 @@
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
+                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
                                         <div class="input-group field">
                                             <input type="password" name="password_confirmation"
                                                 class="form-control password" id="confirmPassword"
