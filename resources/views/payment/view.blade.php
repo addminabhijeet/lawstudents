@@ -23,255 +23,250 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    @if ($payments->count())
-                        @foreach ($payments as $payment)
-                            <div class="card invoice-container">
 
-                                <div class="card-header">
-                                    <!-- Print button -->
-                                    <div class="card-header">
-                                        <!-- Print button -->
-                                        <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
-                                            class="d-flex me-1 printBTN"
-                                            onclick="printInvoice(this.closest('.invoice-container'))">
-                                            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                                title="Print Invoice">
-                                                <i class="feather feather-printer"></i>
-                                            </div>
-                                        </a>
+                    <div class="card invoice-container">
 
-                                        <!-- Download button -->
-                                        <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
-                                            class="d-flex me-1 file-download"
-                                            onclick="downloadInvoice(this.closest('.invoice-container'))">
-                                            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                                title="Download Invoice">
-                                                <i class="feather feather-download"></i>
-                                            </div>
-                                        </a>
+                        <div class="card-header">
+                            <!-- Print button -->
+                            <div class="card-header">
+                                <!-- Print button -->
+                                <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
+                                    class="d-flex me-1 printBTN"
+                                    onclick="printInvoice(this.closest('.invoice-container'))">
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
+                                        <i class="feather feather-printer"></i>
                                     </div>
-                                </div>
+                                </a>
 
-                                <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
-                                    <div class="px-4 pt-4">
-                                        <div class="d-sm-flex align-items-center justify-content-between">
+                                <!-- Download button -->
+                                <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
+                                    class="d-flex me-1 file-download"
+                                    onclick="downloadInvoice(this.closest('.invoice-container'))">
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                        title="Download Invoice">
+                                        <i class="feather feather-download"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
+                            <div class="px-4 pt-4">
+                                <div class="d-sm-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">
+                                            <img src="{{ asset('assets/images/logo-full.png') }}" class="img-fluid"
+                                                style="max-height: 60px;" alt="Logo">
+                                        </div>
+                                        <address class="text-muted">
+                                            @if (!empty($user?->webaddress))
+                                                {!! collect(explode(' ', $user->webaddress))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
+                                                <br>
+                                                Mobile: {{ $user->mobile ?? '-' }}<br>
+                                                Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            @else
+                                                P.O. Box 18728,<br>
+                                                DeLorean New York<br>
+                                                VAT No: 2617 348 2752<br>
+                                                Mobile: {{ $user->mobile ?? '-' }}<br>
+                                                Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            @endif
+                                        </address>
+                                    </div>
+                                    <div class="lh-lg pt-3 pt-sm-0">
+                                        <h2 class="fs-4 fw-bold text-primary">Invoice</h2>
+                                        <div>
+                                            <span class="fw-bold text-dark">Invoice:</span>
+                                            <span class="fw-bold text-primary">{{ $payment->invoice_number }}</span>
+                                        </div>
+                                        @if ($payment->payment_status !== 'paid')
                                             <div>
-                                                <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">
-                                                    <img src="{{ asset('assets/images/logo-full.png') }}"
-                                                        class="img-fluid" style="max-height: 60px;" alt="Logo">
-                                                </div>
-                                                <address class="text-muted">
-                                                    @if (!empty($user?->webaddress))
-                                                        {!! collect(explode(' ', $user->webaddress))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
-                                                        <br>
-                                                        Mobile: {{ $user->mobile ?? '-' }}<br>
-                                                        Email: {{ $user->webemail ?? ($user->email ?? '-') }}
-                                                    @else
-                                                        P.O. Box 18728,<br>
-                                                        DeLorean New York<br>
-                                                        VAT No: 2617 348 2752<br>
-                                                        Mobile: {{ $user->mobile ?? '-' }}<br>
-                                                        Email: {{ $user->webemail ?? ($user->email ?? '-') }}
-                                                    @endif
-                                                </address>
-                                            </div>
-                                            <div class="lh-lg pt-3 pt-sm-0">
-                                                <h2 class="fs-4 fw-bold text-primary">Invoice</h2>
-                                                <div>
-                                                    <span class="fw-bold text-dark">Invoice:</span>
-                                                    <span
-                                                        class="fw-bold text-primary">{{ $payment->invoice_number }}</span>
-                                                </div>
-                                                @if ($payment->payment_status !== 'paid')
-                                                    <div>
-                                                        <span class="fw-bold text-dark">Due Date:</span>
-                                                        <span class="text-muted">
-                                                            {{ optional($payment->due_date)->format('d M, Y') }}
-                                                        </span>
-                                                    </div>
-                                                @endif
-                                                <div>
-                                                    <span class="fw-bold text-dark">Issued Date:</span>
-                                                    <span class="text-muted">
-                                                        {{ optional($payment->issue_date)->format('d M, Y') }}
-                                                    </span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr class="border-dashed">
-                                    <div class="px-4 py-sm-5">
-                                        <div class="d-sm-flex gap-4 justify-content-center">
-                                            <div class="text-sm-end">
-                                                <h2 class="fs-16 fw-bold text-dark mb-3">Invoiced To:</h2>
-                                                <address class="text-muted lh-lg">
-                                                    {{ $payment->to_name }}<br>
-                                                    {{ $payment->to_address }}<br>
-                                                    Email: {{ $payment->to_email }}<br>
-                                                    Phone: {{ $payment->to_phone }}
-                                                </address>
-
-                                            </div>
-                                            <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block">
-                                            </div>
-                                            <div class="mt-4 mt-sm-0">
-                                                <h2 class="fs-16 fw-bold text-dark mb-3">Payment Details:</h2>
-                                                <div class="text-muted lh-lg">
-                                                    <div>
-                                                        <span class="text-muted">Total Due:</span>
-                                                        <span class="fw-bold text-dark">
-                                                            {{ $payment->currency }}
-                                                            {{ number_format($payment->grand_total, 2) }}
-                                                        </span>
-
-                                                    </div>
-                                                    <div>
-                                                        <span class="text-muted">Payout Status:</span>
-                                                        @php
-                                                            $statusColor = match ($payment->payment_status) {
-                                                                'paid' => 'text-success',
-                                                                'failed' => 'text-danger',
-                                                                'cancelled' => 'text-secondary',
-                                                                default => 'text-warning',
-                                                            };
-                                                        @endphp
-
-                                                        <span class="fw-bold {{ $statusColor }}">
-                                                            {{ ucfirst($payment->payment_status) }}
-                                                        </span>
-
-                                                    </div>
-                                                    <div>
-                                                        <span class="text-muted">Card Holder:</span>
-                                                        <span class="fw-bold text-dark">Alexandra Della</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr class="border-dashed mb-0">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="border-end">Enrolled Courses</th>
-                                                    <th class="text-end">Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                @php $totalAmount = 0; @endphp
-
-                                                @if ($payment && $payment->course)
-                                                    @php
-                                                        $courseIds = explode(',', $payment->course_id);
-                                                        $courses = \App\Models\Course::whereIn('id', $courseIds)->get();
-                                                    @endphp
-
-                                                    @foreach ($courses as $course)
-                                                        @php
-                                                            $totalAmount += $course->price;
-                                                        @endphp
-                                                        <tr>
-                                                            <td class="border-end">
-                                                                {{ $course->title }}
-                                                            </td>
-                                                            <td class="text-end fw-semibold">
-                                                                {{ $payment->currency }}
-                                                                {{ number_format($course->price, 2) }}
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
-
-                                                {{-- Sub Total --}}
-                                                <tr>
-                                                    <td class="fw-semibold text-dark text-end border-end">Sub Total
-                                                    </td>
-                                                    <td class="fw-bold text-dark text-end">
-                                                        {{ $payment->currency }}
-                                                        {{ number_format($payment->sub_total, 2) }}
-                                                    </td>
-                                                </tr>
-
-                                                {{-- Discount --}}
-                                                <tr>
-                                                    <td class="fw-semibold text-dark text-end border-end">
-                                                        Discount ({{ $payment->discount_percent ?? 0 }}%)
-                                                    </td>
-                                                    <td class="fw-bold text-success text-end">
-                                                        - {{ $payment->currency }}
-                                                        {{ number_format($payment->discount, 2) }}
-                                                    </td>
-                                                </tr>
-
-                                                {{-- Tax --}}
-                                                <tr>
-                                                    <td class="fw-semibold text-dark text-end border-end">
-                                                        Tax ({{ $payment->tax_percentage }}%)
-                                                    </td>
-                                                    <td class="fw-bold text-dark text-end">
-                                                        + {{ $payment->currency }}
-                                                        {{ number_format($payment->tax_amount, 2) }}
-                                                    </td>
-                                                </tr>
-
-                                                {{-- Grand Total --}}
-                                                <tr>
-                                                    <td class="fw-bold text-dark text-end border-end">Grand Amount
-                                                    </td>
-                                                    <td class="fw-bolder text-dark text-end">
-                                                        {{ $payment->currency }}
-                                                        {{ number_format($payment->grand_total, 2) }}
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <hr class="border-dashed mt-0">
-                                    <div class="px-4">
-                                        @if ($payment->invoice_note)
-                                            <div class="alert alert-dismissible p-4 mt-3 alert-soft-warning-message">
-                                                <p class="mb-0">
-                                                    <strong>NOTES:</strong><br>
-                                                    {{ $payment->invoice_note }}
-                                                </p>
+                                                <span class="fw-bold text-dark">Due Date:</span>
+                                                <span class="text-muted">
+                                                    {{ optional($payment->due_date)->format('d M, Y') }}
+                                                </span>
                                             </div>
                                         @endif
+                                        <div>
+                                            <span class="fw-bold text-dark">Issued Date:</span>
+                                            <span class="text-muted">
+                                                {{ optional($payment->issue_date)->format('d M, Y') }}
+                                            </span>
 
-                                    </div>
-                                    <div class="px-4 pt-4 d-sm-flex align-items-center justify-content-between">
-                                        <div class="mb-5 mb-sm-0">
-                                            <h6 class="fs-13 fw-bold mb-3">Terms &amp; Conditions:</h6>
-                                            <ul class="list-unstyled lh-lg fs-12">
-                                                <li># All payments are due within 7 days from the date of invoice
-                                                    issuance.</li>
-                                                <li># Payments can be made via cheque, credit/debit card, or online bank
-                                                    transfer.</li>
-
-                                                <li># This invoice is computer-generated and does not require a physical
-                                                    signature.</li>
-                                            </ul>
-                                        </div>
-                                        <div class="text-center">
-                                            @if ($user && $user->accsign)
-                                                <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
-                                                    class="img-fluid wd-100" alt="signature">
-                                            @else
-                                                <img src="assets/images/general/signature.png" class="img-fluid wd-100"
-                                                    alt="default signature">
-                                            @endif
-
-                                            <h6 class="fs-13 fw-bold mt-2">Account Manager</h6>
-                                            <p class="fs-11 fw-semibold text-muted">26 MAY 2023, 10:35PM</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
-                    @endif
+                            <hr class="border-dashed">
+                            <div class="px-4 py-sm-5">
+                                <div class="d-sm-flex gap-4 justify-content-center">
+                                    <div class="text-sm-end">
+                                        <h2 class="fs-16 fw-bold text-dark mb-3">Invoiced To:</h2>
+                                        <address class="text-muted lh-lg">
+                                            {{ $payment->to_name }}<br>
+                                            {{ $payment->to_address }}<br>
+                                            Email: {{ $payment->to_email }}<br>
+                                            Phone: {{ $payment->to_phone }}
+                                        </address>
+
+                                    </div>
+                                    <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block">
+                                    </div>
+                                    <div class="mt-4 mt-sm-0">
+                                        <h2 class="fs-16 fw-bold text-dark mb-3">Payment Details:</h2>
+                                        <div class="text-muted lh-lg">
+                                            <div>
+                                                <span class="text-muted">Total Due:</span>
+                                                <span class="fw-bold text-dark">
+                                                    {{ $payment->currency }}
+                                                    {{ number_format($payment->grand_total, 2) }}
+                                                </span>
+
+                                            </div>
+                                            <div>
+                                                <span class="text-muted">Payout Status:</span>
+                                                @php
+                                                    $statusColor = match ($payment->payment_status) {
+                                                        'paid' => 'text-success',
+                                                        'failed' => 'text-danger',
+                                                        'cancelled' => 'text-secondary',
+                                                        default => 'text-warning',
+                                                    };
+                                                @endphp
+
+                                                <span class="fw-bold {{ $statusColor }}">
+                                                    {{ ucfirst($payment->payment_status) }}
+                                                </span>
+
+                                            </div>
+                                            <div>
+                                                <span class="text-muted">Card Holder:</span>
+                                                <span class="fw-bold text-dark">Alexandra Della</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="border-dashed mb-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-end">Enrolled Courses</th>
+                                            <th class="text-end">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @php $totalAmount = 0; @endphp
+
+                                        @if ($payment && $payment->course)
+                                            @php
+                                                $courseIds = explode(',', $payment->course_id);
+                                                $courses = \App\Models\Course::whereIn('id', $courseIds)->get();
+                                            @endphp
+
+                                            @foreach ($courses as $course)
+                                                @php
+                                                    $totalAmount += $course->price;
+                                                @endphp
+                                                <tr>
+                                                    <td class="border-end">
+                                                        {{ $course->title }}
+                                                    </td>
+                                                    <td class="text-end fw-semibold">
+                                                        {{ $payment->currency }}
+                                                        {{ number_format($course->price, 2) }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+
+                                        {{-- Sub Total --}}
+                                        <tr>
+                                            <td class="fw-semibold text-dark text-end border-end">Sub Total
+                                            </td>
+                                            <td class="fw-bold text-dark text-end">
+                                                {{ $payment->currency }}
+                                                {{ number_format($payment->sub_total, 2) }}
+                                            </td>
+                                        </tr>
+
+                                        {{-- Discount --}}
+                                        <tr>
+                                            <td class="fw-semibold text-dark text-end border-end">
+                                                Discount ({{ $payment->discount_percent ?? 0 }}%)
+                                            </td>
+                                            <td class="fw-bold text-success text-end">
+                                                - {{ $payment->currency }}
+                                                {{ number_format($payment->discount, 2) }}
+                                            </td>
+                                        </tr>
+
+                                        {{-- Tax --}}
+                                        <tr>
+                                            <td class="fw-semibold text-dark text-end border-end">
+                                                Tax ({{ $payment->tax_percentage }}%)
+                                            </td>
+                                            <td class="fw-bold text-dark text-end">
+                                                + {{ $payment->currency }}
+                                                {{ number_format($payment->tax_amount, 2) }}
+                                            </td>
+                                        </tr>
+
+                                        {{-- Grand Total --}}
+                                        <tr>
+                                            <td class="fw-bold text-dark text-end border-end">Grand Amount
+                                            </td>
+                                            <td class="fw-bolder text-dark text-end">
+                                                {{ $payment->currency }}
+                                                {{ number_format($payment->grand_total, 2) }}
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr class="border-dashed mt-0">
+                            <div class="px-4">
+                                @if ($payment->invoice_note)
+                                    <div class="alert alert-dismissible p-4 mt-3 alert-soft-warning-message">
+                                        <p class="mb-0">
+                                            <strong>NOTES:</strong><br>
+                                            {{ $payment->invoice_note }}
+                                        </p>
+                                    </div>
+                                @endif
+
+                            </div>
+                            <div class="px-4 pt-4 d-sm-flex align-items-center justify-content-between">
+                                <div class="mb-5 mb-sm-0">
+                                    <h6 class="fs-13 fw-bold mb-3">Terms &amp; Conditions:</h6>
+                                    <ul class="list-unstyled lh-lg fs-12">
+                                        <li># All payments are due within 7 days from the date of invoice
+                                            issuance.</li>
+                                        <li># Payments can be made via cheque, credit/debit card, or online bank
+                                            transfer.</li>
+
+                                        <li># This invoice is computer-generated and does not require a physical
+                                            signature.</li>
+                                    </ul>
+                                </div>
+                                <div class="text-center">
+                                    @if ($user && $user->accsign)
+                                        <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
+                                            class="img-fluid wd-100" alt="signature">
+                                    @else
+                                        <img src="assets/images/general/signature.png" class="img-fluid wd-100"
+                                            alt="default signature">
+                                    @endif
+
+                                    <h6 class="fs-13 fw-bold mt-2">Account Manager</h6>
+                                    <p class="fs-11 fw-semibold text-muted">26 MAY 2023, 10:35PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
