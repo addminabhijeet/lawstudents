@@ -210,6 +210,8 @@ class CourseController extends Controller
             'instagram' => $request->instagram,
             'pinterest' => $request->pinterest,
             'twitter' => $request->twitter,
+            'defaultpass' => $request->defaultpass,
+            
         ]);
 
         return back()->with('success', 'Gallery updated successfully');

@@ -136,6 +136,12 @@
                                         value="{{ $admin->twitter ?? '' }}" placeholder="Twitter">
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label">Default Password</label>
+                                    <input type="text" class="form-control"
+                                        value="{{ $admin->defaultpass ?? '' }}">
+                                </div>
+
 
                                 <button type="submit" class="btn btn-primary">
                                     Update
