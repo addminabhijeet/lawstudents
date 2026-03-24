@@ -138,8 +138,8 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Default Password</label>
-                                    <input type="text" class="form-control"
-                                        value="{{ $admin->defaultpass ?? '' }}">
+                                    <input type="text" name="defaultpass" class="form-control"
+                                        value="{{ $admin->defaultpass ?? '' }}" placeholder="Default Password">
                                 </div>
 
 
