@@ -417,7 +417,7 @@ class RoutingController extends Controller
             ]);
         }
 
-        return redirect()->route('editadmission', ['id' => $admission->id])
+        return redirect()->route('admin.editadmission', ['id' => $admission->id])
                  ->with('success', 'Student Registed successfully, Now Fill Admission details.');
     }
 
