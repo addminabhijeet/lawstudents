@@ -40,7 +40,7 @@
     <nav class="nxl-navigation">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="index.html" class="b-brand" style="display:flex; align-items:center; height:60px;">
+                <a class="b-brand" style="display:flex; align-items:center; height:60px;">
 
                     <!-- Large Logo -->
                     <img src="{{ asset('assets/images/logo-full.png') }}" alt="" class="logo logo-lg"
