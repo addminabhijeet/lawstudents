@@ -23,13 +23,6 @@
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
 
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
-                                <i class="feather-layers"></i>
-                                <span>All Category</span>
-                            </a>
-                        </li>
-
                         <!-- 🔹 Main Categories -->
                         <li class="nav-item mt-2 px-2 text-muted small fw-bold">Main Categories</li>
 
