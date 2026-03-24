@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use App\Models\Student;
 use App\Models\Payment;
 use App\Models\Course;
+use App\Models\User;
 use App\Models\Declaration;
 use App\Models\Defaultpassword;
 use App\Models\StudentAdmission;
@@ -264,7 +265,7 @@ class RoutingController extends Controller
     {
         // Get the last student username
         $lastStudent = Student::latest('id')->first();
-        $defaultpassword = Defaultpassword::latest('id')->value('defaultpassword');
+        $defaultpassword = User::first()->value('defaultpass');
         if ($lastStudent && preg_match('/STU(\d+)/', $lastStudent->username, $matches)) {
             $lastNumber = (int) $matches[1];
             $username = 'STU' . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
