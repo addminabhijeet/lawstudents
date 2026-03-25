@@ -115,7 +115,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('mailsetting', [CourseController::class, 'mailsetting'])
                 ->name('mailsetting');
 
-            Route::get('updatemailsetting', [CourseController::class, 'updatemailsetting'])
+            Route::post('updatemailsetting', [CourseController::class, 'updatemailsetting'])
                 ->name('updatemailsetting');
 
             Route::post('store-banner', [CourseController::class, 'storebanner'])
