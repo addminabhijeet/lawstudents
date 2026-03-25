@@ -70,6 +70,7 @@ class Payment extends Model
         'paid_amount' => 'decimal:2',
         'remaining_amount' => 'decimal:2',
         'discount_percent' => 'decimal:2',
+        'viewid' => 'boolean',
     ];
 
     /**
