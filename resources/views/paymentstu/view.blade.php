@@ -87,21 +87,22 @@
                                                     <span
                                                         class="fw-bold text-primary">{{ $payment->invoice_number }}</span>
                                                 </div>
-                                                @if ($payment->payment_status !== 'paid')
+                                                @if ($payment->payment_status !== 'paid' && !is_null($payment->due_date))
                                                     <div>
                                                         <span class="fw-bold text-dark">Due Date:</span>
                                                         <span class="text-muted">
-                                                            {{ optional($payment->due_date)->format('d M, Y') }}
+                                                            {{ $payment->due_date->format('d M, Y') }}
                                                         </span>
                                                     </div>
                                                 @endif
-                                                <div>
-                                                    <span class="fw-bold text-dark">Issued Date:</span>
-                                                    <span class="text-muted">
-                                                        {{ optional($payment->issue_date)->format('d M, Y') }}
-                                                    </span>
-
-                                                </div>
+                                                @if (!is_null($payment->issue_date))
+                                                    <div>
+                                                        <span class="fw-bold text-dark">Issued Date:</span>
+                                                        <span class="text-muted">
+                                                            {{ $payment->issue_date->format('d M, Y') }}
+                                                        </span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -147,10 +148,7 @@
                                                         </span>
 
                                                     </div>
-                                                    <div>
-                                                        <span class="text-muted">Card Holder:</span>
-                                                        <span class="fw-bold text-dark">Alexandra Della</span>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
