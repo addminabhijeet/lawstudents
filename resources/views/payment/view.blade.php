@@ -200,17 +200,6 @@
                                             </td>
                                         </tr>
 
-                                        {{-- Tax --}}
-                                        <tr>
-                                            <td class="fw-semibold text-dark text-end border-end">
-                                                Paid Amount 
-                                            </td>
-                                            <td class="fw-bold text-dark text-end">
-                                                - {{ $payment->currency }}
-                                                {{ number_format($payment->paid_amount, 2) }}
-                                            </td>
-                                        </tr>
-
                                         {{-- Grand Total --}}
                                         <tr>
                                             <td class="fw-bold text-dark text-end border-end">Grand Amount
@@ -218,6 +207,17 @@
                                             <td class="fw-bolder text-dark text-end">
                                                 {{ $payment->currency }}
                                                 {{ number_format($payment->grand_total, 2) }}
+                                            </td>
+                                        </tr>
+
+                                        {{-- Tax --}}
+                                        <tr>
+                                            <td class="fw-semibold text-dark text-end border-end">
+                                                Paid Amount
+                                            </td>
+                                            <td class="fw-bold text-dark text-end">
+                                                - {{ $payment->currency }}
+                                                {{ number_format($payment->paid_amount, 2) }}
                                             </td>
                                         </tr>
 
