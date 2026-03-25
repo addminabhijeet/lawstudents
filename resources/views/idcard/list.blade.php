@@ -128,6 +128,38 @@
                                     </tbody>
 
                                 </table>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <nav>
+                                        <ul class="pagination pagination-sm mb-0">
+                                            <!-- Previous Page -->
+                                            <li class="page-item {{ $payments->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $payments->previousPageUrl() }}"
+                                                    aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </a>
+                                            </li>
+
+                                            <!-- Page Numbers -->
+                                            @foreach ($payments->getUrlRange(1, $payments->lastPage()) as $page => $url)
+                                                <li
+                                                    class="page-item {{ $payments->currentPage() == $page ? 'active' : '' }}">
+                                                    <a class="page-link"
+                                                        href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            <!-- Next Page -->
+                                            <li class="page-item {{ !$payments->hasMorePages() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $payments->nextPageUrl() }}"
+                                                    aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
