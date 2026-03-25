@@ -211,25 +211,27 @@
                                         </tr>
 
                                         {{-- Tax --}}
-                                        <tr>
-                                            <td class="fw-semibold text-dark text-end border-end">
-                                                Paid Amount
-                                            </td>
-                                            <td class="fw-bold text-dark text-end">
-                                                - {{ $payment->currency }}
-                                                {{ number_format($payment->paid_amount, 2) }}
-                                            </td>
-                                        </tr>
+                                        @if ($payment->paid_amount > 0)
+                                            <tr>
+                                                <td class="fw-semibold text-dark text-end border-end">
+                                                    Paid Amount
+                                                </td>
+                                                <td class="fw-bold text-dark text-end">
+                                                    - {{ $payment->currency }}
+                                                    {{ number_format($payment->paid_amount, 2) }}
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td class="fw-semibold text-dark text-end border-end">
-                                                Remaining Amount
-                                            </td>
-                                            <td class="fw-bold text-dark text-end">
-                                                 {{ $payment->currency }}
-                                                {{ number_format($payment->remaining_amount, 2) }}
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td class="fw-semibold text-dark text-end border-end">
+                                                    Remaining Amount
+                                                </td>
+                                                <td class="fw-bold text-dark text-end">
+                                                    {{ $payment->currency }}
+                                                    {{ number_format($payment->remaining_amount, 2) }}
+                                                </td>
+                                            </tr>
+                                        @endif
 
                                     </tbody>
                                 </table>
