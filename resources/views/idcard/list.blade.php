@@ -115,7 +115,7 @@
                                                             class="avatar-text avatar-md toggle-viewid-btn"
                                                             data-id="{{ $firstPayment->id }}"
                                                             data-status="{{ $firstPayment->viewid ? 1 : 0 }}"
-                                                            title="{{ $firstPayment->viewid ? 'Hide' : 'Visible' }}">
+                                                            title="{{ $firstPayment->viewid ? 'Click to Hide' : 'Click to make Visible' }}">
                                                             <i
                                                                 class="feather {{ $firstPayment->viewid ? 'feather-eye-off' : 'feather-eye' }}"></i>
                                                         </button>
@@ -198,7 +198,8 @@
                     .then(data => {
                         if (data.success) {
                             this.dataset.status = data.new_status;
-                            this.title = data.new_status == 1 ? 'Click to Hide' : 'Click to make Visible';
+                            this.title = data.new_status == 1 ? 'Click to Hide' :
+                                'Click to make Visible';
                             this.querySelector('i').className =
                                 `feather ${data.new_status == 1 ? 'feather-eye-off' : 'feather-eye'}`;
                         }
