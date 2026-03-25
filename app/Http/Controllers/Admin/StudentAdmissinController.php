@@ -287,7 +287,7 @@ class StudentAdmissinController extends Controller
                 'invoice_number'   => $invoiceNumber,
                 'invoice_product'  => $courses->pluck('title')->implode(', '),
                 'issue_date'       => now(),
-                'due_date'         => now()->addDays(7),
+                'due_date'         => $admission->due_date,
                 'to_name'          => $admission->full_name,
                 'to_email'         => $admission->email,
                 'to_phone'         => $admission->phone,
@@ -321,8 +321,8 @@ class StudentAdmissinController extends Controller
                     'invoice_number'  => $nextInvoiceNumber,
                     'invoice_product' => $courses->pluck('title')->implode(', '),
 
-                    'issue_date'      => now(),
-                    'due_date'        => now()->addDays(7),
+                    'issue_date'      => $admission->issue_date,
+                    'due_date'        => $admission->due_date,
 
                     'to_name'         => $admission->full_name,
                     'to_email'        => $admission->email,
