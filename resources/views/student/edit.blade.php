@@ -68,7 +68,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('admin.registerstusubmit') }}" method="POST" class="mt-4">
+                            <form action="{{ route('admin.updatestusubmit') }}" method="POST" class="mt-4">
                                 @csrf
 
                                 <div class="row">
