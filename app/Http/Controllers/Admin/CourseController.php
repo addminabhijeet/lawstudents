@@ -146,8 +146,7 @@ class CourseController extends Controller
 
     public function listgallery()
     {
-        $gallery = Gallery::first();
-
+        $gallery = Gallery::latest()->get();
         return view('course.gallery', compact('gallery'));
     }
 
@@ -177,6 +176,46 @@ class CourseController extends Controller
         return back()->with('success', 'Gallery images uploaded successfully.');
     }
 
+    public function editgallery($id)
+    {
+        $gallery = Gallery::latest()->get();
+        $editItem = Gallery::findOrFail($id);
+
+        return view('course.gallery', compact('gallery', 'editItem'));
+    }
+
+    public function updategallery(Request $request, $id)
+    {
+        $item = Gallery::findOrFail($id);
+
+        $request->validate([
+            'image' => ['nullable', 'image', 'max:2048'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('gallery', 'public');
+            $item->image = $path;
+        }
+
+        $item->description = $request->description;
+        $item->save();
+
+        return redirect()->back()->with('success', 'Gallery updated successfully.');
+    }
+
+    public function deletegallery($id)
+    {
+        $item = Gallery::findOrFail($id);
+
+        if (Storage::disk('public')->exists($item->image)) {
+            Storage::disk('public')->delete($item->image);
+        }
+
+        $item->delete();
+
+        return back()->with('success', 'Gallery item deleted successfully.');
+    }
 
     public function admindetails()
     {
