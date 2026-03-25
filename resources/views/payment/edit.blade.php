@@ -61,7 +61,8 @@
                                                 <input class="form-control" type="date"
                                                     name="payments[{{ $pIndex }}][issue_date]"
                                                     value="{{ optional($payment->issue_date)->format('Y-m-d') }}"
-                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}>
+                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}
+                                                    min="{{ optional($payment->issue_date)->format('Y-m-d') }}">
                                             </div>
 
                                             <div class="form-group">
@@ -69,7 +70,8 @@
                                                 <input class="form-control" type="date"
                                                     name="payments[{{ $pIndex }}][due_date]"
                                                     value="{{ optional($payment->due_date)->format('Y-m-d') }}"
-                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}>
+                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}
+                                                    min="{{ optional($payment->issue_date)->format('Y-m-d') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -249,6 +251,21 @@
             }
         });
 
+    });
+</script>
+<script>
+    document.querySelectorAll('input[name*="[issue_date]"]').forEach(issueInput => {
+        const pIndex = issueInput.name.match(/\d+/)[0];
+        const dueInput = document.querySelector(`input[name="payments[${pIndex}][due_date]"]`);
+
+        if (!issueInput.readOnly && dueInput) {
+            issueInput.addEventListener('change', function() {
+                if (dueInput.value < this.value) {
+                    dueInput.value = this.value; // adjust due_date
+                }
+                dueInput.min = this.value;
+            });
+        }
     });
 </script>
 @include('layouts.partials.admin.theme')
