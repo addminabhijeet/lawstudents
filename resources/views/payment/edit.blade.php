@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Payment</li>
+                    <li class="breadcrumb-item">Payments</li>
                     <li class="breadcrumb-item">Edit</li>
                 </ul>
             </div>
