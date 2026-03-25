@@ -244,6 +244,7 @@ class RoutingControllerStu extends Controller
             ->first();
 
         $idcard = Payment::where('student_id', Auth::guard('student')->id())
+            ->where('viewid', 1)
             ->latest()
             ->first();
 
