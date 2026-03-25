@@ -46,7 +46,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('edit-admission/{id}', [StudentAdmissinController::class, 'edit'])
                 ->name('editadmission');
 
-            Route::get('destroy-admission', [StudentAdmissinController::class, 'destroy'])
+            Route::delete('destroy-admission/{id}', [StudentAdmissinController::class, 'destroy'])
                 ->name('destroyadmission');
 
             Route::delete('destroy-student/{id}', [RoutingController::class, 'destroystudent'])
