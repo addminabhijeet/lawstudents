@@ -87,13 +87,14 @@
                                                 </span>
                                             </div>
                                         @endif
-                                        <div>
-                                            <span class="fw-bold text-dark">Issued Date:</span>
-                                            <span class="text-muted">
-                                                {{ optional($payment->issue_date)->format('d M, Y') }}
-                                            </span>
-
-                                        </div>
+                                        @if (!is_null($payment->issue_date))
+                                            <div>
+                                                <span class="fw-bold text-dark">Issued Date:</span>
+                                                <span class="text-muted">
+                                                    {{ $payment->issue_date->format('d M, Y') }}
+                                                </span>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
