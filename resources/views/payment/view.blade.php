@@ -139,10 +139,6 @@
                                                 </span>
 
                                             </div>
-                                            <div>
-                                                <span class="text-muted">Card Holder:</span>
-                                                <span class="fw-bold text-dark">Alexandra Della</span>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
