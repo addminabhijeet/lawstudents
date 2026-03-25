@@ -89,46 +89,47 @@ class RoutingController extends Controller
             $currentPayment = Payment::find($payData['id']);
             if (!$currentPayment) continue;
 
-            $latestPaymentId = Payment::where('student_id', $currentPayment->student_id)
-                ->max('id');
-
-            if ($currentPayment->id != $latestPaymentId) {
-                continue;
-            }
-
-            $payment = Payment::where('student_id', $currentPayment->student_id)
-                ->orderBy('id', 'desc')
-                ->first();
-
-            if (!$payment) continue;
-
+            // Validator for dates (all payments) + paid_amount only for latest
             $validated = validator($payData, [
                 'due_date'     => 'nullable|date',
+                'issue_date'   => 'nullable|date',
                 'paid_amount'  => 'nullable|numeric|min:0',
                 'invoice_note' => 'nullable|string',
             ])->validate();
 
-            $dueDate = $validated['due_date'] ?? $payment->due_date;
+            // Update dates for all payments
+            $currentPayment->update([
+                'issue_date' => $validated['issue_date'] ?? $currentPayment->issue_date,
+                'due_date'   => $validated['due_date'] ?? $currentPayment->due_date,
+            ]);
+
+            // Handle paid_amount and remaining only for latest payment
+            $latestPaymentId = Payment::where('student_id', $currentPayment->student_id)
+                ->max('id');
+
+            if ($currentPayment->id != $latestPaymentId) {
+                continue; // skip paid_amount logic for older payments
+            }
 
             $paidAmount = array_key_exists('paid_amount', $validated) && $validated['paid_amount'] !== null
                 ? (float) $validated['paid_amount']
-                : $payment->paid_amount;
+                : $currentPayment->paid_amount;
 
-            $grandTotal = $payment->grand_total;
+            $grandTotal = $currentPayment->grand_total;
             $remainingAmount = $grandTotal - ($paidAmount ?? 0);
 
             $paymentStatus = ($paidAmount >= $grandTotal)
                 ? 'paid'
                 : ($paidAmount > 0 ? 'partial' : 'pending');
 
-            $payment->update([
-                'due_date'         => $dueDate,
+            $currentPayment->update([
                 'paid_amount'      => $paidAmount,
                 'remaining_amount' => $remainingAmount,
                 'payment_status'   => $paymentStatus,
-                'invoice_note'     => $validated['invoice_note'] ?? $payment->invoice_note,
+                'invoice_note'     => $validated['invoice_note'] ?? $currentPayment->invoice_note,
             ]);
 
+            // Your existing logic to create remaining payment stays unchanged
             if (
                 $paymentStatus === 'partial' &&
                 $remainingAmount > 0 &&
@@ -136,7 +137,7 @@ class RoutingController extends Controller
                 $paidAmount > 0
             ) {
 
-                $exists = Payment::where('student_id', $payment->student_id)
+                $exists = Payment::where('student_id', $currentPayment->student_id)
                     ->where('invoice_label', 'Remaining Payment')
                     ->where('grand_total', $remainingAmount)
                     ->whereDate('created_at', now()->toDateString())
@@ -157,25 +158,25 @@ class RoutingController extends Controller
                     $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
 
                     Payment::create([
-                        'student_id'       => $payment->student_id,
-                        'course_id'        => $payment->course_id,
+                        'student_id'       => $currentPayment->student_id,
+                        'course_id'        => $currentPayment->course_id,
 
                         'invoice_label'    => 'Remaining Payment',
                         'invoice_number'   => $nextInvoiceNumber,
-                        'invoice_product'  => $payment->invoice_product,
+                        'invoice_product'  => $currentPayment->invoice_product,
 
                         'issue_date'       => null,
                         'due_date'         => null,
 
-                        'to_name'          => $payment->to_name,
-                        'to_email'         => $payment->to_email,
-                        'to_phone'         => $payment->to_phone,
-                        'to_address'       => $payment->to_address,
+                        'to_name'          => $currentPayment->to_name,
+                        'to_email'         => $currentPayment->to_email,
+                        'to_phone'         => $currentPayment->to_phone,
+                        'to_address'       => $currentPayment->to_address,
 
                         'sub_total'        => $remainingAmount,
                         'grand_total'      => $remainingAmount,
 
-                        'currency'         => $payment->currency,
+                        'currency'         => $currentPayment->currency,
 
                         'payment_status'   => 'pending',
                         'paid_amount'      => null,
@@ -184,11 +185,11 @@ class RoutingController extends Controller
                 }
             }
         }
+
         return redirect()
             ->route('admin.listpayment')
             ->with('success', 'All payments updated successfully.');
     }
-
     public function addpayment()
     {
         return view('payment.add');
