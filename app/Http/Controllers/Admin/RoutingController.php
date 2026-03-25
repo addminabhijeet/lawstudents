@@ -87,8 +87,9 @@ class RoutingController extends Controller
             if (!$payment) continue;
 
             $validated = validator($payData, [
-                'due_date'    => 'nullable|date',
-                'paid_amount' => 'nullable|numeric|min:0',
+                'due_date'     => 'nullable|date',
+                'paid_amount'  => 'nullable|numeric|min:0',
+                'invoice_note' => 'nullable|string',
             ])->validate();
 
             $dueDate = $validated['due_date'] ?? $payment->due_date;
@@ -109,6 +110,7 @@ class RoutingController extends Controller
                 'paid_amount'      => $paidAmount,
                 'remaining_amount' => $remainingAmount,
                 'payment_status'   => $paymentStatus,
+                'invoice_note'     => $validated['invoice_note'] ?? $payment->invoice_note,
             ]);
 
             if (
