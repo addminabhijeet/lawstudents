@@ -263,7 +263,8 @@
                                     <div class="d-flex justify-content-between align-items-center mt-2">
                                         <span>Discount %:</span>
                                         <input type="number" id="customDiscount" class="form-control"
-                                            min="0" max="100" value="10">
+                                            min="0" max="100"
+                                            value="{{ old('discount_percent', $admission->discount_percent ?? 0) }}">
                                     </div>
 
                                     <div class="d-flex justify-content-between">
@@ -275,8 +276,9 @@
 
                                     <!-- Hidden fields for backend -->
                                     <input type="hidden" name="discount_percent" id="discountPercentInput"
-                                        value="10">
-                                    <input type="hidden" name="discount" id="discountInput" value="0">
+                                        value="{{ old('discount_percent', $admission->discount_percent ?? 0) }}">
+                                    <input type="hidden" name="discount" id="discountInput"
+                                        value="{{ old('discount', $admission->discount ?? 0) }}">
 
                                     <div class="d-flex justify-content-between fw-bold">
                                         <span>Total Payable:</span>
