@@ -19,6 +19,7 @@ class Payment extends Model
         'invoice_product',
         'issue_date',
         'due_date',
+        'deleted',
 
         'from_name',
         'from_email',
