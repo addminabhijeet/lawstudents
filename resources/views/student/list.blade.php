@@ -79,10 +79,10 @@
                                                         </a>
 
                                                         <form action="{{ route('admin.destroystudent', $student->id) }}"
-                                                            method="POST" class="delete-form">
+                                                            method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit"
+                                                            <button
                                                                 class="avatar-text avatar-md border-0 bg-transparent">
                                                                 <i class="feather feather-trash-2 text-danger"></i>
                                                             </button>
@@ -140,42 +140,4 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const forms = document.querySelectorAll('.delete-form');
-
-        forms.forEach(form => {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault(); // stop normal submit
-
-                Swal.fire({
-                    title: 'Are you sure you want to delete this student?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Create a temporary form and submit via JS to avoid multiple triggers
-                        const tempForm = document.createElement('form');
-                        tempForm.method = form.method;
-                        tempForm.action = form.action;
-
-                        // Clone CSRF and method inputs
-                        form.querySelectorAll('input').forEach(input => {
-                            tempForm.appendChild(input.cloneNode(true));
-                        });
-
-                        document.body.appendChild(tempForm);
-                        tempForm.submit();
-                    }
-                });
-            });
-        });
-    });
-</script>
 @include('layouts.partials.admin.theme')
