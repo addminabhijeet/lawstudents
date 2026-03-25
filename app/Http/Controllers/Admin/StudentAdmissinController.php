@@ -344,7 +344,7 @@ class StudentAdmissinController extends Controller
                 ]);
             }
         }
-        return redirect()->route('admin.editadmission')
+        return redirect()->route('admin.listadmission')
             ->with('success', 'Student Admission Successfully.');
     }
 
