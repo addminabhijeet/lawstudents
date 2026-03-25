@@ -216,10 +216,16 @@ class RoutingController extends Controller
         return view('student.view', compact('student', 'defaultpassword'));
     }
 
+
     public function destroystudent($id)
     {
         $student = Student::findOrFail($id);
         $student->update(['deleted' => 1]);
+        StudentAdmission::where('student_id', $id)
+            ->update(['deleted' => 1]);
+        Payment::where('student_id', $id)
+            ->update(['deleted' => 1]);
+
         return redirect()->back()->with('success', 'Student deleted successfully.');
     }
 
