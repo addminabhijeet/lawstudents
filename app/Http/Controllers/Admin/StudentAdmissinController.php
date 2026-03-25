@@ -349,7 +349,15 @@ class StudentAdmissinController extends Controller
     public function destroy($id)
     {
         $admission = StudentAdmission::findOrFail($id);
-        $admission->delete();
+        $admission->update(['deleted' => 1]);
+        if ($admission->student_id) {
+            Student::where('id', $admission->student_id)
+                ->update(['deleted' => 1]);
+        }
+        StudentAdmission::where('student_id', $admission->student_id)
+            ->update(['deleted' => 1]);
+        Payment::where('student_id', $admission->student_id)
+            ->update(['deleted' => 1]);
 
         return redirect()->back()->with('success', 'Admission deleted successfully.');
     }
