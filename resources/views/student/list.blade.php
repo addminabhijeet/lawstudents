@@ -82,7 +82,7 @@
                                                             method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button
+                                                            <button type="submit"
                                                                 class="avatar-text avatar-md border-0 bg-transparent">
                                                                 <i class="feather feather-trash-2 text-danger"></i>
                                                             </button>
@@ -141,13 +141,14 @@
     <!-- [ Main Content ] end -->
 </main>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const forms = document.querySelectorAll('.delete-form');
 
         forms.forEach(form => {
             form.addEventListener('submit', function(e) {
-                e.preventDefault();
+                e.preventDefault(); // stop normal submit
 
                 Swal.fire({
                     title: 'Are you sure you want to delete this student?',
@@ -159,7 +160,18 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        form.submit();
+                        // Create a temporary form and submit via JS to avoid multiple triggers
+                        const tempForm = document.createElement('form');
+                        tempForm.method = form.method;
+                        tempForm.action = form.action;
+
+                        // Clone CSRF and method inputs
+                        form.querySelectorAll('input').forEach(input => {
+                            tempForm.appendChild(input.cloneNode(true));
+                        });
+
+                        document.body.appendChild(tempForm);
+                        tempForm.submit();
                     }
                 });
             });
