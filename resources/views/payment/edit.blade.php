@@ -268,63 +268,72 @@
         }
     });
 </script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // Paid Amount Validation (existing)
-        let input = document.getElementById('latest-paid-amount');
-        if (input) {
-            input.addEventListener('input', function() {
-                let max = parseFloat(this.dataset.max) || 0;
-                let value = parseFloat(this.value) || 0;
-                let errorMsg = this.closest('.col-md-2').querySelector('.error-msg');
-
-                if (value > max) {
-                    this.value = max;
-                    errorMsg.classList.remove('d-none');
-                    this.classList.add('is-invalid');
-                } else {
-                    errorMsg.classList.add('d-none');
-                    this.classList.remove('is-invalid');
-                }
-            });
-        }
-
-        // Date Restriction Logic
+        // Convert allPayments JSON to JS array with numeric IDs
         const allPayments = @json($allPayments);
 
-        document.querySelectorAll('input[name*="[issue_date]"]').forEach(issueInput => {
-            const pIndex = issueInput.name.match(/\d+/)[0];
-            const dueInput = document.querySelector(`input[name="payments[${pIndex}][due_date]"]`);
+        // Group payments by student_id
+        const grouped = {};
+        allPayments.forEach((p, index) => {
+            if (!grouped[p.student_id]) grouped[p.student_id] = [];
+            grouped[p.student_id].push({
+                ...p,
+                index
+            });
+        });
 
-            // Find previous payment (readonly) for the same student
-            const currentPayment = allPayments[pIndex];
-            const studentPayments = allPayments.filter(p => p.student_id == currentPayment.student_id);
-            const prevPayment = studentPayments
-                .filter(p => p.id < currentPayment.id)
-                .sort((a, b) => b.id - a.id)[0]; // latest readonly before this
+        // Iterate over each student's payments
+        Object.values(grouped).forEach(payments => {
+            // Sort by ID ascending
+            payments.sort((a, b) => a.id - b.id);
 
-            if (!issueInput.readOnly) {
-                // Set min for issue_date based on previous payment's issue_date
-                if (prevPayment) {
-                    issueInput.min = prevPayment.issue_date;
+            // Track the last readonly payment's dates
+            let lastIssue = null;
+            let lastDue = null;
+
+            payments.forEach(p => {
+                const issueInput = document.querySelector(
+                    `input[name="payments[${p.index}][issue_date]"]`);
+                const dueInput = document.querySelector(
+                    `input[name="payments[${p.index}][due_date]"]`);
+
+                if (!issueInput) return;
+
+                // If this payment is readonly, update lastIssue and lastDue
+                if (issueInput.readOnly) {
+                    lastIssue = issueInput.value;
+                    lastDue = dueInput ? dueInput.value : null;
+                    return; // nothing else to do for readonly
                 }
+
+                // For editable payment, set min strictly
+                if (lastIssue) issueInput.min = lastIssue;
+                if (dueInput) {
+                    const minDue = lastDue && issueInput.value < lastDue ? lastDue : issueInput
+                        .value;
+                    dueInput.min = minDue;
+                }
+
+                // Listen for changes and enforce min strictly
                 issueInput.addEventListener('change', function() {
+                    if (lastIssue && this.value < lastIssue) this.value = lastIssue;
                     if (dueInput) {
-                        // Set due_date min dynamically: max(issue_date, previous due_date)
-                        const prevDue = prevPayment ? prevPayment.due_date : this.value;
-                        dueInput.min = this.value > prevDue ? this.value : prevDue;
-                        if (dueInput.value < dueInput.min) dueInput.value = dueInput.min;
+                        const minDue = lastDue && this.value < lastDue ? lastDue : this
+                            .value;
+                        dueInput.min = minDue;
+                        if (dueInput.value < dueInput.min) dueInput.value = dueInput
+                        .min;
                     }
                 });
-            }
 
-            if (!dueInput.readOnly) {
-                // Set initial min for due_date based on previous payment and current issue_date
-                const prevDue = prevPayment ? prevPayment.due_date : issueInput.value;
-                dueInput.min = issueInput.value > prevDue ? issueInput.value : prevDue;
-            }
+                if (dueInput && !dueInput.readOnly) {
+                    dueInput.addEventListener('change', function() {
+                        if (lastDue && this.value < lastDue) this.value = lastDue;
+                    });
+                }
+            });
         });
     });
 </script>
