@@ -46,8 +46,8 @@
                         @if (isset($editItem))
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Current Image</label><br>
-                                <img src="{{ asset('storage/app/public/' . $editItem->image) }}" class="img-thumbnail rounded"
-                                    width="150">
+                                <img src="{{ asset('storage/app/public/' . $editItem->image) }}"
+                                    class="img-thumbnail rounded" width="150">
                             </div>
                         @endif
 
