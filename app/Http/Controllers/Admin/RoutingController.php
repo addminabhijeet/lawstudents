@@ -322,7 +322,7 @@ class RoutingController extends Controller
         // Create Admission
         $admission = StudentAdmission::create([
             'student_id' => $student->id,
-            'full_name' => $request->full_name,
+            'full_name' => $student->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'father_name' => $request->father_name,
