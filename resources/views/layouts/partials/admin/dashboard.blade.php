@@ -469,14 +469,16 @@
                         </a>
                     </div>
 
-
+                    @php
+                        use App\Models\User;
+                        $admin = User::first();
+                    @endphp
                     <div class="dropdown nxl-h-item">
                         <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
                             data-bs-auto-close="outside">
                             <img src="{{ !empty($admin->image) ? asset('storage/app/public/' . $admin->image) : asset('assets/images/avatar/1.png') }}"
                                 alt="user-image" class="img-fluid user-avtar me-0"
                                 onerror="this.src='{{ asset('assets/images/avatar/1.png') }}';">
-
                         </a>
                         <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
                             <div class="dropdown-header">
