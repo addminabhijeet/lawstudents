@@ -222,11 +222,18 @@ class RoutingController extends Controller
 
     public function destroystudent($id)
     {
+        // Soft delete the student
         $student = Student::findOrFail($id);
-        $student->update(['deleted' => 1]);
+        $student->deleted = 1;
+        $student->save();
 
-        StudentAdmission::where('student_id', $id)->update(['deleted' => 1]);
-        Payment::where('student_id', $id)->update(['deleted' => 1]);
+        // Soft delete related admission(s)
+        StudentAdmission::where('student_id', $id)
+            ->update(['deleted' => 1]);
+
+        // Soft delete related payments
+        Payment::where('student_id', $id)
+            ->update(['deleted' => 1]);
 
         return redirect()->back()->with('success', 'Student deleted successfully.');
     }
