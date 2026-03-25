@@ -221,6 +221,16 @@
                                             </td>
                                         </tr>
 
+                                        <tr>
+                                            <td class="fw-semibold text-dark text-end border-end">
+                                                Remaining Amount
+                                            </td>
+                                            <td class="fw-bold text-dark text-end">
+                                                - {{ $payment->currency }}
+                                                {{ number_format($payment->remaining_amount, 2) }}
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
