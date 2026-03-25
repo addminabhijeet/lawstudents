@@ -202,6 +202,24 @@
     document.addEventListener('DOMContentLoaded', function() {
         const buttons = document.querySelectorAll('.toggle-viewid-btn');
 
+        function showAlert(type, message) {
+            // type: 'success' or 'error'
+            const container = document.querySelector('.main-content');
+            const alertDiv = document.createElement('div');
+            alertDiv.className =
+                `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+            container.prepend(alertDiv);
+            // Auto-dismiss after 3 seconds
+            setTimeout(() => {
+                const bsAlert = bootstrap.Alert.getOrCreateInstance(alertDiv);
+                bsAlert.close();
+            }, 3000);
+        }
+
         buttons.forEach(button => {
             button.addEventListener('click', function() {
                 const id = this.dataset.id;
@@ -226,9 +244,19 @@
                                 'Click to make Visible';
                             this.querySelector('i').className =
                                 `feather ${data.new_status == 1 ? 'feather-eye-off' : 'feather-eye'}`;
+
+                            // Show success alert
+                            showAlert('success',
+                            `ID Card visibility updated successfully.`);
+                        } else {
+                            // Show error alert
+                            showAlert('error', `Failed to update ID Card visibility.`);
                         }
                     })
-                    .catch(err => console.error(err));
+                    .catch(err => {
+                        console.error(err);
+                        showAlert('error', `Something went wrong. Please try again.`);
+                    });
             });
         });
     });
