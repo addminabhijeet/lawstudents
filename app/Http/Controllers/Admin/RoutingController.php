@@ -164,8 +164,8 @@ class RoutingController extends Controller
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $payment->invoice_product,
 
-                        'issue_date'       => now(),
-                        'due_date'         => $dueDate ?? now()->addDays(7),
+                        'issue_date'       => null,
+                        'due_date'         => null,
 
                         'to_name'          => $payment->to_name,
                         'to_email'         => $payment->to_email,

@@ -51,20 +51,25 @@
                                     <!-- HEADER -->
                                     <div class="px-4 pt-4">
                                         <h5 class="fw-bold text-primary">{{ $payment->invoice_number }}</h5>
+                                        @php
+                                            $latestId = $latestPayments[$payment->student_id] ?? null;
+                                        @endphp
 
                                         <div class="d-md-flex justify-content-end gap-4">
                                             <div class="form-group">
                                                 <label>Issue Date:</label>
                                                 <input class="form-control" type="date"
                                                     name="payments[{{ $pIndex }}][issue_date]"
-                                                    value="{{ optional($payment->issue_date)->format('Y-m-d') }}">
+                                                    value="{{ optional($payment->issue_date)->format('Y-m-d') }}"
+                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Due Date:</label>
                                                 <input class="form-control" type="date"
                                                     name="payments[{{ $pIndex }}][due_date]"
-                                                    value="{{ optional($payment->due_date)->format('Y-m-d') }}">
+                                                    value="{{ optional($payment->due_date)->format('Y-m-d') }}"
+                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}>
                                             </div>
                                         </div>
                                     </div>
