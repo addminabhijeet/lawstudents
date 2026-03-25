@@ -79,11 +79,11 @@
                                             <span class="fw-bold text-dark">Invoice:</span>
                                             <span class="fw-bold text-primary">{{ $payment->invoice_number }}</span>
                                         </div>
-                                        @if ($payment->payment_status !== 'paid')
+                                        @if ($payment->payment_status !== 'paid' && !is_null($payment->due_date))
                                             <div>
                                                 <span class="fw-bold text-dark">Due Date:</span>
                                                 <span class="text-muted">
-                                                    {{ optional($payment->due_date)->format('d M, Y') }}
+                                                    {{ $payment->due_date->format('d M, Y') }}
                                                 </span>
                                             </div>
                                         @endif
