@@ -81,10 +81,12 @@
                                     {{ $idcard->to_phone }}
                                 </div>
 
-                                <div class="mb-1">
-                                    <strong>Issue :</strong>
-                                    {{ optional($idcard->issue_date)->format('d M Y') }}
-                                </div>
+                                @if (!is_null($idcard->issue_date))
+                                    <div class="mb-1">
+                                        <strong>Issue :</strong>
+                                        {{ $idcard->issue_date->format('d M Y') }}
+                                    </div>
+                                @endif
 
                             </div>
 
