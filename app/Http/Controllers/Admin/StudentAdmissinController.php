@@ -342,7 +342,8 @@ class StudentAdmissinController extends Controller
                 ]);
             }
         }
-        return redirect()->back()->with('success', 'Admission updated successfully.');
+        return redirect()->route('admin.editadmission')
+            ->with('success', 'Student Admission Successfully.');
     }
 
     public function destroy($id)
