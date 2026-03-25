@@ -203,11 +203,11 @@
                                         {{-- Tax --}}
                                         <tr>
                                             <td class="fw-semibold text-dark text-end border-end">
-                                                Tax ({{ $payment->tax_percentage }}%)
+                                                Tax ({{ $payment->paid_amount }}%)
                                             </td>
                                             <td class="fw-bold text-dark text-end">
                                                 + {{ $payment->currency }}
-                                                {{ number_format($payment->tax_amount, 2) }}
+                                                {{ number_format($payment->paid_amount, 2) }}
                                             </td>
                                         </tr>
 
