@@ -438,7 +438,117 @@ class RoutingController extends Controller
             'password' => $data['password'] ?? $student->password,
         ]);
 
-        return redirect()->route('admin.liststudent')
-            ->with('success', 'Student updated successfully.');
+        $admission = StudentAdmission::where('student_id', $student->id)->first();
+
+        if ($admission) {
+
+            $admission->update([
+                'full_name'     => $request->name,
+                'email'         => $request->email,
+                'phone'         => $request->phone,
+                'father_name'   => $request->father_name,
+                'address_line1' => $request->address_line1,
+                'address_line2' => $request->address_line2,
+                'course_ids'    => $request->course_ids,
+                'admission_status' => $request->admission_status,
+                'paidamount'    => $request->paidamount ?? 0,
+                'remamount'     => $request->remamount ?? 0,
+                'discount_percent' => $request->discount_percent ?? 0,
+                'discount'         => $request->discount ?? 0,
+            ]);
+
+            $year = date('Y');
+
+            $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
+                ->orderBy('id', 'desc')
+                ->first();
+
+            $nextNumber = $lastInvoice
+                ? intval(substr($lastInvoice->invoice_number, 7)) + 1
+                : 1;
+
+            $invoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+            $courses = Course::whereIn('id', $request->course_ids ?? [])->get();
+
+            $subTotal = $courses->sum('price');
+
+            $discountPercent = (float) ($request->discount_percent ?? 0);
+            $discountAmount  = (float) ($request->discount ?? ($subTotal * ($discountPercent / 100)));
+            $grandTotal      = $subTotal - $discountAmount;
+
+            $paidAmount      = (float) ($request->paidamount ?? 0);
+            $remainingAmount = (float) ($request->remamount ?? ($grandTotal - $paidAmount));
+
+            $paymentStatus = $paidAmount >= $grandTotal
+                ? 'paid'
+                : ($paidAmount > 0 ? 'partial' : 'pending');
+
+            Payment::updateOrCreate(
+                [
+                    'student_id'    => $student->id,
+                    'invoice_label' => 'Admission Fee'
+                ],
+                [
+                    'course_id'       => !empty($request->course_ids) ? implode(',', $request->course_ids) : null,
+                    'invoice_number'  => $invoiceNumber,
+                    'invoice_product' => $courses->pluck('title')->implode(', '),
+
+                    'issue_date'      => now(),
+                    'due_date'        => now()->addDays(7),
+
+                    'to_name'         => $request->name,
+                    'to_email'        => $request->email,
+                    'to_phone'        => $request->phone,
+                    'to_address'      => $request->address_line1,
+
+                    'sub_total'       => $subTotal,
+                    'discount'        => $discountAmount,
+                    'discount_percent' => $discountPercent,
+                    'grand_total'     => $grandTotal,
+
+                    'currency'        => 'INR',
+                    'payment_status'  => $paymentStatus,
+                    'paid_amount'     => $paidAmount,
+                    'remaining_amount' => $remainingAmount,
+                ]
+            );
+
+            if ($paymentStatus === 'partial') {
+
+                $exists = Payment::where('student_id', $student->id)
+                    ->where('invoice_label', 'Admission Fee (Remaining)')
+                    ->exists();
+
+                if (! $exists) {
+
+                    Payment::create([
+                        'student_id'      => $student->id,
+                        'invoice_label'   => 'Admission Fee (Remaining)',
+
+                        'course_id'       => !empty($request->course_ids) ? implode(',', $request->course_ids) : null,
+                        'invoice_number'  => 'INV' . $year . str_pad($nextNumber + 1, 6, '0', STR_PAD_LEFT),
+                        'invoice_product' => $courses->pluck('title')->implode(', '),
+
+                        'issue_date'      => now(),
+                        'due_date'        => now()->addDays(7),
+
+                        'to_name'         => $request->name,
+                        'to_email'        => $request->email,
+                        'to_phone'        => $request->phone,
+                        'to_address'      => $request->address_line1,
+
+                        'sub_total'       => $remainingAmount,
+                        'grand_total'     => $remainingAmount,
+
+                        'currency'        => 'INR',
+                        'payment_status'  => 'pending',
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('admin.editadmission', ['id' => $admission->id])
+            ->with('success', 'Student Registed Successfully, Now Fill Admission Details.');
     }
 }
