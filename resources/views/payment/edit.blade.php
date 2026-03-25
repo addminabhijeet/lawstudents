@@ -195,7 +195,7 @@
                                             <label>Remaining Amount</label>
                                             <input type="number" step="0.01" class="form-control"
                                                 name="payments[{{ $pIndex }}][remaining_amount]"
-                                                value="{{ $payment->remaining_amount }}">
+                                                value="{{ $payment->remaining_amount }}" readonly>
                                         </div>
 
                                         <div class="col-md-4">
