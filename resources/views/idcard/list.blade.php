@@ -198,7 +198,7 @@
                     .then(data => {
                         if (data.success) {
                             this.dataset.status = data.new_status;
-                            this.title = data.new_status == 1 ? 'Hide' : 'Visible';
+                            this.title = data.new_status == 1 ? 'Click to Hide' : 'Click to make Visible';
                             this.querySelector('i').className =
                                 `feather ${data.new_status == 1 ? 'feather-eye-off' : 'feather-eye'}`;
                         }
