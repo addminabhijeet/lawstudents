@@ -237,21 +237,18 @@ class RoutingControllerStu extends Controller
 
     public function viewidcard()
     {
-        $admission = null;
-
         $admission = StudentAdmission::where('student_id', Auth::guard('student')->id())
             ->latest()
             ->first();
-
         $idcard = Payment::where('student_id', Auth::guard('student')->id())
             ->where('viewid', 1)
             ->latest()
             ->first();
 
-        $notFound = false;
+        $notFound = true;
 
-        if (!$idcard) {
-            $notFound = true;
+        if ($idcard) {
+            $notFound = false;
         }
 
         return view('idcardstu.idcard', compact('idcard', 'notFound', 'admission'));
