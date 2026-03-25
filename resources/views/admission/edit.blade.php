@@ -497,8 +497,10 @@
         discountInput.addEventListener('input', calculateFees);
         paidInput.addEventListener('input', calculateFees);
 
-        // Initial calculation on page load
-        calculateFees();
+        // Initial load fix (important for edit mode)
+        setTimeout(() => {
+            calculateFees();
+        }, 100);
     });
 </script>
 @include('layouts.partials.admin.theme')

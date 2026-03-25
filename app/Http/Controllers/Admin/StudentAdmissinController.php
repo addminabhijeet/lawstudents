@@ -178,23 +178,22 @@ class StudentAdmissinController extends Controller
             'email' => 'nullable|email|max:150',
             'phone' => 'nullable|string|max:20',
             'father_name' => 'nullable|string|max:150',
-
             'address_line1' => 'nullable|string|max:255',
             'address_line2' => 'nullable|string|max:255',
-
             'course_ids' => 'nullable|array',
-
             'admission_status' => 'required|in:pending,approved,rejected',
-
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'signature' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
-
             'paidamount' => 'nullable|numeric|min:0',
             'remamount' => 'nullable|numeric|min:0',
+            'discount_percent' => 'nullable|numeric|min:0|max:100',
+            'discount' => 'nullable|numeric|min:0',
         ]);
 
         $data['paidamount'] = $request->paidamount ?? 0;
         $data['remamount'] = $request->remamount ?? 0;
+        $data['discount_percent'] = $request->discount_percent ?? 0;
+        $data['discount'] = $request->discount ?? 0;
 
         if ($request->has('course_ids')) {
             $data['course_ids'] = $request->course_ids;
@@ -262,9 +261,13 @@ class StudentAdmissinController extends Controller
         $courses = Course::whereIn('id', $admission->course_ids ?? [])->get();
         $subTotal = $courses->sum('price');
 
-        // Discount fields from request
-        $discountPercent = (float) ($request->input('discount_percent') ?? 0);
-        $discountAmount  = (float) ($request->input('discount') ?? ($subTotal * ($discountPercent / 100)));
+        $discountPercent = (float) $request->input('discount_percent', 0);
+        $discountAmount  = (float) $request->input('discount', 0);
+
+        // fallback (only if frontend didn't send value)
+        if ($discountAmount == 0 && $discountPercent > 0) {
+            $discountAmount = $subTotal * ($discountPercent / 100);
+        }
         $grandTotal      = $subTotal - $discountAmount;
 
         // Paid and remaining amounts
