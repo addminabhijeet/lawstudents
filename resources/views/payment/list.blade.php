@@ -72,6 +72,9 @@
                                                         @if ($firstPayment->paid_amount > 0)
                                                             <div class="badge bg-soft-success text-success">Completed
                                                             </div>
+                                                        @else
+                                                            <div class="badge bg-soft-warning text-warning">Pending
+                                                            </div>
                                                         @endif
                                                     @elseif($firstPayment->payment_status == 'pending')
                                                         <div class="badge bg-soft-warning text-warning">Pending</div>
