@@ -77,86 +77,95 @@
                                             <label>To Name</label>
                                             <input type="text" class="form-control"
                                                 name="payments[{{ $pIndex }}][to_name]"
-                                                value="{{ $payment->to_name }}">
+                                                value="{{ $payment->to_name }}" readonly>
                                         </div>
 
                                         <div class="col-md-3">
                                             <label>To Email</label>
                                             <input type="email" class="form-control"
                                                 name="payments[{{ $pIndex }}][to_email]"
-                                                value="{{ $payment->to_email }}">
+                                                value="{{ $payment->to_email }}" readonly>
                                         </div>
 
                                         <div class="col-md-3">
                                             <label>To Phone</label>
                                             <input type="text" class="form-control"
                                                 name="payments[{{ $pIndex }}][to_phone]"
-                                                value="{{ $payment->to_phone }}">
+                                                value="{{ $payment->to_phone }}" readonly>
                                         </div>
 
                                         <div class="col-md-3">
                                             <label>To Address</label>
                                             <input type="text" class="form-control"
                                                 name="payments[{{ $pIndex }}][to_address]"
-                                                value="{{ $payment->to_address }}">
+                                                value="{{ $payment->to_address }}" readonly>
                                         </div>
 
                                         <div class="col-md-2">
                                             <label>Sub Total</label>
                                             <input type="number" step="0.01" class="form-control"
                                                 name="payments[{{ $pIndex }}][sub_total]"
-                                                value="{{ $payment->sub_total }}">
+                                                value="{{ $payment->sub_total }}" readonly>
                                         </div>
 
                                         <div class="col-md-2">
                                             <label>Tax %</label>
                                             <input type="number" step="0.01" class="form-control"
                                                 name="payments[{{ $pIndex }}][tax_percentage]"
-                                                value="{{ $payment->tax_percentage }}">
+                                                value="{{ $payment->tax_percentage }}" readonly>
                                         </div>
 
                                         <div class="col-md-2">
                                             <label>Tax Amount</label>
                                             <input type="number" step="0.01" class="form-control"
                                                 name="payments[{{ $pIndex }}][tax_amount]"
-                                                value="{{ $payment->tax_amount }}">
+                                                value="{{ $payment->tax_amount }}" readonly>
                                         </div>
 
                                         <div class="col-md-2">
                                             <label>Discount</label>
                                             <input type="number" step="0.01" class="form-control"
                                                 name="payments[{{ $pIndex }}][discount]"
-                                                value="{{ $payment->discount }}">
+                                                value="{{ $payment->discount }}" readonly>
                                         </div>
 
                                         <div class="col-md-2">
                                             <label>Discount %</label>
                                             <input type="number" step="0.01" class="form-control"
                                                 name="payments[{{ $pIndex }}][discount_percent]"
-                                                value="{{ $payment->discount_percent }}">
+                                                value="{{ $payment->discount_percent }}" readonly>
                                         </div>
 
                                         <div class="col-md-2">
                                             <label>Grand Total</label>
                                             <input type="number" step="0.01" class="form-control"
                                                 name="payments[{{ $pIndex }}][grand_total]"
-                                                value="{{ $payment->grand_total }}">
+                                                value="{{ $payment->grand_total }}" readonly>
                                         </div>
 
                                         <div class="col-md-2">
                                             <label>Payment Status</label>
-                                            <select class="form-control"
-                                                name="payments[{{ $pIndex }}][payment_status]">
+
+                                            <!-- Disabled Select (UI Readonly) -->
+                                            <select class="form-control" disabled>
                                                 <option value="pending"
                                                     {{ $payment->payment_status == 'pending' ? 'selected' : '' }}>
-                                                    Pending</option>
+                                                    Pending
+                                                </option>
                                                 <option value="partial"
                                                     {{ $payment->payment_status == 'partial' ? 'selected' : '' }}>
-                                                    Partial</option>
+                                                    Partial
+                                                </option>
                                                 <option value="paid"
-                                                    {{ $payment->payment_status == 'paid' ? 'selected' : '' }}>Paid
+                                                    {{ $payment->payment_status == 'paid' ? 'selected' : '' }}>
+                                                    Paid
                                                 </option>
                                             </select>
+
+                                            <!-- Hidden Input (keeps value submitted) -->
+                                            <input type="hidden"
+                                                name="payments[{{ $pIndex }}][payment_status]"
+                                                value="{{ $payment->payment_status }}">
                                         </div>
                                         @php
                                             $latestId = $latestPayments[$payment->student_id] ?? null;
@@ -181,7 +190,7 @@
                                                 Paid amount cannot be greater than remaining amount
                                             </small>
                                         </div>
-                                        
+
                                         <div class="col-md-2">
                                             <label>Remaining Amount</label>
                                             <input type="number" step="0.01" class="form-control"
