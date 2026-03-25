@@ -57,7 +57,9 @@ class StudentAdmission extends Model
         'email_verified',
         'phone_verified',
         'deleted',
-        'course_ids'
+        'course_ids',
+        'discount_percent',
+        'discount',
     ];
 
     protected $casts = [
@@ -69,6 +71,10 @@ class StudentAdmission extends Model
         'course_ids' => 'array',
         'email_verified' => 'boolean',
         'phone_verified' => 'boolean',
+        'discount_percent' => 'float',
+        'discount' => 'float',
+        'paidamount' => 'float',
+        'remamount' => 'float',
     ];
 
     /**
