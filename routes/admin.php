@@ -145,6 +145,15 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('store-gallery', [CourseController::class, 'storegallery'])
                 ->name('storegallery');
 
+            Route::get('gallery-edit/{id}', [CourseController::class, 'editgallery'])
+                ->name('editgallery');
+
+            Route::post('gallery-update/{id}', [CourseController::class, 'updategallery'])
+                ->name('updategallery');
+
+            Route::delete('gallery-delete/{id}', [CourseController::class, 'deletegallery'])
+                ->name('deletegallery');
+
             Route::post('category-store', [CourseController::class, 'storecategory'])
                 ->name('storecategory');
 
