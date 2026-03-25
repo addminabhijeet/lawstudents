@@ -375,7 +375,7 @@ class RoutingController extends Controller
             'invoice_product' => $courses->pluck('title')->implode(', '),
 
             'issue_date'      => now(),
-            'due_date'        => now()->addDays(7),
+            'due_date'        => null,
 
             'to_name'         => $request->full_name,
             'to_email'        => $request->email,
@@ -403,8 +403,8 @@ class RoutingController extends Controller
                 'invoice_number'  => 'INV' . $year . str_pad($nextNumber + 1, 6, '0', STR_PAD_LEFT),
                 'invoice_product' => $courses->pluck('title')->implode(', '),
 
-                'issue_date'      => now(),
-                'due_date'        => now()->addDays(7),
+                'issue_date'      => null,
+                'due_date'        => null,
 
                 'to_name'         => $request->full_name,
                 'to_email'        => $request->email,
