@@ -61,7 +61,6 @@
                                 <!-- Buttons -->
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-save me-1"></i>
                                         {{ isset($editItem) ? 'Update' : 'Save' }}
                                     </button>
 
