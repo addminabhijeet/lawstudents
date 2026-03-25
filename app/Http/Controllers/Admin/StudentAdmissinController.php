@@ -24,7 +24,9 @@ class StudentAdmissinController extends Controller
 
     public function index()
     {
-        $admissions = StudentAdmission::latest()->paginate(10);
+        $admissions = StudentAdmission::where('deleted', 0)
+            ->latest()
+            ->paginate(10);
 
         return view('admission.list', compact('admissions'));
     }

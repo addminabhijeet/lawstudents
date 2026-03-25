@@ -48,7 +48,10 @@ class RoutingController extends Controller
 
     public function listpayment()
     {
-        $payments = Payment::with('student')->latest()->paginate(10);
+        $payments = Payment::with('student')
+            ->where('deleted', 0)
+            ->latest()
+            ->paginate(10);
 
         return view('payment.list', compact('payments'));
     }
