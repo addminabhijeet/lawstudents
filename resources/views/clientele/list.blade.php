@@ -110,6 +110,38 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <nav>
+                                        <ul class="pagination pagination-sm mb-0">
+                                            <!-- Previous Page -->
+                                            <li class="page-item {{ $clienteles->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $clienteles->previousPageUrl() }}"
+                                                    aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </a>
+                                            </li>
+
+                                            <!-- Page Numbers -->
+                                            @foreach ($clienteles->getUrlRange(1, $clienteles->lastPage()) as $page => $url)
+                                                <li
+                                                    class="page-item {{ $clienteles->currentPage() == $page ? 'active' : '' }}">
+                                                    <a class="page-link"
+                                                        href="{{ $url }}">{{ $page }}</a>
+                                                </li>
+                                            @endforeach
+
+                                            <!-- Next Page -->
+                                            <li class="page-item {{ !$clienteles->hasMorePages() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $clienteles->nextPageUrl() }}"
+                                                    aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -40,7 +40,7 @@ class CourseController extends Controller
 
     public function listclientele()
     {
-        $clienteles = Clientele::latest()->get();
+        $clienteles = Clientele::latest()->paginate(10);
         return view('clientele.list', compact('clienteles'));
     }
 
@@ -211,7 +211,7 @@ class CourseController extends Controller
             'pinterest' => $request->pinterest,
             'twitter' => $request->twitter,
             'defaultpass' => $request->defaultpass,
-            
+
         ]);
 
         return back()->with('success', 'Gallery updated successfully');
