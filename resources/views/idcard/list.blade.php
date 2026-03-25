@@ -103,18 +103,22 @@
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
 
-                                                        {{-- Single ID card view (only first payment) --}}
+
                                                         <a href="{{ route('admin.viewidcard', $firstPayment->id) }}"
                                                             class="avatar-text avatar-md"
                                                             title="ID #{{ $firstPayment->invoice_number }}">
                                                             <i class="fas fa-id-card"></i>
                                                         </a>
 
-                                                        {{-- Single edit --}}
-                                                        <a href="{{ route('admin.editpayment', $firstPayment->id) }}"
-                                                            class="avatar-text avatar-md">
-                                                            <i class="feather feather-edit"></i>
-                                                        </a>
+
+                                                        <button type="button"
+                                                            class="avatar-text avatar-md toggle-viewid-btn"
+                                                            data-id="{{ $firstPayment->id }}"
+                                                            data-status="{{ $firstPayment->viewid ? 1 : 0 }}"
+                                                            title="{{ $firstPayment->viewid ? 'Hide' : 'Visible' }}">
+                                                            <i
+                                                                class="feather {{ $firstPayment->viewid ? 'feather-eye-off' : 'feather-eye' }}"></i>
+                                                        </button>
 
                                                     </div>
                                                 </td>
@@ -169,4 +173,39 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.toggle-viewid-btn');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const currentStatus = this.dataset.status;
+
+                fetch("{{ route('admin.toggleviewid') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        body: JSON.stringify({
+                            id: id,
+                            current_status: currentStatus
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.dataset.status = data.new_status;
+                            this.title = data.new_status == 1 ? 'Hide' : 'Visible';
+                            this.querySelector('i').className =
+                                `feather ${data.new_status == 1 ? 'feather-eye-off' : 'feather-eye'}`;
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+    });
+</script>
 @include('layouts.partials.admin.theme')

@@ -26,6 +26,8 @@ class Payment extends Model
         'from_phone',
         'from_address',
 
+         'viewid',
+
         'to_name',
         'to_email',
         'to_phone',

@@ -88,6 +88,9 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('list-idcard', [RoutingController::class, 'listidcard'])
                 ->name('listidcard');
 
+            Route::post('toggle-viewid', [RoutingController::class, 'toggleViewId'])
+                ->name('toggleviewid');
+
             Route::get('courses', [CourseController::class, 'listcourse'])
                 ->name('listcourse');
 

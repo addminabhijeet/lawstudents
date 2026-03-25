@@ -63,6 +63,19 @@ class RoutingController extends Controller
         return view('idcard.list', compact('payments'));
     }
 
+    public function toggleViewId(Request $request)
+    {
+        $payment = Payment::findOrFail($request->id);
+
+        $payment->viewid = !$payment->viewid;
+        $payment->save();
+
+        return response()->json([
+            'success' => true,
+            'new_status' => $payment->viewid ? 1 : 0
+        ]);
+    }
+
     public function updatepayment(Request $request, $id)
     {
         if (!$request->has('payments')) {
