@@ -240,14 +240,16 @@ class RoutingControllerStu extends Controller
         $admission = StudentAdmission::where('student_id', Auth::guard('student')->id())
             ->latest()
             ->first();
-        $idcard = Payment::where('student_id', Auth::guard('student')->id())
-            ->where('viewid', 1)
+
+        $latestPayment = Payment::where('student_id', Auth::guard('student')->id())
             ->latest()
             ->first();
 
+        $idcard = null;
         $notFound = true;
 
-        if ($idcard) {
+        if ($latestPayment && $latestPayment->viewid) {
+            $idcard = $latestPayment;
             $notFound = false;
         }
 
