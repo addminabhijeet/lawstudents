@@ -85,7 +85,8 @@
 
                                                         <form
                                                             action="{{ route('admin.destroyadmission', $admission->id) }}"
-                                                            method="POST">
+                                                            method="POST"
+                                                            onsubmit="return confirm('Are you sure you want to delete this admission?');">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button
@@ -99,7 +100,8 @@
                                         @endforeach
                                         @if ($admissions->isEmpty())
                                             <tr>
-                                                <td colspan="8" class="text-center text-muted">No admissions admissions
+                                                <td colspan="8" class="text-center text-muted">No admissions
+                                                    admissions
                                                     found.
                                                 </td>
                                             </tr>
