@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Banner;
 use App\Models\User;
 use App\Models\Gallery;
+use App\Models\MailSetting;
 
 
 class CourseController extends Controller
@@ -142,6 +143,32 @@ class CourseController extends Controller
         $banner = Banner::first();
 
         return view('course.banner', compact('banner'));
+    }
+
+    public function mailsetting()
+    {
+        $mailsetting = MailSetting::first();
+        return view('course.mailsetting', compact('mailsetting'));
+    }
+
+    public function updatemailsetting(Request $request, $id)
+    {
+        $data = $request->validate([
+            'mail_host'       => 'required|string',
+            'mail_port'       => 'required|numeric',
+            'mail_username'   => 'required|string',
+            'mail_password'   => 'required|string',
+            'mail_encryption' => 'required|string',
+            'mail_from_address' => 'required|email',
+            'mail_from_name'    => 'required|string',
+        ]);
+
+        MailSetting::updateOrCreate(
+            ['id' => $id],
+            $data
+        );
+
+        return back()->with('success', 'Mail settings updated successfully');
     }
 
     public function listgallery()
