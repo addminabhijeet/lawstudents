@@ -69,7 +69,10 @@
 
                                                 <td>
                                                     @if ($firstPayment->payment_status == 'paid')
-                                                        <div class="badge bg-soft-success text-success">Completed</div>
+                                                        @if ($firstPayment->paid_amount > 0)
+                                                            <div class="badge bg-soft-success text-success">Completed
+                                                            </div>
+                                                        @endif
                                                     @elseif($firstPayment->payment_status == 'pending')
                                                         <div class="badge bg-soft-warning text-warning">Pending</div>
                                                     @elseif($firstPayment->payment_status == 'failed')
