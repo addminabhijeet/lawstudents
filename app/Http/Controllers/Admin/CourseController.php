@@ -138,6 +138,207 @@ class CourseController extends Controller
         return back()->with('success', 'File deleted successfully.');
     }
 
+
+    public function listacts()
+    {
+        $actss = Clientele::latest()->paginate(10);
+        return view('acts.list', compact('actss'));
+    }
+
+    public function addacts()
+    {
+
+        return view('acts.add');
+    }
+
+    public function storeacts(Request $request)
+    {
+        $request->validate([
+            'pdf' => ['required'],
+            'pdf.*' => ['file', 'mimes:pdf'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        if ($request->hasFile('pdf')) {
+            foreach ($request->file('pdf') as $file) {
+                // Keep the original file name
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs('acts', $originalName, 'public');
+
+                Clientele::create([
+                    'pdfs' => $path,
+                    'description' => $request->description,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.listacts')
+            ->with('success', 'Acts PDFs uploaded successfully.');
+    }
+
+    public function editacts($id)
+    {
+        $acts = Clientele::findOrFail($id);
+        return view('acts.edit', compact('acts'));
+    }
+
+    public function updateacts(Request $request, $id)
+    {
+        $request->validate([
+            'description' => 'nullable|string',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240', // 10MB max
+        ]);
+
+        $acts = Clientele::findOrFail($id);
+
+        // Update PDFs if new files are uploaded
+        if ($request->hasFile('pdfs')) {
+            $pdfPaths = [];
+
+            foreach ($request->file('pdfs') as $file) {
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs('acts', $originalName, 'public');
+                $pdfPaths[] = $path;
+            }
+
+            // Save as JSON if multiple PDFs
+            $acts->pdfs = json_encode($pdfPaths);
+        }
+
+        // Update description
+        $acts->description = $request->description ?? $acts->description;
+
+        $acts->save();
+
+        return redirect()->route('admin.listacts')
+            ->with('success', 'Acts PDFs updated successfully.');
+    }
+
+    public function actsfiledelete(Request $request, $id)
+    {
+        $acts = Clientele::findOrFail($id);
+
+        $fileToDelete = $request->input('file');
+
+        if (!$fileToDelete) {
+            return back()->with('error', 'No file specified for deletion.');
+        }
+
+        $pdfs = $acts->pdfs ?? [];
+        $updatedPdfs = [];
+
+        foreach ($pdfs as $pdf) {
+            if ($pdf['file'] !== $fileToDelete) {
+                $updatedPdfs[] = $pdf;
+            }
+        }
+
+        $acts->update(['pdfs' => $updatedPdfs]);
+
+        return back()->with('success', 'File deleted successfully.');
+    }
+
+
+    public function listrules()
+    {
+        $ruless = Clientele::latest()->paginate(10);
+        return view('rules.list', compact('ruless'));
+    }
+
+    public function addrules()
+    {
+
+        return view('rules.add');
+    }
+
+    public function storerules(Request $request)
+    {
+        $request->validate([
+            'pdf' => ['required'],
+            'pdf.*' => ['file', 'mimes:pdf'],
+            'description' => ['nullable', 'string'],
+        ]);
+
+        if ($request->hasFile('pdf')) {
+            foreach ($request->file('pdf') as $file) {
+                // Keep the original file name
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs('rules', $originalName, 'public');
+
+                Clientele::create([
+                    'pdfs' => $path,
+                    'description' => $request->description,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.listrules')
+            ->with('success', 'Rules PDFs uploaded successfully.');
+    }
+
+    public function editrules($id)
+    {
+        $rules = Clientele::findOrFail($id);
+        return view('rules.edit', compact('rules'));
+    }
+
+    public function updaterules(Request $request, $id)
+    {
+        $request->validate([
+            'description' => 'nullable|string',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240', // 10MB max
+        ]);
+
+        $rules = Clientele::findOrFail($id);
+
+        // Update PDFs if new files are uploaded
+        if ($request->hasFile('pdfs')) {
+            $pdfPaths = [];
+
+            foreach ($request->file('pdfs') as $file) {
+                $originalName = $file->getClientOriginalName();
+                $path = $file->storeAs('rules', $originalName, 'public');
+                $pdfPaths[] = $path;
+            }
+
+            // Save as JSON if multiple PDFs
+            $rules->pdfs = json_encode($pdfPaths);
+        }
+
+        // Update description
+        $rules->description = $request->description ?? $rules->description;
+
+        $rules->save();
+
+        return redirect()->route('admin.listclientele')
+            ->with('success', 'Clientele PDFs updated successfully.');
+    }
+
+    public function rulesfiledelete(Request $request, $id)
+    {
+        $rules = Clientele::findOrFail($id);
+
+        $fileToDelete = $request->input('file');
+
+        if (!$fileToDelete) {
+            return back()->with('error', 'No file specified for deletion.');
+        }
+
+        $pdfs = $rules->pdfs ?? [];
+        $updatedPdfs = [];
+
+        foreach ($pdfs as $pdf) {
+            if ($pdf['file'] !== $fileToDelete) {
+                $updatedPdfs[] = $pdf;
+            }
+        }
+
+        $rules->update(['pdfs' => $updatedPdfs]);
+
+        return back()->with('success', 'File deleted successfully.');
+    }
+
+
     public function listbanner()
     {
         $banner = Banner::first();
