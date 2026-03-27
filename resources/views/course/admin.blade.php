@@ -85,6 +85,20 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="form-label">Center Address</label>
+
+                                    <input type="text" name="centerone" class="form-control"
+                                        value="{{ $admin->centerone ?? '' }}" placeholder="Website">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Center Two Address</label>
+
+                                    <input type="text" name="centertwo" class="form-control"
+                                        value="{{ $admin->centertwo ?? '' }}" placeholder="Website">
+                                </div>
+
+                                <div class="mb-3">
                                     <label class="form-label">Accountant Signature</label>
 
                                     <input type="file" name="accsign" class="form-control">
