@@ -112,6 +112,42 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::delete('delete-clientele', [CourseController::class, 'clientelefiledelete'])
                 ->name('clientelefiledelete');
 
+            Route::get('list-acts', [CourseController::class, 'listacts'])
+                ->name('listacts');
+
+            Route::get('add-acts', [CourseController::class, 'addacts'])
+                ->name('addacts');
+
+            Route::post('store-acts', [CourseController::class, 'storeacts'])
+                ->name('storeacts');
+
+            Route::get('edit-acts/{id}', [CourseController::class, 'editacts'])
+                ->name('editacts');
+
+            Route::post('update-acts/{id}', [CourseController::class, 'updateacts'])
+                ->name('updateacts');
+
+            Route::delete('delete-acts', [CourseController::class, 'actsfiledelete'])
+                ->name('actsfiledelete');
+
+            Route::get('list-rules', [CourseController::class, 'listrules'])
+                ->name('listrules');
+
+            Route::get('add-rules', [CourseController::class, 'addrules'])
+                ->name('addrules');
+
+            Route::post('store-rules', [CourseController::class, 'storerules'])
+                ->name('storerules');
+
+            Route::get('edit-rules/{id}', [CourseController::class, 'editrules'])
+                ->name('editrules');
+
+            Route::post('update-rules/{id}', [CourseController::class, 'updaterules'])
+                ->name('updaterules');
+
+            Route::delete('delete-rules', [CourseController::class, 'rulesfiledelete'])
+                ->name('rulesfiledelete');
+
             Route::get('banner', [CourseController::class, 'listbanner'])
                 ->name('listbanner');
 
