@@ -87,15 +87,13 @@
                                 <div class="mb-3">
                                     <label class="form-label">Center Address</label>
 
-                                    <input type="text" name="centerone" class="form-control"
-                                        value="{{ $admin->centerone ?? '' }}" placeholder="Website">
+                                    <textarea name="centerone" class="form-control" placeholder="Website">{{ $admin->centerone ?? '' }}</textarea>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Center Two Address</label>
 
-                                    <input type="text" name="centertwo" class="form-control"
-                                        value="{{ $admin->centertwo ?? '' }}" placeholder="Website">
+                                    <textarea name="centertwo" class="form-control" placeholder="Website">{{ $admin->centertwo ?? '' }}</textarea>
                                 </div>
 
                                 <div class="mb-3">
