@@ -10,7 +10,7 @@ use App\Models\Act;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ActsController extends Controller
+class ActController extends Controller
 {
     public function __invoke(): View
     {

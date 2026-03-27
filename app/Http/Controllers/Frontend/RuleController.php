@@ -10,7 +10,7 @@ use App\Models\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class RulesController extends Controller
+class RuleController extends Controller
 {
     public function __invoke(): View
     {
