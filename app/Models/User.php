@@ -35,7 +35,9 @@ class User extends Authenticatable
         'order',
         'accsign',
         'defaultpass',
-        'image'
+        'image',
+        'centerone',
+        'centertwo',
     ];
 
     /**
