@@ -73,6 +73,8 @@
                                 <ul>
                                     <li><a href="{{ route('frontend.home') }}" class=" mainhome">Home</a></li>
                                     <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+                                    <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
+                                    <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                                     <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
                                     <li><a href="{{ route('frontend.clientele') }}">Clientele</a></li>
                                     <li><a href="{{ route('frontend.course') }}">Course</a></li>

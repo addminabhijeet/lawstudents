@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\FreeNotesController;
+use App\Http\Controllers\Frontend\RulesController;
+use App\Http\Controllers\Frontend\ActsController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\CourseController;
@@ -17,6 +19,8 @@ Route::middleware(['web'])
     ->group(function () {
         Route::get('', HomeController::class)->name('home');
         Route::get('about-us', AboutController::class)->name('about');
+        Route::get('rules', RulesController::class)->name('rules');
+        Route::get('acts', ActsController::class)->name('acts');
         Route::get('free-notes', FreeNotesController::class)->name('notes');
         Route::get('view-note/{id}', [FreeNotesController::class, 'viewnote'])->name('viewnote');
         Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnotes'])->name('viewnotes');
