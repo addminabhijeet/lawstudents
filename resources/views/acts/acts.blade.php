@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-3 m-auto">
                     <div class="welcome-inner-header text-center">
-                        <h1>Free Notes</h1>
-                        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Free Notes</a>
+                        <h1>Acts</h1>
+                        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Acts</a>
                         <img src="/img/elements/elementor20.png" alt="">
                     </div>
                 </div>
