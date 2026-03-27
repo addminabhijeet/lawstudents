@@ -277,8 +277,8 @@ class CourseController extends Controller
             'pinterest' => $request->pinterest,
             'twitter' => $request->twitter,
             'defaultpass' => $request->defaultpass,
-            'defaultpass' => $request->defaultpass,
-            'defaultpass' => $request->defaultpass,
+            'centerone' => $request->centerone,
+            'centerone' => $request->centerone,
 
         ]);
 
