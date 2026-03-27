@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Clientele</li>
+                    <li class="breadcrumb-item">Rules</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -17,7 +17,7 @@
                 <div class="page-header-right-items">
 
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addclientele') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.addrules') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
                             <span>Add Student</span>
                         </a>
@@ -39,7 +39,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="clienteleList">
+                                <table class="table table-hover" id="rulesList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -50,14 +50,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($clienteles as $clientele)
+                                        @forelse ($ruless as $rules)
                                             @php
                                                 // Make sure $pdfs is always an array of arrays
                                                 $pdfs = [];
-                                                if (!empty($clientele->pdfs)) {
+                                                if (!empty($rules->pdfs)) {
                                                     $pdfs[] = [
-                                                        'file' => $clientele->pdfs,
-                                                        'description' => $clientele->description,
+                                                        'file' => $rules->pdfs,
+                                                        'description' => $rules->description,
                                                     ];
                                                 }
                                             @endphp
@@ -73,19 +73,19 @@
 
                                                         <td>{{ $item['description'] ?? 'No description' }}</td>
 
-                                                        <td>{{ \Carbon\Carbon::parse($clientele->created_at)->format('Y-m-d, h:i A') }}
+                                                        <td>{{ \Carbon\Carbon::parse($rules->created_at)->format('Y-m-d, h:i A') }}
                                                         </td>
 
                                                         <td>
                                                             <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editclientele', [$clientele->id]) }}"
+                                                                <a href="{{ route('admin.editrules', [$rules->id]) }}"
                                                                     class="btn btn-sm btn-primary">Edit</a>
 
                                                                 <a href="{{ asset('storage/app/public/' . $item['file']) }}"
                                                                     class="btn btn-sm btn-primary">View</a>
 
                                                                 <form method="POST"
-                                                                    action="{{ route('admin.clientelefiledelete', [$clientele->id]) }}"
+                                                                    action="{{ route('admin.rulesfiledelete', [$rules->id]) }}"
                                                                     class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -105,7 +105,7 @@
                                             @endif
                                         @empty
                                             <tr>
-                                                <td colspan="5" class="text-center">No Clienteles Found</td>
+                                                <td colspan="5" class="text-center">No ruless Found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -114,8 +114,8 @@
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">
                                             <!-- Previous Page -->
-                                            <li class="page-item {{ $clienteles->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $clienteles->previousPageUrl() }}"
+                                            <li class="page-item {{ $ruless->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $ruless->previousPageUrl() }}"
                                                     aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="visually-hidden">Previous</span>
@@ -123,17 +123,17 @@
                                             </li>
 
                                             <!-- Page Numbers -->
-                                            @foreach ($clienteles->getUrlRange(1, $clienteles->lastPage()) as $page => $url)
+                                            @foreach ($ruless->getUrlRange(1, $ruless->lastPage()) as $page => $url)
                                                 <li
-                                                    class="page-item {{ $clienteles->currentPage() == $page ? 'active' : '' }}">
+                                                    class="page-item {{ $ruless->currentPage() == $page ? 'active' : '' }}">
                                                     <a class="page-link"
                                                         href="{{ $url }}">{{ $page }}</a>
                                                 </li>
                                             @endforeach
 
                                             <!-- Next Page -->
-                                            <li class="page-item {{ !$clienteles->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $clienteles->nextPageUrl() }}"
+                                            <li class="page-item {{ !$ruless->hasMorePages() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $ruless->nextPageUrl() }}"
                                                     aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="visually-hidden">Next</span>

@@ -8,8 +8,8 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Clientele</li>
-                    <li class="breadcrumb-item">Edit Clientele</li>
+                    <li class="breadcrumb-item">Acts</li>
+                    <li class="breadcrumb-item">Edit Acts</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -26,17 +26,17 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updateclientele', $clientele->id) }}" method="POST"
+                            <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
 
                                 <!-- Existing PDF (display only, single file as string) -->
-                                @if (!empty($clientele->pdfs))
+                                @if (!empty($acts->pdfs))
                                     <div class="mb-3">
                                         <label class="form-label">Existing PDF</label>
                                         <div class="mb-1">
-                                            <a href="{{ asset('storage/' . $clientele->pdfs) }}" target="_blank">
-                                                {{ pathinfo($clientele->pdfs, PATHINFO_BASENAME) }}
+                                            <a href="{{ asset('storage/' . $acts->pdfs) }}" target="_blank">
+                                                {{ pathinfo($acts->pdfs, PATHINFO_BASENAME) }}
                                             </a>
                                         </div>
                                     </div>
@@ -54,14 +54,14 @@
                                 <!-- Description / Button Name -->
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Button Name / Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $clientele->description) }}</textarea>
+                                    <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $acts->description) }}</textarea>
                                     @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Update Clientele</button>
+                                    <button type="submit" class="btn btn-primary">Update acts</button>
                                 </div>
                             </form>
                         </div>

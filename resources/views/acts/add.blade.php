@@ -8,8 +8,8 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Clientele</li>
-                    <li class="breadcrumb-item">Add Clientele</li>
+                    <li class="breadcrumb-item">Acts</li>
+                    <li class="breadcrumb-item">Add Acts</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.storeclientele') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.storeacts') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
@@ -49,7 +49,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Add Clientele</button>
+                                    <button type="submit" class="btn btn-primary">Add acts</button>
                                 </div>
                             </form>
                         </div>
