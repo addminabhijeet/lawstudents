@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Clientele;
+use App\Models\Act;
+use App\Models\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -141,7 +143,7 @@ class CourseController extends Controller
 
     public function listacts()
     {
-        $actss = Clientele::latest()->paginate(10);
+        $actss = Act::latest()->paginate(10);
         return view('acts.list', compact('actss'));
     }
 
@@ -165,7 +167,7 @@ class CourseController extends Controller
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs('acts', $originalName, 'public');
 
-                Clientele::create([
+                Act::create([
                     'pdfs' => $path,
                     'description' => $request->description,
                 ]);
@@ -189,7 +191,7 @@ class CourseController extends Controller
             'pdfs.*' => 'nullable|file|mimes:pdf|max:10240', // 10MB max
         ]);
 
-        $acts = Clientele::findOrFail($id);
+        $acts = Act::findOrFail($id);
 
         // Update PDFs if new files are uploaded
         if ($request->hasFile('pdfs')) {
@@ -216,7 +218,7 @@ class CourseController extends Controller
 
     public function actsfiledelete(Request $request, $id)
     {
-        $acts = Clientele::findOrFail($id);
+        $acts = Act::findOrFail($id);
 
         $fileToDelete = $request->input('file');
 
@@ -241,7 +243,7 @@ class CourseController extends Controller
 
     public function listrules()
     {
-        $ruless = Clientele::latest()->paginate(10);
+        $ruless = Rule::latest()->paginate(10);
         return view('rules.list', compact('ruless'));
     }
 
@@ -265,7 +267,7 @@ class CourseController extends Controller
                 $originalName = $file->getClientOriginalName();
                 $path = $file->storeAs('rules', $originalName, 'public');
 
-                Clientele::create([
+                Rule::create([
                     'pdfs' => $path,
                     'description' => $request->description,
                 ]);
@@ -289,7 +291,7 @@ class CourseController extends Controller
             'pdfs.*' => 'nullable|file|mimes:pdf|max:10240', // 10MB max
         ]);
 
-        $rules = Clientele::findOrFail($id);
+        $rules = Rule::findOrFail($id);
 
         // Update PDFs if new files are uploaded
         if ($request->hasFile('pdfs')) {
@@ -311,12 +313,12 @@ class CourseController extends Controller
         $rules->save();
 
         return redirect()->route('admin.listclientele')
-            ->with('success', 'Clientele PDFs updated successfully.');
+            ->with('success', 'Rule PDFs updated successfully.');
     }
 
     public function rulesfiledelete(Request $request, $id)
     {
-        $rules = Clientele::findOrFail($id);
+        $rules = Rule::findOrFail($id);
 
         $fileToDelete = $request->input('file');
 
