@@ -58,10 +58,7 @@ $user = \App\Models\User::first();
                                     <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                         <address class="text-muted fw-bold small mb-0 lh-lg">
                                             @if (!empty($user?->centerone))
-                                            {!! collect(explode(' ', trim($user->centerone)))
-                                            ->chunk(3)
-                                            ->map(fn($chunk) => implode(' ', $chunk->toArray()))
-                                            ->implode('<br>') !!}
+                                            {!! nl2br(e($user->centerone)) !!}
                                             <br>
                                             @else
                                             P.O. Box 18728,<br>
@@ -87,10 +84,7 @@ $user = \App\Models\User::first();
                                     <div class="col-12 col-sm-4 text-sm-end">
                                         <address class="text-muted fw-bold small mb-0 lh-lg">
                                             @if (!empty($user?->centertwo))
-                                            {!! collect(explode(' ', trim($user->centertwo)))
-                                            ->chunk(3)
-                                            ->map(fn($chunk) => implode(' ', $chunk->toArray()))
-                                            ->implode('<br>') !!}
+                                            {!! nl2br(e($user->centertwo)) !!}
                                             <br>
                                             @else
                                             P.O. Box 18728,<br>
