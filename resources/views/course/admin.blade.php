@@ -107,7 +107,7 @@ $setting = $admin ? $admin->first() : null;
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Accountant Signature</label>
+                                    <label class="form-label">Signature(ARITRO FOUZDAR)</label>
 
                                     <input type="file" name="accsign" class="form-control">
 
@@ -119,7 +119,7 @@ $setting = $admin ? $admin->first() : null;
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Director Signature</label>
+                                    <label class="form-label">Signature(RIZWANA BEGUM)</label>
 
                                     <input type="file" name="diraccsign" class="form-control">
 

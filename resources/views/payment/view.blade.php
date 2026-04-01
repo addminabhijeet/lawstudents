@@ -301,7 +301,9 @@ $user = \App\Models\User::first();
                                         alt="default signature">
                                     @endif
 
-                                    <h6 class="fs-13 fw-bold mt-2">Director</h6>
+                                    <h6 class="fs-13 fw-bold mt-2">Signature:<br>
+                                        Sd/-<br>
+                                        (RIZWANA BEGUM) </h6>
 
                                     @if (!is_null($payment->issue_date))
                                     <p class="fs-11 fw-semibold text-muted">
@@ -319,7 +321,9 @@ $user = \App\Models\User::first();
                                         alt="default signature">
                                     @endif
 
-                                    <h6 class="fs-13 fw-bold mt-2">Account Manager</h6>
+                                    <h6 class="fs-13 fw-bold mt-2">Signature:<br>
+                                        Sd/-<br>
+                                        (ARITRO FOUZDAR) </h6>
 
                                     @if (!is_null($payment->issue_date))
                                     <p class="fs-11 fw-semibold text-muted">
