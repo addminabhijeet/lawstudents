@@ -270,7 +270,7 @@ $user = \App\Models\User::first();
                                             <td class="fw-semibold text-dark text-end border-end">
                                                 Paid Amount
                                             </td>
-                                            <td class="fw-bold text-dark text-end">
+                                            <td class="fw-bold text-success text-end">
                                                 - {{ $payment->currency }}
                                                 {{ number_format($payment->paid_amount, 2) }}
                                             </td>
