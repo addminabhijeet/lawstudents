@@ -283,21 +283,15 @@ $user = \App\Models\User::first();
                                     <h6 class="fs-13 fw-bold mb-3">Terms & Conditions:</h6>
                                     <ul class="list-unstyled lh-lg fs-12">
                                         @if ($user && $user->terms)
-                                        {!! collect(explode(' ', trim($user->terms)))
-                                        ->chunk(8)
-                                        ->map(fn($chunk) => implode(' ', $chunk->toArray()))
-                                        ->implode('<br>') !!}
+                                        {!! nl2br(e($user->terms)) !!}
                                         @else
-                                        <li>1.All payments are due within 7 days from the date of invoice
-                                            issuance.</li>
-                                        <li>2.Payments can be made via cheque, credit/debit card, or online bank
-                                            transfer.</li>
-
-                                        <li>3.This invoice is computer-generated and does not require a physical
-                                            signature.</li>
+                                        <li>1.All payments are due within 7 days from the date of invoice issuance.</li>
+                                        <li>2.Payments can be made via cheque, credit/debit card, or online bank transfer.</li>
+                                        <li>3.This invoice is computer-generated and does not require a physical signature.</li>
                                         @endif
                                     </ul>
                                 </div>
+
                                 <div class="text-center">
                                     @if ($user && $user->accsign)
                                     <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
