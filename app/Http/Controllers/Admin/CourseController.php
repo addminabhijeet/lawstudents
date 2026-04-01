@@ -470,7 +470,7 @@ class CourseController extends Controller
 
         if ($request->hasFile('diraccsign')) {
             $path = $request->file('diraccsign')->store('gallery', 'public');
-            $gallery->accsign = $path;
+            $gallery->diraccsign = $path;
         }
 
         $gallery->update([
