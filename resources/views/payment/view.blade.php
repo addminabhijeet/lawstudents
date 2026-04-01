@@ -104,7 +104,9 @@ $user = \App\Models\User::first();
                             </div>
                             <hr class="border-dashed">
                             <div class="px-4 py-sm-5">
-                                <div class="d-sm-flex gap-4 justify-content-center">
+                                <div class="d-sm-flex gap-4 justify-content-center align-items-start">
+
+                                    <!-- LEFT: Invoiced To -->
                                     <div class="text-sm-end">
                                         <h2 class="fs-16 fw-bold text-dark mb-3">Invoiced To:</h2>
                                         <address class="text-muted lh-lg">
@@ -113,10 +115,29 @@ $user = \App\Models\User::first();
                                             Email: {{ $payment->to_email }}<br>
                                             Phone: {{ $payment->to_phone }}
                                         </address>
+                                    </div>
 
+                                    <!-- Divider -->
+                                    <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block"></div>
+
+                                    <!-- CENTER: Bank Details -->
+                                    <div class="text-center px-3">
+                                        <h2 class="fs-16 fw-bold text-dark mb-3">Bank Details:</h2>
+                                        <div class="text-muted lh-lg">
+                                            <div><strong>Account Holder name:</strong></div>
+                                            <div class="fw-bold text-dark">RIZWANA BEGUM</div>
+
+                                            <div class="mt-2">State Bank of India</div>
+                                            <div>A/c no. 41669065973</div>
+                                            <div>Branch: Newtown Rajarhat (05112)</div>
+                                            <div>IFS CODE: SBIN0005112</div>
+                                        </div>
                                     </div>
-                                    <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block">
-                                    </div>
+
+                                    <!-- Divider -->
+                                    <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block"></div>
+
+                                    <!-- RIGHT: Payment Details -->
                                     <div class="mt-4 mt-sm-0">
                                         <h2 class="fs-16 fw-bold text-dark mb-3">Payment Details:</h2>
                                         <div class="text-muted lh-lg">
@@ -144,8 +165,6 @@ $user = \App\Models\User::first();
                                                 </span>
                                             </div>
 
-                                            <!-- Added Fields (Same Design) -->
-
                                             <div>
                                                 <span class="text-muted">Invoice:</span>
                                                 <span class="fw-bold text-primary">
@@ -172,6 +191,7 @@ $user = \App\Models\User::first();
                                             @endif
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                             <hr class="border-dashed mb-0">
