@@ -482,10 +482,11 @@ class CourseController extends Controller
             'defaultpass' => $request->defaultpass,
             'centerone' => $request->centerone,
             'centertwo' => $request->centertwo,
+            'terms' => $request->terms,
 
         ]);
 
-        return back()->with('success', 'Gallery updated successfully');
+        return back()->with('success', 'Admin updated successfully');
     }
     public function storebanner(Request $request)
     {

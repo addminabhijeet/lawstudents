@@ -280,7 +280,7 @@ $user = \App\Models\User::first();
                             </div>
                             <div class="px-4 pt-4 d-sm-flex align-items-center justify-content-between">
                                 <div class="mb-5 mb-sm-0">
-                                    <h6 class="fs-13 fw-bold mb-3">Terms &amp; Conditions:</h6>
+                                    <h6 class="fs-13 fw-bold mb-3">Terms & Conditions:</h6>
                                     <ul class="list-unstyled lh-lg fs-12">
                                         <li># All payments are due within 7 days from the date of invoice
                                             issuance.</li>

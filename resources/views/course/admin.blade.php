@@ -1,5 +1,5 @@
 @php
-    $setting = $admin ? $admin->first() : null;
+$setting = $admin ? $admin->first() : null;
 @endphp
 
 @include('layouts.partials.admin.dashboard')
@@ -38,8 +38,8 @@
                                     <input type="file" name="image" class="form-control">
 
                                     @if (!empty($admin->image))
-                                        <img src="{{ asset('storage/app/public/' . $admin->image) }}" width="120"
-                                            class="mt-2">
+                                    <img src="{{ asset('storage/app/public/' . $admin->image) }}" width="120"
+                                        class="mt-2">
                                     @endif
 
                                 </div>
@@ -97,13 +97,19 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="form-label">Terms & Conditions</label>
+
+                                    <textarea name="centertwo" value="{{ $admin->terms ?? '' }}" class="form-control" placeholder="Website">{{ $admin->terms ?? '' }}</textarea>
+                                </div>
+
+                                <div class="mb-3">
                                     <label class="form-label">Accountant Signature</label>
 
                                     <input type="file" name="accsign" class="form-control">
 
                                     @if (!empty($admin->accsign))
-                                        <img src="{{ asset('storage/app/public/' . $admin->accsign) }}" width="120"
-                                            class="mt-2">
+                                    <img src="{{ asset('storage/app/public/' . $admin->accsign) }}" width="120"
+                                        class="mt-2">
                                     @endif
 
                                 </div>
