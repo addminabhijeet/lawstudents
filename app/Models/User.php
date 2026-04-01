@@ -34,6 +34,7 @@ class User extends Authenticatable
         'status',
         'order',
         'accsign',
+        'diraccsign',
         'defaultpass',
         'image',
         'centerone',

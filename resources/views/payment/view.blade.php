@@ -293,6 +293,19 @@ $user = \App\Models\User::first();
                                 </div>
 
                                 <div class="text-center">
+                                    @if ($user && $user->diraccsign)
+                                    <img src="{{ asset('storage/app/public/' . $user->diraccsign) }}"
+                                        class="img-fluid wd-100" alt="signature">
+                                    @else
+                                    <img src="assets/images/general/signature.png" class="img-fluid wd-100"
+                                        alt="default signature">
+                                    @endif
+
+                                    <h6 class="fs-13 fw-bold mt-2">Director</h6>
+                                    <p class="fs-11 fw-semibold text-muted">26 MAY 2023, 10:35PM</p>
+                                </div>
+
+                                <div class="text-center">
                                     @if ($user && $user->accsign)
                                     <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
                                         class="img-fluid wd-100" alt="signature">
