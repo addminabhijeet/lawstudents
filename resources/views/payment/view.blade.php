@@ -356,6 +356,16 @@ $user = \App\Models\User::first();
                                     @endif
                                 </div>
                             </div>
+                            <hr class="border-dashed">
+
+                            <div class="px-4 pb-4 text-center">
+                                <div class="fw-bold text-dark">
+                                    Advocate Rizwana Begum
+                                </div>
+                                <div class="text-muted small">
+                                    B. A. (Hons); M. A.; LL. M. (1st Class); PGDCL (Cyber Law-NALSAR-1st Class)
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
