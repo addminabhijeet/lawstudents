@@ -284,7 +284,7 @@ $user = \App\Models\User::first();
                                     <ul class="list-unstyled lh-lg fs-12">
                                         @if ($user && $user->terms)
                                         {!! collect(explode(' ', trim($user->terms)))
-                                        ->chunk(3)
+                                        ->chunk(8)
                                         ->map(fn($chunk) => implode(' ', $chunk->toArray()))
                                         ->implode('<br>') !!}
                                         @else
