@@ -51,13 +51,13 @@ $user = \App\Models\User::first();
                         </div>
 
                         <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
-                            <div class="px-4 pt-3 pb-2">
-                                <div class="row align-items-center text-center text-sm-start">
+                            <div class="px-3 pt-2 pb-1">
+                                <div class="row align-items-center text-center text-sm-start g-1">
 
                                     <!-- LEFT: centerone -->
-                                    <div class="col-12 col-sm-4 mb-3 mb-sm-0">
+                                    <div class="col-12 col-sm-4 mb-2 mb-sm-0">
                                         <strong>
-                                            <address class="text-muted small mb-0 lh-lg">
+                                            <address class="text-muted small mb-0 lh-sm">
                                                 @if (!empty($user?->centerone))
                                                 {!! collect(explode(' ', trim($user->centerone)))
                                                 ->chunk(3)
@@ -74,12 +74,12 @@ $user = \App\Models\User::first();
                                     </div>
 
                                     <!-- CENTER: Logo -->
-                                    <div class="col-12 col-sm-4 text-center mb-3 mb-sm-0">
+                                    <div class="col-12 col-sm-4 text-center mb-2 mb-sm-0">
                                         <img src="{{ asset('assets/images/logo-full.png') }}"
-                                            class="img-fluid mb-2"
-                                            style="max-height: 70px;"
+                                            class="img-fluid mb-1"
+                                            style="max-height: 55px;"
                                             alt="Logo">
-                                        <div class="fw-bold text-dark small">
+                                        <div class="fw-bold text-dark small lh-sm">
                                             <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
                                             <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                         </div>
@@ -88,7 +88,7 @@ $user = \App\Models\User::first();
                                     <!-- RIGHT: centertwo -->
                                     <div class="col-12 col-sm-4 text-sm-end">
                                         <strong>
-                                            <address class="text-muted small mb-0 lh-lg">
+                                            <address class="text-muted small mb-0 lh-sm">
                                                 @if (!empty($user?->centertwo))
                                                 {!! collect(explode(' ', trim($user->centertwo)))
                                                 ->chunk(3)
