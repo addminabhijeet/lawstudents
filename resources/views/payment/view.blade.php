@@ -56,7 +56,7 @@ $user = \App\Models\User::first();
 
                                     <!-- LEFT: centerone -->
                                     <div class="col-12 col-sm-4 mb-3 mb-sm-0">
-                                        <address class="text-muted small mb-0 lh-lg">
+                                        <address class="text-muted fw-bold small mb-0 lh-lg">
                                             @if (!empty($user?->centerone))
                                             {!! collect(explode(' ', trim($user->centerone)))
                                             ->chunk(3)
