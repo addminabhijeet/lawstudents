@@ -66,8 +66,6 @@ $user = \App\Models\User::first();
                                             P.O. Box 18728,<br>
                                             DeLorean New York<br>
                                             VAT No: 2617 348 2752<br>
-                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
-                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @endif
                                         </address>
                                     </div>
@@ -79,7 +77,8 @@ $user = \App\Models\User::first();
                                             style="max-height: 70px;"
                                             alt="Logo">
                                         <div class="fw-bold text-uppercase text-primary small">
-                                            Invoice
+                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
+                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                         </div>
                                     </div>
 
