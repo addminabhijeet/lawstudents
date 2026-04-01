@@ -75,7 +75,7 @@ class CourseController extends Controller
         }
 
         return redirect()->route('admin.listclientele')
-            ->with('success', 'Clientele PDFs uploaded successfully.');
+            ->with('success', 'Client PDFs uploaded successfully.');
     }
 
     public function editclientele($id)
@@ -113,7 +113,7 @@ class CourseController extends Controller
         $clientele->save();
 
         return redirect()->route('admin.listclientele')
-            ->with('success', 'Clientele PDFs updated successfully.');
+            ->with('success', 'Client PDFs updated successfully.');
     }
 
     public function clientelefiledelete(Request $request, $id)

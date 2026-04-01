@@ -76,7 +76,7 @@
                                     <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
                                     <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                                     <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
-                                    <li><a href="{{ route('frontend.clientele') }}">Clientele</a></li>
+                                    <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
                                     <li><a href="{{ route('frontend.course') }}">Course</a></li>
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                                     <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>

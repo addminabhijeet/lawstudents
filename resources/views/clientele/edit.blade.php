@@ -8,8 +8,8 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Clientele</li>
-                    <li class="breadcrumb-item">Edit Clientele</li>
+                    <li class="breadcrumb-item">Client</li>
+                    <li class="breadcrumb-item">Edit Client</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -61,7 +61,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Update Clientele</button>
+                                    <button type="submit" class="btn btn-primary">Update Client</button>
                                 </div>
                             </form>
                         </div>

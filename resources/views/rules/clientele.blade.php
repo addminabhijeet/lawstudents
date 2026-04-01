@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-3 m-auto">
                     <div class="welcome-inner-header text-center">
-                        <h1>Clientele</h1>
-                        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Clientele</a>
+                        <h1>Client</h1>
+                        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Client</a>
                         <img src="/img/elements/elementor20.png" alt="">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6">
                                 <div class="contact-submit-area">
-                                    <h3>Join Our Clientele Network</h3>
+                                    <h3>Join Our Client Network</h3>
                                     <p>We respond within 30 minutes during business hours to guide you better</p>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -64,7 +64,7 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="contact-inner">
-                                                <button type="submit">Join Our Clientele <i
+                                                <button type="submit">Join Our Client <i
                                                         class="fa-light fa-arrow-right"></i></button>
                                             </div>
                                         </div>
@@ -73,9 +73,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="contact-content-area">
-                                    <h2>Our Esteemed Clientele & Learners</h2>
+                                    <h2>Our Esteemed Client & Learners</h2>
                                     <p>
-                                        At Law Students, we take pride in serving a diverse clientele including aspiring
+                                        At Law Students, we take pride in serving a diverse client including aspiring
                                         lawyers,
                                         law students, working professionals, and legal enthusiasts. Our courses are trusted
                                         by individuals
@@ -83,7 +83,7 @@
                                         law.
                                     </p>
                                     <p>
-                                        Our clientele includes students preparing for judiciary exams, professionals
+                                        Our client includes students preparing for judiciary exams, professionals
                                         enhancing their legal
                                         expertise, and individuals seeking practical knowledge in criminal, corporate, and
                                         traffic law.

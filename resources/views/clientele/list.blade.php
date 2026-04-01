@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Clientele</li>
+                    <li class="breadcrumb-item">Client</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -105,7 +105,7 @@
                                             @endif
                                         @empty
                                             <tr>
-                                                <td colspan="5" class="text-center">No Clienteles Found</td>
+                                                <td colspan="5" class="text-center">No Client Found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
