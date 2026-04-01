@@ -58,7 +58,7 @@ $user = \App\Models\User::first();
                                     <div class="col-12 col-sm-4 mb-3 mb-sm-0">
                                         <address class="text-muted small mb-0 lh-lg">
                                             @if (!empty($user?->centerone))
-                                            {!! collect(explode(' ', $user->centerone))->chunk(4)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
+                                            {!! collect(explode(' ', $user->centerone))->chunk(3)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                             <br>
                                             @else
                                             P.O. Box 18728,<br>
@@ -84,7 +84,7 @@ $user = \App\Models\User::first();
                                     <div class="col-12 col-sm-4 text-sm-end">
                                         <address class="text-muted small mb-0 lh-lg">
                                             @if (!empty($user?->centertwo))
-                                            {!! collect(explode(' ', $user->centertwo))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
+                                            {!! collect(explode(' ', $user->centertwo))->chunk(3)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                             <br>
                                             @else
                                             P.O. Box 18728,<br>
