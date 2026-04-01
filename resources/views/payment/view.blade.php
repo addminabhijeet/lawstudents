@@ -51,7 +51,7 @@ $user = \App\Models\User::first();
                         </div>
 
                         <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
-                            <div class="px-4 pt-4 pb-3 border-bottom">
+                            <div class="px-4 pt-4 pb-3">
                                 <div class="row align-items-center text-center text-sm-start">
 
                                     <!-- LEFT: centerone -->
