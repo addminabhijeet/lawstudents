@@ -93,7 +93,7 @@ $setting = $admin ? $admin->first() : null;
                                 <div class="mb-3">
                                     <label class="form-label">Center Two Address</label>
 
-                                    <textarea name="centertwo" value="{{ $admin->centerone ?? '' }}" class="form-control" placeholder="Website">{{ $admin->centertwo ?? '' }}</textarea>
+                                    <textarea name="centertwo" value="{{ $admin->centertwo ?? '' }}" class="form-control" placeholder="Website">{{ $admin->centertwo ?? '' }}</textarea>
                                 </div>
 
                                 <div class="mb-3">
