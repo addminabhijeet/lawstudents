@@ -37,6 +37,16 @@ $user = \App\Models\User::first();
                                         <i class="feather feather-printer"></i>
                                     </div>
                                 </a>
+
+                                <!-- Download button -->
+                                <!-- <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
+                                    class="d-flex me-1 file-download"
+                                    onclick="downloadInvoice(this.closest('.invoice-container'))">
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                        title="Download Invoice">
+                                        <i class="feather feather-download"></i>
+                                    </div>
+                                </a> -->
                             </div>
                         </div>
 
@@ -46,9 +56,12 @@ $user = \App\Models\User::first();
 
                                     <!-- LEFT: centerone -->
                                     <div class="col-12 col-sm-4 mb-3 mb-sm-0">
-                                        <address class="text-muted fw-bold small mb-0 lh-lg">
+                                        <address class="text-muted small mb-0 lh-lg">
                                             @if (!empty($user?->centerone))
-                                            {!! nl2br(e($user->centerone)) !!}
+                                            {!! collect(explode(' ', trim($user->centerone)))
+                                            ->chunk(3)
+                                            ->map(fn($chunk) => implode(' ', $chunk->toArray()))
+                                            ->implode('<br>') !!}
                                             <br>
                                             @else
                                             P.O. Box 18728,<br>
@@ -72,9 +85,12 @@ $user = \App\Models\User::first();
 
                                     <!-- RIGHT: centertwo -->
                                     <div class="col-12 col-sm-4 text-sm-end">
-                                        <address class="text-muted fw-bold small mb-0 lh-lg">
+                                        <address class="text-muted small mb-0 lh-lg">
                                             @if (!empty($user?->centertwo))
-                                            {!! nl2br(e($user->centertwo)) !!}
+                                            {!! collect(explode(' ', trim($user->centertwo)))
+                                            ->chunk(3)
+                                            ->map(fn($chunk) => implode(' ', $chunk->toArray()))
+                                            ->implode('<br>') !!}
                                             <br>
                                             @else
                                             P.O. Box 18728,<br>
