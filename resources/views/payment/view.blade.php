@@ -51,7 +51,7 @@ $user = \App\Models\User::first();
                         </div>
 
                         <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
-                            <div class="px-4 pt-4 pb-3">
+                            <div class="px-4 pt-3 pb-2">
                                 <div class="row align-items-center text-center text-sm-start">
 
                                     <!-- LEFT: centerone -->
@@ -106,14 +106,14 @@ $user = \App\Models\User::first();
 
                                 </div>
                             </div>
-                            <hr class="border-dashed">
-                            <div class="px-4 py-sm-5">
+                            <hr class="border-dashed my-2">
+                            <div class="px-4 py-3">
                                 <div class="d-sm-flex gap-4 justify-content-center align-items-start">
 
                                     <!-- LEFT: Invoiced To -->
                                     <div class="text-sm-end">
-                                        <h2 class="fs-16 fw-bold text-dark mb-3">Invoiced To:</h2>
-                                        <address class="text-muted lh-lg">
+                                        <h2 class="fs-16 fw-bold text-dark mb-2">Invoiced To:</h2>
+                                        <address class="text-muted lh-sm">
                                             {{ $payment->to_name }}<br>
                                             {{ $payment->to_address }}<br>
                                             Email: {{ $payment->to_email }}<br>
@@ -126,8 +126,8 @@ $user = \App\Models\User::first();
 
                                     <!-- CENTER: Bank Details -->
                                     <div class="text-center px-3">
-                                        <h2 class="fs-16 fw-bold text-dark mb-3">Bank Details:</h2>
-                                        <div class="text-muted lh-lg">
+                                        <h2 class="fs-16 fw-bold text-dark mb-2">Bank Details:</h2>
+                                        <div class="text-muted lh-sm">
                                             <div><strong>Account Holder name:</strong></div>
                                             <div class="fw-bold text-dark">RIZWANA BEGUM</div>
 
@@ -143,8 +143,8 @@ $user = \App\Models\User::first();
 
                                     <!-- RIGHT: Payment Details -->
                                     <div class="mt-4 mt-sm-0">
-                                        <h2 class="fs-16 fw-bold text-dark mb-3">Payment Details:</h2>
-                                        <div class="text-muted lh-lg">
+                                        <h2 class="fs-16 fw-bold text-dark mb-2">Payment Details:</h2>
+                                        <div class="text-muted lh-sm">
                                             <div>
                                                 <span class="text-muted">Total Due:</span>
                                                 <span class="fw-bold text-dark">
@@ -290,7 +290,7 @@ $user = \App\Models\User::first();
                                     </tbody>
                                 </table>
                             </div>
-                            <hr class="border-dashed mt-0">
+                            <hr class="border-dashed my-2">
                             <div class="px-4">
                                 @if ($payment->invoice_note)
                                 <div class="alert alert-dismissible p-4 mt-3 alert-soft-warning-message">
@@ -302,9 +302,9 @@ $user = \App\Models\User::first();
                                 @endif
 
                             </div>
-                            <div class="px-4 pt-4 d-sm-flex align-items-center justify-content-between">
-                                <div class="mb-5 mb-sm-0">
-                                    <h6 class="fs-13 fw-bold mb-3">Terms & Conditions:</h6>
+                            <div class="px-4 pt-3 d-sm-flex align-items-center justify-content-between">
+                                <div class="mb-3 mb-sm-0">
+                                    <h6 class="fs-13 fw-bold mb-2">Terms & Conditions:</h6>
                                     <ul class="list-unstyled lh-lg fs-12">
                                         @if ($user && $user->terms)
                                         {!! nl2br(e($user->terms)) !!}
@@ -356,7 +356,7 @@ $user = \App\Models\User::first();
                                     @endif
                                 </div>
                             </div>
-                            <hr class="border-dashed">
+                            <hr class="border-dashed my-2">
 
                             <div class="px-4 pb-4 text-center">
                                 <div class="fw-bold text-dark">
