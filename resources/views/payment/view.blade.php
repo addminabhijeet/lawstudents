@@ -51,49 +51,52 @@ $user = \App\Models\User::first();
                         </div>
 
                         <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
-                            <div class="px-4 pt-4">
-                                <div class="d-flex align-items-start justify-content-between flex-wrap text-center text-sm-start">
+                            <div class="px-4 pt-4 pb-3 border-bottom">
+                                <div class="row align-items-center text-center text-sm-start">
 
-                                    <!-- LEFT SIDE (centerone) -->
-                                    <div class="w-100 w-sm-33 text-sm-start mb-3 mb-sm-0">
-                                        <address class="text-muted">
+                                    <!-- LEFT: centerone -->
+                                    <div class="col-12 col-sm-4 mb-3 mb-sm-0">
+                                        <address class="text-muted small mb-0 lh-lg">
                                             @if (!empty($user?->centerone))
                                             {!! collect(explode(' ', $user->centerone))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                             <br>
-                                            Mobile: {{ $user->mobile ?? '-' }}<br>
-                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
+                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @else
                                             P.O. Box 18728,<br>
                                             DeLorean New York<br>
                                             VAT No: 2617 348 2752<br>
-                                            Mobile: {{ $user->mobile ?? '-' }}<br>
-                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
+                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @endif
                                         </address>
                                     </div>
 
-                                    <!-- CENTER (Logo) -->
-                                    <div class="w-100 w-sm-33 text-center mb-3 mb-sm-0">
+                                    <!-- CENTER: Logo -->
+                                    <div class="col-12 col-sm-4 text-center mb-3 mb-sm-0">
                                         <img src="{{ asset('assets/images/logo-full.png') }}"
-                                            class="img-fluid"
-                                            style="max-height: 60px;"
+                                            class="img-fluid mb-2"
+                                            style="max-height: 70px;"
                                             alt="Logo">
+                                        <div class="fw-bold text-uppercase text-primary small">
+                                            Invoice
+                                        </div>
                                     </div>
 
-                                    <!-- RIGHT SIDE (centertwo) -->
-                                    <div class="w-100 w-sm-33 text-sm-end">
-                                        <address class="text-muted">
+                                    <!-- RIGHT: centertwo -->
+                                    <div class="col-12 col-sm-4 text-sm-end">
+                                        <address class="text-muted small mb-0 lh-lg">
                                             @if (!empty($user?->centertwo))
                                             {!! collect(explode(' ', $user->centertwo))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                             <br>
-                                            Mobile: {{ $user->mobile ?? '-' }}<br>
-                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
+                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @else
                                             P.O. Box 18728,<br>
                                             DeLorean New York<br>
                                             VAT No: 2617 348 2752<br>
-                                            Mobile: {{ $user->mobile ?? '-' }}<br>
-                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
+                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @endif
                                         </address>
                                     </div>
