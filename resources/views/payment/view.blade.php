@@ -52,15 +52,13 @@ $user = \App\Models\User::first();
 
                         <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
                             <div class="px-4 pt-4">
-                                <div class="d-sm-flex align-items-center justify-content-between">
-                                    <div>
-                                        <div class="fs-24 fw-bolder font-montserrat-alt text-uppercase">
-                                            <img src="{{ asset('assets/images/logo-full.png') }}" class="img-fluid"
-                                                style="max-height: 60px;" alt="Logo">
-                                        </div>
+                                <div class="d-flex align-items-start justify-content-between flex-wrap text-center text-sm-start">
+
+                                    <!-- LEFT SIDE (centerone) -->
+                                    <div class="w-100 w-sm-33 text-sm-start mb-3 mb-sm-0">
                                         <address class="text-muted">
-                                            @if (!empty($user?->webaddress))
-                                            {!! collect(explode(' ', $user->webaddress))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
+                                            @if (!empty($user?->centerone))
+                                            {!! collect(explode(' ', $user->centerone))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                             <br>
                                             Mobile: {{ $user->mobile ?? '-' }}<br>
                                             Email: {{ $user->webemail ?? ($user->email ?? '-') }}
@@ -73,6 +71,33 @@ $user = \App\Models\User::first();
                                             @endif
                                         </address>
                                     </div>
+
+                                    <!-- CENTER (Logo) -->
+                                    <div class="w-100 w-sm-33 text-center mb-3 mb-sm-0">
+                                        <img src="{{ asset('assets/images/logo-full.png') }}"
+                                            class="img-fluid"
+                                            style="max-height: 60px;"
+                                            alt="Logo">
+                                    </div>
+
+                                    <!-- RIGHT SIDE (centertwo) -->
+                                    <div class="w-100 w-sm-33 text-sm-end">
+                                        <address class="text-muted">
+                                            @if (!empty($user?->centertwo))
+                                            {!! collect(explode(' ', $user->centertwo))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
+                                            <br>
+                                            Mobile: {{ $user->mobile ?? '-' }}<br>
+                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            @else
+                                            P.O. Box 18728,<br>
+                                            DeLorean New York<br>
+                                            VAT No: 2617 348 2752<br>
+                                            Mobile: {{ $user->mobile ?? '-' }}<br>
+                                            Email: {{ $user->webemail ?? ($user->email ?? '-') }}
+                                            @endif
+                                        </address>
+                                    </div>
+
                                 </div>
                             </div>
                             <hr class="border-dashed">
