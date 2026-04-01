@@ -123,7 +123,7 @@ $setting = $admin ? $admin->first() : null;
 
                                     <input type="file" name="diraccsign" class="form-control">
 
-                                    @if (!empty($admin->accsign))
+                                    @if (!empty($admin->diraccsign))
                                     <img src="{{ asset('storage/app/public/' . $admin->diraccsign) }}" width="120"
                                         class="mt-2">
                                     @endif
