@@ -128,10 +128,9 @@ $user = \App\Models\User::first();
                                     <div class="text-center px-3">
                                         <h2 class="fs-16 fw-bold text-dark mb-2">Bank Details:</h2>
                                         <div class="text-muted lh-sm">
-                                            <div><strong>Account Holder name:</strong></div>
-                                            <div class="fw-bold text-dark">RIZWANA BEGUM</div>
-
-                                            <div class="mt-2">State Bank of India</div>
+                                            <div>Account Holder name:</div>
+                                            <div>RIZWANA BEGUM</div>
+                                            <div>State Bank of India</div>
                                             <div>A/c no. 41669065973</div>
                                             <div>Branch: Newtown Rajarhat (05112)</div>
                                             <div>IFS CODE: SBIN0005112</div>
