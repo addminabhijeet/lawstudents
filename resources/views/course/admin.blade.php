@@ -118,6 +118,18 @@ $setting = $admin ? $admin->first() : null;
 
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label">Director Signature</label>
+
+                                    <input type="file" name="diraccsign" class="form-control">
+
+                                    @if (!empty($admin->accsign))
+                                    <img src="{{ asset('storage/app/public/' . $admin->diraccsign) }}" width="120"
+                                        class="mt-2">
+                                    @endif
+
+                                </div>
+
 
                                 <div class="mb-3">
                                     <label class="form-label">LinkedIn</label>
