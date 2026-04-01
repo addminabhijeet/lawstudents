@@ -99,7 +99,7 @@ $setting = $admin ? $admin->first() : null;
                                 <div class="mb-3">
                                     <label class="form-label">Terms & Conditions</label>
 
-                                    <textarea name="centertwo" value="{{ $admin->terms ?? '' }}" class="form-control" placeholder="Website">{{ $admin->terms ?? '' }}</textarea>
+                                    <textarea name="terms" value="{{ $admin->terms ?? '' }}" class="form-control" placeholder="Website">{{ $admin->terms ?? '' }}</textarea>
                                 </div>
 
                                 <div class="mb-3">
