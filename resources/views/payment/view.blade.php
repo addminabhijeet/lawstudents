@@ -302,7 +302,12 @@ $user = \App\Models\User::first();
                                     @endif
 
                                     <h6 class="fs-13 fw-bold mt-2">Director</h6>
-                                    <p class="fs-11 fw-semibold text-muted">26 MAY 2023, 10:35PM</p>
+
+                                    @if (!is_null($payment->issue_date))
+                                    <p class="fs-11 fw-semibold text-muted">
+                                        {{ $payment->issue_date->format('d M, Y') }}
+                                    </p>
+                                    @endif
                                 </div>
 
                                 <div class="text-center">
@@ -315,7 +320,12 @@ $user = \App\Models\User::first();
                                     @endif
 
                                     <h6 class="fs-13 fw-bold mt-2">Account Manager</h6>
-                                    <p class="fs-11 fw-semibold text-muted">26 MAY 2023, 10:35PM</p>
+
+                                    @if (!is_null($payment->issue_date))
+                                    <p class="fs-11 fw-semibold text-muted">
+                                        {{ $payment->issue_date->format('d M, Y') }}
+                                    </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
