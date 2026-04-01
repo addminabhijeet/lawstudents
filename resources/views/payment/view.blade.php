@@ -60,8 +60,6 @@ $user = \App\Models\User::first();
                                             @if (!empty($user?->centerone))
                                             {!! collect(explode(' ', $user->centerone))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                             <br>
-                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
-                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @else
                                             P.O. Box 18728,<br>
                                             DeLorean New York<br>
@@ -88,14 +86,10 @@ $user = \App\Models\User::first();
                                             @if (!empty($user?->centertwo))
                                             {!! collect(explode(' ', $user->centertwo))->chunk(5)->map(fn($chunk) => $chunk->implode(' '))->implode('<br>') !!}
                                             <br>
-                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
-                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @else
                                             P.O. Box 18728,<br>
                                             DeLorean New York<br>
                                             VAT No: 2617 348 2752<br>
-                                            <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
-                                            <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                             @endif
                                         </address>
                                     </div>
