@@ -282,13 +282,20 @@ $user = \App\Models\User::first();
                                 <div class="mb-5 mb-sm-0">
                                     <h6 class="fs-13 fw-bold mb-3">Terms & Conditions:</h6>
                                     <ul class="list-unstyled lh-lg fs-12">
-                                        <li># All payments are due within 7 days from the date of invoice
+                                        @if ($user && $user->terms)
+                                        {!! collect(explode(' ', trim($user->terms)))
+                                        ->chunk(3)
+                                        ->map(fn($chunk) => implode(' ', $chunk->toArray()))
+                                        ->implode('<br>') !!}
+                                        @else
+                                        <li>1.All payments are due within 7 days from the date of invoice
                                             issuance.</li>
-                                        <li># Payments can be made via cheque, credit/debit card, or online bank
+                                        <li>2.Payments can be made via cheque, credit/debit card, or online bank
                                             transfer.</li>
 
-                                        <li># This invoice is computer-generated and does not require a physical
+                                        <li>3.This invoice is computer-generated and does not require a physical
                                             signature.</li>
+                                        @endif
                                     </ul>
                                 </div>
                                 <div class="text-center">
