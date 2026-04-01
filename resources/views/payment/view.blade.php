@@ -74,7 +74,7 @@ $user = \App\Models\User::first();
                                             class="img-fluid mb-2"
                                             style="max-height: 70px;"
                                             alt="Logo">
-                                        <div class="fw-bold text-primary small">
+                                        <div class="fw-bold text-dark small">
                                             <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
                                             <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
                                         </div>
