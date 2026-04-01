@@ -290,21 +290,23 @@ $user = \App\Models\User::first();
                                 </table>
                             </div>
                             <hr class="border-dashed my-2">
-                            <div class="px-4">
+                            <div class="px-3">
                                 @if ($payment->invoice_note)
-                                <div class="alert alert-dismissible p-4 mt-3 alert-soft-warning-message">
-                                    <p class="mb-0">
+                                <div class="alert alert-dismissible p-2 mt-2 mb-2 alert-soft-warning-message">
+                                    <p class="mb-0 small">
                                         <strong>NOTES:</strong><br>
                                         {{ $payment->invoice_note }}
                                     </p>
                                 </div>
                                 @endif
-
                             </div>
-                            <div class="px-4 pt-3 d-sm-flex align-items-center justify-content-between">
-                                <div class="mb-3 mb-sm-0">
-                                    <h6 class="fs-13 fw-bold mb-2">Terms & Conditions:</h6>
-                                    <ul class="list-unstyled lh-lg fs-12">
+
+                            <div class="px-3 pt-2 d-sm-flex align-items-start justify-content-between">
+
+                                <!-- TERMS -->
+                                <div class="mb-2 mb-sm-0">
+                                    <h6 class="fs-13 fw-bold mb-1">Terms & Conditions:</h6>
+                                    <ul class="list-unstyled lh-sm fs-12 mb-0">
                                         @if ($user && $user->terms)
                                         {!! nl2br(e($user->terms)) !!}
                                         @else
@@ -315,45 +317,52 @@ $user = \App\Models\User::first();
                                     </ul>
                                 </div>
 
+                                <!-- SIGNATURE 1 -->
                                 <div class="text-center">
                                     @if ($user && $user->diraccsign)
                                     <img src="{{ asset('storage/app/public/' . $user->diraccsign) }}"
-                                        class="img-fluid wd-100" alt="signature">
+                                        class="img-fluid" style="max-height:60px;" alt="signature">
                                     @else
-                                    <img src="assets/images/general/signature.png" class="img-fluid wd-100"
-                                        alt="default signature">
+                                    <img src="assets/images/general/signature.png"
+                                        class="img-fluid" style="max-height:60px;" alt="default signature">
                                     @endif
 
-                                    <h6 class="fs-13 fw-bold mt-2">Signature:<br>
+                                    <h6 class="fs-13 fw-bold mt-1 mb-0 lh-sm">
+                                        Signature:<br>
                                         Sd/-<br>
-                                        (RIZWANA BEGUM) </h6>
+                                        (RIZWANA BEGUM)
+                                    </h6>
 
                                     @if (!is_null($payment->issue_date))
-                                    <p class="fs-11 fw-semibold text-muted">
+                                    <p class="fs-11 fw-semibold text-muted mb-0">
                                         {{ $payment->issue_date->format('d M, Y') }}
                                     </p>
                                     @endif
                                 </div>
 
+                                <!-- SIGNATURE 2 -->
                                 <div class="text-center">
                                     @if ($user && $user->accsign)
                                     <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
-                                        class="img-fluid wd-100" alt="signature">
+                                        class="img-fluid" style="max-height:60px;" alt="signature">
                                     @else
-                                    <img src="assets/images/general/signature.png" class="img-fluid wd-100"
-                                        alt="default signature">
+                                    <img src="assets/images/general/signature.png"
+                                        class="img-fluid" style="max-height:60px;" alt="default signature">
                                     @endif
 
-                                    <h6 class="fs-13 fw-bold mt-2">Signature:<br>
+                                    <h6 class="fs-13 fw-bold mt-1 mb-0 lh-sm">
+                                        Signature:<br>
                                         Sd/-<br>
-                                        (ARITRO FOUZDAR) </h6>
+                                        (ARITRO FOUZDAR)
+                                    </h6>
 
                                     @if (!is_null($payment->issue_date))
-                                    <p class="fs-11 fw-semibold text-muted">
+                                    <p class="fs-11 fw-semibold text-muted mb-0">
                                         {{ $payment->issue_date->format('d M, Y') }}
                                     </p>
                                     @endif
                                 </div>
+
                             </div>
                             <hr class="border-dashed my-2">
 
