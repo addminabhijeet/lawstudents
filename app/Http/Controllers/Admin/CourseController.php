@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ActCategory;
+use App\Models\ActSubcategory;
+use App\Models\RuleCategory;
+use App\Models\RuleSubcategory;
 use App\Models\Course;
 use App\Models\Clientele;
 use App\Models\Act;
@@ -240,6 +244,335 @@ class CourseController extends Controller
         return back()->with('success', 'File deleted successfully.');
     }
 
+    // List all act categories
+    public function listcategories()
+    {
+        $categories = ActCategory::latest()->paginate(10);
+        return view('acts.categories.list', compact('categories'));
+    }
+
+    // Show form to add new category
+    public function addcategory()
+    {
+        return view('acts.categories.add');
+    }
+
+    // Store new category
+    public function storecategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'pdf' => ['nullable', 'file', 'mimes:pdf'], // optional PDF for category
+        ]);
+
+        $path = null;
+        if ($request->hasFile('pdf')) {
+            $file = $request->file('pdf');
+            $path = $file->storeAs('acts/categories', $file->getClientOriginalName(), 'public');
+        }
+
+        ActCategory::create([
+            'name' => $request->name,
+            'pdfs' => $path ? json_encode([$path]) : json_encode([]),
+        ]);
+
+        return redirect()->route('admin.listactcategories')->with('success', 'Category created successfully.');
+    }
+
+    // Show edit form
+    public function editcategory($id)
+    {
+        $category = ActCategory::findOrFail($id);
+        return view('acts.categories.edit', compact('category'));
+    }
+
+    // Update category
+    public function updatecategory(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
+        ]);
+
+        $category = ActCategory::findOrFail($id);
+
+        // Handle PDFs
+        if ($request->hasFile('pdfs')) {
+            $pdfPaths = [];
+            foreach ($request->file('pdfs') as $file) {
+                $pdfPaths[] = $file->storeAs('acts/categories', $file->getClientOriginalName(), 'public');
+            }
+            $category->pdfs = json_encode($pdfPaths);
+        }
+
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('admin.listactcategories')->with('success', 'Category updated successfully.');
+    }
+
+    // Delete a specific PDF from category
+    public function categoryfiledelete(Request $request, $id)
+    {
+        $category = ActCategory::findOrFail($id);
+        $fileToDelete = $request->input('file');
+
+        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+
+        $pdfs = json_decode($category->pdfs, true) ?? [];
+        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
+
+        $category->update(['pdfs' => json_encode($updatedPdfs)]);
+        return back()->with('success', 'File deleted successfully.');
+    }
+
+    public function listrulescategories()
+    {
+        $categories = RuleCategory::latest()->paginate(10);
+        return view('rules.categories.list', compact('categories'));
+    }
+
+    public function addrulescategory()
+    {
+        return view('rules.categories.add');
+    }
+
+    public function storerulescategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'pdf' => ['nullable', 'file', 'mimes:pdf'],
+        ]);
+
+        $path = null;
+        if ($request->hasFile('pdf')) {
+            $file = $request->file('pdf');
+            $path = $file->storeAs('rules/categories', $file->getClientOriginalName(), 'public');
+        }
+
+        RuleCategory::create([
+            'name' => $request->name,
+            'pdfs' => $path ? json_encode([$path]) : json_encode([]),
+        ]);
+
+        return redirect()->route('admin.listrulescategories')->with('success', 'Rule category created successfully.');
+    }
+
+    public function editrulescategory($id)
+    {
+        $category = RuleCategory::findOrFail($id);
+        return view('rules.categories.edit', compact('category'));
+    }
+
+    public function updaterulescategory(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
+        ]);
+
+        $category = RuleCategory::findOrFail($id);
+
+        if ($request->hasFile('pdfs')) {
+            $pdfPaths = [];
+            foreach ($request->file('pdfs') as $file) {
+                $pdfPaths[] = $file->storeAs('rules/categories', $file->getClientOriginalName(), 'public');
+            }
+            $category->pdfs = json_encode($pdfPaths);
+        }
+
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()->route('admin.listrulescategories')->with('success', 'Rule category updated successfully.');
+    }
+
+    public function rulescategoryfiledelete(Request $request, $id)
+    {
+        $category = RuleCategory::findOrFail($id);
+        $fileToDelete = $request->input('file');
+
+        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+
+        $pdfs = json_decode($category->pdfs, true) ?? [];
+        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
+
+        $category->update(['pdfs' => json_encode($updatedPdfs)]);
+        return back()->with('success', 'File deleted successfully.');
+    }
+
+    // List all act subcategories
+    public function listsubcategories()
+    {
+        $subcategories = ActSubcategory::with('category')->latest()->paginate(10);
+        return view('acts.subcategories.list', compact('subcategories'));
+    }
+
+    // Show form to add new subcategory
+    public function addsubcategory()
+    {
+        $categories = ActCategory::all();
+        return view('acts.subcategories.add', compact('categories'));
+    }
+
+    // Store new subcategory
+    public function storesubcategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'act_category_id' => 'required|exists:act_categories,id',
+            'pdf' => ['nullable', 'file', 'mimes:pdf'],
+        ]);
+
+        $path = null;
+        if ($request->hasFile('pdf')) {
+            $file = $request->file('pdf');
+            $path = $file->storeAs('acts/subcategories', $file->getClientOriginalName(), 'public');
+        }
+
+        ActSubcategory::create([
+            'name' => $request->name,
+            'act_category_id' => $request->act_category_id,
+            'pdfs' => $path ? json_encode([$path]) : json_encode([]),
+        ]);
+
+        return redirect()->route('admin.listactsubcategories')
+            ->with('success', 'Act subcategory created successfully.');
+    }
+
+    // Show edit form
+    public function editsubcategory($id)
+    {
+        $subcategory = ActSubcategory::findOrFail($id);
+        $categories = ActCategory::all();
+        return view('acts.subcategories.edit', compact('subcategory', 'categories'));
+    }
+
+    // Update subcategory
+    public function updatesubcategory(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'act_category_id' => 'required|exists:act_categories,id',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
+        ]);
+
+        $subcategory = ActSubcategory::findOrFail($id);
+
+        // Handle PDFs
+        if ($request->hasFile('pdfs')) {
+            $pdfPaths = [];
+            foreach ($request->file('pdfs') as $file) {
+                $pdfPaths[] = $file->storeAs('acts/subcategories', $file->getClientOriginalName(), 'public');
+            }
+            $subcategory->pdfs = json_encode($pdfPaths);
+        }
+
+        $subcategory->name = $request->name;
+        $subcategory->act_category_id = $request->act_category_id;
+        $subcategory->save();
+
+        return redirect()->route('admin.listactsubcategories')
+            ->with('success', 'Act subcategory updated successfully.');
+    }
+
+    // Delete a specific PDF from subcategory
+    public function subcategoryfiledelete(Request $request, $id)
+    {
+        $subcategory = ActSubcategory::findOrFail($id);
+        $fileToDelete = $request->input('file');
+
+        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+
+        $pdfs = json_decode($subcategory->pdfs, true) ?? [];
+        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
+
+        $subcategory->update(['pdfs' => json_encode($updatedPdfs)]);
+        return back()->with('success', 'File deleted successfully.');
+    }
+
+    public function listrulessubcategories()
+    {
+        $subcategories = RuleSubcategory::with('category')->latest()->paginate(10);
+        return view('rules.subcategories.list', compact('subcategories'));
+    }
+
+    public function addrulessubcategory()
+    {
+        $categories = RuleCategory::all();
+        return view('rules.subcategories.add', compact('categories'));
+    }
+
+    public function storerulessubcategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'rule_category_id' => 'required|exists:rule_categories,id',
+            'pdf' => ['nullable', 'file', 'mimes:pdf'],
+        ]);
+
+        $path = null;
+        if ($request->hasFile('pdf')) {
+            $file = $request->file('pdf');
+            $path = $file->storeAs('rules/subcategories', $file->getClientOriginalName(), 'public');
+        }
+
+        RuleSubcategory::create([
+            'name' => $request->name,
+            'rule_category_id' => $request->rule_category_id,
+            'pdfs' => $path ? json_encode([$path]) : json_encode([]),
+        ]);
+
+        return redirect()->route('admin.listrulessubcategories')
+            ->with('success', 'Rule subcategory created successfully.');
+    }
+
+    public function editrulessubcategory($id)
+    {
+        $subcategory = RuleSubcategory::findOrFail($id);
+        $categories = RuleCategory::all();
+        return view('rules.subcategories.edit', compact('subcategory', 'categories'));
+    }
+
+    public function updaterulessubcategory(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'rule_category_id' => 'required|exists:rule_categories,id',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
+        ]);
+
+        $subcategory = RuleSubcategory::findOrFail($id);
+
+        if ($request->hasFile('pdfs')) {
+            $pdfPaths = [];
+            foreach ($request->file('pdfs') as $file) {
+                $pdfPaths[] = $file->storeAs('rules/subcategories', $file->getClientOriginalName(), 'public');
+            }
+            $subcategory->pdfs = json_encode($pdfPaths);
+        }
+
+        $subcategory->name = $request->name;
+        $subcategory->rule_category_id = $request->rule_category_id;
+        $subcategory->save();
+
+        return redirect()->route('admin.listrulessubcategories')
+            ->with('success', 'Rule subcategory updated successfully.');
+    }
+
+    public function rulessubcategoryfiledelete(Request $request, $id)
+    {
+        $subcategory = RuleSubcategory::findOrFail($id);
+        $fileToDelete = $request->input('file');
+
+        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+
+        $pdfs = json_decode($subcategory->pdfs, true) ?? [];
+        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
+
+        $subcategory->update(['pdfs' => json_encode($updatedPdfs)]);
+        return back()->with('success', 'File deleted successfully.');
+    }
 
     public function listrules()
     {
@@ -528,26 +861,8 @@ class CourseController extends Controller
         return back()->with('success', 'Banner updated successfully.');
     }
 
-    public function storecategory(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|exists:categories,id'
-        ]);
 
-        Category::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'parent_id' => $request->parent_id
-        ]);
 
-        return back()->with('success', 'Category Created Successfully');
-    }
-
-    public function editCategory($id)
-    {
-        return Category::findOrFail($id);
-    }
 
     public function deleteCategory($id)
     {
@@ -561,24 +876,6 @@ class CourseController extends Controller
         $category->delete();
 
         return back()->with('success', 'Category Deleted Successfully');
-    }
-
-    public function updateCategory(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|exists:categories,id'
-        ]);
-
-        $category = Category::findOrFail($id);
-
-        $category->update([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'parent_id' => $request->parent_id
-        ]);
-
-        return back()->with('success', 'Category Updated Successfully');
     }
 
     public function storecourse(Request $request)
