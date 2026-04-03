@@ -27,7 +27,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updaterules', $rules->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.updaterules', $act->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
 
@@ -38,7 +38,7 @@
                                         <option value="">Select Category</option>
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ old('category_id', $rules->category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ old('category_id', $act->category_id) == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
@@ -54,11 +54,11 @@
                                 </div>
 
                                 <!-- Existing PDFs -->
-                                @if (!empty($rules->pdfs))
+                                @if (!empty($act->pdfs))
                                 <div class="mb-3">
                                     <label class="form-label">Existing PDFs</label>
                                     <ul class="list-group">
-                                        @foreach ($rules->pdfs as $index => $pdf)
+                                        @foreach ($act->pdfs as $index => $pdf)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <a href="{{ asset('storage/' . $pdf) }}" target="_blank">
                                                 {{ pathinfo($pdf, PATHINFO_BASENAME) }}
@@ -80,7 +80,7 @@
                                 <!-- Description -->
                                 <div class="mb-3">
                                     <label class="form-label">Button Name / Description</label>
-                                    <textarea name="description" class="form-control">{{ old('description', $rules->description) }}</textarea>
+                                    <textarea name="description" class="form-control">{{ old('description', $act->description) }}</textarea>
                                 </div>
 
                                 <button class="btn btn-primary">Update Rules</button>
@@ -165,8 +165,8 @@
             }
         }
 
-        const oldCat = "{{ old('category_id', $rules->category_id) }}";
-        const oldSub = "{{ old('subcategory_id', $rules->subcategory_id) }}";
+        const oldCat = "{{ old('category_id', $act->category_id) }}";
+        const oldSub = "{{ old('subcategory_id', $act->subcategory_id) }}";
 
         if (oldCat) populateSubcategories(oldCat, oldSub);
 
