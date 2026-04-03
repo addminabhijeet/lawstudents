@@ -231,7 +231,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('verifyphoneotp');
 
 
-            Route::get('subcategories/list', [CourseController::class, 'listactsubcategories'])
+            Route::get('subcategorieslist', [CourseController::class, 'listactsubcategories'])
                 ->name('listactsubcategories');
             Route::get('subcategories/add', [CourseController::class, 'addactsubcategory'])
                 ->name('addactsubcategory');
