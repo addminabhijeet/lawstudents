@@ -168,29 +168,29 @@
                     <ul class="pagination justify-content-center">
 
                         {{-- Previous Page Link --}}
-                        @if ($courses->onFirstPage())
+                        @if ($act->onFirstPage())
                         <li class="page-item disabled">
                             <span class="page-link"><i class="fa-regular fa-angle-left"></i></span>
                         </li>
                         @else
                         <li class="page-item">
-                            <a class="page-link" href="{{ $courses->previousPageUrl() }}">
+                            <a class="page-link" href="{{ $act->previousPageUrl() }}">
                                 <i class="fa-regular fa-angle-left"></i>
                             </a>
                         </li>
                         @endif
 
                         {{-- Pagination Elements --}}
-                        @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
-                        <li class="page-item {{ $page == $courses->currentPage() ? 'active' : '' }}">
+                        @foreach ($act->getUrlRange(1, $act->lastPage()) as $page => $url)
+                        <li class="page-item {{ $page == $act->currentPage() ? 'active' : '' }}">
                             <a class="page-link" href="{{ $url }}">{{ $page }}</a>
                         </li>
                         @endforeach
 
                         {{-- Next Page Link --}}
-                        @if ($courses->hasMorePages())
+                        @if ($act->hasMorePages())
                         <li class="page-item">
-                            <a class="page-link" href="{{ $courses->nextPageUrl() }}">
+                            <a class="page-link" href="{{ $act->nextPageUrl() }}">
                                 <i class="fa-regular fa-angle-right"></i>
                             </a>
                         </li>
