@@ -175,3 +175,4 @@
         });
     });
 </script>
+@include('layouts.partials.admin.theme')

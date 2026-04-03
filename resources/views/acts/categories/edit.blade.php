@@ -48,3 +48,4 @@
         <!-- [ Main Content ] end -->
     </div>
 </main>
+@include('layouts.partials.admin.theme')
