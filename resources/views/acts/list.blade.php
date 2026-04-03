@@ -45,9 +45,9 @@
                                             <th>#</th>
                                             <th>Category</th>
                                             <th>Subcategory</th>
-                                            <th>File Name</th>
+                                           
                                             <th>Description</th>
-                                            <th>Date</th>
+                                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -61,9 +61,9 @@
                                             <td>{{ $acts->category?->name }}</td>
                                             <td>{{ $acts->subcategory?->name }}</td>
 
-                                            <td>{{ pathinfo($file, PATHINFO_FILENAME) }}</td>
+                                           
                                             <td>{{ $acts->description }}</td>
-                                            <td>{{ $acts->created_at->format('Y-m-d h:i A') }}</td>
+                                            
 
                                             <td>
                                                 <a href="{{ route('admin.editacts', $acts->id) }}" class="btn btn-sm btn-primary">Edit</a>
