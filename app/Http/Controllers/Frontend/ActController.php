@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\Models\Course;
-use App\Models\Category;
+use App\Models\ActCategory;
 use App\Models\Act;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,60 +13,14 @@ class ActController extends Controller
 {
     public function __invoke(): View
     {
-        $categories = Category::whereHas('courses.notes', function ($query) {
-            $query->where('visibility', 'free')
-                ->where('status', 1);
-        })
-            ->with([
-                'courses' => function ($query) {
-                    $query->where('is_free', 1)
-                        ->whereHas('notes', function ($q) {
-                            $q->where('visibility', 'free')
-                                ->where('status', 1);
-                        })
-                        ->with(['notes' => function ($q) {
-                            $q->where('visibility', 'free')
-                                ->where('status', 1);
-                        }])
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(6);
-                },
-                'children' => function ($query) {
-                    $query->whereHas('courses.notes', function ($q) {
-                        $q->where('visibility', 'free')
-                            ->where('status', 1);
-                    })
-                        ->with([
-                            'courses' => function ($q) {
-                                $q->where('is_free', 1)
-                                    ->whereHas('notes', function ($n) {
-                                        $n->where('visibility', 'free')
-                                            ->where('status', 1);
-                                    })
-                                    ->with(['notes' => function ($n) {
-                                        $n->where('visibility', 'free')
-                                            ->where('status', 1);
-                                    }])
-                                    ->orderBy('created_at', 'desc')
-                                    ->paginate(6);
-                            }
-                        ]);
-                }
-            ])
-            ->get();
+        $categories = ActCategory::with([
+            'subcategories.acts'
+        ])->get();
 
-        $courses = Course::where('status', 1)
-            ->where('is_free', 1)
-            ->whereHas('notes', function ($query) {
-                $query->where('visibility', 'free')
-                    ->where('status', 1);
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
-
-        return view('acts.acts', compact('categories', 'courses'));
+        return view('acts.acts', compact('categories'));
     }
 
+    // 🔍 SEARCH
     public function search(Request $request)
     {
         $query = $request->get('q');
@@ -76,49 +29,59 @@ class ActController extends Controller
             return response()->json([]);
         }
 
-        $notes = Act::where('visibility', 'free')
-            ->where('status', 1)
-            ->where('title', 'LIKE', "%{$query}%")
-            ->with('course')
+        $acts = Act::with('category', 'subcategory')
+            ->where('description', 'LIKE', "%{$query}%")
             ->limit(10)
             ->get()
-            ->map(function ($note) {
+            ->map(function ($act) {
                 return [
-                    'title' => $note->title,
+                    'title' => $act->description,
                     'type' => 'Act',
-                    'note_id' => $note->id,
-                    'course_id' => $note->course_id,
-                    'category_id' => $note->course->category_id ?? null,
+                    'note_id' => $act->id,
+                    'category_id' => $act->category_id,
+                    'subcategory_id' => $act->subcategory_id,
                 ];
             });
 
-        return response()->json($notes);
+        return response()->json($acts);
     }
 
-    public function viewnote($id)
+    // 📥 DOWNLOAD
+    public function viewnote($id, $index = 0)
     {
-        $note = Act::findOrFail($id);
+        $act = Act::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($note->file_path)) {
+        if (!isset($act->pdfs[$index])) {
             abort(404);
         }
 
-        $note->increment('download_count');
+        $file = $act->pdfs[$index];
 
-        $path = Storage::disk('public')->path($note->file_path);
+        if (!Storage::disk('public')->exists($file)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($file);
 
         return response()->download($path);
     }
 
-    public function viewnotes($id)
+    // 👁 VIEW PDF
+    public function viewnotes($id, $index = 0)
     {
-        $note = Act::findOrFail($id);
+        $act = Act::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($note->file_path)) {
+        if (!isset($act->pdfs[$index])) {
             abort(404);
         }
 
-        $path = Storage::disk('public')->path($note->file_path);
+        $file = $act->pdfs[$index];
+
+        if (!Storage::disk('public')->exists($file)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($file);
 
         return response()->file($path);
     }

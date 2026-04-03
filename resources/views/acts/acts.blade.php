@@ -1,345 +1,142 @@
-@extends('layouts.landing', ['title' => 'Law Students'])
+@extends('layouts.landing', ['title' => 'Acts'])
 
 @section('content')
-    <!--===== WELCOME STARTS =======-->
-    <div class="welcome-inner-section-area"
-        style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
-        <img src="/img/elements/elementor40.png" alt="" class="elementor40 keyframe3 d-lg-block d-none">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 m-auto">
-                    <div class="welcome-inner-header text-center">
-                        <h1>Acts</h1>
-                        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Acts</a>
-                        <img src="/img/elements/elementor20.png" alt="">
-                    </div>
-                </div>
-            </div>
+
+<div class="container" style="max-width:1100px; margin:auto; padding:30px 0;">
+
+    <!-- SEARCH -->
+    <div style="max-width:600px; margin:0 auto 20px;">
+        <input type="text" id="noteSearch" class="form-control"
+            placeholder="Search Acts..." onkeyup="searchNotes(this.value)">
+
+        <div id="searchSuggestions"
+            style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none;">
         </div>
     </div>
-    <!--===== WELCOME ENDS =======-->
 
-    <!--===== BLOG STARTS =======-->
-    <div class="blog1-section-area sp3">
-        <div class="container">
-            <div class="row">
+    @foreach ($categories as $category)
 
-                <div style="width:100%; max-width:1100px; margin:auto;">
+        <!-- CATEGORY -->
+        <div style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px;">
 
-                    <div class="search-container" style="max-width:600px; margin:0 auto 20px;">
-                        <input type="text" id="noteSearch" class="form-control"
-                            placeholder="Search notes, category, course..." onkeyup="searchNotes(this.value)">
-
-                        <div id="searchSuggestions"
-                            style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none;">
-                        </div>
-                    </div>
-
-                    @foreach ($categories as $category)
-                        <div
-                            style="margin-bottom:15px; border:1px solid #e4e6eb; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.05);">
-
-                            <!-- CATEGORY HEADER -->
-                            <div onclick="toggleAccordion('cat{{ $category->id }}', 'cat-group')" class="cat-group"
-                                style="cursor:pointer; padding:18px; background:#ffffff; font-size:18px; font-weight:600; display:flex; justify-content:space-between; align-items:center;">
-                                <span>{{ $category->name }}</span>
-                                <span
-                                    style="background:#25D366; color:#fff; padding:3px 8px; border-radius:20px; font-size:12px;">
-                                    {{ $category->courses->sum(fn($c) => $c->notes->count()) }}
-                                </span>
-                            </div>
-
-                            <!-- CATEGORY BODY -->
-                            <div id="cat{{ $category->id }}"
-                                style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; background:#fafafa; padding:0 18px;">
-
-                                @foreach ($category->courses as $course)
-                                    <div style="margin:12px 0;">
-
-                                        <!-- COURSE HEADER -->
-                                        <div onclick="toggleAccordion('course{{ $course->id }}', 'course-group')"
-                                            class="course-group"
-                                            style="cursor:pointer; padding:12px; background:#f1f3f6; border-radius:6px; display:flex; justify-content:space-between; align-items:center; font-weight:500;">
-                                            <span>{{ $course->title }}</span>
-                                            <span
-                                                style="font-size:12px; background:#dee2e6; padding:2px 7px; border-radius:12px;">
-                                                {{ $course->notes->count() }}
-                                            </span>
-                                        </div>
-
-                                        <!-- COURSE BODY -->
-                                        <div id="course{{ $course->id }}"
-                                            style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; padding-left:10px;">
-
-                                            @foreach ($course->notes as $note)
-                                                <div
-                                                    style="margin:8px 0; padding:12px; background:#ffffff; border:1px solid #eee; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-
-                                                    <div>
-                                                        <div style="font-weight:500;">{{ $note->title }}</div>
-                                                        <div style="font-size:12px; color:#777;">{{ $note->formatted_size }}
-                                                        </div>
-                                                    </div>
-
-                                                    @if (auth()->check())
-                                                        <a href="{{ route('frontend.viewnote', $note->id) }}"
-                                                            style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
-                                                            Download
-                                                        </a>
-                                                    @else
-                                                        <a href="{{ route('google.login') }}"
-                                                            style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
-                                                            Download
-                                                        </a>
-                                                    @endif
-
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-                                    </div>
-                                @endforeach
-
-
-                                <!-- SUB-CATEGORIES -->
-                                @foreach ($category->children as $child)
-                                    <div style="margin-top:15px; padding-top:10px; border-top:1px dashed #ddd;">
-
-                                        <div onclick="toggleAccordion('sub{{ $child->id }}', 'sub-group')"
-                                            class="sub-group"
-                                            style="cursor:pointer; padding:12px; background:#e9f5ee; border-radius:6px; display:flex; justify-content:space-between; font-weight:600;">
-                                            <span>{{ $child->name }}</span>
-                                        </div>
-
-                                        <div id="sub{{ $child->id }}"
-                                            style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; padding-left:10px;">
-
-                                            @foreach ($child->courses as $childCourse)
-                                                <div style="margin:10px 0;">
-
-                                                    <div onclick="toggleAccordion('childcourse{{ $childCourse->id }}', 'childcourse-group')"
-                                                        class="childcourse-group"
-                                                        style="cursor:pointer; padding:10px; background:#f8f9fa; border-radius:6px; display:flex; justify-content:space-between;">
-                                                        <span>{{ $childCourse->title }}</span>
-                                                    </div>
-
-                                                    <div id="childcourse{{ $childCourse->id }}"
-                                                        style="max-height:0; overflow:hidden; transition:max-height 0.4s ease; padding-left:10px;">
-
-                                                        @foreach ($childCourse->notes as $note)
-                                                            <div
-                                                                style="margin:8px 0; padding:12px; background:#ffffff; border:1px solid #eee; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-
-                                                                <div>
-                                                                    <div style="font-weight:500;">{{ $note->title }}</div>
-                                                                    <div style="font-size:12px; color:#777;">
-                                                                        {{ $note->formatted_size }}
-                                                                    </div>
-                                                                </div>
-
-                                                                @if (auth()->check())
-                                                                    <a href="{{ route('frontend.viewnote', $note->id) }}"
-                                                                        style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
-                                                                        Download
-                                                                    </a>
-                                                                @else
-                                                                    <a href="{{ route('google.login') }}"
-                                                                        style="background:#25D366; color:#fff; padding:6px 14px; border-radius:20px; text-decoration:none; font-size:12px;">
-                                                                        Download
-                                                                    </a>
-                                                                @endif
-
-                                                            </div>
-                                                        @endforeach
-
-                                                    </div>
-
-                                                </div>
-                                            @endforeach
-
-                                        </div>
-
-                                    </div>
-                                @endforeach
-
-                            </div>
-
-                        </div>
-                    @endforeach
-
-                </div>
-
-
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-
-                        function openAllAccordions() {
-
-                            const sections = document.querySelectorAll(
-                                '[id^="cat"], [id^="course"], [id^="sub"], [id^="childcourse"]'
-                            );
-
-                            sections.forEach(function(el) {
-                                el.style.maxHeight = "none"; // fully open
-                                el.style.overflow = "visible";
-                            });
-
-                        }
-
-                        // run after DOM fully renders
-                        setTimeout(openAllAccordions, 200);
-
-                    });
-                </script>
+            <div onclick="toggleAccordion('cat{{ $category->id }}')"
+                style="cursor:pointer; padding:15px; background:#fff; font-weight:600;">
+                {{ $category->name }}
             </div>
 
-            <div class="col-lg-12 m-auto">
-                <div class="pagination-area">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
+            <div id="cat{{ $category->id }}" style="max-height:0; overflow:hidden;">
 
-                            {{-- Previous Page Link --}}
-                            @if ($courses->onFirstPage())
-                                <li class="page-item disabled">
-                                    <span class="page-link"><i class="fa-regular fa-angle-left"></i></span>
-                                </li>
-                            @else
-                                <li class="page-item">
-                                    <a class="page-link" href="{{ $courses->previousPageUrl() }}">
-                                        <i class="fa-regular fa-angle-left"></i>
-                                    </a>
-                                </li>
-                            @endif
+                @foreach ($category->subcategories as $sub)
 
-                            {{-- Pagination Elements --}}
-                            @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
-                                <li class="page-item {{ $page == $courses->currentPage() ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                </li>
+                    <!-- SUBCATEGORY -->
+                    <div style="margin:10px; border:1px dashed #ccc; border-radius:6px;">
+
+                        <div onclick="toggleAccordion('sub{{ $sub->id }}')"
+                            style="cursor:pointer; padding:10px; background:#f5f5f5;">
+                            {{ $sub->name }}
+                        </div>
+
+                        <div id="sub{{ $sub->id }}" style="max-height:0; overflow:hidden; padding:10px;">
+
+                            @foreach ($sub->acts as $act)
+
+                                <!-- ACT -->
+                                <div style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
+
+                                    <div style="font-weight:600;">
+                                        {{ $act->description }}
+                                    </div>
+
+                                    <!-- PDFs -->
+                                    @if ($act->pdfs)
+                                        @foreach ($act->pdfs as $index => $pdf)
+
+                                            <div style="margin-top:5px; display:flex; justify-content:space-between;">
+
+                                                <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
+
+                                                <div>
+                                                    <a href="{{ route('frontend.viewnotes', [$act->id, $index]) }}"
+                                                        target="_blank"
+                                                        style="margin-right:10px; font-size:12px;">
+                                                        View
+                                                    </a>
+
+                                                    <a href="{{ route('frontend.viewnote', [$act->id, $index]) }}"
+                                                        style="font-size:12px; color:green;">
+                                                        Download
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                        @endforeach
+                                    @endif
+
+                                </div>
+
                             @endforeach
 
-                            {{-- Next Page Link --}}
-                            @if ($courses->hasMorePages())
-                                <li class="page-item">
-                                    <a class="page-link" href="{{ $courses->nextPageUrl() }}">
-                                        <i class="fa-regular fa-angle-right"></i>
-                                    </a>
-                                </li>
-                            @else
-                                <li class="page-item disabled">
-                                    <span class="page-link"><i class="fa-regular fa-angle-right"></i></span>
-                                </li>
-                            @endif
-
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-
-            document.querySelectorAll(".pdf-frame").forEach(function(iframe) {
-
-                let fallback = iframe.parentElement.querySelector(".fallback-img");
-
-                // If iframe fails to load within 3 seconds → show fallback
-                let timer = setTimeout(function() {
-                    iframe.style.display = "none";
-                    if (fallback) fallback.style.display = "block";
-                }, 3000);
-
-                iframe.onload = function() {
-                    clearTimeout(timer);
-
-                    try {
-                        let doc = iframe.contentDocument || iframe.contentWindow.document;
-
-                        if (!doc || doc.body.innerHTML.trim() === "") {
-                            iframe.style.display = "none";
-                            if (fallback) fallback.style.display = "block";
-                        }
-
-                    } catch (e) {
-                        iframe.style.display = "none";
-                        if (fallback) fallback.style.display = "block";
-                    }
-                };
-
-            });
-
-        });
-    </script>
-    <!--===== BLOG ENDS =======-->
-    <script>
-        function searchNotes(query) {
-            let suggestionBox = document.getElementById('searchSuggestions');
-
-            if (query.length < 3) {
-                suggestionBox.style.display = 'none';
-                suggestionBox.innerHTML = '';
-                return;
-            }
-
-            fetch(`{{ route('frontend.search') }}?q=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-
-                    if (data.length === 0) {
-                        suggestionBox.innerHTML = '<div style="padding:10px;">No results found</div>';
-                    } else {
-                        suggestionBox.innerHTML = data.map(item => `
-                    <div style="padding:10px; border-bottom:1px solid #eee; cursor:pointer;"
-                         onclick="openSearchResult(${item.category_id ?? 'null'}, ${item.course_id ?? 'null'}, ${item.note_id ?? 'null'})">
-
-                        <div style="font-weight:600;">${item.title}</div>
-                        <div style="font-size:12px; color:#777;">
-                            ${item.type}
                         </div>
+
+                    </div>
+
+                @endforeach
+
+            </div>
+
+        </div>
+
+    @endforeach
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+function toggleAccordion(id) {
+    let el = document.getElementById(id);
+
+    if (el.style.maxHeight && el.style.maxHeight !== "0px") {
+        el.style.maxHeight = "0";
+    } else {
+        el.style.maxHeight = el.scrollHeight + "px";
+    }
+}
+
+// SEARCH
+function searchNotes(query) {
+    let box = document.getElementById('searchSuggestions');
+
+    if (query.length < 3) {
+        box.style.display = 'none';
+        return;
+    }
+
+    fetch(`{{ route('frontend.search') }}?q=${query}`)
+        .then(res => res.json())
+        .then(data => {
+
+            if (!data.length) {
+                box.innerHTML = '<div style="padding:10px;">No results</div>';
+            } else {
+                box.innerHTML = data.map(item => `
+                    <div style="padding:10px; cursor:pointer;"
+                        onclick="openSearch(${item.category_id}, ${item.subcategory_id})">
+                        ${item.title}
                     </div>
                 `).join('');
-                    }
-
-                    suggestionBox.style.display = 'block';
-                });
-        }
-
-        function openSearchResult(categoryId, courseId, noteId) {
-
-            if (!categoryId) return;
-
-            // Open category accordion
-            let categorySection = document.getElementById('cat' + categoryId);
-
-            if (categorySection) {
-                categorySection.style.maxHeight = categorySection.scrollHeight + "px";
             }
 
-            if (courseId) {
-                let courseSection = document.getElementById('course' + courseId);
+            box.style.display = 'block';
+        });
+}
 
-                if (courseSection) {
-                    courseSection.style.maxHeight = courseSection.scrollHeight + "px";
-                }
-            }
+function openSearch(catId, subId) {
+    document.getElementById('cat' + catId).style.maxHeight = "1000px";
+    document.getElementById('sub' + subId).style.maxHeight = "1000px";
 
-            if (noteId) {
-                let noteElement = document.getElementById('note-' + noteId);
+    document.getElementById('searchSuggestions').style.display = 'none';
+}
+</script>
 
-                if (noteElement) {
-                    noteElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                    noteElement.style.background = '#fff3cd';
-
-                    setTimeout(() => noteElement.style.background = '', 2000);
-                }
-            }
-
-            document.getElementById('searchSuggestions').style.display = 'none';
-        }
-    </script>
 @endsection
