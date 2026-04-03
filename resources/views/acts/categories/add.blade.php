@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.storeacts') }}" method="POST">
+                            <form action="{{ route('admin.storeactcategory') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Category Name</label>
