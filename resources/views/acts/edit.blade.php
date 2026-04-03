@@ -102,7 +102,9 @@
                                     <textarea name="description" class="form-control">{{ old('description', $acts->description) }}</textarea>
                                 </div>
 
-                                <button class="btn btn-primary">Update</button>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Update acts</button>
+                                </div>
                             </form>
 
                             <script>
