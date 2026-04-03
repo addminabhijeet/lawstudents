@@ -151,11 +151,12 @@
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listactsubcategories') }}">List Sub Categories</a>
-                            </li>
-                            <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listactcategories') }}">List Categories</a>
                             </li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listactsubcategories') }}">List Sub Categories</a>
+                            </li>
+
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listacts') }}">List Acts</a>
                             </li>
