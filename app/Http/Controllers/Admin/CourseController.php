@@ -262,18 +262,10 @@ class CourseController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'pdf' => ['nullable', 'file', 'mimes:pdf'], // optional PDF for category
         ]);
-
-        $path = null;
-        if ($request->hasFile('pdf')) {
-            $file = $request->file('pdf');
-            $path = $file->storeAs('acts/categories', $file->getClientOriginalName(), 'public');
-        }
 
         ActCategory::create([
             'name' => $request->name,
-            'pdfs' => $path ? json_encode([$path]) : json_encode([]),
         ]);
 
         return redirect()->route('admin.listactcategories')->with('success', 'Category created successfully.');
@@ -291,20 +283,9 @@ class CourseController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
         ]);
 
         $category = ActCategory::findOrFail($id);
-
-        // Handle PDFs
-        if ($request->hasFile('pdfs')) {
-            $pdfPaths = [];
-            foreach ($request->file('pdfs') as $file) {
-                $pdfPaths[] = $file->storeAs('acts/categories', $file->getClientOriginalName(), 'public');
-            }
-            $category->pdfs = json_encode($pdfPaths);
-        }
-
         $category->name = $request->name;
         $category->save();
 

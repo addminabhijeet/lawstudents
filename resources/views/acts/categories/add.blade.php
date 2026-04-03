@@ -26,30 +26,17 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.storeacts') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.storeacts') }}" method="POST">
                                 @csrf
-
                                 <div class="mb-3">
-                                    <label for="pdf" class="form-label">Upload PDF</label>
-                                    <input type="file" name="pdf[]" id="pdf" class="form-control" multiple>
-                                    @error('pdf')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                    @error('pdf.*')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <label for="name" class="form-label">Category Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
+                                    @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Button Name</label>
-                                    <textarea name="description" id="description" class="form-control" rows="3">{{ old('description') }}</textarea>
-                                    @error('description')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Add acts</button>
+                                    <button type="submit" class="btn btn-primary">Add Category</button>
                                 </div>
                             </form>
                         </div>
