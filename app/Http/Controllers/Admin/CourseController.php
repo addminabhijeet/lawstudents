@@ -401,9 +401,9 @@ class CourseController extends Controller
     // Show edit form
     public function editactsubcategory($id)
     {
-        $subcategory = ActSubcategory::findOrFail($id);
+        $subcategories = ActSubcategory::findOrFail($id);
         $categories = ActCategory::all();
-        return view('acts.subcategories.edit', compact('subcategory', 'categories'));
+        return view('acts.subcategories.edit', compact('subcategories', 'categories'));
     }
 
     // Update subcategory
@@ -469,9 +469,9 @@ class CourseController extends Controller
 
     public function editrulessubcategory($id)
     {
-        $subcategory = RuleSubcategory::findOrFail($id);
+        $subcategories = RuleSubcategory::findOrFail($id);
         $categories = RuleCategory::all();
-        return view('rules.subcategories.edit', compact('subcategory', 'categories'));
+        return view('rules.subcategories.edit', compact('subcategories', 'categories'));
     }
 
     public function updaterulessubcategory(Request $request, $id)
@@ -481,10 +481,10 @@ class CourseController extends Controller
             'rule_category_id' => 'required|exists:rule_categories,id',
         ]);
 
-        $subcategory = RuleSubcategory::findOrFail($id);
-        $subcategory->name = $request->name;
-        $subcategory->rule_category_id = $request->rule_category_id;
-        $subcategory->save();
+        $subcategories = RuleSubcategory::findOrFail($id);
+        $subcategories->name = $request->name;
+        $subcategories->rule_category_id = $request->rule_category_id;
+        $subcategories->save();
 
         return redirect()->route('admin.listrulessubcategories')
             ->with('success', 'Rule subcategory updated successfully.');
