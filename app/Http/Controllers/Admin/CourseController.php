@@ -156,7 +156,6 @@ class CourseController extends Controller
         $categories = ActCategory::with('subcategories')->get();
         return view('acts.add', compact('categories'));
     }
-
     public function storeacts(Request $request)
     {
         $request->validate([
@@ -187,11 +186,12 @@ class CourseController extends Controller
         return redirect()->route('admin.listacts')
             ->with('success', 'PDFs uploaded successfully.');
     }
+
     public function editacts($id)
     {
         $acts = Act::findOrFail($id);
 
-        // SAME as addacts (load categories + subcategories)
+        // Eager load subcategories for all categories
         $categories = ActCategory::with('subcategories')->get();
 
         return view('acts.edit', compact('acts', 'categories'));
@@ -202,35 +202,36 @@ class CourseController extends Controller
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
-            'pdfs' => ['nullable', 'array'],
-            'pdfs.*' => ['file', 'mimes:pdf', 'max:10240'],
+            'pdfs' => ['nullable', 'array'], // same as store but optional
+            'pdfs.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
 
         $acts = Act::findOrFail($id);
 
-        // ✅ Start with existing PDFs (IMPORTANT)
+        // ✅ Keep existing PDFs
         $pdfPaths = $acts->pdfs ?? [];
 
-        // ✅ Append new PDFs (same as Rules)
+        // ✅ SAME LOGIC AS STORE (only addition)
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('acts', $filename, 'public');
-                $pdfPaths[] = $path;
+                $pdfPaths[] = $path; // append like store
             }
         }
 
         $acts->update([
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'pdfs' => $pdfPaths, // ✅ NO json_encode
+            'pdfs' => $pdfPaths,
             'description' => $request->description,
         ]);
 
         return redirect()->route('admin.listacts')
             ->with('success', 'Acts updated successfully.');
     }
+
     public function deleteaddfile($id, $key)
     {
         $act = Act::findOrFail($id);
@@ -592,7 +593,7 @@ class CourseController extends Controller
     }
     public function updaterules(Request $request, $id)
     {
-        dd("HIT", $request->all());
+        
         $request->validate([
             'category_id' => 'required|exists:rule_categories,id',
             'subcategory_id' => 'required|exists:rule_subcategories,id',
