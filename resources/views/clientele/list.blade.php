@@ -135,3 +135,4 @@
     </div>
     <!-- [ Main Content ] end -->
 </main>
+@include('layouts.partials.admin.theme')
