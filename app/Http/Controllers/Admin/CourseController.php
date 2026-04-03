@@ -202,7 +202,7 @@ class CourseController extends Controller
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
-            'pdfs' => ['required', 'array'], // same as store but optional
+            'pdfs' => ['nullable', 'array'], // same as store but optional
             'pdfs.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
