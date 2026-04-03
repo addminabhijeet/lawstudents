@@ -162,4 +162,4 @@
         </div>
     </div>
 </main>
-
+@include('layouts.partials.admin.theme')
