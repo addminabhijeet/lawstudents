@@ -105,7 +105,7 @@
                                     <textarea name="description" class="form-control">{{ old('description', $acts->description) }}</textarea>
                                 </div>
 
-                                <button class="btn btn-primary">Update Acts</button>
+                                <button type="submit" class="btn btn-primary">Update Acts</button>
                             </form>
 
 
