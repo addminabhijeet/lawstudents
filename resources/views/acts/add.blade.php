@@ -52,9 +52,18 @@
 
                                 <!-- PDFs -->
                                 <div class="mb-3">
-                                    <label class="form-label">Uploaded PDFs</label>
+                                    <label class="form-label">Upload PDFs</label>
+
+                                    <!-- Multiple File Input -->
                                     <input type="file" name="pdfs[]" class="form-control" multiple>
-                                    @if(!empty($act->pdfs))
+
+                                    <small class="text-muted">You can select multiple PDF files</small>
+
+                                    <hr>
+
+                                    <label class="form-label">Uploaded PDFs</label>
+
+                                    @if(!empty($act->pdfs) && count($act->pdfs))
                                     <ul class="list-group">
                                         @foreach($act->pdfs as $key => $file)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -63,12 +72,12 @@
                                             <span>{{ basename($file) }}</span>
 
                                             <div>
-                                                <!-- View Button -->
-                                                <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
+                                                <!-- View -->
+                                                <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
                                                     View
                                                 </a>
 
-                                                <!-- Delete Button -->
+                                                <!-- Delete -->
                                                 <form action="{{ route('admin.deleteaddfile', [$act->id, $key]) }}"
                                                     method="POST"
                                                     style="display:inline;">
@@ -76,7 +85,7 @@
                                                     @method('DELETE')
 
                                                     <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Are you sure you want to delete this PDF?')">
+                                                        onclick="return confirm('Delete this PDF?')">
                                                         Remove
                                                     </button>
                                                 </form>
@@ -92,7 +101,7 @@
 
                                 <!-- Description -->
                                 <div class="mb-3">
-                                    <label class="form-label">Button Name</label>
+                                    <label class="form-label">Description</label>
                                     <textarea name="description" class="form-control">{{ old('description') }}</textarea>
                                 </div>
 

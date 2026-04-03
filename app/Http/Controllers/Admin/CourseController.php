@@ -156,22 +156,21 @@ class CourseController extends Controller
         $categories = ActCategory::with('subcategories')->get();
         return view('acts.add', compact('categories'));
     }
-
     public function storeacts(Request $request)
     {
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
-            'pdf' => ['required', 'array'],
-            'pdf.*' => ['file', 'mimes:pdf'],
+            'pdfs' => ['required', 'array'],
+            'pdfs.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
 
         $pdfPaths = [];
 
-        if ($request->hasFile('pdf')) {
-            foreach ($request->file('pdf') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName(); // better uniqueness
+        if ($request->hasFile('pdfs')) {
+            foreach ($request->file('pdfs') as $file) {
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('acts', $filename, 'public');
                 $pdfPaths[] = $path;
             }
@@ -180,12 +179,12 @@ class CourseController extends Controller
         Act::create([
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'pdfs' => $pdfPaths, // ✅ correct (auto JSON via cast)
+            'pdfs' => $pdfPaths,
             'description' => $request->description,
         ]);
 
         return redirect()->route('admin.listacts')
-            ->with('success', 'Acts PDFs uploaded successfully.');
+            ->with('success', 'PDFs uploaded successfully.');
     }
 
     public function editacts($id)
