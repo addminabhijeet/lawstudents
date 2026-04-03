@@ -54,6 +54,11 @@
                                 <div class="mb-3">
                                     <label class="form-label">Upload PDFs</label>
                                     <input type="file" name="pdf[]" class="form-control" multiple>
+                                    @foreach($act->pdfs as $file)
+                                    <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
+                                        View PDF
+                                    </a>
+                                    @endforeach
                                 </div>
 
                                 <!-- Description -->

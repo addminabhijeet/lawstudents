@@ -162,7 +162,7 @@ class CourseController extends Controller
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
-            'pdf' => ['required'],
+            'pdf' => ['required', 'array'],
             'pdf.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
@@ -171,8 +171,8 @@ class CourseController extends Controller
 
         if ($request->hasFile('pdf')) {
             foreach ($request->file('pdf') as $file) {
-                $originalName = time() . '_' . $file->getClientOriginalName(); // avoid duplicate names
-                $path = $file->storeAs('acts', $originalName, 'public');
+                $filename = uniqid() . '_' . $file->getClientOriginalName(); // better uniqueness
+                $path = $file->storeAs('acts', $filename, 'public');
                 $pdfPaths[] = $path;
             }
         }
@@ -180,7 +180,7 @@ class CourseController extends Controller
         Act::create([
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'pdfs' => $pdfPaths, // ✅ NO json_encode needed
+            'pdfs' => $pdfPaths, // ✅ correct (auto JSON via cast)
             'description' => $request->description,
         ]);
 
