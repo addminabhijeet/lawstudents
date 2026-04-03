@@ -13,7 +13,7 @@ class RuleCategory extends Model
 
     public function subcategories()
     {
-        return $this->hasMany(RuleSubcategory::class);
+        return $this->hasMany(RuleSubcategory::class, 'rule_category_id');
     }
 
     public function rules()

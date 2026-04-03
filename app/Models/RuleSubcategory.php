@@ -13,7 +13,7 @@ class RuleSubcategory extends Model
 
     public function category()
     {
-        return $this->belongsTo(RuleCategory::class);
+        return $this->belongsTo(RuleCategory::class, 'rule_category_id');
     }
 
     public function rules()
