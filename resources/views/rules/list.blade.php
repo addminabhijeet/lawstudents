@@ -52,29 +52,35 @@
 
                                     <tbody>
                                         @forelse ($ruless as $rules)
-
-                                        @foreach ($rules->pdfs ?? [] as $file)
                                         <tr>
+                                            <!-- Serial Number -->
                                             <td>{{ $loop->iteration }}</td>
 
+                                            <!-- Category -->
                                             <td>{{ $rules->category?->name }}</td>
 
+                                            <!-- Subcategory -->
                                             <td>{{ $rules->subcategory?->name }}</td>
 
+                                            <!-- Description -->
                                             <td>{{ $rules->description }}</td>
 
+                                            <!-- Actions -->
                                             <td>
                                                 <div class="d-flex flex-column gap-2">
 
+                                                    <!-- Edit -->
                                                     <a href="{{ route('admin.editrules', $rules->id) }}"
                                                         class="btn btn-sm btn-primary w-100">
                                                         Edit
                                                     </a>
 
+                                                    <!-- PDFs List -->
+                                                    @foreach ($rules->pdfs ?? [] as $file)
                                                     <a href="{{ asset('storage/' . $file) }}"
                                                         target="_blank"
                                                         class="btn btn-sm btn-info w-100">
-                                                        View
+                                                        View {{ $loop->iteration }}
                                                     </a>
 
                                                     <form method="POST"
@@ -85,15 +91,14 @@
 
                                                         <button class="btn btn-sm btn-danger w-100"
                                                             onclick="return confirm('Delete this file?')">
-                                                            Delete
+                                                            Delete {{ $loop->iteration }}
                                                         </button>
                                                     </form>
+                                                    @endforeach
 
                                                 </div>
                                             </td>
                                         </tr>
-                                        @endforeach
-
                                         @empty
                                         <tr>
                                             <td colspan="5" class="text-center">No data</td>
@@ -101,7 +106,7 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                
+
                                 <div class="d-flex justify-content-center mt-3">
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">
