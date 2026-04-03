@@ -53,7 +53,7 @@
                                     <label>Existing PDFs</label>
                                     @foreach($acts->pdfs as $file)
                                     <div>
-                                        <a href="{{ asset('storage/' . $file) }}" target="_blank">
+                                        <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank">
                                             {{ basename($file) }}
                                         </a>
                                     </div>
