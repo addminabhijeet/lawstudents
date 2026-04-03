@@ -39,74 +39,35 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="rulesList">
+                                <table class="table table-hover" id="actsList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
-                                            <th>File Name</th>
-                                            <th>Button Name</th>
-                                            <th>Date Uploaded</th>
+                                            <th>Category Name</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($categories as $categorie)
-                                            @php
-                                                // Make sure $pdfs is always an array of arrays
-                                                $pdfs = [];
-                                                if (!empty($categorie->pdfs)) {
-                                                    $pdfs[] = [
-                                                        'file' => $categorie->pdfs,
-                                                        'description' => $categorie->description,
-                                                    ];
-                                                }
-                                            @endphp
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $categorie->name }}</td>
+                                            <td>
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <a href="{{ route('admin.editrulescategory', [$categorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                            @if (!empty($pdfs))
-                                                @foreach ($pdfs as $key => $item)
-                                                    <tr class="single-item">
-                                                        <td>
-                                                            {{ $loop->iteration }}
-                                                        </td>
-
-                                                        <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
-
-                                                        <td>{{ $item['description'] ?? 'No description' }}</td>
-
-                                                        <td>{{ \Carbon\Carbon::parse($categorie->created_at)->format('Y-m-d, h:i A') }}
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editrules', [$categorie->id]) }}"
-                                                                    class="btn btn-sm btn-primary">Edit</a>
-
-                                                                <a href="{{ asset('storage/app/public/' . $item['file']) }}"
-                                                                    class="btn btn-sm btn-primary">View</a>
-
-                                                                <form method="POST"
-                                                                    action="{{ route('admin.rulesfiledelete', [$categorie->id]) }}"
-                                                                    class="d-inline">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <input type="hidden" name="file"
-                                                                        value="{{ $item['file'] }}">
-                                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                                        onclick="return confirm('Delete this file?')">Delete</button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                <tr>
-                                                    <td colspan="5" class="text-center">No Files Found</td>
-                                                </tr>
-                                            @endif
+                                                    <form action="{{ route('admin.deleterulescategory', [$categorie->id]) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center">No ruless Found</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-center">No Categories Found</td>
+                                        </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -124,11 +85,11 @@
 
                                             <!-- Page Numbers -->
                                             @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
-                                                <li
-                                                    class="page-item {{ $categories->currentPage() == $page ? 'active' : '' }}">
-                                                    <a class="page-link"
-                                                        href="{{ $url }}">{{ $page }}</a>
-                                                </li>
+                                            <li
+                                                class="page-item {{ $categories->currentPage() == $page ? 'active' : '' }}">
+                                                <a class="page-link"
+                                                    href="{{ $url }}">{{ $page }}</a>
+                                            </li>
                                             @endforeach
 
                                             <!-- Next Page -->
