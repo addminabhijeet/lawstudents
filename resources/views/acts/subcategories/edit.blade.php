@@ -26,42 +26,34 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('admin.updateactsubcategory', $subcategory->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
 
-                                <!-- Existing PDF (display only, single file as string) -->
-                                @if (!empty($acts->pdfs))
-                                    <div class="mb-3">
-                                        <label class="form-label">Existing PDF</label>
-                                        <div class="mb-1">
-                                            <a href="{{ asset('storage/' . $acts->pdfs) }}" target="_blank">
-                                                {{ pathinfo($acts->pdfs, PATHINFO_BASENAME) }}
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endif
-
-                                <!-- Upload new PDFs (same as Add form) -->
                                 <div class="mb-3">
-                                    <label for="pdfs" class="form-label">Upload PDF(s)</label>
-                                    <input type="file" name="pdfs[]" id="pdfs" class="form-control" multiple>
-                                    @error('pdfs.*')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <label for="act_category_id" class="form-label">Select Category</label>
+                                    <select name="act_category_id" id="act_category_id" class="form-control">
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" {{ old('act_category_id', $subcategory->act_category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('act_category_id')
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
-                                <!-- Description / Button Name -->
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">Button Name / Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $acts->description) }}</textarea>
-                                    @error('description')
-                                        <small class="text-danger">{{ $message }}</small>
+                                    <label for="name" class="form-label">Subcategory Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $subcategory->name) }}">
+                                    @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Update acts</button>
+                                    <button type="submit" class="btn btn-primary">Update Subcategory</button>
                                 </div>
                             </form>
                         </div>

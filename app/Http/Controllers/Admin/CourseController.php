@@ -396,25 +396,16 @@ class CourseController extends Controller
         return view('acts.subcategories.add', compact('categories'));
     }
 
-    // Store new subcategory
     public function storeactsubcategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'act_category_id' => 'required|exists:act_categories,id',
-            'pdf' => ['nullable', 'file', 'mimes:pdf'],
         ]);
-
-        $path = null;
-        if ($request->hasFile('pdf')) {
-            $file = $request->file('pdf');
-            $path = $file->storeAs('acts/subcategories', $file->getClientOriginalName(), 'public');
-        }
 
         ActSubcategory::create([
             'name' => $request->name,
             'act_category_id' => $request->act_category_id,
-            'pdfs' => $path ? json_encode([$path]) : json_encode([]),
         ]);
 
         return redirect()->route('admin.listactsubcategories')
@@ -435,20 +426,9 @@ class CourseController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'act_category_id' => 'required|exists:act_categories,id',
-            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
         ]);
 
         $subcategory = ActSubcategory::findOrFail($id);
-
-        // Handle PDFs
-        if ($request->hasFile('pdfs')) {
-            $pdfPaths = [];
-            foreach ($request->file('pdfs') as $file) {
-                $pdfPaths[] = $file->storeAs('acts/subcategories', $file->getClientOriginalName(), 'public');
-            }
-            $subcategory->pdfs = json_encode($pdfPaths);
-        }
-
         $subcategory->name = $request->name;
         $subcategory->act_category_id = $request->act_category_id;
         $subcategory->save();
@@ -456,7 +436,7 @@ class CourseController extends Controller
         return redirect()->route('admin.listactsubcategories')
             ->with('success', 'Act subcategory updated successfully.');
     }
-
+    
     // Delete a specific PDF from subcategory
     public function actsubcategoryfiledelete(Request $request, $id)
     {

@@ -43,70 +43,33 @@
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
-                                            <th>File Name</th>
-                                            <th>Button Name</th>
-                                            <th>Date Uploaded</th>
+                                            <th>Category</th>
+                                            <th>Subcategory Name</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($subcategories as $subcategorie)
-                                            @php
-                                                // Make sure $pdfs is always an array of arrays
-                                                $pdfs = [];
-                                                if (!empty($subcategorie->pdfs)) {
-                                                    $pdfs[] = [
-                                                        'file' => $subcategorie->pdfs,
-                                                        'description' => $subcategorie->description,
-                                                    ];
-                                                }
-                                            @endphp
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $subcategorie->category->name ?? 'N/A' }}</td>
+                                            <td>{{ $subcategorie->name }}</td>
+                                            <td>
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <a href="{{ route('admin.editactsubcategory', [$subcategorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                            @if (!empty($pdfs))
-                                                @foreach ($pdfs as $key => $item)
-                                                    <tr class="single-item">
-                                                        <td>
-                                                            {{ $loop->iteration }}
-                                                        </td>
-
-                                                        <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
-
-                                                        <td>{{ $item['description'] ?? 'No description' }}</td>
-
-                                                        <td>{{ \Carbon\Carbon::parse($subcategorie->created_at)->format('Y-m-d, h:i A') }}
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editacts', [$subcategorie->id]) }}"
-                                                                    class="btn btn-sm btn-primary">Edit</a>
-
-                                                                <a href="{{ asset('storage/app/public/' . $item['file']) }}"
-                                                                    class="btn btn-sm btn-primary">View</a>
-
-                                                                <form method="POST"
-                                                                    action="{{ route('admin.actsfiledelete', [$subcategorie->id]) }}"
-                                                                    class="d-inline">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <input type="hidden" name="file"
-                                                                        value="{{ $item['file'] }}">
-                                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                                        onclick="return confirm('Delete this file?')">Delete</button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                <tr>
-                                                    <td colspan="5" class="text-center">No Files Found</td>
-                                                </tr>
-                                            @endif
+                                                    <form method="POST" action="{{ route('admin.deleteactsubcategory', [$subcategorie->id]) }}" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subcategory?')">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center">No actss Found</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="4" class="text-center">No Subcategories Found</td>
+                                        </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -124,11 +87,11 @@
 
                                             <!-- Page Numbers -->
                                             @foreach ($subcategories->getUrlRange(1, $subcategories->lastPage()) as $page => $url)
-                                                <li
-                                                    class="page-item {{ $subcategories->currentPage() == $page ? 'active' : '' }}">
-                                                    <a class="page-link"
-                                                        href="{{ $url }}">{{ $page }}</a>
-                                                </li>
+                                            <li
+                                                class="page-item {{ $subcategories->currentPage() == $page ? 'active' : '' }}">
+                                                <a class="page-link"
+                                                    href="{{ $url }}">{{ $page }}</a>
+                                            </li>
                                             @endforeach
 
                                             <!-- Next Page -->
