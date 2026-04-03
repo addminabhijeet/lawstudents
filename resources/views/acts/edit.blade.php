@@ -48,18 +48,51 @@
                                 </div>
 
                                 <!-- Existing PDFs -->
-                                @if(!empty($acts->pdfs))
+                                @if(!empty($acts->pdfs) && count($acts->pdfs))
                                 <div class="mb-3">
-                                    <label>Existing PDFs</label>
-                                    @foreach($acts->pdfs as $file)
-                                    <div>
-                                        <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank">
-                                            {{ basename($file) }}
-                                        </a>
-                                    </div>
-                                    @endforeach
+                                    <label class="form-label">Existing PDFs</label>
+
+                                    <ul class="list-group">
+                                        @foreach($acts->pdfs as $key => $file)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                                            <span>{{ basename($file) }}</span>
+
+                                            <div>
+                                                <!-- View -->
+                                                <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
+                                                    View
+                                                </a>
+
+                                                <!-- Delete -->
+                                                <form action="{{ route('admin.deleteaddfile', [$acts->id, $key]) }}"
+                                                    method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Delete this PDF?')">
+                                                        Remove
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                                 @endif
+
+                                <!-- Upload New PDFs -->
+                                <div class="mb-3">
+                                    <label class="form-label">Add More PDFs</label>
+
+                                    <input type="file" name="pdfs[]" id="pdfInput" class="form-control" multiple>
+
+                                    <!-- Preview List -->
+                                    <ul id="previewList" class="list-group mt-3"></ul>
+                                </div>
 
                                 <!-- Upload new -->
                                 <div class="mb-3">
@@ -102,6 +135,53 @@
                                     categorySelect.addEventListener('change', function() {
                                         populateSubcategories(this.value);
                                     });
+                                });
+                            </script>
+                            <script>
+                                let selectedFiles = [];
+
+                                const input = document.getElementById('pdfInput');
+                                const previewList = document.getElementById('previewList');
+                                const form = input.closest('form');
+
+                                input.addEventListener('change', function(e) {
+                                    selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
+                                    renderList();
+                                    input.value = '';
+                                });
+
+                                function renderList() {
+                                    previewList.innerHTML = '';
+
+                                    selectedFiles.forEach((file, index) => {
+                                        const li = document.createElement('li');
+                                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+                                        li.innerHTML = `
+            <span>${file.name}</span>
+            <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                Remove
+            </button>
+        `;
+
+                                        previewList.appendChild(li);
+                                    });
+                                }
+
+                                function removeFile(index) {
+                                    selectedFiles.splice(index, 1);
+                                    renderList();
+                                }
+
+                                // ✅ IMPORTANT: Attach files before submit
+                                form.addEventListener('submit', function() {
+                                    const dataTransfer = new DataTransfer();
+
+                                    selectedFiles.forEach(file => {
+                                        dataTransfer.items.add(file);
+                                    });
+
+                                    input.files = dataTransfer.files;
                                 });
                             </script>
                         </div>
