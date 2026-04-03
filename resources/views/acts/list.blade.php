@@ -45,9 +45,9 @@
                                             <th>#</th>
                                             <th>Category</th>
                                             <th>Subcategory</th>
-                                           
+
                                             <th>Description</th>
-                                            
+
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -61,21 +61,35 @@
                                             <td>{{ $acts->category?->name }}</td>
                                             <td>{{ $acts->subcategory?->name }}</td>
 
-                                           
+
                                             <td>{{ $acts->description }}</td>
-                                            
+
 
                                             <td>
-                                                <a href="{{ route('admin.editacts', $acts->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                <div class="d-flex flex-column gap-2">
 
-                                                <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-info">View</a>
+                                                    <a href="{{ route('admin.editacts', $acts->id) }}"
+                                                        class="btn btn-sm btn-primary w-100">
+                                                        Edit
+                                                    </a>
 
-                                                <form method="POST" action="{{ route('admin.actsfiledelete', $acts->id) }}" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="file" value="{{ $file }}">
-                                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                                </form>
+                                                    <a href="{{ asset('storage/' . $file) }}"
+                                                        target="_blank"
+                                                        class="btn btn-sm btn-info w-100">
+                                                        View
+                                                    </a>
+
+                                                    <form method="POST"
+                                                        action="{{ route('admin.actsfiledelete', $acts->id) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="file" value="{{ $file }}">
+                                                        <button class="btn btn-sm btn-danger w-100">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach
