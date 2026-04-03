@@ -13,7 +13,7 @@ class ActCategory extends Model
 
     public function subcategories()
     {
-        return $this->hasMany(ActSubcategory::class);
+        return $this->hasMany(ActSubcategory::class, 'act_category_id');
     }
 
     public function acts()

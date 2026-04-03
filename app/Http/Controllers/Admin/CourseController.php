@@ -397,7 +397,6 @@ class CourseController extends Controller
         return redirect()->route('admin.listactsubcategories')
             ->with('success', 'Act subcategory created successfully.');
     }
-
     // Show edit form
     public function editactsubcategory($id)
     {

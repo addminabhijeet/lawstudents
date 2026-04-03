@@ -55,13 +55,9 @@
                                             <td>{{ $subcategories->firstItem() + $index }}</td>
                                             <td>{{ $subcategorie->name }}</td>
 
-                                            {{-- Correct relationship access --}}
+                                            {{-- Display category name based on relationship --}}
                                             <td>
-                                                @if ($subcategorie->category)
-                                                {{ $subcategorie->category->name }}
-                                                @else
-                                                N/A
-                                                @endif
+                                                {{ $subcategorie->category ? $subcategorie->category->name : 'N/A' }}
                                             </td>
 
                                             <td>{{ $subcategorie->created_at->format('Y-m-d, h:i A') }}</td>

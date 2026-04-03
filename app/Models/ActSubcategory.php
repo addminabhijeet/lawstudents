@@ -13,7 +13,7 @@ class ActSubcategory extends Model
 
     public function category()
     {
-        return $this->belongsTo(ActCategory::class);
+        return $this->belongsTo(ActCategory::class, 'act_category_id');
     }
 
     public function acts()
