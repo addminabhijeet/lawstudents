@@ -54,9 +54,9 @@
                                             <td>{{ $categorie->name }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editacts', [$categorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ route('admin.editactcategory', [$categorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <form action="{{ route('admin.deleteactcategory', [$categorie->id]) }}" method="POST" class="d-inline">
+                                                    <form action="{{ route('admin.deleteactcategoryfile', [$categorie->id]) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
