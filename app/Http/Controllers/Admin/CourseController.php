@@ -196,10 +196,40 @@ class CourseController extends Controller
 
         return view('acts.edit', compact('acts', 'categories'));
     }
-    public function updateacts(Request $request, $id)
-    {
-        dd("HIT CONTROLLER", $request->all(), $request->file());
+public function updateacts(Request $request, $id)
+{
+
+
+    $request->validate([
+        'category_id' => 'required|exists:act_categories,id',
+        'subcategory_id' => 'required|exists:act_subcategories,id',
+        'pdfs' => ['nullable', 'array'],
+        'pdfs.*' => ['file', 'mimes:pdf'],
+        'description' => ['nullable', 'string'],
+    ]);
+
+    $acts = Act::findOrFail($id);
+
+    $pdfPaths = $acts->pdfs ?? [];
+
+    if ($request->hasFile('pdfs')) {
+        foreach ($request->file('pdfs') as $file) {
+            $filename = uniqid() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('acts', $filename, 'public');
+            $pdfPaths[] = $path;
+        }
     }
+
+    $acts->update([
+        'category_id' => $request->category_id,
+        'subcategory_id' => $request->subcategory_id,
+        'pdfs' => $pdfPaths,
+        'description' => $request->description,
+    ]);
+
+    return redirect()->route('admin.listacts')
+        ->with('success', 'Acts updated successfully.');
+}
     public function deleteaddfile($id, $key)
     {
         $act = Act::findOrFail($id);
