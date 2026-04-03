@@ -26,12 +26,12 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updateacts', $categorie->id) }}" method="POST">
+                            <form action="{{ route('admin.updateactcategory', $categories->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Category Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $categorie->name) }}">
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $categories->name) }}">
                                     @error('name')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror

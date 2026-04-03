@@ -26,27 +26,27 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updaterulessubcategory', $subcategory->id) }}" method="POST">
+                            <form action="{{ route('admin.updateactssubcategory', $subcategories->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="mb-3">
-                                    <label for="rule_category_id" class="form-label">Select Category</label>
-                                    <select name="rule_category_id" id="rule_category_id" class="form-control">
-                                        @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('rule_category_id', $subcategory->rule_category_id) == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
+                                    <label for="act_category_id" class="form-label">Select Category</label>
+                                    <select name="act_category_id" id="act_category_id" class="form-control">
+                                        @foreach($categories as $categories)
+                                        <option value="{{ $categories->id }}" {{ old('act_category_id', $subcategories->act_category_id) == $categories->id ? 'selected' : '' }}>
+                                            {{ $categories->name }}
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('rule_category_id')
+                                    @error('act_category_id')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Subcategory Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $subcategory->name) }}">
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $subcategories->name) }}">
                                     @error('name')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
