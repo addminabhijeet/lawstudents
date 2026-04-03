@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\Models\Course;
-use App\Models\Category;
+use App\Models\RuleCategory;
 use App\Models\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,60 +13,14 @@ class RuleController extends Controller
 {
     public function __invoke(): View
     {
-        $categories = Category::whereHas('courses.notes', function ($query) {
-            $query->where('visibility', 'free')
-                ->where('status', 1);
-        })
-            ->with([
-                'courses' => function ($query) {
-                    $query->where('is_free', 1)
-                        ->whereHas('notes', function ($q) {
-                            $q->where('visibility', 'free')
-                                ->where('status', 1);
-                        })
-                        ->with(['notes' => function ($q) {
-                            $q->where('visibility', 'free')
-                                ->where('status', 1);
-                        }])
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(6);
-                },
-                'children' => function ($query) {
-                    $query->whereHas('courses.notes', function ($q) {
-                        $q->where('visibility', 'free')
-                            ->where('status', 1);
-                    })
-                        ->with([
-                            'courses' => function ($q) {
-                                $q->where('is_free', 1)
-                                    ->whereHas('notes', function ($n) {
-                                        $n->where('visibility', 'free')
-                                            ->where('status', 1);
-                                    })
-                                    ->with(['notes' => function ($n) {
-                                        $n->where('visibility', 'free')
-                                            ->where('status', 1);
-                                    }])
-                                    ->orderBy('created_at', 'desc')
-                                    ->paginate(6);
-                            }
-                        ]);
-                }
-            ])
-            ->get();
+        $categories = RuleCategory::with([
+            'subcategories.rules'
+        ])->get();
 
-        $courses = Course::where('status', 1)
-            ->where('is_free', 1)
-            ->whereHas('notes', function ($query) {
-                $query->where('visibility', 'free')
-                    ->where('status', 1);
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate(12);
-
-        return view('rules.rules', compact('categories', 'courses'));
+        return view('rules.rules', compact('categories'));
     }
 
+    // 🔍 SEARCH
     public function search(Request $request)
     {
         $query = $request->get('q');
@@ -76,49 +29,59 @@ class RuleController extends Controller
             return response()->json([]);
         }
 
-        $notes = Rule::where('visibility', 'free')
-            ->where('status', 1)
-            ->where('title', 'LIKE', "%{$query}%")
-            ->with('course')
+        $rules = Rule::with('category', 'subcategory')
+            ->where('description', 'LIKE', "%{$query}%")
             ->limit(10)
             ->get()
-            ->map(function ($note) {
+            ->map(function ($rule) {
                 return [
-                    'title' => $note->title,
+                    'title' => $rule->description,
                     'type' => 'Rule',
-                    'note_id' => $note->id,
-                    'course_id' => $note->course_id,
-                    'category_id' => $note->course->category_id ?? null,
+                    'note_id' => $rule->id,
+                    'category_id' => $rule->category_id,
+                    'subcategory_id' => $rule->subcategory_id,
                 ];
             });
 
-        return response()->json($notes);
+        return response()->json($rules);
     }
 
-    public function viewnote($id)
+    // 📥 DOWNLOAD
+    public function viewnote($id, $index = 0)
     {
-        $note = Rule::findOrFail($id);
+        $rule = Rule::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($note->file_path)) {
+        if (!isset($rule->pdfs[$index])) {
             abort(404);
         }
 
-        $note->increment('download_count');
+        $file = $rule->pdfs[$index];
 
-        $path = Storage::disk('public')->path($note->file_path);
+        if (!Storage::disk('public')->exists($file)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($file);
 
         return response()->download($path);
     }
 
-    public function viewnotes($id)
+    // 👁 VIEW PDF
+    public function viewnotes($id, $index = 0)
     {
-        $note = Rule::findOrFail($id);
+        $rule = Rule::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($note->file_path)) {
+        if (!isset($rule->pdfs[$index])) {
             abort(404);
         }
 
-        $path = Storage::disk('public')->path($note->file_path);
+        $file = $rule->pdfs[$index];
+
+        if (!Storage::disk('public')->exists($file)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($file);
 
         return response()->file($path);
     }
