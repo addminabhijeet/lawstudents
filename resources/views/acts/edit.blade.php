@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
+                       
 
                                 <!-- Category -->
                                 <div class="mb-3">
