@@ -123,27 +123,32 @@
         console.log("=== DEBUG START ===");
 
         /* =========================
-           FILE UPLOAD DEBUG + FIX
+           SAFE ELEMENT SELECTION
         ========================== */
 
-        let selectedFiles = [];
-
+        const form = document.querySelector('form');
         const input = document.getElementById('pdfInput');
         const previewList = document.getElementById('previewList');
-
-        if (!input) {
-            console.error("pdfInput NOT FOUND ❌");
-            return;
-        }
-
-        const form = input.closest('form');
+        const categorySelect = document.getElementById('category_id');
+        const subcategorySelect = document.getElementById('subcategory_id');
 
         if (!form) {
             console.error("FORM NOT FOUND ❌");
             return;
         }
 
+        if (!input) {
+            console.error("FILE INPUT NOT FOUND ❌");
+            return;
+        }
+
         console.log("Form Found ✅");
+
+        /* =========================
+           FILE UPLOAD LOGIC
+        ========================== */
+
+        let selectedFiles = [];
 
         input.addEventListener('change', function(e) {
             console.log("Files Selected:", e.target.files);
@@ -176,7 +181,12 @@
             renderList();
         };
 
-        form.addEventListener('submit', function(e) {
+        /* =========================
+           FORM SUBMIT DEBUG
+        ========================== */
+
+        form.addEventListener('submit', function() {
+
             console.log("Form Submitted ✅");
 
             const dataTransfer = new DataTransfer();
@@ -187,22 +197,22 @@
 
             input.files = dataTransfer.files;
 
-            // DEBUG FORM DATA
             const formData = new FormData(form);
 
             console.log("---- FORM DATA ----");
+
             for (let [key, value] of formData.entries()) {
                 console.log(key, value);
             }
+
+            console.log("Selected Files Count:", input.files.length);
         });
 
         /* =========================
-           CATEGORY DEBUG + FIX
+           CATEGORY → SUBCATEGORY
         ========================== */
 
         const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
-        const categorySelect = document.getElementById('category_id');
-        const subcategorySelect = document.getElementById('subcategory_id');
 
         console.log("Categories Loaded:", categories);
 
@@ -234,25 +244,5 @@
             populateSubcategories(this.value);
         });
 
-    });
-</script>
-<script>
-    console.log("=== DEBUG START ===");
-
-    // Check form submit trigger
-    const formDebug = document.querySelector('form');
-    formDebug.addEventListener('submit', function(e) {
-
-        console.log("Form Submitted ✅");
-
-        const formData = new FormData(formDebug);
-
-        console.log("---- Form Data ----");
-
-        for (let [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
-
-        console.log("Selected Files Count:", document.getElementById('pdfInput').files.length);
     });
 </script>
