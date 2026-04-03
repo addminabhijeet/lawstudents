@@ -28,7 +28,6 @@
                         <div class="card-body">
                             <form action="{{ route('admin.updaterulescategory', $categories->id) }}" method="POST">
                                 @csrf
-                                @method('PUT')
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Category Name</label>
                                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $categories->name) }}">

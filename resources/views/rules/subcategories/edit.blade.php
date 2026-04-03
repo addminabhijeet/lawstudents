@@ -28,8 +28,6 @@
                         <div class="card-body">
                             <form action="{{ route('admin.updaterulessubcategory', $subcategories->id) }}" method="POST">
                                 @csrf
-                                @method('PUT')
-
                                 <div class="mb-3">
                                     <label for="rule_category_id" class="form-label">Select Category</label>
                                     <select name="rule_category_id" id="rule_category_id" class="form-control">
