@@ -232,6 +232,8 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('verify-phone-otp', [StudentAdmissinController::class, 'verifyPhoneOtp'])
                 ->name('verifyphoneotp');
 
+            Route::delete('addacts/{id}/file/{key}', [CourseController::class, 'deleteaddfile'])
+                ->name('deleteaddfile');
 
             Route::get('actsubcategories-list', [CourseController::class, 'listactsubcategories'])
                 ->name('listactsubcategories');

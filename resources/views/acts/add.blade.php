@@ -52,13 +52,42 @@
 
                                 <!-- PDFs -->
                                 <div class="mb-3">
-                                    <label class="form-label">Upload PDFs</label>
-                                    <input type="file" name="pdf[]" class="form-control" multiple>
-                                    @foreach($act->pdfs as $file)
-                                    <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
-                                        View PDF
-                                    </a>
-                                    @endforeach
+                                    <label class="form-label">Uploaded PDFs</label>
+
+                                    @if(!empty($act->pdfs))
+                                    <ul class="list-group">
+                                        @foreach($act->pdfs as $key => $file)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                                            <!-- File Name -->
+                                            <span>{{ basename($file) }}</span>
+
+                                            <div>
+                                                <!-- View Button -->
+                                                <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
+                                                    View
+                                                </a>
+
+                                                <!-- Delete Button -->
+                                                <form action="{{ route('admin.deleteaddfile', [$act->id, $key]) }}"
+                                                    method="POST"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this PDF?')">
+                                                        Remove
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @else
+                                    <p>No PDFs uploaded.</p>
+                                    @endif
                                 </div>
 
                                 <!-- Description -->

@@ -230,6 +230,27 @@ class CourseController extends Controller
             ->with('success', 'Acts updated successfully.');
     }
 
+    public function deleteaddfile($id, $key)
+    {
+        $act = Act::findOrFail($id);
+
+        $pdfs = $act->pdfs;
+
+        if (isset($pdfs[$key])) {
+            // Delete file from storage
+            Storage::delete('public/' . $pdfs[$key]);
+
+            // Remove from array
+            unset($pdfs[$key]);
+
+            // Re-index array
+            $act->pdfs = array_values($pdfs);
+            $act->save();
+        }
+
+        return back()->with('success', 'PDF removed successfully');
+    }
+
     public function actsfiledelete(Request $request, $id)
     {
         $acts = Act::findOrFail($id);
