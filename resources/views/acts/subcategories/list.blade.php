@@ -39,11 +39,11 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="actsList">
+                                <table class="table table-hover" id="rulesList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
-                                            <th>Category</th>
+                                            <th>Category Name</th>
                                             <th>Subcategory Name</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
@@ -56,9 +56,9 @@
                                             <td>{{ $subcategorie->name }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editactsubcategory', [$subcategorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ route('admin.editrulessubcategory', [$subcategorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <form method="POST" action="{{ route('admin.deleteactsubcategory', [$subcategorie->id]) }}" class="d-inline">
+                                                    <form method="POST" action="{{ route('admin.deleterulessubcategory', [$subcategorie->id]) }}" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subcategory?')">Delete</button>

@@ -26,20 +26,20 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updateactsubcategory', $subcategory->id) }}" method="POST">
+                            <form action="{{ route('admin.updaterulessubcategory', $subcategory->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
                                 <div class="mb-3">
-                                    <label for="act_category_id" class="form-label">Select Category</label>
-                                    <select name="act_category_id" id="act_category_id" class="form-control">
+                                    <label for="rule_category_id" class="form-label">Select Category</label>
+                                    <select name="rule_category_id" id="rule_category_id" class="form-control">
                                         @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('act_category_id', $subcategory->act_category_id) == $category->id ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}" {{ old('rule_category_id', $subcategory->rule_category_id) == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('act_category_id')
+                                    @error('rule_category_id')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>

@@ -9,25 +9,15 @@ class RuleSubcategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'rule_category_id',
-        'pdfs', // JSON field for multiple PDFs
-    ];
+    protected $fillable = ['name', 'rule_category_id'];
 
-    protected $casts = [
-        'pdfs' => 'array',
-    ];
-
-    // A subcategory belongs to a category
     public function category()
     {
-        return $this->belongsTo(RuleCategory::class, 'rule_category_id');
+        return $this->belongsTo(RuleCategory::class);
     }
 
-    // Optional: a subcategory may have many rules
     public function rules()
     {
-        return $this->hasMany(Rule::class, 'subcategory_id');
+        return $this->hasMany(Rule::class);
     }
 }

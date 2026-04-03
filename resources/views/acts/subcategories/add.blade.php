@@ -26,35 +26,35 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.storeactsubcategory') }}" method="POST">
-    @csrf
-    <div class="mb-3">
-        <label for="act_category_id" class="form-label">Select Category</label>
-        <select name="act_category_id" id="act_category_id" class="form-control">
-            <option value="">-- Select Category --</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ old('act_category_id') == $category->id ? 'selected' : '' }}>
-                    {{ $category->name }}
-                </option>
-            @endforeach
-        </select>
-        @error('act_category_id')
-            <small class="text-danger">{{ $message }}</small>
-        @enderror
-    </div>
+                            <form action="{{ route('admin.storerulessubcategory') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="rule_category_id" class="form-label">Select Category</label>
+                                    <select name="rule_category_id" id="rule_category_id" class="form-control">
+                                        <option value="">-- Select Category --</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" {{ old('rule_category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('rule_category_id')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
 
-    <div class="mb-3">
-        <label for="name" class="form-label">Subcategory Name</label>
-        <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
-        @error('name')
-            <small class="text-danger">{{ $message }}</small>
-        @enderror
-    </div>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Subcategory Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
+                                    @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
 
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary">Add Subcategory</button>
-    </div>
-</form>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Add Subcategory</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
