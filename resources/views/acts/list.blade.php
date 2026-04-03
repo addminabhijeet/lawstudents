@@ -73,7 +73,7 @@
                                                         Edit
                                                     </a>
 
-                                                    <a href="{{ asset('storage/' . $file) }}"
+                                                    <a href="{{ asset('storage/app/public/' . $file) }}"
                                                         target="_blank"
                                                         class="btn btn-sm btn-info w-100">
                                                         View
