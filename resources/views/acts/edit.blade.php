@@ -1,4 +1,13 @@
 @include('layouts.partials.admin.dashboard')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <main class="nxl-container">
     <div class="nxl-content">
         <!-- [ page-header ] start -->
@@ -120,6 +129,9 @@
         renderList();
         input.value = '';
     });
+    input.addEventListener('change', function(e) {
+        console.log("Files Selected:", e.target.files);
+    });
 
     function renderList() {
         previewList.innerHTML = '';
@@ -159,6 +171,11 @@
         const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
         const categorySelect = document.getElementById('category_id');
         const subcategorySelect = document.getElementById('subcategory_id');
+        console.log("Categories Loaded:", categories);
+
+        categorySelect.addEventListener('change', function() {
+            console.log("Selected Category:", this.value);
+        });
 
         function populateSubcategories(catId, selectedSub = null) {
             subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
@@ -186,5 +203,25 @@
         categorySelect.addEventListener('change', function() {
             populateSubcategories(this.value);
         });
+    });
+</script>
+<script>
+    console.log("=== DEBUG START ===");
+
+    // Check form submit trigger
+    const formDebug = document.querySelector('form');
+    formDebug.addEventListener('submit', function(e) {
+
+        console.log("Form Submitted ✅");
+
+        const formData = new FormData(formDebug);
+
+        console.log("---- Form Data ----");
+
+        for (let [key, value] of formData.entries()) {
+            console.log(key, value);
+        }
+
+        console.log("Selected Files Count:", document.getElementById('pdfInput').files.length);
     });
 </script>

@@ -593,6 +593,7 @@ class CourseController extends Controller
     }
     public function updaterules(Request $request, $id)
     {
+        dd("HIT", $request->all());
         $request->validate([
             'category_id' => 'required|exists:rule_categories,id',
             'subcategory_id' => 'required|exists:rule_subcategories,id',
