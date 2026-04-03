@@ -101,10 +101,7 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                {{-- Pagination --}}
-                                <div class="mt-3">
-                                    {{ $subcategories->links() }}
-                                </div>
+                                
                                 <div class="d-flex justify-content-center mt-3">
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">
