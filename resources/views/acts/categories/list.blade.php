@@ -19,7 +19,7 @@
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
                         <a href="{{ route('admin.addacts') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
-                            <span>Add Acts</span>
+                            <span>Add Categories Acts</span>
                         </a>
                     </div>
                 </div>

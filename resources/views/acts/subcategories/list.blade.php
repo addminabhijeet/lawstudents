@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Rules</li>
+                    <li class="breadcrumb-item">Acts</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -17,9 +17,9 @@
                 <div class="page-header-right-items">
 
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addrules') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.addacts') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
-                            <span>Add Rules</span>
+                            <span>Add Subcategories Acts</span>
                         </a>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="rulesList">
+                                <table class="table table-hover" id="actsList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -78,14 +78,14 @@
 
                                                         <td>
                                                             <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editrules', [$subcategorie->id]) }}"
+                                                                <a href="{{ route('admin.editacts', [$subcategorie->id]) }}"
                                                                     class="btn btn-sm btn-primary">Edit</a>
 
                                                                 <a href="{{ asset('storage/app/public/' . $item['file']) }}"
                                                                     class="btn btn-sm btn-primary">View</a>
 
                                                                 <form method="POST"
-                                                                    action="{{ route('admin.rulesfiledelete', [$subcategorie->id]) }}"
+                                                                    action="{{ route('admin.actsfiledelete', [$subcategorie->id]) }}"
                                                                     class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -105,7 +105,7 @@
                                             @endif
                                         @empty
                                             <tr>
-                                                <td colspan="5" class="text-center">No ruless Found</td>
+                                                <td colspan="5" class="text-center">No actss Found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
