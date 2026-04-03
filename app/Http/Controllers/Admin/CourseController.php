@@ -402,21 +402,21 @@ class CourseController extends Controller
     }
 
     // List all act subcategories
-    public function listsubcategories()
+    public function listactsubcategories()
     {
         $subcategories = ActSubcategory::with('category')->latest()->paginate(10);
         return view('acts.subcategories.list', compact('subcategories'));
     }
 
     // Show form to add new subcategory
-    public function addsubcategory()
+    public function addactsubcategory()
     {
         $categories = ActCategory::all();
         return view('acts.subcategories.add', compact('categories'));
     }
 
     // Store new subcategory
-    public function storesubcategory(Request $request)
+    public function storeactsubcategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -441,7 +441,7 @@ class CourseController extends Controller
     }
 
     // Show edit form
-    public function editsubcategory($id)
+    public function editactsubcategory($id)
     {
         $subcategory = ActSubcategory::findOrFail($id);
         $categories = ActCategory::all();
@@ -449,7 +449,7 @@ class CourseController extends Controller
     }
 
     // Update subcategory
-    public function updatesubcategory(Request $request, $id)
+    public function updateactsubcategory(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -477,7 +477,7 @@ class CourseController extends Controller
     }
 
     // Delete a specific PDF from subcategory
-    public function subcategoryfiledelete(Request $request, $id)
+    public function actsubcategoryfiledelete(Request $request, $id)
     {
         $subcategory = ActSubcategory::findOrFail($id);
         $fileToDelete = $request->input('file');
