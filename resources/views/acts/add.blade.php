@@ -53,7 +53,7 @@
                                 <!-- PDFs -->
                                 <div class="mb-3">
                                     <label class="form-label">Uploaded PDFs</label>
-
+                                    <input type="file" name="pdfs[]" class="form-control" multiple>
                                     @if(!empty($act->pdfs))
                                     <ul class="list-group">
                                         @foreach($act->pdfs as $key => $file)
