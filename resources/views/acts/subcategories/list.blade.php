@@ -54,7 +54,16 @@
                                         <tr>
                                             <td>{{ $subcategories->firstItem() + $index }}</td>
                                             <td>{{ $subcategorie->name }}</td>
-                                            <td>{{ $subcategorie->category->name ?? 'N/A' }}</td>
+
+                                            {{-- Correct relationship access --}}
+                                            <td>
+                                                @if ($subcategorie->category)
+                                                {{ $subcategorie->category->name }}
+                                                @else
+                                                N/A
+                                                @endif
+                                            </td>
+
                                             <td>{{ $subcategorie->created_at->format('Y-m-d, h:i A') }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
