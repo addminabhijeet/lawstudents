@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Rules</li>
+                    <li class="breadcrumb-item">Rules Subcategories</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -19,7 +19,7 @@
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
                         <a href="{{ route('admin.addrulessubcategory') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
-                            <span>Add Rules Subcategory</span>
+                            <span>Add Rules Subcategories</span>
                         </a>
                     </div>
                 </div>

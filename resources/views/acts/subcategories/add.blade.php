@@ -8,8 +8,8 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts</li>
-                    <li class="breadcrumb-item">Add Acts</li>
+                    <li class="breadcrumb-item">Acts Subcategories</li>
+                    <li class="breadcrumb-item">Add</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
