@@ -54,49 +54,60 @@
                                 <div class="mb-3">
                                     <label class="form-label">Upload PDFs</label>
 
-                                    <!-- Multiple File Input -->
-                                    <input type="file" name="pdfs[]" class="form-control" multiple>
+                                    <input type="file" name="pdfs[]" id="pdfInput" class="form-control" multiple>
 
-                                    <small class="text-muted">You can select multiple PDF files</small>
+                                    <ul id="previewList" class="list-group mt-3"></ul>
 
-                                    <hr>
+                                    <script>
+                                        let selectedFiles = [];
 
-                                    <label class="form-label">Uploaded PDFs</label>
+                                        const input = document.getElementById('pdfInput');
+                                        const previewList = document.getElementById('previewList');
 
-                                    @if(!empty($act->pdfs) && count($act->pdfs))
-                                    <ul class="list-group">
-                                        @foreach($act->pdfs as $key => $file)
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        input.addEventListener('change', function(e) {
+                                            // Convert FileList to array and merge
+                                            selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
+                                            renderList();
 
-                                            <!-- File Name -->
-                                            <span>{{ basename($file) }}</span>
+                                            // Reset input so same file can be reselected if removed
+                                            input.value = '';
+                                        });
 
-                                            <div>
-                                                <!-- View -->
-                                                <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
-                                                    View
-                                                </a>
+                                        function renderList() {
+                                            previewList.innerHTML = '';
 
-                                                <!-- Delete -->
-                                                <form action="{{ route('admin.deleteaddfile', [$act->id, $key]) }}"
-                                                    method="POST"
-                                                    style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
+                                            selectedFiles.forEach((file, index) => {
+                                                const li = document.createElement('li');
+                                                li.className = 'list-group-item d-flex justify-content-between align-items-center';
 
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Delete this PDF?')">
-                                                        Remove
-                                                    </button>
-                                                </form>
-                                            </div>
+                                                li.innerHTML = `
+            <span>${file.name}</span>
+            <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                Remove
+            </button>
+        `;
 
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                    @else
-                                    <p>No PDFs uploaded.</p>
-                                    @endif
+                                                previewList.appendChild(li);
+                                            });
+
+                                            updateInputFiles();
+                                        }
+
+                                        function removeFile(index) {
+                                            selectedFiles.splice(index, 1);
+                                            renderList();
+                                        }
+
+                                        function updateInputFiles() {
+                                            const dataTransfer = new DataTransfer();
+
+                                            selectedFiles.forEach(file => {
+                                                dataTransfer.items.add(file);
+                                            });
+
+                                            input.files = dataTransfer.files;
+                                        }
+                                    </script>
                                 </div>
 
                                 <!-- Description -->
