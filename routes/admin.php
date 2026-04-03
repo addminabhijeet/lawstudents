@@ -257,7 +257,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('subcategories/filedelete/{id}', [CourseController::class, 'rulessubcategoryfiledelete'])
                 ->name('admin.deleterulessubcategoryfile');
 
-            Route::get('categories/list', [CourseController::class, 'listcategories'])
+            Route::get('categories/list', [CourseController::class, 'listactcategories'])
                 ->name('admin.listactcategories');
             Route::get('categories/add', [CourseController::class, 'addcategory'])
                 ->name('admin.addactcategory');

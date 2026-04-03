@@ -245,20 +245,20 @@ class CourseController extends Controller
     }
 
     // List all act categories
-    public function listcategories()
+    public function listactcategories()
     {
         $categories = ActCategory::latest()->paginate(10);
         return view('acts.categories.list', compact('categories'));
     }
 
     // Show form to add new category
-    public function addcategory()
+    public function addactcategory()
     {
         return view('acts.categories.add');
     }
 
     // Store new category
-    public function storecategory(Request $request)
+    public function storeactcategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -280,14 +280,14 @@ class CourseController extends Controller
     }
 
     // Show edit form
-    public function editcategory($id)
+    public function editactcategory($id)
     {
         $category = ActCategory::findOrFail($id);
         return view('acts.categories.edit', compact('category'));
     }
 
     // Update category
-    public function updatecategory(Request $request, $id)
+    public function updateactcategory(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -312,7 +312,7 @@ class CourseController extends Controller
     }
 
     // Delete a specific PDF from category
-    public function categoryfiledelete(Request $request, $id)
+    public function actcategoryfiledelete(Request $request, $id)
     {
         $category = ActCategory::findOrFail($id);
         $fileToDelete = $request->input('file');
