@@ -118,64 +118,93 @@
     </div>
 </main>
 <script>
-    let selectedFiles = [];
-
-    const input = document.getElementById('pdfInput');
-    const previewList = document.getElementById('previewList');
-    const form = input.closest('form');
-
-    input.addEventListener('change', function(e) {
-        selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
-        renderList();
-        input.value = '';
-    });
-    input.addEventListener('change', function(e) {
-        console.log("Files Selected:", e.target.files);
-    });
-
-    function renderList() {
-        previewList.innerHTML = '';
-
-        selectedFiles.forEach((file, index) => {
-            const li = document.createElement('li');
-            li.className = 'list-group-item d-flex justify-content-between align-items-center';
-
-            li.innerHTML = `
-            <span>${file.name}</span>
-            <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
-                Remove
-            </button>
-        `;
-
-            previewList.appendChild(li);
-        });
-    }
-
-    function removeFile(index) {
-        selectedFiles.splice(index, 1);
-        renderList();
-    }
-
-    form.addEventListener('submit', function() {
-        const dataTransfer = new DataTransfer();
-
-        selectedFiles.forEach(file => {
-            dataTransfer.items.add(file);
-        });
-
-        input.files = dataTransfer.files;
-    });
-</script>
-<script>
     document.addEventListener('DOMContentLoaded', function() {
+
+        console.log("=== DEBUG START ===");
+
+        /* =========================
+           FILE UPLOAD DEBUG + FIX
+        ========================== */
+
+        let selectedFiles = [];
+
+        const input = document.getElementById('pdfInput');
+        const previewList = document.getElementById('previewList');
+
+        if (!input) {
+            console.error("pdfInput NOT FOUND ❌");
+            return;
+        }
+
+        const form = input.closest('form');
+
+        if (!form) {
+            console.error("FORM NOT FOUND ❌");
+            return;
+        }
+
+        console.log("Form Found ✅");
+
+        input.addEventListener('change', function(e) {
+            console.log("Files Selected:", e.target.files);
+
+            selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
+            renderList();
+            input.value = '';
+        });
+
+        function renderList() {
+            previewList.innerHTML = '';
+
+            selectedFiles.forEach((file, index) => {
+                const li = document.createElement('li');
+                li.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+                li.innerHTML = `
+                <span>${file.name}</span>
+                <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                    Remove
+                </button>
+            `;
+
+                previewList.appendChild(li);
+            });
+        }
+
+        window.removeFile = function(index) {
+            selectedFiles.splice(index, 1);
+            renderList();
+        };
+
+        form.addEventListener('submit', function(e) {
+            console.log("Form Submitted ✅");
+
+            const dataTransfer = new DataTransfer();
+
+            selectedFiles.forEach(file => {
+                dataTransfer.items.add(file);
+            });
+
+            input.files = dataTransfer.files;
+
+            // DEBUG FORM DATA
+            const formData = new FormData(form);
+
+            console.log("---- FORM DATA ----");
+            for (let [key, value] of formData.entries()) {
+                console.log(key, value);
+            }
+        });
+
+        /* =========================
+           CATEGORY DEBUG + FIX
+        ========================== */
+
         const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
         const categorySelect = document.getElementById('category_id');
         const subcategorySelect = document.getElementById('subcategory_id');
-        console.log("Categories Loaded:", categories);
 
-        categorySelect.addEventListener('change', function() {
-            console.log("Selected Category:", this.value);
-        });
+        console.log("Categories Loaded:", categories);
 
         function populateSubcategories(catId, selectedSub = null) {
             subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
@@ -201,8 +230,10 @@
         if (oldCat) populateSubcategories(oldCat, oldSub);
 
         categorySelect.addEventListener('change', function() {
+            console.log("Selected Category:", this.value);
             populateSubcategories(this.value);
         });
+
     });
 </script>
 <script>
