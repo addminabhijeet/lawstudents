@@ -26,43 +26,63 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updaterules', $rules->id) }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="{{ route('admin.updaterules', $rules->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
 
-                                <!-- Existing PDF (display only, single file as string) -->
+                                <!-- Category -->
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <select name="category_id" id="category_id" class="form-select" required>
+                                        <option value="">Select Category</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ old('category_id', $rules->category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Subcategory -->
+                                <div class="mb-3">
+                                    <label class="form-label">Subcategory</label>
+                                    <select name="subcategory_id" id="subcategory_id" class="form-select" required>
+                                        <option value="">Select Subcategory</option>
+                                    </select>
+                                </div>
+
+                                <!-- Existing PDFs -->
                                 @if (!empty($rules->pdfs))
-                                    <div class="mb-3">
-                                        <label class="form-label">Existing PDF</label>
-                                        <div class="mb-1">
-                                            <a href="{{ asset('storage/' . $rules->pdfs) }}" target="_blank">
-                                                {{ pathinfo($rules->pdfs, PATHINFO_BASENAME) }}
+                                <div class="mb-3">
+                                    <label class="form-label">Existing PDFs</label>
+                                    <ul class="list-group">
+                                        @foreach ($rules->pdfs as $index => $pdf)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <a href="{{ asset('storage/' . $pdf) }}" target="_blank">
+                                                {{ pathinfo($pdf, PATHINFO_BASENAME) }}
                                             </a>
-                                        </div>
-                                    </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                                 @endif
 
-                                <!-- Upload new PDFs (same as Add form) -->
+                                <!-- Upload New PDFs -->
                                 <div class="mb-3">
-                                    <label for="pdfs" class="form-label">Upload PDF(s)</label>
-                                    <input type="file" name="pdfs[]" id="pdfs" class="form-control" multiple>
-                                    @error('pdfs.*')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                    <label class="form-label">Upload More PDFs</label>
+                                    <input type="file" name="pdfs[]" id="pdfInput" class="form-control" multiple>
+
+                                    <ul id="previewList" class="list-group mt-3"></ul>
                                 </div>
 
-                                <!-- Description / Button Name -->
+                                <!-- Description -->
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">Button Name / Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $rules->description) }}</textarea>
-                                    @error('description')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                    <label class="form-label">Button Name / Description</label>
+                                    <textarea name="description" class="form-control">{{ old('description', $rules->description) }}</textarea>
                                 </div>
 
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Update rules</button>
-                                </div>
+                                <button class="btn btn-primary">Update Rules</button>
                             </form>
                         </div>
                     </div>
@@ -72,3 +92,83 @@
         <!-- [ Main Content ] end -->
     </div>
 </main>
+<script>
+    let selectedFiles = [];
+
+    const input = document.getElementById('pdfInput');
+    const previewList = document.getElementById('previewList');
+    const form = input.closest('form');
+
+    input.addEventListener('change', function(e) {
+        selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
+        renderList();
+        input.value = '';
+    });
+
+    function renderList() {
+        previewList.innerHTML = '';
+
+        selectedFiles.forEach((file, index) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+            li.innerHTML = `
+                <span>${file.name}</span>
+                <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                    Remove
+                </button>
+            `;
+
+            previewList.appendChild(li);
+        });
+    }
+
+    function removeFile(index) {
+        selectedFiles.splice(index, 1);
+        renderList();
+    }
+
+    form.addEventListener('submit', function() {
+        const dataTransfer = new DataTransfer();
+
+        selectedFiles.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+
+        input.files = dataTransfer.files;
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
+        const categorySelect = document.getElementById('category_id');
+        const subcategorySelect = document.getElementById('subcategory_id');
+
+        function populateSubcategories(catId, selectedSub = null) {
+            subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+
+            const cat = categories.find(c => c.id == catId);
+
+            if (cat && cat.subcategories) {
+                cat.subcategories.forEach(sub => {
+                    const opt = document.createElement('option');
+                    opt.value = sub.id;
+                    opt.textContent = sub.name;
+
+                    if (sub.id == selectedSub) opt.selected = true;
+
+                    subcategorySelect.appendChild(opt);
+                });
+            }
+        }
+
+        const oldCat = "{{ old('category_id', $rules->category_id) }}";
+        const oldSub = "{{ old('subcategory_id', $rules->subcategory_id) }}";
+
+        if (oldCat) populateSubcategories(oldCat, oldSub);
+
+        categorySelect.addEventListener('change', function() {
+            populateSubcategories(this.value);
+        });
+    });
+</script>

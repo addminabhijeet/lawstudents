@@ -584,40 +584,46 @@ class CourseController extends Controller
 
     public function editrules($id)
     {
-        $rules = Clientele::findOrFail($id);
-        return view('rules.edit', compact('rules'));
-    }
+        $rules = Rule::findOrFail($id);
 
+        // Load categories like ADD
+        $categories = RuleCategory::with('subcategories')->get();
+
+        return view('rules.edit', compact('rules', 'categories'));
+    }
     public function updaterules(Request $request, $id)
     {
         $request->validate([
-            'description' => 'nullable|string',
-            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240', // 10MB max
+            'category_id' => 'required|exists:rule_categories,id',
+            'subcategory_id' => 'required|exists:rule_subcategories,id',
+            'pdfs' => ['nullable', 'array'],
+            'pdfs.*' => ['file', 'mimes:pdf', 'max:10240'],
+            'description' => ['nullable', 'string'],
         ]);
 
         $rules = Rule::findOrFail($id);
 
-        // Update PDFs if new files are uploaded
-        if ($request->hasFile('pdfs')) {
-            $pdfPaths = [];
+        // Start with existing PDFs
+        $pdfPaths = $rules->pdfs ?? [];
 
+        // Add new PDFs if uploaded
+        if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $originalName = $file->getClientOriginalName();
-                $path = $file->storeAs('rules', $originalName, 'public');
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('rules', $filename, 'public');
                 $pdfPaths[] = $path;
             }
-
-            // Save as JSON if multiple PDFs
-            $rules->pdfs = json_encode($pdfPaths);
         }
 
-        // Update description
-        $rules->description = $request->description ?? $rules->description;
+        $rules->update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'pdfs' => $pdfPaths, // ✅ NO json_encode
+            'description' => $request->description,
+        ]);
 
-        $rules->save();
-
-        return redirect()->route('admin.listclientele')
-            ->with('success', 'Rule PDFs updated successfully.');
+        return redirect()->route('admin.listrules')
+            ->with('success', 'Rules updated successfully.');
     }
 
     public function rulesfiledelete(Request $request, $id)
