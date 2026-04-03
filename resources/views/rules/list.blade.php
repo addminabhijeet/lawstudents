@@ -77,7 +77,7 @@
 
                                                     <!-- Delete Whole Rule -->
                                                     <form method="POST"
-                                                        action="{{ route('admin.rulesdelete', $rules->id) }}">
+                                                        action="{{ route('admin.rulesfiledelete', $rules->id) }}">
                                                         @csrf
                                                         @method('DELETE')
 
