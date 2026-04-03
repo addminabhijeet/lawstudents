@@ -170,17 +170,17 @@
                             <span class="nxl-mtext">Rules</span>
                             <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
-                    <li class="nxl-item"><a class="nxl-link"
-                            href="{{ route('admin.listrulescategories') }}">List Categories</a>
-                    </li>
-                    <li class="nxl-item"><a class="nxl-link"
-                            href="{{ route('admin.listrulessubcategories') }}">List Sub Categories</a>
-                    </li>
-                    <ul class="nxl-submenu">
-                        <li class="nxl-item"><a class="nxl-link"
-                                href="{{ route('admin.listrules') }}">List</a>
-                        </li>
-                    </ul>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listrulescategories') }}">List Categories</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listrulessubcategories') }}">List Sub Categories</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listrules') }}">List</a>
+                            </li>
+                        </ul>
                     </li>
 
                     <!-- Frontend -->
