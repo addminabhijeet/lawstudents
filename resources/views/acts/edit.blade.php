@@ -94,10 +94,7 @@
                                     <ul id="previewList" class="list-group mt-3"></ul>
                                 </div>
 
-                                <!-- Upload new -->
-                                <div class="mb-3">
-                                    <input type="file" name="pdfs[]" class="form-control" multiple>
-                                </div>
+                                
 
                                 <!-- Description -->
                                 <div class="mb-3">
