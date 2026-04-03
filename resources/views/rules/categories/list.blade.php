@@ -50,14 +50,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($ruless as $rules)
+                                        @forelse ($categories as $categorie)
                                             @php
                                                 // Make sure $pdfs is always an array of arrays
                                                 $pdfs = [];
-                                                if (!empty($rules->pdfs)) {
+                                                if (!empty($categorie->pdfs)) {
                                                     $pdfs[] = [
-                                                        'file' => $rules->pdfs,
-                                                        'description' => $rules->description,
+                                                        'file' => $categorie->pdfs,
+                                                        'description' => $categorie->description,
                                                     ];
                                                 }
                                             @endphp
@@ -73,19 +73,19 @@
 
                                                         <td>{{ $item['description'] ?? 'No description' }}</td>
 
-                                                        <td>{{ \Carbon\Carbon::parse($rules->created_at)->format('Y-m-d, h:i A') }}
+                                                        <td>{{ \Carbon\Carbon::parse($categorie->created_at)->format('Y-m-d, h:i A') }}
                                                         </td>
 
                                                         <td>
                                                             <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editrules', [$rules->id]) }}"
+                                                                <a href="{{ route('admin.editrules', [$categorie->id]) }}"
                                                                     class="btn btn-sm btn-primary">Edit</a>
 
                                                                 <a href="{{ asset('storage/app/public/' . $item['file']) }}"
                                                                     class="btn btn-sm btn-primary">View</a>
 
                                                                 <form method="POST"
-                                                                    action="{{ route('admin.rulesfiledelete', [$rules->id]) }}"
+                                                                    action="{{ route('admin.rulesfiledelete', [$categorie->id]) }}"
                                                                     class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -114,8 +114,8 @@
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">
                                             <!-- Previous Page -->
-                                            <li class="page-item {{ $ruless->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $ruless->previousPageUrl() }}"
+                                            <li class="page-item {{ $categories->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $categories->previousPageUrl() }}"
                                                     aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="visually-hidden">Previous</span>
@@ -123,17 +123,17 @@
                                             </li>
 
                                             <!-- Page Numbers -->
-                                            @foreach ($ruless->getUrlRange(1, $ruless->lastPage()) as $page => $url)
+                                            @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
                                                 <li
-                                                    class="page-item {{ $ruless->currentPage() == $page ? 'active' : '' }}">
+                                                    class="page-item {{ $categories->currentPage() == $page ? 'active' : '' }}">
                                                     <a class="page-link"
                                                         href="{{ $url }}">{{ $page }}</a>
                                                 </li>
                                             @endforeach
 
                                             <!-- Next Page -->
-                                            <li class="page-item {{ !$ruless->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $ruless->nextPageUrl() }}"
+                                            <li class="page-item {{ !$categories->hasMorePages() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $categories->nextPageUrl() }}"
                                                     aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="visually-hidden">Next</span>
