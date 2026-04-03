@@ -14,14 +14,11 @@
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
-                <div class="page-header-right-items">
-
-                    <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addactcategory') }}" class="btn btn-primary">
-                            <i class="feather-plus me-2"></i>
-                            <span>Add Categories Acts</span>
-                        </a>
-                    </div>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{{ route('admin.addactcategory') }}" class="btn btn-primary">
+                        <i class="feather-plus me-2"></i>
+                        <span>Add Categories Acts</span>
+                    </a>
                 </div>
             </div>
         </div>
