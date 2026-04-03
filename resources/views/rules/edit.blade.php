@@ -26,9 +26,8 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updaterules', $rules->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                           
 
                                 <!-- Category -->
                                 <div class="mb-3">
@@ -37,7 +36,7 @@
                                         <option value="">Select Category</option>
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ old('category_id', $rules->category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ old('category_id', $acts->category_id) == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
@@ -53,15 +52,30 @@
                                 </div>
 
                                 <!-- Existing PDFs -->
-                                @if (!empty($rules->pdfs))
+                                @if (!empty($acts->pdfs))
                                 <div class="mb-3">
                                     <label class="form-label">Existing PDFs</label>
                                     <ul class="list-group">
-                                        @foreach ($rules->pdfs as $index => $pdf)
+                                        @foreach ($acts->pdfs as $index => $pdf)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                                            <!-- File Name -->
                                             <a href="{{ asset('storage/' . $pdf) }}" target="_blank">
                                                 {{ pathinfo($pdf, PATHINFO_BASENAME) }}
                                             </a>
+
+                                            <!-- Delete Button (KEEP YOUR EXISTING ROUTE) -->
+                                            <form action="{{ route('admin.deleteaddfile', [$acts->id, $index]) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Delete this PDF?')">
+                                                    Remove
+                                                </button>
+                                            </form>
+
                                         </li>
                                         @endforeach
                                     </ul>
@@ -79,10 +93,10 @@
                                 <!-- Description -->
                                 <div class="mb-3">
                                     <label class="form-label">Button Name / Description</label>
-                                    <textarea name="description" class="form-control">{{ old('description', $rules->description) }}</textarea>
+                                    <textarea name="description" class="form-control">{{ old('description', $acts->description) }}</textarea>
                                 </div>
 
-                                <button class="btn btn-primary">Update Rules</button>
+                                <button class="btn btn-primary">Update Acts</button>
                             </form>
                         </div>
                     </div>
@@ -113,11 +127,11 @@
             li.className = 'list-group-item d-flex justify-content-between align-items-center';
 
             li.innerHTML = `
-                <span>${file.name}</span>
-                <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
-                    Remove
-                </button>
-            `;
+            <span>${file.name}</span>
+            <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                Remove
+            </button>
+        `;
 
             previewList.appendChild(li);
         });
@@ -139,36 +153,36 @@
     });
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
-        const categorySelect = document.getElementById('category_id');
-        const subcategorySelect = document.getElementById('subcategory_id');
+document.addEventListener('DOMContentLoaded', function() {
+    const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
+    const categorySelect = document.getElementById('category_id');
+    const subcategorySelect = document.getElementById('subcategory_id');
 
-        function populateSubcategories(catId, selectedSub = null) {
-            subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+    function populateSubcategories(catId, selectedSub = null) {
+        subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
 
-            const cat = categories.find(c => c.id == catId);
+        const cat = categories.find(c => c.id == catId);
 
-            if (cat && cat.subcategories) {
-                cat.subcategories.forEach(sub => {
-                    const opt = document.createElement('option');
-                    opt.value = sub.id;
-                    opt.textContent = sub.name;
+        if (cat && cat.subcategories) {
+            cat.subcategories.forEach(sub => {
+                const opt = document.createElement('option');
+                opt.value = sub.id;
+                opt.textContent = sub.name;
 
-                    if (sub.id == selectedSub) opt.selected = true;
+                if (sub.id == selectedSub) opt.selected = true;
 
-                    subcategorySelect.appendChild(opt);
-                });
-            }
+                subcategorySelect.appendChild(opt);
+            });
         }
+    }
 
-        const oldCat = "{{ old('category_id', $rules->category_id) }}";
-        const oldSub = "{{ old('subcategory_id', $rules->subcategory_id) }}";
+    const oldCat = "{{ old('category_id', $acts->category_id) }}";
+    const oldSub = "{{ old('subcategory_id', $acts->subcategory_id) }}";
 
-        if (oldCat) populateSubcategories(oldCat, oldSub);
+    if (oldCat) populateSubcategories(oldCat, oldSub);
 
-        categorySelect.addEventListener('change', function() {
-            populateSubcategories(this.value);
-        });
+    categorySelect.addEventListener('change', function() {
+        populateSubcategories(this.value);
     });
+});
 </script>
