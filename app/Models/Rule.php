@@ -10,8 +10,24 @@ class Rule extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
+        'subcategory_id',
         'description',
-        'pdfs', // JSON column to store multiple PDF paths
+        'pdfs',
     ];
 
+    // ✅ SAME AS ACT
+    protected $casts = [
+        'pdfs' => 'array',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(RuleCategory::class, 'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(RuleSubcategory::class, 'subcategory_id');
+    }
 }

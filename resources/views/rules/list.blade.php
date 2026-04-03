@@ -39,60 +39,68 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="rulesList">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="wd-30">#</th>
-                                            <th>Category Name</th>
-                                            <th>Subcategory Name</th>
-                                            <th>File Name</th>
-                                            <th>Button Name / Description</th>
-                                            <th>Date Uploaded</th>
-                                            <th class="text-end">Actions</th>
+                                            <th>#</th>
+                                            <th>Category</th>
+                                            <th>Subcategory</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
-                                        @forelse ($subcategories as $index => $subcategory)
-                                        @php
-                                        $pdfs = json_decode($subcategory->pdfs, true) ?? [];
-                                        @endphp
+                                        @forelse ($ruless as $rules)
 
-                                        @forelse ($pdfs as $file)
+                                        @foreach ($rules->pdfs ?? [] as $file)
                                         <tr>
-                                            <td>{{ $subcategories->firstItem() + $index }}</td>
-                                            <td>{{ $subcategory->category->name ?? 'N/A' }}</td>
-                                            <td>{{ $subcategory->name }}</td>
-                                            <td>{{ pathinfo($file, PATHINFO_BASENAME) }}</td>
-                                            <td>{{ $subcategory->description ?? 'No description' }}</td>
-                                            <td>{{ $subcategory->created_at->format('Y-m-d, h:i A') }}</td>
+                                            <td>{{ $loop->iteration }}</td>
+
+                                            <td>{{ $rules->category?->name }}</td>
+
+                                            <td>{{ $rules->subcategory?->name }}</td>
+
+                                            <td>{{ $rules->description }}</td>
+
                                             <td>
-                                                <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editrulessubcategory', $subcategory->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                <div class="d-flex flex-column gap-2">
 
-                                                    <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-primary">View</a>
+                                                    <a href="{{ route('admin.editrules', $rules->id) }}"
+                                                        class="btn btn-sm btn-primary w-100">
+                                                        Edit
+                                                    </a>
 
-                                                    <form method="POST" action="{{ route('admin.rulessubcategoryfiledelete', $subcategory->id) }}" class="d-inline">
+                                                    <a href="{{ asset('storage/' . $file) }}"
+                                                        target="_blank"
+                                                        class="btn btn-sm btn-info w-100">
+                                                        View
+                                                    </a>
+
+                                                    <form method="POST"
+                                                        action="{{ route('admin.rulesfiledelete', $rules->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <input type="hidden" name="file" value="{{ $file }}">
-                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this file?')">Delete</button>
+
+                                                        <button class="btn btn-sm btn-danger w-100"
+                                                            onclick="return confirm('Delete this file?')">
+                                                            Delete
+                                                        </button>
                                                     </form>
+
                                                 </div>
                                             </td>
                                         </tr>
+                                        @endforeach
+
                                         @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No files found for {{ $subcategory->name }}</td>
-                                        </tr>
-                                        @endforelse
-                                        @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center">No subcategories found</td>
+                                            <td colspan="5" class="text-center">No data</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
-
                                 {{-- Pagination --}}
                                 <div class="mt-3">
                                     {{ $subcategories->links() }}
