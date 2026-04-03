@@ -441,9 +441,9 @@ class CourseController extends Controller
     public function listrulessubcategories()
     {
         $subcategories = RuleSubcategory::with('category')->latest()->paginate(10);
+
         return view('rules.subcategories.list', compact('subcategories'));
     }
-
     public function addrulessubcategory()
     {
         $categories = RuleCategory::all();
