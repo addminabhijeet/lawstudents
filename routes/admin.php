@@ -231,17 +231,17 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('verifyphoneotp');
 
 
-            Route::get('subcategories/list', [CourseController::class, 'listsubcategories'])
+            Route::get('subcategories/list', [CourseController::class, 'listactsubcategories'])
                 ->name('listactsubcategories');
-            Route::get('subcategories/add', [CourseController::class, 'addsubcategory'])
+            Route::get('subcategories/add', [CourseController::class, 'addactsubcategory'])
                 ->name('addactsubcategory');
-            Route::post('subcategories/store', [CourseController::class, 'storesubcategory'])
+            Route::post('subcategories/store', [CourseController::class, 'storeactsubcategory'])
                 ->name('storeactsubcategory');
-            Route::get('subcategories/edit/{id}', [CourseController::class, 'editsubcategory'])
+            Route::get('subcategories/edit/{id}', [CourseController::class, 'editactsubcategory'])
                 ->name('editactsubcategory');
-            Route::post('subcategories/update/{id}', [CourseController::class, 'updatesubcategory'])
+            Route::post('subcategories/update/{id}', [CourseController::class, 'updateactsubcategory'])
                 ->name('updateactsubcategory');
-            Route::post('subcategories/filedelete/{id}', [CourseController::class, 'subcategoryfiledelete'])
+            Route::post('subcategories/filedelete/{id}', [CourseController::class, 'actsubcategoryfiledelete'])
                 ->name('deleteactsubcategoryfile');
 
             Route::get('subcategories/list', [CourseController::class, 'listrulessubcategories'])
