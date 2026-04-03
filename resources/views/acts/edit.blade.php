@@ -26,16 +26,16 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST">
+                            <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-
 
                                 <!-- Category -->
                                 <div class="mb-3">
                                     <label class="form-label">Category</label>
                                     <select name="category_id" id="category_id" class="form-select">
                                         @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('category_id', $acts->category_id) == $category->id ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}"
+                                            {{ old('category_id', $acts->category_id) == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
@@ -61,7 +61,7 @@
 
                                             <div>
                                                 <!-- View -->
-                                                <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
+                                                <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
                                                     View
                                                 </a>
 
@@ -91,11 +91,8 @@
 
                                     <input type="file" name="pdfs[]" id="pdfInput" class="form-control" multiple>
 
-                                    <!-- Preview List -->
                                     <ul id="previewList" class="list-group mt-3"></ul>
                                 </div>
-
-
 
                                 <!-- Description -->
                                 <div class="mb-3">
@@ -114,14 +111,18 @@
                                     const subcategorySelect = document.getElementById('subcategory_id');
 
                                     function populateSubcategories(catId, selectedSub = null) {
-                                        subcategorySelect.innerHTML = '';
+                                        subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>'; // ✅ FIX
+
                                         const cat = categories.find(c => c.id == catId);
+
                                         if (cat && cat.subcategories) {
                                             cat.subcategories.forEach(sub => {
                                                 const opt = document.createElement('option');
                                                 opt.value = sub.id;
                                                 opt.textContent = sub.name;
+
                                                 if (sub.id == selectedSub) opt.selected = true;
+
                                                 subcategorySelect.appendChild(opt);
                                             });
                                         }
