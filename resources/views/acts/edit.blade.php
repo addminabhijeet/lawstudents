@@ -192,63 +192,7 @@
 
                                 });
                             </script>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
 
-                                    let selectedFiles = [];
-
-                                    const input = document.getElementById('pdfInput');
-                                    const previewList = document.getElementById('previewList');
-                                    const form = input.closest('form');
-
-                                    if (!input) return; // safety
-
-                                    input.addEventListener('change', function(e) {
-                                        selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
-                                        renderList();
-                                        input.value = '';
-                                    });
-
-                                    function renderList() {
-                                        previewList.innerHTML = '';
-
-                                        selectedFiles.forEach((file, index) => {
-                                            const li = document.createElement('li');
-                                            li.className = 'list-group-item d-flex justify-content-between align-items-center';
-
-                                            li.innerHTML = `
-                <span>${file.name}</span>
-                <button type="button" class="btn btn-sm btn-danger remove-btn" data-index="${index}">
-                    Remove
-                </button>
-            `;
-
-                                            previewList.appendChild(li);
-                                        });
-                                    }
-
-                                    // ✅ FIX: use event delegation instead of inline onclick
-                                    previewList.addEventListener('click', function(e) {
-                                        if (e.target.classList.contains('remove-btn')) {
-                                            const index = e.target.getAttribute('data-index');
-                                            selectedFiles.splice(index, 1);
-                                            renderList();
-                                        }
-                                    });
-
-                                    // ✅ IMPORTANT: Attach files before submit
-                                    form.addEventListener('submit', function() {
-                                        const dataTransfer = new DataTransfer();
-
-                                        selectedFiles.forEach(file => {
-                                            dataTransfer.items.add(file);
-                                        });
-
-                                        input.files = dataTransfer.files;
-                                    });
-
-                                });
-                            </script>
                         </div>
                     </div>
                 </div>
