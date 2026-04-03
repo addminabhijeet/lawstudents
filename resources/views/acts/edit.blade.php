@@ -27,7 +27,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updaterules', $acts->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
 
