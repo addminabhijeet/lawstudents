@@ -1,13 +1,5 @@
 @include('layouts.partials.admin.dashboard')
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
+
 <main class="nxl-container">
     <div class="nxl-content">
         <!-- [ page-header ] start -->
@@ -37,6 +29,7 @@
                         <div class="card-body">
                             <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
 
                                 <!-- Category -->
                                 <div class="mb-3">
@@ -73,7 +66,7 @@
                                                 {{ pathinfo($pdf, PATHINFO_BASENAME) }}
                                             </a>
 
-                                            <!-- Delete -->
+                                            <!-- Delete Button -->
                                             <form action="{{ route('admin.deleteaddfile', [$acts->id, $index]) }}"
                                                 method="POST" style="display:inline;">
                                                 @csrf
@@ -105,7 +98,7 @@
                                     <textarea name="description" class="form-control">{{ old('description', $acts->description) }}</textarea>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Update Acts</button>
+                                <button class="btn btn-primary">Update Acts</button>
                             </form>
 
 
@@ -118,131 +111,86 @@
     </div>
 </main>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+let selectedFiles = [];
 
-        console.log("=== DEBUG START ===");
+const input = document.getElementById('pdfInput');
+const previewList = document.getElementById('previewList');
+const form = input.closest('form');
 
-        /* =========================
-           SAFE ELEMENT SELECTION
-        ========================== */
+input.addEventListener('change', function(e) {
+    selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
+    renderList();
+    input.value = '';
+});
 
-        const form = document.querySelector('form');
-        const input = document.getElementById('pdfInput');
-        const previewList = document.getElementById('previewList');
-        const categorySelect = document.getElementById('category_id');
-        const subcategorySelect = document.getElementById('subcategory_id');
+function renderList() {
+    previewList.innerHTML = '';
 
-        if (!form) {
-            console.error("FORM NOT FOUND ❌");
-            return;
-        }
+    selectedFiles.forEach((file, index) => {
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
 
-        if (!input) {
-            console.error("FILE INPUT NOT FOUND ❌");
-            return;
-        }
+        li.innerHTML = `
+            <span>${file.name}</span>
+            <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                Remove
+            </button>
+        `;
 
-        console.log("Form Found ✅");
-
-        /* =========================
-           FILE UPLOAD LOGIC
-        ========================== */
-
-        let selectedFiles = [];
-
-        input.addEventListener('change', function(e) {
-            console.log("Files Selected:", e.target.files);
-
-            selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
-            renderList();
-            input.value = '';
-        });
-
-        function renderList() {
-            previewList.innerHTML = '';
-
-            selectedFiles.forEach((file, index) => {
-                const li = document.createElement('li');
-                li.className = 'list-group-item d-flex justify-content-between align-items-center';
-
-                li.innerHTML = `
-                <span>${file.name}</span>
-                <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
-                    Remove
-                </button>
-            `;
-
-                previewList.appendChild(li);
-            });
-        }
-
-        window.removeFile = function(index) {
-            selectedFiles.splice(index, 1);
-            renderList();
-        };
-
-        /* =========================
-           FORM SUBMIT DEBUG
-        ========================== */
-
-        form.addEventListener('submit', function() {
-
-            console.log("Form Submitted ✅");
-
-            const dataTransfer = new DataTransfer();
-
-            selectedFiles.forEach(file => {
-                dataTransfer.items.add(file);
-            });
-
-            input.files = dataTransfer.files;
-
-            const formData = new FormData(form);
-
-            console.log("---- FORM DATA ----");
-
-            for (let [key, value] of formData.entries()) {
-                console.log(key, value);
-            }
-
-            console.log("Selected Files Count:", input.files.length);
-        });
-
-        /* =========================
-           CATEGORY → SUBCATEGORY
-        ========================== */
-
-        const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
-
-        console.log("Categories Loaded:", categories);
-
-        function populateSubcategories(catId, selectedSub = null) {
-            subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
-
-            const cat = categories.find(c => c.id == catId);
-
-            if (cat && cat.subcategories) {
-                cat.subcategories.forEach(sub => {
-                    const opt = document.createElement('option');
-                    opt.value = sub.id;
-                    opt.textContent = sub.name;
-
-                    if (sub.id == selectedSub) opt.selected = true;
-
-                    subcategorySelect.appendChild(opt);
-                });
-            }
-        }
-
-        const oldCat = "{{ old('category_id', $acts->category_id) }}";
-        const oldSub = "{{ old('subcategory_id', $acts->subcategory_id) }}";
-
-        if (oldCat) populateSubcategories(oldCat, oldSub);
-
-        categorySelect.addEventListener('change', function() {
-            console.log("Selected Category:", this.value);
-            populateSubcategories(this.value);
-        });
-
+        previewList.appendChild(li);
     });
+}
+
+function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    renderList();
+}
+
+form.addEventListener('submit', function() {
+    const dataTransfer = new DataTransfer();
+
+    selectedFiles.forEach(file => {
+        dataTransfer.items.add(file);
+    });
+
+    input.files = dataTransfer.files;
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
+    const categorySelect = document.getElementById('category_id');
+    const subcategorySelect = document.getElementById('subcategory_id');
+
+    function populateSubcategories(catId, selectedSub = null) {
+        subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+
+        const cat = categories.find(c => c.id == catId);
+
+        if (cat && cat.subcategories) {
+            cat.subcategories.forEach(sub => {
+                const opt = document.createElement('option');
+                opt.value = sub.id;
+                opt.textContent = sub.name;
+
+                if (sub.id == selectedSub) opt.selected = true;
+
+                subcategorySelect.appendChild(opt);
+            });
+        }
+    }
+
+    const oldCat = "{{ old('category_id', $acts->category_id) }}";
+    const oldSub = "{{ old('subcategory_id', $acts->subcategory_id) }}";
+
+    if (oldCat) {
+        populateSubcategories(oldCat, oldSub);
+    }
+
+    categorySelect.addEventListener('change', function() {
+        populateSubcategories(this.value);
+    });
+
+});
 </script>
