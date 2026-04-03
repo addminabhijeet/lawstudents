@@ -57,7 +57,7 @@
                                                 <div class="hstack gap-2 justify-content-end">
                                                     <a href="{{ route('admin.editrulescategory', $categorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <form action="{{ route('admin.deleterulescategory', $categorie->id) }}" method="POST" class="d-inline">
+                                                    <form action="{{ route('admin.deleterulescategoryfile', $categorie->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger"
