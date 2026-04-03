@@ -208,13 +208,16 @@ class CourseController extends Controller
 
         $acts = Act::findOrFail($id);
 
-        $pdfPaths = $acts->pdfs ?? []; // already array due to cast
+        $pdfPaths = $acts->pdfs ?? [];
 
-        if ($request->hasFile('pdfs')) {
+        // ✅ FIX: check properly
+        if ($request->hasFile('pdfs') && is_array($request->file('pdfs'))) {
             foreach ($request->file('pdfs') as $file) {
-                $originalName = time() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('acts', $originalName, 'public');
-                $pdfPaths[] = $path;
+                if ($file) {
+                    $originalName = uniqid() . '_' . $file->getClientOriginalName();
+                    $path = $file->storeAs('acts', $originalName, 'public');
+                    $pdfPaths[] = $path;
+                }
             }
         }
 
