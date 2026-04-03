@@ -53,7 +53,7 @@
                                     <tbody>
                                         @forelse ($ruless as $rules)
                                         <tr>
-                                            <!-- Serial Number -->
+                                            <!-- Serial -->
                                             <td>{{ $loop->iteration }}</td>
 
                                             <!-- Category -->
@@ -75,26 +75,17 @@
                                                         Edit
                                                     </a>
 
-                                                    <!-- PDFs List -->
-                                                    @foreach ($rules->pdfs ?? [] as $file)
-                                                    <a href="{{ asset('storage/' . $file) }}"
-                                                        target="_blank"
-                                                        class="btn btn-sm btn-info w-100">
-                                                        View {{ $loop->iteration }}
-                                                    </a>
-
+                                                    <!-- Delete Whole Rule -->
                                                     <form method="POST"
-                                                        action="{{ route('admin.rulesfiledelete', $rules->id) }}">
+                                                        action="{{ route('admin.rulesdelete', $rules->id) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <input type="hidden" name="file" value="{{ $file }}">
 
                                                         <button class="btn btn-sm btn-danger w-100"
-                                                            onclick="return confirm('Delete this file?')">
-                                                            Delete {{ $loop->iteration }}
+                                                            onclick="return confirm('Delete this rule and all PDFs?')">
+                                                            Delete
                                                         </button>
                                                     </form>
-                                                    @endforeach
 
                                                 </div>
                                             </td>
