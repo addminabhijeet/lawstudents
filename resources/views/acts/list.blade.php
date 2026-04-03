@@ -45,46 +45,53 @@
                                             <th>#</th>
                                             <th>Category</th>
                                             <th>Subcategory</th>
-
                                             <th>Description</th>
-
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         @forelse ($actss as $acts)
-
-                                        @foreach ($acts->pdfs ?? [] as $file)
                                         <tr>
+                                            <!-- Serial -->
                                             <td>{{ $loop->iteration }}</td>
+
+                                            <!-- Category -->
                                             <td>{{ $acts->category?->name }}</td>
+
+                                            <!-- Subcategory -->
                                             <td>{{ $acts->subcategory?->name }}</td>
 
-
+                                            <!-- Description -->
                                             <td>{{ $acts->description }}</td>
 
-
+                                            <!-- Actions -->
                                             <td>
                                                 <div class="d-flex flex-column gap-2">
 
+                                                    <!-- Edit -->
                                                     <a href="{{ route('admin.editacts', $acts->id) }}"
                                                         class="btn btn-sm btn-primary w-100">
                                                         Edit
                                                     </a>
 
-                                                    <a href="{{ asset('storage/app/public/' . $file) }}"
+                                                    <!-- OPTIONAL: View First PDF (like preview) -->
+                                                    @if(!empty($acts->pdfs) && count($acts->pdfs))
+                                                    <a href="{{ asset('storage/' . $acts->pdfs[0]) }}"
                                                         target="_blank"
                                                         class="btn btn-sm btn-info w-100">
                                                         View
                                                     </a>
+                                                    @endif
 
+                                                    <!-- Delete Whole Act -->
                                                     <form method="POST"
                                                         action="{{ route('admin.actsfiledelete', $acts->id) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <input type="hidden" name="file" value="{{ $file }}">
-                                                        <button class="btn btn-sm btn-danger w-100">
+
+                                                        <button class="btn btn-sm btn-danger w-100"
+                                                            onclick="return confirm('Delete this act and all PDFs?')">
                                                             Delete
                                                         </button>
                                                     </form>
@@ -92,11 +99,10 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        @endforeach
 
                                         @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No data</td>
+                                            <td colspan="5" class="text-center">No data</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
