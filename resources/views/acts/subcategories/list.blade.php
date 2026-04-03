@@ -43,22 +43,24 @@
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
-                                            <th>Category Name</th>
                                             <th>Subcategory Name</th>
+                                            <th>Category Name</th>
+                                            <th>Date Created</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($subcategories as $subcategorie)
+                                        @forelse ($subcategories as $index => $subcategorie)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $subcategorie->category->name ?? 'N/A' }}</td>
+                                            <td>{{ $subcategories->firstItem() + $index }}</td>
                                             <td>{{ $subcategorie->name }}</td>
+                                            <td>{{ $subcategorie->category->name ?? 'N/A' }}</td> <!-- Shows category name -->
+                                            <td>{{ $subcategorie->created_at->format('Y-m-d, h:i A') }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editrulessubcategory', [$subcategorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ route('admin.editactsubcategory', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <form method="POST" action="{{ route('admin.deleterulessubcategoryfile', [$subcategorie->id]) }}" class="d-inline">
+                                                    <form method="POST" action="{{ route('admin.deleteactsubcategory', $subcategorie->id) }}" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subcategory?')">Delete</button>
@@ -68,7 +70,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">No Subcategories Found</td>
+                                            <td colspan="5" class="text-center">No subcategories found</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
