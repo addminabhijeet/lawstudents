@@ -39,7 +39,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="rulesList">
+                                <table class="table table-hover" id="actsSubcategoriesList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -54,7 +54,7 @@
                                         <tr>
                                             <td>{{ $subcategories->firstItem() + $index }}</td>
                                             <td>{{ $subcategorie->name }}</td>
-                                            <td>{{ $subcategorie->category->name ?? 'N/A' }}</td> <!-- Shows category name -->
+                                            <td>{{ $subcategorie->category->name ?? 'N/A' }}</td>
                                             <td>{{ $subcategorie->created_at->format('Y-m-d, h:i A') }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
