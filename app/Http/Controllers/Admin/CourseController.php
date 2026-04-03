@@ -545,30 +545,38 @@ class CourseController extends Controller
 
     public function addrules()
     {
+        // SAME as Acts
+        $categories = RuleCategory::with('subcategories')->get();
 
-        return view('rules.add');
+        return view('rules.add', compact('categories'));
     }
 
     public function storerules(Request $request)
     {
         $request->validate([
-            'pdf' => ['required'],
-            'pdf.*' => ['file', 'mimes:pdf'],
+            'category_id' => 'required|exists:rule_categories,id',
+            'subcategory_id' => 'required|exists:rule_subcategories,id',
+            'pdfs' => ['required', 'array'],
+            'pdfs.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
 
-        if ($request->hasFile('pdf')) {
-            foreach ($request->file('pdf') as $file) {
-                // Keep the original file name
-                $originalName = $file->getClientOriginalName();
-                $path = $file->storeAs('rules', $originalName, 'public');
+        $pdfPaths = [];
 
-                Rule::create([
-                    'pdfs' => $path,
-                    'description' => $request->description,
-                ]);
+        if ($request->hasFile('pdfs')) {
+            foreach ($request->file('pdfs') as $file) {
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('rules', $filename, 'public');
+                $pdfPaths[] = $path;
             }
         }
+
+        Rule::create([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'pdfs' => $pdfPaths,
+            'description' => $request->description,
+        ]);
 
         return redirect()->route('admin.listrules')
             ->with('success', 'Rules PDFs uploaded successfully.');
