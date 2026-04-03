@@ -44,49 +44,33 @@
                                         <tr>
                                             <th class="wd-30">#</th>
                                             <th>Subcategory Name</th>
-                                            <th>File Name</th>
-                                            <th>Button Name / Description</th>
-                                            <th>Date Uploaded</th>
+                                            <th>Category Name</th>
+                                            <th>Date Created</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($subcategories as $index => $subcategorie)
-                                        @php
-                                        // Decode JSON PDFs, ensure array
-                                        $pdfs = json_decode($subcategorie->pdfs, true) ?? [];
-                                        @endphp
-
-                                        @forelse ($pdfs as $file)
                                         <tr>
                                             <td>{{ $subcategories->firstItem() + $index }}</td>
                                             <td>{{ $subcategorie->name }}</td>
-                                            <td>{{ pathinfo($file, PATHINFO_BASENAME) }}</td>
-                                            <td>{{ $subcategorie->description ?? 'No description' }}</td>
+                                            <td>{{ $subcategorie->category->name ?? 'N/A' }}</td>
                                             <td>{{ $subcategorie->created_at->format('Y-m-d, h:i A') }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editrules', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ route('admin.editrulessubcategory', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-primary">View</a>
-
-                                                    <form method="POST" action="{{ route('admin.rulesfiledelete', $subcategorie->id) }}" class="d-inline">
+                                                    <form method="POST" action="{{ route('admin.deleterulessubcategory', $subcategorie->id) }}" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <input type="hidden" name="file" value="{{ $file }}">
-                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this file?')">Delete</button>
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subcategory?')">Delete</button>
                                                     </form>
                                                 </div>
                                             </td>
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="6" class="text-center">No files found for {{ $subcategorie->name }}</td>
-                                        </tr>
-                                        @endforelse
-                                        @empty
-                                        <tr>
-                                            <td colspan="6" class="text-center">No subcategories found</td>
+                                            <td colspan="5" class="text-center">No subcategories found</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
@@ -96,6 +80,7 @@
                                 <div class="mt-3">
                                     {{ $subcategories->links() }}
                                 </div>
+
                                 <div class="d-flex justify-content-center mt-3">
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">

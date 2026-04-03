@@ -440,6 +440,7 @@ class CourseController extends Controller
 
     public function listrulessubcategories()
     {
+        // Get subcategories with their parent category
         $subcategories = RuleSubcategory::with('category')->latest()->paginate(10);
 
         return view('rules.subcategories.list', compact('subcategories'));
