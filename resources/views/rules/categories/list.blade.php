@@ -39,7 +39,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="actsList">
+                                <table class="table table-hover" id="rulesCategoriesList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -48,18 +48,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($categories as $categorie)
+                                        @forelse ($categories as $index => $categorie)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            {{-- Correct numbering with pagination --}}
+                                            <td>{{ $categories->firstItem() + $index }}</td>
                                             <td>{{ $categorie->name }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editrulescategory', [$categorie->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ route('admin.editrulescategory', $categorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <form action="{{ route('admin.deleterulescategory', [$categorie->id]) }}" method="POST" class="d-inline">
+                                                    <form action="{{ route('admin.deleterulescategory', $categorie->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
+                                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this category?')">
+                                                            Delete
+                                                        </button>
                                                     </form>
                                                 </div>
                                             </td>
@@ -71,6 +75,11 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+
+                                {{-- Pagination links --}}
+                                <div class="mt-3">
+                                    {{ $categories->links() }}
+                                </div>
                                 <div class="d-flex justify-content-center mt-3">
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">

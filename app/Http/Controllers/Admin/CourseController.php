@@ -310,6 +310,7 @@ class CourseController extends Controller
     public function listrulescategories()
     {
         $categories = RuleCategory::latest()->paginate(10);
+
         return view('rules.categories.list', compact('categories'));
     }
 
