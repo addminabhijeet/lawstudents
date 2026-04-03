@@ -75,14 +75,7 @@
                                                         Edit
                                                     </a>
 
-                                                    <!-- OPTIONAL: View First PDF (like preview) -->
-                                                    @if(!empty($acts->pdfs) && count($acts->pdfs))
-                                                    <a href="{{ asset('storage/' . $acts->pdfs[0]) }}"
-                                                        target="_blank"
-                                                        class="btn btn-sm btn-info w-100">
-                                                        View
-                                                    </a>
-                                                    @endif
+                                                    
 
                                                     <!-- Delete Whole Act -->
                                                     <form method="POST"
