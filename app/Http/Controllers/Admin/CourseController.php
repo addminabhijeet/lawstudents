@@ -152,7 +152,8 @@ class CourseController extends Controller
 
     public function addacts()
     {
-        $categories = ActCategory::all();
+        // Eager load subcategories for all categories
+        $categories = ActCategory::with('subcategories')->get();
         return view('acts.add', compact('categories'));
     }
 
@@ -186,9 +187,11 @@ class CourseController extends Controller
     public function editacts($id)
     {
         $acts = Act::findOrFail($id);
-        $categories = ActCategory::all();
-        $subcategories = ActSubcategory::where('act_category_id', $acts->category_id)->get();
-        return view('acts.edit', compact('acts', 'categories', 'subcategories'));
+
+        // Eager load subcategories for all categories
+        $categories = ActCategory::with('subcategories')->get();
+
+        return view('acts.edit', compact('acts', 'categories'));
     }
 
     public function updateacts(Request $request, $id)

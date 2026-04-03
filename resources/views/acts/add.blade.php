@@ -84,6 +84,7 @@
 
                             <script>
                                 document.addEventListener('DOMContentLoaded', function() {
+                                    // Categories with subcategories
                                     const categories = JSON.parse('@json($categories)'.replace(/&quot;/g, '"'));
                                     const categorySelect = document.getElementById('category_id');
                                     const subcategorySelect = document.getElementById('subcategory_id');
@@ -102,14 +103,14 @@
                                         }
                                     }
 
-                                    // Populate on page load if old values exist (after validation error)
+                                    // Populate subcategories if old values exist (after validation errors)
                                     const oldCategoryId = "{{ old('category_id') }}";
                                     const oldSubcategoryId = "{{ old('subcategory_id') }}";
                                     if (oldCategoryId) {
                                         populateSubcategories(oldCategoryId, oldSubcategoryId);
                                     }
 
-                                    // Populate dynamically on change
+                                    // Populate dynamically on category change
                                     categorySelect.addEventListener('change', function() {
                                         populateSubcategories(this.value);
                                     });

@@ -114,14 +114,14 @@
                                         }
                                     }
 
-                                    // Populate on page load using current act values or old values after validation error
+                                    // Populate subcategories on page load (old values or current act values)
                                     const selectedCategoryId = "{{ old('category_id', $acts->category_id) }}";
                                     const selectedSubcategoryId = "{{ old('subcategory_id', $acts->subcategory_id) }}";
                                     if (selectedCategoryId) {
                                         populateSubcategories(selectedCategoryId, selectedSubcategoryId);
                                     }
 
-                                    // Populate dynamically on change
+                                    // Update subcategories dynamically on category change
                                     categorySelect.addEventListener('change', function() {
                                         populateSubcategories(this.value);
                                     });
