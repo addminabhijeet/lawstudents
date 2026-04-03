@@ -60,7 +60,7 @@
 
                                             <div>
                                                 <!-- View -->
-                                                <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
+                                                <a href="{{ asset('storage/app/public/' . $file) }}" target="_blank" class="btn btn-sm btn-info">
                                                     View
                                                 </a>
 
