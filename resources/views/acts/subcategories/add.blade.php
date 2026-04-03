@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.storerulessubcategory') }}" method="POST">
+                            <form action="{{ route('admin.storeactsubcategory') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="rule_category_id" class="form-label">Select Category</label>
