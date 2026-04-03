@@ -28,17 +28,18 @@
                         <div class="card-body">
                             <form action="{{ route('admin.storeactsubcategory') }}" method="POST">
                                 @csrf
+
                                 <div class="mb-3">
-                                    <label for="rule_category_id" class="form-label">Select Category</label>
-                                    <select name="rule_category_id" id="rule_category_id" class="form-control">
+                                    <label for="act_category_id" class="form-label">Select Category</label>
+                                    <select name="act_category_id" id="act_category_id" class="form-control">
                                         <option value="">-- Select Category --</option>
                                         @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('rule_category_id') == $category->id ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}" {{ old('act_category_id') == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('rule_category_id')
+                                    @error('act_category_id')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
