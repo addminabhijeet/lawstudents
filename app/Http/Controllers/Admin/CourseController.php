@@ -439,17 +439,18 @@ class CourseController extends Controller
 
     public function listrulessubcategories()
     {
-        // Get subcategories with their parent category
         $subcategories = RuleSubcategory::with('category')->latest()->paginate(10);
-
         return view('rules.subcategories.list', compact('subcategories'));
     }
+
+    // Show add form
     public function addrulessubcategory()
     {
         $categories = RuleCategory::all();
         return view('rules.subcategories.add', compact('categories'));
     }
 
+    // Store subcategory with correct rule_category_id
     public function storerulessubcategory(Request $request)
     {
         $request->validate([
