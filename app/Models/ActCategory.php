@@ -18,6 +18,6 @@ class ActCategory extends Model
 
     public function acts()
     {
-        return $this->hasMany(Act::class);
+        return $this->hasMany(Act::class, 'category_id');
     }
 }

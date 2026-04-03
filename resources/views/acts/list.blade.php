@@ -43,6 +43,8 @@
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
+                                            <th>Category</th>
+                                            <th>Subcategory</th>
                                             <th>File Name</th>
                                             <th>Button Name</th>
                                             <th>Date Uploaded</th>
@@ -51,62 +53,37 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($actss as $acts)
-                                            @php
-                                                // Make sure $pdfs is always an array of arrays
-                                                $pdfs = [];
-                                                if (!empty($acts->pdfs)) {
-                                                    $pdfs[] = [
-                                                        'file' => $acts->pdfs,
-                                                        'description' => $acts->description,
-                                                    ];
-                                                }
-                                            @endphp
+                                        @php
+                                        $pdfs = json_decode($acts->pdfs, true) ?: [$acts->pdfs];
+                                        @endphp
 
-                                            @if (!empty($pdfs))
-                                                @foreach ($pdfs as $key => $item)
-                                                    <tr class="single-item">
-                                                        <td>
-                                                            {{ $loop->iteration }}
-                                                        </td>
+                                        @foreach($pdfs as $file)
+                                        <tr class="single-item">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $acts->category?->name ?? 'N/A' }}</td>
+                                            <td>{{ $acts->subcategory?->name ?? 'N/A' }}</td>
+                                            <td>{{ pathinfo($file, PATHINFO_FILENAME) }}</td>
+                                            <td>{{ $acts->description ?? 'No description' }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($acts->created_at)->format('Y-m-d, h:i A') }}</td>
+                                            <td>
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <a href="{{ route('admin.editacts', [$acts->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ asset('storage/' . $file) }}" class="btn btn-sm btn-primary" target="_blank">View</a>
 
-                                                        <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
-
-                                                        <td>{{ $item['description'] ?? 'No description' }}</td>
-
-                                                        <td>{{ \Carbon\Carbon::parse($acts->created_at)->format('Y-m-d, h:i A') }}
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editacts', [$acts->id]) }}"
-                                                                    class="btn btn-sm btn-primary">Edit</a>
-
-                                                                <a href="{{ asset('storage/app/public/' . $item['file']) }}"
-                                                                    class="btn btn-sm btn-primary">View</a>
-
-                                                                <form method="POST"
-                                                                    action="{{ route('admin.actsfiledelete', [$acts->id]) }}"
-                                                                    class="d-inline">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <input type="hidden" name="file"
-                                                                        value="{{ $item['file'] }}">
-                                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                                        onclick="return confirm('Delete this file?')">Delete</button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                <tr>
-                                                    <td colspan="5" class="text-center">No Files Found</td>
-                                                </tr>
-                                            @endif
+                                                    <form method="POST" action="{{ route('admin.actsfiledelete', [$acts->id]) }}" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="file" value="{{ $file }}">
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this file?')">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                         @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center">No actss Found</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="7" class="text-center">No acts Found</td>
+                                        </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -124,11 +101,11 @@
 
                                             <!-- Page Numbers -->
                                             @foreach ($actss->getUrlRange(1, $actss->lastPage()) as $page => $url)
-                                                <li
-                                                    class="page-item {{ $actss->currentPage() == $page ? 'active' : '' }}">
-                                                    <a class="page-link"
-                                                        href="{{ $url }}">{{ $page }}</a>
-                                                </li>
+                                            <li
+                                                class="page-item {{ $actss->currentPage() == $page ? 'active' : '' }}">
+                                                <a class="page-link"
+                                                    href="{{ $url }}">{{ $page }}</a>
+                                            </li>
                                             @endforeach
 
                                             <!-- Next Page -->

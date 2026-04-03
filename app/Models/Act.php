@@ -10,8 +10,19 @@ class Act extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
+        'subcategory_id',
         'description',
-        'pdfs', // JSON column to store multiple PDF paths
+        'pdfs', // JSON column
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(ActCategory::class, 'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(ActSubcategory::class, 'subcategory_id');
+    }
 }
