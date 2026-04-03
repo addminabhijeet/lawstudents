@@ -274,8 +274,8 @@ class CourseController extends Controller
     // Show edit form
     public function editactcategory($id)
     {
-        $category = ActCategory::findOrFail($id);
-        return view('acts.categories.edit', compact('category'));
+        $categories = ActCategory::findOrFail($id);
+        return view('acts.categories.edit', compact('categories'));
     }
 
     // Update category
@@ -285,9 +285,9 @@ class CourseController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $category = ActCategory::findOrFail($id);
-        $category->name = $request->name;
-        $category->save();
+        $categories = ActCategory::findOrFail($id);
+        $categories->name = $request->name;
+        $categories->save();
 
         return redirect()->route('admin.listactcategories')->with('success', 'Category updated successfully.');
     }
@@ -295,15 +295,15 @@ class CourseController extends Controller
     // Delete a specific PDF from category
     public function actcategoryfiledelete(Request $request, $id)
     {
-        $category = ActCategory::findOrFail($id);
+        $categories = ActCategory::findOrFail($id);
         $fileToDelete = $request->input('file');
 
         if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
 
-        $pdfs = json_decode($category->pdfs, true) ?? [];
+        $pdfs = json_decode($categories->pdfs, true) ?? [];
         $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
 
-        $category->update(['pdfs' => json_encode($updatedPdfs)]);
+        $categories->update(['pdfs' => json_encode($updatedPdfs)]);
         return back()->with('success', 'File deleted successfully.');
     }
 
@@ -335,8 +335,8 @@ class CourseController extends Controller
 
     public function editrulescategory($id)
     {
-        $category = RuleCategory::findOrFail($id);
-        return view('rules.categories.edit', compact('category'));
+        $categories = RuleCategory::findOrFail($id);
+        return view('rules.categories.edit', compact('categories'));
     }
 
     public function updaterulescategory(Request $request, $id)
@@ -345,9 +345,9 @@ class CourseController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $category = RuleCategory::findOrFail($id);
-        $category->name = $request->name;
-        $category->save();
+        $categories = RuleCategory::findOrFail($id);
+        $categories->name = $request->name;
+        $categories->save();
 
         return redirect()->route('admin.listrulescategories')
             ->with('success', 'Rule category updated successfully.');
@@ -356,15 +356,15 @@ class CourseController extends Controller
 
     public function rulescategoryfiledelete(Request $request, $id)
     {
-        $category = RuleCategory::findOrFail($id);
+        $categories = RuleCategory::findOrFail($id);
         $fileToDelete = $request->input('file');
 
         if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
 
-        $pdfs = json_decode($category->pdfs, true) ?? [];
+        $pdfs = json_decode($categories->pdfs, true) ?? [];
         $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
 
-        $category->update(['pdfs' => json_encode($updatedPdfs)]);
+        $categories->update(['pdfs' => json_encode($updatedPdfs)]);
         return back()->with('success', 'File deleted successfully.');
     }
 
@@ -790,19 +790,16 @@ class CourseController extends Controller
         return back()->with('success', 'Banner updated successfully.');
     }
 
-
-
-
     public function deleteCategory($id)
     {
-        $category = Category::findOrFail($id);
+        $categories = Category::findOrFail($id);
 
         // Optional safety: prevent delete if courses exist
-        if ($category->courses()->count() > 0) {
+        if ($categories->courses()->count() > 0) {
             return back()->with('error', 'Cannot delete category with courses');
         }
 
-        $category->delete();
+        $categories->delete();
 
         return back()->with('success', 'Category Deleted Successfully');
     }
