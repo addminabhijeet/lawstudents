@@ -160,49 +160,9 @@
                     document.getElementById('searchSuggestions').style.display = 'none';
                 }
             </script>
-        </div>
 
-        <div class="col-lg-12 m-auto">
-            <div class="pagination-area">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-
-                        {{-- Previous Page Link --}}
-                        @if ($act->onFirstPage())
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fa-regular fa-angle-left"></i></span>
-                        </li>
-                        @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $act->previousPageUrl() }}">
-                                <i class="fa-regular fa-angle-left"></i>
-                            </a>
-                        </li>
-                        @endif
-
-                        {{-- Pagination Elements --}}
-                        @foreach ($act->getUrlRange(1, $act->lastPage()) as $page => $url)
-                        <li class="page-item {{ $page == $act->currentPage() ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                        </li>
-                        @endforeach
-
-                        {{-- Next Page Link --}}
-                        @if ($act->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $act->nextPageUrl() }}">
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                        </li>
-                        @else
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fa-regular fa-angle-right"></i></span>
-                        </li>
-                        @endif
-
-                    </ul>
-                </nav>
-            </div>
+            <!-- NOTE: Pagination removed because acts are nested collections and not paginated -->
         </div>
     </div>
 </div>
+@endsection
