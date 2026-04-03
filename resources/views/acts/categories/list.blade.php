@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts</li>
+                    <li class="breadcrumb-item">categorie </li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -17,9 +17,9 @@
                 <div class="page-header-right-items">
 
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addacts') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.addcategorie') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
-                            <span>Add Acts</span>
+                            <span>Add categorie</span>
                         </a>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="actsList">
+                                <table class="table table-hover" id="categorieList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -50,14 +50,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($actss as $acts)
+                                        @forelse ($categories as $categorie)
                                             @php
                                                 // Make sure $pdfs is always an array of arrays
                                                 $pdfs = [];
-                                                if (!empty($acts->pdfs)) {
+                                                if (!empty($categorie->pdfs)) {
                                                     $pdfs[] = [
-                                                        'file' => $acts->pdfs,
-                                                        'description' => $acts->description,
+                                                        'file' => $categorie->pdfs,
+                                                        'description' => $categorie->description,
                                                     ];
                                                 }
                                             @endphp
@@ -73,19 +73,19 @@
 
                                                         <td>{{ $item['description'] ?? 'No description' }}</td>
 
-                                                        <td>{{ \Carbon\Carbon::parse($acts->created_at)->format('Y-m-d, h:i A') }}
+                                                        <td>{{ \Carbon\Carbon::parse($categorie->created_at)->format('Y-m-d, h:i A') }}
                                                         </td>
 
                                                         <td>
                                                             <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editacts', [$acts->id]) }}"
+                                                                <a href="{{ route('admin.editcategorie', [$categorie->id]) }}"
                                                                     class="btn btn-sm btn-primary">Edit</a>
 
                                                                 <a href="{{ asset('storage/app/public/' . $item['file']) }}"
                                                                     class="btn btn-sm btn-primary">View</a>
 
                                                                 <form method="POST"
-                                                                    action="{{ route('admin.actsfiledelete', [$acts->id]) }}"
+                                                                    action="{{ route('admin.categoriefiledelete', [$categorie->id]) }}"
                                                                     class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -105,7 +105,7 @@
                                             @endif
                                         @empty
                                             <tr>
-                                                <td colspan="5" class="text-center">No actss Found</td>
+                                                <td colspan="5" class="text-center">No categories Found</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -114,8 +114,8 @@
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">
                                             <!-- Previous Page -->
-                                            <li class="page-item {{ $actss->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $actss->previousPageUrl() }}"
+                                            <li class="page-item {{ $categories->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $categories->previousPageUrl() }}"
                                                     aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="visually-hidden">Previous</span>
@@ -123,17 +123,17 @@
                                             </li>
 
                                             <!-- Page Numbers -->
-                                            @foreach ($actss->getUrlRange(1, $actss->lastPage()) as $page => $url)
+                                            @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
                                                 <li
-                                                    class="page-item {{ $actss->currentPage() == $page ? 'active' : '' }}">
+                                                    class="page-item {{ $categories->currentPage() == $page ? 'active' : '' }}">
                                                     <a class="page-link"
                                                         href="{{ $url }}">{{ $page }}</a>
                                                 </li>
                                             @endforeach
 
                                             <!-- Next Page -->
-                                            <li class="page-item {{ !$actss->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $actss->nextPageUrl() }}"
+                                            <li class="page-item {{ !$categories->hasMorePages() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $categories->nextPageUrl() }}"
                                                     aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="visually-hidden">Next</span>
