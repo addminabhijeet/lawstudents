@@ -162,26 +162,30 @@ class CourseController extends Controller
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
-            'pdf' => ['required', 'file', 'mimes:pdf'],
+            'pdf' => ['required'],
+            'pdf.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
 
+        $pdfPaths = [];
+
         if ($request->hasFile('pdf')) {
-
-            $file = $request->file('pdf');
-            $originalName = $file->getClientOriginalName();
-            $path = $file->storeAs('acts', $originalName, 'public');
-
-            Act::create([
-                'category_id' => $request->category_id,
-                'subcategory_id' => $request->subcategory_id,
-                'pdf' => $path, // ✅ single file
-                'description' => $request->description,
-            ]);
+            foreach ($request->file('pdf') as $file) {
+                $originalName = time() . '_' . $file->getClientOriginalName(); // avoid duplicate names
+                $path = $file->storeAs('acts', $originalName, 'public');
+                $pdfPaths[] = $path;
+            }
         }
 
+        Act::create([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'pdfs' => $pdfPaths, // ✅ NO json_encode needed
+            'description' => $request->description,
+        ]);
+
         return redirect()->route('admin.listacts')
-            ->with('success', 'Act PDF uploaded successfully.');
+            ->with('success', 'Acts PDFs uploaded successfully.');
     }
 
     public function editacts($id)
@@ -193,65 +197,59 @@ class CourseController extends Controller
 
         return view('acts.edit', compact('acts', 'categories'));
     }
-    
+
     public function updateacts(Request $request, $id)
     {
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
             'description' => 'nullable|string',
-            'pdf' => 'nullable|file|mimes:pdf|max:10240',
+            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
         ]);
 
         $acts = Act::findOrFail($id);
 
-        // Replace PDF if new uploaded
-        if ($request->hasFile('pdf')) {
+        $pdfPaths = $acts->pdfs ?? []; // already array due to cast
 
-            // delete old file
-            if (!empty($acts->pdf)) {
-                Storage::disk('public')->delete($acts->pdf);
+        if ($request->hasFile('pdfs')) {
+            foreach ($request->file('pdfs') as $file) {
+                $originalName = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('acts', $originalName, 'public');
+                $pdfPaths[] = $path;
             }
-
-            $file = $request->file('pdf');
-            $originalName = $file->getClientOriginalName();
-            $path = $file->storeAs('acts', $originalName, 'public');
-
-            $acts->pdf = $path;
         }
 
-        $acts->category_id = $request->category_id;
-        $acts->subcategory_id = $request->subcategory_id;
-        $acts->description = $request->description ?? $acts->description;
-
-        $acts->save();
+        $acts->update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'description' => $request->description,
+            'pdfs' => $pdfPaths,
+        ]);
 
         return redirect()->route('admin.listacts')
-            ->with('success', 'Act updated successfully.');
+            ->with('success', 'Acts updated successfully.');
     }
 
     public function actsfiledelete(Request $request, $id)
     {
         $acts = Act::findOrFail($id);
-        $fileToDelete = $request->input('file');
+        $fileToDelete = $request->file;
 
-        if (!$fileToDelete) {
-            return back()->with('error', 'No file specified for deletion.');
-        }
+        $pdfs = $acts->pdfs ?? [];
 
-        $pdfs = json_decode($acts->pdfs, true) ?? [];
-        $updatedPdfs = [];
+        $updated = [];
 
         foreach ($pdfs as $pdf) {
-            if ($pdf !== $fileToDelete) {
-                $updatedPdfs[] = $pdf;
+            if ($pdf != $fileToDelete) {
+                $updated[] = $pdf;
             } else {
                 Storage::disk('public')->delete($pdf);
             }
         }
 
-        $acts->pdfs = !empty($updatedPdfs) ? json_encode($updatedPdfs) : null;
-        $acts->save();
+        $acts->update([
+            'pdfs' => $updated
+        ]);
 
         return back()->with('success', 'File deleted successfully.');
     }

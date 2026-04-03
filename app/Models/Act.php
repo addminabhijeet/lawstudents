@@ -13,7 +13,11 @@ class Act extends Model
         'category_id',
         'subcategory_id',
         'description',
-        'pdfs', // JSON column
+        'pdfs',
+    ];
+
+    protected $casts = [
+        'pdfs' => 'array',
     ];
 
     public function category()

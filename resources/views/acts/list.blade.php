@@ -39,50 +39,50 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="actsList">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="wd-30">#</th>
+                                            <th>#</th>
                                             <th>Category</th>
                                             <th>Subcategory</th>
                                             <th>File Name</th>
-                                            <th>Button Name</th>
-                                            <th>Date Uploaded</th>
-                                            <th class="text-end">Actions</th>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
                                         @forelse ($actss as $acts)
-                                        @php
-                                        $pdfs = json_decode($acts->pdfs, true) ?: [$acts->pdfs];
-                                        @endphp
 
-                                        @foreach($pdfs as $file)
-                                        <tr class="single-item">
+                                        @foreach ($acts->pdfs ?? [] as $file)
+                                        <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $acts->category?->name ?? 'N/A' }}</td>
-                                            <td>{{ $acts->subcategory?->name ?? 'N/A' }}</td>
-                                            <td>{{ pathinfo($file, PATHINFO_FILENAME) }}</td>
-                                            <td>{{ $acts->description ?? 'No description' }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($acts->created_at)->format('Y-m-d, h:i A') }}</td>
-                                            <td>
-                                                <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editacts', [$acts->id]) }}" class="btn btn-sm btn-primary">Edit</a>
-                                                    <a href="{{ asset('storage/' . $file) }}" class="btn btn-sm btn-primary" target="_blank">View</a>
+                                            <td>{{ $acts->category?->name }}</td>
+                                            <td>{{ $acts->subcategory?->name }}</td>
 
-                                                    <form method="POST" action="{{ route('admin.actsfiledelete', [$acts->id]) }}" class="d-inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <input type="hidden" name="file" value="{{ $file }}">
-                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this file?')">Delete</button>
-                                                    </form>
-                                                </div>
+                                            <td>{{ pathinfo($file, PATHINFO_FILENAME) }}</td>
+                                            <td>{{ $acts->description }}</td>
+                                            <td>{{ $acts->created_at->format('Y-m-d h:i A') }}</td>
+
+                                            <td>
+                                                <a href="{{ route('admin.editacts', $acts->id) }}" class="btn btn-sm btn-primary">Edit</a>
+
+                                                <a href="{{ asset('storage/' . $file) }}" target="_blank" class="btn btn-sm btn-info">View</a>
+
+                                                <form method="POST" action="{{ route('admin.actsfiledelete', $acts->id) }}" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="file" value="{{ $file }}">
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach
+
                                         @empty
                                         <tr>
-                                            <td colspan="7" class="text-center">No acts Found</td>
+                                            <td colspan="7" class="text-center">No data</td>
                                         </tr>
                                         @endforelse
                                     </tbody>

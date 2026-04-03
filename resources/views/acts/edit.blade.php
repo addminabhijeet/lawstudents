@@ -31,67 +31,47 @@
 
                                 <!-- Category -->
                                 <div class="mb-3">
-                                    <label for="category_id" class="form-label">Category</label>
-                                    <select name="category_id" id="category_id" class="form-select" required>
-                                        <option value="">Select Category</option>
+                                    <label class="form-label">Category</label>
+                                    <select name="category_id" id="category_id" class="form-select">
                                         @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ (old('category_id', $acts->category_id) == $category->id) ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}" {{ old('category_id', $acts->category_id) == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('category_id')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
                                 </div>
 
                                 <!-- Subcategory -->
                                 <div class="mb-3">
-                                    <label for="subcategory_id" class="form-label">Subcategory</label>
-                                    <select name="subcategory_id" id="subcategory_id" class="form-select" required>
-                                        <option value="">Select Subcategory</option>
-                                    </select>
-                                    @error('subcategory_id')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                    <label class="form-label">Subcategory</label>
+                                    <select name="subcategory_id" id="subcategory_id" class="form-select"></select>
                                 </div>
 
                                 <!-- Existing PDFs -->
-                                @php
-                                $pdfs = json_decode($acts->pdfs, true) ?: [$acts->pdfs];
-                                @endphp
-                                @if (!empty($pdfs))
+                                @if(!empty($acts->pdfs))
                                 <div class="mb-3">
-                                    <label class="form-label">Existing PDF(s)</label>
-                                    @foreach($pdfs as $file)
-                                    <div class="mb-1">
-                                        <a href="{{ asset('storage/' . $file) }}" target="_blank">{{ pathinfo($file, PATHINFO_BASENAME) }}</a>
+                                    <label>Existing PDFs</label>
+                                    @foreach($acts->pdfs as $file)
+                                    <div>
+                                        <a href="{{ asset('storage/' . $file) }}" target="_blank">
+                                            {{ basename($file) }}
+                                        </a>
                                     </div>
                                     @endforeach
                                 </div>
                                 @endif
 
-                                <!-- Upload new PDFs -->
+                                <!-- Upload new -->
                                 <div class="mb-3">
-                                    <label for="pdfs" class="form-label">Upload PDF(s)</label>
-                                    <input type="file" name="pdfs[]" id="pdfs" class="form-control" multiple>
-                                    @error('pdfs.*')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                    <input type="file" name="pdfs[]" class="form-control" multiple>
                                 </div>
 
                                 <!-- Description -->
                                 <div class="mb-3">
-                                    <label for="description" class="form-label">Button Name / Description</label>
-                                    <textarea name="description" id="description" class="form-control" rows="3">{{ old('description', $acts->description) }}</textarea>
-                                    @error('description')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                    <textarea name="description" class="form-control">{{ old('description', $acts->description) }}</textarea>
                                 </div>
 
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">Update acts</button>
-                                </div>
+                                <button class="btn btn-primary">Update</button>
                             </form>
 
                             <script>
@@ -100,28 +80,25 @@
                                     const categorySelect = document.getElementById('category_id');
                                     const subcategorySelect = document.getElementById('subcategory_id');
 
-                                    function populateSubcategories(selectedCategoryId, selectedSubcategoryId = null) {
-                                        subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
-                                        const category = categories.find(c => c.id == selectedCategoryId);
-                                        if (category && category.subcategories) {
-                                            category.subcategories.forEach(sub => {
-                                                const option = document.createElement('option');
-                                                option.value = sub.id;
-                                                option.textContent = sub.name;
-                                                if (sub.id == selectedSubcategoryId) option.selected = true;
-                                                subcategorySelect.appendChild(option);
+                                    function populateSubcategories(catId, selectedSub = null) {
+                                        subcategorySelect.innerHTML = '';
+                                        const cat = categories.find(c => c.id == catId);
+                                        if (cat && cat.subcategories) {
+                                            cat.subcategories.forEach(sub => {
+                                                const opt = document.createElement('option');
+                                                opt.value = sub.id;
+                                                opt.textContent = sub.name;
+                                                if (sub.id == selectedSub) opt.selected = true;
+                                                subcategorySelect.appendChild(opt);
                                             });
                                         }
                                     }
 
-                                    // Populate subcategories on page load (old values or current act values)
-                                    const selectedCategoryId = "{{ old('category_id', $acts->category_id) }}";
-                                    const selectedSubcategoryId = "{{ old('subcategory_id', $acts->subcategory_id) }}";
-                                    if (selectedCategoryId) {
-                                        populateSubcategories(selectedCategoryId, selectedSubcategoryId);
-                                    }
+                                    const catId = "{{ old('category_id', $acts->category_id) }}";
+                                    const subId = "{{ old('subcategory_id', $acts->subcategory_id) }}";
 
-                                    // Update subcategories dynamically on category change
+                                    populateSubcategories(catId, subId);
+
                                     categorySelect.addEventListener('change', function() {
                                         populateSubcategories(this.value);
                                     });
