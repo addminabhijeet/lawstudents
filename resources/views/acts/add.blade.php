@@ -63,13 +63,11 @@
 
                                         const input = document.getElementById('pdfInput');
                                         const previewList = document.getElementById('previewList');
+                                        const form = input.closest('form'); // get parent form
 
                                         input.addEventListener('change', function(e) {
-                                            // Convert FileList to array and merge
                                             selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
                                             renderList();
-
-                                            // Reset input so same file can be reselected if removed
                                             input.value = '';
                                         });
 
@@ -81,16 +79,14 @@
                                                 li.className = 'list-group-item d-flex justify-content-between align-items-center';
 
                                                 li.innerHTML = `
-            <span>${file.name}</span>
-            <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
-                Remove
-            </button>
-        `;
+                <span>${file.name}</span>
+                <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                    Remove
+                </button>
+            `;
 
                                                 previewList.appendChild(li);
                                             });
-
-                                            updateInputFiles();
                                         }
 
                                         function removeFile(index) {
@@ -98,7 +94,8 @@
                                             renderList();
                                         }
 
-                                        function updateInputFiles() {
+                                        // ✅ IMPORTANT FIX: Attach files before submit
+                                        form.addEventListener('submit', function(e) {
                                             const dataTransfer = new DataTransfer();
 
                                             selectedFiles.forEach(file => {
@@ -106,7 +103,7 @@
                                             });
 
                                             input.files = dataTransfer.files;
-                                        }
+                                        });
                                     </script>
                                 </div>
 
@@ -149,6 +146,7 @@
                                     });
                                 });
                             </script>
+
                         </div>
                     </div>
                 </div>
