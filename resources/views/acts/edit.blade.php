@@ -28,6 +28,7 @@
                         <div class="card-body">
                             <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
 
                                 <!-- Category -->
                                 <div class="mb-3">
@@ -135,50 +136,60 @@
                                 });
                             </script>
                             <script>
-                                let selectedFiles = [];
+                                document.addEventListener('DOMContentLoaded', function() {
 
-                                const input = document.getElementById('pdfInput');
-                                const previewList = document.getElementById('previewList');
-                                const form = input.closest('form');
+                                    let selectedFiles = [];
 
-                                input.addEventListener('change', function(e) {
-                                    selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
-                                    renderList();
-                                    input.value = '';
-                                });
+                                    const input = document.getElementById('pdfInput');
+                                    const previewList = document.getElementById('previewList');
+                                    const form = input.closest('form');
 
-                                function renderList() {
-                                    previewList.innerHTML = '';
+                                    if (!input) return;
 
-                                    selectedFiles.forEach((file, index) => {
-                                        const li = document.createElement('li');
-                                        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-
-                                        li.innerHTML = `
-            <span>${file.name}</span>
-            <button type="button" class="btn btn-sm btn-danger" onclick="removeFile(${index})">
-                Remove
-            </button>
-        `;
-
-                                        previewList.appendChild(li);
-                                    });
-                                }
-
-                                function removeFile(index) {
-                                    selectedFiles.splice(index, 1);
-                                    renderList();
-                                }
-
-                                // ✅ IMPORTANT: Attach files before submit
-                                form.addEventListener('submit', function() {
-                                    const dataTransfer = new DataTransfer();
-
-                                    selectedFiles.forEach(file => {
-                                        dataTransfer.items.add(file);
+                                    input.addEventListener('change', function(e) {
+                                        selectedFiles = [...selectedFiles, ...Array.from(e.target.files)];
+                                        renderList();
+                                        input.value = '';
                                     });
 
-                                    input.files = dataTransfer.files;
+                                    function renderList() {
+                                        previewList.innerHTML = '';
+
+                                        selectedFiles.forEach((file, index) => {
+                                            const li = document.createElement('li');
+                                            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+                                            li.innerHTML = `
+                <span>${file.name}</span>
+                <button type="button" class="btn btn-sm btn-danger remove-btn" data-index="${index}">
+                    Remove
+                </button>
+            `;
+
+                                            previewList.appendChild(li);
+                                        });
+                                    }
+
+                                    // ✅ Event delegation (correct way)
+                                    previewList.addEventListener('click', function(e) {
+                                        if (e.target.classList.contains('remove-btn')) {
+                                            const index = e.target.getAttribute('data-index');
+                                            selectedFiles.splice(index, 1);
+                                            renderList();
+                                        }
+                                    });
+
+                                    // ✅ Attach files before submit
+                                    form.addEventListener('submit', function() {
+                                        const dataTransfer = new DataTransfer();
+
+                                        selectedFiles.forEach(file => {
+                                            dataTransfer.items.add(file);
+                                        });
+
+                                        input.files = dataTransfer.files;
+                                    });
+
                                 });
                             </script>
                             <script>
