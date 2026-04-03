@@ -231,7 +231,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('verifyphoneotp');
 
 
-            Route::get('subcategories', [CourseController::class, 'listsubcategories'])
+            Route::get('subcategories/list', [CourseController::class, 'listsubcategories'])
                 ->name('admin.listactsubcategories');
             Route::get('subcategories/add', [CourseController::class, 'addsubcategory'])
                 ->name('admin.addactsubcategory');
@@ -244,7 +244,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('subcategories/filedelete/{id}', [CourseController::class, 'subcategoryfiledelete'])
                 ->name('admin.deleteactsubcategoryfile');
 
-            Route::get('subcategories', [CourseController::class, 'listrulessubcategories'])
+            Route::get('subcategories/list', [CourseController::class, 'listrulessubcategories'])
                 ->name('admin.listrulessubcategories');
             Route::get('subcategories/add', [CourseController::class, 'addrulessubcategory'])
                 ->name('admin.addrulessubcategory');
@@ -256,6 +256,32 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('admin.updaterulessubcategory');
             Route::post('subcategories/filedelete/{id}', [CourseController::class, 'rulessubcategoryfiledelete'])
                 ->name('admin.deleterulessubcategoryfile');
+
+            Route::get('categories/list', [CourseController::class, 'listcategories'])
+                ->name('admin.listactcategories');
+            Route::get('categories/add', [CourseController::class, 'addcategory'])
+                ->name('admin.addactcategory');
+            Route::post('categories/store', [CourseController::class, 'storecategory'])
+                ->name('admin.storeactcategory');
+            Route::get('categories/edit/{id}', [CourseController::class, 'editcategory'])
+                ->name('admin.editactcategory');
+            Route::post('categories/update/{id}', [CourseController::class, 'updatecategory'])
+                ->name('admin.updateactcategory');
+            Route::post('categories/filedelete/{id}', [CourseController::class, 'categoryfiledelete'])
+                ->name('admin.deleteactcategoryfile');
+
+            Route::get('categories/list', [CourseController::class, 'listrulescategories'])
+                ->name('admin.listrulescategories');
+            Route::get('categories/add', [CourseController::class, 'addrulescategory'])
+                ->name('admin.addrulescategory');
+            Route::post('categories/store', [CourseController::class, 'storerulescategory'])
+                ->name('admin.storerulescategory');
+            Route::get('categories/edit/{id}', [CourseController::class, 'editrulescategory'])
+                ->name('admin.editrulescategory');
+            Route::post('categories/update/{id}', [CourseController::class, 'updaterulescategory'])
+                ->name('admin.updaterulescategory');
+            Route::post('categories/filedelete/{id}', [CourseController::class, 'rulescategoryfiledelete'])
+                ->name('admin.deleterulescategoryfile');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
