@@ -202,30 +202,30 @@ class CourseController extends Controller
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
-            'description' => 'nullable|string',
-            'pdfs.*' => 'nullable|file|mimes:pdf|max:10240',
+            'pdfs' => ['nullable', 'array'], // same as store but optional
+            'pdfs.*' => ['file', 'mimes:pdf'],
+            'description' => ['nullable', 'string'],
         ]);
 
         $acts = Act::findOrFail($id);
 
+        // ✅ Keep existing PDFs
         $pdfPaths = $acts->pdfs ?? [];
 
-        // ✅ FIX: check properly
-        if ($request->hasFile('pdfs') && is_array($request->file('pdfs'))) {
+        // ✅ SAME LOGIC AS STORE (only addition)
+        if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                if ($file) {
-                    $originalName = uniqid() . '_' . $file->getClientOriginalName();
-                    $path = $file->storeAs('acts', $originalName, 'public');
-                    $pdfPaths[] = $path;
-                }
+                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('acts', $filename, 'public');
+                $pdfPaths[] = $path; // append like store
             }
         }
 
         $acts->update([
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'description' => $request->description,
             'pdfs' => $pdfPaths,
+            'description' => $request->description,
         ]);
 
         return redirect()->route('admin.listacts')
