@@ -382,10 +382,10 @@
                             }
                         }
                     </script>
-                    
+
                     <!-- SUBMIT BUTTON -->
-                    <div class="col-12 text-end mt-3">
-                        <button type="submit" class="btn btn-primary px-4">
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-primary w-100">
                             Update Admission
                         </button>
                     </div>
