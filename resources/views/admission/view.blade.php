@@ -244,9 +244,9 @@
                             ID Proof (PDF)
                             <small class="text-muted">(Max 2MB)</small>
                         </label>
-                        <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
+                        <!-- <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
                             accept="application/pdf"
-                            onchange="previewPDF(event, 'idProofPreviewCard', 'idProofButtonCard')">
+                            onchange="previewPDF(event, 'idProofPreviewCard', 'idProofButtonCard')"> -->
 
                         <div class="invalid-feedback" id="idProofErrorCard"></div>
 
