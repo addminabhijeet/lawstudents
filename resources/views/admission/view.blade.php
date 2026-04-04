@@ -74,6 +74,11 @@
                                     {{ $admission->father_name }}
                                 </p>
 
+                                <p class="mb-2">
+                                    <strong>Guardian Contact Number:</strong><br>
+                                    {{ $admission->guardian_phone }}
+                                </p>
+
                                 <p class="mb-0">
                                     <strong>Status:</strong><br>
 
