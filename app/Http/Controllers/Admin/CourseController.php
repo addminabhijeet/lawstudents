@@ -1127,7 +1127,7 @@ class CourseController extends Controller
     }
 
     // Show form to add new category
-    public function addcopycategory()
+    public function addcopyscategory()
     {
         return view('copys.categories.add');
     }
