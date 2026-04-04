@@ -63,7 +63,7 @@
                                             <td>{{ $subcategorie->created_at->format('Y-m-d, h:i A') }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editcopysubcategory', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ route('admin.editcopyssubcategory', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
                                                     <form method="POST" action="{{ route('admin.deletecopysubcategoryfile', $subcategorie->id) }}" class="d-inline">
                                                         @csrf
