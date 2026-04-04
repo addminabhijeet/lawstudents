@@ -89,7 +89,7 @@
                                     @if(!empty($admission->course_ids))
                                     @foreach($courses as $course)
                                     @if(in_array($course->id, $admission->course_ids))
-                                    {{ $course->title }} - ₹{{ $course->price }} | {{ $course->duration }}<br>
+                                    {{ $course->title }} - ₹{{ $course->price }} <br>
                                     @endif
                                     @endforeach
                                     @else
