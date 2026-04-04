@@ -98,7 +98,7 @@
                                                         </a>
 
                                                         <!-- Delete -->
-                                                        <form action="{{ route('admin.deletecopycategoryfile', [$categorie->id]) }}"
+                                                        <form action="{{ route('admin.deletecopyscategoryfile', [$categorie->id]) }}"
                                                             method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
