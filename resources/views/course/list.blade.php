@@ -53,52 +53,60 @@
                 <div class="content-area-body pb-0">
                     <div class="row note-has-grid" id="note-full-container">
                         @foreach ($categories as $category)
-                            @foreach ($category->courses as $course)
-                                <div
-                                    class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
-                                    <div class="card card-body mb-4 stretch stretch-full">
-                                        <span class="side-stick"></span>
+                        @foreach ($category->courses as $course)
+                        <div
+                            class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
 
-                                        <h5 class="note-title text-truncate w-75 mb-1">
-                                            {{ $course->title }}
-                                        </h5>
+                            <div class="card card-body mb-4 stretch stretch-full">
+                                <span class="side-stick"></span>
 
-                                        <p class="fs-11 text-muted note-date">
-                                            {{ $course->created_at->format('d F Y') }}
-                                        </p>
+                                <!-- Course Title -->
+                                <h5 class="note-title text-truncate w-75 mb-1">
+                                    {{ $course->title }}
+                                </h5>
 
-                                        <div class="note-content flex-grow-1">
-                                            <p class="text-muted note-inner-content text-truncate-3-line">
-                                                {{ $course->description }}
-                                            </p>
-                                        </div>
+                                <!-- Course Created Date -->
+                                <p class="fs-11 text-muted note-date">
+                                    {{ $course->created_at->format('d F Y') }}
+                                </p>
 
-                                        <div class="d-flex align-items-center gap-2">
-                                            <span class="badge bg-primary text-truncate w-75 mb-1">
-                                                {{ $category->name }}
-                                            </span>
-
-                                            <span class="fw-bold text-success">
-                                                ₹{{ $course->price }}
-                                            </span>
-                                        </div>
-
-                                        <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
-                                        <div class="d-flex gap-2 mt-2">
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-warning edit-course"
-                                                data-id="{{ $course->id }}">
-                                                Edit
-                                            </a>
-                                            <a href="{{ route('admin.coursedelete', $course->id) }}"
-                                                class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete?')">
-                                                Delete
-                                            </a>
-                                        </div>
-                                        <!-- END BUTTONS -->
-                                    </div>
+                                <!-- Course Description -->
+                                <div class="note-content flex-grow-1">
+                                    <p class="text-muted text-truncate-3-line">
+                                        {{ $course->description }}
+                                    </p>
                                 </div>
-                            @endforeach
+
+                                <!-- Category & Price -->
+                                <div class="d-flex align-items-center justify-content-between mt-2">
+                                    <span class="badge bg-primary">
+                                        {{ $category->name }}
+                                    </span>
+
+                                    <span class="fw-bold text-success">
+                                        ₹{{ $course->price }}
+                                    </span>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="mt-3 d-flex flex-column gap-2">
+                                    <a href="javascript:void(0);" class="btn btn-warning w-100 edit-course"
+                                        data-id="{{ $course->id }}">
+                                        <i class="feather-edit me-2"></i>
+                                        <span>Edit Course</span>
+                                    </a>
+
+                                    <a href="{{ route('admin.coursedelete', $course->id) }}"
+                                        class="btn btn-danger w-100"
+                                        onclick="return confirm('Are you sure you want to delete?')">
+                                        <i class="feather-trash-2 me-2"></i>
+                                        <span>Delete Course</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        @endforeach
                         @endforeach
                     </div>
                 </div>
@@ -130,7 +138,7 @@
                                     <select name="category_id" class="form-control" required>
                                         <option value="">-- Select Category --</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -253,9 +261,9 @@
                             <option value="">-- Main Category --</option>
 
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">
-                                    {{ $category->name }}
-                                </option>
+                            <option value="{{ $category->id }}">
+                                {{ $category->name }}
+                            </option>
                             @endforeach
                         </select>
 
@@ -304,7 +312,7 @@
                                     <select name="category_id" class="form-control" required>
                                         <option value="">-- Select Category --</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -397,9 +405,9 @@
                         <select name="parent_id" class="form-control" id="parentCategorySelect">
                             <option value="">-- Main Category --</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">
-                                    {{ $category->name }}
-                                </option>
+                            <option value="{{ $category->id }}">
+                                {{ $category->name }}
+                            </option>
                             @endforeach
                         </select>
 
