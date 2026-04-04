@@ -1196,7 +1196,7 @@ class CourseController extends Controller
         return view('copys.subcategories.add', compact('categories'));
     }
 
-    public function storecopysubcategory(Request $request)
+    public function storecopyssubcategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
