@@ -91,7 +91,7 @@
                                                     <div class="hstack gap-2 justify-content-end">
 
                                                         <!-- Edit -->
-                                                        <a href="{{ route('admin.editcopycategory', [$categorie->id]) }}"
+                                                        <a href="{{ route('admin.editcopyscategory', [$categorie->id]) }}"
                                                             class="avatar-text avatar-md"
                                                             title="Edit Category">
                                                             <i class="feather feather-edit"></i>
