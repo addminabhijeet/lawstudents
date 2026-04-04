@@ -384,7 +384,7 @@
                     </script>
 
                     <!-- SUBMIT BUTTON -->
-                    <div class="col-12 mt-3 mb-3">
+                    <div class="col-12 mb-3">
                         <button type="submit" class="btn btn-primary w-100">
                             Update Admission
                         </button>
