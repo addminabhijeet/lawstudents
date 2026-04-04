@@ -28,228 +28,115 @@
             </div>
         </div>
         <div class="main-content">
+            <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
+                class="d-flex me-1 printBTN"
+                onclick="printInvoice(this.closest('.invoice-container'))">
+                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
+                    <i class="feather feather-printer"></i>
+                </div>
+            </a>
             <div class="row">
 
-                <!-- STUDENT PROFILE CARD -->
-                <div class="col-xl-4">
-                    <div class="card shadow-sm border-light">
-                        <div class="card-body text-center">
+                <div class="invoice-container" style="width:210mm; min-height:297mm; margin:auto; font-family:'Times New Roman', serif; color:#333; line-height:1.4; background:#fff; padding:20mm; box-sizing:border-box; border:5px solid #3366ff; position:relative;">
 
+                    <!-- HEADER -->
+                    <div style="text-align:center; margin-bottom:30px;">
+                        <img src="{{ asset('images/institute-logo.png') }}" alt="Institute Logo" style="height:80px; margin-bottom:10px;">
+                        <h1 style="margin:0; font-size:26px; color:#3366ff; letter-spacing:2px;">Premium Multi-State Institute</h1>
+                        <p style="margin:5px 0 0 0; font-size:14px; font-style:italic;">Official Admission Details</p>
+                        <hr style="border:2px solid #3366ff; margin-top:10px;">
+                    </div>
+
+                    <!-- PROFILE -->
+                    <div style="display:flex; gap:20px; margin-bottom:30px;">
+                        <div style="flex:0 0 150px; text-align:center;">
                             @if ($admission->photo)
-                            <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
+                            <img src="{{ asset('storage/app/public/' . $admission->photo) }}" style="width:150px; height:150px; border-radius:50%; border:4px solid #3366ff; object-fit:cover;">
                             @else
-                            <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
-                                style="width:130px;height:130px;">
+                            <img src="{{ asset('images/default-user.png') }}" style="width:150px; height:150px; border-radius:50%; border:4px solid #3366ff;">
                             @endif
-
-                            <h5 class="fw-bold mb-1">
-                                {{ $admission->full_name }}
-                            </h5>
-
-                            <p class="text-muted mb-2">
-                                Admission No
+                        </div>
+                        <div style="flex:1;">
+                            <h2 style="margin:0; font-size:22px; text-transform:uppercase;">{{ $admission->full_name }}</h2>
+                            <p style="margin:5px 0; font-size:14px;">Admission No: <strong>{{ $admission->admno }}</strong></p>
+                            <p>
+                                @if ($admission->admission_status == 'approved')
+                                <span style="padding:6px 12px; background:#28a745; color:#fff; border-radius:6px;">Approved</span>
+                                @elseif($admission->admission_status == 'pending')
+                                <span style="padding:6px 12px; background:#ffc107; color:#000; border-radius:6px;">Pending</span>
+                                @else
+                                <span style="padding:6px 12px; background:#dc3545; color:#fff; border-radius:6px;">Rejected</span>
+                                @endif
                             </p>
-
-                            <span class="badge bg-primary fs-6">
-                                {{ $admission->admno }}
-                            </span>
-
-                            <hr>
-
-                            <div class="text-start">
-
-                                <p class="mb-2">
-                                    <strong>Email:</strong><br>
-                                    {{ $admission->email }}
-                                </p>
-
-                                <p class="mb-2">
-                                    <strong>Phone:</strong><br>
-                                    {{ $admission->phone }}
-                                </p>
-
-                                <p class="mb-2">
-                                    <strong>Guardian:</strong><br>
-                                    {{ $admission->father_name }}
-                                </p>
-
-                                <p class="mb-2">
-                                    <strong>Guardian Contact Number:</strong><br>
-                                    {{ $admission->guardian_phone }}
-                                </p>
-
-                                <p class="mb-2">
-                                    <strong>Guardian Contact Number:</strong><br>
-                                    {{ $admission->guardian_phone }}
-                                </p>
-
-                                <p class="mb-2">
-                                    <strong>Courses:</strong><br>
-                                    @if(!empty($admission->course_ids))
-                                    @foreach($courses as $course)
-                                    @if(in_array($course->id, $admission->course_ids))
-                                    {{ $course->title }} - ₹{{ $course->price }} <br>
-                                    @endif
-                                    @endforeach
-                                    @else
-                                    <span class="text-muted">No courses selected.</span>
-                                    @endif
-                                </p>
-
-                                <p class="mb-0">
-                                    <strong>Status:</strong><br>
-
-                                    @if ($admission->admission_status == 'approved')
-                                    <span class="badge bg-success">Approved</span>
-                                    @elseif($admission->admission_status == 'pending')
-                                    <span class="badge bg-warning">Pending</span>
-                                    @else
-                                    <span class="badge bg-danger">Rejected</span>
-                                    @endif
-
-                                </p>
-
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STUDENT DETAILS -->
-                <div class="col-xl-8">
-
-                    <div class="card shadow-sm border-light mb-4">
-                        <div class="card-body">
-
-                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                Student Details
-                            </h5>
-
-                            <div class="row mb-3">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Full Name</label>
-                                    <p class="fw-semibold">{{ $admission->full_name }}</p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Admission No</label>
-                                    <p class="fw-semibold">{{ $admission->admno }}</p>
-                                </div>
-
-                            </div>
-
-                            <div class="row mb-3">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Email</label>
-                                    <p class="fw-semibold">{{ $admission->email }}</p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Phone</label>
-                                    <p class="fw-semibold">{{ $admission->phone }}</p>
-                                </div>
-
-                            </div>
-
-                            <div class="row mb-3">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Father / Guardian</label>
-                                    <p class="fw-semibold">{{ $admission->father_name }}</p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Admission Status</label>
-                                    <p class="fw-semibold text-capitalize">
-                                        {{ $admission->admission_status }}
-                                    </p>
-                                </div>
-
-                            </div>
-
                         </div>
                     </div>
 
-                    <!-- ADDRESS CARD -->
-                    <div class="card shadow-sm border-light mb-4">
-                        <div class="card-body">
+                    <!-- CONTACT INFORMATION -->
+                    <div style="margin-bottom:20px;">
+                        <h3 style="border-bottom:2px solid #3366ff; padding-bottom:5px; color:#3366ff;">Contact Information</h3>
+                        <p><strong>Email:</strong> {{ $admission->email }}</p>
+                        <p><strong>Phone:</strong> {{ $admission->phone }}</p>
+                        <p><strong>Guardian:</strong> {{ $admission->father_name }}</p>
+                        <p><strong>Guardian Phone:</strong> {{ $admission->guardian_phone }}</p>
+                    </div>
 
-                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                Address Information
-                            </h5>
+                    <!-- COURSES -->
+                    <div style="margin-bottom:20px;">
+                        <h3 style="border-bottom:2px solid #3366ff; padding-bottom:5px; color:#3366ff;">Courses Enrolled</h3>
+                        @if(!empty($admission->course_ids))
+                        <table style="width:100%; border-collapse: collapse; margin-top:10px;">
+                            <thead>
+                                <tr style="background:#3366ff; color:#fff;">
+                                    <th style="border:1px solid #ccc; padding:8px; text-align:left;">Course</th>
+                                    <th style="border:1px solid #ccc; padding:8px; text-align:right;">Price (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($courses as $course)
+                                @if(in_array($course->id, $admission->course_ids))
+                                <tr>
+                                    <td style="border:1px solid #ccc; padding:8px;">{{ $course->title }}</td>
+                                    <td style="border:1px solid #ccc; padding:8px; text-align:right;">{{ $course->price }}</td>
+                                </tr>
+                                @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @else
+                        <p style="color:#888;">No courses selected.</p>
+                        @endif
+                    </div>
 
-                            <div class="row">
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Address Line 1</label>
-                                    <p class="fw-semibold">
-                                        {{ $admission->address_line1 }}
-                                    </p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Address Line 2</label>
-                                    <p class="fw-semibold">
-                                        {{ $admission->address_line2 }}
-                                    </p>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <label class="text-muted small">Pin code</label>
-                                    <p class="fw-semibold">
-                                        {{ $admission->pincode }}
-                                    </p>
-                                </div>
-
-                            </div>
-
-                        </div>
+                    <!-- ADDRESS -->
+                    <div style="margin-bottom:20px;">
+                        <h3 style="border-bottom:2px solid #3366ff; padding-bottom:5px; color:#3366ff;">Address</h3>
+                        <p><strong>Line 1:</strong> {{ $admission->address_line1 }}</p>
+                        <p><strong>Line 2:</strong> {{ $admission->address_line2 }}</p>
+                        <p><strong>Pin Code:</strong> {{ $admission->pincode }}</p>
                     </div>
 
                     <!-- DOCUMENTS -->
-                    <div class="card shadow-sm border-light">
-                        <div class="card-body">
-
-                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                Documents
-                            </h5>
-
-                            <div class="row text-center">
-
-                                <div class="col-md-6">
-
-                                    <label class="text-muted small d-block mb-2">
-                                        Passport Photo
-                                    </label>
-
-                                    @if ($admission->photo)
-                                    <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                        class="img-thumbnail" style="max-height:180px;">
-                                    @endif
-
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    <label class="text-muted small d-block mb-2">
-                                        Signature
-                                    </label>
-
-                                    @if ($admission->signature)
-                                    <img src="{{ asset('storage/app/public/' . $admission->signature) }}"
-                                        class="img-thumbnail" style="max-height:150px;">
-                                    @endif
-
-                                </div>
-
+                    <div style="margin-bottom:20px;">
+                        <h3 style="border-bottom:2px solid #3366ff; padding-bottom:5px; color:#3366ff;">Documents</h3>
+                        <div style="display:flex; gap:50px; justify-content:start;">
+                            <div style="text-align:center;">
+                                <p><strong>Passport Photo</strong></p>
+                                @if ($admission->photo)
+                                <img src="{{ asset('storage/app/public/' . $admission->photo) }}" style="max-width:150px; max-height:150px; border:3px solid #3366ff;">
+                                @endif
                             </div>
-
+                            <div style="text-align:center;">
+                                <p><strong>Signature</strong></p>
+                                @if ($admission->signature)
+                                <img src="{{ asset('storage/app/public/' . $admission->signature) }}" style="max-width:150px; max-height:100px; border:3px solid #333;">
+                                @endif
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <div style="text-align:center; margin-top:40px; font-size:12px; color:#888;">
+                        <p>© {{ date('Y') }} Premium Multi-State Institute. All rights reserved.</p>
                     </div>
 
                 </div>
@@ -279,30 +166,28 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-                function previewPDF(event, iframeId, buttonId) {
-                    const file = event.target.files[0];
-                    const iframe = document.getElementById(iframeId);
-                    const button = document.getElementById(buttonId);
-
-                    if (file) {
-                        const fileURL = URL.createObjectURL(file);
-                        iframe.src = fileURL;
-                        iframe.style.display = 'block'; // Show PDF
-                        button.style.display = 'none'; // Hide button when viewing new file
-                    } else {
-                        iframe.src = '';
-                        iframe.style.display = 'none'; // Hide iframe if no file selected
-                        button.style.display = 'inline-block'; // Show button fallback
-                    }
-                }
-            </script>
         </div>
     </div>
 </main>
 
+<script>
+    function previewPDF(event, iframeId, buttonId) {
+        const file = event.target.files[0];
+        const iframe = document.getElementById(iframeId);
+        const button = document.getElementById(buttonId);
 
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            iframe.src = fileURL;
+            iframe.style.display = 'block'; // Show PDF
+            button.style.display = 'none'; // Hide button when viewing new file
+        } else {
+            iframe.src = '';
+            iframe.style.display = 'none'; // Hide iframe if no file selected
+            button.style.display = 'inline-block'; // Show button fallback
+        }
+    }
+</script>
 
 <script>
     function sendEmailOtp() {
@@ -415,6 +300,75 @@
         };
 
         reader.readAsDataURL(file);
+    }
+</script>
+
+<!-- Add this in your blade file before </body> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
+<script>
+    function printInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Get the inner card-body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        if (!bodyContent) return;
+
+        var printContents = bodyContent.cloneNode(true);
+
+        var printWindow = window.open('', '', 'height=800,width=1200');
+        printWindow.document.write('<html><head><title>Invoice</title>');
+
+        // Include all CSS
+        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
+            printWindow.document.write(node.outerHTML);
+        });
+
+        printWindow.document.write('</head><body>');
+        printWindow.document.body.appendChild(printContents);
+        printWindow.document.write('</body></html>');
+
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+    }
+
+    function downloadInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Get the inner card-body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        if (!bodyContent) return;
+
+        var pdfContent = bodyContent.cloneNode(true);
+
+        // Temporary off-screen container
+        var container = document.createElement('div');
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
+        container.appendChild(pdfContent);
+        document.body.appendChild(container);
+
+        // Filename from invoice number
+        var invoiceId = bodyContent.id || 'invoice';
+        var filename = invoiceId + '.pdf';
+
+        var opt = {
+            filename: filename,
+            image: {
+                type: 'jpeg',
+                quality: 2
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        };
+
+        html2pdf().set(opt).from(container).save().finally(() => container.remove());
     }
 </script>
 @include('layouts.partials.admin.theme')
