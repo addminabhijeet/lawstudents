@@ -1212,7 +1212,7 @@ class CourseController extends Controller
             ->with('success', 'Copy subcategory created successfully.');
     }
     // Show edit form
-    public function editcopysubcategory($id)
+    public function editcopyssubcategory($id)
     {
         $subcategories = CopySubcategory::findOrFail($id);
         $categories = CopyCategory::all();
@@ -1220,7 +1220,7 @@ class CourseController extends Controller
     }
 
     // Update subcategory
-    public function updatecopysubcategory(Request $request, $id)
+    public function updatecopyssubcategory(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -1237,7 +1237,7 @@ class CourseController extends Controller
     }
 
     // Delete a specific PDF from subcategory
-    public function copysubcategoryfiledelete(Request $request, $id)
+    public function copyssubcategoryfiledelete(Request $request, $id)
     {
         $subcategory = CopySubcategory::findOrFail($id);
         $fileToDelete = $request->input('file');
