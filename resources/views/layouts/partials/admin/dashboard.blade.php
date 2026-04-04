@@ -200,7 +200,7 @@
                                     href="{{ route('admin.listcopyssubcategories') }}">List Sub Categories</a>
                             </li>
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listcopy') }}">List Free Notes</a>
+                                    href="{{ route('admin.listcopys') }}">List Free Notes</a>
                             </li>
                         </ul>
                     </li>
