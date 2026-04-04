@@ -51,35 +51,35 @@
                                     </thead>
 
                                     <tbody>
-                                        @forelse ($actss as $acts)
+                                        @forelse ($copys as $copys)
                                         <tr>
                                             <!-- Serial -->
                                             <td>{{ $loop->iteration }}</td>
 
                                             <!-- Category -->
-                                            <td>{{ $acts->category?->name }}</td>
+                                            <td>{{ $copys->category?->name }}</td>
 
                                             <!-- Subcategory -->
-                                            <td>{{ $acts->subcategory?->name }}</td>
+                                            <td>{{ $copys->subcategory?->name }}</td>
 
                                             <!-- Description -->
-                                            <td>{{ $acts->description }}</td>
+                                            <td>{{ $copys->description }}</td>
 
                                             <!-- Actions -->
                                             <td>
                                                 <div class="d-flex flex-column gap-2">
 
                                                     <!-- Edit -->
-                                                    <a href="{{ route('admin.editacts', $acts->id) }}"
+                                                    <a href="{{ route('admin.editacts', $copys->id) }}"
                                                         class="btn btn-sm btn-primary w-100">
                                                         Edit
                                                     </a>
 
-                                                    
+
 
                                                     <!-- Delete Whole Act -->
                                                     <form method="POST"
-                                                        action="{{ route('admin.actsfiledelete', $acts->id) }}">
+                                                        action="{{ route('admin.actsfiledelete', $copys->id) }}">
                                                         @csrf
                                                         @method('DELETE')
 
@@ -104,8 +104,8 @@
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">
                                             <!-- Previous Page -->
-                                            <li class="page-item {{ $actss->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $actss->previousPageUrl() }}"
+                                            <li class="page-item {{ $copyss->onFirstPage() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $copyss->previousPageUrl() }}"
                                                     aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="visually-hidden">Previous</span>
@@ -113,17 +113,17 @@
                                             </li>
 
                                             <!-- Page Numbers -->
-                                            @foreach ($actss->getUrlRange(1, $actss->lastPage()) as $page => $url)
+                                            @foreach ($copyss->getUrlRange(1, $copyss->lastPage()) as $page => $url)
                                             <li
-                                                class="page-item {{ $actss->currentPage() == $page ? 'active' : '' }}">
+                                                class="page-item {{ $copyss->currentPage() == $page ? 'active' : '' }}">
                                                 <a class="page-link"
                                                     href="{{ $url }}">{{ $page }}</a>
                                             </li>
                                             @endforeach
 
                                             <!-- Next Page -->
-                                            <li class="page-item {{ !$actss->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $actss->nextPageUrl() }}"
+                                            <li class="page-item {{ !$copyss->hasMorePages() ? 'disabled' : '' }}">
+                                                <a class="page-link" href="{{ $copyss->nextPageUrl() }}"
                                                     aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="visually-hidden">Next</span>
