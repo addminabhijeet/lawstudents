@@ -1,24 +1,32 @@
 @include('layouts.partials.admin.dashboard')
-<main class="nxl-container apps-container apps-notes">
-    <div class="nxl-content without-header nxl-full-content">
-        <!-- [ Main Content ] start -->
+
+<main class="nxl-container">
+    <!-- main containts -->
+    <div class="nxl-content">
+        <!-- [ page-header ] start -->
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <div class="page-header-left d-flex align-items-center">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Admin</h5>
+                </div>
+                <ul class="breadcrumb ms-3">
+                    <li class="breadcrumb-item">Courses</li>
+                    <li class="breadcrumb-item">Sub Categories</li>
+                </ul>
+            </div>
+
+            <div class="page-header-right ms-auto d-flex align-items-center gap-2">
+                <a href="javascript:void(0);" class="btn btn-primary" id="add-category">
+                    <i class="feather-plus me-2"></i>
+                    <span>Add Category</span>
+                </a>
+            </div>
+        </div>
+        <!-- [ page-header ] end -->
+
         <div class="main-content d-flex">
             <!-- [ Content Sidebar ] start -->
-            <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
-                    <h4 class="fw-bolder mb-0">Courses</h4>
-                    <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex">
-                        <i class="feather-x"></i>
-                    </a>
-                </div>
-                <div class="content-sidebar-header">
-                    <!-- Add Category Button -->
-                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category"
-                        style="display:block;">
-                        <i class="feather-plus me-2"></i>
-                        <span>Add Category</span>
-                    </a>
-                </div>
+            <div class="content-sidebar content-sidebar-md me-3" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
                         <!-- 🔹 Sub Categories -->
@@ -26,20 +34,16 @@
 
                         @foreach ($categories->whereNotNull('parent_id') as $category)
                         <li class="nav-item d-flex justify-content-between align-items-center">
-                            <a href="javascript:void(0)" class="nav-link note-link"
-                                id="category-{{ $category->id }}">
+                            <a href="javascript:void(0)" class="nav-link note-link" id="category-{{ $category->id }}">
                                 <i class="feather-folder"></i>
                                 <span>{{ $category->name }}</span>
                             </a>
 
                             <div class="d-flex gap-1">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
-                                    data-id="{{ $category->id }}">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category" data-id="{{ $category->id }}">
                                     <i class="feather-edit"></i>
                                 </a>
-
-                                <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
-                                    data-id="{{ $category->id }}">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category" data-id="{{ $category->id }}">
                                     <i class="feather-trash-2"></i>
                                 </a>
                             </div>
@@ -48,10 +52,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- [ Content Sidebar  ] end -->
-            <!-- [ Main Area  ] start -->
+            <!-- [ Content Sidebar ] end -->
+
+            <!-- [ Main Area Placeholder ] start -->
+            <div class="flex-fill">
+                <!-- This area can be used to display details or table for the selected subcategory if needed -->
+            </div>
+            <!-- [ Main Area Placeholder ] end -->
         </div>
     </div>
+    <!-- [ Main Content ] end -->
 </main>
 @include('layouts.partials.admin.theme')
 <div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
