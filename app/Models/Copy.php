@@ -9,6 +9,8 @@ class Copy extends Model
 {
     use HasFactory;
 
+    protected $table = 'copys';
+    
     protected $fillable = [
         'category_id',
         'subcategory_id',
