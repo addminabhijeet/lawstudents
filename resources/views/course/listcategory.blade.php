@@ -7,11 +7,11 @@
         <div class="page-header d-flex justify-content-between align-items-center">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Courses</h5>
+                    <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb ms-3">
-                    <li class="breadcrumb-item">Courses</li>
                     <li class="breadcrumb-item">Categories</li>
+                    <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
 
