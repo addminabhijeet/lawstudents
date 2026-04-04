@@ -1120,7 +1120,7 @@ class CourseController extends Controller
     }
 
     // List all copy categories
-    public function listcopycategories()
+    public function listcopyscategories()
     {
         $categories = CopyCategory::latest()->paginate(10);
         return view('copys.categories.list', compact('categories'));
@@ -1143,7 +1143,7 @@ class CourseController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.listcopycategories')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.listcopyscategories')->with('success', 'Category created successfully.');
     }
 
     // Show edit form
