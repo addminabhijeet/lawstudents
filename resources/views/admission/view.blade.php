@@ -28,16 +28,10 @@
             </div>
         </div>
         <div class="main-content">
-            <a href="javascript:void(0);" id="print-btn"
-                class="d-flex me-1 printBTN"
-                onclick="printInvoice(this.closest('.invoice-container'))">
-                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
-                    <i class="feather feather-printer"></i>
-                </div>
-            </a>
             <div class="row">
 
                 <div class="invoice-container" style="width:210mm; min-height:297mm; margin:auto; font-family:'Times New Roman', serif; color:#333; line-height:1.4; background:#fff; padding:20mm; box-sizing:border-box; border:5px solid #3366ff; position:relative;">
+
                     <!-- HEADER -->
                     <div style="text-align:center; margin-bottom:30px;">
                         <img src="{{ asset('images/institute-logo.png') }}" alt="Institute Logo" style="height:80px; margin-bottom:10px;">
@@ -299,66 +293,6 @@
         };
 
         reader.readAsDataURL(file);
-    }
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
-<script>
-    function printInvoice(invoiceContainer) {
-        if (!invoiceContainer) return;
-
-        // Clone the container itself for printing
-        var printContents = invoiceContainer.cloneNode(true);
-
-        var printWindow = window.open('', '', 'height=800,width=1200');
-        printWindow.document.write('<html><head><title>Invoice</title>');
-
-        // Include all CSS
-        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
-            printWindow.document.write(node.outerHTML);
-        });
-
-        printWindow.document.write('</head><body>');
-        printWindow.document.body.appendChild(printContents);
-        printWindow.document.write('</body></html>');
-
-        printWindow.document.close();
-        printWindow.focus();
-        printWindow.print();
-    }
-
-    function downloadInvoice(invoiceContainer) {
-        if (!invoiceContainer) return;
-
-        // Clone the container itself for PDF
-        var pdfContent = invoiceContainer.cloneNode(true);
-
-        // Temporary off-screen container
-        var container = document.createElement('div');
-        container.style.position = 'absolute';
-        container.style.left = '-9999px';
-        container.appendChild(pdfContent);
-        document.body.appendChild(container);
-
-        var filename = 'admission-details.pdf';
-
-        var opt = {
-            filename: filename,
-            image: {
-                type: 'jpeg',
-                quality: 2
-            },
-            html2canvas: {
-                scale: 2
-            },
-            jsPDF: {
-                unit: 'in',
-                format: 'a4',
-                orientation: 'portrait'
-            }
-        };
-
-        html2pdf().set(opt).from(container).save().finally(() => container.remove());
     }
 </script>
 @include('layouts.partials.admin.theme')
