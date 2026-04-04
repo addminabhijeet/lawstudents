@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
-use App\Models\Course;
-use App\Models\Category;
-use App\Models\CourseNote;
+use App\Models\CopyCategory;
+use App\Models\Copy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,60 +13,14 @@ class FreeNotesController extends Controller
 {
     public function __invoke(): View
     {
-        $categories = Category::whereHas('courses.notes', function ($query) {
-            $query->where('visibility', 'free')
-                ->where('status', 1);
-        })
-            ->with([
-                'courses' => function ($query) {
-                    $query->where('is_free', 1)
-                        ->whereHas('notes', function ($q) {
-                            $q->where('visibility', 'free')
-                                ->where('status', 1);
-                        })
-                        ->with(['notes' => function ($q) {
-                            $q->where('visibility', 'free')
-                                ->where('status', 1);
-                        }])
-                        ->orderBy('created_at', 'desc') // optional ordering
-                        ->paginate(6); // <-- paginate courses, 6 per page
-                },
-                'children' => function ($query) {
-                    $query->whereHas('courses.notes', function ($q) {
-                        $q->where('visibility', 'free')
-                            ->where('status', 1);
-                    })
-                        ->with([
-                            'courses' => function ($q) {
-                                $q->where('is_free', 1)
-                                    ->whereHas('notes', function ($n) {
-                                        $n->where('visibility', 'free')
-                                            ->where('status', 1);
-                                    })
-                                    ->with(['notes' => function ($n) {
-                                        $n->where('visibility', 'free')
-                                            ->where('status', 1);
-                                    }])
-                                    ->orderBy('created_at', 'desc')
-                                    ->paginate(6);
-                            }
-                        ]);
-                }
-            ])
-            ->get();
+        $categories = CopyCategory::with([
+            'subcategories.copys'
+        ])->get();
 
-        $courses = Course::where('status', 1)
-            ->where('is_free', 1)
-            ->whereHas('notes', function ($query) {
-                $query->where('visibility', 'free')
-                    ->where('status', 1);
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate(12); // <-- main courses pagination
-
-        return view('notes.notes', compact('categories', 'courses'));
+        return view('copys.copys', compact('categories'));
     }
 
+    // 🔍 SEARCH
     public function search(Request $request)
     {
         $query = $request->get('q');
@@ -76,75 +29,59 @@ class FreeNotesController extends Controller
             return response()->json([]);
         }
 
-        $notes = CourseNote::where('visibility', 'free')
-            ->where('status', 1)
-            ->where('title', 'LIKE', "%{$query}%")
-            ->with('course')
+        $copys = Copy::with('category', 'subcategory')
+            ->where('description', 'LIKE', "%{$query}%")
             ->limit(10)
             ->get()
-            ->map(function ($note) {
+            ->map(function ($copy) {
                 return [
-                    'title' => $note->title,
-                    'type' => 'Note',
-                    'note_id' => $note->id,
-                    'course_id' => $note->course_id,
-                    'category_id' => $note->course->category_id ?? null,
+                    'title' => $copy->description,
+                    'type' => 'Copy',
+                    'note_id' => $copy->id,
+                    'category_id' => $copy->category_id,
+                    'subcategory_id' => $copy->subcategory_id,
                 ];
             });
 
-        $courses = Course::where('is_free', 1)
-            ->where('title', 'LIKE', "%{$query}%")
-            ->limit(10)
-            ->get()
-            ->map(function ($course) {
-                return [
-                    'title' => $course->title,
-                    'type' => 'Course',
-                    'course_id' => $course->id,
-                    'category_id' => $course->category_id,
-                ];
-            });
-
-        $categories = Category::where('name', 'LIKE', "%{$query}%")
-            ->limit(10)
-            ->get()
-            ->map(function ($category) {
-                return [
-                    'title' => $category->name,
-                    'type' => 'Category',
-                    'category_id' => $category->id,
-                ];
-            });
-
-        return response()->json(
-            $notes->merge($courses)->merge($categories)
-        );
+        return response()->json($copys);
     }
 
-    public function viewnote($id)
+    // 📥 DOWNLOAD
+    public function viewnote($id, $index = 0)
     {
-        $note = CourseNote::findOrFail($id);
+        $copy = Copy::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($note->file_path)) {
+        if (!isset($copy->pdfs[$index])) {
             abort(404);
         }
 
-        $note->increment('download_count');
+        $file = $copy->pdfs[$index];
 
-        $path = Storage::disk('public')->path($note->file_path);
+        if (!Storage::disk('public')->exists($file)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($file);
 
         return response()->download($path);
     }
 
-    public function viewnotes($id)
+    // 👁 VIEW PDF
+    public function viewnotes($id, $index = 0)
     {
-        $note = CourseNote::findOrFail($id);
+        $copy = Copy::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($note->file_path)) {
+        if (!isset($copy->pdfs[$index])) {
             abort(404);
         }
 
-        $path = Storage::disk('public')->path($note->file_path);
+        $file = $copy->pdfs[$index];
+
+        if (!Storage::disk('public')->exists($file)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($file);
 
         return response()->file($path);
     }

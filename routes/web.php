@@ -21,7 +21,7 @@ Route::middleware(['web'])
         Route::get('about-us', AboutController::class)->name('about');
         Route::get('rules', RuleController::class)->name('rules');
         Route::get('acts', ActController::class)->name('acts');
-        Route::get('free-notes', FreeNotesController::class)->name('notes');
+        Route::get('copys', FreeNotesController::class)->name('copys');
         Route::get('view-note/{id}', [FreeNotesController::class, 'viewnote'])->name('viewnote');
         Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnotes'])->name('viewnotes');
         Route::get('clientele', ClienteleController::class)->name('clientele');
