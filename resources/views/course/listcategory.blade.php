@@ -67,18 +67,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($categories->whereNotNull('parent_id') as $subcategory)
+                                        @forelse ($categories->whereNull('parent_id') as $category)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $subcategory->name }}</td>
+                                            <td>{{ $category->name }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
-                                                        data-id="{{ $subcategory->id }}">
+                                                        data-id="{{ $category->id }}">
                                                         <i class="feather-edit"></i>
                                                     </a>
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
-                                                        data-id="{{ $subcategory->id }}">
+                                                        data-id="{{ $category->id }}">
                                                         <i class="feather-trash-2"></i>
                                                     </a>
                                                 </div>
