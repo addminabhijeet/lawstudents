@@ -1259,25 +1259,25 @@ class CourseController extends Controller
 
 
 
-//lession
-    
+    //lession
+
     public function lists()
     {
-        $actss = Act::with('category', 'subcategory')->latest()->paginate(10);
-        return view('acts.list', compact('actss'));
+        $lessionss = Lession::with('category', 'subcategory')->latest()->paginate(10);
+        return view('lessions.list', compact('lessionss'));
     }
 
-    public function addacts()
+    public function addlessions()
     {
         // Eager load subcategories for all categories
-        $categories = ActCategory::with('subcategories')->get();
-        return view('acts.add', compact('categories'));
+        $categories = LessionCategory::with('subcategories')->get();
+        return view('lessions.add', compact('categories'));
     }
-    public function storeacts(Request $request)
+    public function storelessions(Request $request)
     {
         $request->validate([
-            'category_id' => 'required|exists:act_categories,id',
-            'subcategory_id' => 'required|exists:act_subcategories,id',
+            'category_id' => 'required|exists:lession_categories,id',
+            'subcategory_id' => 'required|exists:lession_subcategories,id',
             'pdfs' => ['required', 'array'],
             'pdfs.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
@@ -1288,72 +1288,72 @@ class CourseController extends Controller
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('acts', $filename, 'public');
+                $path = $file->storeAs('lessions', $filename, 'public');
                 $pdfPaths[] = $path;
             }
         }
 
-        Act::create([
+        Lession::create([
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'pdfs' => $pdfPaths,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.listacts')
+        return redirect()->route('admin.listlessions')
             ->with('success', 'PDFs uploaded successfully.');
     }
 
-    public function editacts($id)
+    public function editlessions($id)
     {
-        $acts = Act::findOrFail($id);
+        $lessions = Lession::findOrFail($id);
 
         // Eager load subcategories for all categories
-        $categories = ActCategory::with('subcategories')->get();
+        $categories = LessionCategory::with('subcategories')->get();
 
-        return view('acts.edit', compact('acts', 'categories'));
+        return view('lessions.edit', compact('lessions', 'categories'));
     }
 
-    public function updateacts(Request $request, $id)
+    public function updatelessions(Request $request, $id)
     {
         $request->validate([
-            'category_id' => 'required|exists:act_categories,id',
-            'subcategory_id' => 'required|exists:act_subcategories,id',
+            'category_id' => 'required|exists:lession_categories,id',
+            'subcategory_id' => 'required|exists:lession_subcategories,id',
             'pdfs' => ['nullable', 'array'], // same as store but optional
             'pdfs.*' => ['file', 'mimes:pdf'],
             'description' => ['nullable', 'string'],
         ]);
 
-        $acts = Act::findOrFail($id);
+        $lessions = Lession::findOrFail($id);
 
         // ✅ Keep existing PDFs
-        $pdfPaths = $acts->pdfs ?? [];
+        $pdfPaths = $lessions->pdfs ?? [];
 
         // ✅ SAME LOGIC AS STORE (only addition)
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('acts', $filename, 'public');
+                $path = $file->storeAs('lessions', $filename, 'public');
                 $pdfPaths[] = $path; // append like store
             }
         }
 
-        $acts->update([
+        $lessions->update([
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'pdfs' => $pdfPaths,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.listacts')
-            ->with('success', 'Acts updated successfully.');
+        return redirect()->route('admin.listlessions')
+            ->with('success', 'Lessions updated successfully.');
     }
 
-    public function deleteaddfile($id, $key)
+    public function deletelessionfile($id, $key)
     {
-        $act = Act::findOrFail($id);
+        $lession = Lession::findOrFail($id);
 
-        $pdfs = $act->pdfs;
+        $pdfs = $lession->pdfs;
 
         if (isset($pdfs[$key])) {
             // Delete file from storage
@@ -1363,19 +1363,19 @@ class CourseController extends Controller
             unset($pdfs[$key]);
 
             // Re-index array
-            $act->pdfs = array_values($pdfs);
-            $act->save();
+            $lession->pdfs = array_values($pdfs);
+            $lession->save();
         }
 
         return back()->with('success', 'PDF removed successfully');
     }
 
-    public function actsfiledelete(Request $request, $id)
+    public function lessionsfiledelete(Request $request, $id)
     {
-        $acts = Act::findOrFail($id);
+        $lessions = Lession::findOrFail($id);
         $fileToDelete = $request->file;
 
-        $pdfs = $acts->pdfs ?? [];
+        $pdfs = $lessions->pdfs ?? [];
 
         $updated = [];
 
@@ -1387,65 +1387,65 @@ class CourseController extends Controller
             }
         }
 
-        $acts->update([
+        $lessions->update([
             'pdfs' => $updated
         ]);
 
         return back()->with('success', 'File deleted successfully.');
     }
 
-    // List all act categories
-    public function listactcategories()
+    // List all lession categories
+    public function listlessioncategories()
     {
-        $categories = ActCategory::latest()->paginate(10);
-        return view('acts.categories.list', compact('categories'));
+        $categories = LessionCategory::latest()->paginate(10);
+        return view('lessions.categories.list', compact('categories'));
     }
 
     // Show form to add new category
-    public function addactcategory()
+    public function addlessioncategory()
     {
-        return view('acts.categories.add');
+        return view('lessions.categories.add');
     }
 
     // Store new category
-    public function storeactcategory(Request $request)
+    public function storelessioncategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        ActCategory::create([
+        LessionCategory::create([
             'name' => $request->name,
         ]);
 
-        return redirect()->route('admin.listactcategories')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.listlessioncategories')->with('success', 'Category created successfully.');
     }
 
     // Show edit form
-    public function editactcategory($id)
+    public function editlessioncategory($id)
     {
-        $categories = ActCategory::findOrFail($id);
-        return view('acts.categories.edit', compact('categories'));
+        $categories = LessionCategory::findOrFail($id);
+        return view('lessions.categories.edit', compact('categories'));
     }
 
     // Update category
-    public function updateactcategory(Request $request, $id)
+    public function updatelessioncategory(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        $categories = ActCategory::findOrFail($id);
+        $categories = LessionCategory::findOrFail($id);
         $categories->name = $request->name;
         $categories->save();
 
-        return redirect()->route('admin.listactcategories')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.listlessioncategories')->with('success', 'Category updated successfully.');
     }
 
     // Delete a specific PDF from category
-    public function actcategoryfiledelete(Request $request, $id)
+    public function lessioncategoryfiledelete(Request $request, $id)
     {
-        $categories = ActCategory::findOrFail($id);
+        $categories = LessionCategory::findOrFail($id);
         $fileToDelete = $request->input('file');
 
         if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
@@ -1457,64 +1457,64 @@ class CourseController extends Controller
         return back()->with('success', 'File deleted successfully.');
     }
 
-    // List all act subcategories
-    public function listactsubcategories()
+    // List all lession subcategories
+    public function listlessionsubcategories()
     {
-        $subcategories = ActSubcategory::with('category')->latest()->paginate(10);
-        return view('acts.subcategories.list', compact('subcategories'));
+        $subcategories = LessionSubcategory::with('category')->latest()->paginate(10);
+        return view('lessions.subcategories.list', compact('subcategories'));
     }
 
     // Show form to add new subcategory
-    public function addactsubcategory()
+    public function addlessionsubcategory()
     {
-        $categories = ActCategory::all();
-        return view('acts.subcategories.add', compact('categories'));
+        $categories = LessionCategory::all();
+        return view('lessions.subcategories.add', compact('categories'));
     }
 
-    public function storeactsubcategory(Request $request)
+    public function storelessionsubcategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'act_category_id' => 'required|exists:act_categories,id',
+            'lession_category_id' => 'required|exists:lession_categories,id',
         ]);
 
-        ActSubcategory::create([
+        LessionSubcategory::create([
             'name' => $request->name,
-            'act_category_id' => $request->act_category_id,
+            'lession_category_id' => $request->lession_category_id,
         ]);
 
         return redirect()->route('admin.listactsubcategories')
             ->with('success', 'Act subcategory created successfully.');
     }
     // Show edit form
-    public function editactsubcategory($id)
+    public function editlessionsubcategory($id)
     {
-        $subcategories = ActSubcategory::findOrFail($id);
-        $categories = ActCategory::all();
-        return view('acts.subcategories.edit', compact('subcategories', 'categories'));
+        $subcategories = LessionSubcategory::findOrFail($id);
+        $categories = LessionCategory::all();
+        return view('lessions.subcategories.edit', compact('subcategories', 'categories'));
     }
 
     // Update subcategory
-    public function updateactsubcategory(Request $request, $id)
+    public function updatelessionsubcategory(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'act_category_id' => 'required|exists:act_categories,id',
+            'lession_category_id' => 'required|exists:lession_categories,id',
         ]);
 
-        $subcategory = ActSubcategory::findOrFail($id);
+        $subcategory = LessionSubcategory::findOrFail($id);
         $subcategory->name = $request->name;
-        $subcategory->act_category_id = $request->act_category_id;
+        $subcategory->lession_category_id = $request->lession_category_id;
         $subcategory->save();
 
-        return redirect()->route('admin.listactsubcategories')
-            ->with('success', 'Act subcategory updated successfully.');
+        return redirect()->route('admin.listlessionsubcategories')
+            ->with('success', 'Lession subcategory updated successfully.');
     }
 
     // Delete a specific PDF from subcategory
-    public function actsubcategoryfiledelete(Request $request, $id)
+    public function lessionsubcategoryfiledelete(Request $request, $id)
     {
-        $subcategory = ActSubcategory::findOrFail($id);
+        $subcategory = LessionSubcategory::findOrFail($id);
         $fileToDelete = $request->input('file');
 
         if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
