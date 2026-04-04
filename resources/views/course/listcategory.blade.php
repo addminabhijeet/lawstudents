@@ -11,13 +11,13 @@
                 </div>
                 <ul class="breadcrumb ms-3">
                     <li class="breadcrumb-item">Courses</li>
-                    <li class="breadcrumb-item">Sub Categories</li>
+                    <li class="breadcrumb-item">Categories</li>
                 </ul>
             </div>
 
             <div class="page-header-right ms-auto d-flex align-items-center gap-2">
                 <a href="javascript:void(0);" class="btn btn-primary" id="add-category">
-                    <i class="feather-plus me-2"></i> Add Sub Category
+                    <i class="feather-plus me-2"></i> Add Category
                 </a>
             </div>
         </div>
@@ -54,7 +54,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0">Sub Categories</h6>
+                            <h6 class="mb-0">Categories</h6>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">

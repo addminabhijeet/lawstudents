@@ -10,15 +10,15 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb ms-3">
-                    <li class="breadcrumb-item">Courses</li>
                     <li class="breadcrumb-item">Sub Categories</li>
+                    <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
 
             <div class="page-header-right ms-auto d-flex align-items-center gap-2">
                 <a href="javascript:void(0);" class="btn btn-primary" id="add-category">
                     <i class="feather-plus me-2"></i>
-                    <span>Add Category</span>
+                    <span>Add Sub Category</span>
                 </a>
             </div>
         </div>
