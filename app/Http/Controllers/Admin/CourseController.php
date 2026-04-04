@@ -1154,7 +1154,7 @@ class CourseController extends Controller
     }
 
     // Update category
-    public function updatecopycategory(Request $request, $id)
+    public function updatecopyscategory(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
