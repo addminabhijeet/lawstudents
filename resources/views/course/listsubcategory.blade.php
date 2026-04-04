@@ -1,7 +1,7 @@
 @include('layouts.partials.admin.dashboard')
 
 <main class="nxl-container">
-    <!-- main containts -->
+    <!-- main contents -->
     <div class="nxl-content">
         <!-- [ page-header ] start -->
         <div class="page-header d-flex justify-content-between align-items-center">
@@ -24,44 +24,57 @@
         </div>
         <!-- [ page-header ] end -->
 
-        <div class="main-content d-flex">
-            <!-- [ Content Sidebar ] start -->
-            <div class="content-sidebar content-sidebar-md me-3" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-sidebar-body">
-                    <ul class="nav d-flex flex-column nxl-content-sidebar-item">
-                        <!-- 🔹 Sub Categories -->
-                        <li class="nav-item mt-3 px-2 text-muted small fw-bold">Sub Categories</li>
-
-                        @foreach ($categories->whereNotNull('parent_id') as $category)
-                        <li class="nav-item d-flex justify-content-between align-items-center">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="category-{{ $category->id }}">
-                                <i class="feather-folder"></i>
-                                <span>{{ $category->name }}</span>
-                            </a>
-
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category" data-id="{{ $category->id }}">
-                                    <i class="feather-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category" data-id="{{ $category->id }}">
-                                    <i class="feather-trash-2"></i>
-                                </a>
+        <!-- [ Main Content ] start -->
+        <div class="main-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card stretch stretch-full">
+                        <div class="card-header">
+                            <h6 class="mb-0">Sub Categories</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="wd-30">#</th>
+                                            <th>Name</th>
+                                            <th class="text-end">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($categories->whereNotNull('parent_id') as $category)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                                        data-id="{{ $category->id }}">
+                                                        <i class="feather-edit"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
+                                                        data-id="{{ $category->id }}">
+                                                        <i class="feather-trash-2"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="3" class="text-center">No Sub Categories Found</td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
-                        </li>
-                        @endforeach
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- [ Content Sidebar ] end -->
-
-            <!-- [ Main Area Placeholder ] start -->
-            <div class="flex-fill">
-                <!-- This area can be used to display details or table for the selected subcategory if needed -->
-            </div>
-            <!-- [ Main Area Placeholder ] end -->
         </div>
+        <!-- [ Main Content ] end -->
     </div>
-    <!-- [ Main Content ] end -->
 </main>
 @include('layouts.partials.admin.theme')
 <div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
