@@ -1,131 +1,100 @@
 @include('layouts.partials.admin.dashboard')
-
 <main class="nxl-container">
-    <!-- main containts -->
+    <!-- main contents -->
     <div class="nxl-content">
         <!-- [ page-header ] start -->
-        <div class="page-header d-flex justify-content-between align-items-center">
+        <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Admin</h5>
+                    <h5 class="m-b-10">Courses</h5>
                 </div>
-                <ul class="breadcrumb ms-3">
+                <ul class="breadcrumb">
                     <li class="breadcrumb-item">Courses</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
-
-            <div class="page-header-right ms-auto d-flex align-items-center gap-2">
-                <a href="javascript:void(0);" class="btn btn-primary" id="add-category">
-                    <i class="feather-plus me-2"></i>
-                    <span>Add Category</span>
-                </a>
-            </div>
         </div>
         <!-- [ page-header ] end -->
 
-        <div class="main-content d-flex">
-            <!-- [ Content Sidebar ] start -->
-            <div class="content-sidebar content-sidebar-md me-3" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-sidebar-body">
-                    <ul class="nav d-flex flex-column nxl-content-sidebar-item">
-                        <!-- 🔹 Main Categories -->
-                        <li class="nav-item mt-2 px-2 text-muted small fw-bold">Main Categories</li>
-                        @foreach ($categories->whereNull('parent_id') as $category)
-                        <li class="nav-item d-flex justify-content-between align-items-center">
-                            <a href="javascript:void(0)" class="nav-link note-link" id="category-{{ $category->id }}">
-                                <i class="feather-folder"></i>
-                                <span>{{ $category->name }}</span>
-                            </a>
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category" data-id="{{ $category->id }}">
-                                    <i class="feather-edit"></i>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category" data-id="{{ $category->id }}">
-                                    <i class="feather-trash-2"></i>
-                                </a>
-                            </div>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
+        <!-- [ Main Content ] start -->
+        <div class="main-content">
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
-            <!-- [ Content Sidebar ] end -->
+            @endif
 
-            <!-- [ Table / Main Content ] start -->
-            <div class="flex-fill">
-                <div class="card stretch stretch-full">
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Category</th>
-                                        <th>Subcategory</th>
-                                        <th>Description</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
+            @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            @endif
 
-                                <tbody>
-                                    @forelse ($actss as $acts)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $acts->category?->name }}</td>
-                                        <td>{{ $acts->subcategory?->name }}</td>
-                                        <td>{{ $acts->description }}</td>
-                                        <td>
-                                            <div class="d-flex flex-column gap-2">
-                                                <a href="{{ route('admin.editacts', $acts->id) }}" class="btn btn-sm btn-primary w-100">Edit</a>
-                                                <form method="POST" action="{{ route('admin.actsfiledelete', $acts->id) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-sm btn-danger w-100" onclick="return confirm('Delete this act and all PDFs?')">Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center">No data</td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            @endif
 
-                            <div class="d-flex justify-content-center mt-3">
-                                <nav>
-                                    <ul class="pagination pagination-sm mb-0">
-                                        <li class="page-item {{ $actss->onFirstPage() ? 'disabled' : '' }}">
-                                            <a class="page-link" href="{{ $actss->previousPageUrl() }}" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-
-                                        @foreach ($actss->getUrlRange(1, $actss->lastPage()) as $page => $url)
-                                        <li class="page-item {{ $actss->currentPage() == $page ? 'active' : '' }}">
-                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                        </li>
-                                        @endforeach
-
-                                        <li class="page-item {{ !$actss->hasMorePages() ? 'disabled' : '' }}">
-                                            <a class="page-link" href="{{ $actss->nextPageUrl() }}" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card stretch stretch-full">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">Course Categories</h6>
+                            <a href="javascript:void(0);" class="btn btn-primary btn-sm" id="add-category">
+                                <i class="feather-plus me-1"></i> Add Category
+                            </a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="wd-30">#</th>
+                                            <th>Name</th>
+                                            <th class="text-end">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($categories->whereNull('parent_id') as $category)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                                        data-id="{{ $category->id }}">
+                                                        <i class="feather-edit"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
+                                                        data-id="{{ $category->id }}">
+                                                        <i class="feather-trash-2"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="3" class="text-center">No Categories Found</td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- [ Table / Main Content ] end -->
         </div>
+        <!-- [ Main Content ] end -->
     </div>
-    <!-- [ Main Content ] end -->
 </main>
 @include('layouts.partials.admin.theme')
 <div class="modal fade" id="addnotesmodal" tabindex="-1" data-bs-keyboard="false" role="dialog">
