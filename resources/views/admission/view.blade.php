@@ -240,24 +240,11 @@
                     <h6 class="card-title">Aadhar Card Upload</h6>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">
-                            ID Proof (PDF)
-                            <small class="text-muted">(Max 2MB)</small>
-                        </label>
-                        <!-- <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
-                            accept="application/pdf"
-                            onchange="previewPDF(event, 'idProofPreviewCard', 'idProofButtonCard')"> -->
 
                         <div class="invalid-feedback" id="idProofErrorCard"></div>
 
                         <div class="text-center mt-2">
                             @if ($admission->id_proof)
-                            <!-- Button hidden when iframe is displayed -->
-                            <!-- <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                        target="_blank" class="btn btn-outline-primary w-100 mb-2">
-                                        View Current ID Proof
-                                    </a> -->
-                            <!-- Inline iframe for uploaded PDF -->
                             <iframe id="idProofPreviewCard"
                                 src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
                                 style="display:block; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
