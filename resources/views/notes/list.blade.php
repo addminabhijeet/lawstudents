@@ -3,50 +3,8 @@
     <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
-            <!-- [ Content Sidebar ] start -->
-            <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
-                    <h4 class="fw-bolder mb-0">Notes</h4>
-                    <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex">
-                        <i class="feather-x"></i>
-                    </a>
-                </div>
-                <div class="content-sidebar-header">
-                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes">
-                        <i class="feather-plus me-2"></i>
-                        <span>Add Notes</span>
-                    </a>
-                </div>
-                <div class="content-sidebar-body">
-                    <ul class="nav d-flex flex-column nxl-content-sidebar-item">
-
-                        <li class="nav-item">
-                            <a href="javascript:void(0)" class="nav-link note-link active" id="all-category">
-                                <i class="feather-layers"></i>
-                                <span>All</span>
-                            </a>
-                        </li>
-
-                        @foreach ($categories as $category)
-                            <li class="nav-item">
-                                <a href="javascript:void(0)" class="nav-link note-link"
-                                    id="category-{{ $category->id }}">
-                                    <i class="feather-folder"></i>
-                                    <span>{{ $category->name }}</span>
-                                </a>
-                            </li>
-                        @endforeach
-
-
-                    </ul>
-
-                </div>
-            </div>
-            <!-- [ Content Sidebar  ] end -->
-            <!-- [ Main Area  ] start -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-header sticky-top">
-
                     <div class="page-header-right ms-auto">
                         <div class="hstack gap-2">
                             <div class="hstack">
@@ -87,69 +45,69 @@
                 <div class="content-area-body pb-0">
                     <div class="row note-has-grid" id="note-full-container">
                         @foreach ($categories as $category)
-                            @foreach ($category->courses as $course)
-                                @foreach ($course->notes as $note)
-                                    <div
-                                        class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 
+                        @foreach ($category->courses as $course)
+                        @foreach ($course->notes as $note)
+                        <div
+                            class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 
                         single-note-item all-category category-{{ $category->id }}">
 
-                                        <div class="card card-body mb-4 stretch stretch-full">
-                                            <span class="side-stick"></span>
+                            <div class="card card-body mb-4 stretch stretch-full">
+                                <span class="side-stick"></span>
 
-                                            <h5 class="note-title text-truncate w-75 mb-1">
-                                                {{ $note->title }}
-                                            </h5>
+                                <h5 class="note-title text-truncate w-75 mb-1">
+                                    {{ $note->title }}
+                                </h5>
 
-                                            <p class="fs-11 text-muted note-date">
-                                                {{ $note->created_at->format('d F Y') }}
-                                            </p>
+                                <p class="fs-11 text-muted note-date">
+                                    {{ $note->created_at->format('d F Y') }}
+                                </p>
 
-                                            <div class="note-content flex-grow-1">
-                                                <p class="text-muted text-truncate-3-line">
-                                                    Course: {{ $course->title }}
-                                                </p>
-                                            </div>
+                                <div class="note-content flex-grow-1">
+                                    <p class="text-muted text-truncate-3-line">
+                                        Course: {{ $course->title }}
+                                    </p>
+                                </div>
 
-                                            <div class="d-flex align-items-center justify-content-between mt-2">
+                                <div class="d-flex align-items-center justify-content-between mt-2">
 
-                                                <span class="badge bg-primary">
-                                                    {{ $category->name }}
-                                                </span>
+                                    <span class="badge bg-primary">
+                                        {{ $category->name }}
+                                    </span>
 
-                                                <span class="fw-bold text-success">
-                                                    {{ $note->formatted_size }}
-                                                </span>
-                                            </div>
+                                    <span class="fw-bold text-success">
+                                        {{ $note->formatted_size }}
+                                    </span>
+                                </div>
 
-                                            <!-- ACTION BUTTONS -->
-                                            <div class="mt-3 d-flex flex-column gap-2">
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-info w-100 mb-2 view-note-btn"
-                                                    data-id="{{ $note->id }}" data-title="{{ $note->title }}"
-                                                    data-description="{{ $note->description }}"
-                                                    data-pdf="{{ route('admin.viewnote', $note->id) }}">
-                                                    <i class="feather-eye me-2"></i>
-                                                    <span>View Note</span>
-                                                </a>
+                                <!-- ACTION BUTTONS -->
+                                <div class="mt-3 d-flex flex-column gap-2">
+                                    <a href="javascript:void(0);"
+                                        class="btn btn-info w-100 mb-2 view-note-btn"
+                                        data-id="{{ $note->id }}" data-title="{{ $note->title }}"
+                                        data-description="{{ $note->description }}"
+                                        data-pdf="{{ route('admin.viewnote', $note->id) }}">
+                                        <i class="feather-eye me-2"></i>
+                                        <span>View Note</span>
+                                    </a>
 
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-warning w-100 edit-note-btn"
-                                                    data-id="{{ $note->id }}" data-title="{{ $note->title }}"
-                                                    data-description="{{ $note->description }}"
-                                                    data-version="{{ $note->version }}"
-                                                    data-course="{{ $note->course_id }}"
-                                                    data-visibility="{{ $note->visibility }}"
-                                                    data-download="{{ $note->is_downloadable }}">
-                                                    <i class="feather-edit me-2"></i>
-                                                    <span>Edit Note</span>
-                                                </a>
+                                    <a href="javascript:void(0);"
+                                        class="btn btn-warning w-100 edit-note-btn"
+                                        data-id="{{ $note->id }}" data-title="{{ $note->title }}"
+                                        data-description="{{ $note->description }}"
+                                        data-version="{{ $note->version }}"
+                                        data-course="{{ $note->course_id }}"
+                                        data-visibility="{{ $note->visibility }}"
+                                        data-download="{{ $note->is_downloadable }}">
+                                        <i class="feather-edit me-2"></i>
+                                        <span>Edit Note</span>
+                                    </a>
 
-                                            </div>
+                                </div>
 
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endforeach
+                            </div>
+                        </div>
+                        @endforeach
+                        @endforeach
                         @endforeach
                     </div>
                 </div>
@@ -183,9 +141,9 @@
                                     <select name="course_id" class="form-select" required>
                                         <option value="">-- Select Course --</option>
                                         @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}">
-                                                {{ $course->title }}
-                                            </option>
+                                        <option value="{{ $course->id }}">
+                                            {{ $course->title }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -312,9 +270,9 @@
                                     <select name="course_id" id="editCourseId" class="form-select" required>
                                         <option value="">-- Select Course --</option>
                                         @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}">
-                                                {{ $course->title }}
-                                            </option>
+                                        <option value="{{ $course->id }}">
+                                            {{ $course->title }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
