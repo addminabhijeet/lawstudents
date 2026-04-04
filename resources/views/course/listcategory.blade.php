@@ -45,8 +45,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- [ Content Sidebar  ] end -->
-            <!-- [ Main Area  ] start -->
         </div>
     </div>
 </main>
