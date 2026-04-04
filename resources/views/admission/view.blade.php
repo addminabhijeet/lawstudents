@@ -84,24 +84,18 @@
                                     {{ $admission->guardian_phone }}
                                 </p>
 
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Courses</label>
-
-                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
-                                        @if(!empty($admission->course_ids))
-                                        @foreach($courses as $course)
-                                        @if(in_array($course->id, $admission->course_ids))
-                                        <p class="mb-2">
-                                            <strong>{{ $course->title }}:</strong><br>
-                                            ₹{{ $course->price }} | {{ $course->duration }}
-                                        </p>
-                                        @endif
-                                        @endforeach
-                                        @else
-                                        <p class="text-muted mb-0">No courses selected.</p>
-                                        @endif
-                                    </div>
-                                </div>
+                                <p class="mb-2">
+                                    <strong>Courses:</strong><br>
+                                    @if(!empty($admission->course_ids))
+                                    @foreach($courses as $course)
+                                    @if(in_array($course->id, $admission->course_ids))
+                                    {{ $course->title }} - ₹{{ $course->price }} | {{ $course->duration }}<br>
+                                    @endif
+                                    @endforeach
+                                    @else
+                                    <span class="text-muted">No courses selected.</span>
+                                    @endif
+                                </p>
 
                                 <p class="mb-0">
                                     <strong>Status:</strong><br>
