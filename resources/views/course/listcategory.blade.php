@@ -13,87 +13,90 @@
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
+            <div class="page-header-right ms-auto d-flex align-items-center gap-2">
+                <a href="javascript:void(0);" class="btn btn-primary btn-sm" id="add-category">
+                    <i class="feather-plus me-1"></i> Add Category
+                </a>
+            </div>
         </div>
-        <!-- [ page-header ] end -->
+    </div>
+    <!-- [ page-header ] end -->
 
-        <!-- [ Main Content ] start -->
-        <div class="main-content">
-            @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            @endif
+    <!-- [ Main Content ] start -->
+    <div class="main-content">
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
 
-            @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            @endif
+        @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
 
-            @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            @endif
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card stretch stretch-full">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0">Course Categories</h6>
-                            <a href="javascript:void(0);" class="btn btn-primary btn-sm" id="add-category">
-                                <i class="feather-plus me-1"></i> Add Category
-                            </a>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th class="wd-30">#</th>
-                                            <th>Name</th>
-                                            <th class="text-end">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($categories->whereNull('parent_id') as $category)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>
-                                                <div class="hstack gap-2 justify-content-end">
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
-                                                        data-id="{{ $category->id }}">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
-                                                        data-id="{{ $category->id }}">
-                                                        <i class="feather-trash-2"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="3" class="text-center">No Categories Found</td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                            </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card stretch stretch-full">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">Course Categories</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="wd-30">#</th>
+                                        <th>Name</th>
+                                        <th class="text-end">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($categories->whereNull('parent_id') as $category)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>
+                                            <div class="hstack gap-2 justify-content-end">
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                                    data-id="{{ $category->id }}">
+                                                    <i class="feather-edit"></i>
+                                                </a>
+                                                <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
+                                                    data-id="{{ $category->id }}">
+                                                    <i class="feather-trash-2"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center">No Categories Found</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- [ Main Content ] end -->
+    </div>
+    <!-- [ Main Content ] end -->
     </div>
 </main>
 @include('layouts.partials.admin.theme')
