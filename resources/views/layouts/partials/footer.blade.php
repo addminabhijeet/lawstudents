@@ -54,7 +54,7 @@
                                     <li><a href="{{ route('frontend.about') }}">About Us</a></li>
                                     <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
                                     <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
-                                    <li><a href="{{ route('frontend.notes') }}">Free Notes</a></li>
+                                    <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
                                     <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
                                     <li><a href="{{ route('frontend.course') }}">Course</a></li>
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
