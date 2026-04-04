@@ -350,10 +350,10 @@
                                 <div class="text-center mt-2">
                                     @if ($admission->id_proof)
                                     <!-- Button hidden when iframe is displayed -->
-                                    <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                    <!-- <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
                                         target="_blank" class="btn btn-outline-primary w-100 mb-2">
                                         View Current ID Proof
-                                    </a>
+                                    </a> -->
                                     <!-- Inline iframe for uploaded PDF -->
                                     <iframe id="idProofPreviewCard"
                                         src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
