@@ -16,7 +16,7 @@
             </div>
 
             <div class="page-header-right ms-auto d-flex align-items-center gap-2">
-                <a href="javascript:void(0);" class="btn btn-primary btn-sm" id="add-category">
+                <a href="javascript:void(0);" class="btn btn-primary" id="add-category">
                     <i class="feather-plus me-2"></i> Add Sub Category
                 </a>
             </div>
