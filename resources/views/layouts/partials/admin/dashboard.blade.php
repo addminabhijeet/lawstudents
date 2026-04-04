@@ -194,10 +194,10 @@
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listcopycategories') }}">List Categories</a>
+                                    href="{{ route('admin.listcopyscategories') }}">List Categories</a>
                             </li>
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listcopysubcategories') }}">List Sub Categories</a>
+                                    href="{{ route('admin.listcopyssubcategories') }}">List Sub Categories</a>
                             </li>
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.listcopy') }}">List Free Notes</a>
