@@ -92,10 +92,8 @@
                                         @foreach($courses as $course)
                                         @if(in_array($course->id, $admission->course_ids))
                                         <p class="mb-2">
-                                            <strong>{{ $course->title }}</strong><br>
-                                            <small class="text-muted">
-                                                ₹{{ $course->price }} | {{ $course->duration }}
-                                            </small>
+                                            <strong>{{ $course->title }}:</strong><br>
+                                            ₹{{ $course->price }} | {{ $course->duration }}
                                         </p>
                                         @endif
                                         @endforeach
