@@ -342,21 +342,22 @@
                                     <small class="text-muted">(Max 2MB)</small>
                                 </label>
                                 <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
-                                    accept="application/pdf" onchange="previewPDF(event, 'idProofPreviewCard')">
+                                    accept="application/pdf" onchange="previewPDF(event, 'idProofPreviewCard', 'idProofButtonCard')">
 
                                 <div class="invalid-feedback" id="idProofErrorCard"></div>
 
                                 <div class="text-center mt-2">
                                     @if ($admission->id_proof)
-                                    <div id="idProofPreviewCardWrapper" style="position: relative; width:100%; padding-bottom:141.4%;">
-                                        <iframe id="idProofPreviewCard"
-                                            src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                            style="position:absolute; width:100%; height:100%; border:1px solid #ccc;"></iframe>
-                                    </div>
+                                    <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                        target="_blank" class="btn btn-outline-primary">
+                                        View Current ID Proof
+                                    </a>
+                                    <iframe id="idProofPreviewCard" style="display:none; width:100%; border:1px solid #ccc;"></iframe>
                                     @else
-                                    <div id="idProofPreviewCardWrapper" style="position: relative; width:100%; padding-bottom:141.4%;">
-                                        <iframe id="idProofPreviewCard" style="position:absolute; width:100%; height:100%; border:1px solid #ccc; display:none;"></iframe>
-                                    </div>
+                                    <a id="idProofButtonCard" class="btn btn-outline-secondary">
+                                        No file selected
+                                    </a>
+                                    <iframe id="idProofPreviewCard" style="display:none; width:100%; border:1px solid #ccc;"></iframe>
                                     @endif
                                 </div>
                             </div>
@@ -364,21 +365,24 @@
                     </div>
 
                     <script>
-                        function previewPDF(event, iframeId) {
+                        function previewPDF(event, iframeId, buttonId) {
                             const file = event.target.files[0];
                             const iframe = document.getElementById(iframeId);
+                            const button = document.getElementById(buttonId);
 
                             if (file) {
                                 const fileURL = URL.createObjectURL(file);
                                 iframe.src = fileURL;
                                 iframe.style.display = 'block';
+                                button.style.display = 'none'; // hide button when showing iframe
                             } else {
                                 iframe.src = '';
                                 iframe.style.display = 'none';
+                                button.style.display = 'inline-block'; // show button if no file
                             }
                         }
                     </script>
-
+                    
                     <!-- SUBMIT BUTTON -->
                     <div class="col-12 text-end mt-3">
                         <button type="submit" class="btn btn-primary px-4">
