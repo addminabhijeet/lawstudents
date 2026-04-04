@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts Subcategories</li>
+                    <li class="breadcrumb-item">Lists Subcategories</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -17,9 +17,9 @@
                 <div class="page-header-right-items">
 
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addactsubcategory') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.addcopysubcategory') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
-                            <span>Add Subcategories Acts</span>
+                            <span>Add Subcategories Free Notes</span>
                         </a>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="actsSubcategoriesList">
+                                <table class="table table-hover" id="copysSubcategoriesList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -63,9 +63,9 @@
                                             <td>{{ $subcategorie->created_at->format('Y-m-d, h:i A') }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.editactsubcategory', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="{{ route('admin.editcopysubcategory', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <form method="POST" action="{{ route('admin.deleteactsubcategoryfile', $subcategorie->id) }}" class="d-inline">
+                                                    <form method="POST" action="{{ route('admin.deletecopysubcategoryfile', $subcategorie->id) }}" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subcategory?')">Delete</button>

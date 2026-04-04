@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts</li>
+                    <li class="breadcrumb-item">Free Notes</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
@@ -17,9 +17,9 @@
                 <div class="page-header-right-items">
 
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addacts') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.addcopys') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
-                            <span>Add Acts</span>
+                            <span>Add Free Notes</span>
                         </a>
                     </div>
                 </div>
@@ -70,21 +70,21 @@
                                                 <div class="d-flex flex-column gap-2">
 
                                                     <!-- Edit -->
-                                                    <a href="{{ route('admin.editacts', $copys->id) }}"
+                                                    <a href="{{ route('admin.editcopys', $copys->id) }}"
                                                         class="btn btn-sm btn-primary w-100">
                                                         Edit
                                                     </a>
 
 
 
-                                                    <!-- Delete Whole Act -->
+                                                    <!-- Delete Whole Free Notes -->
                                                     <form method="POST"
-                                                        action="{{ route('admin.actsfiledelete', $copys->id) }}">
+                                                        action="{{ route('admin.copysfiledelete', $copys->id) }}">
                                                         @csrf
                                                         @method('DELETE')
 
                                                         <button class="btn btn-sm btn-danger w-100"
-                                                            onclick="return confirm('Delete this act and all PDFs?')">
+                                                            onclick="return confirm('Delete this copy and all PDFs?')">
                                                             Delete
                                                         </button>
                                                     </form>

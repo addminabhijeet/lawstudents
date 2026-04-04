@@ -10,16 +10,16 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts Categories</li>
+                    <li class="breadcrumb-item">List Categories</li>
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
 
             <div class="page-header-right ms-auto">
                 <div class="d-flex align-items-center gap-2">
-                    <a href="{{ route('admin.addactcategory') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.addcopycategory') }}" class="btn btn-primary">
                         <i class="feather-plus me-2"></i>
-                        <span>Add Categories Acts</span>
+                        <span>Add Categories Free Notes</span>
                     </a>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                         <div class="card-body p-0">
 
                             <div class="table-responsive">
-                                <table class="table table-hover" id="actsList">
+                                <table class="table table-hover" id="copysList">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -91,14 +91,14 @@
                                                     <div class="hstack gap-2 justify-content-end">
 
                                                         <!-- Edit -->
-                                                        <a href="{{ route('admin.editactcategory', [$categorie->id]) }}"
+                                                        <a href="{{ route('admin.editcopycategory', [$categorie->id]) }}"
                                                             class="avatar-text avatar-md"
                                                             title="Edit Category">
                                                             <i class="feather feather-edit"></i>
                                                         </a>
 
                                                         <!-- Delete -->
-                                                        <form action="{{ route('admin.deleteactcategoryfile', [$categorie->id]) }}"
+                                                        <form action="{{ route('admin.deletecopycategoryfile', [$categorie->id]) }}"
                                                             method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
