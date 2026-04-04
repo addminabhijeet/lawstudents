@@ -348,12 +348,10 @@
 
                                 <div class="text-center mt-2">
                                     @if ($admission->id_proof)
-                                    <a id="idProofPreviewCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                        target="_blank" class="btn btn-outline-primary">
-                                        View Current ID Proof
-                                    </a>
+                                    <iframe id="idProofPreviewCard" src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                        style="width:100%; height:300px; border:1px solid #ccc;"></iframe>
                                     @else
-                                    <span id="idProofPreviewCard" class="d-none">No file selected</span>
+                                    <iframe id="idProofPreviewCard" class="d-none" style="width:100%; height:300px; border:1px solid #ccc;"></iframe>
                                     @endif
                                 </div>
                             </div>
@@ -366,16 +364,13 @@
                             const previewEl = document.getElementById(previewId);
 
                             if (file) {
-                                // Show file name with a link to open it
                                 const fileURL = URL.createObjectURL(file);
 
                                 previewEl.classList.remove('d-none');
-                                previewEl.innerHTML = `<a href="${fileURL}" target="_blank" class="btn btn-outline-primary">
-                                    View Selected PDF: ${file.name}
-                               </a>`;
+                                previewEl.src = fileURL;
                             } else {
                                 previewEl.classList.add('d-none');
-                                previewEl.innerHTML = '';
+                                previewEl.src = '';
                             }
                         }
                     </script>
