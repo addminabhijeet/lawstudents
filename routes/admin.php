@@ -91,6 +91,12 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('toggle-viewid', [RoutingController::class, 'toggleViewId'])
                 ->name('toggleviewid');
 
+            Route::get('listcoursesubcategory', [CourseController::class, 'listcoursesubcategory'])
+                ->name('listcoursesubcategory');
+
+            Route::get('listcoursecategory', [CourseController::class, 'listcoursecategory'])
+                ->name('listcoursecategory');
+
             Route::get('courses', [CourseController::class, 'listcourse'])
                 ->name('listcourse');
 
