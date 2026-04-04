@@ -12,7 +12,6 @@
                     </a>
                 </div>
                 <div class="content-sidebar-header">
-
                     <!-- Add Category Button -->
                     <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category"
                         style="display:block;">
@@ -22,10 +21,8 @@
                 </div>
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
-
                         <!-- 🔹 Main Categories -->
                         <li class="nav-item mt-2 px-2 text-muted small fw-bold">Main Categories</li>
-
                         @foreach ($categories->whereNull('parent_id') as $category)
                         <li class="nav-item d-flex justify-content-between align-items-center">
                             <a href="javascript:void(0)" class="nav-link note-link"
@@ -33,39 +30,11 @@
                                 <i class="feather-folder"></i>
                                 <span>{{ $category->name }}</span>
                             </a>
-
                             <div class="d-flex gap-1">
                                 <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
                                     data-id="{{ $category->id }}">
                                     <i class="feather-edit"></i>
                                 </a>
-
-                                <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
-                                    data-id="{{ $category->id }}">
-                                    <i class="feather-trash-2"></i>
-                                </a>
-                            </div>
-                        </li>
-                        @endforeach
-
-
-                        <!-- 🔹 Sub Categories -->
-                        <li class="nav-item mt-3 px-2 text-muted small fw-bold">Sub Categories</li>
-
-                        @foreach ($categories->whereNotNull('parent_id') as $category)
-                        <li class="nav-item d-flex justify-content-between align-items-center">
-                            <a href="javascript:void(0)" class="nav-link note-link"
-                                id="category-{{ $category->id }}">
-                                <i class="feather-folder"></i>
-                                <span>{{ $category->name }}</span>
-                            </a>
-
-                            <div class="d-flex gap-1">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
-                                    data-id="{{ $category->id }}">
-                                    <i class="feather-edit"></i>
-                                </a>
-
                                 <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
                                     data-id="{{ $category->id }}">
                                     <i class="feather-trash-2"></i>
@@ -78,105 +47,6 @@
             </div>
             <!-- [ Content Sidebar  ] end -->
             <!-- [ Main Area  ] start -->
-            <div class="content-area" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-area-header sticky-top">
-                    <div class="page-header-right ms-auto">
-                        <div class="hstack gap-2">
-                            <div class="hstack">
-                                <a href="javascript:void(0)" class="search-form-open-toggle">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                        title="Search">
-                                        <i class="feather feather-search"></i>
-                                    </div>
-                                </a>
-                                <form class="search-form" style="display: none">
-                                    <div class="search-form-inner">
-                                        <a href="javascript:void(0)" class="search-form-close-toggle">
-                                            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                                                data-bs-trigger="hover" title="Search Close">
-                                                <i class="feather feather-arrow-left"></i>
-                                            </div>
-                                        </a>
-                                        <input type="search" class="py-3 px-0 border-0 w-100" id="notesSearch"
-                                            placeholder="Search...">
-                                    </div>
-                                </form>
-                            </div>
-                            <a href="javascript:void(0)" class="d-none d-sm-flex">
-                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    title="Newest">
-                                    <i class="feather feather-chevron-left"></i>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0)" class="d-none d-sm-flex">
-                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    title="Oldest">
-                                    <i class="feather feather-chevron-right"></i>
-                                </div>
-                            </a>
-
-                            <!-- Add Courses Button -->
-                            <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes"
-                                style="display:block; margin-right: 30px;">
-                                <i class="feather-plus me-2"></i>
-                                <span>Add Courses</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-area-body pb-0">
-                    <div class="row note-has-grid" id="note-full-container">
-                        @foreach ($categories as $category)
-                        @foreach ($category->courses as $course)
-                        <div
-                            class="col-xxl-4 col-xl-6 col-lg-4 col-sm-6 single-note-item all-category category-{{ $category->id }}">
-                            <div class="card card-body mb-4 stretch stretch-full">
-                                <span class="side-stick"></span>
-
-                                <h5 class="note-title text-truncate w-75 mb-1">
-                                    {{ $course->title }}
-                                </h5>
-
-                                <p class="fs-11 text-muted note-date">
-                                    {{ $course->created_at->format('d F Y') }}
-                                </p>
-
-                                <div class="note-content flex-grow-1">
-                                    <p class="text-muted note-inner-content text-truncate-3-line">
-                                        {{ $course->description }}
-                                    </p>
-                                </div>
-
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="badge bg-primary text-truncate w-75 mb-1">
-                                        {{ $category->name }}
-                                    </span>
-
-                                    <span class="fw-bold text-success">
-                                        ₹{{ $course->price }}
-                                    </span>
-                                </div>
-
-                                <!-- EDIT & DELETE BUTTONS (NEW ADDITION) -->
-                                <div class="d-flex gap-2 mt-2">
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-warning edit-course"
-                                        data-id="{{ $course->id }}">
-                                        Edit
-                                    </a>
-                                    <a href="{{ route('admin.coursedelete', $course->id) }}"
-                                        class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Are you sure you want to delete?')">
-                                        Delete
-                                    </a>
-                                </div>
-                                <!-- END BUTTONS -->
-                            </div>
-                        </div>
-                        @endforeach
-                        @endforeach
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </main>
