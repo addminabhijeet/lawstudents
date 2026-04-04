@@ -348,16 +348,19 @@
 
                                 <div class="text-center mt-2">
                                     @if ($admission->id_proof)
+                                    <!-- Show button initially; iframe hidden until new file selected -->
                                     <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                        target="_blank" class="btn btn-outline-primary">
+                                        target="_blank" class="btn btn-outline-primary w-100 mb-2">
                                         View Current ID Proof
                                     </a>
-                                    <iframe id="idProofPreviewCard" style="display:none; width:100%; border:1px solid #ccc;"></iframe>
+                                    <iframe id="idProofPreviewCard"
+                                        style="display:none; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
                                     @else
-                                    <a id="idProofButtonCard" class="btn btn-outline-secondary">
+                                    <a id="idProofButtonCard" class="btn btn-outline-secondary w-100 mb-2">
                                         No file selected
                                     </a>
-                                    <iframe id="idProofPreviewCard" style="display:none; width:100%; border:1px solid #ccc;"></iframe>
+                                    <iframe id="idProofPreviewCard"
+                                        style="display:none; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
                                     @endif
                                 </div>
                             </div>
@@ -373,12 +376,12 @@
                             if (file) {
                                 const fileURL = URL.createObjectURL(file);
                                 iframe.src = fileURL;
-                                iframe.style.display = 'block';
-                                button.style.display = 'none'; // hide button when showing iframe
+                                iframe.style.display = 'block'; // show PDF
+                                button.style.display = 'none'; // hide button
                             } else {
                                 iframe.src = '';
-                                iframe.style.display = 'none';
-                                button.style.display = 'inline-block'; // show button if no file
+                                iframe.style.display = 'none'; // hide iframe
+                                button.style.display = 'inline-block'; // show button
                             }
                         }
                     </script>
