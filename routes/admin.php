@@ -192,46 +192,33 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('gallery-edit/{id}', [CourseController::class, 'editgallery'])
                 ->name('editgallery');
-
             Route::post('gallery-update/{id}', [CourseController::class, 'updategallery'])
                 ->name('updategallery');
-
             Route::delete('gallery-delete/{id}', [CourseController::class, 'deletegallery'])
                 ->name('deletegallery');
-
             Route::post('category-store', [CourseController::class, 'storecategory'])
                 ->name('storecategory');
-
             Route::post('course-store', [CourseController::class, 'storecourse'])
                 ->name('storecourse');
-
             Route::get('course-notes', [CourseNoteController::class, 'listnotes'])
                 ->name('listnotes');
-
             Route::get('course-free-notes', [CourseNoteController::class, 'listfreenotes'])
                 ->name('listfreenotes');
-
             Route::put('course-notes/{id}', [CourseNoteController::class, 'updatenotes'])
                 ->name('updatenotes');
 
             Route::get('course-notes/view/{id}', [CourseNoteController::class, 'viewNote'])
                 ->name('viewnote');
-
             Route::post('store-notes', [CourseNoteController::class, 'storenotes'])
                 ->name('storenotes');
-
             Route::post('send-email-otp', [StudentAdmissinController::class, 'sendEmailOtp'])
                 ->name('sendemailotp');
-
             Route::post('verify-email-otp', [StudentAdmissinController::class, 'verifyEmailOtp'])
                 ->name('verifyemailotp');
-
             Route::post('send-phone-otp', [StudentAdmissinController::class, 'sendPhoneOtp'])
                 ->name('sendphoneotp');
-
             Route::post('verify-phone-otp', [StudentAdmissinController::class, 'verifyPhoneOtp'])
                 ->name('verifyphoneotp');
-
             Route::delete('addacts/{id}/file/{key}', [CourseController::class, 'deleteaddfile'])
                 ->name('deleteaddfile');
 
@@ -273,6 +260,45 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('updateactcategory');
             Route::post('actcategories-filedelete/{id}', [CourseController::class, 'actcategoryfiledelete'])
                 ->name('deleteactcategoryfile');
+
+            Route::get('rulescategories-list', [CourseController::class, 'listrulescategories'])
+                ->name('listrulescategories');
+            Route::get('rulescategories-add', [CourseController::class, 'addrulescategory'])
+                ->name('addrulescategory');
+            Route::post('rulescategories-store', [CourseController::class, 'storerulescategory'])
+                ->name('storerulescategory');
+            Route::get('rulescategories-edit/{id}', [CourseController::class, 'editrulescategory'])
+                ->name('editrulescategory');
+            Route::post('rulescategories-update/{id}', [CourseController::class, 'updaterulescategory'])
+                ->name('updaterulescategory');
+            Route::post('rulescategories-filedelete/{id}', [CourseController::class, 'rulescategoryfiledelete'])
+                ->name('deleterulescategoryfile');
+
+            Route::get('list-rules', [CourseController::class, 'listrules'])
+                ->name('listrules');
+            Route::get('add-rules', [CourseController::class, 'addrules'])
+                ->name('addrules');
+            Route::post('store-rules', [CourseController::class, 'storerules'])
+                ->name('storerules');
+            Route::get('edit-rules/{id}', [CourseController::class, 'editrules'])
+                ->name('editrules');
+            Route::post('update-rules/{id}', [CourseController::class, 'updaterules'])
+                ->name('updaterules');
+            Route::delete('delete-rules', [CourseController::class, 'rulesfiledelete'])
+                ->name('rulesfiledelete');
+
+            Route::get('rulessubcategories-list', [CourseController::class, 'listrulessubcategories'])
+                ->name('listrulessubcategories');
+            Route::get('rulessubcategories-add', [CourseController::class, 'addrulessubcategory'])
+                ->name('addrulessubcategory');
+            Route::post('rulessubcategories-store', [CourseController::class, 'storerulessubcategory'])
+                ->name('storerulessubcategory');
+            Route::get('rulessubcategories-edit/{id}', [CourseController::class, 'editrulessubcategory'])
+                ->name('editrulessubcategory');
+            Route::post('rulessubcategories-update/{id}', [CourseController::class, 'updaterulessubcategory'])
+                ->name('updaterulessubcategory');
+            Route::post('rulessubcategories-filedelete/{id}', [CourseController::class, 'rulessubcategoryfiledelete'])
+                ->name('deleterulessubcategoryfile');
 
             Route::get('rulescategories-list', [CourseController::class, 'listrulescategories'])
                 ->name('listrulescategories');
