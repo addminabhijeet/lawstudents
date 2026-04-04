@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="main-content">
-            <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
+            <a href="javascript:void(0);" id="print-btn"
                 class="d-flex me-1 printBTN"
                 onclick="printInvoice(this.closest('.invoice-container'))">
                 <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
