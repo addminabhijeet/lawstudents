@@ -274,44 +274,46 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('rulescategories-filedelete/{id}', [CourseController::class, 'rulescategoryfiledelete'])
                 ->name('deleterulescategoryfile');
 
-            Route::get('list-rules', [CourseController::class, 'listrules'])
-                ->name('listrules');
-            Route::get('add-rules', [CourseController::class, 'addrules'])
-                ->name('addrules');
-            Route::post('store-rules', [CourseController::class, 'storerules'])
-                ->name('storerules');
-            Route::get('edit-rules/{id}', [CourseController::class, 'editrules'])
-                ->name('editrules');
-            Route::post('update-rules/{id}', [CourseController::class, 'updaterules'])
-                ->name('updaterules');
-            Route::delete('delete-rules', [CourseController::class, 'rulesfiledelete'])
-                ->name('rulesfiledelete');
+            //copy
 
-            Route::get('rulessubcategories-list', [CourseController::class, 'listrulessubcategories'])
-                ->name('listrulessubcategories');
-            Route::get('rulessubcategories-add', [CourseController::class, 'addrulessubcategory'])
-                ->name('addrulessubcategory');
-            Route::post('rulessubcategories-store', [CourseController::class, 'storerulessubcategory'])
-                ->name('storerulessubcategory');
-            Route::get('rulessubcategories-edit/{id}', [CourseController::class, 'editrulessubcategory'])
-                ->name('editrulessubcategory');
-            Route::post('rulessubcategories-update/{id}', [CourseController::class, 'updaterulessubcategory'])
-                ->name('updaterulessubcategory');
-            Route::post('rulessubcategories-filedelete/{id}', [CourseController::class, 'rulessubcategoryfiledelete'])
-                ->name('deleterulessubcategoryfile');
+            Route::get('list-copys', [CourseController::class, 'listcopys'])
+                ->name('listcopys');
+            Route::get('add-copys', [CourseController::class, 'addcopys'])
+                ->name('addcopys');
+            Route::post('store-copys', [CourseController::class, 'storecopys'])
+                ->name('storecopys');
+            Route::get('edit-copys/{id}', [CourseController::class, 'editcopys'])
+                ->name('editcopys');
+            Route::post('update-copys/{id}', [CourseController::class, 'updatecopys'])
+                ->name('updatecopys');
+            Route::delete('delete-copys', [CourseController::class, 'copysfiledelete'])
+                ->name('copysfiledelete');
 
-            Route::get('rulescategories-list', [CourseController::class, 'listrulescategories'])
-                ->name('listrulescategories');
-            Route::get('rulescategories-add', [CourseController::class, 'addrulescategory'])
-                ->name('addrulescategory');
-            Route::post('rulescategories-store', [CourseController::class, 'storerulescategory'])
-                ->name('storerulescategory');
-            Route::get('rulescategories-edit/{id}', [CourseController::class, 'editrulescategory'])
-                ->name('editrulescategory');
-            Route::post('rulescategories-update/{id}', [CourseController::class, 'updaterulescategory'])
-                ->name('updaterulescategory');
-            Route::post('rulescategories-filedelete/{id}', [CourseController::class, 'rulescategoryfiledelete'])
-                ->name('deleterulescategoryfile');
+            Route::get('copyssubcategories-list', [CourseController::class, 'listcopyssubcategories'])
+                ->name('listcopyssubcategories');
+            Route::get('copyssubcategories-add', [CourseController::class, 'addcopyssubcategory'])
+                ->name('addcopyssubcategory');
+            Route::post('copyssubcategories-store', [CourseController::class, 'storecopyssubcategory'])
+                ->name('storecopyssubcategory');
+            Route::get('copyssubcategories-edit/{id}', [CourseController::class, 'editcopyssubcategory'])
+                ->name('editcopyssubcategory');
+            Route::post('copyssubcategories-update/{id}', [CourseController::class, 'updatecopyssubcategory'])
+                ->name('updatecopyssubcategory');
+            Route::post('copyssubcategories-filedelete/{id}', [CourseController::class, 'copyssubcategoryfiledelete'])
+                ->name('deletecopyssubcategoryfile');
+
+            Route::get('copyscategories-list', [CourseController::class, 'listcopyscategories'])
+                ->name('listcopyscategories');
+            Route::get('copyscategories-add', [CourseController::class, 'addcopyscategory'])
+                ->name('addcopyscategory');
+            Route::post('copyscategories-store', [CourseController::class, 'storecopyscategory'])
+                ->name('storecopyscategory');
+            Route::get('copyscategories-edit/{id}', [CourseController::class, 'editcopyscategory'])
+                ->name('editcopyscategory');
+            Route::post('copyscategories-update/{id}', [CourseController::class, 'updatecopyscategory'])
+                ->name('updatecopyscategory');
+            Route::post('copyscategories-filedelete/{id}', [CourseController::class, 'copyscategoryfiledelete'])
+                ->name('deletecopyscategoryfile');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
