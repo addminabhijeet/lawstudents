@@ -1183,7 +1183,7 @@ class CourseController extends Controller
     }
 
     // List all copy subcategories
-    public function listcopysubcategories()
+    public function listcopyssubcategories()
     {
         $subcategories = CopySubcategory::with('category')->latest()->paginate(10);
         return view('copys.subcategories.list', compact('subcategories'));
@@ -1208,7 +1208,7 @@ class CourseController extends Controller
             'copy_category_id' => $request->copy_category_id,
         ]);
 
-        return redirect()->route('admin.listcopysubcategories')
+        return redirect()->route('admin.listcopyssubcategories')
             ->with('success', 'Copy subcategory created successfully.');
     }
     // Show edit form
@@ -1232,7 +1232,7 @@ class CourseController extends Controller
         $subcategory->copy_category_id = $request->copy_category_id;
         $subcategory->save();
 
-        return redirect()->route('admin.listcopysubcategories')
+        return redirect()->route('admin.listcopyssubcategories')
             ->with('success', 'Copy subcategory updated successfully.');
     }
 
