@@ -1164,7 +1164,7 @@ class CourseController extends Controller
         $categories->name = $request->name;
         $categories->save();
 
-        return redirect()->route('admin.listcopycategories')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.listcopyscategories')->with('success', 'Category updated successfully.');
     }
 
     // Delete a specific PDF from category
