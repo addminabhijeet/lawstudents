@@ -179,12 +179,15 @@ class StudentAdmissinController extends Controller
             'full_name' => 'required|string|max:150',
             'email' => 'nullable|email|max:150',
             'phone' => 'nullable|string|max:20',
+            'pincode' => 'nullable|string|max:20',
+            'guardian_phone' => 'nullable|string|max:20',
             'father_name' => 'nullable|string|max:150',
             'address_line1' => 'nullable|string|max:255',
             'address_line2' => 'nullable|string|max:255',
             'course_ids' => 'nullable|array',
             'admission_status' => 'required|in:pending,approved,rejected',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'id_proof' => 'nullable|file|mimes:pdf|max:2048',
             'signature' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
             'paidamount' => 'nullable|numeric|min:0',
             'remamount' => 'nullable|numeric|min:0',
@@ -201,7 +204,6 @@ class StudentAdmissinController extends Controller
             $data['course_ids'] = $request->course_ids;
         }
 
-
         if ($request->hasFile('photo')) {
 
             if ($admission->photo && file_exists(storage_path('app/public/' . $admission->photo))) {
@@ -211,6 +213,19 @@ class StudentAdmissinController extends Controller
             $photoPath = $request->file('photo')->store('students/photos', 'public');
 
             $data['photo'] = $photoPath;
+        }
+
+        if ($request->hasFile('id_proof')) {
+
+            // Delete old file if exists
+            if ($admission->id_proof && file_exists(storage_path('app/public/' . $admission->id_proof))) {
+                unlink(storage_path('app/public/' . $admission->id_proof));
+            }
+
+            // Store new PDF
+            $pdfPath = $request->file('id_proof')->store('students/id_proofs', 'public');
+
+            $data['id_proof'] = $pdfPath;
         }
 
         if ($request->hasFile('signature')) {

@@ -32,28 +32,28 @@
             @csrf
             <div class="main-content">
                 @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
                 @endif
 
                 @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade show">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
                 @endif
 
                 @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
                 @endif
                 <div class="row">
 
@@ -107,7 +107,7 @@
                                     <input type="text" class="form-control mb-2" name="phone"
                                         value="{{ old('phone', $admission->phone) }}" placeholder="Enter phone number">
 
-                                    <div class="d-flex gap-2 mb-2">
+                                    <!-- <div class="d-flex gap-2 mb-2">
                                         <button type="button" onclick="sendPhoneOtp()"
                                             class="btn btn-outline-primary btn-sm">
                                             Send OTP
@@ -120,7 +120,7 @@
                                         <button type="button" onclick="verifyPhoneOtp()" class="btn btn-success">
                                             Verify
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="mb-3">
@@ -131,30 +131,37 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label class="form-label fw-semibold">Guardian Contact Number</label>
+                                    <input type="text" class="form-control mb-2" name="guardian_phone"
+                                        value="{{ old('guardian_phone', $admission->guardian_phone) }}"
+                                        placeholder="Enter guardian phone number">
+                                </div>
+
+                                <div class="mb-3">
                                     <label class="form-label fw-semibold">Choose from below Course</label>
 
                                     <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
                                         <div class="row">
                                             @foreach ($courses as $course)
-                                                <div class="col-md-6">
-                                                    <div class="form-check mb-2 p-2 border rounded">
-                                                        <input class="form-check-input course-checkbox"
-                                                            type="checkbox" name="course_ids[]"
-                                                            value="{{ $course->id }}"
-                                                            data-price="{{ $course->price }}"
-                                                            id="course{{ $course->id }}"
-                                                            {{ in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : '' }}>
+                                            <div class="col-md-6">
+                                                <div class="form-check mb-2 p-2 border rounded">
+                                                    <input class="form-check-input course-checkbox"
+                                                        type="checkbox" name="course_ids[]"
+                                                        value="{{ $course->id }}"
+                                                        data-price="{{ $course->price }}"
+                                                        id="course{{ $course->id }}"
+                                                        {{ in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : '' }}>
 
-                                                        <label class="form-check-label fw-semibold"
-                                                            for="course{{ $course->id }}">
-                                                            {{ $course->title }}
-                                                            <br>
-                                                            <small class="text-muted">
-                                                                ₹{{ $course->price }} | {{ $course->duration }}
-                                                            </small>
-                                                        </label>
-                                                    </div>
+                                                    <label class="form-check-label fw-semibold"
+                                                        for="course{{ $course->id }}">
+                                                        {{ $course->title }}
+                                                        <br>
+                                                        <small class="text-muted">
+                                                            ₹{{ $course->price }} | {{ $course->duration }}
+                                                        </small>
+                                                    </label>
                                                 </div>
+                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -203,6 +210,13 @@
                                     </div>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Pincode</label>
+                                    <input type="text" class="form-control mb-2" name="pincode"
+                                        value="{{ old('pincode', $admission->pincode) }}"
+                                        placeholder="Enter pincode">
+                                </div>
+
                                 <!-- Passport Photo -->
                                 <div class="mb-4">
                                     <label class="form-label fw-semibold">
@@ -217,12 +231,12 @@
                                     <div class="text-center">
 
                                         @if ($admission->photo)
-                                            <img id="photoPreview"
-                                                src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                                class="img-thumbnail" style="max-height: 180px;">
+                                        <img id="photoPreview"
+                                            src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                            class="img-thumbnail" style="max-height: 180px;">
                                         @else
-                                            <img id="photoPreview" class="img-thumbnail d-none"
-                                                style="max-height: 180px;">
+                                        <img id="photoPreview" class="img-thumbnail d-none"
+                                            style="max-height: 180px;">
                                         @endif
 
                                     </div>
@@ -241,12 +255,12 @@
 
                                     <div class="text-center">
                                         @if ($admission->signature)
-                                            <img id="signPreview"
-                                                src="{{ asset('storage/app/public/' . $admission->signature) }}"
-                                                class="img-thumbnail" style="max-height:150px;">
+                                        <img id="signPreview"
+                                            src="{{ asset('storage/app/public/' . $admission->signature) }}"
+                                            class="img-thumbnail" style="max-height:150px;">
                                         @else
-                                            <img id="signPreview" class="img-thumbnail d-none"
-                                                style="max-height:150px;">
+                                        <img id="signPreview" class="img-thumbnail d-none"
+                                            style="max-height:150px;">
                                         @endif
                                     </div>
                                 </div>
@@ -304,19 +318,67 @@
 
                                 <!-- Declaration -->
                                 @if (isset($declaration))
-                                    <div class="form-check mt-4">
-                                        <input class="form-check-input" type="checkbox" name="declaration_accept"
-                                            id="declarationCheck" required>
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" name="declaration_accept"
+                                        id="declarationCheck" required>
 
-                                        <label class="form-check-label" for="declarationCheck">
-                                            {!! $declaration->declaration !!}
-                                        </label>
-                                    </div>
+                                    <label class="form-check-label" for="declarationCheck">
+                                        {!! $declaration->declaration !!}
+                                    </label>
+                                </div>
                                 @endif
 
                             </div>
                         </div>
                     </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="card-title">ID Proof Upload</h6>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">
+                                    ID Proof (PDF)
+                                    <small class="text-muted">(Max 2MB)</small>
+                                </label>
+                                <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
+                                    accept="application/pdf" onchange="previewPDF(event, 'idProofPreviewCard')">
+
+                                <div class="invalid-feedback" id="idProofErrorCard"></div>
+
+                                <div class="text-center mt-2">
+                                    @if ($admission->id_proof)
+                                    <a id="idProofPreviewCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                        target="_blank" class="btn btn-outline-primary">
+                                        View Current ID Proof
+                                    </a>
+                                    @else
+                                    <span id="idProofPreviewCard" class="d-none">No file selected</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        function previewPDF(event, previewId) {
+                            const file = event.target.files[0];
+                            const previewEl = document.getElementById(previewId);
+
+                            if (file) {
+                                // Show file name with a link to open it
+                                const fileURL = URL.createObjectURL(file);
+
+                                previewEl.classList.remove('d-none');
+                                previewEl.innerHTML = `<a href="${fileURL}" target="_blank" class="btn btn-outline-primary">
+                                    View Selected PDF: ${file.name}
+                               </a>`;
+                            } else {
+                                previewEl.classList.add('d-none');
+                                previewEl.innerHTML = '';
+                            }
+                        }
+                    </script>
 
                     <!-- SUBMIT BUTTON -->
                     <div class="col-12 text-end mt-3">
