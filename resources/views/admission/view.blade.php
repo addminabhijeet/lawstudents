@@ -179,6 +179,13 @@
                                     </p>
                                 </div>
 
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Pin code</label>
+                                    <p class="fw-semibold">
+                                        {{ $admission->pincode }}
+                                    </p>
+                                </div>
+
                             </div>
 
                         </div>
