@@ -348,10 +348,15 @@
 
                                 <div class="text-center mt-2">
                                     @if ($admission->id_proof)
-                                    <iframe id="idProofPreviewCard" src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                        style="width:100%; height:300px; border:1px solid #ccc;"></iframe>
+                                    <div id="idProofPreviewCardWrapper" style="position: relative; width:100%; padding-bottom:141.4%;">
+                                        <iframe id="idProofPreviewCard"
+                                            src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                            style="position:absolute; width:100%; height:100%; border:1px solid #ccc;"></iframe>
+                                    </div>
                                     @else
-                                    <iframe id="idProofPreviewCard" class="d-none" style="width:100%; height:300px; border:1px solid #ccc;"></iframe>
+                                    <div id="idProofPreviewCardWrapper" style="position: relative; width:100%; padding-bottom:141.4%;">
+                                        <iframe id="idProofPreviewCard" style="position:absolute; width:100%; height:100%; border:1px solid #ccc; display:none;"></iframe>
+                                    </div>
                                     @endif
                                 </div>
                             </div>
@@ -359,18 +364,17 @@
                     </div>
 
                     <script>
-                        function previewPDF(event, previewId) {
+                        function previewPDF(event, iframeId) {
                             const file = event.target.files[0];
-                            const previewEl = document.getElementById(previewId);
+                            const iframe = document.getElementById(iframeId);
 
                             if (file) {
                                 const fileURL = URL.createObjectURL(file);
-
-                                previewEl.classList.remove('d-none');
-                                previewEl.src = fileURL;
+                                iframe.src = fileURL;
+                                iframe.style.display = 'block';
                             } else {
-                                previewEl.classList.add('d-none');
-                                previewEl.src = '';
+                                iframe.src = '';
+                                iframe.style.display = 'none';
                             }
                         }
                     </script>
