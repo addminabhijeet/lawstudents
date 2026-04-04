@@ -42,7 +42,7 @@
                             <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes"
                                 style="display:block; margin-right: 30px;">
                                 <i class="feather-plus me-2"></i>
-                                <span>Add Courses</span>
+                                <span>Add Notes</span>
                             </a>
                         </div>
                     </div>
