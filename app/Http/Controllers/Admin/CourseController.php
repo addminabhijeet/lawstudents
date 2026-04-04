@@ -38,7 +38,7 @@ class CourseController extends Controller
         return view('course.list', compact('categories'));
     }
 
-    public function listcoursecategory()
+    public function listcoursecategories()
     {
         $categories = Category::with('courses')
             ->get();
@@ -46,7 +46,7 @@ class CourseController extends Controller
         return view('course.listcategory', compact('categories'));
     }
 
-    public function listcoursesubcategory()
+    public function listcoursesubcategories()
     {
         $categories = Category::with('courses')
             ->get();
