@@ -8,7 +8,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts Categories</li>
+                    <li class="breadcrumb-item">Free Notes Categories</li>
                     <li class="breadcrumb-item">Edit</li>
                 </ul>
             </div>
@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updateactcategory', $categories->id) }}" method="POST">
+                            <form action="{{ route('admin.updatecopycategory', $categories->id) }}" method="POST">
                                 @csrf
                                
                                 <div class="mb-3">

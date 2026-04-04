@@ -8,8 +8,8 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts</li>
-                    <li class="breadcrumb-item">Add Acts</li>
+                    <li class="breadcrumb-item">Free Notes</li>
+                    <li class="breadcrumb-item">Add Free Notes</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.storeacts') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.storecopys') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <!-- Category -->
@@ -113,7 +113,7 @@
                                     <textarea name="description" class="form-control">{{ old('description') }}</textarea>
                                 </div>
 
-                                <button class="btn btn-primary">Add Acts</button>
+                                <button class="btn btn-primary">Add Free Notes</button>
                             </form>
 
                             <script>

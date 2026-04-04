@@ -8,7 +8,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts Categories</li>
+                    <li class="breadcrumb-item">Free Notes Categories</li>
                     <li class="breadcrumb-item">Add</li>
                 </ul>
             </div>

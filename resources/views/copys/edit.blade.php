@@ -9,8 +9,8 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts</li>
-                    <li class="breadcrumb-item">Edit Acts</li>
+                    <li class="breadcrumb-item">Free Notes</li>
+                    <li class="breadcrumb-item">Edit Free Notes</li>
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
@@ -27,7 +27,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updateacts', $acts->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.updatecopys', $copys->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
 
@@ -38,7 +38,7 @@
                                         <option value="">Select Category</option>
                                         @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ old('category_id', $acts->category_id) == $category->id ? 'selected' : '' }}>
+                                            {{ old('category_id', $copys->category_id) == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
@@ -54,11 +54,11 @@
                                 </div>
 
                                 <!-- Existing PDFs -->
-                                @if (!empty($acts->pdfs))
+                                @if (!empty($copys->pdfs))
                                 <div class="mb-3">
                                     <label class="form-label">Existing PDFs</label>
                                     <ul class="list-group">
-                                        @foreach ($acts->pdfs as $index => $pdf)
+                                        @foreach ($copys->pdfs as $index => $pdf)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <a href="{{ asset('storage/' . $pdf) }}" target="_blank">
                                                 {{ pathinfo($pdf, PATHINFO_BASENAME) }}
@@ -80,7 +80,7 @@
                                 <!-- Description -->
                                 <div class="mb-3">
                                     <label class="form-label">Button Name / Description</label>
-                                    <textarea name="description" class="form-control">{{ old('description', $acts->description) }}</textarea>
+                                    <textarea name="description" class="form-control">{{ old('description', $copys->description) }}</textarea>
                                 </div>
 
                                 <button class="btn btn-primary">Update Rules</button>
@@ -165,8 +165,8 @@
             }
         }
 
-        const oldCat = "{{ old('category_id', $acts->category_id) }}";
-        const oldSub = "{{ old('subcategory_id', $acts->subcategory_id) }}";
+        const oldCat = "{{ old('category_id', $copys->category_id) }}";
+        const oldSub = "{{ old('subcategory_id', $copys->subcategory_id) }}";
 
         if (oldCat) populateSubcategories(oldCat, oldSub);
 

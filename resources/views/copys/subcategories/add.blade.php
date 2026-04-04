@@ -8,7 +8,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Acts Subcategories</li>
+                    <li class="breadcrumb-item">Free Notes Subcategories</li>
                     <li class="breadcrumb-item">Add</li>
                 </ul>
             </div>
@@ -26,20 +26,20 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.storeactsubcategory') }}" method="POST">
+                            <form action="{{ route('admin.storecopysubcategory') }}" method="POST">
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label for="act_category_id" class="form-label">Select Category</label>
-                                    <select name="act_category_id" id="act_category_id" class="form-control">
+                                    <label for="copy_category_id" class="form-label">Select Category</label>
+                                    <select name="copy_category_id" id="copy_category_id" class="form-control">
                                         <option value="">-- Select Category --</option>
                                         @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ old('act_category_id') == $category->id ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}" {{ old('copy_category_id') == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('act_category_id')
+                                    @error('copy_category_id')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>

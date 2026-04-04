@@ -1,4 +1,4 @@
-@extends('layouts.landing', ['title' => 'Acts'])
+@extends('layouts.landing', ['title' => 'Free Notes'])
 
 @section('content')
 <!--===== WELCOME STARTS =======-->
@@ -9,8 +9,8 @@
         <div class="row">
             <div class="col-lg-3 m-auto">
                 <div class="welcome-inner-header text-center">
-                    <h1>Acts</h1>
-                    <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Acts</a>
+                    <h1>Free Notes</h1>
+                    <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Free Notes</a>
                     <img src="/img/elements/elementor20.png" alt="">
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <!-- SEARCH -->
                 <div style="max-width:600px; margin:0 auto 20px;">
                     <input type="text" id="noteSearch" class="form-control"
-                        placeholder="Search Acts..." onkeyup="searchNotes(this.value)">
+                        placeholder="Search Free Notes..." onkeyup="searchNotes(this.value)">
 
                     <div id="searchSuggestions"
                         style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none;">
@@ -60,31 +60,31 @@
 
                             <div id="sub{{ $sub->id }}" style="max-height:0; overflow:hidden; padding:10px;">
 
-                                @foreach ($sub->acts as $act)
+                                @foreach ($sub->copys as $copy)
 
-                                <!-- ACT -->
+                                <!-- Free Notes -->
                                 <div style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
 
                                     <div style="font-weight:600;">
-                                        {{ $act->description }}
+                                        {{ $copy->description }}
                                     </div>
 
                                     <!-- PDFs -->
-                                    @if ($act->pdfs)
-                                    @foreach ($act->pdfs as $index => $pdf)
+                                    @if ($copy->pdfs)
+                                    @foreach ($copy->pdfs as $index => $pdf)
 
                                     <div style="margin-top:5px; display:flex; justify-content:space-between;">
 
                                         <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
 
                                         <div>
-                                            <a href="{{ route('frontend.viewnotes', [$act->id, $index]) }}"
+                                            <a href="{{ route('frontend.viewnotes', [$copy->id, $index]) }}"
                                                 target="_blank"
                                                 style="margin-right:10px; font-size:12px;">
                                                 View
                                             </a>
 
-                                            <a href="{{ route('frontend.viewnote', [$act->id, $index]) }}"
+                                            <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
                                                 style="font-size:12px; color:green;">
                                                 Download
                                             </a>
@@ -161,7 +161,7 @@
                 }
             </script>
 
-            <!-- NOTE: Pagination removed because acts are nested collections and not paginated -->
+            <!-- NOTE: Pagination removed because copy are nested collections and not paginated -->
         </div>
     </div>
 </div>
