@@ -108,11 +108,11 @@
                             <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List Categories</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcoursecategories') }}">List Categories</a>
                             </li>
                         </ul>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List Sub Categories</a>
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcoursesubcategories') }}">List Sub Categories</a>
                             </li>
                         </ul>
                         <ul class="nxl-submenu">

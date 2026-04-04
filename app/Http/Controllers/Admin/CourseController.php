@@ -38,6 +38,22 @@ class CourseController extends Controller
         return view('course.list', compact('categories'));
     }
 
+    public function listcoursecategory()
+    {
+        $categories = Category::with('courses')
+            ->get();
+
+        return view('course.listcategory', compact('categories'));
+    }
+
+    public function listcoursesubcategory()
+    {
+        $categories = Category::with('courses')
+            ->get();
+
+        return view('course.listsubcategory', compact('categories'));
+    }
+
     public function editcourse($id)
     {
         $course = Course::find($id);
