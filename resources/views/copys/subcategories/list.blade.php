@@ -17,7 +17,7 @@
                 <div class="page-header-right-items">
 
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
-                        <a href="{{ route('admin.addcopysubcategory') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.addcopyssubcategory') }}" class="btn btn-primary">
                             <i class="feather-plus me-2"></i>
                             <span>Add Subcategories Free Notes</span>
                         </a>
