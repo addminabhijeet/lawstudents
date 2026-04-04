@@ -79,6 +79,32 @@
                                     {{ $admission->guardian_phone }}
                                 </p>
 
+                                <p class="mb-2">
+                                    <strong>Guardian Contact Number:</strong><br>
+                                    {{ $admission->guardian_phone }}
+                                </p>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Courses</label>
+
+                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
+                                        @if(!empty($admission->course_ids))
+                                        @foreach($courses as $course)
+                                        @if(in_array($course->id, $admission->course_ids))
+                                        <p class="mb-2">
+                                            <strong>{{ $course->title }}</strong><br>
+                                            <small class="text-muted">
+                                                ₹{{ $course->price }} | {{ $course->duration }}
+                                            </small>
+                                        </p>
+                                        @endif
+                                        @endforeach
+                                        @else
+                                        <p class="text-muted mb-0">No courses selected.</p>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <p class="mb-0">
                                     <strong>Status:</strong><br>
 
@@ -91,6 +117,8 @@
                                     @endif
 
                                 </p>
+
+
 
                             </div>
 
