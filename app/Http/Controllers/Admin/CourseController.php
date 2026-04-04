@@ -1133,7 +1133,7 @@ class CourseController extends Controller
     }
 
     // Store new category
-    public function storecopycategory(Request $request)
+    public function storecopyscategory(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
