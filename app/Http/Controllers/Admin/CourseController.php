@@ -861,19 +861,59 @@ class CourseController extends Controller
         return back()->with('success', 'Banner updated successfully.');
     }
 
+    public function storecategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:categories,id'
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'parent_id' => $request->parent_id
+        ]);
+
+        return back()->with('success', 'Category Created Successfully');
+    }
+
+    public function editCategory($id)
+    {
+        return Category::findOrFail($id);
+    }
+
     public function deleteCategory($id)
     {
-        $categories = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
 
         // Optional safety: prevent delete if courses exist
-        if ($categories->courses()->count() > 0) {
+        if ($category->courses()->count() > 0) {
             return back()->with('error', 'Cannot delete category with courses');
         }
 
-        $categories->delete();
+        $category->delete();
 
         return back()->with('success', 'Category Deleted Successfully');
     }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:categories,id'
+        ]);
+
+        $category = Category::findOrFail($id);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'parent_id' => $request->parent_id
+        ]);
+
+        return back()->with('success', 'Category Updated Successfully');
+    }
+
 
     public function storecourse(Request $request)
     {
