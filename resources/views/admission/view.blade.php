@@ -38,7 +38,6 @@
             <div class="row">
 
                 <div class="invoice-container" style="width:210mm; min-height:297mm; margin:auto; font-family:'Times New Roman', serif; color:#333; line-height:1.4; background:#fff; padding:20mm; box-sizing:border-box; border:5px solid #3366ff; position:relative;">
-
                     <!-- HEADER -->
                     <div style="text-align:center; margin-bottom:30px;">
                         <img src="{{ asset('images/institute-logo.png') }}" alt="Institute Logo" style="height:80px; margin-bottom:10px;">
@@ -303,17 +302,13 @@
     }
 </script>
 
-<!-- Add this in your blade file before </body> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
 <script>
     function printInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
 
-        // Get the inner card-body
-        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
-        if (!bodyContent) return;
-
-        var printContents = bodyContent.cloneNode(true);
+        // Clone the container itself for printing
+        var printContents = invoiceContainer.cloneNode(true);
 
         var printWindow = window.open('', '', 'height=800,width=1200');
         printWindow.document.write('<html><head><title>Invoice</title>');
@@ -335,11 +330,8 @@
     function downloadInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
 
-        // Get the inner card-body
-        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
-        if (!bodyContent) return;
-
-        var pdfContent = bodyContent.cloneNode(true);
+        // Clone the container itself for PDF
+        var pdfContent = invoiceContainer.cloneNode(true);
 
         // Temporary off-screen container
         var container = document.createElement('div');
@@ -348,9 +340,7 @@
         container.appendChild(pdfContent);
         document.body.appendChild(container);
 
-        // Filename from invoice number
-        var invoiceId = bodyContent.id || 'invoice';
-        var filename = invoiceId + '.pdf';
+        var filename = 'admission-details.pdf';
 
         var opt = {
             filename: filename,
