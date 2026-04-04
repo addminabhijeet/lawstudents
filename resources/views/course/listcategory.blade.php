@@ -241,7 +241,7 @@
                     </div>
 
                     <!-- Parent Category -->
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label class="form-label">Parent Category</label>
                         <select name="parent_id" id="edit_parent_id" class="form-control">
                             <option value="">-- Main Category --</option>
@@ -257,7 +257,7 @@
                             <input type="checkbox" class="form-check-input" id="editMainCategoryCheck">
                             <label class="form-check-label">Set as Main Category</label>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -386,7 +386,7 @@
                     </div>
 
                     <!-- Parent Category -->
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label class="form-label">Parent Category (Optional)</label>
                         <select name="parent_id" class="form-control" id="parentCategorySelect">
                             <option value="">-- Main Category --</option>
@@ -402,7 +402,7 @@
                             <input type="checkbox" class="form-check-input" id="mainCategoryCheck">
                             <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="modal-footer">
