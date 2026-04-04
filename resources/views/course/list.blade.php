@@ -3,16 +3,6 @@
     <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
-            <!-- [ Content Sidebar ] start -->
-            <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
-                <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
-                    <h4 class="fw-bolder mb-0">Courses</h4>
-                    <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex">
-                        <i class="feather-x"></i>
-                    </a>
-                </div>
-            </div>
-            <!-- [ Content Sidebar  ] end -->
             <!-- [ Main Area  ] start -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-header sticky-top">
