@@ -3,6 +3,80 @@
     <div class="nxl-content without-header nxl-full-content">
         <!-- [ Main Content ] start -->
         <div class="main-content d-flex">
+            <!-- [ Content Sidebar ] start -->
+            <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
+                <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
+                    <h4 class="fw-bolder mb-0">Courses</h4>
+                    <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex">
+                        <i class="feather-x"></i>
+                    </a>
+                </div>
+                <div class="content-sidebar-header">
+
+                    <!-- Add Category Button -->
+                    <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-category"
+                        style="display:block;">
+                        <i class="feather-plus me-2"></i>
+                        <span>Add Category</span>
+                    </a>
+                </div>
+                <div class="content-sidebar-body">
+                    <ul class="nav d-flex flex-column nxl-content-sidebar-item">
+
+                        <!-- 🔹 Main Categories -->
+                        <li class="nav-item mt-2 px-2 text-muted small fw-bold">Main Categories</li>
+
+                        @foreach ($categories->whereNull('parent_id') as $category)
+                            <li class="nav-item d-flex justify-content-between align-items-center">
+                                <a href="javascript:void(0)" class="nav-link note-link"
+                                    id="category-{{ $category->id }}">
+                                    <i class="feather-folder"></i>
+                                    <span>{{ $category->name }}</span>
+                                </a>
+
+                                <div class="d-flex gap-1">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-edit"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-trash-2"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        @endforeach
+
+
+                        <!-- 🔹 Sub Categories -->
+                        <li class="nav-item mt-3 px-2 text-muted small fw-bold">Sub Categories</li>
+
+                        @foreach ($categories->whereNotNull('parent_id') as $category)
+                            <li class="nav-item d-flex justify-content-between align-items-center">
+                                <a href="javascript:void(0)" class="nav-link note-link"
+                                    id="category-{{ $category->id }}">
+                                    <i class="feather-folder"></i>
+                                    <span>{{ $category->name }}</span>
+                                </a>
+
+                                <div class="d-flex gap-1">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-edit"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
+                                        data-id="{{ $category->id }}">
+                                        <i class="feather-trash-2"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <!-- [ Content Sidebar  ] end -->
             <!-- [ Main Area  ] start -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-header sticky-top">
