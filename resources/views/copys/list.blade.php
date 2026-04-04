@@ -51,7 +51,7 @@
                                     </thead>
 
                                     <tbody>
-                                        @forelse ($copys as $copys)
+                                        @forelse ($copyss as $copys)
                                         <tr>
                                             <!-- Serial -->
                                             <td>{{ $loop->iteration }}</td>
