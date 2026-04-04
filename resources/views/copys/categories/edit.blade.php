@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
-                            <form action="{{ route('admin.updatecopycategory', $categories->id) }}" method="POST">
+                            <form action="{{ route('admin.updatecopyscategory', $categories->id) }}" method="POST">
                                 @csrf
                                
                                 <div class="mb-3">
