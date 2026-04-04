@@ -1190,7 +1190,7 @@ class CourseController extends Controller
     }
 
     // Show form to add new subcategory
-    public function addcopysubcategory()
+    public function addcopyssubcategory()
     {
         $categories = CopyCategory::all();
         return view('copys.subcategories.add', compact('categories'));
