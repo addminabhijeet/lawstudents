@@ -260,7 +260,8 @@
                 @csrf
                 @method('PUT')
 
-                <div class="modal-body">
+                <!-- ADDED SCROLL STYLE -->
+                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
                     <div class="container-fluid">
                         <div class="row g-3">
 
