@@ -69,7 +69,7 @@ class CourseController extends Controller
 
     public function listclientele()
     {
-        $clienteles = Clientele::latest()->paginate(10);
+        $clienteles = Clientele::where('delete', 0)->paginate(10);
         return view('clientele.list', compact('clienteles'));
     }
 
@@ -145,44 +145,12 @@ class CourseController extends Controller
     {
         $clientele = Clientele::findOrFail($id);
 
-        $fileToDelete = $request->input('file');
-
-        if (!$fileToDelete) {
-            return back()->with('error', 'No file specified for deletion.');
-        }
-
-        // ✅ Decode safely
-        $pdfs = json_decode($clientele->pdfs, true);
-
-        // ✅ Ensure it's always an array
-        if (!is_array($pdfs)) {
-            $pdfs = [];
-        }
-
-        $updatedPdfs = [];
-
-        foreach ($pdfs as $pdf) {
-
-            // If stored as object/array
-            if (is_array($pdf)) {
-                if (($pdf['file'] ?? null) !== $fileToDelete) {
-                    $updatedPdfs[] = $pdf;
-                }
-            }
-            // If stored as string
-            else {
-                if ($pdf !== $fileToDelete) {
-                    $updatedPdfs[] = $pdf;
-                }
-            }
-        }
-
-        // ✅ Save back
+        // ✅ Soft delete (update column instead of removing data)
         $clientele->update([
-            'pdfs' => json_encode($updatedPdfs)
+            'delete' => 1
         ]);
 
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Client deleted successfully.');
     }
     public function listacts()
     {
