@@ -141,7 +141,6 @@ class CourseController extends Controller
         return redirect()->route('admin.listclientele')
             ->with('success', 'Client PDFs updated successfully.');
     }
-
     public function clientelefiledelete(Request $request, $id)
     {
         $clientele = Clientele::findOrFail($id);
@@ -152,37 +151,39 @@ class CourseController extends Controller
             return back()->with('error', 'No file specified for deletion.');
         }
 
-        // ✅ Decode JSON to array
-        $pdfs = $clientele->pdfs ? json_decode($clientele->pdfs, true) : [];
+        // ✅ Decode safely
+        $pdfs = json_decode($clientele->pdfs, true);
 
-        // If it's a single file (string case), convert to array
-        if (is_string($pdfs)) {
-            $pdfs = [$pdfs];
+        // ✅ Ensure it's always an array
+        if (!is_array($pdfs)) {
+            $pdfs = [];
         }
 
         $updatedPdfs = [];
 
         foreach ($pdfs as $pdf) {
-            // handle both cases (string OR array)
+
+            // If stored as object/array
             if (is_array($pdf)) {
-                if ($pdf['file'] !== $fileToDelete) {
+                if (($pdf['file'] ?? null) !== $fileToDelete) {
                     $updatedPdfs[] = $pdf;
                 }
-            } else {
+            }
+            // If stored as string
+            else {
                 if ($pdf !== $fileToDelete) {
                     $updatedPdfs[] = $pdf;
                 }
             }
         }
 
-        // ✅ Save back as JSON
+        // ✅ Save back
         $clientele->update([
             'pdfs' => json_encode($updatedPdfs)
         ]);
 
         return back()->with('success', 'File deleted successfully.');
     }
-
     public function listacts()
     {
         $actss = Act::with('category', 'subcategory')->latest()->paginate(10);
