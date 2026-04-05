@@ -213,9 +213,13 @@
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Add Note</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                <div class="modal-footer py-2">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        Add Note
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
                 </div>
 
             </form>
@@ -260,8 +264,7 @@
                 @csrf
                 @method('PUT')
 
-                <!-- ADDED SCROLL STYLE -->
-                <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row g-3">
 
@@ -342,11 +345,13 @@
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-warning">
+                <div class="modal-footer py-2">
+                    <button type="submit" class="btn btn-warning btn-sm">
                         Update Note
                     </button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
                 </div>
 
             </form>
