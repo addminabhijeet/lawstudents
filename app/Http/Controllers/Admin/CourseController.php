@@ -152,16 +152,33 @@ class CourseController extends Controller
             return back()->with('error', 'No file specified for deletion.');
         }
 
-        $pdfs = $clientele->pdfs ?? [];
+        // ✅ Decode JSON to array
+        $pdfs = $clientele->pdfs ? json_decode($clientele->pdfs, true) : [];
+
+        // If it's a single file (string case), convert to array
+        if (is_string($pdfs)) {
+            $pdfs = [$pdfs];
+        }
+
         $updatedPdfs = [];
 
         foreach ($pdfs as $pdf) {
-            if ($pdf['file'] !== $fileToDelete) {
-                $updatedPdfs[] = $pdf;
+            // handle both cases (string OR array)
+            if (is_array($pdf)) {
+                if ($pdf['file'] !== $fileToDelete) {
+                    $updatedPdfs[] = $pdf;
+                }
+            } else {
+                if ($pdf !== $fileToDelete) {
+                    $updatedPdfs[] = $pdf;
+                }
             }
         }
 
-        $clientele->update(['pdfs' => $updatedPdfs]);
+        // ✅ Save back as JSON
+        $clientele->update([
+            'pdfs' => json_encode($updatedPdfs)
+        ]);
 
         return back()->with('success', 'File deleted successfully.');
     }
