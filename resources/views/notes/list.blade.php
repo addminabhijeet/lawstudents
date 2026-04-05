@@ -213,7 +213,7 @@
                     </div>
                 </div>
 
-                <div class="modal-footer py-2">
+                <div class="modal-footer py-2" style="position: sticky; bottom: 0; background: #fff; z-index: 1055;">
                     <button type="submit" class="btn btn-success btn-sm">
                         Add Note
                     </button>
@@ -345,7 +345,7 @@
                     </div>
                 </div>
 
-                <div class="modal-footer py-2">
+                <div class="modal-footer py-2" style="position: sticky; bottom: 0; background: #fff; z-index: 1055;">
                     <button type="submit" class="btn btn-warning btn-sm">
                         Update Note
                     </button>
