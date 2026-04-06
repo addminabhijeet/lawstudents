@@ -357,48 +357,13 @@ $user = \App\Models\User::first();
                         <!-- RIGHT: Payment Details -->
                         <div class="mt-4 mt-sm-0">
                             <h2 class="fs-16 fw-bold text-dark mb-2">Payment Details:</h2>
-                            <div class="text-muted lh-sm">
-                                <div>
-                                    <span class="text-muted">Total Due:</span>
-                                    <span class="fw-bold text-dark">
-
-                                    </span>
-                                </div>
-
-                                <div>
-                                    <span class="text-muted">Payout Status:</span>
-
-
-                                    <span class="fw-bold ">
-
-                                    </span>
-                                </div>
-
-                                <div>
-                                    <span class="text-muted">Invoice:</span>
-                                    <span class="fw-bold text-primary">
-
-                                    </span>
-                                </div>
-
-
-                                <div>
-                                    <span class="text-muted">Due Date:</span>
-                                    <span class="fw-bold text-dark">
-
-                                    </span>
-                                </div>
-
-
-
-                                <div>
-                                    <span class="text-muted">Issued Date:</span>
-                                    <span class="fw-bold text-dark">
-
-                                    </span>
-                                </div>
-
-                            </div>
+                            @if ($admission->photo)
+                            <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
+                            @else
+                            <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
+                                style="width:130px;height:130px;">
+                            @endif
                         </div>
 
                     </div>
