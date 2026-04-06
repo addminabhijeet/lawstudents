@@ -18,7 +18,8 @@ class Course extends Model
         'duration',
         'is_free',
         'status',
-        'thumbnail'
+        'thumbnail',
+        'delete'
     ];
 
     protected $casts = [

@@ -17,6 +17,7 @@ class Gallery extends Model
         'group_name',
         'status',
         'order',
+        'delete',
     ];
 
     protected $casts = [

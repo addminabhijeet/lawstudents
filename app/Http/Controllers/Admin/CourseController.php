@@ -32,7 +32,10 @@ class CourseController extends Controller
 
     public function listcourse()
     {
-        $categories = Category::with('courses')
+        $categories = Category::with(['courses' => function ($query) {
+            $query->where('delete', 1); // filter courses
+        }])
+            ->where('delete', 1) // filter categories
             ->get();
 
         return view('course.list', compact('categories'));
@@ -40,7 +43,10 @@ class CourseController extends Controller
 
     public function listcoursecategory()
     {
-        $categories = Category::with('courses')
+        $categories = Category::with(['courses' => function ($query) {
+            $query->where('delete', 1); // filter courses
+        }])
+            ->where('delete', 1) // filter categories
             ->get();
 
         return view('course.listcategory', compact('categories'));
@@ -48,7 +54,10 @@ class CourseController extends Controller
 
     public function listcoursesubcategory()
     {
-        $categories = Category::with('courses')
+        $categories = Category::with(['courses' => function ($query) {
+            $query->where('delete', 1); // filter courses
+        }])
+            ->where('delete', 1) // filter categories
             ->get();
 
         return view('course.listsubcategory', compact('categories'));
@@ -152,9 +161,14 @@ class CourseController extends Controller
 
         return back()->with('success', 'Client deleted successfully.');
     }
+
     public function listacts()
     {
-        $actss = Act::with('category', 'subcategory')->latest()->paginate(10);
+        $actss = Act::with(['category', 'subcategory'])
+            ->where('delete', 1) // filter acts
+            ->latest()
+            ->paginate(10);
+
         return view('acts.list', compact('actss'));
     }
 
@@ -244,21 +258,12 @@ class CourseController extends Controller
     {
         $act = Act::findOrFail($id);
 
-        $pdfs = $act->pdfs;
+        // Soft delete using delete column
+        $act->update([
+            'delete' => 0
+        ]);
 
-        if (isset($pdfs[$key])) {
-            // Delete file from storage
-            Storage::delete('public/' . $pdfs[$key]);
-
-            // Remove from array
-            unset($pdfs[$key]);
-
-            // Re-index array
-            $act->pdfs = array_values($pdfs);
-            $act->save();
-        }
-
-        return back()->with('success', 'PDF removed successfully');
+        return back()->with('success', 'Record deleted successfully');
     }
 
     public function actsfiledelete(Request $request, $id)
@@ -334,7 +339,9 @@ class CourseController extends Controller
 
     public function listrulescategories()
     {
-        $categories = RuleCategory::latest()->paginate(10);
+        $categories = RuleCategory::where('delete', 1) // filter visible categories
+            ->latest()
+            ->paginate(10);
 
         return view('rules.categories.list', compact('categories'));
     }
@@ -735,11 +742,10 @@ class CourseController extends Controller
     {
         $item = Gallery::findOrFail($id);
 
-        if (Storage::disk('public')->exists($item->image)) {
-            Storage::disk('public')->delete($item->image);
-        }
-
-        $item->delete();
+        // Soft delete using delete column
+        $item->update([
+            'delete' => 0
+        ]);
 
         return back()->with('success', 'Gallery item deleted successfully.');
     }
@@ -1008,7 +1014,11 @@ class CourseController extends Controller
 
     public function listcopys()
     {
-        $copyss = Copy::with('category', 'subcategory')->latest()->paginate(10);
+        $copyss = Copy::with(['category', 'subcategory'])
+            ->where('delete', 1) // filter copies
+            ->latest()
+            ->paginate(10);
+
         return view('copys.list', compact('copyss'));
     }
 
@@ -1098,21 +1108,12 @@ class CourseController extends Controller
     {
         $copy = Copy::findOrFail($id);
 
-        $pdfs = $copy->pdfs;
+        // Soft delete using delete column
+        $copy->update([
+            'delete' => 0
+        ]);
 
-        if (isset($pdfs[$key])) {
-            // Delete file from storage
-            Storage::delete('public/' . $pdfs[$key]);
-
-            // Remove from array
-            unset($pdfs[$key]);
-
-            // Re-index array
-            $copy->pdfs = array_values($pdfs);
-            $copy->save();
-        }
-
-        return back()->with('success', 'PDF removed successfully');
+        return back()->with('success', 'Record deleted successfully');
     }
 
     public function copysfiledelete(Request $request, $id)
@@ -1130,7 +1131,10 @@ class CourseController extends Controller
     // List all copy categories
     public function listcopyscategories()
     {
-        $categories = CopyCategory::latest()->paginate(10);
+        $categories = CopyCategory::where('delete', 1) // filter visible categories
+            ->latest()
+            ->paginate(10);
+
         return view('copys.categories.list', compact('categories'));
     }
 
@@ -1179,21 +1183,23 @@ class CourseController extends Controller
     public function copycategoryfiledelete(Request $request, $id)
     {
         $categories = CopyCategory::findOrFail($id);
-        $fileToDelete = $request->input('file');
 
-        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+        // Soft delete using delete column
+        $categories->update([
+            'delete' => 0
+        ]);
 
-        $pdfs = json_decode($categories->pdfs, true) ?? [];
-        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
-
-        $categories->update(['pdfs' => json_encode($updatedPdfs)]);
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Category deleted successfully.');
     }
 
     // List all copy subcategories
     public function listcopyssubcategories()
     {
-        $subcategories = CopySubcategory::with('category')->latest()->paginate(10);
+        $subcategories = CopySubcategory::with('category')
+            ->where('delete', 1) // filter subcategories
+            ->latest()
+            ->paginate(10);
+
         return view('copys.subcategories.list', compact('subcategories'));
     }
 
