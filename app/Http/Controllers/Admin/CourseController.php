@@ -512,7 +512,7 @@ class CourseController extends Controller
             ->with('success', 'Rule subcategory updated successfully.');
     }
 
-    public function rulessubcategoryfiledelete(Request $request, $id)
+    public function deleterulessubcategoryfile(Request $request, $id)
     {
         $subcategory = RuleSubcategory::findOrFail($id);
 
