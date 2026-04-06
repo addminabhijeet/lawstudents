@@ -320,19 +320,15 @@ $user = \App\Models\User::first();
 
                         <!-- LEFT: Invoiced To -->
                         <div class="text-sm-end">
-                            <h2 class="fs-16 fw-bold text-dark mb-2">Invoiced To:</h2>
-                            <address class="text-muted lh-sm">
-                                <div>Full Name:</div>
-                                <div>{{ $admission->full_name }}</div>
-                                <div>Admission No:</div>
-                                <div>{{ $admission->admno }}</div>
-                                <div>Email:</div>
-                                <div>{{ $admission->email }}</div>
-                                <div>Contact Number:</div>
-                                <div>{{ $admission->phone }}</div>
-                                <div>Guardian Contact Number:</div>
-                                <div>{{ $admission->guardian_phone }}</div>
-                            </address>
+                            <h2 class="fs-16 fw-bold text-dark mb-2">Student Photo:</h2>
+
+                            @if ($admission->photo)
+                            <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
+                            @else
+                            <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
+                                style="width:130px;height:130px;">
+                            @endif
                         </div>
 
                         <!-- Divider -->
@@ -356,14 +352,19 @@ $user = \App\Models\User::first();
 
                         <!-- RIGHT: Payment Details -->
                         <div class="mt-4 mt-sm-0">
-                            <h2 class="fs-16 fw-bold text-dark mb-2">Payment Details:</h2>
-                            @if ($admission->photo)
-                            <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
-                            @else
-                            <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
-                                style="width:130px;height:130px;">
-                            @endif
+                            <h2 class="fs-16 fw-bold text-dark mb-2">Student Details:</h2>
+                            <address class="text-muted lh-sm">
+                                <div>Full Name:</div>
+                                <div>{{ $admission->full_name }}</div>
+                                <div>Admission No:</div>
+                                <div>{{ $admission->admno }}</div>
+                                <div>Email:</div>
+                                <div>{{ $admission->email }}</div>
+                                <div>Contact Number:</div>
+                                <div>{{ $admission->phone }}</div>
+                                <div>Guardian Contact Number:</div>
+                                <div>{{ $admission->guardian_phone }}</div>
+                            </address>
                         </div>
 
                     </div>
