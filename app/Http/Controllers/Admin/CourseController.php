@@ -858,12 +858,15 @@ class CourseController extends Controller
 
         // Optional safety: prevent delete if courses exist
         if ($category->courses()->count() > 0) {
-            return back()->with('error', 'Cannot delete category with courses');
+            return back()->with('error', 'Cannot delete category');
         }
 
-        $category->delete();
+        // Soft delete using delete column
+        $category->update([
+            'delete' => 0
+        ]);
 
-        return back()->with('success', 'Category Deleted Successfully');
+        return back()->with('success', 'Category deleted successfully');
     }
 
     public function updateCategory(Request $request, $id)
