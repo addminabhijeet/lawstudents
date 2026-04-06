@@ -89,7 +89,6 @@ class RoutingController extends Controller
             $currentPayment = Payment::find($payData['id']);
             if (!$currentPayment) continue;
 
-            // Validator for dates (all payments) + paid_amount only for latest
             $validated = validator($payData, [
                 'due_date'     => 'nullable|date',
                 'issue_date'   => 'nullable|date',
@@ -97,18 +96,16 @@ class RoutingController extends Controller
                 'invoice_note' => 'nullable|string',
             ])->validate();
 
-            // Update dates for all payments
             $currentPayment->update([
                 'issue_date' => $validated['issue_date'] ?? $currentPayment->issue_date,
                 'due_date'   => $validated['due_date'] ?? $currentPayment->due_date,
             ]);
 
-            // Handle paid_amount and remaining only for latest payment
             $latestPaymentId = Payment::where('student_id', $currentPayment->student_id)
                 ->max('id');
 
             if ($currentPayment->id != $latestPaymentId) {
-                continue; // skip paid_amount logic for older payments
+                continue;
             }
 
             $paidAmount = array_key_exists('paid_amount', $validated) && $validated['paid_amount'] !== null
@@ -129,14 +126,12 @@ class RoutingController extends Controller
                 'invoice_note'     => $validated['invoice_note'] ?? $currentPayment->invoice_note,
             ]);
 
-            // Your existing logic to create remaining payment stays unchanged
             if (
                 $paymentStatus === 'partial' &&
                 $remainingAmount > 0 &&
                 !empty($paidAmount) &&
                 $paidAmount > 0
             ) {
-
                 $exists = Payment::where('student_id', $currentPayment->student_id)
                     ->where('invoice_label', 'Remaining Payment')
                     ->where('grand_total', $remainingAmount)
@@ -144,9 +139,7 @@ class RoutingController extends Controller
                     ->exists();
 
                 if (!$exists) {
-
                     $year = date('Y');
-
                     $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
                         ->orderBy('id', 'desc')
                         ->first();
@@ -160,24 +153,18 @@ class RoutingController extends Controller
                     Payment::create([
                         'student_id'       => $currentPayment->student_id,
                         'course_id'        => $currentPayment->course_id,
-
                         'invoice_label'    => 'Remaining Payment',
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $currentPayment->invoice_product,
-
                         'issue_date'       => null,
                         'due_date'         => null,
-
                         'to_name'          => $currentPayment->to_name,
                         'to_email'         => $currentPayment->to_email,
                         'to_phone'         => $currentPayment->to_phone,
                         'to_address'       => $currentPayment->to_address,
-
                         'sub_total'        => $remainingAmount,
                         'grand_total'      => $remainingAmount,
-
                         'currency'         => $currentPayment->currency,
-
                         'payment_status'   => 'pending',
                         'paid_amount'      => null,
                         'remaining_amount' => $remainingAmount,
@@ -185,53 +172,42 @@ class RoutingController extends Controller
                 }
             }
 
-            // -----------------------------
-            // New logic: create same payment next month if fully paid
-            // -----------------------------
             if ($paymentStatus === 'paid') {
 
-                $year = date('Y');
-                $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
-                    ->orderBy('id', 'desc')
-                    ->first();
-
-                $nextNumber = $lastInvoice
-                    ? intval(substr($lastInvoice->invoice_number, 7)) + 1
-                    : 1;
-
-                $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
-
-                // Issue date = 10th of next month
                 $issueDateNextMonth = now()->addMonth()->startOfMonth()->addDays(9)->toDateString();
 
-                // Check if similar payment for next month already exists to avoid duplicates
-                $existsNextMonth = Payment::where('student_id', $currentPayment->student_id)
-                    ->where('grand_total', $grandTotal)
-                    ->where('issue_date', $issueDateNextMonth)
-                    ->exists();
+                $lastIssueDate = Payment::where('student_id', $currentPayment->student_id)
+                    ->orderBy('issue_date', 'desc')
+                    ->value('issue_date');
 
-                if (!$existsNextMonth) {
+                if (!$lastIssueDate || \Carbon\Carbon::parse($lastIssueDate)->format('Y-m') !== \Carbon\Carbon::parse($issueDateNextMonth)->format('Y-m')) {
+
+                    $year = date('Y');
+                    $lastInvoice = Payment::where('invoice_number', 'like', 'INV' . $year . '%')
+                        ->orderBy('id', 'desc')
+                        ->first();
+
+                    $nextNumber = $lastInvoice
+                        ? intval(substr($lastInvoice->invoice_number, 7)) + 1
+                        : 1;
+
+                    $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
                     Payment::create([
                         'student_id'       => $currentPayment->student_id,
                         'course_id'        => $currentPayment->course_id,
-
                         'invoice_label'    => $currentPayment->invoice_label,
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $currentPayment->invoice_product,
-
                         'issue_date'       => $issueDateNextMonth,
                         'due_date'         => null,
-
                         'to_name'          => $currentPayment->to_name,
                         'to_email'         => $currentPayment->to_email,
                         'to_phone'         => $currentPayment->to_phone,
                         'to_address'       => $currentPayment->to_address,
-
                         'sub_total'        => $grandTotal,
                         'grand_total'      => $grandTotal,
-
                         'currency'         => $currentPayment->currency,
-
                         'payment_status'   => 'pending',
                         'paid_amount'      => null,
                         'remaining_amount' => $grandTotal,
