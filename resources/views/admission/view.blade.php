@@ -318,9 +318,11 @@ $user = \App\Models\User::first();
                                                 class="img-fluid mb-1"
                                                 style="max-height: 55px;"
                                                 alt="Logo">
+
                                             <div class="fw-bold text-dark small lh-sm">
                                                 <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
-                                                <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}
+                                                <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}<br>
+                                                <span class="d-block mt-1">Admission Form</span>
                                             </div>
                                         </div>
 
