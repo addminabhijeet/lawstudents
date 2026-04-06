@@ -257,8 +257,9 @@ class RoutingController extends Controller
 
     public function viewpayment($id)
     {
+        $paymentii = Payment::findOrFail($id);
         // Use the passed $id instead of Auth
-        $payments = Payment::where('student_id', $id)->latest()->get();
+        $payments = Payment::where('student_id', $paymentii->student_id)->get();
 
         $payment = $payments->first();
 
