@@ -209,6 +209,10 @@ class RoutingController extends Controller
                         ->orderBy('id', 'asc')
                         ->value('grand_total');
 
+                    $oldestPaymentSubTotal = Payment::where('student_id', $currentPayment->student_id)
+                        ->orderBy('id', 'asc')
+                        ->value('sub_total');
+
                     Payment::create([
                         'student_id'       => $currentPayment->student_id,
                         'course_id'        => $currentPayment->course_id,
@@ -221,8 +225,8 @@ class RoutingController extends Controller
                         'to_email'         => $currentPayment->to_email,
                         'to_phone'         => $currentPayment->to_phone,
                         'to_address'       => $currentPayment->to_address,
-                        'sub_total'        => $oldestPaymentGrandTotal,
-                        'grand_total'      => $grandTotal,
+                        'sub_total'        => $oldestPaymentSubTotal,
+                        'grand_total'      => $oldestPaymentGrandTotal,
                         'currency'         => $currentPayment->currency,
                         'payment_status'   => 'pending',
                         'paid_amount'      => null,
