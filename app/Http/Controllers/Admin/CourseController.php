@@ -285,10 +285,9 @@ class CourseController extends Controller
         return back()->with('success', 'File deleted successfully.');
     }
 
-    // List all act categories
     public function listactcategories()
     {
-        $categories = ActCategory::latest()->paginate(10);
+        $categories = ActCategory::where('delete', 1)->latest()->paginate(10);
         return view('acts.categories.list', compact('categories'));
     }
 
@@ -692,7 +691,7 @@ class CourseController extends Controller
 
         return back()->with('success', 'Mail settings updated successfully');
     }
-    
+
     public function listgallery()
     {
         $gallery = Gallery::latest()->get()->groupBy('group_name'); // ✅ grouped
