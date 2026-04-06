@@ -322,7 +322,16 @@ $user = \App\Models\User::first();
                         <div class="text-sm-end">
                             <h2 class="fs-16 fw-bold text-dark mb-2">Invoiced To:</h2>
                             <address class="text-muted lh-sm">
-
+                                <div>Full Name:</div>
+                                <div>{{ $admission->full_name }}</div>
+                                <div>Admission No:</div>
+                                <div>{{ $admission->admno }}</div>
+                                <div>Email:</div>
+                                <div>{{ $admission->email }}</div>
+                                <div>Contact Number:</div>
+                                <div>{{ $admission->phone }}</div>
+                                <div>Guardian Contact Number:</div>
+                                <div>{{ $admission->guardian_phone }}</div>
                             </address>
                         </div>
 
