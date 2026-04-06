@@ -121,7 +121,7 @@ $user = \App\Models\User::first();
                     </div>
                 </div>
 
-                <div class="card-body p-0" id="invoice-body-{{ $payment->id }}">
+                <div class="card-body p-0" id="invoice-body">
                     <div class="px-3 pt-2 pb-1">
                         <div class="row align-items-center text-center text-sm-start g-1">
 
