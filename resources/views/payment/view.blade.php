@@ -208,83 +208,74 @@ $user = \App\Models\User::first();
                                     </thead>
                                     <tbody>
 
-                                        @php $totalAmount = 0; @endphp
-
-                                        @if ($payment && $payment->course)
                                         @php
-                                        $courseIds = explode(',', $payment->course_id);
-                                        $courses = \App\Models\Course::whereIn('id', $courseIds)->get();
+                                        $total = 0;
                                         @endphp
 
-                                        @foreach ($courses as $course)
+                                        {{-- COURSE LIST --}}
+                                        @foreach($selectedCourses as $course)
                                         @php
-                                        $totalAmount += $course->price;
+                                        $total += $course->price;
                                         @endphp
                                         <tr>
                                             <td class="border-end">
                                                 {{ $course->title }}
                                             </td>
                                             <td class="text-end fw-semibold">
-                                                {{ $payment->currency }}
-                                                {{ number_format($course->price, 2) }}
+                                                ₹ {{ number_format($course->price, 2) }}
                                             </td>
                                         </tr>
                                         @endforeach
-                                        @endif
 
-                                        {{-- Sub Total --}}
-                                        <tr>
-                                            <td class="fw-semibold text-dark text-end border-end">Sub Total
-                                            </td>
-                                            <td class="fw-bold text-dark text-end">
-                                                {{ $payment->currency }}
-                                                {{ number_format($payment->sub_total, 2) }}
-                                            </td>
-                                        </tr>
-
-                                        {{-- Discount --}}
+                                        {{-- SUB TOTAL --}}
                                         <tr>
                                             <td class="fw-semibold text-dark text-end border-end">
-                                                Discount ({{ $payment->discount_percent ?? 0 }}%)
+                                                Sub Total
+                                            </td>
+                                            <td class="fw-bold text-dark text-end">
+                                                ₹ {{ number_format($total, 2) }}
+                                            </td>
+                                        </tr>
+
+                                        {{-- DISCOUNT --}}
+                                        <tr>
+                                            <td class="fw-semibold text-dark text-end border-end">
+                                                Discount ({{ $admission->discount_percent ?? 0 }}%)
                                             </td>
                                             <td class="fw-bold text-success text-end">
-                                                - {{ $payment->currency }}
-                                                {{ number_format($payment->discount, 2) }}
+                                                - ₹ {{ number_format($admission->discount ?? 0, 2) }}
                                             </td>
                                         </tr>
 
-                                        {{-- Grand Total --}}
+                                        {{-- GRAND TOTAL --}}
                                         <tr>
-                                            <td class="fw-bold text-dark text-end border-end">Grand Amount
+                                            <td class="fw-bold text-dark text-end border-end">
+                                                Grand Amount
                                             </td>
                                             <td class="fw-bolder text-dark text-end">
-                                                {{ $payment->currency }}
-                                                {{ number_format($payment->grand_total, 2) }}
+                                                ₹ {{ number_format($total - ($admission->discount ?? 0), 2) }}
                                             </td>
                                         </tr>
 
-                                        {{-- Tax --}}
-                                        @if ($payment->paid_amount > 0)
+                                        {{-- PAID --}}
                                         <tr>
                                             <td class="fw-semibold text-dark text-end border-end">
                                                 Paid Amount
                                             </td>
                                             <td class="fw-bold text-success text-end">
-                                                - {{ $payment->currency }}
-                                                {{ number_format($payment->paid_amount, 2) }}
+                                                ₹ {{ number_format($admission->paidamount ?? 0, 2) }}
                                             </td>
                                         </tr>
 
+                                        {{-- REMAINING --}}
                                         <tr>
                                             <td class="fw-semibold text-dark text-end border-end">
                                                 Remaining Amount
                                             </td>
                                             <td class="fw-bold text-dark text-end">
-                                                {{ $payment->currency }}
-                                                {{ number_format($payment->remaining_amount, 2) }}
+                                                ₹ {{ number_format($admission->remamount ?? 0, 2) }}
                                             </td>
                                         </tr>
-                                        @endif
 
                                     </tbody>
                                 </table>
