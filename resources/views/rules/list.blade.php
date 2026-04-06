@@ -79,7 +79,7 @@
                                                     <form method="POST"
                                                         action="{{ route('admin.rulesfiledelete', $rules->id) }}">
                                                         @csrf
-                                                        @method('DELETE')
+                                                    
 
                                                         <button class="btn btn-sm btn-danger w-100"
                                                             onclick="return confirm('Delete this rule and all PDFs?')">
