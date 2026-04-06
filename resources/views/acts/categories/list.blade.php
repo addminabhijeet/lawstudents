@@ -101,7 +101,7 @@
                                                         <form action="{{ route('admin.deleteactcategoryfile', [$categorie->id]) }}"
                                                             method="POST" class="d-inline">
                                                             @csrf
-                                                            @method('DELETE')
+                                            
 
                                                             <button type="submit"
                                                                 class="avatar-text avatar-md text-danger"
