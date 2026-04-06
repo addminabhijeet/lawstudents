@@ -151,7 +151,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('update-rules/{id}', [CourseController::class, 'updaterules'])
                 ->name('updaterules');
 
-            Route::delete('delete-rules', [CourseController::class, 'rulesfiledelete'])
+            Route::post('delete-rules/{id}', [CourseController::class, 'rulesfiledelete'])
                 ->name('rulesfiledelete');
 
             Route::get('banner', [CourseController::class, 'listbanner'])

@@ -616,24 +616,12 @@ class CourseController extends Controller
     {
         $rules = Rule::findOrFail($id);
 
-        $fileToDelete = $request->input('file');
+        // Soft delete using delete column
+        $rules->update([
+            'delete' => 0
+        ]);
 
-        if (!$fileToDelete) {
-            return back()->with('error', 'No file specified for deletion.');
-        }
-
-        $pdfs = $rules->pdfs ?? [];
-        $updatedPdfs = [];
-
-        foreach ($pdfs as $pdf) {
-            if ($pdf['file'] !== $fileToDelete) {
-                $updatedPdfs[] = $pdf;
-            }
-        }
-
-        $rules->update(['pdfs' => $updatedPdfs]);
-
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Rule deleted successfully.');
     }
 
 
