@@ -117,13 +117,13 @@
                                                 <td>
                                                     <div class="hstack gap-2 justify-content-end">
                                                         {{-- View buttons for each payment --}}
-                                                        @foreach ($studentPayments as $payment)
+                                                        
                                                             <a href="{{ route('admin.viewpayment', $payment->id) }}"
                                                                 class="avatar-text avatar-md"
                                                                 title="View #{{ $payment->invoice_number }}">
                                                                 <i class="feather feather-eye"></i>
                                                             </a>
-                                                        @endforeach
+
 
                                                         {{-- Single Edit button for student --}}
                                                         <a href="{{ route('admin.editpayment', $firstPayment->id) }}"
