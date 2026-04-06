@@ -1,4 +1,7 @@
 @include('layouts.partials.student.dashboard')
+@php
+$user = \App\Models\User::first();
+@endphp
 <main class="nxl-container">
     <div class="nxl-content">
         <div class="page-header">
