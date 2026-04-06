@@ -18,7 +18,6 @@
     </div>
 </div>
 <!--===== WELCOME ENDS =======-->
-
 <div class="blog1-section-area sp3">
     <div class="container">
         <div class="row">
@@ -47,7 +46,8 @@
                         {{ $category->name }}
                     </div>
 
-                    <div id="cat{{ $category->id }}" class="accordion-content">
+                    <!-- 🔥 OPEN BY DEFAULT -->
+                    <div id="cat{{ $category->id }}" class="accordion-content" style="max-height:1000px;">
 
                         @foreach ($category->subcategories as $sub)
 
@@ -59,7 +59,8 @@
                                 {{ $sub->name }}
                             </div>
 
-                            <div id="sub{{ $sub->id }}" class="accordion-content" style="padding:10px;">
+                            <!-- 🔥 OPEN BY DEFAULT -->
+                            <div id="sub{{ $sub->id }}" class="accordion-content" style="padding:10px; max-height:1000px;">
 
                                 @foreach ($sub->acts as $act)
 
@@ -122,9 +123,11 @@
 <!-- STYLES -->
 <style>
     .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
+        max-height: none !important;
+        /* 🔥 Always visible */
+        overflow: visible !important;
+        transition: none;
+        /* remove animation */
     }
 
     #searchSuggestions div:hover {
@@ -136,13 +139,8 @@
 <!-- SCRIPT -->
 <script>
     function toggleAccordion(id) {
-        let el = document.getElementById(id);
-
-        if (el.style.maxHeight && el.style.maxHeight !== "0px") {
-            el.style.maxHeight = "0";
-        } else {
-            el.style.maxHeight = el.scrollHeight + "px";
-        }
+        // 🔥 Disabled toggle (kept function for compatibility)
+        return;
     }
 
     // SEARCH
@@ -179,8 +177,8 @@
         let cat = document.getElementById('cat' + catId);
         let sub = document.getElementById('sub' + subId);
 
-        if (cat) cat.style.maxHeight = cat.scrollHeight + "px";
-        if (sub) sub.style.maxHeight = sub.scrollHeight + "px";
+        if (cat) cat.style.maxHeight = "none";
+        if (sub) sub.style.maxHeight = "none";
 
         document.getElementById('searchSuggestions').style.display = 'none';
     }
@@ -195,5 +193,4 @@
         }
     });
 </script>
-
 @endsection
