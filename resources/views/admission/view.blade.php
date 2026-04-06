@@ -404,8 +404,8 @@ $user = \App\Models\User::first();
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th class="border-end">Enrolled Courses</th>
-                                                <th class="text-end">Amount</th>
+                                                <th class="border-end" style="padding:4px 8px;">Enrolled Courses</th>
+                                                <th class="text-end" style="padding:4px 8px;">Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -420,10 +420,10 @@ $user = \App\Models\User::first();
                                             $total += $course->price;
                                             @endphp
                                             <tr>
-                                                <td class="border-end">
+                                                <td class="border-end" style="padding:4px 8px;">
                                                     {{ $course->title }}
                                                 </td>
-                                                <td class="text-end fw-semibold">
+                                                <td class="text-end fw-semibold" style="padding:4px 8px;">
                                                     ₹ {{ number_format($course->price, 2) }}
                                                 </td>
                                             </tr>
@@ -431,50 +431,50 @@ $user = \App\Models\User::first();
 
                                             {{-- SUB TOTAL --}}
                                             <tr>
-                                                <td class="fw-semibold text-dark text-end border-end">
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
                                                     Sub Total
                                                 </td>
-                                                <td class="fw-bold text-dark text-end">
+                                                <td class="fw-bold text-dark text-end" style="padding:4px 8px;">
                                                     ₹ {{ number_format($total, 2) }}
                                                 </td>
                                             </tr>
 
                                             {{-- DISCOUNT --}}
                                             <tr>
-                                                <td class="fw-semibold text-dark text-end border-end">
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
                                                     Discount ({{ $admission->discount_percent ?? 0 }}%)
                                                 </td>
-                                                <td class="fw-bold text-success text-end">
+                                                <td class="fw-bold text-success text-end" style="padding:4px 8px;">
                                                     - ₹ {{ number_format($admission->discount ?? 0, 2) }}
                                                 </td>
                                             </tr>
 
                                             {{-- GRAND TOTAL --}}
                                             <tr>
-                                                <td class="fw-bold text-dark text-end border-end">
+                                                <td class="fw-bold text-dark text-end border-end" style="padding:4px 8px;">
                                                     Grand Amount
                                                 </td>
-                                                <td class="fw-bolder text-dark text-end">
+                                                <td class="fw-bolder text-dark text-end" style="padding:4px 8px;">
                                                     ₹ {{ number_format($total - ($admission->discount ?? 0), 2) }}
                                                 </td>
                                             </tr>
 
                                             {{-- PAID --}}
                                             <tr>
-                                                <td class="fw-semibold text-dark text-end border-end">
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
                                                     Paid Amount
                                                 </td>
-                                                <td class="fw-bold text-success text-end">
+                                                <td class="fw-bold text-success text-end" style="padding:4px 8px;">
                                                     ₹ {{ number_format($admission->paidamount ?? 0, 2) }}
                                                 </td>
                                             </tr>
 
                                             {{-- REMAINING --}}
                                             <tr>
-                                                <td class="fw-semibold text-dark text-end border-end">
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
                                                     Remaining Amount
                                                 </td>
-                                                <td class="fw-bold text-dark text-end">
+                                                <td class="fw-bold text-dark text-end" style="padding:4px 8px;">
                                                     ₹ {{ number_format($admission->remamount ?? 0, 2) }}
                                                 </td>
                                             </tr>
