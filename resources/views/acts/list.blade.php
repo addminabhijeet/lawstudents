@@ -81,7 +81,7 @@
                                                     <form method="POST"
                                                         action="{{ route('admin.actsfiledelete', $acts->id) }}">
                                                         @csrf
-                                                        @method('DELETE')
+                                                 
 
                                                         <button class="btn btn-sm btn-danger w-100"
                                                             onclick="return confirm('Delete this act and all PDFs?')">
