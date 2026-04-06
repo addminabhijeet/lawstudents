@@ -185,10 +185,10 @@ $user = \App\Models\User::first();
                             <div class="text-sm-end">
                                 <h2 class="fs-16 fw-bold text-dark mb-2">Invoiced To:</h2>
                                 <address class="text-muted lh-sm">
-                                    {{ $payment->to_name }}<br>
+                                    <!-- {{ $payment->to_name }}<br>
                                     {{ $payment->to_address }}<br>
                                     Email: {{ $payment->to_email }}<br>
-                                    Phone: {{ $payment->to_phone }}
+                                    Phone: {{ $payment->to_phone }} -->
                                 </address>
                             </div>
 
