@@ -444,15 +444,6 @@ $user = \App\Models\User::first();
                     </table>
                 </div>
                 <hr class="border-dashed my-2">
-                <div class="px-3">
-
-                    <div class="alert alert-dismissible p-2 mt-2 mb-2 alert-soft-warning-message">
-                        <p class="mb-0 small">
-
-                        </p>
-                    </div>
-
-                </div>
 
                 <div class="px-3 pt-2 d-sm-flex align-items-start justify-content-between">
 
