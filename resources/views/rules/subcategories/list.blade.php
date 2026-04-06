@@ -62,7 +62,7 @@
 
                                                     <form method="POST" action="{{ route('admin.deleterulessubcategoryfile', $subcategorie->id) }}" class="d-inline">
                                                         @csrf
-                                                        @method('DELETE')
+                                                   
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subcategory?')">Delete</button>
                                                     </form>
                                                 </div>
