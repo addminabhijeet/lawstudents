@@ -447,19 +447,16 @@ class CourseController extends Controller
             ->with('success', 'Act subcategory updated successfully.');
     }
 
-    // Delete a specific PDF from subcategory
     public function actsubcategoryfiledelete(Request $request, $id)
     {
-        $subcategory = ActSubcategory::findOrFail($id);
-        $fileToDelete = $request->input('file');
+        $categories = ActSubcategory::findOrFail($id);
 
-        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+        // Set delete column to 0 (soft delete)
+        $categories->update([
+            'delete' => 0
+        ]);
 
-        $pdfs = json_decode($subcategory->pdfs, true) ?? [];
-        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
-
-        $subcategory->update(['pdfs' => json_encode($updatedPdfs)]);
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Category deleted successfully.');
     }
 
     public function listrulessubcategories()
