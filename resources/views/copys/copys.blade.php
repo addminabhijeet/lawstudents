@@ -86,10 +86,17 @@
                                                 View
                                             </a>
 
+                                            @if (auth()->check())
                                             <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
                                                 style="font-size:12px; color:green;">
                                                 Download
                                             </a>
+                                            @else
+                                            <a href="{{ route('google.login') }}"
+                                                style="font-size:12px; color:green;">
+                                                Download
+                                            </a>
+                                            @endif
                                         </div>
 
                                     </div>
