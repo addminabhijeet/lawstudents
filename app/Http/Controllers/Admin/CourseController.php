@@ -320,7 +320,7 @@ class CourseController extends Controller
     }
 
     // Delete a specific PDF from category
-    public function actcategoryfiledelete(Request $request, $id)
+    public function deleteactcategoryfile(Request $request, $id)
     {
         $categories = ActCategory::findOrFail($id);
 
@@ -379,24 +379,22 @@ class CourseController extends Controller
     }
 
 
-    public function rulescategoryfiledelete(Request $request, $id)
+    public function deleterulescategoryfile(Request $request, $id)
     {
         $categories = RuleCategory::findOrFail($id);
-        $fileToDelete = $request->input('file');
 
-        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+        // Only mark as deleted
+        $categories->update([
+            'delete' => 0
+        ]);
 
-        $pdfs = json_decode($categories->pdfs, true) ?? [];
-        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
-
-        $categories->update(['pdfs' => json_encode($updatedPdfs)]);
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Category deleted successfully.');
     }
 
     public function listactsubcategories()
     {
         $subcategories = ActSubcategory::with('category')
-            ->where('delete', 1) 
+            ->where('delete', 1)
             ->latest()
             ->paginate(10);
 
@@ -517,15 +515,11 @@ class CourseController extends Controller
     public function rulessubcategoryfiledelete(Request $request, $id)
     {
         $subcategory = RuleSubcategory::findOrFail($id);
-        $fileToDelete = $request->input('file');
 
-        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+        // Only mark as deleted without modifying PDFs
+        $subcategory->update(['delete' => 0]);
 
-        $pdfs = json_decode($subcategory->pdfs, true) ?? [];
-        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
-
-        $subcategory->update(['pdfs' => json_encode($updatedPdfs)]);
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Subcategory deleted successfully.');
     }
 
     public function listrules()
@@ -1136,25 +1130,13 @@ class CourseController extends Controller
     public function copysfiledelete(Request $request, $id)
     {
         $copys = Copy::findOrFail($id);
-        $fileToDelete = $request->file;
 
-        $pdfs = $copys->pdfs ?? [];
-
-        $updated = [];
-
-        foreach ($pdfs as $pdf) {
-            if ($pdf != $fileToDelete) {
-                $updated[] = $pdf;
-            } else {
-                Storage::disk('public')->delete($pdf);
-            }
-        }
-
+        // Only mark as deleted (soft delete)
         $copys->update([
-            'pdfs' => $updated
+            'delete' => 0
         ]);
 
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Record deleted successfully.');
     }
 
     // List all copy categories
@@ -1275,18 +1257,16 @@ class CourseController extends Controller
     }
 
     // Delete a specific PDF from subcategory
-    public function copyssubcategoryfiledelete(Request $request, $id)
+    public function deletecopyscategoryfile(Request $request, $id)
     {
         $subcategory = CopySubcategory::findOrFail($id);
-        $fileToDelete = $request->input('file');
 
-        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+        // Soft delete using delete column
+        $subcategory->update([
+            'delete' => 0
+        ]);
 
-        $pdfs = json_decode($subcategory->pdfs, true) ?? [];
-        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
-
-        $subcategory->update(['pdfs' => json_encode($updatedPdfs)]);
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Subcategory deleted successfully.');
     }
 
 

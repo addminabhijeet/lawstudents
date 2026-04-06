@@ -251,7 +251,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('editrulessubcategory');
             Route::post('rulessubcategories-update/{id}', [CourseController::class, 'updaterulessubcategory'])
                 ->name('updaterulessubcategory');
-            Route::post('rulessubcategories-filedelete/{id}', [CourseController::class, 'rulessubcategoryfiledelete'])
+            Route::post('rulessubcategories-filedelete/{id}', [CourseController::class, 'deleterulessubcategoryfile'])
                 ->name('deleterulessubcategoryfile');
 
             Route::get('actcategories-list', [CourseController::class, 'listactcategories'])
@@ -264,7 +264,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('editactcategory');
             Route::post('actcategories-update/{id}', [CourseController::class, 'updateactcategory'])
                 ->name('updateactcategory');
-            Route::post('actcategories-filedelete/{id}', [CourseController::class, 'actcategoryfiledelete'])
+            Route::post('actcategories-filedelete/{id}', [CourseController::class, 'deleteactcategoryfile'])
                 ->name('deleteactcategoryfile');
 
             Route::get('rulescategories-list', [CourseController::class, 'listrulescategories'])
@@ -277,7 +277,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('editrulescategory');
             Route::post('rulescategories-update/{id}', [CourseController::class, 'updaterulescategory'])
                 ->name('updaterulescategory');
-            Route::post('rulescategories-filedelete/{id}', [CourseController::class, 'rulescategoryfiledelete'])
+            Route::post('rulescategories-filedelete/{id}', [CourseController::class, 'deleterulescategoryfile'])
                 ->name('deleterulescategoryfile');
 
             //copy
@@ -305,7 +305,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('editcopyssubcategory');
             Route::post('copyssubcategories-update/{id}', [CourseController::class, 'updatecopyssubcategory'])
                 ->name('updatecopyssubcategory');
-            Route::post('copyssubcategories-filedelete/{id}', [CourseController::class, 'copyssubcategoryfiledelete'])
+            Route::post('copyssubcategories-filedelete/{id}', [CourseController::class, 'deletecopyssubcategoryfile'])
                 ->name('deletecopyssubcategoryfile');
 
             Route::get('copyscategories-list', [CourseController::class, 'listcopyscategories'])
@@ -318,7 +318,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('editcopyscategory');
             Route::post('copyscategories-update/{id}', [CourseController::class, 'updatecopyscategory'])
                 ->name('updatecopyscategory');
-            Route::post('copyscategories-filedelete/{id}', [CourseController::class, 'copyscategoryfiledelete'])
+            Route::post('copyscategories-filedelete/{id}', [CourseController::class, 'deletecopyscategoryfile'])
                 ->name('deletecopyscategoryfile');
         });
 
