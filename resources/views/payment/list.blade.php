@@ -61,73 +61,77 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                        $groupedPayments = $payments->groupBy('student_id');
-                                        @endphp
-
-                                        @forelse($groupedPayments as $studentId => $studentPayments)
-                                        @php
-                                        $firstPayment = $studentPayments->first();
-                                        @endphp
+                                        @forelse($payments as $key => $payment)
                                         <tr class="single-item">
                                             <td>
-                                                {{ $loop->iteration }}
+                                                <div class="item-checkbox ms-1">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox"
+                                                            class="custom-control-input checkbox"
+                                                            id="checkBox_{{ $key }}">
+                                                        <label class="custom-control-label"
+                                                            for="checkBox_{{ $key }}"></label>
+                                                    </div>
+                                                </div>
                                             </td>
 
                                             <td>
-                                                <a class="hstack gap-3">
-                                                    <div>
-                                                        <span class="text-truncate-1-line">
-                                                            {{ $firstPayment->to_name }}
-                                                        </span>
-                                                    </div>
+                                                <a href="" class="fw-bold">
+                                                    #{{ $payment->invoice_number }}
                                                 </a>
                                             </td>
 
                                             <td>
-                                                <a class="hstack gap-3">
+                                                <a href="javascript:void(0)" class="hstack gap-3">
+                                                    <div class="avatar-image avatar-md bg-primary text-white">
+                                                        {{ strtoupper(substr($payment->to_name, 0, 1)) }}
+                                                    </div>
                                                     <div>
+                                                        <span class="text-truncate-1-line">
+                                                            {{ $payment->to_name }}
+                                                        </span>
                                                         <small class="fs-12 fw-normal text-muted">
-                                                            {{ $firstPayment->to_email }}
+                                                            {{ $payment->to_email }}
                                                         </small>
                                                     </div>
                                                 </a>
                                             </td>
 
+                                            <td class="fw-bold text-dark">
+                                                ₹{{ number_format($payment->grand_total, 2) }}
+                                                {{ $payment->currency }}
+                                            </td>
+
                                             <td>
-                                                @if ($firstPayment->payment_status == 'paid')
-                                                @if ($firstPayment->paid_amount > 0)
-                                                <div class="badge bg-soft-success text-success">Completed
-                                                </div>
-                                                @else
-                                                <div class="badge bg-soft-warning text-warning">Pending
-                                                </div>
-                                                @endif
-                                                @elseif($firstPayment->payment_status == 'pending')
+                                                {{ \Carbon\Carbon::parse($payment->created_at)->format('Y-m-d, h:i A') }}
+                                            </td>
+
+                                            <td>
+                                                <a href="javascript:void(0);">
+                                                    #{{ strtoupper(Str::random(10)) }}
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                @if ($payment->payment_status == 'paid')
+                                                <div class="badge bg-soft-success text-success">Completed</div>
+                                                @elseif($payment->payment_status == 'pending')
                                                 <div class="badge bg-soft-warning text-warning">Pending</div>
-                                                @elseif($firstPayment->payment_status == 'failed')
+                                                @elseif($payment->payment_status == 'failed')
                                                 <div class="badge bg-soft-danger text-danger">Failed</div>
                                                 @else
                                                 <div class="badge bg-soft-secondary text-secondary">
-                                                    {{ ucfirst($firstPayment->payment_status) }}
+                                                    {{ ucfirst($payment->payment_status) }}
                                                 </div>
                                                 @endif
                                             </td>
 
+                                            <!-- Corrected Actions -->
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    {{-- View buttons for each payment --}}
-
-                                                    <a href="{{ route('admin.viewpayment', $firstPayment->id) }}"
+                                                    <a href="{{ route('student.viewpayment', $payment->id) }}"
                                                         class="avatar-text avatar-md">
                                                         <i class="feather feather-eye"></i>
-                                                    </a>
-
-
-                                                    {{-- Single Edit button for student --}}
-                                                    <a href="{{ route('admin.editpayment', $firstPayment->id) }}"
-                                                        class="avatar-text avatar-md">
-                                                        <i class="feather feather-edit"></i>
                                                     </a>
                                                 </div>
                                             </td>
