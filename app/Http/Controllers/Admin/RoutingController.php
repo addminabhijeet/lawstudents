@@ -213,6 +213,14 @@ class RoutingController extends Controller
                         ->orderBy('id', 'asc')
                         ->value('sub_total');
 
+                    $oldestPaymentDiscount = Payment::where('student_id', $currentPayment->student_id)
+                        ->orderBy('id', 'asc')
+                        ->value('discount');
+
+                    $oldestPaymentDiscountper = Payment::where('student_id', $currentPayment->student_id)
+                        ->orderBy('id', 'asc')
+                        ->value('discount_percent');
+
                     Payment::create([
                         'student_id'       => $currentPayment->student_id,
                         'course_id'        => $currentPayment->course_id,
@@ -228,6 +236,8 @@ class RoutingController extends Controller
                         'sub_total'        => $oldestPaymentSubTotal,
                         'grand_total'      => $oldestPaymentGrandTotal,
                         'currency'         => $currentPayment->currency,
+                        'discount'         => $oldestPaymentDiscount,
+                        'discount_percent' => $oldestPaymentDiscountper,
                         'payment_status'   => 'pending',
                         'paid_amount'      => null,
                         'remaining_amount' => 0,
