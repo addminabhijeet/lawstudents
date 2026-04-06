@@ -13,7 +13,8 @@ class Category extends Model
         'icon',
         'parent_id',
         'status',
-        'sort_order'
+        'sort_order',
+        'delete'
     ];
 
     protected $casts = [

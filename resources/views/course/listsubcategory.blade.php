@@ -173,7 +173,7 @@
 
             <form id="deleteCategoryForm" method="POST">
                 @csrf
-                @method('DELETE')
+            
 
                 <div class="modal-body text-center">
                     <h6>Are you sure you want to delete this category?</h6>
