@@ -313,6 +313,8 @@ $user = \App\Models\User::first();
                                         </div>
 
                                         <!-- CENTER: Logo -->
+                                        <h2 class="fs-16 fw-bold text-dark mb-2">Admission Form</h2>
+
                                         <div class="col-12 col-sm-4 text-center mb-2 mb-sm-0">
                                             <img src="{{ asset('assets/images/logo-full.png') }}"
                                                 class="img-fluid mb-1"
@@ -324,7 +326,6 @@ $user = \App\Models\User::first();
                                                 <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}<br>
 
                                             </div>
-                                            <h2 class="fs-16 fw-bold text-dark mb-2">Admission Form</h2>
                                         </div>
 
                                         <!-- RIGHT: centertwo -->
