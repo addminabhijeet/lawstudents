@@ -89,6 +89,7 @@ class RoutingController extends Controller
             $currentPayment = Payment::find($payData['id']);
             if (!$currentPayment) continue;
 
+            // Validator for dates (all payments) + paid_amount only for latest
             $validated = validator($payData, [
                 'due_date'     => 'nullable|date',
                 'issue_date'   => 'nullable|date',
@@ -96,16 +97,18 @@ class RoutingController extends Controller
                 'invoice_note' => 'nullable|string',
             ])->validate();
 
+            // Update dates for all payments
             $currentPayment->update([
                 'issue_date' => $validated['issue_date'] ?? $currentPayment->issue_date,
                 'due_date'   => $validated['due_date'] ?? $currentPayment->due_date,
             ]);
 
+            // Handle paid_amount and remaining only for latest payment
             $latestPaymentId = Payment::where('student_id', $currentPayment->student_id)
                 ->max('id');
 
             if ($currentPayment->id != $latestPaymentId) {
-                continue;
+                continue; // skip paid_amount logic for older payments
             }
 
             $paidAmount = array_key_exists('paid_amount', $validated) && $validated['paid_amount'] !== null
@@ -126,6 +129,7 @@ class RoutingController extends Controller
                 'invoice_note'     => $validated['invoice_note'] ?? $currentPayment->invoice_note,
             ]);
 
+            // Existing logic to create remaining payment
             if (
                 $paymentStatus === 'partial' &&
                 $remainingAmount > 0 &&
@@ -172,14 +176,21 @@ class RoutingController extends Controller
                 }
             }
 
+            // -----------------------------
+            // New logic: create same payment next month if fully paid
+            // -----------------------------
             if ($paymentStatus === 'paid') {
 
-                $issueDateNextMonth = now()->addMonth()->startOfMonth()->addDays(9)->toDateString();
+                // Issue date = 1st of next month, Due date = 10th of next month
+                $issueDateNextMonth = now()->addMonth()->startOfMonth()->toDateString();
+                $dueDateNextMonth = now()->addMonth()->startOfMonth()->addDays(9)->toDateString();
 
+                // Check last issue date of this student
                 $lastIssueDate = Payment::where('student_id', $currentPayment->student_id)
                     ->orderBy('issue_date', 'desc')
                     ->value('issue_date');
 
+                // Only create new payment if latest issue_date is not in next month
                 if (!$lastIssueDate || \Carbon\Carbon::parse($lastIssueDate)->format('Y-m') !== \Carbon\Carbon::parse($issueDateNextMonth)->format('Y-m')) {
 
                     $year = date('Y');
@@ -193,6 +204,11 @@ class RoutingController extends Controller
 
                     $nextInvoiceNumber = 'INV' . $year . str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
 
+                    // Get sub_total from the oldest payment of this student
+                    $oldestPaymentGrandTotal = Payment::where('student_id', $currentPayment->student_id)
+                        ->orderBy('id', 'asc')
+                        ->value('grand_total');
+
                     Payment::create([
                         'student_id'       => $currentPayment->student_id,
                         'course_id'        => $currentPayment->course_id,
@@ -200,17 +216,17 @@ class RoutingController extends Controller
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $currentPayment->invoice_product,
                         'issue_date'       => $issueDateNextMonth,
-                        'due_date'         => null,
+                        'due_date'         => $dueDateNextMonth,
                         'to_name'          => $currentPayment->to_name,
                         'to_email'         => $currentPayment->to_email,
                         'to_phone'         => $currentPayment->to_phone,
                         'to_address'       => $currentPayment->to_address,
-                        'sub_total'        => $grandTotal,
+                        'sub_total'        => $oldestPaymentGrandTotal,
                         'grand_total'      => $grandTotal,
                         'currency'         => $currentPayment->currency,
                         'payment_status'   => 'pending',
                         'paid_amount'      => null,
-                        'remaining_amount' => $grandTotal,
+                        'remaining_amount' => 0,
                     ]);
                 }
             }
