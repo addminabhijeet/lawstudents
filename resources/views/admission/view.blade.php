@@ -269,7 +269,7 @@ $user = \App\Models\User::first();
                                 <!-- Print button -->
                                 <div class="card-header">
                                     <!-- Print button -->
-                                    <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
+                                    <a href="javascript:void(0);" id="print-btn"
                                         class="d-flex me-1 printBTN"
                                         onclick="printInvoice(this.closest('.invoice-container'))">
                                         <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
@@ -278,7 +278,7 @@ $user = \App\Models\User::first();
                                     </a>
 
                                     <!-- Download button -->
-                                    <!-- <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
+                                    <!-- <a href="javascript:void(0);" id="download-btn"
                                     class="d-flex me-1 file-download"
                                     onclick="downloadInvoice(this.closest('.invoice-container'))">
                                     <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
