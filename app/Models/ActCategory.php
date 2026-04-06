@@ -9,7 +9,8 @@ class ActCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    // Add 'delete' to fillable so it can be updated via $model->update()
+    protected $fillable = ['name', 'delete'];
 
     public function subcategories()
     {
