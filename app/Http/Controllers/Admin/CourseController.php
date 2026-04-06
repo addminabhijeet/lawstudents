@@ -264,25 +264,11 @@ class CourseController extends Controller
     public function actsfiledelete(Request $request, $id)
     {
         $acts = Act::findOrFail($id);
-        $fileToDelete = $request->file;
-
-        $pdfs = $acts->pdfs ?? [];
-
-        $updated = [];
-
-        foreach ($pdfs as $pdf) {
-            if ($pdf != $fileToDelete) {
-                $updated[] = $pdf;
-            } else {
-                Storage::disk('public')->delete($pdf);
-            }
-        }
-
         $acts->update([
-            'pdfs' => $updated
+            'delete' => 0
         ]);
 
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Act record marked as deleted successfully.');
     }
 
     public function listactcategories()
