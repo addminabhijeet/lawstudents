@@ -22,8 +22,14 @@ $user = \App\Models\User::first();
         <div class="main-content container-lg">
             <div class="row">
                 <div class="col-lg-12">
+                    @if ($notFound)
+                    <div class="alert alert-warning text-center">
+                        <strong>Please Complete Your Payment</strong>
+                    </div>
+                    @endif
 
-
+                    @if (!$notFound && $payments->count())
+                    @foreach ($payments as $payment)
                     <div class="card invoice-container">
 
                         <div class="card-header">
@@ -33,20 +39,21 @@ $user = \App\Models\User::first();
                                 <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
                                     class="d-flex me-1 printBTN"
                                     onclick="printInvoice(this.closest('.invoice-container'))">
-                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                        title="Print Invoice">
                                         <i class="feather feather-printer"></i>
                                     </div>
                                 </a>
 
                                 <!-- Download button -->
-                                <!-- <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
+                                <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
                                     class="d-flex me-1 file-download"
                                     onclick="downloadInvoice(this.closest('.invoice-container'))">
                                     <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
                                         title="Download Invoice">
                                         <i class="feather feather-download"></i>
                                     </div>
-                                </a> -->
+                                </a>
                             </div>
                         </div>
 
@@ -376,6 +383,8 @@ $user = \App\Models\User::first();
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>
