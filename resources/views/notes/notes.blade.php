@@ -49,14 +49,13 @@
                         </span>
                     </div>
 
-                    <!-- CATEGORY BODY -->
+                    <!-- 🔥 OPEN -->
                     <div id="cat{{ $category->id }}" class="accordion-content"
                         style="background:#fafafa; padding:0 18px;">
 
                         @foreach ($category->courses as $course)
                         <div style="margin:12px 0;">
 
-                            <!-- COURSE HEADER -->
                             <div onclick="toggleAccordion('course{{ $course->id }}', 'course-group')"
                                 class="course-group"
                                 style="cursor:pointer; padding:12px; background:#f1f3f6; border-radius:6px; display:flex; justify-content:space-between; align-items:center; font-weight:500;">
@@ -67,7 +66,7 @@
                                 </span>
                             </div>
 
-                            <!-- COURSE BODY -->
+                            <!-- 🔥 OPEN -->
                             <div id="course{{ $course->id }}" class="accordion-content"
                                 style="padding-left:10px;">
 
@@ -77,7 +76,8 @@
 
                                     <div>
                                         <div style="font-weight:500;">{{ $note->title }}</div>
-                                        <div style="font-size:12px; color:#777;">{{ $note->formatted_size }}
+                                        <div style="font-size:12px; color:#777;">
+                                            {{ $note->formatted_size }}
                                         </div>
                                     </div>
 
@@ -100,7 +100,6 @@
                         </div>
                         @endforeach
 
-
                         <!-- SUB-CATEGORIES -->
                         @foreach ($category->children as $child)
                         <div style="margin-top:15px; padding-top:10px; border-top:1px dashed #ddd;">
@@ -111,6 +110,7 @@
                                 <span>{{ $child->name }}</span>
                             </div>
 
+                            <!-- 🔥 OPEN -->
                             <div id="sub{{ $child->id }}" class="accordion-content"
                                 style="padding-left:10px;">
 
@@ -123,7 +123,9 @@
                                         <span>{{ $childCourse->title }}</span>
                                     </div>
 
-                                    <div id="childcourse{{ $childCourse->id }}" class="accordion-content"
+                                    <!-- 🔥 OPEN -->
+                                    <div id="childcourse{{ $childCourse->id }}"
+                                        class="accordion-content"
                                         style="padding-left:10px;">
 
                                         @foreach ($childCourse->notes as $note)
@@ -169,7 +171,7 @@
 
             </div>
 
-            <!-- 🔥 FORCE ALL OPEN -->
+            <!-- 🔥 GLOBAL STYLE OVERRIDE -->
             <style>
                 .accordion-content {
                     max-height: none !important;
@@ -182,53 +184,13 @@
                 }
             </style>
 
+            <!-- 🔥 DISABLE TOGGLE -->
             <script>
-                function toggleAccordion() {
-                    // 🔥 Disabled (keep structure intact)
+                function toggleAccordion(id) {
                     return;
                 }
             </script>
 
-        </div>
-
-        <div class="col-lg-12 m-auto">
-            <div class="pagination-area">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-
-                        @if ($courses->onFirstPage())
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fa-regular fa-angle-left"></i></span>
-                        </li>
-                        @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $courses->previousPageUrl() }}">
-                                <i class="fa-regular fa-angle-left"></i>
-                            </a>
-                        </li>
-                        @endif
-
-                        @foreach ($courses->getUrlRange(1, $courses->lastPage()) as $page => $url)
-                        <li class="page-item {{ $page == $courses->currentPage() ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                        </li>
-                        @endforeach
-
-                        @if ($courses->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $courses->nextPageUrl() }}">
-                                <i class="fa-regular fa-angle-right"></i>
-                            </a>
-                        </li>
-                        @else
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fa-regular fa-angle-right"></i></span>
-                        </li>
-                        @endif
-
-                    </ul>
-                </nav>
-            </div>
         </div>
     </div>
 </div>
