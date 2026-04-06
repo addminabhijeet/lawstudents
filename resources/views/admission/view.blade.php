@@ -380,56 +380,56 @@ $user = \App\Models\User::first();
                         </thead>
                         <tbody>
 
+                            @php
+                            $total = 0;
+                            @endphp
 
-                            <td class="border-end">
-
-                                @php
-                                $total = 0;
-                                @endphp
-
-                                @foreach($selectedCourses as $course)
-                                <div class="mb-1">
-                                    {{ $course->title }}
-                                </div>
-
-                                @php
-                                $total += $course->price;
-                                @endphp
-                                @endforeach
-
-                            </td>
-
-
-                            {{-- Sub Total --}}
+                            {{-- COURSE LIST --}}
+                            @foreach($selectedCourses as $course)
+                            @php
+                            $total += $course->price;
+                            @endphp
                             <tr>
-                                <td class="fw-semibold text-dark text-end border-end">Sub Total
+                                <td class="border-end">
+                                    {{ $course->title }}
                                 </td>
-                                <td class="fw-bold text-dark text-end">
-
+                                <td class="text-end fw-semibold">
+                                    ₹ {{ number_format($course->price, 2) }}
                                 </td>
                             </tr>
+                            @endforeach
 
-                            {{-- Discount --}}
+                            {{-- SUB TOTAL --}}
                             <tr>
                                 <td class="fw-semibold text-dark text-end border-end">
-                                    Discount
+                                    Sub Total
+                                </td>
+                                <td class="fw-bold text-dark text-end">
+                                    ₹ {{ number_format($total, 2) }}
+                                </td>
+                            </tr>
+
+                            {{-- DISCOUNT --}}
+                            <tr>
+                                <td class="fw-semibold text-dark text-end border-end">
+                                    Discount ({{ $admission->discount_percent ?? 0 }}%)
                                 </td>
                                 <td class="fw-bold text-success text-end">
-                                    ₹ {{ number_format($admission->discount ?? 0, 2) }}
+                                    - ₹ {{ number_format($admission->discount ?? 0, 2) }}
                                 </td>
                             </tr>
 
-                            {{-- Grand Total --}}
+                            {{-- GRAND TOTAL --}}
                             <tr>
-                                <td class="fw-bold text-dark text-end border-end">Grand Amount
+                                <td class="fw-bold text-dark text-end border-end">
+                                    Grand Amount
                                 </td>
                                 <td class="fw-bolder text-dark text-end">
-
+                                    ₹ {{ number_format($total - ($admission->discount ?? 0), 2) }}
                                 </td>
                             </tr>
 
-                            {{-- Tax --}}
-
+                            {{-- PAID --}}
                             <tr>
                                 <td class="fw-semibold text-dark text-end border-end">
                                     Paid Amount
@@ -439,6 +439,7 @@ $user = \App\Models\User::first();
                                 </td>
                             </tr>
 
+                            {{-- REMAINING --}}
                             <tr>
                                 <td class="fw-semibold text-dark text-end border-end">
                                     Remaining Amount
@@ -447,7 +448,6 @@ $user = \App\Models\User::first();
                                     ₹ {{ number_format($admission->remamount ?? 0, 2) }}
                                 </td>
                             </tr>
-
 
                         </tbody>
                     </table>
