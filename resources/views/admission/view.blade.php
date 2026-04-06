@@ -395,14 +395,10 @@ $user = \App\Models\User::first();
                                         <div class="mt-4 mt-sm-0">
                                             <h2 class="fs-16 fw-bold text-dark mb-2">Student Details:</h2>
                                             <address class="text-muted lh-sm">
-                                                <div>Full Name:</div>
-                                                <div>{{ $admission->full_name }}</div>
-                                                <div>Email:</div>
-                                                <div>{{ $admission->email }}</div>
-                                                <div>Contact Number:</div>
-                                                <div>{{ $admission->phone }}</div>
-                                                <div>Guardian Contact Number:</div>
-                                                <div>{{ $admission->guardian_phone }}</div>
+                                                <div>Full Name: {{ $admission->full_name }}</div>
+                                                <div>Email: {{ $admission->email }}</div>
+                                                <div>Contact Number: {{ $admission->phone }}</div>
+                                                <div>Guardian Contact Number: {{ $admission->guardian_phone }}</div>
                                             </address>
                                         </div>
 
