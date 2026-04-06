@@ -692,14 +692,15 @@ class CourseController extends Controller
 
         return back()->with('success', 'Mail settings updated successfully');
     }
-
+    
     public function listgallery()
     {
-        $gallery = Gallery::latest()->get()->groupBy('group_name'); // ✅ GROUPED
-        $groups = Gallery::select('group_name')->distinct()->pluck('group_name'); // for dropdown
+        $gallery = Gallery::latest()->get()->groupBy('group_name'); // ✅ grouped
+        $groups = Gallery::select('group_name')->distinct()->pluck('group_name');
 
         return view('course.gallery', compact('gallery', 'groups'));
     }
+
     public function storegallery(Request $request)
     {
         $request->validate([
@@ -721,7 +722,7 @@ class CourseController extends Controller
                 Gallery::create([
                     'image' => $path,
                     'description' => $request->description,
-                    'group_name' => $group, // ✅ SAVE GROUP
+                    'group_name' => $group,
                     'status' => 1,
                     'order' => 0,
                 ]);
@@ -733,10 +734,11 @@ class CourseController extends Controller
 
     public function editgallery($id)
     {
-        $gallery = Gallery::latest()->get();
+        $gallery = Gallery::latest()->get()->groupBy('group_name'); // ✅ FIXED
+        $groups = Gallery::select('group_name')->distinct()->pluck('group_name'); // ✅ FIXED
         $editItem = Gallery::findOrFail($id);
 
-        return view('course.gallery', compact('gallery', 'editItem'));
+        return view('course.gallery', compact('gallery', 'editItem', 'groups'));
     }
 
     public function updategallery(Request $request, $id)
@@ -747,13 +749,17 @@ class CourseController extends Controller
             'image' => ['nullable', 'image', 'max:2048'],
             'description' => ['nullable', 'string'],
             'group_name' => ['nullable', 'string'],
+            'new_group' => ['nullable', 'string'], // ✅ FIXED
         ]);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('gallery', 'public');
             $item->image = $path;
         }
-        $item->group_name = $request->group_name;
+
+        $group = $request->new_group ?: $request->group_name; // ✅ FIXED
+
+        $item->group_name = $group;
         $item->description = $request->description;
         $item->save();
 

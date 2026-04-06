@@ -1,7 +1,7 @@
-@php
-$setting = $gallery ? $gallery->first() : null;
-@endphp
 
+@php
+$groups = $groups ?? collect();
+@endphp
 @include('layouts.partials.admin.dashboard')
 <main class="nxl-container">
     <!-- main containts -->

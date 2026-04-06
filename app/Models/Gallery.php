@@ -14,7 +14,7 @@ class Gallery extends Model
     protected $fillable = [
         'image',
         'description',
-        'group_name', // ✅ NEW
+        'group_name',
         'status',
         'order',
     ];
