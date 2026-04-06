@@ -32,9 +32,17 @@
 
             <div class="col-lg-3 col-md-6">
 
+                <!-- GROUP CARD -->
                 <div class="group-card"
                     onclick="openGalleryModal(this)"
                     data-images='@json($items->pluck("image"))'>
+
+                    <!-- ✅ GROUP TITLE (VISIBLE ALWAYS) -->
+                    <div class="group-title text-center mb-2">
+                        <strong>
+                            {{ $groupName ? $groupName : 'Ungrouped' }}
+                        </strong>
+                    </div>
 
                     <div class="image-stack">
 
@@ -45,7 +53,6 @@
 
                         <!-- OVERLAY -->
                         <div class="overlay">
-                            <h6>{{ $groupName ?: 'Gallery' }}</h6>
                             <span>{{ $items->count() }} Photos</span>
                         </div>
 
@@ -60,7 +67,6 @@
         </div>
     </div>
 </div>
-
 <!-- MODAL -->
 <div id="galleryModal" class="lightbox">
     <span class="close-btn" onclick="closeModal()">&times;</span>
