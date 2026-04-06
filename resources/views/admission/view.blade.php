@@ -185,10 +185,7 @@ $user = \App\Models\User::first();
                             <div class="text-sm-end">
                                 <h2 class="fs-16 fw-bold text-dark mb-2">Invoiced To:</h2>
                                 <address class="text-muted lh-sm">
-                                    <!-- {{ $payment->to_name }}<br>
-                                    {{ $payment->to_address }}<br>
-                                    Email: {{ $payment->to_email }}<br>
-                                    Phone: {{ $payment->to_phone }} -->
+                                    
                                 </address>
                             </div>
 
@@ -218,51 +215,43 @@ $user = \App\Models\User::first();
                                     <div>
                                         <span class="text-muted">Total Due:</span>
                                         <span class="fw-bold text-dark">
-                                            {{ $payment->currency }}
-                                            {{ number_format($payment->grand_total, 2) }}
+                                            
                                         </span>
                                     </div>
 
                                     <div>
                                         <span class="text-muted">Payout Status:</span>
-                                        @php
-                                        $statusColor = match ($payment->payment_status) {
-                                        'paid' => 'text-success',
-                                        'failed' => 'text-danger',
-                                        'cancelled' => 'text-secondary',
-                                        default => 'text-warning',
-                                        };
-                                        @endphp
+                                        
 
                                         <span class="fw-bold {{ $statusColor }}">
-                                            {{ ucfirst($payment->payment_status) }}
+                                            
                                         </span>
                                     </div>
 
                                     <div>
                                         <span class="text-muted">Invoice:</span>
                                         <span class="fw-bold text-primary">
-                                            {{ $payment->invoice_number }}
+                                            
                                         </span>
                                     </div>
 
-                                    @if ($payment->payment_status !== 'paid' && !is_null($payment->due_date))
+                                   
                                     <div>
                                         <span class="text-muted">Due Date:</span>
                                         <span class="fw-bold text-dark">
-                                            {{ $payment->due_date->format('d M, Y') }}
+                                           
                                         </span>
                                     </div>
-                                    @endif
+                              
 
-                                    @if (!is_null($payment->issue_date))
+                                  
                                     <div>
                                         <span class="text-muted">Issued Date:</span>
                                         <span class="fw-bold text-dark">
-                                            {{ $payment->issue_date->format('d M, Y') }}
+                                         
                                         </span>
                                     </div>
-                                    @endif
+                             
                                 </div>
                             </div>
 
@@ -279,48 +268,33 @@ $user = \App\Models\User::first();
                             </thead>
                             <tbody>
 
-                                @php $totalAmount = 0; @endphp
 
-                                @if ($payment && $payment->course)
-                                @php
-                                $courseIds = explode(',', $payment->course_id);
-                                $courses = \App\Models\Course::whereIn('id', $courseIds)->get();
-                                @endphp
-
-                                @foreach ($courses as $course)
-                                @php
-                                $totalAmount += $course->price;
-                                @endphp
                                 <tr>
                                     <td class="border-end">
-                                        {{ $course->title }}
+                                        
                                     </td>
                                     <td class="text-end fw-semibold">
-                                        {{ $payment->currency }}
-                                        {{ number_format($course->price, 2) }}
+                                        
                                     </td>
                                 </tr>
-                                @endforeach
-                                @endif
+                                
 
                                 {{-- Sub Total --}}
                                 <tr>
                                     <td class="fw-semibold text-dark text-end border-end">Sub Total
                                     </td>
                                     <td class="fw-bold text-dark text-end">
-                                        {{ $payment->currency }}
-                                        {{ number_format($payment->sub_total, 2) }}
+                                      
                                     </td>
                                 </tr>
 
                                 {{-- Discount --}}
                                 <tr>
                                     <td class="fw-semibold text-dark text-end border-end">
-                                        Discount ({{ $payment->discount_percent ?? 0 }}%)
+                                        Discount 
                                     </td>
                                     <td class="fw-bold text-success text-end">
-                                        - {{ $payment->currency }}
-                                        {{ number_format($payment->discount, 2) }}
+                                        
                                     </td>
                                 </tr>
 
@@ -329,20 +303,18 @@ $user = \App\Models\User::first();
                                     <td class="fw-bold text-dark text-end border-end">Grand Amount
                                     </td>
                                     <td class="fw-bolder text-dark text-end">
-                                        {{ $payment->currency }}
-                                        {{ number_format($payment->grand_total, 2) }}
+                                      
                                     </td>
                                 </tr>
 
                                 {{-- Tax --}}
-                                @if ($payment->paid_amount > 0)
+                               
                                 <tr>
                                     <td class="fw-semibold text-dark text-end border-end">
                                         Paid Amount
                                     </td>
                                     <td class="fw-bold text-success text-end">
-                                        - {{ $payment->currency }}
-                                        {{ number_format($payment->paid_amount, 2) }}
+                                       
                                     </td>
                                 </tr>
 
@@ -351,25 +323,23 @@ $user = \App\Models\User::first();
                                         Remaining Amount
                                     </td>
                                     <td class="fw-bold text-dark text-end">
-                                        {{ $payment->currency }}
-                                        {{ number_format($payment->remaining_amount, 2) }}
+                                        
                                     </td>
                                 </tr>
-                                @endif
+                                
 
                             </tbody>
                         </table>
                     </div>
                     <hr class="border-dashed my-2">
                     <div class="px-3">
-                        @if ($payment->invoice_note)
+                       
                         <div class="alert alert-dismissible p-2 mt-2 mb-2 alert-soft-warning-message">
                             <p class="mb-0 small">
-                                <strong>NOTES:</strong><br>
-                                {{ $payment->invoice_note }}
+                                
                             </p>
                         </div>
-                        @endif
+                       
                     </div>
 
                     <div class="px-3 pt-2 d-sm-flex align-items-start justify-content-between">
@@ -404,11 +374,11 @@ $user = \App\Models\User::first();
                                 (RIZWANA BEGUM)
                             </h6>
 
-                            @if (!is_null($payment->issue_date))
+                          
                             <p class="fs-11 fw-semibold text-muted mb-0">
-                                {{ $payment->issue_date->format('d M, Y') }}
+                               
                             </p>
-                            @endif
+                  
                         </div>
 
                         <!-- SIGNATURE 2 -->
@@ -427,11 +397,11 @@ $user = \App\Models\User::first();
                                 (ARITRO FOUZDAR)
                             </h6>
 
-                            @if (!is_null($payment->issue_date))
+                      
                             <p class="fs-11 fw-semibold text-muted mb-0">
-                                {{ $payment->issue_date->format('d M, Y') }}
+                               
                             </p>
-                            @endif
+                        
                         </div>
 
                     </div>
