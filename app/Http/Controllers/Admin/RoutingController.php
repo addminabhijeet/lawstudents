@@ -257,8 +257,16 @@ class RoutingController extends Controller
 
     public function viewpayment($id)
     {
+        // Fetch the specific payment
         $payment = Payment::findOrFail($id);
-        return view('payment.view', compact('payment'));
+
+        // Fetch all payments for the same student
+        $payments = Payment::where('student_id', $payment->student_id)->latest()->get();
+
+        // Flag if there are no payments
+        $notFound = $payments->isEmpty();
+
+        return view('payment.view', compact('payment', 'payments', 'notFound'));
     }
 
     public function viewidcard($id)
