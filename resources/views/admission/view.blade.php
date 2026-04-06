@@ -793,4 +793,42 @@ $user = \App\Models\User::first();
         html2pdf().set(opt).from(container).save().finally(() => container.remove());
     }
 </script>
+
+<script>
+    function validateAndPreview(event, previewId, maxSizeMB) {
+
+        const input = event.target;
+        const file = input.files[0];
+        const preview = document.getElementById(previewId);
+
+        const errorElement = previewId === 'photoPreview' ?
+            document.getElementById('photoError') :
+            document.getElementById('signError');
+
+        if (!file) return;
+
+        const maxSizeBytes = maxSizeMB * 1024 * 1024;
+
+        // Reset state
+        input.classList.remove('is-invalid');
+        errorElement.textContent = "";
+        preview.classList.add('d-none');
+
+        if (file.size > maxSizeBytes) {
+
+            input.value = ""; // Clear file
+            input.classList.add('is-invalid');
+            errorElement.textContent = "File size exceeds " + maxSizeMB + "MB limit.";
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.classList.remove('d-none');
+        };
+
+        reader.readAsDataURL(file);
+    }
+</script>
 @include('layouts.partials.admin.theme')

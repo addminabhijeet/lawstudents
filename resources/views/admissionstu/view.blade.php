@@ -30,204 +30,549 @@
         <div class="main-content">
             <div class="row">
                 @if ($notFound)
-                    <div class="alert alert-warning text-center">
-                        <strong>Please Complete Your Admission</strong>
-                    </div>
+                <div class="alert alert-warning text-center">
+                    <strong>Please Complete Your Admission</strong>
+                </div>
                 @endif
-                
+
                 @if (!$notFound && $admission)
-                    <!-- STUDENT PROFILE CARD -->
-                    <div class="col-xl-4">
-                        <div class="card shadow-sm border-light">
-                            <div class="card-body text-center">
+                <!-- STUDENT PROFILE CARD -->
+                <div class="col-xl-4">
+                    <div class="card shadow-sm border-light">
+                        <div class="card-body text-center">
 
-                                @if ($admission->photo)
-                                    <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                        class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
-                                @else
-                                    <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
-                                        style="width:130px;height:130px;">
-                                @endif
+                            @if ($admission->photo)
+                            <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
+                            @else
+                            <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
+                                style="width:130px;height:130px;">
+                            @endif
 
-                                <h5 class="fw-bold mb-1">
-                                    {{ $admission->full_name }}
-                                </h5>
+                            <h5 class="fw-bold mb-1">
+                                {{ $admission->full_name }}
+                            </h5>
 
-                                <p class="text-muted mb-2">
-                                    Admission No
+                            <p class="text-muted mb-2">
+                                Admission No
+                            </p>
+
+                            <span class="badge bg-primary fs-6">
+                                {{ $admission->admno }}
+                            </span>
+
+                            <hr>
+
+                            <div class="text-start">
+
+                                <p class="mb-2">
+                                    <strong>Email:</strong><br>
+                                    {{ $admission->email }}
                                 </p>
 
-                                <span class="badge bg-primary fs-6">
-                                    {{ $admission->admno }}
-                                </span>
+                                <p class="mb-2">
+                                    <strong>Phone:</strong><br>
+                                    {{ $admission->phone }}
+                                </p>
 
-                                <hr>
+                                <p class="mb-2">
+                                    <strong>Guardian:</strong><br>
+                                    {{ $admission->father_name }}
+                                </p>
 
-                                <div class="text-start">
+                                <p class="mb-0">
+                                    <strong>Status:</strong><br>
 
-                                    <p class="mb-2">
-                                        <strong>Email:</strong><br>
-                                        {{ $admission->email }}
-                                    </p>
+                                    @if ($admission->admission_status == 'approved')
+                                    <span class="badge bg-success">Approved</span>
+                                    @elseif($admission->admission_status == 'pending')
+                                    <span class="badge bg-warning">Pending</span>
+                                    @else
+                                    <span class="badge bg-danger">Rejected</span>
+                                    @endif
 
-                                    <p class="mb-2">
-                                        <strong>Phone:</strong><br>
-                                        {{ $admission->phone }}
-                                    </p>
+                                </p>
 
-                                    <p class="mb-2">
-                                        <strong>Guardian:</strong><br>
-                                        {{ $admission->father_name }}
-                                    </p>
+                            </div>
 
-                                    <p class="mb-0">
-                                        <strong>Status:</strong><br>
+                        </div>
+                    </div>
+                </div>
 
-                                        @if ($admission->admission_status == 'approved')
-                                            <span class="badge bg-success">Approved</span>
-                                        @elseif($admission->admission_status == 'pending')
-                                            <span class="badge bg-warning">Pending</span>
-                                        @else
-                                            <span class="badge bg-danger">Rejected</span>
-                                        @endif
+                <!-- STUDENT DETAILS -->
+                <div class="col-xl-8">
 
-                                    </p>
+                    <div class="card shadow-sm border-light mb-4">
+                        <div class="card-body">
 
+                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                Student Details
+                            </h5>
+
+                            <div class="row mb-3">
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Full Name</label>
+                                    <p class="fw-semibold">{{ $admission->full_name }}</p>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Admission No</label>
+                                    <p class="fw-semibold">{{ $admission->admno }}</p>
                                 </div>
 
                             </div>
+
+                            <div class="row mb-3">
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Email</label>
+                                    <p class="fw-semibold">{{ $admission->email }}</p>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Phone</label>
+                                    <p class="fw-semibold">{{ $admission->phone }}</p>
+                                </div>
+
+                            </div>
+
+                            <div class="row mb-3">
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Father / Guardian</label>
+                                    <p class="fw-semibold">{{ $admission->father_name }}</p>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Admission Status</label>
+                                    <p class="fw-semibold text-capitalize">
+                                        {{ $admission->admission_status }}
+                                    </p>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
 
-                    <!-- STUDENT DETAILS -->
-                    <div class="col-xl-8">
+                    <!-- ADDRESS CARD -->
+                    <div class="card shadow-sm border-light mb-4">
+                        <div class="card-body">
 
-                        <div class="card shadow-sm border-light mb-4">
-                            <div class="card-body">
+                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                Address Information
+                            </h5>
 
-                                <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                    Student Details
-                                </h5>
+                            <div class="row">
 
-                                <div class="row mb-3">
-
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Full Name</label>
-                                        <p class="fw-semibold">{{ $admission->full_name }}</p>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Admission No</label>
-                                        <p class="fw-semibold">{{ $admission->admno }}</p>
-                                    </div>
-
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Address Line 1</label>
+                                    <p class="fw-semibold">
+                                        {{ $admission->address_line1 }}
+                                    </p>
                                 </div>
 
-                                <div class="row mb-3">
-
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Email</label>
-                                        <p class="fw-semibold">{{ $admission->email }}</p>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Phone</label>
-                                        <p class="fw-semibold">{{ $admission->phone }}</p>
-                                    </div>
-
-                                </div>
-
-                                <div class="row mb-3">
-
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Father / Guardian</label>
-                                        <p class="fw-semibold">{{ $admission->father_name }}</p>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Admission Status</label>
-                                        <p class="fw-semibold text-capitalize">
-                                            {{ $admission->admission_status }}
-                                        </p>
-                                    </div>
-
+                                <div class="col-lg-6">
+                                    <label class="text-muted small">Address Line 2</label>
+                                    <p class="fw-semibold">
+                                        {{ $admission->address_line2 }}
+                                    </p>
                                 </div>
 
                             </div>
+
                         </div>
+                    </div>
 
-                        <!-- ADDRESS CARD -->
-                        <div class="card shadow-sm border-light mb-4">
-                            <div class="card-body">
+                    <!-- DOCUMENTS -->
+                    <div class="card shadow-sm border-light">
+                        <div class="card-body">
 
-                                <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                    Address Information
-                                </h5>
+                            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
+                                Documents
+                            </h5>
 
-                                <div class="row">
+                            <div class="row text-center">
 
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Address Line 1</label>
-                                        <p class="fw-semibold">
-                                            {{ $admission->address_line1 }}
-                                        </p>
-                                    </div>
+                                <div class="col-md-6">
 
-                                    <div class="col-lg-6">
-                                        <label class="text-muted small">Address Line 2</label>
-                                        <p class="fw-semibold">
-                                            {{ $admission->address_line2 }}
-                                        </p>
-                                    </div>
+                                    <label class="text-muted small d-block mb-2">
+                                        Passport Photo
+                                    </label>
+
+                                    @if ($admission->photo)
+                                    <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                        class="img-thumbnail" style="max-height:180px;">
+                                    @endif
 
                                 </div>
 
+                                <div class="col-md-6">
+
+                                    <label class="text-muted small d-block mb-2">
+                                        Signature
+                                    </label>
+
+                                    @if ($admission->signature)
+                                    <img src="{{ asset('storage/app/public/' . $admission->signature) }}"
+                                        class="img-thumbnail" style="max-height:150px;">
+                                    @endif
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- DOCUMENTS -->
-                        <div class="card shadow-sm border-light">
-                            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
 
-                                <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">
-                                    Documents
-                                </h5>
 
-                                <div class="row text-center">
+                        <div class="card invoice-container">
 
-                                    <div class="col-md-6">
+                            <div class="card-header">
+                                <!-- Print button -->
+                                <div class="card-header">
+                                    <!-- Print button -->
+                                    <a href="javascript:void(0);" id="print-btn"
+                                        class="d-flex me-1 printBTN"
+                                        onclick="printInvoice(this.closest('.invoice-container'))">
+                                        <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
+                                            <i class="feather feather-printer"></i>
+                                        </div>
+                                    </a>
 
-                                        <label class="text-muted small d-block mb-2">
-                                            Passport Photo
-                                        </label>
+                                    <!-- Download button -->
+                                    <!-- <a href="javascript:void(0);" id="download-btn"
+                                    class="d-flex me-1 file-download"
+                                    onclick="downloadInvoice(this.closest('.invoice-container'))">
+                                    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                                        title="Download Invoice">
+                                        <i class="feather feather-download"></i>
+                                    </div>
+                                </a> -->
+                                </div>
+                            </div>
 
-                                        @if ($admission->photo)
+                            <div class="card-body p-0" id="invoice-body">
+                                <div class="px-3 pt-2 pb-1">
+                                    <div class="row align-items-center text-center text-sm-start g-1">
+
+                                        <!-- LEFT: centerone -->
+                                        <div class="col-12 col-sm-4 mb-2 mb-sm-0">
+                                            <strong>
+                                                <address class="text-muted small mb-0 lh-sm">
+                                                    @if (!empty($user?->centerone))
+                                                    {!! collect(explode(' ', trim($user->centerone)))
+                                                    ->chunk(3)
+                                                    ->map(fn($chunk) => implode(' ', $chunk->toArray()))
+                                                    ->implode('<br>') !!}
+                                                    <br>
+                                                    @else
+                                                    P.O. Box 18728,<br>
+                                                    DeLorean New York<br>
+                                                    VAT No: 2617 348 2752<br>
+                                                    @endif
+                                                </address>
+                                            </strong>
+                                        </div>
+
+                                        <!-- CENTER: Logo -->
+
+                                        <div class="col-12 col-sm-4 text-center mb-2 mb-sm-0">
+                                            <h2 class="fs-16 fw-bold text-dark mb-2">Admission Form</h2>
+                                            <img src="{{ asset('assets/images/logo-full.png') }}"
+                                                class="img-fluid mb-1"
+                                                style="max-height: 55px;"
+                                                alt="Logo">
+
+                                            <div class="fw-bold text-dark small lh-sm">
+                                                <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
+                                                <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}<br>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- RIGHT: centertwo -->
+                                        <div class="col-12 col-sm-4 text-sm-end">
+                                            <strong>
+                                                <address class="text-muted small mb-0 lh-sm">
+                                                    @if (!empty($user?->centertwo))
+                                                    {!! collect(explode(' ', trim($user->centertwo)))
+                                                    ->chunk(3)
+                                                    ->map(fn($chunk) => implode(' ', $chunk->toArray()))
+                                                    ->implode('<br>') !!}
+                                                    <br>
+                                                    @else
+                                                    P.O. Box 18728,<br>
+                                                    DeLorean New York<br>
+                                                    VAT No: 2617 348 2752<br>
+                                                    @endif
+                                                </address>
+                                            </strong>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr class="border-dashed my-2">
+                                <div class="px-4 py-3">
+                                    <div class="d-sm-flex gap-4 justify-content-center align-items-start">
+
+                                        <!-- LEFT: Invoiced To -->
+                                        <div class="text-sm-end">
+                                            <h2 class="fs-16 fw-bold text-dark mb-2">Student Photo:</h2>
+
+                                            @if ($admission->photo)
                                             <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                                class="img-thumbnail" style="max-height:180px;">
+                                                class="rounded-circle mb-3"
+                                                style="width:100px; height:100px; object-fit:cover;">
+                                            @else
+                                            <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
+                                                style="width:100px; height:100px;">
+                                            @endif
+                                        </div>
+
+                                        <!-- Divider -->
+                                        <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block"></div>
+
+                                        <!-- CENTER: Bank Details -->
+                                        <div class="text-center px-3">
+                                            <h2 class="fs-16 fw-bold text-dark mb-2">Bank Details:</h2>
+                                            <div class="text-muted lh-sm">
+                                                <div>Account Holder name:</div>
+                                                <div>RIZWANA BEGUM</div>
+                                                <div>State Bank of India</div>
+                                                <div>A/c no. 41669065973</div>
+                                                <div>Branch: Newtown Rajarhat (05112)</div>
+                                                <div>IFS CODE: SBIN0005112</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Divider -->
+                                        <div class="border-end border-end-dashed border-gray-500 d-none d-sm-block"></div>
+
+                                        <!-- RIGHT: Payment Details -->
+                                        <div class="mt-4 mt-sm-0">
+                                            <h2 class="fs-16 fw-bold text-dark mb-2">Student Details:</h2>
+                                            <address class="text-muted lh-sm">
+                                                <div>Full Name: {{ $admission->full_name }}</div>
+                                                <div>Email: {{ $admission->email }}</div>
+                                                <div>Contact Number: {{ $admission->phone }}</div>
+                                                <div>Guardian Contact Number: {{ $admission->guardian_phone }}</div>
+                                                <div>Admission No: <strong>{{ $admission->admno }}</strong></div>
+                                            </address>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="border-dashed mb-0">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-end" style="padding:4px 8px;">Enrolled Courses</th>
+                                                <th class="text-end" style="padding:4px 8px;">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @php
+                                            $total = 0;
+                                            @endphp
+
+                                            {{-- COURSE LIST --}}
+                                            @foreach($selectedCourses as $course)
+                                            @php
+                                            $total += $course->price;
+                                            @endphp
+                                            <tr>
+                                                <td class="border-end" style="padding:4px 8px;">
+                                                    {{ $course->title }}
+                                                </td>
+                                                <td class="text-end fw-semibold" style="padding:4px 8px;">
+                                                    ₹ {{ number_format($course->price, 2) }}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+
+                                            {{-- SUB TOTAL --}}
+                                            <tr>
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
+                                                    Sub Total
+                                                </td>
+                                                <td class="fw-bold text-dark text-end" style="padding:4px 8px;">
+                                                    ₹ {{ number_format($total, 2) }}
+                                                </td>
+                                            </tr>
+
+                                            {{-- DISCOUNT --}}
+                                            <tr>
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
+                                                    Discount ({{ $admission->discount_percent ?? 0 }}%)
+                                                </td>
+                                                <td class="fw-bold text-success text-end" style="padding:4px 8px;">
+                                                    - ₹ {{ number_format($admission->discount ?? 0, 2) }}
+                                                </td>
+                                            </tr>
+
+                                            {{-- GRAND TOTAL --}}
+                                            <tr>
+                                                <td class="fw-bold text-dark text-end border-end" style="padding:4px 8px;">
+                                                    Grand Amount
+                                                </td>
+                                                <td class="fw-bolder text-dark text-end" style="padding:4px 8px;">
+                                                    ₹ {{ number_format($total - ($admission->discount ?? 0), 2) }}
+                                                </td>
+                                            </tr>
+
+                                            {{-- PAID --}}
+                                            <tr>
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
+                                                    Paid Amount
+                                                </td>
+                                                <td class="fw-bold text-success text-end" style="padding:4px 8px;">
+                                                    ₹ {{ number_format($admission->paidamount ?? 0, 2) }}
+                                                </td>
+                                            </tr>
+
+                                            {{-- REMAINING --}}
+                                            <tr>
+                                                <td class="fw-semibold text-dark text-end border-end" style="padding:4px 8px;">
+                                                    Remaining Amount
+                                                </td>
+                                                <td class="fw-bold text-dark text-end" style="padding:4px 8px;">
+                                                    ₹ {{ number_format($admission->remamount ?? 0, 2) }}
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr class="border-dashed my-2">
+
+                                <div class="px-3 pt-2 d-sm-flex align-items-start justify-content-between">
+
+                                    <!-- TERMS -->
+                                    <div class="mb-2 mb-sm-0">
+                                        <h6 class="fs-13 fw-bold mb-1">Terms & Conditions:</h6>
+                                        <ul class="list-unstyled lh-sm fs-12 mb-0">
+                                            @if ($user && $user->terms)
+                                            {!! nl2br(e($user->terms)) !!}
+                                            @else
+                                            <li>1.All payments are due within 7 days from the date of invoice issuance.</li>
+                                            <li>2.Payments can be made via cheque, credit/debit card, or online bank transfer.</li>
+                                            <li>3.This invoice is computer-generated and does not require a physical signature.</li>
+                                            @endif
+                                        </ul>
+                                    </div>
+
+                                    <!-- SIGNATURE 1 -->
+                                    <div class="text-center">
+                                        @if ($user && $user->diraccsign)
+                                        <img src="{{ asset('storage/app/public/' . $user->diraccsign) }}"
+                                            class="img-fluid" style="max-height:60px;" alt="signature">
+                                        @else
+                                        <img src="assets/images/general/signature.png"
+                                            class="img-fluid" style="max-height:60px;" alt="default signature">
                                         @endif
+
+                                        <h6 class="fs-13 fw-bold mt-1 mb-0 lh-sm">
+                                            Signature:<br>
+                                            Sd/-<br>
+                                            (RIZWANA BEGUM)
+                                        </h6>
+
+
+                                        <p class="fs-11 fw-semibold text-muted mb-0">
+
+                                        </p>
 
                                     </div>
 
-                                    <div class="col-md-6">
-
-                                        <label class="text-muted small d-block mb-2">
-                                            Signature
-                                        </label>
-
-                                        @if ($admission->signature)
-                                            <img src="{{ asset('storage/app/public/' . $admission->signature) }}"
-                                                class="img-thumbnail" style="max-height:150px;">
+                                    <!-- SIGNATURE 2 -->
+                                    <div class="text-center">
+                                        @if ($user && $user->accsign)
+                                        <img src="{{ asset('storage/app/public/' . $user->accsign) }}"
+                                            class="img-fluid" style="max-height:60px;" alt="signature">
+                                        @else
+                                        <img src="assets/images/general/signature.png"
+                                            class="img-fluid" style="max-height:60px;" alt="default signature">
                                         @endif
+
+                                        <h6 class="fs-13 fw-bold mt-1 mb-0 lh-sm">
+                                            Signature:<br>
+                                            Sd/-<br>
+                                            (ARITRO FOUZDAR)
+                                        </h6>
+
+
+                                        <p class="fs-11 fw-semibold text-muted mb-0">
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                                <hr class="border-dashed my-2">
+
+                                <div class="px-4 pb-4 text-center">
+                                    <div class="fw-bold text-dark">
+                                        Advocate Rizwana Begum
+                                    </div>
+                                    <div class="text-muted small">
+                                        B. A. (Hons); M. A.; LL. M. (1st Class); PGDCL (Cyber Law-NALSAR-1st Class)
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="card-body">
+                    <h6 class="card-title">Aadhar Card</h6>
+
+                    <div class="mb-3">
+
+                        <div class="invalid-feedback" id="idProofErrorCard"></div>
+
+                        <div class="text-center mt-2">
+                            @if ($admission->id_proof)
+                            <iframe id="idProofPreviewCard"
+                                src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                style="display:block; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                            @else
+                            <a id="idProofButtonCard" class="btn btn-outline-secondary w-100 mb-2">
+                                No file selected
+                            </a>
+                            <iframe id="idProofPreviewCard"
+                                style="display:none; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>
     </div>
 </main>
+
+<script>
+    function previewPDF(event, iframeId, buttonId) {
+        const file = event.target.files[0];
+        const iframe = document.getElementById(iframeId);
+        const button = document.getElementById(buttonId);
+
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            iframe.src = fileURL;
+            iframe.style.display = 'block'; // Show PDF
+            button.style.display = 'none'; // Hide button when viewing new file
+        } else {
+            iframe.src = '';
+            iframe.style.display = 'none'; // Hide iframe if no file selected
+            button.style.display = 'inline-block'; // Show button fallback
+        }
+    }
+</script>
 
 <script>
     function sendEmailOtp() {
