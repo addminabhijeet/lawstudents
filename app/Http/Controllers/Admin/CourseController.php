@@ -1238,7 +1238,7 @@ class CourseController extends Controller
     }
 
     // Delete a specific PDF from subcategory
-    public function deletecopyscategoryfile(Request $request, $id)
+    public function deletecopyssubcategoryfile(Request $request, $id)
     {
         $subcategory = CopySubcategory::findOrFail($id);
 

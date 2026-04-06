@@ -318,8 +318,8 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('editcopyscategory');
             Route::post('copyscategories-update/{id}', [CourseController::class, 'updatecopyscategory'])
                 ->name('updatecopyscategory');
-            Route::post('copyscategories-filedelete/{id}', [CourseController::class, 'deletecopyscategoryfile'])
-                ->name('deletecopyscategoryfile');
+            Route::post('copyscategories-filedelete/{id}', [CourseController::class, 'deletecopyssubcategoryfile'])
+                ->name('deletecopyssubcategoryfile');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
