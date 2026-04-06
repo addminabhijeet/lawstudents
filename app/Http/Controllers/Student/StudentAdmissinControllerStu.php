@@ -99,11 +99,15 @@ class StudentAdmissinControllerStu extends Controller
 
         if (!$admission) {
             $notFound = true;
+            $selectedCourses = collect(); // empty collection if no admission
+        } else {
+            // ✅ Prepare selected courses without changing existing logic
+            $selectedCourses = $admission->courses;
         }
 
-        return view('admissionstu.view', compact('admission', 'notFound'));
+        return view('admissionstu.view', compact('admission', 'notFound', 'selectedCourses'));
     }
-
+    
     public function edit($id)
     {
         $admission = StudentAdmission::findOrFail($id);
