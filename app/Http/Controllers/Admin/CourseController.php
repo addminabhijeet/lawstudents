@@ -1179,6 +1179,18 @@ class CourseController extends Controller
         return redirect()->route('admin.listcopyscategories')->with('success', 'Category updated successfully.');
     }
 
+    public function deletecopyscategoryfile(Request $request, $id)
+    {
+        $subcategory = CopySubcategory::findOrFail($id);
+
+        // Soft delete using delete column
+        $subcategory->update([
+            'delete' => 0
+        ]);
+
+        return back()->with('success', 'Subcategory deleted successfully.');
+    }
+
     // List all copy subcategories
     public function listcopyssubcategories()
     {
