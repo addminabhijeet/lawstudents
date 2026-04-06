@@ -80,7 +80,7 @@
                                             </div>
 
                                             <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
-                                                <a href="{{ route('frontend.viewnote', $course->notes->first()->id ?? 0) }}"
+                                                <a href=""
                                                     style="flex:1; text-align:center; background: linear-gradient(135deg, #25D366, #128C7E); 
                   color:#fff; padding:10px 0; border-radius:30px; font-size:13px; text-decoration:none; 
                   font-weight:600; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
