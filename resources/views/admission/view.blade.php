@@ -359,14 +359,16 @@ $user = \App\Models\User::first();
 
                                             @if ($admission->photo)
                                             <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                                class="rounded-circle mb-3" style="width:130px;height:130px;object-fit:cover;">
+                                                class="rounded-circle mb-3"
+                                                style="width:100px; height:100px; object-fit:cover;">
                                             @else
                                             <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
-                                                style="width:130px;height:130px;">
+                                                style="width:100px; height:100px;">
                                             @endif
+
                                             <address class="text-muted lh-sm">
                                                 <div>Admission No:</div>
-                                                <div>{{ $admission->admno }}</div>
+                                                <div><strong>{{ $admission->admno }}</strong></div>
                                             </address>
                                         </div>
 
