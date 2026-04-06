@@ -449,7 +449,7 @@ class CourseController extends Controller
             ->with('success', 'Act subcategory updated successfully.');
     }
 
-    public function actsubcategoryfiledelete(Request $request, $id)
+    public function deleteactsubcategoryfile(Request $request, $id)
     {
         $categories = ActSubcategory::findOrFail($id);
 
