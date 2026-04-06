@@ -728,4 +728,73 @@ $user = \App\Models\User::first();
         reader.readAsDataURL(file);
     }
 </script>
+
+<!-- Add this in your blade file before </body> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
+<script>
+    function printInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Get the inner card-body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        if (!bodyContent) return;
+
+        var printContents = bodyContent.cloneNode(true);
+
+        var printWindow = window.open('', '', 'height=800,width=1200');
+        printWindow.document.write('<html><head><title>Invoice</title>');
+
+        // Include all CSS
+        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
+            printWindow.document.write(node.outerHTML);
+        });
+
+        printWindow.document.write('</head><body>');
+        printWindow.document.body.appendChild(printContents);
+        printWindow.document.write('</body></html>');
+
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+    }
+
+    function downloadInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Get the inner card-body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        if (!bodyContent) return;
+
+        var pdfContent = bodyContent.cloneNode(true);
+
+        // Temporary off-screen container
+        var container = document.createElement('div');
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
+        container.appendChild(pdfContent);
+        document.body.appendChild(container);
+
+        // Filename from invoice number
+        var invoiceId = bodyContent.id || 'invoice';
+        var filename = invoiceId + '.pdf';
+
+        var opt = {
+            filename: filename,
+            image: {
+                type: 'jpeg',
+                quality: 2
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        };
+
+        html2pdf().set(opt).from(container).save().finally(() => container.remove());
+    }
+</script>
 @include('layouts.partials.admin.theme')
