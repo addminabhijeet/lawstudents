@@ -213,9 +213,13 @@
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Add Note</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                <div class="modal-footer py-2" style="position: sticky; bottom: 0; background: #fff; z-index: 1055;">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        Add Note
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
                 </div>
 
             </form>
@@ -341,11 +345,13 @@
                     </div>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-warning">
+                <div class="modal-footer py-2" style="position: sticky; bottom: 0; background: #fff; z-index: 1055;">
+                    <button type="submit" class="btn btn-warning btn-sm">
                         Update Note
                     </button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
                 </div>
 
             </form>

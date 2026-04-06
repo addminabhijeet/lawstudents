@@ -11,7 +11,7 @@ class Clientele extends Model
 
     protected $fillable = [
         'description',
-        'pdfs', // JSON column to store multiple PDF paths
+        'pdfs',
+        'delete',
     ];
-
 }

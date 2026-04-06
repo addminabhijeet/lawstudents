@@ -35,7 +35,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Existing PDF</label>
                                         <div class="mb-1">
-                                            <a href="{{ asset('storage/' . $clientele->pdfs) }}" target="_blank">
+                                            <a href="{{ asset('storage/app/public/' . $clientele->pdfs) }}" target="_blank">
                                                 {{ pathinfo($clientele->pdfs, PATHINFO_BASENAME) }}
                                             </a>
                                         </div>

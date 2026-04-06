@@ -69,7 +69,7 @@ class CourseController extends Controller
 
     public function listclientele()
     {
-        $clienteles = Clientele::latest()->paginate(10);
+        $clienteles = Clientele::where('delete', 0)->paginate(10);
         return view('clientele.list', compact('clienteles'));
     }
 
@@ -141,31 +141,17 @@ class CourseController extends Controller
         return redirect()->route('admin.listclientele')
             ->with('success', 'Client PDFs updated successfully.');
     }
-
     public function clientelefiledelete(Request $request, $id)
     {
         $clientele = Clientele::findOrFail($id);
 
-        $fileToDelete = $request->input('file');
+        // ✅ Soft delete (update column instead of removing data)
+        $clientele->update([
+            'delete' => 1
+        ]);
 
-        if (!$fileToDelete) {
-            return back()->with('error', 'No file specified for deletion.');
-        }
-
-        $pdfs = $clientele->pdfs ?? [];
-        $updatedPdfs = [];
-
-        foreach ($pdfs as $pdf) {
-            if ($pdf['file'] !== $fileToDelete) {
-                $updatedPdfs[] = $pdf;
-            }
-        }
-
-        $clientele->update(['pdfs' => $updatedPdfs]);
-
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Client deleted successfully.');
     }
-
     public function listacts()
     {
         $actss = Act::with('category', 'subcategory')->latest()->paginate(10);
