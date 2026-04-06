@@ -322,8 +322,9 @@ $user = \App\Models\User::first();
                                             <div class="fw-bold text-dark small lh-sm">
                                                 <strong>Mobile:</strong> {{ $user->mobile ?? '-' }}<br>
                                                 <strong>Email:</strong> {{ $user->webemail ?? ($user->email ?? '-') }}<br>
-                                                <span class="d-block mt-1">Admission Form</span>
+
                                             </div>
+                                            <h2 class="fs-16 fw-bold text-dark mb-2">Admission Form</h2>
                                         </div>
 
                                         <!-- RIGHT: centertwo -->
