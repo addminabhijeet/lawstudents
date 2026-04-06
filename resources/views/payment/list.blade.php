@@ -133,6 +133,12 @@
                                                         <i class="feather feather-eye"></i>
                                                     </a>
                                                 </div>
+
+                                                {{-- Single Edit button for student --}}
+                                                <a href="{{ route('admin.editpayment', $firstPayment->id) }}"
+                                                    class="avatar-text avatar-md">
+                                                    <i class="feather feather-edit"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         @empty
