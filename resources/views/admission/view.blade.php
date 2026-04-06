@@ -364,6 +364,8 @@ $user = \App\Models\User::first();
                                             <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
                                                 style="width:130px;height:130px;">
                                             @endif
+                                            <div>Admission No:</div>
+                                            <div>{{ $admission->admno }}</div>
                                         </div>
 
                                         <!-- Divider -->
@@ -391,8 +393,6 @@ $user = \App\Models\User::first();
                                             <address class="text-muted lh-sm">
                                                 <div>Full Name:</div>
                                                 <div>{{ $admission->full_name }}</div>
-                                                <div>Admission No:</div>
-                                                <div>{{ $admission->admno }}</div>
                                                 <div>Email:</div>
                                                 <div>{{ $admission->email }}</div>
                                                 <div>Contact Number:</div>
