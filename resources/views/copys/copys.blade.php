@@ -27,38 +27,40 @@
             <div style="width:100%; max-width:1100px; margin:auto;">
 
                 <!-- SEARCH -->
-                <div style="max-width:600px; margin:0 auto 20px;">
+                <div style="max-width:600px; margin:0 auto 20px; position:relative;">
                     <input type="text" id="noteSearch" class="form-control"
                         placeholder="Search Free Notes..." onkeyup="searchNotes(this.value)">
 
                     <div id="searchSuggestions"
-                        style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none;">
+                        style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none; position:absolute; width:100%; background:#fff; z-index:999;">
                     </div>
                 </div>
 
                 @foreach ($categories as $category)
 
                 <!-- CATEGORY -->
-                <div style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px;">
+                <div style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
 
                     <div onclick="toggleAccordion('cat{{ $category->id }}')"
                         style="cursor:pointer; padding:15px; background:#fff; font-weight:600;">
                         {{ $category->name }}
                     </div>
 
-                    <div id="cat{{ $category->id }}" style="max-height:0; overflow:hidden;">
+                    <!-- 🔥 OPEN BY DEFAULT -->
+                    <div id="cat{{ $category->id }}" class="accordion-content" style="max-height:1000px;">
 
                         @foreach ($category->subcategories as $sub)
 
                         <!-- SUBCATEGORY -->
-                        <div style="margin:10px; border:1px dashed #ccc; border-radius:6px;">
+                        <div style="margin:10px; border:1px dashed #ccc; border-radius:6px; overflow:hidden;">
 
                             <div onclick="toggleAccordion('sub{{ $sub->id }}')"
                                 style="cursor:pointer; padding:10px; background:#f5f5f5;">
                                 {{ $sub->name }}
                             </div>
 
-                            <div id="sub{{ $sub->id }}" style="max-height:0; overflow:hidden; padding:10px;">
+                            <!-- 🔥 OPEN BY DEFAULT -->
+                            <div id="sub{{ $sub->id }}" class="accordion-content" style="padding:10px; max-height:1000px;">
 
                                 @foreach ($sub->copys as $copy)
 
@@ -113,16 +115,25 @@
 
             </div>
 
+            <!-- STYLES -->
+            <style>
+                .accordion-content {
+                    max-height: none !important;
+                    /* 🔥 Always visible */
+                    overflow: visible !important;
+                    transition: none;
+                }
+
+                #searchSuggestions div:hover {
+                    background: #f1f1f1;
+                }
+            </style>
+
             <!-- SCRIPT -->
             <script>
                 function toggleAccordion(id) {
-                    let el = document.getElementById(id);
-
-                    if (el.style.maxHeight && el.style.maxHeight !== "0px") {
-                        el.style.maxHeight = "0";
-                    } else {
-                        el.style.maxHeight = el.scrollHeight + "px";
-                    }
+                    // 🔥 Disabled toggle (kept for compatibility)
+                    return;
                 }
 
                 // SEARCH
@@ -134,7 +145,7 @@
                         return;
                     }
 
-                    fetch(`{{ route('frontend.search') }}?q=${query}`)
+                    fetch(`{{ route('frontend.search') }}?q=${encodeURIComponent(query)}`)
                         .then(res => res.json())
                         .then(data => {
 
@@ -142,11 +153,11 @@
                                 box.innerHTML = '<div style="padding:10px;">No results</div>';
                             } else {
                                 box.innerHTML = data.map(item => `
-                    <div style="padding:10px; cursor:pointer;"
-                        onclick="openSearch(${item.category_id}, ${item.subcategory_id})">
-                        ${item.title}
-                    </div>
-                `).join('');
+                                    <div style="padding:10px; cursor:pointer;"
+                                        onclick="openSearch(${item.category_id}, ${item.subcategory_id})">
+                                        ${item.title}
+                                    </div>
+                                `).join('');
                             }
 
                             box.style.display = 'block';
@@ -154,11 +165,24 @@
                 }
 
                 function openSearch(catId, subId) {
-                    document.getElementById('cat' + catId).style.maxHeight = "1000px";
-                    document.getElementById('sub' + subId).style.maxHeight = "1000px";
+                    let cat = document.getElementById('cat' + catId);
+                    let sub = document.getElementById('sub' + subId);
+
+                    if (cat) cat.style.maxHeight = "none";
+                    if (sub) sub.style.maxHeight = "none";
 
                     document.getElementById('searchSuggestions').style.display = 'none';
                 }
+
+                // CLOSE SEARCH ON OUTSIDE CLICK
+                document.addEventListener('click', function(e) {
+                    let box = document.getElementById('searchSuggestions');
+                    let input = document.getElementById('noteSearch');
+
+                    if (!box.contains(e.target) && e.target !== input) {
+                        box.style.display = 'none';
+                    }
+                });
             </script>
 
             <!-- NOTE: Pagination removed because copy are nested collections and not paginated -->
