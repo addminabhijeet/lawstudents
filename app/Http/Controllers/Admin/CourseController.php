@@ -393,14 +393,16 @@ class CourseController extends Controller
         return back()->with('success', 'File deleted successfully.');
     }
 
-    // List all act subcategories
     public function listactsubcategories()
     {
-        $subcategories = ActSubcategory::with('category')->latest()->paginate(10);
+        $subcategories = ActSubcategory::with('category')
+            ->where('delete', 1) 
+            ->latest()
+            ->paginate(10);
+
         return view('acts.subcategories.list', compact('subcategories'));
     }
 
-    // Show form to add new subcategory
     public function addactsubcategory()
     {
         $categories = ActCategory::all();
