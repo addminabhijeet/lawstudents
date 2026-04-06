@@ -535,7 +535,7 @@ class CourseController extends Controller
 
     public function listrules()
     {
-        $ruless = Rule::with('category', 'subcategory')->latest()->paginate(10);
+        $ruless = Rule::with('category', 'subcategory')->where('delete', 1)->latest()->paginate(10);
         return view('rules.list', compact('ruless'));
     }
 
