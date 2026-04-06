@@ -25,23 +25,22 @@
         <div class="row g-4">
 
             @php
-            $grouped = $gallery->groupBy('group_name');
+            $grouped = $gallery->groupBy(function ($item) {
+            return $item->group_name ?: 'Ungrouped';
+            });
             @endphp
 
             @foreach ($grouped as $groupName => $items)
 
             <div class="col-lg-3 col-md-6">
 
-                <!-- GROUP CARD -->
                 <div class="group-card"
                     onclick="openGalleryModal(this)"
                     data-images='@json($items->pluck("image"))'>
 
-                    <!-- ✅ GROUP TITLE (VISIBLE ALWAYS) -->
+                    <!-- GROUP TITLE -->
                     <div class="group-title text-center mb-2">
-                        <strong>
-                            {{ $groupName ? $groupName : 'Ungrouped' }}
-                        </strong>
+                        <strong>{{ $groupName }}</strong>
                     </div>
 
                     <div class="image-stack">
@@ -51,7 +50,6 @@
                             class="stack-img stack-{{ $index }}">
                         @endforeach
 
-                        <!-- OVERLAY -->
                         <div class="overlay">
                             <span>{{ $items->count() }} Photos</span>
                         </div>
