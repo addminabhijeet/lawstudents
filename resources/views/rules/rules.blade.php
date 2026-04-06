@@ -75,16 +75,26 @@
                                         <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
 
                                         <div>
+                                            <!-- VIEW (UNCHANGED) -->
                                             <a href="{{ route('frontend.viewnotes', [$rule->id, $index]) }}"
                                                 target="_blank"
                                                 style="margin-right:10px; font-size:12px;">
                                                 View
                                             </a>
 
+                                            <!-- ✅ DOWNLOAD WITH GOOGLE LOGIN -->
+                                            @if (auth()->check())
                                             <a href="{{ route('frontend.viewnote', [$rule->id, $index]) }}"
                                                 style="font-size:12px; color:green;">
                                                 Download
                                             </a>
+                                            @else
+                                            <a href="{{ route('google.login') }}"
+                                                style="font-size:12px; color:green;">
+                                                Download
+                                            </a>
+                                            @endif
+
                                         </div>
 
                                     </div>
