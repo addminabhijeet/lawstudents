@@ -16,7 +16,7 @@ class CourseController extends Controller
         })
             ->with([
                 'courses' => function ($query) {
-                    $query->where('is_free', 1)
+                    $query
                         ->whereHas('notes', function ($q) {
                             $q->where('status', 1);
                         })
@@ -30,7 +30,7 @@ class CourseController extends Controller
                     })
                         ->with([
                             'courses' => function ($q) {
-                                $q->where('is_free', 1)
+                                $q
                                     ->whereHas('notes', function ($n) {
                                         $n->where('status', 1);
                                     })
@@ -44,7 +44,6 @@ class CourseController extends Controller
             ->get();
 
         $courses = Course::where('status', 1)
-            ->where('is_free', 1)
             ->whereHas('notes', function ($query) {
                 $query->where('status', 1);
             })
