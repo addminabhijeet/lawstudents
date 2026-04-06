@@ -292,7 +292,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('editcopys');
             Route::post('update-copys/{id}', [CourseController::class, 'updatecopys'])
                 ->name('updatecopys');
-            Route::post('delete-copys', [CourseController::class, 'copysfiledelete'])
+            Route::post('delete-copys/{id}', [CourseController::class, 'copysfiledelete'])
                 ->name('copysfiledelete');
 
             Route::get('copyssubcategories-list', [CourseController::class, 'listcopyssubcategories'])
