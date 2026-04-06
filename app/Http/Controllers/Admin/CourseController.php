@@ -856,11 +856,6 @@ class CourseController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        // Optional safety: prevent delete if courses exist
-        if ($category->courses()->count() > 0) {
-            return back()->with('error', 'Cannot delete category');
-        }
-
         // Soft delete using delete column
         $category->update([
             'delete' => 0
