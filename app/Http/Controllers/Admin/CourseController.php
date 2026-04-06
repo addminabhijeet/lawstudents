@@ -1179,19 +1179,6 @@ class CourseController extends Controller
         return redirect()->route('admin.listcopyscategories')->with('success', 'Category updated successfully.');
     }
 
-    // Delete a specific PDF from category
-    public function copycategoryfiledelete(Request $request, $id)
-    {
-        $categories = CopyCategory::findOrFail($id);
-
-        // Soft delete using delete column
-        $categories->update([
-            'delete' => 0
-        ]);
-
-        return back()->with('success', 'Category deleted successfully.');
-    }
-
     // List all copy subcategories
     public function listcopyssubcategories()
     {
@@ -1262,5 +1249,4 @@ class CourseController extends Controller
 
         return back()->with('success', 'Subcategory deleted successfully.');
     }
-
 }
