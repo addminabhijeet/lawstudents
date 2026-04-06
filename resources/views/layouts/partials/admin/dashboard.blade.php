@@ -187,7 +187,7 @@
 
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-layout"></i></span>
+                            <span class="nxl-micon"><i class="feather-edit"></i></span>
                             <span class="nxl-mtext">Free Notes</span>
                             <span class="nxl-arrow"><i class="feather-edit"></i></span>
                         </a>
