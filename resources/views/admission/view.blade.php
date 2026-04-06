@@ -223,7 +223,7 @@ $user = \App\Models\User::first();
                                         <span class="text-muted">Payout Status:</span>
                                         
 
-                                        <span class="fw-bold {{ $statusColor }}">
+                                        <span class="fw-bold ">
                                             
                                         </span>
                                     </div>
