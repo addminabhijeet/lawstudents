@@ -264,11 +264,12 @@ class CourseController extends Controller
     public function actsfiledelete(Request $request, $id)
     {
         $acts = Act::findOrFail($id);
+
         $acts->update([
             'delete' => 0
         ]);
 
-        return back()->with('success', 'Act record marked as deleted successfully.');
+        return back()->with('success', 'Act deleted successfully.');
     }
 
     public function listactcategories()
@@ -322,15 +323,13 @@ class CourseController extends Controller
     public function actcategoryfiledelete(Request $request, $id)
     {
         $categories = ActCategory::findOrFail($id);
-        $fileToDelete = $request->input('file');
 
-        if (!$fileToDelete) return back()->with('error', 'No file specified for deletion.');
+        // Set delete column to 0 (soft delete)
+        $categories->update([
+            'delete' => 0
+        ]);
 
-        $pdfs = json_decode($categories->pdfs, true) ?? [];
-        $updatedPdfs = array_filter($pdfs, fn($pdf) => $pdf !== $fileToDelete);
-
-        $categories->update(['pdfs' => json_encode($updatedPdfs)]);
-        return back()->with('success', 'File deleted successfully.');
+        return back()->with('success', 'Category deleted successfully.');
     }
 
     public function listrulescategories()
