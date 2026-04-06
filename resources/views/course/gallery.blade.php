@@ -1,4 +1,3 @@
-
 @php
 $groups = $groups ?? collect();
 @endphp
@@ -47,22 +46,40 @@ $groups = $groups ?? collect();
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Select Group</label>
 
-                                    <select name="group_name" class="form-control">
-                                        <option value="">-- Select Group --</option>
-                                        @foreach ($groups as $group)
-                                        <option value="{{ $group }}"
-                                            {{ (isset($editItem) && $editItem->group_name == $group) ? 'selected' : '' }}>
-                                            {{ $group }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="d-flex gap-2">
+
+                                        <!-- Dropdown -->
+                                        <select name="group_name" id="groupSelect" class="form-control">
+                                            <option value="">-- Select Group --</option>
+                                            @foreach ($groups as $group)
+                                            <option value="{{ $group }}"
+                                                {{ (isset($editItem) && $editItem->group_name == $group) ? 'selected' : '' }}>
+                                                {{ $group }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+
+                                        <!-- Button -->
+                                        <button type="button" class="btn btn-outline-primary" onclick="toggleNewGroup()">
+                                            + New
+                                        </button>
+
+                                    </div>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Or Create New Group</label>
-                                    <input type="text" name="new_group" class="form-control" placeholder="Enter new group name">
-                                </div>
+                                <!-- NEW GROUP INPUT (HIDDEN) -->
+                                <div class="mb-3" id="newGroupBox" style="display:none;">
+                                    <label class="form-label fw-semibold">Create New Group</label>
 
+                                    <div class="d-flex gap-2">
+                                        <input type="text" id="newGroupInput" name="new_group"
+                                            class="form-control" placeholder="Enter group name">
+
+                                        <button type="button" class="btn btn-success" onclick="addGroup()">
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
                                 <!-- Preview -->
                                 @if (isset($editItem))
                                 <div class="mb-3">
@@ -103,7 +120,7 @@ $groups = $groups ?? collect();
                         <!-- GROUP TITLE -->
                         <div class="col-12">
                             <h5 class="mt-4 mb-3 text-primary">
-                                {{ $groupName ?? 'Ungrouped' }}
+                                {{ $groupName ? $groupName : 'Ungrouped' }}
                             </h5>
                         </div>
 
@@ -162,4 +179,41 @@ $groups = $groups ?? collect();
         </div>
     </div>
 </main>
+
+<script>
+    function toggleNewGroup() {
+        let box = document.getElementById('newGroupBox');
+        box.style.display = (box.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function addGroup() {
+        let input = document.getElementById('newGroupInput');
+        let select = document.getElementById('groupSelect');
+
+        let value = input.value.trim();
+
+        if (!value) {
+            alert('Enter group name');
+            return;
+        }
+
+        // ❗ Prevent duplicate
+        let exists = Array.from(select.options).some(opt => opt.value === value);
+        if (exists) {
+            alert('Group already exists');
+            select.value = value;
+            return;
+        }
+
+        let option = document.createElement('option');
+        option.value = value;
+        option.text = value;
+        option.selected = true;
+
+        select.appendChild(option);
+
+        document.getElementById('newGroupBox').style.display = 'none';
+        input.value = '';
+    }
+</script>
 @include('layouts.partials.admin.theme')
