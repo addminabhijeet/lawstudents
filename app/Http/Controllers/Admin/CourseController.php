@@ -1181,7 +1181,7 @@ class CourseController extends Controller
 
     public function deletecopyscategoryfile(Request $request, $id)
     {
-        $subcategory = CopySubcategory::findOrFail($id);
+        $subcategory = CopyCategory::findOrFail($id);
 
         // Soft delete using delete column
         $subcategory->update([
