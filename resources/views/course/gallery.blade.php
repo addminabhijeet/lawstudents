@@ -1,5 +1,5 @@
 @php
-    $setting = $gallery ? $gallery->first() : null;
+$setting = $gallery ? $gallery->first() : null;
 @endphp
 
 @include('layouts.partials.admin.dashboard')
@@ -43,13 +43,33 @@
                                         class="form-control" {{ isset($editItem) ? '' : 'multiple' }}>
                                 </div>
 
+                                <!-- GROUP -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Select Group</label>
+
+                                    <select name="group_name" class="form-control">
+                                        <option value="">-- Select Group --</option>
+                                        @foreach ($groups as $group)
+                                        <option value="{{ $group }}"
+                                            {{ (isset($editItem) && $editItem->group_name == $group) ? 'selected' : '' }}>
+                                            {{ $group }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Or Create New Group</label>
+                                    <input type="text" name="new_group" class="form-control" placeholder="Enter new group name">
+                                </div>
+
                                 <!-- Preview -->
                                 @if (isset($editItem))
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Current Image</label><br>
-                                        <img src="{{ asset('storage/app/public/' . $editItem->image) }}"
-                                            class="img-thumbnail rounded" width="150">
-                                    </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Current Image</label><br>
+                                    <img src="{{ asset('storage/app/public/' . $editItem->image) }}"
+                                        class="img-thumbnail rounded" width="150">
+                                </div>
                                 @endif
 
                                 <!-- Description -->
@@ -65,9 +85,9 @@
                                     </button>
 
                                     @if (isset($editItem))
-                                        <a href="{{ route('admin.listgallery') }}" class="btn btn-outline-secondary">
-                                            Cancel
-                                        </a>
+                                    <a href="{{ route('admin.listgallery') }}" class="btn btn-outline-secondary">
+                                        Cancel
+                                    </a>
                                     @endif
                                 </div>
 
@@ -78,44 +98,45 @@
                     <!-- ================= GALLERY ================= -->
                     <div class="row g-4">
 
-                        @forelse ($gallery as $img)
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        @forelse ($gallery as $groupName => $images)
 
-                                <div class="card h-100 border-0 shadow-sm">
+                        <!-- GROUP TITLE -->
+                        <div class="col-12">
+                            <h5 class="mt-4 mb-3 text-primary">
+                                {{ $groupName ?? 'Ungrouped' }}
+                            </h5>
+                        </div>
 
-                                    <!-- Image -->
-                                    <img src="{{ asset('storage/app/public/' . $img->image) }}"
-                                        class="card-img-top rounded-top" style="height:140px; object-fit:cover;">
+                        @foreach ($images as $img)
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
 
-                                    <!-- Content -->
-                                    <div class="card-body p-2 text-center">
+                            <div class="card h-100 border-0 shadow-sm">
 
-                                        <!-- Description -->
-                                        <small class="text-muted d-block mb-2 text-truncate">
-                                            {{ $img->description ?? 'No description' }}
-                                        </small>
+                                <img src="{{ asset('storage/app/public/' . $img->image) }}"
+                                    class="card-img-top rounded-top" style="height:140px; object-fit:cover;">
 
-                                        <!-- Actions -->
-                                        <div class="d-flex justify-content-center gap-2">
+                                <div class="card-body p-2 text-center">
 
-                                            <!-- Edit -->
-                                            <a href="{{ route('admin.editgallery', $img->id) }}"
-                                                class="btn btn-sm btn-outline-primary" title="Edit">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
+                                    <small class="text-muted d-block mb-2 text-truncate">
+                                        {{ $img->description ?? 'No description' }}
+                                    </small>
 
-                                            <!-- Delete -->
-                                            <form action="{{ route('admin.deletegallery', $img->id) }}" method="POST"
-                                                onsubmit="return confirm('Delete this image?')">
-                                                @csrf
-                                                @method('DELETE')
+                                    <div class="d-flex justify-content-center gap-2">
 
-                                                <button class="btn btn-sm btn-outline-danger" title="Delete">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                        <a href="{{ route('admin.editgallery', $img->id) }}"
+                                            class="btn btn-sm btn-outline-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
 
-                                        </div>
+                                        <form action="{{ route('admin.deletegallery', $img->id) }}" method="POST"
+                                            onsubmit="return confirm('Delete this image?')">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button class="btn btn-sm btn-outline-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
 
                                     </div>
 
@@ -123,13 +144,13 @@
 
                             </div>
 
+                        </div>
+                        @endforeach
+
                         @empty
-                            <div class="col-12">
-                                <div class="alert alert-light text-center">
-                                    <i class="fa fa-image fa-2x mb-2 text-muted"></i>
-                                    <p class="mb-0">No gallery images found</p>
-                                </div>
-                            </div>
+                        <div class="col-12 text-center">
+                            No gallery images found
+                        </div>
                         @endforelse
 
                     </div>

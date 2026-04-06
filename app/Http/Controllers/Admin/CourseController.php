@@ -695,17 +695,22 @@ class CourseController extends Controller
 
     public function listgallery()
     {
-        $gallery = Gallery::latest()->get();
-        return view('course.gallery', compact('gallery'));
-    }
+        $gallery = Gallery::latest()->get()->groupBy('group_name'); // ✅ GROUPED
+        $groups = Gallery::select('group_name')->distinct()->pluck('group_name'); // for dropdown
 
+        return view('course.gallery', compact('gallery', 'groups'));
+    }
     public function storegallery(Request $request)
     {
         $request->validate([
             'image' => ['required'],
             'image.*' => ['image', 'max:2048'],
             'description' => ['nullable', 'string'],
+            'group_name' => ['nullable', 'string'],
+            'new_group' => ['nullable', 'string'],
         ]);
+
+        $group = $request->new_group ?: $request->group_name;
 
         if ($request->hasFile('image')) {
 
@@ -716,6 +721,7 @@ class CourseController extends Controller
                 Gallery::create([
                     'image' => $path,
                     'description' => $request->description,
+                    'group_name' => $group, // ✅ SAVE GROUP
                     'status' => 1,
                     'order' => 0,
                 ]);
@@ -740,13 +746,14 @@ class CourseController extends Controller
         $request->validate([
             'image' => ['nullable', 'image', 'max:2048'],
             'description' => ['nullable', 'string'],
+            'group_name' => ['nullable', 'string'],
         ]);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('gallery', 'public');
             $item->image = $path;
         }
-
+        $item->group_name = $request->group_name;
         $item->description = $request->description;
         $item->save();
 
