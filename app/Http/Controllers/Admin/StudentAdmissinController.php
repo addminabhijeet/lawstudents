@@ -115,8 +115,13 @@ class StudentAdmissinController extends Controller
     public function showadmission($id)
     {
         $courses = Course::where('status', 1)->get();
+
         $admission = StudentAdmission::findOrFail($id);
-        return view('admission.view', compact('courses', 'admission'));
+
+        // ✅ No logic change — just preparing courses
+        $selectedCourses = $admission->courses;
+
+        return view('admission.view', compact('courses', 'admission', 'selectedCourses'));
     }
 
     public function edit($id)

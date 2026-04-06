@@ -381,14 +381,23 @@ $user = \App\Models\User::first();
                         <tbody>
 
 
-                            <tr>
-                                <td class="border-end">
+                            <td class="border-end">
 
-                                </td>
-                                <td class="text-end fw-semibold">
+                                @php
+                                $total = 0;
+                                @endphp
 
-                                </td>
-                            </tr>
+                                @foreach($selectedCourses as $course)
+                                <div class="mb-1">
+                                    {{ $course->title }}
+                                </div>
+
+                                @php
+                                $total += $course->price;
+                                @endphp
+                                @endforeach
+
+                            </td>
 
 
                             {{-- Sub Total --}}
@@ -406,7 +415,7 @@ $user = \App\Models\User::first();
                                     Discount
                                 </td>
                                 <td class="fw-bold text-success text-end">
-
+                                    ₹ {{ number_format($admission->discount ?? 0, 2) }}
                                 </td>
                             </tr>
 
@@ -426,7 +435,7 @@ $user = \App\Models\User::first();
                                     Paid Amount
                                 </td>
                                 <td class="fw-bold text-success text-end">
-
+                                    ₹ {{ number_format($admission->paidamount ?? 0, 2) }}
                                 </td>
                             </tr>
 
@@ -435,7 +444,7 @@ $user = \App\Models\User::first();
                                     Remaining Amount
                                 </td>
                                 <td class="fw-bold text-dark text-end">
-
+                                    ₹ {{ number_format($admission->remamount ?? 0, 2) }}
                                 </td>
                             </tr>
 
