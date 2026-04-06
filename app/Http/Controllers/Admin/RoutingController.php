@@ -240,7 +240,7 @@ class RoutingController extends Controller
                         'discount_percent' => $oldestPaymentDiscountper,
                         'payment_status'   => 'pending',
                         'paid_amount'      => null,
-                        'remaining_amount' => 0,
+                        'remaining_amount' => $oldestPaymentGrandTotal,
                     ]);
                 }
             }
