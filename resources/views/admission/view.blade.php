@@ -360,10 +360,10 @@ $user = \App\Models\User::first();
                                             @if ($admission->photo)
                                             <img src="{{ asset('storage/app/public/' . $admission->photo) }}"
                                                 class="rounded-circle mb-3"
-                                                style="width:50px; height:50px; object-fit:cover;">
+                                                style="width:100px; height:100px; object-fit:cover;">
                                             @else
                                             <img src="{{ asset('images/default-user.png') }}" class="rounded-circle mb-3"
-                                                style="width:50px; height:50px;">
+                                                style="width:100px; height:100px;">
                                             @endif
                                         </div>
 
