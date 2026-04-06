@@ -65,7 +65,7 @@
                                                 <div class="hstack gap-2 justify-content-end">
                                                     <a href="{{ route('admin.editactsubcategory', $subcategorie->id) }}" class="btn btn-sm btn-primary">Edit</a>
 
-                                                    <form method="POST" action="{{ route('deleteactsubcategoryfile', $subcategorie->id) }}" class="d-inline">
+                                                    <form method="POST" action="{{ route('admin.deleteactsubcategoryfile', $subcategorie->id) }}" class="d-inline">
                                                         @csrf
                                                       
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this subcategory?')">Delete</button>
