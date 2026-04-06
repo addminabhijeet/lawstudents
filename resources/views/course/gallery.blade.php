@@ -3,9 +3,9 @@ $groups = $groups ?? collect();
 @endphp
 @include('layouts.partials.admin.dashboard')
 <main class="nxl-container">
-    <!-- main containts -->
     <div class="nxl-content">
-        <!-- [ page-header ] start -->
+
+        <!-- HEADER -->
         <div class="page-header">
             <div class="page-header-left d-flex align-items-center">
                 <div class="page-header-title">
@@ -17,11 +17,13 @@ $groups = $groups ?? collect();
                 </ul>
             </div>
         </div>
+
         <div class="main-content">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card stretch stretch-full shadow-sm border-0">
 
+                    <!-- FORM -->
+                    <div class="card stretch stretch-full shadow-sm border-0">
                         <div class="card-header text-white">
                             <h5 class="mb-0">
                                 {{ isset($editItem) ? 'Update Gallery Item' : 'Add New Gallery Images' }}
@@ -37,7 +39,6 @@ $groups = $groups ?? collect();
                                 <!-- Image Upload -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Upload Image</label>
-
                                     <input type="file" name="{{ isset($editItem) ? 'image' : 'image[]' }}"
                                         class="form-control" {{ isset($editItem) ? '' : 'multiple' }}>
                                 </div>
@@ -47,8 +48,6 @@ $groups = $groups ?? collect();
                                     <label class="form-label fw-semibold">Select Group</label>
 
                                     <div class="d-flex gap-2">
-
-                                        <!-- Dropdown -->
                                         <select name="group_name" id="groupSelect" class="form-control">
                                             <option value="">-- Select Group --</option>
                                             @foreach ($groups as $group)
@@ -59,27 +58,22 @@ $groups = $groups ?? collect();
                                             @endforeach
                                         </select>
 
-                                        <!-- Button -->
                                         <button type="button" class="btn btn-outline-primary" onclick="toggleNewGroup()">
                                             + New
                                         </button>
-
                                     </div>
                                 </div>
 
-                                <!-- NEW GROUP INPUT (HIDDEN) -->
+                                <!-- NEW GROUP -->
                                 <div class="mb-3" id="newGroupBox" style="display:none;">
                                     <label class="form-label fw-semibold">Create New Group</label>
-
                                     <div class="d-flex gap-2">
                                         <input type="text" id="newGroupInput" name="new_group"
                                             class="form-control" placeholder="Enter group name">
-
-                                        <button type="button" class="btn btn-success" onclick="addGroup()">
-                                            Add
-                                        </button>
+                                        <button type="button" class="btn btn-success" onclick="addGroup()">Add</button>
                                     </div>
                                 </div>
+
                                 <!-- Preview -->
                                 @if (isset($editItem))
                                 <div class="mb-3">
@@ -92,10 +86,9 @@ $groups = $groups ?? collect();
                                 <!-- Description -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Description</label>
-                                    <textarea name="description" class="form-control" rows="3" placeholder="Enter description...">{{ $editItem->description ?? '' }}</textarea>
+                                    <textarea name="description" class="form-control" rows="3">{{ $editItem->description ?? '' }}</textarea>
                                 </div>
 
-                                <!-- Buttons -->
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary">
                                         {{ isset($editItem) ? 'Update' : 'Save' }}
@@ -107,75 +100,76 @@ $groups = $groups ?? collect();
                                     </a>
                                     @endif
                                 </div>
-
                             </form>
                         </div>
                     </div>
 
                     <!-- ================= GALLERY ================= -->
-                    <div class="row g-4">
 
-                        @forelse ($gallery as $groupName => $images)
+                    @forelse ($gallery as $groupName => $images)
 
-                        <!-- GROUP TITLE -->
-                        <div class="col-12">
-                            <h5 class="mt-4 mb-3 text-primary">
-                                {{ $groupName ? $groupName : 'Ungrouped' }}
-                            </h5>
-                        </div>
+                    <!-- 🔥 EACH GROUP HAS ITS OWN ROW -->
+                    <div class="mb-4">
 
-                        @foreach ($images as $img)
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <!-- TITLE -->
+                        <h5 class="mb-3 text-primary">
+                            {{ $groupName ? $groupName : 'Ungrouped' }}
+                        </h5>
 
-                            <div class="card h-100 border-0 shadow-sm">
+                        <!-- IMAGES -->
+                        <div class="row g-3">
 
-                                <img src="{{ asset('storage/app/public/' . $img->image) }}"
-                                    class="card-img-top rounded-top" style="height:140px; object-fit:cover;">
+                            @foreach ($images as $img)
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
 
-                                <div class="card-body p-2 text-center">
+                                <div class="card h-100 border-0 shadow-sm">
 
-                                    <small class="text-muted d-block mb-2 text-truncate">
-                                        {{ $img->description ?? 'No description' }}
-                                    </small>
+                                    <img src="{{ asset('storage/app/public/' . $img->image) }}"
+                                        class="card-img-top" style="height:140px; object-fit:cover;">
 
-                                    <div class="d-flex justify-content-center gap-2">
+                                    <div class="card-body p-2 text-center">
 
-                                        <a href="{{ route('admin.editgallery', $img->id) }}"
-                                            class="btn btn-sm btn-outline-primary">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
+                                        <small class="text-muted d-block mb-2 text-truncate">
+                                            {{ $img->description ?? 'No description' }}
+                                        </small>
 
-                                        <form action="{{ route('admin.deletegallery', $img->id) }}" method="POST"
-                                            onsubmit="return confirm('Delete this image?')">
-                                            @csrf
-                                            @method('DELETE')
+                                        <div class="d-flex justify-content-center gap-2">
 
-                                            <button class="btn btn-sm btn-outline-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
+                                            <a href="{{ route('admin.editgallery', $img->id) }}"
+                                                class="btn btn-sm btn-outline-primary">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+
+                                            <form action="{{ route('admin.deletegallery', $img->id) }}" method="POST"
+                                                onsubmit="return confirm('Delete this image?')">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+
+                                        </div>
 
                                     </div>
 
                                 </div>
 
                             </div>
+                            @endforeach
 
                         </div>
-                        @endforeach
-
-                        @empty
-                        <div class="col-12 text-center">
-                            No gallery images found
-                        </div>
-                        @endforelse
-
                     </div>
 
+                    @empty
+                    <div class="text-center">
+                        No gallery images found
+                    </div>
+                    @endforelse
+
                 </div>
-
             </div>
-
         </div>
     </div>
 </main>
