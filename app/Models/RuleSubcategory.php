@@ -9,7 +9,7 @@ class RuleSubcategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'rule_category_id'];
+    protected $fillable = ['name', 'rule_category_id','delete'];
 
     public function category()
     {

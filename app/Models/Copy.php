@@ -16,6 +16,7 @@ class Copy extends Model
         'subcategory_id',
         'description',
         'pdfs',
+        'delete',
     ];
 
     protected $casts = [

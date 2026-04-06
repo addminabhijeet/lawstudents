@@ -14,6 +14,7 @@ class Rule extends Model
         'subcategory_id',
         'description',
         'pdfs',
+        'delete',
     ];
 
     // ✅ SAME AS ACT

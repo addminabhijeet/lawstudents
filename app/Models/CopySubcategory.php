@@ -9,7 +9,7 @@ class CopySubcategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'copy_category_id'];
+    protected $fillable = ['name', 'copy_category_id','delete'];
 
     public function category()
     {
