@@ -276,11 +276,7 @@
                 <div id="pdfContainer" class="pdf-protected-viewer">
 
                     <div id="watermark">
-                        {{ auth()->guard('student')->user()->name }}
-                        <br>
-                        {{ auth()->guard('student')->user()->email }}
-                        <br>
-                        {{ now()->format('d M Y H:i') }}
+                        Law Students
                     </div>
 
                     <canvas id="pdfCanvas"></canvas>
@@ -352,9 +348,7 @@
 
             page.render(renderContext).promise.then(function() {
 
-                let watermarkText =
-                    "{{ auth()->guard('student')->user()->name }} - {{ auth()->guard('student')->user()->email }}";
-
+                let watermarkText = "Law Students";
                 ctx.font = "28px Arial";
                 ctx.fillStyle = "rgba(150,150,150,0.20)";
                 ctx.textAlign = "center";
