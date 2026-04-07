@@ -127,7 +127,7 @@ class FreeNotesController extends Controller
 
         return view('copys.copys', [
             'categories' => $categories,
-            'filePath' => asset('storage/' . $file),
+            'filePath' => asset('storage/app/public/' . $file),
             'studentName' => 'Guest',
             'studentEmail' => 'guest@example.com',
         ]);
