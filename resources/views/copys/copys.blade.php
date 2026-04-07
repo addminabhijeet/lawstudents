@@ -80,8 +80,12 @@
                                         <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
 
                                         <div>
-                                            <a href="{{ route('frontend.viewnotes', [$copy->id, $index]) }}"
-                                                target="_blank"
+                                            <a href="javascript:void(0);"
+                                                onclick="openPDF(
+                                                    '{{ addslashes($pdf->path) }}',
+                                                    '{{ addslashes($studentName) }}',
+                                                    '{{ addslashes($studentEmail) }}'
+                                                )"
                                                 style="margin-right:10px; font-size:12px;">
                                                 View
                                             </a>
@@ -230,14 +234,68 @@
     const fileUrl = "{{ $filePath }}";
     const watermarkText = "{{ $studentName }} - {{ $studentEmail }} - {{ now()->format('d M Y H:i') }}";
 
-    function openPDF() {
+    function openPDF(fileUrl, studentName, studentEmail) {
         let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
         modal.show();
+
+        const watermarkText = `${studentName} - ${studentEmail} - ${new Date().toLocaleString()}`;
+        let pageNum = 1;
+        let pdfDoc = null;
+        let totalPages = 0;
 
         pdfjsLib.getDocument(fileUrl).promise.then(function(pdf) {
             pdfDoc = pdf;
             totalPages = pdf.numPages;
             renderPage(pageNum);
+
+            function renderPage(num) {
+                pdfDoc.getPage(num).then(function(page) {
+                    let canvas = document.getElementById('pdfCanvas');
+                    let ctx = canvas.getContext('2d');
+                    let container = document.getElementById('pdfContainer');
+
+                    let viewport = page.getViewport({
+                        scale: 1
+                    });
+                    let scale = container.clientWidth / viewport.width;
+                    let scaledViewport = page.getViewport({
+                        scale: scale
+                    });
+
+                    canvas.height = scaledViewport.height;
+                    canvas.width = scaledViewport.width;
+
+                    page.render({
+                        canvasContext: ctx,
+                        viewport: scaledViewport
+                    }).promise.then(function() {
+                        // Draw watermark
+                        ctx.font = "28px Arial";
+                        ctx.fillStyle = "rgba(150,150,150,0.20)";
+                        ctx.textAlign = "center";
+
+                        ctx.save();
+                        ctx.translate(canvas.width / 2, canvas.height / 2);
+                        ctx.rotate(-Math.PI / 6);
+
+                        for (let y = -canvas.height; y < canvas.height; y += 200) {
+                            ctx.fillText(watermarkText, 0, y);
+                        }
+
+                        ctx.restore();
+                    });
+                });
+
+                document.getElementById("pageInfo").innerText = "Page " + num + " / " + totalPages;
+            }
+
+            // Update next/prev buttons
+            document.querySelector(".btn-primary").onclick = function() {
+                if (pageNum < totalPages) pageNum++, renderPage(pageNum);
+            };
+            document.querySelector(".btn-secondary").onclick = function() {
+                if (pageNum > 1) pageNum--, renderPage(pageNum);
+            };
         });
     }
 
@@ -298,8 +356,5 @@
             renderPage(pageNum);
         }
     }
-
-    // Auto open viewer when page loads
-    document.addEventListener('DOMContentLoaded', openPDF);
 </script>
 @endsection
