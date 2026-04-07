@@ -16,25 +16,43 @@ class CourseNoteController extends Controller
 
     public function listnotes()
     {
-        $categories = Category::whereHas('courses.notes')
+        $categories = Category::where('delete', 1) // category not deleted
+            ->whereHas('courses.notes', function ($q) {
+                $q->where('delete', 1); // notes not deleted
+            })
             ->with([
                 'courses' => function ($query) {
-                    $query->whereHas('notes')
-                        ->with('notes');
+                    $query->where('delete', 1) // course not deleted
+                        ->whereHas('notes', function ($q) {
+                            $q->where('delete', 1);
+                        })
+                        ->with(['notes' => function ($q) {
+                            $q->where('delete', 1);
+                        }]);
                 },
                 'children' => function ($query) {
-                    $query->whereHas('courses.notes')
+                    $query->where('delete', 1) // child category not deleted
+                        ->whereHas('courses.notes', function ($q) {
+                            $q->where('delete', 1);
+                        })
                         ->with([
                             'courses' => function ($q) {
-                                $q->whereHas('notes')
-                                    ->with('notes');
+                                $q->where('delete', 1)
+                                    ->whereHas('notes', function ($q2) {
+                                        $q2->where('delete', 1);
+                                    })
+                                    ->with(['notes' => function ($q2) {
+                                        $q2->where('delete', 1);
+                                    }]);
                             }
                         ]);
                 }
             ])
             ->get();
 
-        $courses = Course::where('status', 1)->get();
+        $courses = Course::where('status', 1)
+            ->where('delete', 1) // added delete check
+            ->get();
 
         return view('notes.list', compact('categories', 'courses'));
     }
