@@ -107,76 +107,76 @@
                                 <div class="card-body">
 
                                     @forelse($course->notes as $note)
-                                        <div
-                                            class="d-flex justify-content-between align-items-center border-bottom py-3">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center border-bottom py-3">
 
-                                            <div class="d-flex align-items-center gap-3">
+                                        <div class="d-flex align-items-center gap-3">
 
-                                                <div
-                                                    class="icon-md bg-light rounded d-flex align-items-center justify-content-center">
-                                                    📄
-                                                </div>
-
-                                                <div>
-                                                    <h6 class="mb-1">
-                                                        {{ $note->title }}
-                                                    </h6>
-
-                                                    <small class="text-muted">
-                                                        {{ $note->formatted_size }}
-                                                        |
-                                                        {{ $note->page_count }} pages
-                                                    </small>
-                                                </div>
-
+                                            <div
+                                                class="icon-md bg-light rounded d-flex align-items-center justify-content-center">
+                                                📄
                                             </div>
 
-                                            <div class="d-flex gap-2">
+                                            <div>
+                                                <h6 class="mb-1">
+                                                    {{ $note->title }}
+                                                </h6>
 
-                                                @php
-                                                    $token = Crypt::encrypt(
-                                                        json_encode([
-                                                            'note_id' => $note->id,
-                                                            'ip' => request()->ip(),
-                                                            'expires_at' => now()->addMinutes(5),
-                                                        ]),
-                                                    );
-                                                @endphp
-
-                                                @php
-                                                    $isWishlisted = \App\Models\NoteWishlist::where(
-                                                        'student_id',
-                                                        auth()->id(),
-                                                    )
-                                                        ->where('note_id', $note->id)
-                                                        ->exists();
-                                                @endphp
-
-                                                <button
-                                                    class="btn btn-sm {{ $isWishlisted ? 'btn-danger' : 'btn-outline-danger' }} wishlist-btn"
-                                                    data-note="{{ $note->id }}">
-                                                    ❤
-                                                </button>
-
-                                                <button class="btn btn-sm btn-outline-primary"
-                                                    onclick="openPDF('{{ route('student.viewnote', $note->id) }}?token={{ $token }}','{{ $note->id }}')">
-                                                    View
-                                                </button>
-
-                                                @if ($note->is_downloadable)
-                                                    <a href="{{ route('student.downloadnote', $note->id) }}"
-                                                        class="btn btn-sm btn-success">
-                                                        Download
-                                                    </a>
-                                                @endif
-
+                                                <small class="text-muted">
+                                                    {{ $note->formatted_size }}
+                                                    |
+                                                    {{ $note->page_count }} pages
+                                                </small>
                                             </div>
 
                                         </div>
 
+                                        <div class="d-flex gap-2">
+
+                                            @php
+                                            $token = Crypt::encrypt(
+                                            json_encode([
+                                            'note_id' => $note->id,
+                                            'ip' => request()->ip(),
+                                            'expires_at' => now()->addMinutes(5),
+                                            ]),
+                                            );
+                                            @endphp
+
+                                            @php
+                                            $isWishlisted = \App\Models\NoteWishlist::where(
+                                            'student_id',
+                                            auth()->id(),
+                                            )
+                                            ->where('note_id', $note->id)
+                                            ->exists();
+                                            @endphp
+
+                                            <button
+                                                class="btn btn-sm {{ $isWishlisted ? 'btn-danger' : 'btn-outline-danger' }} wishlist-btn"
+                                                data-note="{{ $note->id }}">
+                                                ❤
+                                            </button>
+
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                onclick="openPDF(`{{ route('student.viewnote', $note->id) }}?token={{ $token }}`, `{{ $note->id }}`)">
+                                                View
+                                            </button>
+
+                                            @if ($note->is_downloadable)
+                                            <a href="{{ route('student.downloadnote', $note->id) }}"
+                                                class="btn btn-sm btn-success">
+                                                Download
+                                            </a>
+                                            @endif
+
+                                        </div>
+
+                                    </div>
+
                                     @empty
 
-                                        <p class="text-muted">No materials available.</p>
+                                    <p class="text-muted">No materials available.</p>
                                     @endforelse
 
                                 </div>
@@ -227,21 +227,24 @@
                                     </ul>
 
                                     @php
-                                        $progress = \App\Models\NoteProgress::where('student_id', auth()->id())
-                                            ->where('course_id', $course->id)
-                                            ->avg('progress_percent');
+                                    $progress = \App\Models\NoteProgress::where('student_id', auth()->id())
+                                    ->where('course_id', $course->id)
+                                    ->avg('progress_percent');
+
+                                    $progressValue = round($progress ?? 0);
                                     @endphp
 
                                     @if ($progress)
-                                        <div class="progress mb-2">
-                                            <div class="progress-bar bg-success" style="width:{{ round($progress) }}%">
-                                                {{ round($progress) }}%
-                                            </div>
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar bg-success progress-bar-dynamic"
+                                            data-width="{{ $progressValue }}">
+                                            {{ $progressValue }}%
                                         </div>
+                                    </div>
                                     @else
-                                        <button class="btn btn-primary w-100 mb-2">
-                                            Start Course
-                                        </button>
+                                    <button class="btn btn-primary w-100 mb-2">
+                                        Start Course
+                                    </button>
                                     @endif
 
                                 </div>
