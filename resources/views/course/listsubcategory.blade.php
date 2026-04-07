@@ -275,7 +275,7 @@
                         <select name="parent_id" id="edit_parent_id" class="form-control">
                             <option value="">-- Main Category --</option>
 
-                            @foreach ($categories as $category)
+                            @foreach ($categories->whereNull('parent_id') as $category)
                             <option value="{{ $category->id }}">
                                 {{ $category->name }}
                             </option>
