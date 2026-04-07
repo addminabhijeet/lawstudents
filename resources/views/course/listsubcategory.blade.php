@@ -252,11 +252,6 @@
                             </option>
                             @endforeach
                         </select>
-
-                        <div class="form-check mt-2">
-                            <input type="checkbox" class="form-check-input" id="editMainCategoryCheck">
-                            <label class="form-check-label">Set as Main Category</label>
-                        </div>
                     </div>
 
                 </div>
