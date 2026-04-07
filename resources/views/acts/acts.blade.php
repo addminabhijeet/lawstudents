@@ -80,14 +80,14 @@
 
                                         <div>
                                             <!-- VIEW (Correct public path) -->
-                                            <a href="{{ asset('storage/' . $pdf) }}" target="_blank"
+                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" target="_blank"
                                                 style="margin-right:10px; font-size:12px;">
                                                 View
                                             </a>
 
                                             <!-- DOWNLOAD (Correct path with auth check) -->
                                             @if (auth()->check())
-                                            <a href="{{ asset('storage/' . $pdf) }}" download
+                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" download
                                                 style="font-size:12px; color:green;">
                                                 Download
                                             </a>
