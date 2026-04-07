@@ -178,13 +178,14 @@ class CourseNoteController extends Controller
     }
 
 
-    public function destroy($id)
+    public function deletenotes($id)
     {
         $note = CourseNote::findOrFail($id);
 
-        Storage::disk('public')->delete($note->file_path);
-
-        $note->delete();
+        // Instead of delete(), update flag
+        $note->update([
+            'delete' => 0
+        ]);
 
         return back()->with('success', 'Note deleted successfully.');
     }

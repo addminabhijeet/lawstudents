@@ -107,6 +107,17 @@
                                         <span>Edit Note</span>
                                     </a>
 
+                                    <form action="{{ route('deletenotes', $note->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <button type="submit" class="btn btn-danger w-100"
+                                            onclick="return confirm('Are you sure you want to delete this note?')">
+                                            <i class="feather-trash-2 me-2"></i>
+                                            <span>Delete Note</span>
+                                        </button>
+                                    </form>
+
                                 </div>
 
                             </div>

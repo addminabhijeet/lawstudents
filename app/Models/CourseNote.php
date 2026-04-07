@@ -18,6 +18,7 @@ class CourseNote extends Model
         'download_count',
         'version',
         'visibility',
+        'delete',
     ];
 
     // Relationship
