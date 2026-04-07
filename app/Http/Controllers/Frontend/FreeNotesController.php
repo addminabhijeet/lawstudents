@@ -122,13 +122,14 @@ class FreeNotesController extends Controller
 
         $path = Storage::disk('public')->path($file);
 
-        // Return a modal-viewer blade instead of raw file
-        return view('frontend.viewnotes_modal', [
+        // Use the main Blade view and pass modal-specific variables
+        $categories = CopyCategory::with(['subcategories.copys'])->get();
+
+        return view('copys.copys', [
+            'categories' => $categories,
             'filePath' => asset('storage/' . $file),
-            'copy' => $copy,
-            'index' => $index,
-            'studentName' =>  'Guest',
-            'studentEmail' =>  'guest@example.com',
+            'studentName' => 'Guest',
+            'studentEmail' => 'guest@example.com',
         ]);
     }
 }
