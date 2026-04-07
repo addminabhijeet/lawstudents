@@ -263,9 +263,9 @@
 
                 <div class="modal-body">
 
-                    <!-- Category Name -->
+                    <!-- Sub Category Name -->
                     <div class="mb-3">
-                        <label class="form-label">Category Name</label>
+                        <label class="form-label">Sub Category Name</label>
                         <input type="text" name="name" id="edit_category_name" class="form-control" required>
                     </div>
 
@@ -404,8 +404,8 @@
 
                     <!-- Category Name -->
                     <div class="mb-3">
-                        <label class="form-label">Category Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter Category Name"
+                        <label class="form-label">Sub Category Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Enter Sub Category Name"
                             required>
                     </div>
 
