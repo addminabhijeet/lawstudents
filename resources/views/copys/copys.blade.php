@@ -63,52 +63,35 @@
                             <div id="sub{{ $sub->id }}" class="accordion-content" style="padding:10px; max-height:1000px;">
 
                                 @foreach ($sub->copys as $copy)
+                                @foreach ($copy->pdfs as $index => $pdf)
+                                <div style="margin-top:5px; display:flex; justify-content:space-between;">
+                                    <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
+                                    <div>
+                                        <a href="javascript:void(0);"
+                                            onclick="openPDF(
+                       '{{ addslashes($pdf) }}',
+                       '{{ addslashes($studentName) }}',
+                       '{{ addslashes($studentEmail) }}'
+                   )"
+                                            style="margin-right:10px; font-size:12px;">
+                                            View
+                                        </a>
 
-                                <!-- Free Notes -->
-                                <div style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
-
-                                    <div style="font-weight:600;">
-                                        {{ $copy->description }}
+                                        @if (auth()->check())
+                                        <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
+                                            style="font-size:12px; color:green;">
+                                            Download
+                                        </a>
+                                        @else
+                                        <a href="{{ route('google.login') }}"
+                                            style="font-size:12px; color:green;">
+                                            Download
+                                        </a>
+                                        @endif
                                     </div>
-
-                                    <!-- PDFs -->
-                                    @if ($copy->pdfs)
-                                    @foreach ($copy->pdfs as $index => $pdf)
-
-                                    <div style="margin-top:5px; display:flex; justify-content:space-between;">
-
-                                        <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
-
-                                        <div>
-                                            <a href="javascript:void(0);"
-                                                onclick="openPDF(
-                                                    '{{ addslashes($pdf->path) }}',
-                                                    '{{ addslashes($studentName) }}',
-                                                    '{{ addslashes($studentEmail) }}'
-                                                )"
-                                                style="margin-right:10px; font-size:12px;">
-                                                View
-                                            </a>
-
-                                            @if (auth()->check())
-                                            <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
-                                                style="font-size:12px; color:green;">
-                                                Download
-                                            </a>
-                                            @else
-                                            <a href="{{ route('google.login') }}"
-                                                style="font-size:12px; color:green;">
-                                                Download
-                                            </a>
-                                            @endif
-                                        </div>
-
-                                    </div>
-
-                                    @endforeach
-                                    @endif
-
                                 </div>
+                                @endforeach
+                                @endforeach
 
                                 @endforeach
 
