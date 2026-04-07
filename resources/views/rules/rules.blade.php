@@ -75,9 +75,8 @@
                                         <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
 
                                         <div>
-                                            <!-- VIEW (UNCHANGED) -->
-                                            <a href="{{ route('frontend.viewnotes', [$rule->id, $index]) }}"
-                                                target="_blank"
+                                            <!-- VIEW (Correct public path) -->
+                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" target="_blank"
                                                 style="margin-right:10px; font-size:12px;">
                                                 View
                                             </a>
@@ -89,12 +88,10 @@
                                                 Download
                                             </a>
                                             @else
-                                            <a href="{{ route('google.login') }}"
-                                                style="font-size:12px; color:green;">
+                                            <a href="{{ route('google.login') }}" style="font-size:12px; color:green;">
                                                 Download
                                             </a>
                                             @endif
-
                                         </div>
 
                                     </div>
