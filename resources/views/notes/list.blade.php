@@ -160,11 +160,6 @@
                                         placeholder="Enter Note Title" minlength="5" required>
                                 </div>
 
-                                <!-- Version -->
-                                <div class="mb-3">
-                                    <label class="form-label">Version</label>
-                                    <input type="text" name="version" class="form-control" placeholder="1.0">
-                                </div>
 
                             </div>
 
@@ -177,25 +172,6 @@
                                     <input type="file" name="pdf" class="form-control"
                                         accept="application/pdf" required>
                                     <small class="text-muted">Max size: 20MB</small>
-                                </div>
-
-                                <!-- Visibility -->
-                                <div class="mb-3">
-                                    <label class="form-label">Visibility</label>
-                                    <select name="visibility" class="form-select">
-                                        <option value="enrolled" selected>Enrolled Users</option>
-                                        <option value="free">Free</option>
-                                        <option value="paid">Paid</option>
-                                    </select>
-                                </div>
-
-                                <!-- Is Downloadable -->
-                                <div class="form-check mt-4">
-                                    <input class="form-check-input" type="checkbox" name="is_downloadable"
-                                        id="isDownloadable" checked>
-                                    <label class="form-check-label" for="isDownloadable">
-                                        Allow Download
-                                    </label>
                                 </div>
 
                             </div>
@@ -293,12 +269,6 @@
                                         minlength="5" required>
                                 </div>
 
-                                <!-- Version -->
-                                <div class="mb-3">
-                                    <label class="form-label">Version</label>
-                                    <input type="text" name="version" id="editNoteVersion" class="form-control">
-                                </div>
-
                             </div>
 
                             <!-- RIGHT COLUMN -->
@@ -311,26 +281,6 @@
                                         accept="application/pdf">
                                     <small class="text-muted">Leave empty to keep existing PDF</small>
                                 </div>
-
-                                <!-- Visibility -->
-                                <div class="mb-3">
-                                    <label class="form-label">Visibility</label>
-                                    <select name="visibility" id="editVisibility" class="form-select">
-                                        <option value="enrolled">Enrolled Users</option>
-                                        <option value="free">Free</option>
-                                        <option value="paid">Paid</option>
-                                    </select>
-                                </div>
-
-                                <!-- Is Downloadable -->
-                                <div class="form-check mt-4">
-                                    <input class="form-check-input" type="checkbox" name="is_downloadable"
-                                        id="editIsDownloadable">
-                                    <label class="form-check-label" for="editIsDownloadable">
-                                        Allow Download
-                                    </label>
-                                </div>
-
                             </div>
 
                             <!-- FULL WIDTH DESCRIPTION -->
