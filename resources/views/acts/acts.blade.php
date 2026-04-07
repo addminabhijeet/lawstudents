@@ -85,36 +85,29 @@
                                         <!-- PDFs -->
                                         @if ($act->pdfs)
                                         @foreach ($act->pdfs as $index => $pdf)
-
                                         <div style="margin-top:5px; display:flex; justify-content:space-between;">
 
                                             <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
 
                                             <div>
-                                                <!-- VIEW (UNCHANGED) -->
-                                                <a href="{{ route('frontend.viewnotes', [$act->id, $index]) }}"
-                                                    target="_blank"
-                                                    style="margin-right:10px; font-size:12px;">
+                                                <!-- VIEW (Updated to correct path) -->
+                                                <a href="{{ asset('storage/app/public/' . $pdf) }}" target="_blank" style="margin-right:10px; font-size:12px;">
                                                     View
                                                 </a>
 
                                                 <!-- ✅ DOWNLOAD WITH GOOGLE LOGIN CHECK -->
                                                 @if (auth()->check())
-                                                <a href="{{ route('frontend.viewnote', [$act->id, $index]) }}"
-                                                    style="font-size:12px; color:green;">
+                                                <a href="{{ route('frontend.viewnote', [$act->id, $index]) }}" style="font-size:12px; color:green;">
                                                     Download
                                                 </a>
                                                 @else
-                                                <a href="{{ route('google.login') }}"
-                                                    style="font-size:12px; color:green;">
+                                                <a href="{{ route('google.login') }}" style="font-size:12px; color:green;">
                                                     Download
                                                 </a>
                                                 @endif
-
                                             </div>
 
                                         </div>
-
                                         @endforeach
                                         @endif
 
