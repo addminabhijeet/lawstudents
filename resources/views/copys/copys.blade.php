@@ -1,6 +1,41 @@
 @extends('layouts.landing', ['title' => 'Free Notes'])
 
 @section('content')
+
+<style>
+    .pdf-protected-viewer {
+        position: relative;
+        height: 600px;
+        overflow: auto;
+        background: #f4f6f9;
+    }
+
+    .pdf-protected-viewer {
+        user-select: none;
+    }
+
+    #pdfContainer {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    #pdfCanvas {
+        display: block;
+        margin: auto;
+    }
+
+    #watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-30deg);
+        font-size: 38px;
+        opacity: 0.15;
+        pointer-events: none;
+        white-space: nowrap;
+        text-align: center;
+    }
+</style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"
     style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
@@ -67,15 +102,10 @@
                                 <div style="margin-top:5px; display:flex; justify-content:space-between;">
                                     <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
                                     <div>
-                                        <a href="javascript:void(0);"
-                                            onclick="openPDF(
-                       '{{ addslashes($pdf) }}',
-                       '{{ addslashes($studentName) }}',
-                       '{{ addslashes($studentEmail) }}'
-                   )"
-                                            style="margin-right:10px; font-size:12px;">
-                                            View
-                                        </a>
+                                        <button class="btn btn-sm btn-outline-primary"
+                                                onclick="openPDF(`{{ route('frontend.viewnote', $copy->id) }}?token={{ $token }}`, `{{ $copy->id }}`)">
+                                                View
+                                            </button>
 
                                         @if (auth()->check())
                                         <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
@@ -193,17 +223,8 @@
             <div class="modal-body p-0">
                 <div id="pdfContainer" class="pdf-protected-viewer" style="position:relative;">
 
-                    <div id="watermark" style="
-                        position:absolute;
-                        top:50%;
-                        left:50%;
-                        transform: translate(-50%, -50%) rotate(-30deg);
-                        font-size:28px;
-                        opacity:0.15;
-                        pointer-events:none;
-                        text-align:center;
-                        white-space:nowrap;">
-                        <!-- Watermark will be rendered on canvas, optional static fallback -->
+                    <div id="watermark">
+                        Law Students
                     </div>
 
                     <canvas id="pdfCanvas"></canvas>
