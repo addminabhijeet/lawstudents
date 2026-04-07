@@ -196,4 +196,110 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="pdfModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">PDF Viewer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body p-0">
+                <div id="pdfContainer" class="pdf-protected-viewer" style="position:relative;">
+                    <canvas id="pdfCanvas"></canvas>
+                </div>
+
+                <div class="text-center mt-2">
+                    <button class="btn btn-sm btn-secondary" onclick="prevPage()">Prev</button>
+                    <span id="pageInfo"></span>
+                    <button class="btn btn-sm btn-primary" onclick="nextPage()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+    let pdfDoc = null;
+    let pageNum = 1;
+    let totalPages = 0;
+
+    const fileUrl = "{{ $filePath }}";
+    const watermarkText = "{{ $studentName }} - {{ $studentEmail }} - {{ now()->format('d M Y H:i') }}";
+
+    function openPDF() {
+        let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+        modal.show();
+
+        pdfjsLib.getDocument(fileUrl).promise.then(function(pdf) {
+            pdfDoc = pdf;
+            totalPages = pdf.numPages;
+            renderPage(pageNum);
+        });
+    }
+
+    function renderPage(num) {
+        pdfDoc.getPage(num).then(function(page) {
+
+            let canvas = document.getElementById('pdfCanvas');
+            let ctx = canvas.getContext('2d');
+
+            let container = document.getElementById('pdfContainer');
+
+            let viewport = page.getViewport({
+                scale: 1
+            });
+            let scale = container.clientWidth / viewport.width;
+            let scaledViewport = page.getViewport({
+                scale: scale
+            });
+
+            canvas.height = scaledViewport.height;
+            canvas.width = scaledViewport.width;
+
+            page.render({
+                canvasContext: ctx,
+                viewport: scaledViewport
+            }).promise.then(function() {
+
+                // Draw watermark
+                ctx.font = "28px Arial";
+                ctx.fillStyle = "rgba(150,150,150,0.20)";
+                ctx.textAlign = "center";
+
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(-Math.PI / 6);
+
+                for (let y = -canvas.height; y < canvas.height; y += 200) {
+                    ctx.fillText(watermarkText, 0, y);
+                }
+
+                ctx.restore();
+            });
+        });
+
+        document.getElementById("pageInfo").innerText = "Page " + num + " / " + totalPages;
+    }
+
+    function nextPage() {
+        if (pageNum < totalPages) {
+            pageNum++;
+            renderPage(pageNum);
+        }
+    }
+
+    function prevPage() {
+        if (pageNum > 1) {
+            pageNum--;
+            renderPage(pageNum);
+        }
+    }
+
+    // Auto open viewer when page loads
+    document.addEventListener('DOMContentLoaded', openPDF);
+</script>
 @endsection

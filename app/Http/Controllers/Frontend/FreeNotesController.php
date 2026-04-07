@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use setasign\Fpdi\Fpdi;
 use Illuminate\Support\Facades\File;
 
+
 class FreeNotesController extends Controller
 {
     public function __invoke(): View
@@ -101,7 +102,6 @@ class FreeNotesController extends Controller
         return response()->download($tempFile, 'note.pdf')->deleteFileAfterSend(true);
     }
 
-    // 👁 VIEW PDF
     public function viewnotes($id, $index = 0)
     {
         $copy = Copy::findOrFail($id);
@@ -118,6 +118,13 @@ class FreeNotesController extends Controller
 
         $path = Storage::disk('public')->path($file);
 
-        return response()->file($path);
+        // Return a modal-viewer blade instead of raw file
+        return view('frontend.viewnotes_modal', [
+            'filePath' => asset('storage/' . $file),
+            'copy' => $copy,
+            'index' => $index,
+            'studentName' =>  'Guest',
+            'studentEmail' =>  'guest@example.com',
+        ]);
     }
 }
