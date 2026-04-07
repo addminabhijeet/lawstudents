@@ -107,7 +107,7 @@
                                         <span>Edit Note</span>
                                     </a>
 
-                                    <form action="{{ route('deletenotes', $note->id) }}" method="POST">
+                                    <form action="{{ route('admin.deletenotes', $note->id) }}" method="POST">
                                         @csrf
                                         @method('PUT')
 
