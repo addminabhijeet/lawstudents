@@ -23,9 +23,10 @@ class CourseControllerStu extends Controller
     {
         $student = Auth::guard('student')->user();
 
-        // Get all paid payments for the student
         $payments = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
+            ->whereMonth('issue_date', Carbon::now()->month)
+            ->whereYear('issue_date', Carbon::now()->year)
             ->pluck('course_id');
 
         // Flatten course IDs
