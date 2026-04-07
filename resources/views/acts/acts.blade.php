@@ -74,45 +74,31 @@
                                     <!-- PDFs -->
                                     @if ($act->pdfs)
                                     @foreach ($act->pdfs as $index => $pdf)
+                                    <div style="margin-top:5px; display:flex; justify-content:space-between;">
 
-                                    <!-- ACT -->
-                                    <div style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
+                                        <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
 
-                                        <div style="font-weight:600;">
-                                            {{ $act->description }}
+                                        <div>
+                                            <!-- VIEW (Correct public path) -->
+                                            <a href="{{ asset('storage/' . $pdf) }}" target="_blank"
+                                                style="margin-right:10px; font-size:12px;">
+                                                View
+                                            </a>
+
+                                            <!-- DOWNLOAD (Correct path with auth check) -->
+                                            @if (auth()->check())
+                                            <a href="{{ asset('storage/' . $pdf) }}" download
+                                                style="font-size:12px; color:green;">
+                                                Download
+                                            </a>
+                                            @else
+                                            <a href="{{ route('google.login') }}" style="font-size:12px; color:green;">
+                                                Download
+                                            </a>
+                                            @endif
                                         </div>
-
-                                        <!-- PDFs -->
-                                        @if ($act->pdfs)
-                                        @foreach ($act->pdfs as $index => $pdf)
-                                        <div style="margin-top:5px; display:flex; justify-content:space-between;">
-
-                                            <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
-
-                                            <div>
-                                                <!-- VIEW (Updated to correct path) -->
-                                                <a href="{{ asset('storage/app/public/' . $pdf) }}" target="_blank" style="margin-right:10px; font-size:12px;">
-                                                    View
-                                                </a>
-
-                                                <!-- ✅ DOWNLOAD WITH GOOGLE LOGIN CHECK -->
-                                                @if (auth()->check())
-                                                <a href="{{ route('frontend.viewnote', [$act->id, $index]) }}" style="font-size:12px; color:green;">
-                                                    Download
-                                                </a>
-                                                @else
-                                                <a href="{{ route('google.login') }}" style="font-size:12px; color:green;">
-                                                    Download
-                                                </a>
-                                                @endif
-                                            </div>
-
-                                        </div>
-                                        @endforeach
-                                        @endif
 
                                     </div>
-
                                     @endforeach
                                     @endif
 

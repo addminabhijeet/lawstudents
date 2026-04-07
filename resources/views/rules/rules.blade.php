@@ -81,9 +81,9 @@
                                                 View
                                             </a>
 
-                                            <!-- ✅ DOWNLOAD WITH GOOGLE LOGIN -->
+                                            <!-- DOWNLOAD (Correct path with auth check) -->
                                             @if (auth()->check())
-                                            <a href="{{ route('frontend.viewnote', [$rule->id, $index]) }}"
+                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" download
                                                 style="font-size:12px; color:green;">
                                                 Download
                                             </a>
