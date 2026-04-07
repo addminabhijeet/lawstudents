@@ -145,13 +145,18 @@
                                 <!-- Phone Section -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Contact Number</label>
+                                    <!-- Student Phone -->
                                     <input type="text" class="form-control mb-2" name="phone"
-                                        value="{{ old('phone', $admission->phone) }}" placeholder="Enter phone number"
+                                        value="{{ old('phone', $admission->phone) }}"
+                                        placeholder="Enter phone number"
                                         oninput="formatPhone(this)">
 
                                     <script>
                                         function formatPhone(input) {
                                             let value = input.value;
+
+                                            // Remove +91 if already exists
+                                            value = value.replace(/^\+91/, '');
 
                                             // Remove anything that's not a number
                                             value = value.replace(/[^0-9]/g, '');
@@ -159,8 +164,8 @@
                                             // Limit to maximum 10 digits
                                             value = value.slice(0, 10);
 
-                                            // Prepend +91
-                                            input.value = '+91' + value;
+                                            // Add +91 only if there is some value
+                                            input.value = value.length ? '+91' + value : '';
                                         }
                                     </script>
                                     <!-- <div class="d-flex gap-2 mb-2">
@@ -213,14 +218,17 @@
                                     function formatPhone(input) {
                                         let value = input.value;
 
+                                        // Remove +91 if already exists
+                                        value = value.replace(/^\+91/, '');
+
                                         // Remove anything that's not a number
                                         value = value.replace(/[^0-9]/g, '');
 
                                         // Limit to maximum 10 digits
                                         value = value.slice(0, 10);
 
-                                        // Prepend +91
-                                        input.value = '+91' + value;
+                                        // Add +91 only if there is some value
+                                        input.value = value.length ? '+91' + value : '';
                                     }
                                 </script>
 
