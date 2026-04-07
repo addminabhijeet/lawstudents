@@ -104,7 +104,7 @@
                                     <div>
                                         <div class="container my-5">
                                             <h3>View PDF</h3>
-                                            <iframe src="{{ route('frontend.viewnoteWatermarked', [$copyId, $pdfIndex]) }}"
+                                            <iframe src="{{ route('frontend.viewnoteWatermarked', [$copy->id, $index]) }}"
                                                 style="width:100%; height:90vh;" frameborder="0"></iframe>
                                         </div>
 
