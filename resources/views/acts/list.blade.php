@@ -95,7 +95,7 @@
 
                                         @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">No data</td>
+                                            <td colspan="5" class="text-center">No Acts</td>
                                         </tr>
                                         @endforelse
                                     </tbody>

@@ -86,7 +86,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No Sub Categories Found</td>
+                                            <td colspan="3" class="text-center">No Categories Found</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
