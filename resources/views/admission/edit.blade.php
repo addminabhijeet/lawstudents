@@ -76,7 +76,8 @@
                                     <label class="form-label fw-semibold">Full Name *</label>
                                     <input type="text" class="form-control" name="full_name"
                                         value="{{ old('full_name', $admission->full_name) }}"
-                                        placeholder="Enter full name">
+                                        placeholder="Enter full name"
+                                        oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
                                 </div>
 
                                 <!-- Email Section -->
