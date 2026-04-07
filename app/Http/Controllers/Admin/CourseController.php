@@ -834,12 +834,14 @@ class CourseController extends Controller
 
         return back()->with('success', 'Banner updated successfully.');
     }
-
+    
     public function storecategory(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:categories,name',
             'parent_id' => 'nullable|exists:categories,id'
+        ], [
+            'name.unique' => 'This category already exists.'
         ]);
 
         Category::create([
