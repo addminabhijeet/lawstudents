@@ -126,7 +126,7 @@
                                         @endforeach
                                         @if ($admissions->isEmpty())
                                             <tr>
-                                                <td colspan="8" class="text-center text-muted">No admissions found.
+                                                <td colspan="8" class="text-center text-muted">No Admissions found.
                                                 </td>
                                             </tr>
                                         @endif

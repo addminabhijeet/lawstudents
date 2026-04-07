@@ -121,7 +121,7 @@
                                         @endforeach
                                         @if ($students->isEmpty())
                                             <tr>
-                                                <td colspan="8" class="text-center text-muted">No students found.
+                                                <td colspan="8" class="text-center text-muted">No Students found.
                                                 </td>
                                             </tr>
                                         @endif

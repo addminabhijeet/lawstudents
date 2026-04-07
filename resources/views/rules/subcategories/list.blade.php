@@ -70,7 +70,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="5" class="text-center">No subcategories found</td>
+                                            <td colspan="5" class="text-center">No Sub Categories found</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
