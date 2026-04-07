@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use App\Models\NoteWishlist;
 use App\Models\NoteProgress;
+use Illuminate\Support\Facades\File;
 use setasign\Fpdi\Fpdi;
 
 class CourseControllerStu extends Controller
@@ -256,7 +257,13 @@ class CourseControllerStu extends Controller
             'activity_type' => 'download_note'
         ]);
 
-        $tempFile = storage_path('app/temp/watermarked_' . time() . '.pdf');
+        $tempDir = storage_path('app/temp');
+
+        if (!File::exists($tempDir)) {
+            File::makeDirectory($tempDir, 0775, true);
+        }
+
+        $tempFile = $tempDir . '/watermarked_' . time() . '.pdf';
 
         $pdf = new Fpdi();
         $pageCount = $pdf->setSourceFile($filePath);
