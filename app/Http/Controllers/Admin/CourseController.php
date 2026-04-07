@@ -43,11 +43,12 @@ class CourseController extends Controller
 
     public function listcoursecategory()
     {
+        // Paginate categories instead of using get()
         $categories = Category::with(['courses' => function ($query) {
             $query->where('delete', 1); // filter courses
         }])
             ->where('delete', 1) // filter categories
-            ->get();
+            ->paginate(10); // set pagination, 10 per page
 
         return view('course.listcategory', compact('categories'));
     }
@@ -58,7 +59,7 @@ class CourseController extends Controller
             $query->where('delete', 1); // filter courses
         }])
             ->where('delete', 1) // filter categories
-            ->get();
+            ->paginate(10);
 
         return view('course.listsubcategory', compact('categories'));
     }
