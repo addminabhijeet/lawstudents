@@ -160,7 +160,7 @@ class RoutingController extends Controller
                         'invoice_label'    => 'Remaining Payment',
                         'invoice_number'   => $nextInvoiceNumber,
                         'invoice_product'  => $currentPayment->invoice_product,
-                        'issue_date'       => null,
+                        'issue_date'       => now(),
                         'due_date'         => null,
                         'to_name'          => $currentPayment->to_name,
                         'to_email'         => $currentPayment->to_email,
