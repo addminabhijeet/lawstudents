@@ -258,9 +258,17 @@
                                                 </div>
                                             </div>
                                             @endforeach
+
+                                            {{-- Show message if no course available --}}
+                                            @if($courses->isEmpty())
+                                            <div class="col-12">
+                                                <div class="alert alert-warning text-center mb-0">
+                                                    Please add course
+                                                </div>
+                                            </div>
+                                            @endif
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="mb-3">
