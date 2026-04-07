@@ -834,7 +834,7 @@ class CourseController extends Controller
 
         return back()->with('success', 'Banner updated successfully.');
     }
-    
+
     public function storecategory(Request $request)
     {
         $request->validate([
@@ -888,19 +888,19 @@ class CourseController extends Controller
         return back()->with('success', 'Category Updated Successfully');
     }
 
-
     public function storecourse(Request $request)
     {
         $request->validate([
             'category_id' => 'required|exists:categories,id',
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:courses,title',
             'description' => 'nullable|string',
             'price' => 'nullable|numeric',
 
-            // NEW FIELDS
             'duration' => 'nullable|integer|min:1',
             'discount' => 'nullable|numeric|min:0',
             'brochure' => 'nullable|mimes:pdf|max:2048'
+        ], [
+            'title.unique' => 'This course already exists.'
         ]);
 
         $brochurePath = null;
@@ -915,8 +915,6 @@ class CourseController extends Controller
             'slug' => Str::slug($request->title),
             'description' => $request->description,
             'price' => $request->price,
-
-            // NEW FIELDS
             'duration' => $request->duration,
             'discount' => $request->discount ?? 0,
             'brochure' => $brochurePath,
