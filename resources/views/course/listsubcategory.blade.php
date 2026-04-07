@@ -393,7 +393,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Category</h5>
+                <h5 class="modal-title">Add Sub Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
@@ -425,7 +425,7 @@
 
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">
-                        Add Category
+                        Add Sub Category
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                         Cancel
