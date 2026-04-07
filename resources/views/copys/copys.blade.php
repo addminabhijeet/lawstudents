@@ -99,24 +99,24 @@
 
                                 @foreach ($sub->copys as $copy)
                                 @foreach ($copy->pdfs as $index => $pdf)
-                                <div style="margin-top:5px; display:flex; justify-content:space-between;">
+                                <div style="margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
                                     <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
                                     <div>
-                                        <div class="container my-5">
-                                            <h3>View PDF</h3>
-                                            <iframe src="{{ route('frontend.viewnoteWatermarked', [$copy->id, $index]) }}"
-                                                style="width:100%; height:90vh;" frameborder="0"></iframe>
-                                        </div>
-
-                                        @if (auth()->check())
-                                        <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
+                                        @if(auth()->check())
+                                        <a href="{{ route('frontend.viewnoteWatermarked', [$copy->id, $index]) }}"
+                                            target="_blank"
                                             style="font-size:12px; color:green;">
+                                            View PDF
+                                        </a>
+                                        <span style="margin:0 5px;">|</span>
+                                        <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
+                                            style="font-size:12px; color:blue;">
                                             Download
                                         </a>
                                         @else
                                         <a href="{{ route('google.login') }}"
                                             style="font-size:12px; color:green;">
-                                            Download
+                                            View PDF
                                         </a>
                                         @endif
                                     </div>
