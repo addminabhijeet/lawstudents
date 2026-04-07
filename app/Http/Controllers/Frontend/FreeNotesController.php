@@ -20,9 +20,13 @@ class FreeNotesController extends Controller
             'subcategories.copys'
         ])->get();
 
-        return view('copys.copys', compact('categories'));
-    }
+        // Add default values to prevent undefined variable error
+        $filePath = '';
+        $studentName = 'Guest';
+        $studentEmail = 'guest@example.com';
 
+        return view('copys.copys', compact('categories', 'filePath', 'studentName', 'studentEmail'));
+    }
     // 🔍 SEARCH
     public function search(Request $request)
     {
