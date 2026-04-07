@@ -102,10 +102,11 @@
                                 <div style="margin-top:5px; display:flex; justify-content:space-between;">
                                     <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
                                     <div>
-                                        <button class="btn btn-sm btn-outline-primary"
-                                                onclick="openPDF(`{{ route('frontend.viewnote', $copy->id) }}?token={{ $token }}`, `{{ $copy->id }}`)">
-                                                View
-                                            </button>
+                                        <div class="container my-5">
+                                            <h3>View PDF</h3>
+                                            <iframe src="{{ route('frontend.viewnoteWatermarked', [$copyId, $pdfIndex]) }}"
+                                                style="width:100%; height:90vh;" frameborder="0"></iframe>
+                                        </div>
 
                                         @if (auth()->check())
                                         <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"

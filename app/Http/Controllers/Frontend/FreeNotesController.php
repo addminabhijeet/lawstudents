@@ -132,4 +132,54 @@ class FreeNotesController extends Controller
             'studentEmail' => 'guest@example.com',
         ]);
     }
+
+    public function viewnoteWatermarked($id, $index = 0)
+    {
+        $copy = Copy::findOrFail($id);
+
+        if (!isset($copy->pdfs[$index])) {
+            abort(404);
+        }
+
+        $file = $copy->pdfs[$index];
+
+        if (!Storage::disk('public')->exists($file)) {
+            abort(404);
+        }
+
+        $path = Storage::disk('public')->path($file);
+
+        // ===== WATERMARK LOGIC (same as download) =====
+        $tempDir = storage_path('app/temp');
+
+        if (!File::exists($tempDir)) {
+            File::makeDirectory($tempDir, 0775, true);
+        }
+
+        $tempFile = $tempDir . '/view_watermarked_' . time() . '.pdf';
+
+        $pdf = new Fpdi();
+        $pageCount = $pdf->setSourceFile($path);
+
+        $watermarkText = 'Law Students'; // same watermark as download
+
+        for ($i = 1; $i <= $pageCount; $i++) {
+            $template = $pdf->importPage($i);
+            $size = $pdf->getTemplateSize($template);
+
+            $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
+            $pdf->useTemplate($template);
+
+            // Watermark
+            $pdf->SetFont('Arial', 'B', 20);
+            $pdf->SetTextColor(150, 150, 150);
+            $pdf->SetXY(0, $size['height'] / 2);
+            $pdf->Cell(0, 10, $watermarkText, 0, 1, 'C');
+        }
+
+        $pdf->Output($tempFile, 'F');
+
+        // Stream to browser for inline viewing
+        return response()->file($tempFile);
+    }
 }
