@@ -343,7 +343,7 @@ class StudentAdmissinController extends Controller
                     'invoice_number'  => $nextInvoiceNumber,
                     'invoice_product' => $courses->pluck('title')->implode(', '),
 
-                    'issue_date'      => $admission->issue_date,
+                    'issue_date' => now(),
                     'due_date'        => $admission->due_date,
 
                     'to_name'         => $admission->full_name,
