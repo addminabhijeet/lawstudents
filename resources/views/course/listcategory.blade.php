@@ -197,7 +197,7 @@
 
             <form id="deleteCategoryForm" method="POST">
                 @csrf
-       
+                @method('DELETE')
 
                 <div class="modal-body text-center">
                     <h6>Are you sure you want to delete this category?</h6>
@@ -212,7 +212,6 @@
                         Cancel
                     </button>
                 </div>
-
             </form>
 
         </div>
@@ -397,8 +396,8 @@
                             @endforeach
                         </select>-->
 
-                        <!-- Add checkbox for main category -->
-                        <!--<div class="form-check mt-2">
+                    <!-- Add checkbox for main category -->
+                    <!--<div class="form-check mt-2">
                             <input type="checkbox" class="form-check-input" id="mainCategoryCheck">
                             <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
                         </div> 
