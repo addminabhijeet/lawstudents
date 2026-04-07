@@ -102,11 +102,8 @@ class CourseNoteController extends Controller
             'file_path'       => $path,
             'file_size'       => $file->getSize(),
             'page_count'      => null,
-            'is_downloadable' => $request->has('is_downloadable'),
             'status'          => true,
             'download_count'  => 0,
-            'version'         => $request->version ?? '1.0',
-            'visibility'      => $request->visibility ?? 'enrolled',
         ]);
 
         return back()->with('success', 'PDF Note uploaded successfully.');
@@ -124,9 +121,6 @@ class CourseNoteController extends Controller
 
         $note->course_id       = $request->course_id;
         $note->title           = $request->title;
-        $note->version         = $request->version ?? $note->version;
-        $note->visibility      = $request->visibility ?? 'enrolled';
-        $note->is_downloadable = $request->has('is_downloadable');
 
         // If new PDF uploaded
         if ($request->hasFile('pdf')) {
