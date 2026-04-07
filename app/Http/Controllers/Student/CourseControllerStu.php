@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use App\Models\NoteWishlist;
 use App\Models\NoteProgress;
-use Illuminate\Support\Facades\Log;
+use setasign\Fpdi\Fpdi;
 
 class CourseControllerStu extends Controller
 {
@@ -256,6 +256,31 @@ class CourseControllerStu extends Controller
             'activity_type' => 'download_note'
         ]);
 
-        return response()->download($filePath, $note->title . '.pdf');
+        $tempFile = storage_path('app/temp/watermarked_' . time() . '.pdf');
+
+        $pdf = new Fpdi();
+        $pageCount = $pdf->setSourceFile($filePath);
+
+        $watermarkText = 'Law Students';
+
+        for ($i = 1; $i <= $pageCount; $i++) {
+
+            $template = $pdf->importPage($i);
+            $size = $pdf->getTemplateSize($template);
+
+            $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
+            $pdf->useTemplate($template);
+
+            // Watermark
+            $pdf->SetFont('Arial', 'B', 20);
+            $pdf->SetTextColor(150, 150, 150);
+
+            $pdf->SetXY(0, $size['height'] / 2);
+            $pdf->Cell(0, 10, $watermarkText, 0, 1, 'C');
+        }
+
+        $pdf->Output($tempFile, 'F');
+
+        return response()->download($tempFile, $note->title . '.pdf')->deleteFileAfterSend(true);
     }
 }
