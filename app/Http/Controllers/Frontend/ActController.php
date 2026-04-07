@@ -67,6 +67,7 @@ class ActController extends Controller
     }
 
     // 👁 VIEW PDF
+    // 👁 VIEW PDF (Updated to return Blade view)
     public function viewnotes($id, $index = 0)
     {
         $act = Act::findOrFail($id);
@@ -83,6 +84,14 @@ class ActController extends Controller
 
         $path = Storage::disk('public')->path($file);
 
-        return response()->file($path);
+        // Use the main Blade view and pass modal-specific variables
+        $categories = ActCategory::with(['subcategories.acts'])->get();
+
+        return view('acts.acts', [
+            'categories' => $categories,
+            'filePath' => asset('storage/app/public/' . $file), // Correct public path
+            'studentName' => 'Guest',
+            'studentEmail' => 'guest@example.com',
+        ]);
     }
 }
