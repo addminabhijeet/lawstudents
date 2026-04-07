@@ -77,14 +77,20 @@
                                     <input type="text" class="form-control" name="full_name"
                                         value="{{ old('full_name', $admission->full_name) }}"
                                         placeholder="Enter full name"
-                                        oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
+                                        oninput="this.value = this.value
+            .replace(/[^a-zA-Z\s]/g, '')  // allow only letters and spaces
+            .replace(/\b\w/g, c => c.toUpperCase())"> <!-- capitalize first letter of each word -->
                                 </div>
 
                                 <!-- Email Section -->
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Email ID</label>
                                     <input type="email" class="form-control mb-2" name="email"
-                                        value="{{ old('email', $admission->email) }}" placeholder="Enter email">
+                                        value="{{ old('email', $admission->email) }}" placeholder="Enter email"
+                                        oninput="this.value = this.value
+                                        .replace(/[^a-z0-9@.]/g, '') // allow only lowercase letters, numbers, @, .
+                                        .replace(/@/g, (m, i, s) => s.indexOf('@') === i ? m : '') // allow only first @
+                                        .replace(/\./g, (m, i, s) => s.indexOf('.') === i ? m : '')">
 
                                     <div class="d-flex gap-2 mb-2">
                                         <button type="button" onclick="sendEmailOtp()"
