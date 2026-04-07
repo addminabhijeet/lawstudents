@@ -74,142 +74,80 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Full Name *</label>
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Full Name *</label>
-                                        <input type="text" class="form-control" name="full_name"
-                                            value="{{ old('full_name', $admission->full_name) }}"
-                                            placeholder="Enter full name"
-                                            oninput="formatFullName(this)">
-                                    </div>
 
-                                    <script>
-                                        function formatFullName(input) {
-                                            let value = input.value;
+                                    <input type="text" class="form-control" name="full_name"
+                                        value="{{ old('full_name', $admission->full_name) }}"
+                                        placeholder="Enter full name"
+                                        oninput="formatFullName(this)">
+                                </div>
 
-                                            // Remove everything except letters and spaces
-                                            value = value.replace(/[^a-zA-Z\s]/g, '');
+                                <script>
+                                    function formatFullName(input) {
+                                        let value = input.value;
 
-                                            // Capitalize first letter of each word
-                                            value = value.replace(/\b\w/g, c => c.toUpperCase());
+                                        // Remove everything except letters and spaces
+                                        value = value.replace(/[^a-zA-Z\s]/g, '');
 
-                                            input.value = value;
+                                        // Capitalize first letter of each word
+                                        value = value.replace(/\b\w/g, c => c.toUpperCase());
+
+                                        input.value = value;
+                                    }
+                                </script>
+
+                                <!-- Email Section -->
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Email ID</label>
+                                    <input type="email" class="form-control mb-2" name="email"
+                                        value="{{ old('email', $admission->email) }}" placeholder="Enter email"
+                                        oninput="restrictEmail(this)">
+                                </div>
+
+                                <script>
+                                    function restrictEmail(input) {
+                                        let value = input.value;
+
+                                        // Step 1: remove everything except lowercase letters, numbers, @, and .
+                                        value = value.replace(/[^a-z0-9@.]/g, '');
+
+                                        // Step 2: allow only the first @
+                                        let atIndex = value.indexOf('@');
+                                        if (atIndex !== -1) {
+                                            value = value.slice(0, atIndex + 1) + value.slice(atIndex + 1).replace(/@/g, '');
                                         }
-                                    </script>
 
-                                    <!-- Email Section -->
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Email ID</label>
-                                        <div class="mb-3">
-                                            <label class="form-label fw-semibold">Email ID</label>
-                                            <input type="email" class="form-control mb-2" name="email"
-                                                value="{{ old('email', $admission->email) }}" placeholder="Enter email"
-                                                oninput="restrictEmail(this)">
-                                        </div>
-
-                                        <script>
-                                            function restrictEmail(input) {
-                                                let value = input.value;
-
-                                                // Step 1: remove everything except lowercase letters, numbers, @, and .
-                                                value = value.replace(/[^a-z0-9@.]/g, '');
-
-                                                // Step 2: allow only the first @
-                                                let atIndex = value.indexOf('@');
-                                                if (atIndex !== -1) {
-                                                    value = value.slice(0, atIndex + 1) + value.slice(atIndex + 1).replace(/@/g, '');
-                                                }
-
-                                                // Step 3: allow only the first .
-                                                let dotIndex = value.indexOf('.');
-                                                if (dotIndex !== -1) {
-                                                    value = value.slice(0, dotIndex + 1) + value.slice(dotIndex + 1).replace(/\./g, '');
-                                                }
-
-                                                input.value = value;
-                                            }
-                                        </script>
-                                        <div class="d-flex gap-2 mb-2">
-                                            <button type="button" onclick="sendEmailOtp()"
-                                                class="btn btn-outline-primary btn-sm">
-                                                Send OTP
-                                            </button>
-                                        </div>
-
-                                        <div class="input-group">
-                                            <input type="number" name="email_otp" id="emailOtp" class="form-control"
-                                                placeholder="Enter Email OTP">
-                                            <button type="button" onclick="verifyEmailOtp()" class="btn btn-success">
-                                                Verify
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Phone Section -->
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Contact Number</label>
-                                        <input type="text" class="form-control mb-2" name="phone"
-                                            value="{{ old('phone', $admission->phone) }}" placeholder="Enter phone number"
-                                            oninput="formatPhone(this)">
-
-                                        <script>
-                                            function formatPhone(input) {
-                                                let value = input.value;
-
-                                                // Remove anything that's not a number
-                                                value = value.replace(/[^0-9]/g, '');
-
-                                                // Limit to maximum 10 digits
-                                                value = value.slice(0, 10);
-
-                                                // Prepend +91
-                                                input.value = '+91' + value;
-                                            }
-                                        </script>
-                                        <!-- <div class="d-flex gap-2 mb-2">
-                                        <button type="button" onclick="sendPhoneOtp()"
-                                            class="btn btn-outline-primary btn-sm">
-                                            Send OTP
-                                        </button>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <input type="text" name="phone_otp" id="phoneOtp" class="form-control"
-                                            placeholder="Enter Phone OTP">
-                                        <button type="button" onclick="verifyPhoneOtp()" class="btn btn-success">
-                                            Verify
-                                        </button>
-                                    </div> -->
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Father's / Guardian Name</label>
-                                        <input type="text" class="form-control" name="father_name"
-                                            placeholder="Enter guardian name"
-                                            value="{{ old('father_name', $admission->father_name) }}"
-                                            oninput="formatFullName(this)">
-                                    </div>
-
-                                    <script>
-                                        function formatFullName(input) {
-                                            let value = input.value;
-
-                                            // Remove everything except letters and spaces
-                                            value = value.replace(/[^a-zA-Z\s]/g, '');
-
-                                            // Capitalize first letter of each word
-                                            value = value.replace(/\b\w/g, c => c.toUpperCase());
-
-                                            input.value = value;
+                                        // Step 3: allow only the first .
+                                        let dotIndex = value.indexOf('.');
+                                        if (dotIndex !== -1) {
+                                            value = value.slice(0, dotIndex + 1) + value.slice(dotIndex + 1).replace(/\./g, '');
                                         }
-                                    </script>
 
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Guardian Contact Number</label>
-                                        <input type="text" class="form-control mb-2" name="guardian_phone"
-                                            value="{{ old('guardian_phone', $admission->guardian_phone) }}"
-                                            placeholder="Enter guardian phone number"
-                                            oninput="formatPhone(this)">
-                                    </div>
+                                        input.value = value;
+                                    }
+                                </script>
+                                <div class="d-flex gap-2 mb-2">
+                                    <button type="button" onclick="sendEmailOtp()"
+                                        class="btn btn-outline-primary btn-sm">
+                                        Send OTP
+                                    </button>
+                                </div>
+
+                                <div class="input-group">
+                                    <input type="number" name="email_otp" id="emailOtp" class="form-control"
+                                        placeholder="Enter Email OTP">
+                                    <button type="button" onclick="verifyEmailOtp()" class="btn btn-success">
+                                        Verify
+                                    </button>
+                                </div>
+
+
+                                <!-- Phone Section -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Contact Number</label>
+                                    <input type="text" class="form-control mb-2" name="phone"
+                                        value="{{ old('phone', $admission->phone) }}" placeholder="Enter phone number"
+                                        oninput="formatPhone(this)">
 
                                     <script>
                                         function formatPhone(input) {
@@ -225,268 +163,328 @@
                                             input.value = '+91' + value;
                                         }
                                     </script>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Choose from below Course</label>
-
-                                        <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
-                                            <div class="row">
-                                                @foreach ($courses as $course)
-                                                <div class="col-md-6">
-                                                    <div class="form-check mb-2 p-2 border rounded">
-                                                        <input class="form-check-input course-checkbox"
-                                                            type="checkbox" name="course_ids[]"
-                                                            value="{{ $course->id }}"
-                                                            data-price="{{ $course->price }}"
-                                                            id="course{{ $course->id }}"
-                                                            {{ in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : '' }}>
-
-                                                        <label class="form-check-label fw-semibold"
-                                                            for="course{{ $course->id }}">
-                                                            {{ $course->title }}
-                                                            <br>
-                                                            <small class="text-muted">
-                                                                ₹{{ $course->price }} | {{ $course->duration }}
-                                                            </small>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-
+                                    <!-- <div class="d-flex gap-2 mb-2">
+                                        <button type="button" onclick="sendPhoneOtp()"
+                                            class="btn btn-outline-primary btn-sm">
+                                            Send OTP
+                                        </button>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Admission Status</label>
-                                        <select class="form-select" name="admission_status">
-                                            <option value="pending"
-                                                {{ old('admission_status', $admission->admission_status) == 'pending' ? 'selected' : '' }}>
-                                                Pending</option>
-                                            <option value="approved"
-                                                {{ old('admission_status', $admission->admission_status) == 'approved' ? 'selected' : '' }}>
-                                                Approved</option>
-                                            <option value="rejected"
-                                                {{ old('admission_status', $admission->admission_status) == 'rejected' ? 'selected' : '' }}>
-                                                Rejected</option>
-                                        </select>
-                                    </div>
-
+                                    <div class="input-group">
+                                        <input type="text" name="phone_otp" id="phoneOtp" class="form-control"
+                                            placeholder="Enter Phone OTP">
+                                        <button type="button" onclick="verifyPhoneOtp()" class="btn btn-success">
+                                            Verify
+                                        </button>
+                                    </div> -->
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- RIGHT COLUMN -->
-                        <div class="col-xl-6">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-
-                                    <h6 class="fw-bold mb-4 text-primary">Address & Documents</h6>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Address</label>
-                                        <div class="row">
-                                            <div class="mb-3">
-                                                <input type="text" class="form-control" name="address_line1"
-                                                    placeholder="Address Line 1"
-                                                    value="{{ old('address_line1', $admission->address_line1) }}">
-                                            </div>
-                                            <div class="mb-3">
-                                                <input type="text" class="form-control" name="address_line2"
-                                                    placeholder="Address Line 2"
-                                                    value="{{ old('address_line2', $admission->address_line2) }}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">Pincode</label>
-                                        <input type="text" class="form-control mb-2" name="pincode"
-                                            value="{{ old('pincode', $admission->pincode) }}"
-                                            placeholder="Enter pincode">
-                                    </div>
-
-                                    <!-- Passport Photo -->
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold">
-                                            Passport Size Photo (JPEG/PNG)
-                                            <small class="text-muted">(Max 2MB)</small>
-                                        </label>
-                                        <input type="file" name="photo" id="photoInput" class="form-control mb-2"
-                                            accept="image/*" onchange="validateAndPreview(event, 'photoPreview', 2)">
-
-                                        <div class="invalid-feedback" id="photoError"></div>
-
-                                        <div class="text-center">
-
-                                            @if ($admission->photo)
-                                            <img id="photoPreview"
-                                                src="{{ asset('storage/app/public/' . $admission->photo) }}"
-                                                class="img-thumbnail" style="max-height: 180px;">
-                                            @else
-                                            <img id="photoPreview" class="img-thumbnail d-none"
-                                                style="max-height: 180px;">
-                                            @endif
-
-                                        </div>
-                                    </div>
-
-                                    <!-- Signature -->
-                                    <div class="mb-3">
-                                        <label class="form-label fw-semibold">
-                                            Signature (JPEG/PNG)
-                                            <small class="text-muted">(Max 1MB)</small>
-                                        </label>
-                                        <input type="file" name="signature" id="signInput" class="form-control mb-2"
-                                            accept="image/*" onchange="validateAndPreview(event, 'signPreview', 1)">
-
-                                        <div class="invalid-feedback" id="signError"></div>
-
-                                        <div class="text-center">
-                                            @if ($admission->signature)
-                                            <img id="signPreview"
-                                                src="{{ asset('storage/app/public/' . $admission->signature) }}"
-                                                class="img-thumbnail" style="max-height:150px;">
-                                            @else
-                                            <img id="signPreview" class="img-thumbnail d-none"
-                                                style="max-height:150px;">
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Fee Structure Section -->
-                                    <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
-
-                                    <div class="mb-3">
-                                        <div class="d-flex justify-content-between">
-                                            <span>Subtotal:</span>
-                                            <span>₹<span id="subtotal">0.00</span></span>
-                                        </div>
-
-                                        <div class="d-flex justify-content-between align-items-center mt-2">
-                                            <span>Discount %:</span>
-                                            <input type="number" id="customDiscount" class="form-control"
-                                                min="0" max="100"
-                                                value="{{ old('discount_percent', $admission->discount_percent ?? 0) }}">
-                                        </div>
-
-                                        <div class="d-flex justify-content-between">
-                                            <span>Discount:</span>
-                                            <span>- ₹<span id="discount">0.00</span></span>
-                                        </div>
-
-                                        <hr>
-
-                                        <!-- Hidden fields for backend -->
-                                        <input type="hidden" name="discount_percent" id="discountPercentInput"
-                                            value="{{ old('discount_percent', $admission->discount_percent ?? 0) }}">
-                                        <input type="hidden" name="discount" id="discountInput"
-                                            value="{{ old('discount', $admission->discount ?? 0) }}">
-
-                                        <div class="d-flex justify-content-between fw-bold">
-                                            <span>Total Payable:</span>
-                                            <span>₹<span id="grandtotal">0.00</span></span>
-                                        </div>
-
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <span class="fw-semibold">Paid Amount:</span>
-                                            <input type="number" name="paidamount" id="paidamount"
-                                                class="form-control w-50" min="0"
-                                                value="{{ old('paidamount', $admission->paidamount ?? 0) }}">
-                                        </div>
-
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <span class="fw-semibold">Remaining Amount:</span>
-                                            <span>₹<span
-                                                    id="remainingamount">{{ old('remamount', $admission->remamount ?? 0) }}</span></span>
-                                        </div>
-
-                                        <input type="hidden" name="remamount" id="remamount"
-                                            value="{{ old('remamount', $admission->remamount ?? 0) }}">
-                                    </div>
-
-                                    <!-- Declaration -->
-                                    @if (isset($declaration))
-                                    <div class="form-check mt-4">
-                                        <input class="form-check-input" type="checkbox" name="declaration_accept"
-                                            id="declarationCheck" required>
-
-                                        <label class="form-check-label" for="declarationCheck">
-                                            {!! $declaration->declaration !!}
-                                        </label>
-                                    </div>
-                                    @endif
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h6 class="card-title">Aadhar Card Upload</h6>
 
                                 <div class="mb-3">
+                                    <label class="form-label fw-semibold">Father's / Guardian Name</label>
+                                    <input type="text" class="form-control" name="father_name"
+                                        placeholder="Enter guardian name"
+                                        value="{{ old('father_name', $admission->father_name) }}"
+                                        oninput="formatFullName(this)">
+                                </div>
+
+                                <script>
+                                    function formatFullName(input) {
+                                        let value = input.value;
+
+                                        // Remove everything except letters and spaces
+                                        value = value.replace(/[^a-zA-Z\s]/g, '');
+
+                                        // Capitalize first letter of each word
+                                        value = value.replace(/\b\w/g, c => c.toUpperCase());
+
+                                        input.value = value;
+                                    }
+                                </script>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Guardian Contact Number</label>
+                                    <input type="text" class="form-control mb-2" name="guardian_phone"
+                                        value="{{ old('guardian_phone', $admission->guardian_phone) }}"
+                                        placeholder="Enter guardian phone number"
+                                        oninput="formatPhone(this)">
+                                </div>
+
+                                <script>
+                                    function formatPhone(input) {
+                                        let value = input.value;
+
+                                        // Remove anything that's not a number
+                                        value = value.replace(/[^0-9]/g, '');
+
+                                        // Limit to maximum 10 digits
+                                        value = value.slice(0, 10);
+
+                                        // Prepend +91
+                                        input.value = '+91' + value;
+                                    }
+                                </script>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Choose from below Course</label>
+
+                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
+                                        <div class="row">
+                                            @foreach ($courses as $course)
+                                            <div class="col-md-6">
+                                                <div class="form-check mb-2 p-2 border rounded">
+                                                    <input class="form-check-input course-checkbox"
+                                                        type="checkbox" name="course_ids[]"
+                                                        value="{{ $course->id }}"
+                                                        data-price="{{ $course->price }}"
+                                                        id="course{{ $course->id }}"
+                                                        {{ in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : '' }}>
+
+                                                    <label class="form-check-label fw-semibold"
+                                                        for="course{{ $course->id }}">
+                                                        {{ $course->title }}
+                                                        <br>
+                                                        <small class="text-muted">
+                                                            ₹{{ $course->price }} | {{ $course->duration }}
+                                                        </small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Admission Status</label>
+                                    <select class="form-select" name="admission_status">
+                                        <option value="pending"
+                                            {{ old('admission_status', $admission->admission_status) == 'pending' ? 'selected' : '' }}>
+                                            Pending</option>
+                                        <option value="approved"
+                                            {{ old('admission_status', $admission->admission_status) == 'approved' ? 'selected' : '' }}>
+                                            Approved</option>
+                                        <option value="rejected"
+                                            {{ old('admission_status', $admission->admission_status) == 'rejected' ? 'selected' : '' }}>
+                                            Rejected</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div class="col-xl-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+
+                                <h6 class="fw-bold mb-4 text-primary">Address & Documents</h6>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Address</label>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" name="address_line1"
+                                                placeholder="Address Line 1"
+                                                value="{{ old('address_line1', $admission->address_line1) }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" name="address_line2"
+                                                placeholder="Address Line 2"
+                                                value="{{ old('address_line2', $admission->address_line2) }}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Pincode</label>
+                                    <input type="text" class="form-control mb-2" name="pincode"
+                                        value="{{ old('pincode', $admission->pincode) }}"
+                                        placeholder="Enter pincode">
+                                </div>
+
+                                <!-- Passport Photo -->
+                                <div class="mb-4">
                                     <label class="form-label fw-semibold">
-                                        ID Proof (PDF)
+                                        Passport Size Photo (JPEG/PNG)
                                         <small class="text-muted">(Max 2MB)</small>
                                     </label>
-                                    <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
-                                        accept="application/pdf"
-                                        onchange="previewPDF(event, 'idProofPreviewCard', 'idProofButtonCard')">
+                                    <input type="file" name="photo" id="photoInput" class="form-control mb-2"
+                                        accept="image/*" onchange="validateAndPreview(event, 'photoPreview', 2)">
 
-                                    <div class="invalid-feedback" id="idProofErrorCard"></div>
+                                    <div class="invalid-feedback" id="photoError"></div>
 
-                                    <div class="text-center mt-2">
-                                        @if ($admission->id_proof)
-                                        <!-- Button hidden when iframe is displayed -->
-                                        <!-- <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                        target="_blank" class="btn btn-outline-primary w-100 mb-2">
-                                        View Current ID Proof
-                                    </a> -->
-                                        <!-- Inline iframe for uploaded PDF -->
-                                        <iframe id="idProofPreviewCard"
-                                            src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                            style="display:block; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                                    <div class="text-center">
+
+                                        @if ($admission->photo)
+                                        <img id="photoPreview"
+                                            src="{{ asset('storage/app/public/' . $admission->photo) }}"
+                                            class="img-thumbnail" style="max-height: 180px;">
                                         @else
-                                        <a id="idProofButtonCard" class="btn btn-outline-secondary w-100 mb-2">
-                                            No file selected
-                                        </a>
-                                        <iframe id="idProofPreviewCard"
-                                            style="display:none; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                                        <img id="photoPreview" class="img-thumbnail d-none"
+                                            style="max-height: 180px;">
+                                        @endif
+
+                                    </div>
+                                </div>
+
+                                <!-- Signature -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">
+                                        Signature (JPEG/PNG)
+                                        <small class="text-muted">(Max 1MB)</small>
+                                    </label>
+                                    <input type="file" name="signature" id="signInput" class="form-control mb-2"
+                                        accept="image/*" onchange="validateAndPreview(event, 'signPreview', 1)">
+
+                                    <div class="invalid-feedback" id="signError"></div>
+
+                                    <div class="text-center">
+                                        @if ($admission->signature)
+                                        <img id="signPreview"
+                                            src="{{ asset('storage/app/public/' . $admission->signature) }}"
+                                            class="img-thumbnail" style="max-height:150px;">
+                                        @else
+                                        <img id="signPreview" class="img-thumbnail d-none"
+                                            style="max-height:150px;">
                                         @endif
                                     </div>
                                 </div>
+
+                                <!-- Fee Structure Section -->
+                                <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Subtotal:</span>
+                                        <span>₹<span id="subtotal">0.00</span></span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <span>Discount %:</span>
+                                        <input type="number" id="customDiscount" class="form-control"
+                                            min="0" max="100"
+                                            value="{{ old('discount_percent', $admission->discount_percent ?? 0) }}">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <span>Discount:</span>
+                                        <span>- ₹<span id="discount">0.00</span></span>
+                                    </div>
+
+                                    <hr>
+
+                                    <!-- Hidden fields for backend -->
+                                    <input type="hidden" name="discount_percent" id="discountPercentInput"
+                                        value="{{ old('discount_percent', $admission->discount_percent ?? 0) }}">
+                                    <input type="hidden" name="discount" id="discountInput"
+                                        value="{{ old('discount', $admission->discount ?? 0) }}">
+
+                                    <div class="d-flex justify-content-between fw-bold">
+                                        <span>Total Payable:</span>
+                                        <span>₹<span id="grandtotal">0.00</span></span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Paid Amount:</span>
+                                        <input type="number" name="paidamount" id="paidamount"
+                                            class="form-control w-50" min="0"
+                                            value="{{ old('paidamount', $admission->paidamount ?? 0) }}">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Remaining Amount:</span>
+                                        <span>₹<span
+                                                id="remainingamount">{{ old('remamount', $admission->remamount ?? 0) }}</span></span>
+                                    </div>
+
+                                    <input type="hidden" name="remamount" id="remamount"
+                                        value="{{ old('remamount', $admission->remamount ?? 0) }}">
+                                </div>
+
+                                <!-- Declaration -->
+                                @if (isset($declaration))
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" name="declaration_accept"
+                                        id="declarationCheck" required>
+
+                                    <label class="form-check-label" for="declarationCheck">
+                                        {!! $declaration->declaration !!}
+                                    </label>
+                                </div>
+                                @endif
+
                             </div>
                         </div>
-
-                        <script>
-                            function previewPDF(event, iframeId, buttonId) {
-                                const file = event.target.files[0];
-                                const iframe = document.getElementById(iframeId);
-                                const button = document.getElementById(buttonId);
-
-                                if (file) {
-                                    const fileURL = URL.createObjectURL(file);
-                                    iframe.src = fileURL;
-                                    iframe.style.display = 'block'; // Show PDF
-                                    button.style.display = 'none'; // Hide button when viewing new file
-                                } else {
-                                    iframe.src = '';
-                                    iframe.style.display = 'none'; // Hide iframe if no file selected
-                                    button.style.display = 'inline-block'; // Show button fallback
-                                }
-                            }
-                        </script>
-
-                        <!-- SUBMIT BUTTON -->
-                        <div class="col-12 mb-3">
-                            <button type="submit" class="btn btn-primary w-100">
-                                Update Admission
-                            </button>
-                        </div>
-
                     </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="card-title">Aadhar Card Upload</h6>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">
+                                    ID Proof (PDF)
+                                    <small class="text-muted">(Max 2MB)</small>
+                                </label>
+                                <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
+                                    accept="application/pdf"
+                                    onchange="previewPDF(event, 'idProofPreviewCard', 'idProofButtonCard')">
+
+                                <div class="invalid-feedback" id="idProofErrorCard"></div>
+
+                                <div class="text-center mt-2">
+                                    @if ($admission->id_proof)
+                                    <!-- Button hidden when iframe is displayed -->
+                                    <!-- <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                        target="_blank" class="btn btn-outline-primary w-100 mb-2">
+                                        View Current ID Proof
+                                    </a> -->
+                                    <!-- Inline iframe for uploaded PDF -->
+                                    <iframe id="idProofPreviewCard"
+                                        src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
+                                        style="display:block; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                                    @else
+                                    <a id="idProofButtonCard" class="btn btn-outline-secondary w-100 mb-2">
+                                        No file selected
+                                    </a>
+                                    <iframe id="idProofPreviewCard"
+                                        style="display:none; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        function previewPDF(event, iframeId, buttonId) {
+                            const file = event.target.files[0];
+                            const iframe = document.getElementById(iframeId);
+                            const button = document.getElementById(buttonId);
+
+                            if (file) {
+                                const fileURL = URL.createObjectURL(file);
+                                iframe.src = fileURL;
+                                iframe.style.display = 'block'; // Show PDF
+                                button.style.display = 'none'; // Hide button when viewing new file
+                            } else {
+                                iframe.src = '';
+                                iframe.style.display = 'none'; // Hide iframe if no file selected
+                                button.style.display = 'inline-block'; // Show button fallback
+                            }
+                        }
+                    </script>
+
+                    <!-- SUBMIT BUTTON -->
+                    <div class="col-12 mb-3">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Update Admission
+                        </button>
+                    </div>
+
                 </div>
+            </div>
         </form>
     </div>
 </main>
