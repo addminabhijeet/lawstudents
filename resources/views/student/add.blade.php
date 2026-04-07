@@ -43,28 +43,28 @@
 
                             {{-- Display Login Errors and Validation Messages --}}
                             @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                </div>
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
                             @endif
 
                             @if (session('error'))
-                                <div class="alert alert-danger alert-dismissible fade show">
-                                    {{ session('error') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                </div>
+                            <div class="alert alert-danger alert-dismissible fade show">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
                             @endif
 
                             @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show">
-                                    {{ session('success') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                </div>
+                            <div class="alert alert-success alert-dismissible fade show">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
                             @endif
 
                             <form action="{{ route('admin.registerstusubmit') }}" method="POST" class="mt-4">
@@ -75,8 +75,23 @@
                                     <div class="col-lg-6 mb-3">
                                         <label for="name" class="form-label">Full Name</label>
                                         <input type="text" name="name" id="name" class="form-control"
-                                            placeholder="Full Name" required>
+                                            placeholder="Full Name"
+                                            oninput="formatFullName(this)" required>
                                     </div>
+
+                                    <script>
+                                        function formatFullName(input) {
+                                            let value = input.value;
+
+                                            // Remove everything except letters and spaces
+                                            value = value.replace(/[^a-zA-Z\s]/g, '');
+
+                                            // Capitalize first letter of each word
+                                            value = value.replace(/\b\w/g, c => c.toUpperCase());
+
+                                            input.value = value;
+                                        }
+                                    </script>
 
                                     <div class="col-lg-6 mb-3">
                                         <label for="username" class="form-label">Username</label>
@@ -87,8 +102,32 @@
                                     <div class="col-lg-6 mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" name="email" id="email" class="form-control"
-                                            placeholder="Email" required>
+                                            placeholder="Email"
+                                            oninput="restrictEmail(this)" required>
                                     </div>
+
+                                    <script>
+                                        function restrictEmail(input) {
+                                            let value = input.value;
+
+                                            // Step 1: remove everything except lowercase letters, numbers, @, and .
+                                            value = value.replace(/[^a-z0-9@.]/g, '');
+
+                                            // Step 2: allow only the first @
+                                            let atIndex = value.indexOf('@');
+                                            if (atIndex !== -1) {
+                                                value = value.slice(0, atIndex + 1) + value.slice(atIndex + 1).replace(/@/g, '');
+                                            }
+
+                                            // Step 3: allow only the first .
+                                            let dotIndex = value.indexOf('.');
+                                            if (dotIndex !== -1) {
+                                                value = value.slice(0, dotIndex + 1) + value.slice(dotIndex + 1).replace(/\./g, '');
+                                            }
+
+                                            input.value = value;
+                                        }
+                                    </script>
 
                                     <div class="col-lg-6 mb-3">
                                         <label for="newPassword" class="form-label">Password</label>
