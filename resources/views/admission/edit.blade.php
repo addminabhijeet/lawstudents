@@ -317,7 +317,10 @@
                                     <label class="form-label fw-semibold">Pincode</label>
                                     <input type="text" class="form-control mb-2" name="pincode"
                                         value="{{ old('pincode', $admission->pincode) }}"
-                                        placeholder="Enter pincode">
+                                        placeholder="Enter pincode"
+                                        maxlength="6"
+                                        pattern="\d{6}"
+                                        inputmode="numeric">
                                 </div>
 
                                 <!-- Passport Photo -->
@@ -452,12 +455,7 @@
 
                                 <div class="text-center mt-2">
                                     @if ($admission->id_proof)
-                                    <!-- Button hidden when iframe is displayed -->
-                                    <!-- <a id="idProofButtonCard" href="{{ asset('storage/app/public/' . $admission->id_proof) }}"
-                                        target="_blank" class="btn btn-outline-primary w-100 mb-2">
-                                        View Current ID Proof
-                                    </a> -->
-                                    <!-- Inline iframe for uploaded PDF -->
+
                                     <iframe id="idProofPreviewCard"
                                         src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
                                         style="display:block; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
