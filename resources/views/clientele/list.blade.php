@@ -15,6 +15,15 @@
             </div>
         </div>
 
+        <div class="page-header-right ms-auto">
+            <div class="d-flex align-items-center gap-2">
+                <a href="{{ route('admin.addclientele') }}" class="btn btn-primary">
+                    <i class="feather-plus me-2"></i>
+                    <span>Add Student</span>
+                </a>
+            </div>
+        </div>
+
         <!-- [ page-header ] end -->
         <!-- [ Main Content ] start -->
         <div class="main-content">
@@ -35,62 +44,62 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($clienteles as $clientele)
-                                            @php
-                                                // Make sure $pdfs is always an array of arrays
-                                                $pdfs = [];
-                                                if (!empty($clientele->pdfs)) {
-                                                    $pdfs[] = [
-                                                        'file' => $clientele->pdfs,
-                                                        'description' => $clientele->description,
-                                                    ];
-                                                }
-                                            @endphp
+                                        @php
+                                        // Make sure $pdfs is always an array of arrays
+                                        $pdfs = [];
+                                        if (!empty($clientele->pdfs)) {
+                                        $pdfs[] = [
+                                        'file' => $clientele->pdfs,
+                                        'description' => $clientele->description,
+                                        ];
+                                        }
+                                        @endphp
 
-                                            @if (!empty($pdfs))
-                                                @foreach ($pdfs as $key => $item)
-                                                    <tr class="single-item">
-                                                        <td>
-                                                            {{ $loop->iteration }}
-                                                        </td>
+                                        @if (!empty($pdfs))
+                                        @foreach ($pdfs as $key => $item)
+                                        <tr class="single-item">
+                                            <td>
+                                                {{ $loop->iteration }}
+                                            </td>
 
-                                                        <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
+                                            <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
 
-                                                        <td>{{ $item['description'] ?? 'No description' }}</td>
+                                            <td>{{ $item['description'] ?? 'No description' }}</td>
 
-                                                        <td>{{ \Carbon\Carbon::parse($clientele->created_at)->format('Y-m-d, h:i A') }}
-                                                        </td>
+                                            <td>{{ \Carbon\Carbon::parse($clientele->created_at)->format('Y-m-d, h:i A') }}
+                                            </td>
 
-                                                        <td>
-                                                            <div class="hstack gap-2 justify-content-end">
-                                                                <a href="{{ route('admin.editclientele', [$clientele->id]) }}"
-                                                                    class="btn btn-sm btn-primary">Edit</a>
+                                            <td>
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <a href="{{ route('admin.editclientele', [$clientele->id]) }}"
+                                                        class="btn btn-sm btn-primary">Edit</a>
 
-                                                                <a href="{{ asset('storage/app/public/' . $item['file']) }}"
-                                                                    class="btn btn-sm btn-primary">View</a>
+                                                    <a href="{{ asset('storage/app/public/' . $item['file']) }}"
+                                                        class="btn btn-sm btn-primary">View</a>
 
-                                                                <form method="POST"
-                                                                    action="{{ route('admin.clientelefiledelete', [$clientele->id]) }}"
-                                                                    class="d-inline">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <input type="hidden" name="file"
-                                                                        value="{{ $item['file'] }}">
-                                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                                        onclick="return confirm('Delete this file?')">Delete</button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @else
-                                                <tr>
-                                                    <td colspan="5" class="text-center">No Files Found</td>
-                                                </tr>
-                                            @endif
+                                                    <form method="POST"
+                                                        action="{{ route('admin.clientelefiledelete', [$clientele->id]) }}"
+                                                        class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="file"
+                                                            value="{{ $item['file'] }}">
+                                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Delete this file?')">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @else
+                                        <tr>
+                                            <td colspan="5" class="text-center">No Files Found</td>
+                                        </tr>
+                                        @endif
                                         @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center">No Client Found</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-center">No Client Found</td>
+                                        </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -108,11 +117,11 @@
 
                                             <!-- Page Numbers -->
                                             @foreach ($clienteles->getUrlRange(1, $clienteles->lastPage()) as $page => $url)
-                                                <li
-                                                    class="page-item {{ $clienteles->currentPage() == $page ? 'active' : '' }}">
-                                                    <a class="page-link"
-                                                        href="{{ $url }}">{{ $page }}</a>
-                                                </li>
+                                            <li
+                                                class="page-item {{ $clienteles->currentPage() == $page ? 'active' : '' }}">
+                                                <a class="page-link"
+                                                    href="{{ $url }}">{{ $page }}</a>
+                                            </li>
                                             @endforeach
 
                                             <!-- Next Page -->
