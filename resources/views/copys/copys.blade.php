@@ -92,7 +92,7 @@
                                 @foreach ($sub->copys as $copy)
                                 <div data-copy-id="{{ $copy->id }}" style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
                                     <div style="font-weight:600;">
-                                        {{ $rule->description }}
+                                        {{ $copy->description }}
                                     </div>
                                     @foreach ($copy->pdfs as $index => $pdf)
                                     <div style="margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
