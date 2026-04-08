@@ -1276,19 +1276,21 @@ class CourseController extends Controller
         return view('student.listactivity', compact('admissions'));
     }
 
-    public function viewstudentactivity($studentId, $id)
+
+
+    public function viewstudentactivity($studentId)
     {
-        // ✅ Get student from URL instead of Auth
+        // ✅ Get student from URL
         $student = \App\Models\Student::findOrFail($studentId);
 
-        // ✅ Get all paid course_id strings (WITH MONTH + YEAR FILTER)
+        // ✅ Get paid course IDs (current month/year)
         $payments = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
-            ->whereMonth('issue_date', Carbon::now()->month)   // ✅ added
-            ->whereYear('issue_date', Carbon::now()->year)     // ✅ added
+            ->whereMonth('issue_date', Carbon::now()->month)
+            ->whereYear('issue_date', Carbon::now()->year)
             ->pluck('course_id');
 
-        // ✅ Flatten course IDs (same as listcourse)
+        // ✅ Flatten IDs (same logic)
         $paidCourseIds = [];
         foreach ($payments as $courseIdsString) {
             if ($courseIdsString) {
@@ -1300,25 +1302,35 @@ class CourseController extends Controller
         $paidCourseIds = array_map('intval', $paidCourseIds);
         $paidCourseIds = array_unique($paidCourseIds);
 
-        // ✅ Check if requested course is in paid list
-        if (!in_array($id, $paidCourseIds)) {
-            abort(403, 'You have not purchased this course.');
+        // ❌ No course purchased
+        if (empty($paidCourseIds)) {
+            abort(403, 'No purchased courses found.');
         }
 
-        // ✅ SAME as before
-        $course = Course::with([
+        // ✅ Get ALL purchased courses
+        $courses = Course::with([
             'category',
             'notes' => function ($query) {
                 $query->where('status', 1);
             }
-        ])->findOrFail($id);
+        ])
+            ->whereIn('id', $paidCourseIds)
+            ->get();
 
-        StudentActivity::create([
-            'student_id' => $student->id,
-            'course_id' => $course->id,
-            'activity_type' => 'view_course'
-        ]);
+        if ($courses->isEmpty()) {
+            abort(404, 'Courses not found.');
+        }
 
-        return view('student.viewactivity', compact('course'));
+        // ✅ Log activity for ALL courses
+        foreach ($courses as $course) {
+            StudentActivity::create([
+                'student_id' => $student->id,
+                'course_id' => $course->id,
+                'activity_type' => 'view_course'
+            ]);
+        }
+
+        // ✅ Return ALL courses
+        return view('student.viewactivity', compact('courses'));
     }
 }
