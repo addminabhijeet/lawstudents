@@ -106,7 +106,7 @@
                     <!-- Logo -->
                     <tr>
                         <td class="content" style="padding-bottom:10px;">
-                            <img src="https://landing.adobe.com/dam/global/images/adobe-logo.320x80.png"
+                            <img src="https://law.norloxsolutionscrm.com/assets/images/logo-full.png"
                                 width="100" alt="Logo" style="display:block;">
                         </td>
                     </tr>
