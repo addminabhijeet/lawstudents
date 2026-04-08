@@ -23,7 +23,8 @@ use App\Models\Copy;
 use App\Models\CopyCategory;
 use App\Models\CopySubcategory;
 use App\Models\ContactForm;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StudentOtpMail;
 
 class CourseController extends Controller
 {
@@ -1245,5 +1246,21 @@ class CourseController extends Controller
     {
         $contact = ContactForm::where('delete', 1)->latest()->paginate(10);
         return view('contact.list', compact('contact'));
+    }
+
+    public function sendMail($id)
+    {
+        $data = ContactForm::findOrFail($id);
+        $otp = rand(100000, 999999);
+        Mail::to($data->email)->send(new StudentOtpMail($otp));
+        return back()->with('success', 'Mail sent successfully!');
+    }
+
+    public function deletecontact($id)
+    {
+        $data = ContactForm::findOrFail($id);
+        $data->update(['delete' => 0]);
+
+        return back()->with('success', 'Deleted successfully!');
     }
 }
