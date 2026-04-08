@@ -206,15 +206,13 @@
 
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon">
-                                <i data-feather="mail"></i>
-                            </span>
+                            <span class="nxl-micon"><i data-feather="mail"></i></span>
                             <span class="nxl-mtext">Contact list</span>
                             <span class="nxl-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listcopyscategories') }}">List Categories</a>
+                                    href="{{ route('admin.listcontactform') }}">List</a>
                             </li>
                         </ul>
                     </li>
