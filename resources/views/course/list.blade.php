@@ -876,7 +876,7 @@
                 // Show existing brochure
                 if (data.brochure) {
                     $("#existingBrochure").html(`
-                    <a href="/storage/${data.brochure}" target="_blank" class="text-primary">
+                    <a href="/storage/app/public/${data.brochure}" target="_blank" class="text-primary">
                         View Current Brochure
                     </a>
                 `);
