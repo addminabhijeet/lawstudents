@@ -47,7 +47,8 @@ Growth and Success!';
                             <div class="contact-submit-area">
                                 <h3>Send Us A Message</h3>
                                 <p>Our response time is within 30 minutes during business hours</p>
-                                <form action="route(contactstore)" method="POST">
+                                <form action="{{ route('contactstore') }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="contact-inner">
