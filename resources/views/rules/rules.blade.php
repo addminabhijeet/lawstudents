@@ -154,28 +154,36 @@
                 }
 
                 function openSearch(catId, subId, ruleId) {
-                    // Collapse all categories and remove previous highlights
+                    // Hide all categories and subcategories
                     document.querySelectorAll('.accordion-content').forEach(el => {
-                        el.style.maxHeight = "0px";
+                        el.style.display = 'none'; // Hide everything first
                         el.querySelectorAll('.rule-highlight').forEach(r => r.classList.remove('rule-highlight'));
                     });
 
+                    // Show only the relevant category and subcategory
                     let cat = document.getElementById('cat' + catId);
                     let sub = document.getElementById('sub' + subId);
 
-                    if (cat) cat.style.maxHeight = "none";
-                    if (sub) sub.style.maxHeight = "none";
+                    if (cat) cat.style.display = "block";
+                    if (sub) sub.style.display = "block";
 
-                    // Highlight the searched rule
-                    let ruleDiv = sub ? sub.querySelector(`div[data-rule-id='${ruleId}']`) : null;
-                    if (ruleDiv) {
-                        ruleDiv.classList.add('rule-highlight');
-                        ruleDiv.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        });
+                    // Hide all rules inside subcategory
+                    if (sub) {
+                        sub.querySelectorAll('[data-rule-id]').forEach(r => r.style.display = 'none');
+
+                        // Show only the searched rule
+                        let ruleDiv = sub.querySelector(`div[data-rule-id='${ruleId}']`);
+                        if (ruleDiv) {
+                            ruleDiv.style.display = 'block';
+                            ruleDiv.classList.add('rule-highlight');
+                            ruleDiv.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }
                     }
 
+                    // Hide suggestions box
                     document.getElementById('searchSuggestions').style.display = 'none';
                 }
 
