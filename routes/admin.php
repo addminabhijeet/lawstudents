@@ -321,10 +321,16 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('updatecopyscategory');
             Route::post('copyscategories-filedelete/{id}', [CourseController::class, 'deletecopyscategoryfile'])
                 ->name('deletecopyscategoryfile');
-            Route::get('list-student-activity', [CourseController::class, 'liststudentactivity'])->name('liststudentactivity');
-            Route::get('list-contactform', [CourseController::class, 'listcontactform'])->name('listcontactform');
-            Route::get('send-contactmail/{id}', [CourseController::class, 'sendcontactmail'])->name('sendcontactmail');
-            Route::post('delete-contact/{id}', [CourseController::class, 'deletecontact'])->name('deletecontact');
+            Route::get('view-student-activity/{id}', [CourseController::class, 'viewstudentactivity'])
+                ->name('viewstudentactivity');
+            Route::get('list-student-activity', [CourseController::class, 'liststudentactivity'])
+                ->name('liststudentactivity');
+            Route::get('list-contactform', [CourseController::class, 'listcontactform'])
+                ->name('listcontactform');
+            Route::get('send-contactmail/{id}', [CourseController::class, 'sendcontactmail'])
+                ->name('sendcontactmail');
+            Route::post('delete-contact/{id}', [CourseController::class, 'deletecontact'])
+                ->name('deletecontact');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])

@@ -107,17 +107,7 @@
                                                         <i class="feather feather-edit"></i>
                                                     </a>
 
-                                                    <form
-                                                        action="{{ route('admin.destroyadmission', $admission->id) }}"
-                                                        method="POST"
-                                                        onsubmit="return confirm('Are you sure you want to delete this admission?');">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button
-                                                            class="avatar-text avatar-md border-0 bg-transparent">
-                                                            <i class="feather feather-trash-2 text-danger"></i>
-                                                        </button>
-                                                    </form>
+
                                                 </div>
                                             </td>
                                         </tr>
