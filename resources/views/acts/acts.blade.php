@@ -99,18 +99,21 @@
 </div>
 
 <style>
-    .act-highlight {
+    .rule-highlight {
         border: 2px solid #28a745 !important;
         background: #e6ffe6;
     }
-
+</style>
+<!-- STYLES -->
+<style>
     .accordion-content {
         max-height: none !important;
+        /* 🔥 Always visible */
         overflow: visible !important;
         transition: none;
     }
 
-    #actSuggestions div:hover {
+    #searchSuggestions div:hover {
         background: #f1f1f1;
     }
 </style>
@@ -165,7 +168,10 @@
             if (actDiv) {
                 actDiv.style.display = 'block';
                 actDiv.classList.add('act-highlight');
-                actDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                actDiv.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
             }
 
             // Show subcategory container
