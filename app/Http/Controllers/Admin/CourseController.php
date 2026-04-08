@@ -1272,9 +1272,9 @@ class CourseController extends Controller
         $admissions = StudentAdmission::where('deleted', 0)
             ->latest()
             ->paginate(10);
-        return view('student.listactivity', compact('course'));
+        return view('student.listactivity', compact('admissions'));
     }
-    
+
     public function viewstudentactivity($studentId, $id)
     {
         // ✅ Get student from URL instead of Auth
