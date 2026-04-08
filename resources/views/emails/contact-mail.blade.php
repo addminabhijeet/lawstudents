@@ -84,7 +84,7 @@
             font-weight: 600;
         }
 
-        /* 🔥 MOBILE FLAT UI (NO 3D EFFECT + FIX BUTTON) */
+        /* 🔥 MOBILE FLAT UI (NO 3D EFFECT) */
         @media only screen and (max-width:480px) {
 
             body {
@@ -101,7 +101,6 @@
                 padding: 0 !important;
             }
 
-            /* REMOVE 3D */
             .container {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -114,7 +113,6 @@
                 padding: 20px !important;
             }
 
-            /* SUBJECT STYLE */
             .heading {
                 font-size: 34px !important;
                 line-height: 42px !important;
@@ -126,7 +124,6 @@
                 line-height: 30px !important;
             }
 
-            /* STACK */
             td {
                 display: block !important;
                 width: 100% !important;
@@ -137,7 +134,6 @@
                 margin-bottom: 12px;
             }
 
-            /* CLEAN ROW */
             .row-alt,
             tr:not(.row-alt) {
                 background: transparent !important;
@@ -154,7 +150,6 @@
                 font-weight: 500;
             }
 
-            /* LOGO */
             .logo {
                 width: 92% !important;
                 max-width: 320px !important;
@@ -162,25 +157,15 @@
                 display: block;
             }
 
-            /* 🔥 BUTTON FIX (MAIN FIX) */
             .btn {
-                display: block !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-                font-size: 20px !important;
-                padding: 16px !important;
+                display: inline-block !important;
+                width: auto !important;
+                max-width: 260px !important;
+                font-size: 16px !important;
+                padding: 10px 18px !important;
                 text-align: center !important;
-                border-radius: 0 !important;
-                line-height: 24px !important;
-                overflow: hidden !important;
-            }
-
-            /* EXTRA SAFETY FOR EMAIL CLIENTS */
-            a.btn {
-                width: 100% !important;
-                display: block !important;
-                box-sizing: border-box !important;
+                border-radius: 25px !important;
+                margin: 0 auto !important;
             }
 
             .footer {
