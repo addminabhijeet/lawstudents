@@ -30,7 +30,7 @@ Route::middleware(['web'])
         Route::get('contact-us', ContactController::class)->name('contact');
         Route::get('viewnote-watermark/{id}/{index?}', [FreeNotesController::class, 'viewnoteWatermarked'])->name('viewnoteWatermarked');
         Route::get('search-notes', [FreeNotesController::class, 'search'])->name('search');
-    });
+    }); Route::get('contact-store', [ContactController::class, 'contactstore'])->name('contactstore');
 
 Route::get('auth/google', function () {
     return Socialite::driver('google')->redirect();
