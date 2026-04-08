@@ -25,7 +25,7 @@
             max-width: 100%;
             background-color: #ffffff;
             border-radius: 14px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
 
@@ -84,71 +84,43 @@
             font-weight: 600;
         }
 
-        /* DARK MODE */
-        @media (prefers-color-scheme: dark) {
-            body { background-color: #121212 !important; }
-            .container { background-color: #1f1f1f !important; }
-            .label { color: #ffffff !important; }
-            .value { color: #dddddd !important; }
-            .row-alt { background-color: #2c2c2c !important; }
-            .footer { background-color: #1a1a1a !important; color: #bbbbbb !important; }
-        }
-
-        /* 🚀 MOBILE ULTRA LARGE (SUBJECT STYLE) */
+        /* MOBILE FIXED CARD UI */
         @media only screen and (max-width:480px) {
 
+            body {
+                background: #E4E4E4 !important;
+            }
+
+            /* 🔥 OUTER SPACING LIKE GMAIL */
+            td[align="center"] {
+                padding: 12px !important;
+            }
+
+            /* 🔥 REAL CARD EFFECT */
             .container {
-                border-radius: 0 !important;
-                box-shadow: none !important;
+                width: 100% !important;
+                border-radius: 16px !important;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+                overflow: hidden;
             }
 
             .content {
-                padding: 22px !important;
+                padding: 20px !important;
             }
 
-            /* 🔥 SUBJECT SIZE */
+            /* 🔥 SUBJECT STYLE */
             .heading {
-                font-size: 36px !important;
-                line-height: 44px !important;
+                font-size: 34px !important;
+                line-height: 42px !important;
                 font-weight: 800 !important;
             }
 
             .intro {
-                font-size: 22px !important;
-                line-height: 32px !important;
-            }
-
-            /* 🔥 BIG DATA */
-            .label {
-                display: block !important;
-                width: 100% !important;
-                font-size: 22px !important;
-                margin-top: 12px;
-            }
-
-            .value {
-                display: block !important;
-                width: 100% !important;
-                font-size: 24px !important;
-                margin-bottom: 18px;
-                font-weight: 500;
-            }
-
-            .logo {
-                width: 230px !important;
-                margin: auto;
-            }
-
-            /* 🔥 BUTTON LIKE APP CTA */
-            .btn {
                 font-size: 20px !important;
-                padding: 18px 20px !important;
-                width: 100% !important;
-                text-align: center;
-                font-weight: 700;
-                border-radius: 40px;
+                line-height: 30px !important;
             }
 
+            /* 🔥 STACK CLEAN */
             td {
                 display: block !important;
                 width: 100% !important;
@@ -156,12 +128,47 @@
 
             tr {
                 display: block !important;
-                margin-bottom: 14px;
+                margin-bottom: 12px;
+            }
+
+            /* 🔥 CARD ROW LOOK */
+            .row-alt,
+            tr:not(.row-alt) {
+                background: #ffffff !important;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+
+            .label {
+                font-size: 20px !important;
+                margin-bottom: 4px;
+            }
+
+            .value {
+                font-size: 22px !important;
+                margin-bottom: 10px;
+                font-weight: 500;
+            }
+
+            /* 🔥 LOGO CENTER */
+            .logo {
+                width: 200px !important;
+                margin: auto;
+                display: block;
+            }
+
+            /* 🔥 FULL WIDTH BUTTON */
+            .btn {
+                font-size: 20px !important;
+                padding: 18px !important;
+                width: 100% !important;
+                text-align: center;
+                border-radius: 40px;
             }
 
             .footer {
-                font-size: 18px !important;
-                line-height: 28px !important;
+                font-size: 16px !important;
+                line-height: 26px !important;
             }
         }
     </style>
@@ -169,7 +176,6 @@
 
 <body>
 
-    <!-- Preheader -->
     <div style="display:none; max-height:0; overflow:hidden; font-size:1px; color:#E4E4E4;">
         New contact form submission received from your website.
     </div>
@@ -178,10 +184,8 @@
         <tr>
             <td align="center" style="padding:20px;">
 
-                <!-- Card UI -->
                 <table class="container" style="border-top:4px solid #FA0F00;">
 
-                    <!-- Logo -->
                     <tr>
                         <td class="content" style="padding-bottom:10px;">
                             <img src="https://law.norloxsolutionscrm.com/assets/images/logo-full.png"
@@ -189,7 +193,6 @@
                         </td>
                     </tr>
 
-                    <!-- Heading -->
                     <tr>
                         <td class="content" style="padding-top:10px;">
                             <h2 class="heading" style="margin:0; color:#222;">
@@ -198,7 +201,6 @@
                         </td>
                     </tr>
 
-                    <!-- Intro -->
                     <tr>
                         <td class="content intro" style="padding-top:0; color:#555;">
                             Hello Admin,<br><br>
@@ -206,7 +208,6 @@
                         </td>
                     </tr>
 
-                    <!-- Data -->
                     <tr>
                         <td class="content" style="padding-top:0;">
                             <table width="100%" cellpadding="14">
@@ -250,7 +251,6 @@
                         </td>
                     </tr>
 
-                    <!-- Button -->
                     <tr>
                         <td align="center" style="padding-bottom:40px;">
                             <a href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
@@ -260,7 +260,6 @@
                         </td>
                     </tr>
 
-                    <!-- Footer -->
                     <tr>
                         <td class="footer">
                             This email was generated automatically from your website contact form.<br><br>
