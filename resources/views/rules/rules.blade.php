@@ -154,20 +154,18 @@
                 }
 
                 function openSearch(catId, subId, ruleId) {
-                    // Hide all categories and subcategories
-                    document.querySelectorAll('.accordion-content').forEach(el => {
-                        el.style.display = 'none'; // Hide everything first
-                        el.querySelectorAll('.rule-highlight').forEach(r => r.classList.remove('rule-highlight'));
+                    // Hide all categories
+                    document.querySelectorAll('[id^="cat"]').forEach(cat => {
+                        cat.parentElement.style.display = 'none'; // Hide the entire category container
+                        cat.querySelectorAll('.rule-highlight').forEach(r => r.classList.remove('rule-highlight'));
                     });
 
-                    // Show only the relevant category and subcategory
-                    let cat = document.getElementById('cat' + catId);
+                    // Show only the relevant category container
+                    let catContainer = document.getElementById('cat' + catId)?.parentElement;
+                    if (catContainer) catContainer.style.display = 'block';
+
+                    // Hide all subcategories inside this category
                     let sub = document.getElementById('sub' + subId);
-
-                    if (cat) cat.style.display = "block";
-                    if (sub) sub.style.display = "block";
-
-                    // Hide all rules inside subcategory
                     if (sub) {
                         sub.querySelectorAll('[data-rule-id]').forEach(r => r.style.display = 'none');
 
@@ -181,9 +179,13 @@
                                 block: 'center'
                             });
                         }
+
+                        // Show only the relevant subcategory container
+                        sub.style.display = 'block';
+                        sub.parentElement.style.display = 'block';
                     }
 
-                    // Hide suggestions box
+                    // Hide search suggestions
                     document.getElementById('searchSuggestions').style.display = 'none';
                 }
 
