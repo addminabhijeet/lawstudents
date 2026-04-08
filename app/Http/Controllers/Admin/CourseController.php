@@ -1277,20 +1277,16 @@ class CourseController extends Controller
     }
 
 
-
     public function viewstudentactivity($studentId)
     {
-        // ✅ Get student from URL
         $student = \App\Models\Student::findOrFail($studentId);
 
-        // ✅ Get paid course IDs (current month/year)
         $payments = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
             ->whereMonth('issue_date', Carbon::now()->month)
             ->whereYear('issue_date', Carbon::now()->year)
             ->pluck('course_id');
 
-        // ✅ Flatten IDs (same logic)
         $paidCourseIds = [];
         foreach ($payments as $courseIdsString) {
             if ($courseIdsString) {
@@ -1302,12 +1298,10 @@ class CourseController extends Controller
         $paidCourseIds = array_map('intval', $paidCourseIds);
         $paidCourseIds = array_unique($paidCourseIds);
 
-        // ❌ No course purchased
         if (empty($paidCourseIds)) {
             abort(403, 'No purchased courses found.');
         }
 
-        // ✅ Get ALL purchased courses
         $courses = Course::with([
             'category',
             'notes' => function ($query) {
@@ -1321,7 +1315,14 @@ class CourseController extends Controller
             abort(404, 'Courses not found.');
         }
 
-        // ✅ Log activity for ALL courses
+        // ✅ ADD THIS (progress for all courses)
+        $progressData = \App\Models\NoteProgress::where('student_id', $student->id)
+            ->whereIn('course_id', $paidCourseIds)
+            ->selectRaw('course_id, AVG(progress_percent) as progress')
+            ->groupBy('course_id')
+            ->pluck('progress', 'course_id'); // [course_id => progress]
+
+        // Activity log (unchanged)
         foreach ($courses as $course) {
             StudentActivity::create([
                 'student_id' => $student->id,
@@ -1330,7 +1331,6 @@ class CourseController extends Controller
             ]);
         }
 
-        // ✅ Return ALL courses
-        return view('student.viewactivity', compact('courses'));
+        return view('student.viewactivity', compact('courses', 'progressData'));
     }
 }

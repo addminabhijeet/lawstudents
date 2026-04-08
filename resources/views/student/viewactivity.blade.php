@@ -37,212 +37,89 @@
 
 <main class="nxl-container apps-container apps-notes">
     <div class="nxl-content without-header nxl-full-content">
-
         <div class="main-content">
             <div class="content-area">
                 <div class="content-area-body pb-0">
 
-                    <!-- COURSE HEADER -->
-                    <div class="card mb-4 bg-light">
-                        <div class="card-body">
-
-                            <h2 class="fw-bold">{{ $course->title }}</h2>
-
-                            <p class="text-muted mb-2">
-                                {{ $course->description }}
-                            </p>
-
-                            <div class="d-flex flex-wrap gap-3">
-
-                                <span class="badge bg-primary">
-                                    {{ $course->category->name }}
-                                </span>
-
-                                <span class="text-muted">
-                                    Level : {{ $course->level }}
-                                </span>
-
-                                <span class="text-muted">
-                                    Duration : {{ $course->duration }}
-                                </span>
-
-                                <span class="fw-bold text-success">
-                                    ₹{{ $course->price }}
-                                </span>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-
                     <div class="row">
 
-                        <!-- LEFT CONTENT -->
-                        <div class="col-lg-8">
+                        @foreach($courses as $course)
+                        @php
+                        $progress = $progressData[$course->id] ?? 0;
+                        $progressValue = round($progress);
+                        @endphp
 
-                            <!-- COURSE DESCRIPTION -->
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="mb-0">Course Description</h5>
+                        <div class="col-lg-6 mb-4">
+
+                            <div class="card h-100 shadow-sm">
+
+                                <!-- HEADER -->
+                                <div class="card-body bg-light">
+                                    <h4 class="fw-bold">{{ $course->title }}</h4>
+
+                                    <p class="text-muted">
+                                        {{ $course->description }}
+                                    </p>
+
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        <span class="badge bg-primary">
+                                            {{ $course->category->name }}
+                                        </span>
+
+                                        <span class="text-muted">
+                                            Level : {{ $course->level }}
+                                        </span>
+
+                                        <span class="text-muted">
+                                            Duration : {{ $course->duration }}
+                                        </span>
+
+                                        <span class="fw-bold text-success">
+                                            ₹{{ $course->price }}
+                                        </span>
+                                    </div>
                                 </div>
 
+                                <!-- BODY -->
                                 <div class="card-body">
-                                    <p>{{ $course->description }}</p>
-                                </div>
-                            </div>
 
+                                    <h6>Course Materials</h6>
 
-                            <!-- COURSE MATERIALS -->
-                            <div class="card">
-
-                                <div class="card-header d-flex justify-content-between">
-                                    <h5 class="mb-0">Course Materials</h5>
-
-                                    <span class="badge bg-secondary">
+                                    <span class="badge bg-secondary mb-2">
                                         {{ $course->notes->count() }} Notes
                                     </span>
-                                </div>
 
-                                <div class="card-body">
+                                    <hr>
 
                                     @forelse($course->notes as $note)
-                                    <div
-                                        class="d-flex justify-content-between align-items-center border-bottom py-3">
-
-                                        <div class="d-flex align-items-center gap-3">
-
-                                            <div
-                                                class="icon-md bg-light rounded d-flex align-items-center justify-content-center">
-                                                📄
-                                            </div>
-
-                                            <div>
-                                                <h6 class="mb-1">
-                                                    {{ $note->title }}
-                                                </h6>
-
-                                                <small class="text-muted">
-                                                    {{ $note->formatted_size }}
-                                                    |
-                                                    {{ $note->page_count }} pages
-                                                </small>
-                                            </div>
-
+                                    <div class="d-flex justify-content-between border-bottom py-2">
+                                        <div>
+                                            <b>{{ $note->title }}</b><br>
+                                            <small class="text-muted">
+                                                {{ $note->formatted_size }} | {{ $note->page_count }} pages
+                                            </small>
                                         </div>
-
-                                        <div class="d-flex gap-2">
-
-                                            @php
-                                            $token = Crypt::encrypt(
-                                            json_encode([
-                                            'note_id' => $note->id,
-                                            'ip' => request()->ip(),
-                                            'expires_at' => now()->addMinutes(5),
-                                            ]),
-                                            );
-                                            @endphp
-
-                                            @php
-                                            $isWishlisted = \App\Models\NoteWishlist::where(
-                                            'student_id',
-                                            auth()->id(),
-                                            )
-                                            ->where('note_id', $note->id)
-                                            ->exists();
-                                            @endphp
-
-                                            <button
-                                                class="btn btn-sm {{ $isWishlisted ? 'btn-danger' : 'btn-outline-danger' }} wishlist-btn"
-                                                data-note="{{ $note->id }}">
-                                                ❤
-                                            </button>
-
-                                            <button class="btn btn-sm btn-outline-primary"
-                                                onclick="openPDF(`{{ route('student.viewnote', $note->id) }}?token={{ $token }}`, `{{ $note->id }}`)">
-                                                View
-                                            </button>
-
-                                            @if ($note->is_downloadable)
-                                            <a href="{{ route('student.downloadnote', $note->id) }}"
-                                                class="btn btn-sm btn-success">
-                                                Download
-                                            </a>
-                                            @endif
-
-                                        </div>
-
                                     </div>
-
                                     @empty
-
                                     <p class="text-muted">No materials available.</p>
                                     @endforelse
 
                                 </div>
 
-                            </div>
+                                <!-- FOOTER / PROGRESS -->
+                                <div class="card-body border-top">
 
-                        </div>
+                                    <h6>Progress</h6>
 
-
-                        <!-- RIGHT SIDEBAR -->
-                        <div class="col-lg-4">
-
-                            <div class="card sticky-top" style="top:100px">
-
-                                <div class="card-body">
-
-                                    <h5 class="fw-bold mb-3">
-                                        Course Details
-                                    </h5>
-
-                                    <ul class="list-unstyled mb-4">
-
-                                        <li class="mb-2">
-                                            <b>Price :</b>
-                                            ₹{{ $course->price }}
-                                        </li>
-
-                                        <li class="mb-2">
-                                            <b>Level :</b>
-                                            {{ $course->level }}
-                                        </li>
-
-                                        <li class="mb-2">
-                                            <b>Duration :</b>
-                                            {{ $course->duration }}
-                                        </li>
-
-                                        <li class="mb-2">
-                                            <b>Total Notes :</b>
-                                            {{ $course->notes->count() }}
-                                        </li>
-
-                                        <li class="mb-2">
-                                            <b>Instructor :</b>
-                                            {{ $course->instructor_id }}
-                                        </li>
-
-                                    </ul>
-
-                                    @php
-                                    $progress = \App\Models\NoteProgress::where('student_id', auth()->id())
-                                    ->where('course_id', $course->id)
-                                    ->avg('progress_percent');
-
-                                    $progressValue = round($progress ?? 0);
-                                    @endphp
-
-                                    @if ($progress)
-                                    <div class="progress mb-2">
+                                    @if ($progressValue > 0)
+                                    <div class="progress">
                                         <div class="progress-bar bg-success progress-bar-dynamic"
                                             data-width="{{ $progressValue }}">
                                             {{ $progressValue }}%
                                         </div>
                                     </div>
                                     @else
-                                    <button class="btn btn-primary w-100 mb-2">
+                                    <button class="btn btn-primary w-100">
                                         Start Course
                                     </button>
                                     @endif
@@ -253,13 +130,13 @@
 
                         </div>
 
+                        @endforeach
 
                     </div>
 
                 </div>
             </div>
         </div>
-
     </div>
 </main>
 <div class="modal fade" id="pdfModal" tabindex="-1">
