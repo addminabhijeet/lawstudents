@@ -61,8 +61,7 @@
 
                                 @foreach ($sub->rules as $rule)
                                 <!-- RULE -->
-                                <div style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
-
+                                <div data-rule-id="{{ $rule->id }}" style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
                                     <div style="font-weight:600;">
                                         {{ $rule->description }}
                                     </div>
@@ -70,21 +69,17 @@
                                     <!-- PDFs -->
                                     @if ($rule->pdfs)
                                     @foreach ($rule->pdfs as $index => $pdf)
-                                    <div style="margin-top:5px; display:flex; justify-content:space-between;">
-
+                                    <div style="margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
                                         <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
-
                                         <div>
-                                            <!-- VIEW (Correct public path) -->
-                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" target="_blank"
-                                                style="margin-right:10px; font-size:12px;">
+                                            <!-- VIEW button -->
+                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" target="_blank" style="margin-right:10px; font-size:12px;">
                                                 View
                                             </a>
 
-                                            <!-- DOWNLOAD (Correct path with auth check) -->
+                                            <!-- DOWNLOAD button -->
                                             @if (auth()->check())
-                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" download
-                                                style="font-size:12px; color:green;">
+                                            <a href="{{ asset('storage/app/public/' . $pdf) }}" download style="font-size:12px; color:green;">
                                                 Download
                                             </a>
                                             @else
@@ -93,11 +88,9 @@
                                             </a>
                                             @endif
                                         </div>
-
                                     </div>
                                     @endforeach
                                     @endif
-
                                 </div>
                                 @endforeach
 
@@ -110,7 +103,12 @@
                 @endforeach
 
             </div>
-
+            <style>
+                .rule-highlight {
+                    border: 2px solid #28a745 !important;
+                    background: #e6ffe6;
+                }
+            </style>
             <!-- STYLES -->
             <style>
                 .accordion-content {
@@ -128,13 +126,11 @@
             <!-- SCRIPT -->
             <script>
                 function toggleAccordion(id) {
-                    // 🔥 Disabled toggle (kept for compatibility)
-                    return;
+                    return; // Disabled toggle
                 }
 
                 function searchNotes(query) {
                     let box = document.getElementById('searchSuggestions');
-
                     if (query.length < 3) {
                         box.style.display = 'none';
                         return;
@@ -147,22 +143,38 @@
                                 box.innerHTML = '<div style="padding:10px;">No results</div>';
                             } else {
                                 box.innerHTML = data.map(item => `
-                                    <div style="padding:10px; cursor:pointer;"
-                                         onclick="openSearch(${item.category_id}, ${item.subcategory_id})">
-                                        ${item.title}
-                                    </div>
-                                `).join('');
+                    <div style="padding:10px; cursor:pointer;"
+                         onclick="openSearch(${item.category_id}, ${item.subcategory_id}, ${item.note_id})">
+                        ${item.title}
+                    </div>
+                `).join('');
                             }
                             box.style.display = 'block';
                         });
                 }
 
-                function openSearch(catId, subId) {
+                function openSearch(catId, subId, ruleId) {
+                    // Collapse all categories and remove previous highlights
+                    document.querySelectorAll('.accordion-content').forEach(el => {
+                        el.style.maxHeight = "0px";
+                        el.querySelectorAll('.rule-highlight').forEach(r => r.classList.remove('rule-highlight'));
+                    });
+
                     let cat = document.getElementById('cat' + catId);
                     let sub = document.getElementById('sub' + subId);
 
                     if (cat) cat.style.maxHeight = "none";
                     if (sub) sub.style.maxHeight = "none";
+
+                    // Highlight the searched rule
+                    let ruleDiv = sub ? sub.querySelector(`div[data-rule-id='${ruleId}']`) : null;
+                    if (ruleDiv) {
+                        ruleDiv.classList.add('rule-highlight');
+                        ruleDiv.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
 
                     document.getElementById('searchSuggestions').style.display = 'none';
                 }
@@ -171,7 +183,6 @@
                 document.addEventListener('click', function(e) {
                     let box = document.getElementById('searchSuggestions');
                     let input = document.getElementById('noteSearch');
-
                     if (!box.contains(e.target) && e.target !== input) {
                         box.style.display = 'none';
                     }
@@ -181,4 +192,5 @@
         </div>
     </div>
 </div>
+
 @endsection
