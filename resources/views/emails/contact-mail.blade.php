@@ -258,7 +258,8 @@
                     <tr>
                         <td align="center" style="padding-bottom:40px;">
                             <a href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
-                                class="btn">
+                                class="btn"
+                                style="color:#ffffff !important; text-decoration:none;">
                                 Reply to Customer
                             </a>
                         </td>
