@@ -136,7 +136,7 @@
                         return;
                     }
 
-                    fetch(`{{ route('frontend.search') }}?q=${encodeURIComponent(query)}`)
+                    fetch(`{{ route('frontend.rulessearch') }}?q=${encodeURIComponent(query)}`)
                         .then(res => res.json())
                         .then(data => {
                             if (!data.length) {
