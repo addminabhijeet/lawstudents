@@ -107,7 +107,7 @@
                     <tr>
                         <td class="content" style="padding-bottom:10px;">
                             <img src="https://law.norloxsolutionscrm.com/assets/images/logo-full.png"
-                                width="200" alt="Logo" style="display:block;">
+                                width="250" alt="Logo" style="display:block;">
                         </td>
                     </tr>
 
