@@ -60,6 +60,7 @@
 
         .intro {
             font-size: 17px;
+            line-height: 26px;
         }
 
         .logo {
@@ -78,35 +79,17 @@
             font-size: 16px;
         }
 
-        /* Dark Mode */
+        /* DARK MODE */
         @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #1a1a1a !important;
-            }
-
-            .container {
-                background-color: #2a2a2a !important;
-            }
-
-            .label {
-                color: #ffffff !important;
-            }
-
-            .value {
-                color: #dddddd !important;
-            }
-
-            .row-alt {
-                background-color: #333333 !important;
-            }
-
-            .footer {
-                background-color: #1f1f1f !important;
-                color: #bbbbbb !important;
-            }
+            body { background-color: #1a1a1a !important; }
+            .container { background-color: #2a2a2a !important; }
+            .label { color: #ffffff !important; }
+            .value { color: #dddddd !important; }
+            .row-alt { background-color: #333333 !important; }
+            .footer { background-color: #1f1f1f !important; color: #bbbbbb !important; }
         }
 
-        /* Mobile Optimization */
+        /* MOBILE - BIG TEXT + STACK */
         @media only screen and (max-width:480px) {
 
             .content {
@@ -118,23 +101,47 @@
             }
 
             .intro {
-                font-size: 16px !important;
+                font-size: 18px !important;
+                line-height: 28px !important;
             }
 
             .label,
             .value {
-                font-size: 15px !important;
-                display: block;
+                display: block !important;
                 width: 100% !important;
+                font-size: 18px !important;
+                padding: 6px 0 !important;
+            }
+
+            .label {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .value {
+                margin-bottom: 12px;
             }
 
             .logo {
-                width: 180px !important;
+                width: 200px !important;
+                margin: auto;
             }
 
             .btn {
-                font-size: 15px !important;
-                padding: 12px 25px !important;
+                font-size: 18px !important;
+                padding: 14px 20px !important;
+                width: 90% !important;
+                text-align: center;
+            }
+
+            td {
+                display: block !important;
+                width: 100% !important;
+            }
+
+            tr {
+                display: block !important;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -151,7 +158,6 @@
         <tr>
             <td align="center">
 
-                <!-- Main Container -->
                 <table class="container" style="border-top:4px solid #FA0F00;">
 
                     <!-- Logo -->
@@ -173,13 +179,13 @@
 
                     <!-- Intro -->
                     <tr>
-                        <td class="content intro" style="padding-top:0; color:#555; line-height:26px;">
+                        <td class="content intro" style="padding-top:0; color:#555;">
                             Hello Admin,<br><br>
                             You’ve received a new enquiry from your website. Details are below:
                         </td>
                     </tr>
 
-                    <!-- Data Table -->
+                    <!-- Data -->
                     <tr>
                         <td class="content" style="padding-top:0;">
                             <table width="100%" cellpadding="12">
@@ -226,26 +232,10 @@
                     <!-- Button -->
                     <tr>
                         <td align="center" style="padding-bottom:40px;">
-
-                            <!--[if mso]>
-                            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
-                                href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
-                                style="height:45px;v-text-anchor:middle;width:240px;" arcsize="50%"
-                                strokecolor="#1473E6" fillcolor="#1473E6">
-                                <w:anchorlock/>
-                                <center style="color:#ffffff;font-size:16px;font-weight:bold;">
-                                    Reply to Customer
-                                </center>
-                            </v:roundrect>
-                            <![endif]-->
-
-                            <!--[if !mso]><!-- -->
                             <a href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
                                 class="btn">
                                 Reply to Customer
                             </a>
-                            <!--<![endif]-->
-
                         </td>
                     </tr>
 
@@ -253,9 +243,7 @@
                     <tr>
                         <td class="footer">
                             This email was generated automatically from your website contact form.<br><br>
-
-                            Please review and respond to the customer promptly.<br><br>
-
+                            Please review and respond promptly.<br><br>
                             © {{ date('Y') }} Law Students. All rights reserved.
                         </td>
                     </tr>
