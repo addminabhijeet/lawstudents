@@ -9,15 +9,17 @@ class CopyCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','delete'];
+    protected $fillable = ['name', 'delete'];
 
     public function subcategories()
     {
-        return $this->hasMany(CopySubcategory::class, 'copy_category_id');
+        return $this->hasMany(CopySubcategory::class, 'copy_category_id')
+            ->where('delete', 1); // Only active subcategories
     }
 
     public function copys()
     {
-        return $this->hasMany(Copy::class, 'category_id');
+        return $this->hasMany(Copy::class, 'category_id')
+            ->where('delete', 1); // Only active copies
     }
 }
