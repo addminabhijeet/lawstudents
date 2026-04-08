@@ -99,7 +99,7 @@
 </div>
 
 <style>
-    .rule-highlight {
+    .act-highlight {
         border: 2px solid #28a745 !important;
         background: #e6ffe6;
     }
@@ -139,7 +139,7 @@
                 } else {
                     box.innerHTML = data.map(item => `
                         <div style="padding:10px; cursor:pointer;"
-                             onclick="openActSearch(${item.category_id}, ${item.subcategory_id}, ${item.act_id})">
+                             onclick="openActSearch(${item.category_id}, ${item.subcategory_id}, ${item.note_id})">
                             ${item.title}
                         </div>
                     `).join('');
