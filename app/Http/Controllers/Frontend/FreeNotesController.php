@@ -28,7 +28,7 @@ class FreeNotesController extends Controller
 
         return view('copys.copys', compact('categories', 'filePath', 'studentName', 'studentEmail'));
     }
-    public function search(Request $request)
+    public function copyssearch(Request $request)
     {
         $query = $request->get('q');
 

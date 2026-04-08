@@ -21,7 +21,7 @@ class ActController extends Controller
     }
 
     // 🔍 SEARCH
-    public function search(Request $request)
+    public function actssearch(Request $request)
     {
         $query = $request->get('q');
 
