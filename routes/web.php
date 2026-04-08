@@ -29,7 +29,9 @@ Route::middleware(['web'])
         Route::get('gallery', GalleryController::class)->name('gallery');
         Route::get('contact-us', ContactController::class)->name('contact');
         Route::get('viewnote-watermark/{id}/{index?}', [FreeNotesController::class, 'viewnoteWatermarked'])->name('viewnoteWatermarked');
-        Route::get('search-notes', [FreeNotesController::class, 'search'])->name('search');
+        Route::get('rules-search-notes', [RuleController::class, 'rulessearch'])->name('rulessearch');
+        Route::get('acts-search-notes', [ActController::class, 'actssearch'])->name('actssearch');
+        Route::get('copys-search-notes', [FreeNotesController::class, 'copyssearch'])->name('copyssearch');
         Route::post('contact-store', [ContactController::class, 'contactstore'])->name('contactstore');
     });
 
