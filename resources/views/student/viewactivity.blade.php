@@ -111,16 +111,25 @@
 
                                     <h6>Progress</h6>
 
-                                    @if ($progressValue > 0)
+                                    @if (!isset($progressData[$course->id]))
+                                    <!-- NOT PURCHASED -->
+                                    <button class="btn btn-danger w-100">
+                                        Course Still not purchased by student
+                                    </button>
+
+                                    @elseif ($progressValue > 0)
+                                    <!-- IN PROGRESS -->
                                     <div class="progress">
                                         <div class="progress-bar bg-success progress-bar-dynamic"
                                             data-width="{{ $progressValue }}">
                                             {{ $progressValue }}%
                                         </div>
                                     </div>
+
                                     @else
+                                    <!-- PURCHASED BUT NOT STARTED -->
                                     <button class="btn btn-primary w-100">
-                                        Course Still Not Start by Student
+                                        Course Still Not Started by Student
                                     </button>
                                     @endif
 
