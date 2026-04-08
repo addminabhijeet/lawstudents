@@ -84,23 +84,33 @@
             font-weight: 600;
         }
 
-        /* 🔥 MOBILE FLAT UI (NO 3D EFFECT) */
+        /* 🔥 MOBILE EDGE-TO-EDGE (NO OUTER PADDING) */
         @media only screen and (max-width:480px) {
 
             body {
                 background: #ffffff !important;
             }
 
-            /* REMOVE SIDE GAP */
-            td[align="center"] {
-                padding: 0 !important;
-            }
-
+            /* ✅ REMOVE OUTER GAP COMPLETELY */
             table[width="100%"] {
                 margin: 0 !important;
                 padding: 0 !important;
             }
 
+            td[align="center"] {
+                padding: 0 !important;
+            }
+
+            body,
+            table,
+            tr,
+            td {
+                margin: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            /* FULL WIDTH CARD */
             .container {
                 width: 100% !important;
                 max-width: 100% !important;
