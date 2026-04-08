@@ -91,6 +91,9 @@
                             <div id="copySub{{ $sub->id }}" class="accordion-content" style="padding:10px; max-height:1000px;">
                                 @foreach ($sub->copys as $copy)
                                 <div data-copy-id="{{ $copy->id }}" style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
+                                    <div style="font-weight:600;">
+                                        {{ $rule->description }}
+                                    </div>
                                     @foreach ($copy->pdfs as $index => $pdf)
                                     <div style="margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
                                         <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
@@ -156,7 +159,7 @@
                 } else {
                     box.innerHTML = data.map(item => `
                         <div style="padding:10px; cursor:pointer;"
-                             onclick="openCopySearch(${item.category_id}, ${item.subcategory_id}, ${item.copy_id})">
+                             onclick="openCopySearch(${item.category_id}, ${item.subcategory_id}, ${item.note_id})">
                             ${item.title}
                         </div>
                     `).join('');
