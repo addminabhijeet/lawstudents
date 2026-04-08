@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form Submission</title>
 
-    <!-- Prevent auto formatting -->
     <meta name="x-apple-disable-message-reformatting">
 
     <style>
@@ -34,11 +33,13 @@
         .label {
             font-weight: bold;
             color: #333333;
-            width: 150px;
+            width: 160px;
+            font-size: 16px;
         }
 
         .value {
             color: #555555;
+            font-size: 16px;
         }
 
         .row-alt {
@@ -48,8 +49,33 @@
         .footer {
             background-color: #F4F4F4;
             padding: 30px;
-            font-size: 12px;
+            font-size: 14px;
             color: #888888;
+            line-height: 22px;
+        }
+
+        .heading {
+            font-size: 24px;
+        }
+
+        .intro {
+            font-size: 17px;
+        }
+
+        .logo {
+            width: 250px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn {
+            background: #1473E6;
+            color: #ffffff;
+            padding: 14px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
         }
 
         /* Dark Mode */
@@ -80,10 +106,35 @@
             }
         }
 
-        /* Mobile */
+        /* Mobile Optimization */
         @media only screen and (max-width:480px) {
+
             .content {
                 padding: 20px !important;
+            }
+
+            .heading {
+                font-size: 22px !important;
+            }
+
+            .intro {
+                font-size: 16px !important;
+            }
+
+            .label,
+            .value {
+                font-size: 15px !important;
+                display: block;
+                width: 100% !important;
+            }
+
+            .logo {
+                width: 180px !important;
+            }
+
+            .btn {
+                font-size: 15px !important;
+                padding: 12px 25px !important;
             }
         }
     </style>
@@ -91,7 +142,7 @@
 
 <body>
 
-    <!-- Preheader (hidden preview text) -->
+    <!-- Preheader -->
     <div style="display:none; max-height:0; overflow:hidden; font-size:1px; color:#E4E4E4;">
         New contact form submission received from your website.
     </div>
@@ -107,20 +158,22 @@
                     <tr>
                         <td class="content" style="padding-bottom:10px;">
                             <img src="https://law.norloxsolutionscrm.com/assets/images/logo-full.png"
-                                width="250" alt="Logo" style="display:block;">
+                                class="logo" alt="Logo">
                         </td>
                     </tr>
 
                     <!-- Heading -->
                     <tr>
                         <td class="content" style="padding-top:10px;">
-                            <h2 style="margin:0; color:#333;">New Contact Form Submission</h2>
+                            <h2 class="heading" style="margin:0; color:#333;">
+                                New Contact Form Submission
+                            </h2>
                         </td>
                     </tr>
 
                     <!-- Intro -->
                     <tr>
-                        <td class="content" style="padding-top:0; color:#555; line-height:24px;">
+                        <td class="content intro" style="padding-top:0; color:#555; line-height:26px;">
                             Hello Admin,<br><br>
                             You’ve received a new enquiry from your website. Details are below:
                         </td>
@@ -129,7 +182,7 @@
                     <!-- Data Table -->
                     <tr>
                         <td class="content" style="padding-top:0;">
-                            <table width="100%" cellpadding="10">
+                            <table width="100%" cellpadding="12">
 
                                 <tr class="row-alt">
                                     <td class="label">Name</td>
@@ -170,17 +223,17 @@
                         </td>
                     </tr>
 
-                    <!-- Button (Bulletproof for Outlook) -->
+                    <!-- Button -->
                     <tr>
                         <td align="center" style="padding-bottom:40px;">
 
                             <!--[if mso]>
                             <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
                                 href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
-                                style="height:40px;v-text-anchor:middle;width:220px;" arcsize="50%"
+                                style="height:45px;v-text-anchor:middle;width:240px;" arcsize="50%"
                                 strokecolor="#1473E6" fillcolor="#1473E6">
                                 <w:anchorlock/>
-                                <center style="color:#ffffff;font-size:14px;font-weight:bold;">
+                                <center style="color:#ffffff;font-size:16px;font-weight:bold;">
                                     Reply to Customer
                                 </center>
                             </v:roundrect>
@@ -188,7 +241,7 @@
 
                             <!--[if !mso]><!-- -->
                             <a href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
-                                style="background:#1473E6;color:#ffffff;padding:12px 25px;border-radius:25px;text-decoration:none;display:inline-block;font-size:14px;">
+                                class="btn">
                                 Reply to Customer
                             </a>
                             <!--<![endif]-->
