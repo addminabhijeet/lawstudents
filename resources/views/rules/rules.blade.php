@@ -235,7 +235,7 @@
         </div>
     </div>
 </div>
-@endsection
+
 <script>
     (function() {
         // ------------------- VARIABLES -------------------
