@@ -58,7 +58,7 @@
 
                                                     <!-- DELETE -->
                                                     <form method="POST"
-                                                        action="{{ route('contact.delete', $item->id) }}"
+                                                        action="{{ route('deletecontact', $item->id) }}"
                                                         class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
