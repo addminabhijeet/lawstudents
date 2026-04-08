@@ -84,31 +84,36 @@
             font-weight: 600;
         }
 
-        /* MOBILE FIXED CARD UI */
+        /* 🔥 MOBILE FIX (EDGE TO EDGE LIKE GMAIL PROMOTIONS) */
         @media only screen and (max-width:480px) {
 
             body {
                 background: #E4E4E4 !important;
             }
 
-            /* 🔥 OUTER SPACING LIKE GMAIL */
+            /* ✅ REMOVE SIDE GAP COMPLETELY */
             td[align="center"] {
-                padding: 12px !important;
+                padding: 0 !important;
             }
 
-            /* 🔥 REAL CARD EFFECT */
+            table[width="100%"] {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* ✅ FULL WIDTH CARD */
             .container {
                 width: 100% !important;
-                border-radius: 16px !important;
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
-                overflow: hidden;
+                max-width: 100% !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
             }
 
             .content {
                 padding: 20px !important;
             }
 
-            /* 🔥 SUBJECT STYLE */
+            /* 🔥 BIG SUBJECT STYLE */
             .heading {
                 font-size: 34px !important;
                 line-height: 42px !important;
@@ -120,7 +125,7 @@
                 line-height: 30px !important;
             }
 
-            /* 🔥 STACK CLEAN */
+            /* 🔥 STACK */
             td {
                 display: block !important;
                 width: 100% !important;
@@ -131,12 +136,10 @@
                 margin-bottom: 12px;
             }
 
-            /* 🔥 CARD ROW LOOK */
+            /* 🔥 CLEAN ROW STYLE */
             .row-alt,
             tr:not(.row-alt) {
                 background: #ffffff !important;
-                border-radius: 10px;
-                margin-bottom: 10px;
             }
 
             .label {
@@ -150,10 +153,11 @@
                 font-weight: 500;
             }
 
-            /* 🔥 LOGO CENTER */
+            /* ✅ BIGGER LOGO (LIKE PROMOTIONS HEADER) */
             .logo {
-                width: 200px !important;
-                margin: auto;
+                width: 92% !important;
+                max-width: 320px !important;
+                margin: 0 auto !important;
                 display: block;
             }
 
@@ -163,12 +167,13 @@
                 padding: 18px !important;
                 width: 100% !important;
                 text-align: center;
-                border-radius: 40px;
+                border-radius: 0 !important;
             }
 
             .footer {
                 font-size: 16px !important;
                 line-height: 26px !important;
+                padding: 20px !important;
             }
         }
     </style>
