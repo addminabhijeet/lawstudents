@@ -51,7 +51,7 @@
                                                 <div class="hstack gap-2 justify-content-end">
 
                                                     <!-- MAIL BUTTON -->
-                                                    <a href="{{ route('contact.sendmail', $item->id) }}"
+                                                    <a href=""
                                                         class="btn btn-sm btn-success">
                                                         Mail
                                                     </a>
