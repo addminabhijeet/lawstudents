@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\CourseNote;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,16 +17,19 @@ class Course extends Model
         'price',
         'level',
         'duration',
+        'discount',     
         'is_free',
         'status',
         'thumbnail',
+        'brochure',     
         'delete'
     ];
 
     protected $casts = [
         'is_free' => 'boolean',
         'status'  => 'boolean',
-        'price'   => 'decimal:2'
+        'price'   => 'decimal:2',
+        'discount'=> 'decimal:2' 
     ];
 
     public function category()
