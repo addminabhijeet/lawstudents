@@ -152,14 +152,6 @@
 
                 <div id="pdfContainer" class="pdf-protected-viewer">
 
-                    <div id="watermark">
-                        {{ auth()->guard('student')->user()->name }}
-                        <br>
-                        {{ auth()->guard('student')->user()->email }}
-                        <br>
-                        {{ now()->format('d M Y H:i') }}
-                    </div>
-
                     <canvas id="pdfCanvas"></canvas>
 
                     <div class="text-center mt-2">
@@ -176,98 +168,6 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script>
-    let pdfDoc = null;
-    let pageNum = 1;
-    let totalPages = 0;
-
-    function openPDF(url, noteId) {
-
-        window.currentNoteId = noteId;
-
-        pageNum = 1;
-
-        let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
-        modal.show();
-
-        pdfjsLib.getDocument(url).promise.then(function(pdf) {
-
-            pdfDoc = pdf;
-            totalPages = pdf.numPages;
-
-            renderPage(pageNum);
-        });
-    }
-
-    function renderPage(num) {
-        pdfDoc.getPage(num).then(function(page) {
-
-            let canvas = document.getElementById('pdfCanvas');
-            let ctx = canvas.getContext('2d');
-
-            let container = document.getElementById('pdfContainer');
-
-            // get original viewport
-            let viewport = page.getViewport({
-                scale: 1
-            });
-
-            // calculate scale to fit container width
-            let scale = container.clientWidth / viewport.width;
-
-            let scaledViewport = page.getViewport({
-                scale: scale
-            });
-
-            canvas.height = scaledViewport.height;
-            canvas.width = scaledViewport.width;
-
-            let renderContext = {
-                canvasContext: ctx,
-                viewport: scaledViewport
-            };
-
-            page.render(renderContext).promise.then(function() {
-
-                let watermarkText =
-                    "{{ auth()->guard('student')->user()->name }} - {{ auth()->guard('student')->user()->email }}";
-
-                ctx.font = "28px Arial";
-                ctx.fillStyle = "rgba(150,150,150,0.20)";
-                ctx.textAlign = "center";
-
-                ctx.save();
-                ctx.translate(canvas.width / 2, canvas.height / 2);
-                ctx.rotate(-Math.PI / 6);
-
-                for (let y = -canvas.height; y < canvas.height; y += 200) {
-                    ctx.fillText(watermarkText, 0, y);
-                }
-
-                ctx.restore();
-            });
-
-            fetch("/student/save-progress", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({
-                    note_id: window.currentNoteId,
-                    page: pageNum,
-                    total_pages: totalPages
-                })
-            });
-        });
-        document.getElementById("pageInfo").innerText =
-            "Page " + num + " / " + totalPages;
-    }
-
-    document.getElementById('pdfModal').addEventListener('hidden.bs.modal', function() {
-        document.getElementById('pdfCanvas').getContext('2d').clearRect(0, 0, 9999, 9999);
-    });
-</script>
 
 <script>
     document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
