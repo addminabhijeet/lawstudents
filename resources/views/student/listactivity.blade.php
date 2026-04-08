@@ -96,7 +96,7 @@
 
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
-                                                    <a href="{{ route('admin.viewstudentactivity', $admission->id) }}"
+                                                    <a href="{{ route('admin.viewstudentactivity', $admission->student_id) }}"
                                                         class="avatar-text avatar-md">
                                                         <i class="feather feather-eye"></i>
                                                     </a>
