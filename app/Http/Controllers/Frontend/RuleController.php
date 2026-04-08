@@ -19,7 +19,7 @@ class RuleController extends Controller
 
         return view('rules.rules', compact('categories'));
     }
-    public function search(Request $request)
+    public function rulessearch(Request $request)
     {
         $query = $request->get('q');
 
