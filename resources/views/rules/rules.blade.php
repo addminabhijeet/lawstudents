@@ -142,7 +142,6 @@
                             if (!data.length) {
                                 box.innerHTML = '<div style="padding:10px;">No results</div>';
                             } else {
-                                // Dynamic rendering for ALL returned items
                                 box.innerHTML = data.map(item => `
                     <div style="padding:10px; cursor:pointer;"
                          onclick="openSearch(${item.category_id}, ${item.subcategory_id}, ${item.note_id})">
@@ -155,31 +154,35 @@
                 }
 
                 function openSearch(catId, subId, ruleId) {
-                    // Show all categories first
+                    // Hide all categories
                     document.querySelectorAll('[id^="cat"]').forEach(cat => {
-                        cat.parentElement.style.display = 'block'; // Show category container
+                        cat.parentElement.style.display = 'none'; // Hide the entire category container
                         cat.querySelectorAll('.rule-highlight').forEach(r => r.classList.remove('rule-highlight'));
                     });
 
-                    // Highlight only the searched rule
-                    let ruleDiv = document.querySelector(`#sub${subId} [data-rule-id='${ruleId}']`);
-                    if (ruleDiv) {
-                        // Hide other rules in this subcategory
-                        ruleDiv.parentElement.querySelectorAll('[data-rule-id]').forEach(r => r.style.display = 'none');
-                        ruleDiv.style.display = 'block';
-                        ruleDiv.classList.add('rule-highlight');
+                    // Show only the relevant category container
+                    let catContainer = document.getElementById('cat' + catId)?.parentElement;
+                    if (catContainer) catContainer.style.display = 'block';
 
-                        // Ensure subcategory and category are visible
-                        let subContainer = document.getElementById('sub' + subId);
-                        if (subContainer) subContainer.style.display = 'block';
-                        let catContainer = document.getElementById('cat' + catId);
-                        if (catContainer) catContainer.style.display = 'block';
+                    // Hide all subcategories inside this category
+                    let sub = document.getElementById('sub' + subId);
+                    if (sub) {
+                        sub.querySelectorAll('[data-rule-id]').forEach(r => r.style.display = 'none');
 
-                        // Scroll to the highlighted rule
-                        ruleDiv.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        });
+                        // Show only the searched rule
+                        let ruleDiv = sub.querySelector(`div[data-rule-id='${ruleId}']`);
+                        if (ruleDiv) {
+                            ruleDiv.style.display = 'block';
+                            ruleDiv.classList.add('rule-highlight');
+                            ruleDiv.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }
+
+                        // Show only the relevant subcategory container
+                        sub.style.display = 'block';
+                        sub.parentElement.style.display = 'block';
                     }
 
                     // Hide search suggestions
