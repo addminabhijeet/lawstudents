@@ -23,7 +23,7 @@
                     <div class="card stretch stretch-full">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover" id="clienteleList">
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th class="wd-30">#</th>
@@ -104,7 +104,6 @@
                                                     <span aria-hidden="true">&raquo;</span>
                                                 </a>
                                             </li>
-
                                         </ul>
                                     </nav>
                                 </div>
