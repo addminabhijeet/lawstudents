@@ -84,14 +84,14 @@
             font-weight: 600;
         }
 
-        /* 🔥 MOBILE FIX (EDGE TO EDGE LIKE GMAIL PROMOTIONS) */
+        /* 🔥 MOBILE FLAT UI (NO 3D EFFECT) */
         @media only screen and (max-width:480px) {
 
             body {
-                background: #E4E4E4 !important;
+                background: #ffffff !important;
             }
 
-            /* ✅ REMOVE SIDE GAP COMPLETELY */
+            /* REMOVE SIDE GAP */
             td[align="center"] {
                 padding: 0 !important;
             }
@@ -101,19 +101,20 @@
                 padding: 0 !important;
             }
 
-            /* ✅ FULL WIDTH CARD */
+            /* ✅ REMOVE 3D COMPLETELY */
             .container {
                 width: 100% !important;
                 max-width: 100% !important;
                 border-radius: 0 !important;
                 box-shadow: none !important;
+                background-color: #ffffff !important;
             }
 
             .content {
                 padding: 20px !important;
             }
 
-            /* 🔥 BIG SUBJECT STYLE */
+            /* BIG SUBJECT STYLE */
             .heading {
                 font-size: 34px !important;
                 line-height: 42px !important;
@@ -125,7 +126,7 @@
                 line-height: 30px !important;
             }
 
-            /* 🔥 STACK */
+            /* STACK */
             td {
                 display: block !important;
                 width: 100% !important;
@@ -136,10 +137,10 @@
                 margin-bottom: 12px;
             }
 
-            /* 🔥 CLEAN ROW STYLE */
+            /* FLAT ROWS (NO CARD LOOK) */
             .row-alt,
             tr:not(.row-alt) {
-                background: #ffffff !important;
+                background: transparent !important;
             }
 
             .label {
@@ -153,7 +154,7 @@
                 font-weight: 500;
             }
 
-            /* ✅ BIGGER LOGO (LIKE PROMOTIONS HEADER) */
+            /* BIG LOGO */
             .logo {
                 width: 92% !important;
                 max-width: 320px !important;
@@ -161,7 +162,7 @@
                 display: block;
             }
 
-            /* 🔥 FULL WIDTH BUTTON */
+            /* FULL WIDTH BUTTON */
             .btn {
                 font-size: 20px !important;
                 padding: 18px !important;
@@ -174,6 +175,7 @@
                 font-size: 16px !important;
                 line-height: 26px !important;
                 padding: 20px !important;
+                background: #ffffff !important;
             }
         }
     </style>
