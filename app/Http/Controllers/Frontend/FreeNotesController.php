@@ -18,7 +18,8 @@ class FreeNotesController extends Controller
     {
         $categories = CopyCategory::with([
             'subcategories.copys'
-        ])->get();
+        ])->where('delete', 1)
+            ->get();
 
         // Add default values to prevent undefined variable error
         $filePath = '';
