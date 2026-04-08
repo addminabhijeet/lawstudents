@@ -25,6 +25,9 @@ use App\Models\CopySubcategory;
 use App\Models\ContactForm;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\StudentOtpMail;
+use App\Models\StudentActivity;
+use App\Models\StudentAdmission;
+use App\Models\Payment;
 
 class CourseController extends Controller
 {
@@ -1141,8 +1144,8 @@ class CourseController extends Controller
     // Show edit form
     public function editcopyscategory($id)
     {
-        $categories = CopyCategory::findOrFail($id); 
-        return view('copys.categories.edit', compact('categories')); 
+        $categories = CopyCategory::findOrFail($id);
+        return view('copys.categories.edit', compact('categories'));
     }
 
     // Update category
@@ -1262,5 +1265,57 @@ class CourseController extends Controller
         $data->update(['delete' => 0]);
 
         return back()->with('success', 'Deleted successfully!');
+    }
+
+    public function liststudentactivity()
+    {
+        $admissions = StudentAdmission::where('deleted', 0)
+            ->latest()
+            ->paginate(10);
+        return view('student.listactivity', compact('course'));
+    }
+    
+    public function viewstudentactivity($studentId, $id)
+    {
+        // ✅ Get student from URL instead of Auth
+        $student = \App\Models\Student::findOrFail($studentId);
+
+        // ✅ Get all paid course_id strings
+        $payments = Payment::where('student_id', $student->id)
+            ->where('payment_status', 'paid')
+            ->pluck('course_id');
+
+        // ✅ Flatten course IDs (same as listcourse)
+        $paidCourseIds = [];
+        foreach ($payments as $courseIdsString) {
+            if ($courseIdsString) {
+                $ids = explode(',', $courseIdsString);
+                $paidCourseIds = array_merge($paidCourseIds, $ids);
+            }
+        }
+
+        $paidCourseIds = array_map('intval', $paidCourseIds);
+        $paidCourseIds = array_unique($paidCourseIds);
+
+        // ✅ Check if requested course is in paid list
+        if (!in_array($id, $paidCourseIds)) {
+            abort(403, 'You have not purchased this course.');
+        }
+
+        // ✅ SAME as before
+        $course = Course::with([
+            'category',
+            'notes' => function ($query) {
+                $query->where('status', 1);
+            }
+        ])->findOrFail($id);
+
+        StudentActivity::create([
+            'student_id' => $student->id,
+            'course_id' => $course->id,
+            'activity_type' => 'view_course'
+        ]);
+
+        return view('student.viewactivity', compact('course'));
     }
 }
