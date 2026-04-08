@@ -1141,8 +1141,8 @@ class CourseController extends Controller
     // Show edit form
     public function editcopyscategory($id)
     {
-        $categories = ActCategory::findOrFail($id);
-        return view('copys.categories.edit', compact('categories'));
+        $category = CopyCategory::findOrFail($id); 
+        return view('copys.categories.edit', compact('category')); 
     }
 
     // Update category
