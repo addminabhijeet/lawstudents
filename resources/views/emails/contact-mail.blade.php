@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             background-color: #E4E4E4;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         table {
@@ -24,6 +24,9 @@
             width: 600px;
             max-width: 100%;
             background-color: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
 
         .content {
@@ -31,40 +34,41 @@
         }
 
         .label {
-            font-weight: bold;
-            color: #333333;
+            font-weight: 600;
+            color: #222;
             width: 160px;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .value {
-            color: #555555;
-            font-size: 16px;
+            color: #444;
+            font-size: 18px;
         }
 
         .row-alt {
-            background-color: #f9f9f9;
+            background-color: #f8f9fb;
         }
 
         .footer {
             background-color: #F4F4F4;
             padding: 30px;
-            font-size: 14px;
-            color: #888888;
-            line-height: 22px;
+            font-size: 15px;
+            color: #777;
+            line-height: 24px;
         }
 
         .heading {
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: 700;
         }
 
         .intro {
-            font-size: 17px;
-            line-height: 26px;
+            font-size: 18px;
+            line-height: 28px;
         }
 
         .logo {
-            width: 250px;
+            width: 260px;
             max-width: 100%;
             height: auto;
         }
@@ -72,70 +76,77 @@
         .btn {
             background: #1473E6;
             color: #ffffff;
-            padding: 14px 30px;
-            border-radius: 25px;
+            padding: 16px 34px;
+            border-radius: 30px;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size: 17px;
+            font-weight: 600;
         }
 
         /* DARK MODE */
         @media (prefers-color-scheme: dark) {
-            body { background-color: #1a1a1a !important; }
-            .container { background-color: #2a2a2a !important; }
+            body { background-color: #121212 !important; }
+            .container { background-color: #1f1f1f !important; }
             .label { color: #ffffff !important; }
             .value { color: #dddddd !important; }
-            .row-alt { background-color: #333333 !important; }
-            .footer { background-color: #1f1f1f !important; color: #bbbbbb !important; }
+            .row-alt { background-color: #2c2c2c !important; }
+            .footer { background-color: #1a1a1a !important; color: #bbbbbb !important; }
         }
 
-        /* 🚀 MOBILE SUPER LARGE TEXT */
+        /* 🚀 MOBILE ULTRA LARGE (SUBJECT STYLE) */
         @media only screen and (max-width:480px) {
 
-            .content {
-                padding: 20px !important;
+            .container {
+                border-radius: 0 !important;
+                box-shadow: none !important;
             }
 
-            /* 🔥 SUBJECT-LIKE HEADING */
+            .content {
+                padding: 22px !important;
+            }
+
+            /* 🔥 SUBJECT SIZE */
             .heading {
-                font-size: 32px !important;
-                font-weight: bold !important;
-                line-height: 40px !important;
+                font-size: 36px !important;
+                line-height: 44px !important;
+                font-weight: 800 !important;
             }
 
             .intro {
-                font-size: 20px !important;
-                line-height: 30px !important;
+                font-size: 22px !important;
+                line-height: 32px !important;
             }
 
-            /* 🔥 BIG DATA TEXT */
+            /* 🔥 BIG DATA */
             .label {
                 display: block !important;
                 width: 100% !important;
-                font-size: 20px !important;
-                margin-top: 10px;
+                font-size: 22px !important;
+                margin-top: 12px;
             }
 
             .value {
                 display: block !important;
                 width: 100% !important;
-                font-size: 22px !important;
-                margin-bottom: 15px;
+                font-size: 24px !important;
+                margin-bottom: 18px;
                 font-weight: 500;
             }
 
             .logo {
-                width: 220px !important;
+                width: 230px !important;
                 margin: auto;
             }
 
-            /* 🔥 BIG BUTTON */
+            /* 🔥 BUTTON LIKE APP CTA */
             .btn {
                 font-size: 20px !important;
-                padding: 16px 20px !important;
-                width: 95% !important;
+                padding: 18px 20px !important;
+                width: 100% !important;
                 text-align: center;
-                font-weight: bold;
+                font-weight: 700;
+                border-radius: 40px;
             }
 
             td {
@@ -145,12 +156,12 @@
 
             tr {
                 display: block !important;
-                margin-bottom: 12px;
+                margin-bottom: 14px;
             }
 
             .footer {
-                font-size: 16px !important;
-                line-height: 26px !important;
+                font-size: 18px !important;
+                line-height: 28px !important;
             }
         }
     </style>
@@ -158,16 +169,19 @@
 
 <body>
 
+    <!-- Preheader -->
     <div style="display:none; max-height:0; overflow:hidden; font-size:1px; color:#E4E4E4;">
         New contact form submission received from your website.
     </div>
 
     <table width="100%" bgcolor="#E4E4E4">
         <tr>
-            <td align="center">
+            <td align="center" style="padding:20px;">
 
+                <!-- Card UI -->
                 <table class="container" style="border-top:4px solid #FA0F00;">
 
+                    <!-- Logo -->
                     <tr>
                         <td class="content" style="padding-bottom:10px;">
                             <img src="https://law.norloxsolutionscrm.com/assets/images/logo-full.png"
@@ -175,14 +189,16 @@
                         </td>
                     </tr>
 
+                    <!-- Heading -->
                     <tr>
                         <td class="content" style="padding-top:10px;">
-                            <h2 class="heading" style="margin:0; color:#333;">
+                            <h2 class="heading" style="margin:0; color:#222;">
                                 New Contact Form Submission
                             </h2>
                         </td>
                     </tr>
 
+                    <!-- Intro -->
                     <tr>
                         <td class="content intro" style="padding-top:0; color:#555;">
                             Hello Admin,<br><br>
@@ -190,9 +206,10 @@
                         </td>
                     </tr>
 
+                    <!-- Data -->
                     <tr>
                         <td class="content" style="padding-top:0;">
-                            <table width="100%" cellpadding="12">
+                            <table width="100%" cellpadding="14">
 
                                 <tr class="row-alt">
                                     <td class="label">Name</td>
@@ -233,6 +250,7 @@
                         </td>
                     </tr>
 
+                    <!-- Button -->
                     <tr>
                         <td align="center" style="padding-bottom:40px;">
                             <a href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
@@ -242,6 +260,7 @@
                         </td>
                     </tr>
 
+                    <!-- Footer -->
                     <tr>
                         <td class="footer">
                             This email was generated automatically from your website contact form.<br><br>
