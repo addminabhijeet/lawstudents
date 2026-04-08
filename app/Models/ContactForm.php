@@ -17,6 +17,7 @@ class ContactForm extends Model
         'phone',
         'email',
         'service_type',
-        'message'
+        'message',
+        'delete'
     ];
 }

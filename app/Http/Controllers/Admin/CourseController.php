@@ -22,9 +22,7 @@ use App\Models\MailSetting;
 use App\Models\Copy;
 use App\Models\CopyCategory;
 use App\Models\CopySubcategory;
-use App\Models\Lession;
-use App\Models\LessionCategory;
-use App\Models\LessionSubcategory;
+use App\Models\ContactForm;
 
 
 class CourseController extends Controller
@@ -1241,5 +1239,11 @@ class CourseController extends Controller
         ]);
 
         return back()->with('success', 'Subcategory deleted successfully.');
+    }
+
+    public function listcontactform()
+    {
+        $contact = ContactForm::where('delete', 1)->latest()->paginate(10);
+        return view('contact.list', compact('contact'));
     }
 }
