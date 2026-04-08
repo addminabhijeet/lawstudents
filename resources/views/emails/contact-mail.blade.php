@@ -84,7 +84,7 @@
             font-weight: 600;
         }
 
-        /* 🔥 MOBILE FLAT UI (NO 3D EFFECT) */
+        /* 🔥 MOBILE FLAT UI (NO 3D EFFECT + FIX BUTTON) */
         @media only screen and (max-width:480px) {
 
             body {
@@ -101,7 +101,7 @@
                 padding: 0 !important;
             }
 
-            /* ✅ REMOVE 3D COMPLETELY */
+            /* REMOVE 3D */
             .container {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -114,7 +114,7 @@
                 padding: 20px !important;
             }
 
-            /* BIG SUBJECT STYLE */
+            /* SUBJECT STYLE */
             .heading {
                 font-size: 34px !important;
                 line-height: 42px !important;
@@ -137,7 +137,7 @@
                 margin-bottom: 12px;
             }
 
-            /* FLAT ROWS (NO CARD LOOK) */
+            /* CLEAN ROW */
             .row-alt,
             tr:not(.row-alt) {
                 background: transparent !important;
@@ -154,7 +154,7 @@
                 font-weight: 500;
             }
 
-            /* BIG LOGO */
+            /* LOGO */
             .logo {
                 width: 92% !important;
                 max-width: 320px !important;
@@ -162,13 +162,25 @@
                 display: block;
             }
 
-            /* FULL WIDTH BUTTON */
+            /* 🔥 BUTTON FIX (MAIN FIX) */
             .btn {
-                font-size: 20px !important;
-                padding: 18px !important;
+                display: block !important;
                 width: 100% !important;
-                text-align: center;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                font-size: 20px !important;
+                padding: 16px !important;
+                text-align: center !important;
                 border-radius: 0 !important;
+                line-height: 24px !important;
+                overflow: hidden !important;
+            }
+
+            /* EXTRA SAFETY FOR EMAIL CLIENTS */
+            a.btn {
+                width: 100% !important;
+                display: block !important;
+                box-sizing: border-box !important;
             }
 
             .footer {
