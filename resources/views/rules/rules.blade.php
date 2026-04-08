@@ -131,40 +131,29 @@
 
                 function searchNotes(query) {
                     let box = document.getElementById('searchSuggestions');
-                    console.log("searchNotes called with query:", query); // Debug
-
                     if (query.length < 3) {
                         box.style.display = 'none';
-                        console.log("Query too short, hiding suggestions"); // Debug
                         return;
                     }
 
                     fetch(`{{ route('frontend.rulessearch') }}?q=${encodeURIComponent(query)}`)
                         .then(res => res.json())
                         .then(data => {
-                            console.log("Data received from search:", data); // Debug
-
                             if (!data.length) {
                                 box.innerHTML = '<div style="padding:10px;">No results</div>';
-                                console.log("No results found"); // Debug
                             } else {
                                 box.innerHTML = data.map(item => `
-                        <div style="padding:10px; cursor:pointer;"
-                             onclick="openSearch(${item.category_id}, ${item.subcategory_id}, ${item.note_id})">
-                            ${item.title}
-                        </div>
-                    `).join('');
+                    <div style="padding:10px; cursor:pointer;"
+                         onclick="openSearch(${item.category_id}, ${item.subcategory_id}, ${item.note_id})">
+                        ${item.title}
+                    </div>
+                `).join('');
                             }
                             box.style.display = 'block';
-                        })
-                        .catch(err => {
-                            console.error("Error fetching search results:", err); // Debug
                         });
                 }
 
                 function openSearch(catId, subId, ruleId) {
-                    console.log("openSearch called with:", catId, subId, ruleId); // Debug
-
                     // Hide all categories
                     document.querySelectorAll('[id^="cat"]').forEach(cat => {
                         cat.parentElement.style.display = 'none'; // Hide the entire category container
@@ -173,11 +162,7 @@
 
                     // Show only the relevant category container
                     let catContainer = document.getElementById('cat' + catId)?.parentElement;
-                    if (catContainer) {
-                        catContainer.style.display = 'block';
-                    } else {
-                        console.warn("Category container not found for catId:", catId); // Debug
-                    }
+                    if (catContainer) catContainer.style.display = 'block';
 
                     // Hide all subcategories inside this category
                     let sub = document.getElementById('sub' + subId);
@@ -193,15 +178,11 @@
                                 behavior: 'smooth',
                                 block: 'center'
                             });
-                        } else {
-                            console.warn("Rule not found for ruleId:", ruleId); // Debug
                         }
 
                         // Show only the relevant subcategory container
                         sub.style.display = 'block';
                         sub.parentElement.style.display = 'block';
-                    } else {
-                        console.warn("Subcategory not found for subId:", subId); // Debug
                     }
 
                     // Hide search suggestions
@@ -214,7 +195,6 @@
                     let input = document.getElementById('noteSearch');
                     if (!box.contains(e.target) && e.target !== input) {
                         box.style.display = 'none';
-                        console.log("Clicked outside search box, hiding suggestions"); // Debug
                     }
                 });
             </script>

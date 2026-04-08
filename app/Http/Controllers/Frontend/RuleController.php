@@ -19,17 +19,30 @@ class RuleController extends Controller
 
         return view('rules.rules', compact('categories'));
     }
+
     public function rulessearch(Request $request)
     {
         $query = $request->get('q');
 
-        if (strlen($query) < 1) { // allow even 1 character
+        if (strlen($query) < 3) {
             return response()->json([]);
         }
 
-        // Search only in rule descriptions, ignore category/subcategory
-        $rules = Rule::where('delete', 1)
-            ->where('description', 'LIKE', "%{$query}%")
+        // Search in rules, categories, and subcategories
+        $rules = Rule::with('category', 'subcategory')
+            ->where('delete', 1) // only active rules
+            ->where(function ($q) use ($query) {
+                $q->where('description', 'LIKE', "%{$query}%")
+                    ->orWhereHas('category', function ($q2) use ($query) {
+                        $q2->where('delete', 1)
+                            ->where('name', 'LIKE', "%{$query}%");
+                    })
+                    ->orWhereHas('subcategory', function ($q3) use ($query) {
+                        $q3->where('delete', 1)
+                            ->where('name', 'LIKE', "%{$query}%");
+                    });
+            })
+            ->limit(10)
             ->get()
             ->map(function ($rule) {
                 return [
