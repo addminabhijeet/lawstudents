@@ -29,8 +29,20 @@ class ActController extends Controller
             return response()->json([]);
         }
 
+        // Search in acts, categories, and subcategories
         $acts = Act::with('category', 'subcategory')
-            ->where('description', 'LIKE', "%{$query}%")
+            ->where('delete', 1) // Only active acts
+            ->where(function ($q) use ($query) {
+                $q->where('description', 'LIKE', "%{$query}%")
+                    ->orWhereHas('category', function ($q2) use ($query) {
+                        $q2->where('delete', 1)
+                            ->where('name', 'LIKE', "%{$query}%");
+                    })
+                    ->orWhereHas('subcategory', function ($q3) use ($query) {
+                        $q3->where('delete', 1)
+                            ->where('name', 'LIKE', "%{$query}%");
+                    });
+            })
             ->limit(10)
             ->get()
             ->map(function ($act) {

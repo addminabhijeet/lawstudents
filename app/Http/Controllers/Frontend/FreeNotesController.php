@@ -28,7 +28,6 @@ class FreeNotesController extends Controller
 
         return view('copys.copys', compact('categories', 'filePath', 'studentName', 'studentEmail'));
     }
-    // 🔍 SEARCH
     public function search(Request $request)
     {
         $query = $request->get('q');
@@ -37,8 +36,20 @@ class FreeNotesController extends Controller
             return response()->json([]);
         }
 
+        // Search in copies, categories, and subcategories
         $copys = Copy::with('category', 'subcategory')
-            ->where('description', 'LIKE', "%{$query}%")
+            ->where('delete', 1) // Only active copies
+            ->where(function ($q) use ($query) {
+                $q->where('description', 'LIKE', "%{$query}%")
+                    ->orWhereHas('category', function ($q2) use ($query) {
+                        $q2->where('delete', 1)
+                            ->where('name', 'LIKE', "%{$query}%");
+                    })
+                    ->orWhereHas('subcategory', function ($q3) use ($query) {
+                        $q3->where('delete', 1)
+                            ->where('name', 'LIKE', "%{$query}%");
+                    });
+            })
             ->limit(10)
             ->get()
             ->map(function ($copy) {
