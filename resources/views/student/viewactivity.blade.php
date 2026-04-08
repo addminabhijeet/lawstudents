@@ -1,4 +1,4 @@
-@include('layouts.partials.student.dashboard')
+@include('layouts.partials.admin.dashboard')
 
 <style>
     .pdf-protected-viewer {
@@ -492,4 +492,4 @@
         }
     }
 </script>
-@include('layouts.partials.student.theme')
+@include('layouts.partials.admin.theme')
