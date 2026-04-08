@@ -89,49 +89,53 @@
             .footer { background-color: #1f1f1f !important; color: #bbbbbb !important; }
         }
 
-        /* MOBILE - BIG TEXT + STACK */
+        /* 🚀 MOBILE SUPER LARGE TEXT */
         @media only screen and (max-width:480px) {
 
             .content {
                 padding: 20px !important;
             }
 
+            /* 🔥 SUBJECT-LIKE HEADING */
             .heading {
-                font-size: 22px !important;
+                font-size: 32px !important;
+                font-weight: bold !important;
+                line-height: 40px !important;
             }
 
             .intro {
-                font-size: 18px !important;
-                line-height: 28px !important;
+                font-size: 20px !important;
+                line-height: 30px !important;
             }
 
-            .label,
+            /* 🔥 BIG DATA TEXT */
+            .label {
+                display: block !important;
+                width: 100% !important;
+                font-size: 20px !important;
+                margin-top: 10px;
+            }
+
             .value {
                 display: block !important;
                 width: 100% !important;
-                font-size: 18px !important;
-                padding: 6px 0 !important;
-            }
-
-            .label {
-                font-weight: bold;
-                color: #000;
-            }
-
-            .value {
-                margin-bottom: 12px;
+                font-size: 22px !important;
+                margin-bottom: 15px;
+                font-weight: 500;
             }
 
             .logo {
-                width: 200px !important;
+                width: 220px !important;
                 margin: auto;
             }
 
+            /* 🔥 BIG BUTTON */
             .btn {
-                font-size: 18px !important;
-                padding: 14px 20px !important;
-                width: 90% !important;
+                font-size: 20px !important;
+                padding: 16px 20px !important;
+                width: 95% !important;
                 text-align: center;
+                font-weight: bold;
             }
 
             td {
@@ -141,7 +145,12 @@
 
             tr {
                 display: block !important;
-                margin-bottom: 10px;
+                margin-bottom: 12px;
+            }
+
+            .footer {
+                font-size: 16px !important;
+                line-height: 26px !important;
             }
         }
     </style>
@@ -149,7 +158,6 @@
 
 <body>
 
-    <!-- Preheader -->
     <div style="display:none; max-height:0; overflow:hidden; font-size:1px; color:#E4E4E4;">
         New contact form submission received from your website.
     </div>
@@ -160,7 +168,6 @@
 
                 <table class="container" style="border-top:4px solid #FA0F00;">
 
-                    <!-- Logo -->
                     <tr>
                         <td class="content" style="padding-bottom:10px;">
                             <img src="https://law.norloxsolutionscrm.com/assets/images/logo-full.png"
@@ -168,7 +175,6 @@
                         </td>
                     </tr>
 
-                    <!-- Heading -->
                     <tr>
                         <td class="content" style="padding-top:10px;">
                             <h2 class="heading" style="margin:0; color:#333;">
@@ -177,7 +183,6 @@
                         </td>
                     </tr>
 
-                    <!-- Intro -->
                     <tr>
                         <td class="content intro" style="padding-top:0; color:#555;">
                             Hello Admin,<br><br>
@@ -185,7 +190,6 @@
                         </td>
                     </tr>
 
-                    <!-- Data -->
                     <tr>
                         <td class="content" style="padding-top:0;">
                             <table width="100%" cellpadding="12">
@@ -229,7 +233,6 @@
                         </td>
                     </tr>
 
-                    <!-- Button -->
                     <tr>
                         <td align="center" style="padding-bottom:40px;">
                             <a href="mailto:{{ isset($lines[2]) ? str_replace('Email: ', '', $lines[2]) : '' }}"
@@ -239,7 +242,6 @@
                         </td>
                     </tr>
 
-                    <!-- Footer -->
                     <tr>
                         <td class="footer">
                             This email was generated automatically from your website contact form.<br><br>
