@@ -61,7 +61,7 @@
 
                                 <!-- Description -->
                                 <div class="mb-3">
-                                    <label class="form-label">Button Name / Description</label>
+                                    <label class="form-label">Description</label>
                                     <textarea name="description" class="form-control">{{ old('description') }}</textarea>
                                 </div>
 
