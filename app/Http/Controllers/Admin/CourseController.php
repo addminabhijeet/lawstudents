@@ -28,6 +28,7 @@ use App\Mail\StudentOtpMail;
 use App\Models\StudentActivity;
 use App\Models\StudentAdmission;
 use App\Models\Payment;
+use Carbon\Carbon;
 
 class CourseController extends Controller
 {
@@ -1280,9 +1281,11 @@ class CourseController extends Controller
         // ✅ Get student from URL instead of Auth
         $student = \App\Models\Student::findOrFail($studentId);
 
-        // ✅ Get all paid course_id strings
+        // ✅ Get all paid course_id strings (WITH MONTH + YEAR FILTER)
         $payments = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
+            ->whereMonth('issue_date', Carbon::now()->month)   // ✅ added
+            ->whereYear('issue_date', Carbon::now()->year)     // ✅ added
             ->pluck('course_id');
 
         // ✅ Flatten course IDs (same as listcourse)
