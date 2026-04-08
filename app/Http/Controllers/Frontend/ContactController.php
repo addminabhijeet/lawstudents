@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use App\Models\ContactForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\StudentOtpMail;
 
 class ContactController extends Controller
 {
@@ -16,7 +18,6 @@ class ContactController extends Controller
 
     public function contactstore(Request $request)
     {
-        // Validation
         $request->validate([
             'first_name'   => 'required|string|max:100',
             'last_name'    => 'required|string|max:100',
@@ -26,8 +27,7 @@ class ContactController extends Controller
             'message'      => 'required|string',
         ]);
 
-        // Store Data
-        ContactForm::create([
+        $data = ContactForm::create([
             'first_name'   => $request->first_name,
             'last_name'    => $request->last_name,
             'phone'        => $request->phone,
@@ -36,7 +36,19 @@ class ContactController extends Controller
             'message'      => $request->message,
         ]);
 
-        // Redirect / Response
+        $adminEmail = config('mail.from.address');
+
+        $mailData = "
+            New Contact Form Submission:
+
+            Name: {$data->first_name} {$data->last_name}
+            Phone: {$data->phone}
+            Email: {$data->email}
+            Service: {$data->service_type}
+            Message: {$data->message}
+            ";
+
+        Mail::to($adminEmail)->send(new StudentOtpMail($mailData));
         return back()->with('success', 'Form submitted successfully!');
     }
 }
