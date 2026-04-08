@@ -63,154 +63,149 @@
 
                 <!-- SEARCH -->
                 <div style="max-width:600px; margin:0 auto 20px; position:relative;">
-                    <input type="text" id="noteSearch" class="form-control"
-                        placeholder="Search Free Notes..." onkeyup="searchNotes(this.value)">
+                    <input type="text" id="copySearch" class="form-control"
+                        placeholder="Search Free Notes..." onkeyup="searchCopys(this.value)">
 
-                    <div id="searchSuggestions"
+                    <div id="copySuggestions"
                         style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none; position:absolute; width:100%; background:#fff; z-index:999;">
                     </div>
                 </div>
 
                 @foreach ($categories as $category)
-
                 <!-- CATEGORY -->
                 <div style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
-
-                    <div onclick="toggleAccordion('cat{{ $category->id }}')"
+                    <div onclick="toggleAccordion('copyCat{{ $category->id }}')"
                         style="cursor:pointer; padding:15px; background:#fff; font-weight:600;">
                         {{ $category->name }}
                     </div>
 
-                    <!-- 🔥 OPEN BY DEFAULT -->
-                    <div id="cat{{ $category->id }}" class="accordion-content" style="max-height:1000px;">
-
+                    <div id="copyCat{{ $category->id }}" class="accordion-content" style="max-height:1000px;">
                         @foreach ($category->subcategories as $sub)
-
                         <!-- SUBCATEGORY -->
                         <div style="margin:10px; border:1px dashed #ccc; border-radius:6px; overflow:hidden;">
-
-                            <div onclick="toggleAccordion('sub{{ $sub->id }}')"
+                            <div onclick="toggleAccordion('copySub{{ $sub->id }}')"
                                 style="cursor:pointer; padding:10px; background:#f5f5f5;">
                                 {{ $sub->name }}
                             </div>
 
-                            <!-- 🔥 OPEN BY DEFAULT -->
-                            <div id="sub{{ $sub->id }}" class="accordion-content" style="padding:10px; max-height:1000px;">
-
+                            <div id="copySub{{ $sub->id }}" class="accordion-content" style="padding:10px; max-height:1000px;">
                                 @foreach ($sub->copys as $copy)
-                                @foreach ($copy->pdfs as $index => $pdf)
-                                <div style="margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
-                                    <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
-                                    <div>
-                                        @if(auth()->check())
-                                        <a href="{{ route('frontend.viewnoteWatermarked', [$copy->id, $index]) }}"
-                                            target="_blank"
-                                            style="font-size:12px; color:green;">
-                                            View PDF
-                                        </a>
-                                        <span style="margin:0 5px;">|</span>
-                                        <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}"
-                                            style="font-size:12px; color:blue;">
-                                            Download
-                                        </a>
-                                        @else
-                                        <a href="{{ route('google.login') }}"
-                                            style="font-size:12px; color:green;">
-                                            View PDF
-                                        </a>
-                                        @endif
+                                <div data-copy-id="{{ $copy->id }}" style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
+                                    @foreach ($copy->pdfs as $index => $pdf)
+                                    <div style="margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
+                                        <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
+                                        <div>
+                                            @if(auth()->check())
+                                            <a href="{{ route('frontend.viewnoteWatermarked', [$copy->id, $index]) }}" target="_blank" style="font-size:12px; color:green;">View PDF</a>
+                                            <span style="margin:0 5px;">|</span>
+                                            <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}" style="font-size:12px; color:blue;">Download</a>
+                                            @else
+                                            <a href="{{ route('google.login') }}" style="font-size:12px; color:green;">View PDF</a>
+                                            @endif
+                                        </div>
                                     </div>
+                                    @endforeach
                                 </div>
                                 @endforeach
-                                @endforeach
                             </div>
-
                         </div>
-
                         @endforeach
-
                     </div>
-
                 </div>
-
                 @endforeach
 
             </div>
-
-            <!-- STYLES -->
-            <style>
-                .accordion-content {
-                    max-height: none !important;
-                    /* 🔥 Always visible */
-                    overflow: visible !important;
-                    transition: none;
-                }
-
-                #searchSuggestions div:hover {
-                    background: #f1f1f1;
-                }
-            </style>
-
-            <!-- SCRIPT -->
-            <script>
-                function toggleAccordion(id) {
-                    // 🔥 Disabled toggle (kept for compatibility)
-                    return;
-                }
-
-                // SEARCH
-                function searchNotes(query) {
-                    let box = document.getElementById('searchSuggestions');
-
-                    if (query.length < 3) {
-                        box.style.display = 'none';
-                        return;
-                    }
-
-                    fetch(`{{ route('frontend.copyssearch') }}?q=${encodeURIComponent(query)}`)
-                        .then(res => res.json())
-                        .then(data => {
-
-                            if (!data.length) {
-                                box.innerHTML = '<div style="padding:10px;">No results</div>';
-                            } else {
-                                box.innerHTML = data.map(item => `
-                                    <div style="padding:10px; cursor:pointer;"
-                                        onclick="openSearch(${item.category_id}, ${item.subcategory_id})">
-                                        ${item.title}
-                                    </div>
-                                `).join('');
-                            }
-
-                            box.style.display = 'block';
-                        });
-                }
-
-                function openSearch(catId, subId) {
-                    let cat = document.getElementById('cat' + catId);
-                    let sub = document.getElementById('sub' + subId);
-
-                    if (cat) cat.style.maxHeight = "none";
-                    if (sub) sub.style.maxHeight = "none";
-
-                    document.getElementById('searchSuggestions').style.display = 'none';
-                }
-
-                // CLOSE SEARCH ON OUTSIDE CLICK
-                document.addEventListener('click', function(e) {
-                    let box = document.getElementById('searchSuggestions');
-                    let input = document.getElementById('noteSearch');
-
-                    if (!box.contains(e.target) && e.target !== input) {
-                        box.style.display = 'none';
-                    }
-                });
-            </script>
-
-            <!-- NOTE: Pagination removed because copy are nested collections and not paginated -->
         </div>
     </div>
 </div>
+
+<style>
+    .copy-highlight {
+        border: 2px solid #28a745 !important;
+        background: #e6ffe6;
+    }
+
+    .accordion-content {
+        max-height: none !important;
+        overflow: visible !important;
+        transition: none;
+    }
+
+    #copySuggestions div:hover {
+        background: #f1f1f1;
+    }
+</style>
+
+<script>
+    function toggleAccordion(id) {
+        return; // Disabled toggle
+    }
+
+    function searchCopys(query) {
+        let box = document.getElementById('copySuggestions');
+        if (query.length < 3) {
+            box.style.display = 'none';
+            return;
+        }
+
+        fetch(`{{ route('frontend.copyssearch') }}?q=${encodeURIComponent(query)}`)
+            .then(res => res.json())
+            .then(data => {
+                if (!data.length) {
+                    box.innerHTML = '<div style="padding:10px;">No results</div>';
+                } else {
+                    box.innerHTML = data.map(item => `
+                        <div style="padding:10px; cursor:pointer;"
+                             onclick="openCopySearch(${item.category_id}, ${item.subcategory_id}, ${item.copy_id})">
+                            ${item.title}
+                        </div>
+                    `).join('');
+                }
+                box.style.display = 'block';
+            });
+    }
+
+    function openCopySearch(catId, subId, copyId) {
+        // Hide all categories
+        document.querySelectorAll('[id^="copyCat"]').forEach(cat => {
+            cat.parentElement.style.display = 'none';
+            cat.querySelectorAll('.copy-highlight').forEach(c => c.classList.remove('copy-highlight'));
+        });
+
+        // Show only relevant category
+        let catContainer = document.getElementById('copyCat' + catId)?.parentElement;
+        if (catContainer) catContainer.style.display = 'block';
+
+        // Show only relevant copy
+        let sub = document.getElementById('copySub' + subId);
+        if (sub) {
+            sub.querySelectorAll('[data-copy-id]').forEach(c => c.style.display = 'none');
+
+            let copyDiv = sub.querySelector(`div[data-copy-id='${copyId}']`);
+            if (copyDiv) {
+                copyDiv.style.display = 'block';
+                copyDiv.classList.add('copy-highlight');
+                copyDiv.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+
+            sub.style.display = 'block';
+            sub.parentElement.style.display = 'block';
+        }
+
+        document.getElementById('copySuggestions').style.display = 'none';
+    }
+
+    document.addEventListener('click', function(e) {
+        let box = document.getElementById('copySuggestions');
+        let input = document.getElementById('copySearch');
+        if (!box.contains(e.target) && e.target !== input) {
+            box.style.display = 'none';
+        }
+    });
+</script>
 
 <div class="modal fade" id="pdfModal" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
