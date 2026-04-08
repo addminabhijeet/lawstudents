@@ -28,7 +28,8 @@ class RuleController extends Controller
         }
 
         // Search only in rule descriptions, ignore category/subcategory
-        $rules = Rule::where('description', 'LIKE', "%{$query}%")
+        $rules = Rule::where('delete', 1)
+            ->where('description', 'LIKE', "%{$query}%")
             ->get()
             ->map(function ($rule) {
                 return [
