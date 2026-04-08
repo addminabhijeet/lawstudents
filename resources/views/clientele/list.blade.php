@@ -14,26 +14,6 @@
                 </ul>
             </div>
             <div class="page-header-right ms-auto">
-                <div class="d-flex align-items-center gap-2">
-                    <a href="{{ route('admin.addclientele') }}" class="btn btn-primary">
-                        <i class="feather-plus me-2"></i>
-                        <span>Add Student</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="page-header">
-            <div class="page-header-left d-flex align-items-center">
-                <div class="page-header-title">
-                    <h5 class="m-b-10">Admin</h5>
-                </div>
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Applications</li>
-                    <li class="breadcrumb-item">List Students</li>
-                </ul>
-            </div>
-            <div class="page-header-right ms-auto">
                 <div class="page-header-right-items">
                     <div class="d-flex align-items-center gap-2 page-header-right-items-wrapper">
                         <a href="{{ route('admin.addstudent') }}" class="btn btn-primary">
@@ -44,8 +24,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <!-- [ page-header ] end -->
         <!-- [ Main Content ] start -->
