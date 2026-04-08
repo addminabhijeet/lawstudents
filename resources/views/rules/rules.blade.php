@@ -154,41 +154,26 @@
                 }
 
                 function openSearch(catId, subId, ruleId) {
-                    // Hide all categories
+                    // Show all categories and subcategories
                     document.querySelectorAll('[id^="cat"]').forEach(cat => {
-                        cat.parentElement.style.display = 'none'; // Hide the entire category container
+                        cat.parentElement.style.display = 'block';
                         cat.querySelectorAll('.rule-highlight').forEach(r => r.classList.remove('rule-highlight'));
+                        cat.querySelectorAll('[data-rule-id]').forEach(r => r.style.display = 'block'); // show all rules
                     });
 
-                    // Show only the relevant category container
-                    let catContainer = document.getElementById('cat' + catId)?.parentElement;
-                    if (catContainer) catContainer.style.display = 'block';
-
-                    // Hide all subcategories inside this category
-                    let sub = document.getElementById('sub' + subId);
-                    if (sub) {
-                        sub.querySelectorAll('[data-rule-id]').forEach(r => r.style.display = 'none');
-
-                        // Show only the searched rule
-                        let ruleDiv = sub.querySelector(`div[data-rule-id='${ruleId}']`);
-                        if (ruleDiv) {
-                            ruleDiv.style.display = 'block';
-                            ruleDiv.classList.add('rule-highlight');
-                            ruleDiv.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
-                            });
-                        }
-
-                        // Show only the relevant subcategory container
-                        sub.style.display = 'block';
-                        sub.parentElement.style.display = 'block';
+                    // Highlight the searched rule
+                    let ruleDiv = document.querySelector(`[data-rule-id='${ruleId}']`);
+                    if (ruleDiv) {
+                        ruleDiv.classList.add('rule-highlight');
+                        ruleDiv.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
                     }
 
                     // Hide search suggestions
                     document.getElementById('searchSuggestions').style.display = 'none';
                 }
-
                 // CLOSE SEARCH ON OUTSIDE CLICK
                 document.addEventListener('click', function(e) {
                     let box = document.getElementById('searchSuggestions');
