@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use App\Models\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\StudentOtpMail;
+use App\Mail\ContactMail;
 
 class ContactController extends Controller
 {
@@ -48,7 +48,7 @@ class ContactController extends Controller
             Message: {$data->message}
             ";
 
-        Mail::to($adminEmail)->send(new StudentOtpMail($mailData));
+        Mail::to($adminEmail)->send(new ContactMail($mailData));
         return back()->with('success', 'Form submitted successfully!');
     }
 }

@@ -44,6 +44,11 @@ Growth and Success!';
                 <div class="contact-auhtor-area contact2">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
+                            @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                            @endif
                             <div class="contact-submit-area">
                                 <h3>Send Us A Message</h3>
                                 <p>Our response time is within 30 minutes during business hours</p>
