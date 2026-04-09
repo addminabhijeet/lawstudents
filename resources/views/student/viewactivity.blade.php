@@ -43,6 +43,14 @@
 
                     <div class="row">
 
+                        @if($courses->isEmpty())
+                        <div class="col-12">
+                            <div class="alert alert-warning text-center">
+                                No any course enrolled by student
+                            </div>
+                        </div>
+                        @else
+
                         @foreach($courses as $course)
                         @php
                         $progress = $progressData[$course->id] ?? 0;
@@ -140,7 +148,7 @@
                         </div>
 
                         @endforeach
-
+                        @endif
                     </div>
 
                 </div>
