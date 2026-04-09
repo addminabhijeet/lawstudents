@@ -51,7 +51,7 @@
                                                 <div class="hstack gap-2 justify-content-end">
 
                                                     <!-- MAIL BUTTON -->
-                                                    <a href=""
+                                                    <a href="{{ route('admin.viewcontactform', $item->id) }}"
                                                         class="btn btn-sm btn-success">
                                                         Mail
                                                     </a>

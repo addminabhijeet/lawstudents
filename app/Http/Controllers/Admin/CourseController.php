@@ -1252,6 +1252,12 @@ class CourseController extends Controller
         return view('contact.list', compact('contact'));
     }
 
+    public function viewcontactform($id)
+    {
+        $contact = ContactForm::findOrFail($id);
+        return view('contact.view', compact('contact'));
+    }
+
     public function sendMail($id)
     {
         $data = ContactForm::findOrFail($id);

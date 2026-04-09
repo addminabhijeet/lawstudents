@@ -331,6 +331,9 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('sendcontactmail');
             Route::post('delete-contact/{id}', [CourseController::class, 'deletecontact'])
                 ->name('deletecontact');
+
+            Route::get('contact-view/{id}', [CourseController::class, 'viewcontactform'])
+                ->name('viewcontactform');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])
