@@ -1299,7 +1299,10 @@ class CourseController extends Controller
         $paidCourseIds = array_unique($paidCourseIds);
 
         if (empty($paidCourseIds)) {
-            abort(403, 'No purchased courses found.');
+            return view('student.viewactivity', [
+                'courses' => collect(),
+                'progressData' => []
+            ]);
         }
 
         $courses = Course::with([
