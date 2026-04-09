@@ -206,7 +206,7 @@
 
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-edit"></i></span>
+                            <span class="nxl-micon"><i class="feather-users"></i></i></span>
                             <span class="nxl-mtext">Contact list</span>
                             <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
@@ -219,7 +219,7 @@
 
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-edit"></i></span>
+                            <span class="nxl-micon"><i class="feather-activity"></i></i></span>
                             <span class="nxl-mtext">Student Activity</span>
                             <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
