@@ -210,7 +210,7 @@
                                         <textarea class="form-control" name="payments[{{ $pIndex }}][invoice_note]">{{ $payment->invoice_note }}</textarea>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 d-flex align-items-end">
                                         <a href="{{ route('admin.sendpaymentmail', $payment->id) }}"
                                             class="btn btn-success w-100">
                                             Send Mail
