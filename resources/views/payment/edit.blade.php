@@ -33,6 +33,11 @@
         <!-- [ Main Content ] start -->
         <div class="main-content">
             <div class="row">
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
                 <form method="POST" action="{{ route('admin.updatepayment', $payment->id) }}"
                     enctype="multipart/form-data">
                     @csrf
