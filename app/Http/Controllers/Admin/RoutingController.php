@@ -320,7 +320,7 @@ class RoutingController extends Controller
     }
 
 
-    public function sendPaymentMail($id)
+    public function sendpaymentmail($id)
     {
         $payment = Payment::with('student')->findOrFail($id);
 
