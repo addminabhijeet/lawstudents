@@ -272,7 +272,7 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         // Convert allPayments JSON to JS array with numeric IDs
-        const allPayments = @json($allPayments);
+        const allPayments = JSON.parse('{!! json_encode($allPayments) !!}');
 
         // Group payments by student_id
         const grouped = {};
