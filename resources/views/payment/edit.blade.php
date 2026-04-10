@@ -211,7 +211,7 @@
                                     </div>
 
                                     <div class="col-md-2">
-                                        <a href="{{ route('admin.sendPaymentMail', $payment->id) }}"
+                                        <a href="{{ route('admin.sendpaymentmail', $payment->id) }}"
                                             class="btn btn-success w-100">
                                             Send Mail
                                         </a>
