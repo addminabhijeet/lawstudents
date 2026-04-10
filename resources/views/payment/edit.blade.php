@@ -37,182 +37,189 @@
                     enctype="multipart/form-data">
                     @csrf
                     @php
-                        $latestPayments = $allPayments->groupBy('student_id')->map(function ($items) {
-                            return $items->max('id');
-                        });
+                    $latestPayments = $allPayments->groupBy('student_id')->map(function ($items) {
+                    return $items->max('id');
+                    });
                     @endphp
                     @foreach ($allPayments as $pIndex => $payment)
-                        <input type="hidden" name="payments[{{ $pIndex }}][id]" value="{{ $payment->id }}">
+                    <input type="hidden" name="payments[{{ $pIndex }}][id]" value="{{ $payment->id }}">
 
-                        <div class="col-xl-12 mb-4">
-                            <div class="card invoice-container">
-                                <div class="card-body p-0">
+                    <div class="col-xl-12 mb-4">
+                        <div class="card invoice-container">
+                            <div class="card-body p-0">
 
-                                    <!-- HEADER -->
-                                    <div class="px-4 pt-4">
-                                        <h5 class="fw-bold text-primary">{{ $payment->invoice_number }}</h5>
-                                        @php
-                                            $latestId = $latestPayments[$payment->student_id] ?? null;
-                                        @endphp
+                                <!-- HEADER -->
+                                <div class="px-4 pt-4">
+                                    <h5 class="fw-bold text-primary">{{ $payment->invoice_number }}</h5>
+                                    @php
+                                    $latestId = $latestPayments[$payment->student_id] ?? null;
+                                    @endphp
 
-                                        <div class="d-md-flex justify-content-end gap-4">
-                                            <div class="form-group">
-                                                <label>Issue Date:</label>
-                                                <input class="form-control" type="date"
-                                                    name="payments[{{ $pIndex }}][issue_date]"
-                                                    value="{{ optional($payment->issue_date)->format('Y-m-d') }}"
-                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}
-                                                    min="{{ optional($payment->issue_date)->format('Y-m-d') }}">
-                                            </div>
+                                    <div class="d-md-flex justify-content-end gap-4">
+                                        <div class="form-group">
+                                            <label>Issue Date:</label>
+                                            <input class="form-control" type="date"
+                                                name="payments[{{ $pIndex }}][issue_date]"
+                                                value="{{ optional($payment->issue_date)->format('Y-m-d') }}"
+                                                {{ $payment->id != $latestId ? 'readonly' : '' }}
+                                                min="{{ optional($payment->issue_date)->format('Y-m-d') }}">
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label>Due Date:</label>
-                                                <input class="form-control" type="date"
-                                                    name="payments[{{ $pIndex }}][due_date]"
-                                                    value="{{ optional($payment->due_date)->format('Y-m-d') }}"
-                                                    {{ $payment->id != $latestId ? 'readonly' : '' }}
-                                                    min="{{ optional($payment->issue_date)->format('Y-m-d') }}">
-                                            </div>
+                                        <div class="form-group">
+                                            <label>Due Date:</label>
+                                            <input class="form-control" type="date"
+                                                name="payments[{{ $pIndex }}][due_date]"
+                                                value="{{ optional($payment->due_date)->format('Y-m-d') }}"
+                                                {{ $payment->id != $latestId ? 'readonly' : '' }}
+                                                min="{{ optional($payment->issue_date)->format('Y-m-d') }}">
                                         </div>
                                     </div>
+                                </div>
 
-                                    <hr>
+                                <hr>
 
-                                    <!-- BASIC INFO -->
-                                    <div class="px-4 row g-3">
-                                        <div class="col-md-3">
-                                            <label>To Name</label>
-                                            <input type="text" class="form-control"
-                                                name="payments[{{ $pIndex }}][to_name]"
-                                                value="{{ $payment->to_name }}" readonly>
-                                        </div>
+                                <!-- BASIC INFO -->
+                                <div class="px-4 row g-3">
+                                    <div class="col-md-3">
+                                        <label>To Name</label>
+                                        <input type="text" class="form-control"
+                                            name="payments[{{ $pIndex }}][to_name]"
+                                            value="{{ $payment->to_name }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <label>To Email</label>
-                                            <input type="email" class="form-control"
-                                                name="payments[{{ $pIndex }}][to_email]"
-                                                value="{{ $payment->to_email }}" readonly>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <label>To Email</label>
+                                        <input type="email" class="form-control"
+                                            name="payments[{{ $pIndex }}][to_email]"
+                                            value="{{ $payment->to_email }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <label>To Phone</label>
-                                            <input type="text" class="form-control"
-                                                name="payments[{{ $pIndex }}][to_phone]"
-                                                value="{{ $payment->to_phone }}" readonly>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <label>To Phone</label>
+                                        <input type="text" class="form-control"
+                                            name="payments[{{ $pIndex }}][to_phone]"
+                                            value="{{ $payment->to_phone }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-3">
-                                            <label>To Address</label>
-                                            <input type="text" class="form-control"
-                                                name="payments[{{ $pIndex }}][to_address]"
-                                                value="{{ $payment->to_address }}" readonly>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <label>To Address</label>
+                                        <input type="text" class="form-control"
+                                            name="payments[{{ $pIndex }}][to_address]"
+                                            value="{{ $payment->to_address }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Sub Total</label>
-                                            <input type="number" step="0.01" class="form-control"
-                                                name="payments[{{ $pIndex }}][sub_total]"
-                                                value="{{ $payment->sub_total }}" readonly>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <label>Sub Total</label>
+                                        <input type="number" step="0.01" class="form-control"
+                                            name="payments[{{ $pIndex }}][sub_total]"
+                                            value="{{ $payment->sub_total }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Tax %</label>
-                                            <input type="number" step="0.01" class="form-control"
-                                                name="payments[{{ $pIndex }}][tax_percentage]"
-                                                value="{{ $payment->tax_percentage }}" readonly>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <label>Tax %</label>
+                                        <input type="number" step="0.01" class="form-control"
+                                            name="payments[{{ $pIndex }}][tax_percentage]"
+                                            value="{{ $payment->tax_percentage }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Tax Amount</label>
-                                            <input type="number" step="0.01" class="form-control"
-                                                name="payments[{{ $pIndex }}][tax_amount]"
-                                                value="{{ $payment->tax_amount }}" readonly>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <label>Tax Amount</label>
+                                        <input type="number" step="0.01" class="form-control"
+                                            name="payments[{{ $pIndex }}][tax_amount]"
+                                            value="{{ $payment->tax_amount }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Discount</label>
-                                            <input type="number" step="0.01" class="form-control"
-                                                name="payments[{{ $pIndex }}][discount]"
-                                                value="{{ $payment->discount }}" readonly>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <label>Discount</label>
+                                        <input type="number" step="0.01" class="form-control"
+                                            name="payments[{{ $pIndex }}][discount]"
+                                            value="{{ $payment->discount }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Discount %</label>
-                                            <input type="number" step="0.01" class="form-control"
-                                                name="payments[{{ $pIndex }}][discount_percent]"
-                                                value="{{ $payment->discount_percent }}" readonly>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <label>Discount %</label>
+                                        <input type="number" step="0.01" class="form-control"
+                                            name="payments[{{ $pIndex }}][discount_percent]"
+                                            value="{{ $payment->discount_percent }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Grand Total</label>
-                                            <input type="number" step="0.01" class="form-control"
-                                                name="payments[{{ $pIndex }}][grand_total]"
-                                                value="{{ $payment->grand_total }}" readonly>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <label>Grand Total</label>
+                                        <input type="number" step="0.01" class="form-control"
+                                            name="payments[{{ $pIndex }}][grand_total]"
+                                            value="{{ $payment->grand_total }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Payment Status</label>
+                                    <div class="col-md-2">
+                                        <label>Payment Status</label>
 
-                                            <!-- Disabled Select (UI Readonly) -->
-                                            <select class="form-control" disabled>
-                                                <option value="pending"
-                                                    {{ $payment->payment_status == 'pending' ? 'selected' : '' }}>
-                                                    Pending
-                                                </option>
-                                                <option value="partial"
-                                                    {{ $payment->payment_status == 'partial' ? 'selected' : '' }}>
-                                                    Partial
-                                                </option>
-                                                <option value="paid"
-                                                    {{ $payment->payment_status == 'paid' ? 'selected' : '' }}>
-                                                    Paid
-                                                </option>
-                                            </select>
+                                        <!-- Disabled Select (UI Readonly) -->
+                                        <select class="form-control" disabled>
+                                            <option value="pending"
+                                                {{ $payment->payment_status == 'pending' ? 'selected' : '' }}>
+                                                Pending
+                                            </option>
+                                            <option value="partial"
+                                                {{ $payment->payment_status == 'partial' ? 'selected' : '' }}>
+                                                Partial
+                                            </option>
+                                            <option value="paid"
+                                                {{ $payment->payment_status == 'paid' ? 'selected' : '' }}>
+                                                Paid
+                                            </option>
+                                        </select>
 
-                                            <!-- Hidden Input (keeps value submitted) -->
-                                            <input type="hidden"
-                                                name="payments[{{ $pIndex }}][payment_status]"
-                                                value="{{ $payment->payment_status }}">
-                                        </div>
-                                        @php
-                                            $latestId = $latestPayments[$payment->student_id] ?? null;
-                                        @endphp
+                                        <!-- Hidden Input (keeps value submitted) -->
+                                        <input type="hidden"
+                                            name="payments[{{ $pIndex }}][payment_status]"
+                                            value="{{ $payment->payment_status }}">
+                                    </div>
+                                    @php
+                                    $latestId = $latestPayments[$payment->student_id] ?? null;
+                                    @endphp
 
-                                        <input type="hidden" name="payments[{{ $pIndex }}][id]"
-                                            value="{{ $payment->id }}">
+                                    <input type="hidden" name="payments[{{ $pIndex }}][id]"
+                                        value="{{ $payment->id }}">
 
-                                        <div class="col-md-2">
-                                            <label>Paid Amount</label>
+                                    <div class="col-md-2">
+                                        <label>Paid Amount</label>
 
-                                            <input type="number" step="0.01"
-                                                id="{{ $payment->id == $latestId ? 'latest-paid-amount' : '' }}"
-                                                class="form-control paid-amount"
-                                                name="payments[{{ $pIndex }}][paid_amount]"
-                                                value="{{ $payment->paid_amount }}"
-                                                {{ $payment->id != $latestId ? 'readonly' : '' }}
-                                                max="{{ $payment->remaining_amount }}"
-                                                data-max="{{ $payment->remaining_amount }}">
+                                        <input type="number" step="0.01"
+                                            id="{{ $payment->id == $latestId ? 'latest-paid-amount' : '' }}"
+                                            class="form-control paid-amount"
+                                            name="payments[{{ $pIndex }}][paid_amount]"
+                                            value="{{ $payment->paid_amount }}"
+                                            {{ $payment->id != $latestId ? 'readonly' : '' }}
+                                            max="{{ $payment->remaining_amount }}"
+                                            data-max="{{ $payment->remaining_amount }}">
 
-                                            <small class="text-danger d-none error-msg">
-                                                Paid amount cannot be greater than remaining amount
-                                            </small>
-                                        </div>
+                                        <small class="text-danger d-none error-msg">
+                                            Paid amount cannot be greater than remaining amount
+                                        </small>
+                                    </div>
 
-                                        <div class="col-md-2">
-                                            <label>Remaining Amount</label>
-                                            <input type="number" step="0.01" class="form-control"
-                                                name="payments[{{ $pIndex }}][remaining_amount]"
-                                                value="{{ $payment->remaining_amount }}" readonly>
-                                        </div>
+                                    <div class="col-md-2">
+                                        <label>Remaining Amount</label>
+                                        <input type="number" step="0.01" class="form-control"
+                                            name="payments[{{ $pIndex }}][remaining_amount]"
+                                            value="{{ $payment->remaining_amount }}" readonly>
+                                    </div>
 
-                                        <div class="col-md-4">
-                                            <label>Invoice Note</label>
-                                            <textarea class="form-control" name="payments[{{ $pIndex }}][invoice_note]">{{ $payment->invoice_note }}</textarea>
-                                        </div>
+                                    <div class="col-md-4">
+                                        <label>Invoice Note</label>
+                                        <textarea class="form-control" name="payments[{{ $pIndex }}][invoice_note]">{{ $payment->invoice_note }}</textarea>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <a href="{{ route('admin.sendPaymentMail', $payment->id) }}"
+                                            class="btn btn-success w-100">
+                                            Send Mail
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     @endforeach
 
                     <div class="text-end">
@@ -324,7 +331,7 @@
                             .value;
                         dueInput.min = minDue;
                         if (dueInput.value < dueInput.min) dueInput.value = dueInput
-                        .min;
+                            .min;
                     }
                 });
 

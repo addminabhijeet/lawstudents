@@ -13,6 +13,9 @@ use App\Models\Declaration;
 use App\Models\Defaultpassword;
 use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentMail;
+
 
 class RoutingController extends Controller
 {
@@ -314,6 +317,22 @@ class RoutingController extends Controller
         $allPayments = Payment::where('student_id', $payment->student_id)->get();
 
         return view('payment.edit', compact('payment', 'allPayments'));
+    }
+
+
+    public function sendPaymentMail($id)
+    {
+        $payment = Payment::with('student')->findOrFail($id);
+
+        $studentEmail = $payment->student->email ?? null;
+
+        if (!$studentEmail) {
+            return back()->with('error', 'Student email not found');
+        }
+
+        Mail::to($studentEmail)->send(new PaymentMail($payment));
+
+        return back()->with('success', 'Payment email sent successfully!');
     }
 
     public function viewpayment($id)
