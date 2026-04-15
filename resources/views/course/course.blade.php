@@ -254,7 +254,7 @@
             return;
         }
 
-        fetch(`{{ route('frontend.search') }}?q=${encodeURIComponent(query)}`)
+        fetch(`{{ route('frontend.coursesearch') }}?q=${encodeURIComponent(query)}`)
             .then(response => response.json())
             .then(data => {
 

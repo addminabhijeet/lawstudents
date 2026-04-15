@@ -32,6 +32,7 @@ Route::middleware(['web'])
         Route::get('rules-search-notes', [RuleController::class, 'rulessearch'])->name('rulessearch');
         Route::get('acts-search-notes', [ActController::class, 'actssearch'])->name('actssearch');
         Route::get('copys-search-notes', [FreeNotesController::class, 'copyssearch'])->name('copyssearch');
+        Route::get('course-search-notes', [FreeNotesController::class, 'coursesearch'])->name('coursesearch');
         Route::post('contact-store', [ContactController::class, 'contactstore'])->name('contactstore');
     });
 
