@@ -423,57 +423,62 @@ $user = \App\Models\User::first();
     function downloadInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
 
-        // Get the inner card-body
+        // Use original rendered invoice body
         var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Clone the content
-        var printContents = bodyContent.cloneNode(true);
+        // Get invoice number
+        var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
+        var filename = (invoiceNumber ?
+            invoiceNumber.textContent.trim() :
+            'invoice') + '.pdf';
 
-        // Generate a filename
-        var invoiceNumber = printContents.querySelector('.fw-bold.text-primary');
-        var filename = (invoiceNumber ? invoiceNumber.textContent.trim() : 'invoice') + '.pdf';
+        // Wait for all images inside this invoice
+        const images = bodyContent.querySelectorAll('img');
 
-        // Wait for all images to load before generating PDF
-        var images = printContents.querySelectorAll('img');
-        var imagePromises = Array.from(images).map(function(img) {
-            return new Promise(function(resolve) {
-                if (img.complete) {
-                    resolve();
-                } else {
-                    img.onload = resolve;
-                    img.onerror = resolve;
-                }
-            });
-        });
+        Promise.all(
+            Array.from(images).map(img => {
+                return new Promise(resolve => {
+                    if (img.complete && img.naturalHeight !== 0) {
+                        resolve();
+                    } else {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    }
+                });
+            })
+        ).then(() => {
 
-        Promise.all(imagePromises).then(function() {
-            var opt = {
+            const opt = {
+                margin: 0.2,
                 filename: filename,
                 image: {
                     type: 'jpeg',
-                    quality: 2
+                    quality: 1
                 },
                 html2canvas: {
-                    scale: 2,
+                    scale: 3,
                     useCORS: true,
                     allowTaint: true,
-                    logging: false
+                    logging: false,
+                    scrollY: 0
                 },
                 jsPDF: {
-                    unit: 'in',
+                    unit: 'mm',
                     format: 'a4',
                     orientation: 'portrait'
                 }
             };
 
-            // Generate and download PDF
-            html2pdf().set(opt).from(printContents).save().catch(function(error) {
-                console.error('PDF generation error:', error);
-                alert('Error generating PDF. Please try again.');
-            });
-        }).catch(function(error) {
-            console.error('Error loading images:', error);
+            html2pdf()
+                .set(opt)
+                .from(bodyContent)
+                .save()
+                .catch(function(error) {
+                    console.error('PDF generation error:', error);
+                    alert('Error generating PDF.');
+                });
+
         });
     }
 </script>
