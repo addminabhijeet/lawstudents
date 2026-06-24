@@ -461,15 +461,52 @@ $user = \App\Models\User::first();
         tempContainer.appendChild(clonedContent);
         document.body.appendChild(tempContainer);
 
-        // Wait for images to load, then generate PDF
-        setTimeout(function() {
+        // Wait for images only in this cloned content
+        var images = clonedContent.querySelectorAll('img');
+        var imageLoadPromises = [];
+
+        if (images.length === 0) {
+            // No images, generate PDF immediately
             html2pdf().set(opt).from(clonedContent).save().then(function() {
                 document.body.removeChild(tempContainer);
             }).catch(function(error) {
                 console.error('PDF generation error:', error);
-                document.body.removeChild(tempContainer);
+                if (document.body.contains(tempContainer)) {
+                    document.body.removeChild(tempContainer);
+                }
             });
-        }, 100);
+        } else {
+            // Wait for images in this specific content only
+            images.forEach(function(img) {
+                var promise = new Promise(function(resolve) {
+                    if (img.complete) {
+                        resolve();
+                    } else {
+                        img.onload = function() {
+                            resolve();
+                        };
+                        img.onerror = function() {
+                            resolve();
+                        };
+                    }
+                });
+                imageLoadPromises.push(promise);
+            });
+
+            // Generate PDF after all images in this content are loaded
+            Promise.all(imageLoadPromises).then(function() {
+                setTimeout(function() {
+                    html2pdf().set(opt).from(clonedContent).save().then(function() {
+                        document.body.removeChild(tempContainer);
+                    }).catch(function(error) {
+                        console.error('PDF generation error:', error);
+                        if (document.body.contains(tempContainer)) {
+                            document.body.removeChild(tempContainer);
+                        }
+                    });
+                }, 200);
+            });
+        }
     }
 </script>
 @include('layouts.partials.student.theme')
