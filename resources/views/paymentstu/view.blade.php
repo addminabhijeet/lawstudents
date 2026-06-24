@@ -441,8 +441,7 @@ $user = \App\Models\User::first();
                 scale: 2,
                 useCORS: true,
                 allowTaint: true,
-                logging: false,
-                backgroundColor: '#ffffff'
+                logging: false
             },
             jsPDF: {
                 unit: 'in',
@@ -451,62 +450,9 @@ $user = \App\Models\User::first();
             }
         };
 
-        // Create a deep clone and temporarily add to DOM
-        var clonedContent = bodyContent.cloneNode(true);
-        var tempContainer = document.createElement('div');
-        tempContainer.style.position = 'fixed';
-        tempContainer.style.top = '-9999px';
-        tempContainer.style.left = '-9999px';
-        tempContainer.style.width = bodyContent.offsetWidth + 'px';
-        tempContainer.appendChild(clonedContent);
-        document.body.appendChild(tempContainer);
-
-        // Wait for images only in this cloned content
-        var images = clonedContent.querySelectorAll('img');
-        var imageLoadPromises = [];
-
-        if (images.length === 0) {
-            // No images, generate PDF immediately
-            html2pdf().set(opt).from(clonedContent).save().then(function() {
-                document.body.removeChild(tempContainer);
-            }).catch(function(error) {
-                console.error('PDF generation error:', error);
-                if (document.body.contains(tempContainer)) {
-                    document.body.removeChild(tempContainer);
-                }
-            });
-        } else {
-            // Wait for images in this specific content only
-            images.forEach(function(img) {
-                var promise = new Promise(function(resolve) {
-                    if (img.complete) {
-                        resolve();
-                    } else {
-                        img.onload = function() {
-                            resolve();
-                        };
-                        img.onerror = function() {
-                            resolve();
-                        };
-                    }
-                });
-                imageLoadPromises.push(promise);
-            });
-
-            // Generate PDF after all images in this content are loaded
-            Promise.all(imageLoadPromises).then(function() {
-                setTimeout(function() {
-                    html2pdf().set(opt).from(clonedContent).save().then(function() {
-                        document.body.removeChild(tempContainer);
-                    }).catch(function(error) {
-                        console.error('PDF generation error:', error);
-                        if (document.body.contains(tempContainer)) {
-                            document.body.removeChild(tempContainer);
-                        }
-                    });
-                }, 200);
-            });
-        }
+        html2pdf().set(opt).from(bodyContent).save().catch(function(error) {
+            console.error('PDF generation error:', error);
+        });
     }
 </script>
 @include('layouts.partials.student.theme')
