@@ -423,51 +423,57 @@ $user = \App\Models\User::first();
     function downloadInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
 
-        // Get the inner card-body - same as print function
+        // Get the inner card-body
         var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Clone the content - same as print function
+        // Clone the content
         var printContents = bodyContent.cloneNode(true);
 
-        // Generate a filename (optional - you can keep it simple)
-        var invoiceNumber = invoiceContainer.querySelector('.fw-bold.text-primary');
+        // Generate a filename
+        var invoiceNumber = printContents.querySelector('.fw-bold.text-primary');
         var filename = (invoiceNumber ? invoiceNumber.textContent.trim() : 'invoice') + '.pdf';
 
-        // Create a temporary container with all CSS - same as print function
-        var tempDiv = document.createElement('div');
-
-        // Add all CSS
-        var styleHTML = '';
-        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
-            styleHTML += node.outerHTML;
+        // Wait for all images to load before generating PDF
+        var images = printContents.querySelectorAll('img');
+        var imagePromises = Array.from(images).map(function(img) {
+            return new Promise(function(resolve) {
+                if (img.complete) {
+                    resolve();
+                } else {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                }
+            });
         });
 
-        tempDiv.innerHTML = '<html><head><title>Invoice</title>' + styleHTML + '</head><body></body></html>';
-        tempDiv.querySelector('body').appendChild(printContents);
+        Promise.all(imagePromises).then(function() {
+            var opt = {
+                filename: filename,
+                image: {
+                    type: 'jpeg',
+                    quality: 2
+                },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
 
-        var opt = {
-            filename: filename,
-            image: {
-                type: 'jpeg',
-                quality: 2
-            },
-            html2canvas: {
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                logging: false
-            },
-            jsPDF: {
-                unit: 'in',
-                format: 'a4',
-                orientation: 'portrait'
-            }
-        };
-
-        // Use the cloned content with CSS - same as print function
-        html2pdf().set(opt).from(printContents).save().catch(function(error) {
-            console.error('PDF generation error:', error);
+            // Generate and download PDF
+            html2pdf().set(opt).from(printContents).save().catch(function(error) {
+                console.error('PDF generation error:', error);
+                alert('Error generating PDF. Please try again.');
+            });
+        }).catch(function(error) {
+            console.error('Error loading images:', error);
         });
     }
 </script>
