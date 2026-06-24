@@ -441,7 +441,8 @@ $user = \App\Models\User::first();
                 scale: 2,
                 useCORS: true,
                 allowTaint: true,
-                logging: false
+                logging: false,
+                backgroundColor: '#ffffff'
             },
             jsPDF: {
                 unit: 'in',
@@ -450,9 +451,25 @@ $user = \App\Models\User::first();
             }
         };
 
-        html2pdf().set(opt).from(bodyContent).save().catch(function(error) {
-            console.error('PDF generation error:', error);
-        });
+        // Create a deep clone and temporarily add to DOM
+        var clonedContent = bodyContent.cloneNode(true);
+        var tempContainer = document.createElement('div');
+        tempContainer.style.position = 'fixed';
+        tempContainer.style.top = '-9999px';
+        tempContainer.style.left = '-9999px';
+        tempContainer.style.width = bodyContent.offsetWidth + 'px';
+        tempContainer.appendChild(clonedContent);
+        document.body.appendChild(tempContainer);
+
+        // Wait for images to load, then generate PDF
+        setTimeout(function() {
+            html2pdf().set(opt).from(clonedContent).save().then(function() {
+                document.body.removeChild(tempContainer);
+            }).catch(function(error) {
+                console.error('PDF generation error:', error);
+                document.body.removeChild(tempContainer);
+            });
+        }, 100);
     }
 </script>
 @include('layouts.partials.student.theme')
