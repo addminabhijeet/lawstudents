@@ -427,17 +427,6 @@ $user = \App\Models\User::first();
         var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        var pdfContent = bodyContent.cloneNode(true);
-
-        // Temporary off-screen container
-        var container = document.createElement('div');
-        container.style.position = 'absolute';
-        container.style.left = '-9999px';
-        container.style.top = '0';
-        container.style.width = '100%';
-        container.appendChild(pdfContent);
-        document.body.appendChild(container);
-
         // Filename from invoice number
         var invoiceId = bodyContent.id || 'invoice';
         var filename = invoiceId + '.pdf';
@@ -451,7 +440,8 @@ $user = \App\Models\User::first();
             html2canvas: {
                 scale: 2,
                 useCORS: true,
-                allowTaint: true
+                allowTaint: true,
+                logging: false
             },
             jsPDF: {
                 unit: 'in',
@@ -460,10 +450,8 @@ $user = \App\Models\User::first();
             }
         };
 
-        html2pdf().set(opt).from(container).save().then(() => {
-            document.body.removeChild(container);
-        }).catch(() => {
-            document.body.removeChild(container);
+        html2pdf().set(opt).from(bodyContent).save().catch(function(error) {
+            console.error('PDF generation error:', error);
         });
     }
 </script>
