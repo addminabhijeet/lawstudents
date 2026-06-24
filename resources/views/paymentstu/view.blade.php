@@ -393,6 +393,7 @@ $user = \App\Models\User::first();
 </main>
 <!-- Add this in your blade file before </body> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
 <script>
     function printInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
@@ -423,13 +424,14 @@ $user = \App\Models\User::first();
     function downloadInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
 
-        // Get the inner card-body
+        // Get the inner card-body - same as print function
         var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Filename from invoice number
-        var invoiceId = bodyContent.id || 'invoice';
-        var filename = invoiceId + '.pdf';
+        // Extract invoice number from the payment details section
+        var invoiceNumberElement = bodyContent.querySelector('.fw-bold.text-primary');
+        var invoiceNumber = invoiceNumberElement ? invoiceNumberElement.textContent.trim() : 'invoice';
+        var filename = invoiceNumber + '.pdf';
 
         var opt = {
             filename: filename,
