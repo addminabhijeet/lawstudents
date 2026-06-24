@@ -433,6 +433,8 @@ $user = \App\Models\User::first();
         var container = document.createElement('div');
         container.style.position = 'absolute';
         container.style.left = '-9999px';
+        container.style.top = '0';
+        container.style.width = '100%';
         container.appendChild(pdfContent);
         document.body.appendChild(container);
 
@@ -447,7 +449,9 @@ $user = \App\Models\User::first();
                 quality: 2
             },
             html2canvas: {
-                scale: 2
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
             },
             jsPDF: {
                 unit: 'in',
@@ -456,7 +460,11 @@ $user = \App\Models\User::first();
             }
         };
 
-        html2pdf().set(opt).from(container).save().finally(() => container.remove());
+        html2pdf().set(opt).from(container).save().then(() => {
+            document.body.removeChild(container);
+        }).catch(() => {
+            document.body.removeChild(container);
+        });
     }
 </script>
 @include('layouts.partials.student.theme')
