@@ -427,10 +427,12 @@ $user = \App\Models\User::first();
         var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
         if (!bodyContent) return;
 
-        // Extract invoice number from the payment details section
-        var invoiceNumberElement = bodyContent.querySelector('.fw-bold.text-primary');
-        var invoiceNumber = invoiceNumberElement ? invoiceNumberElement.textContent.trim() : 'invoice';
-        var filename = invoiceNumber + '.pdf';
+        // Clone the content - same as print function
+        var printContents = bodyContent.cloneNode(true);
+
+        // Generate a filename (optional - you can keep it simple)
+        var invoiceNumber = invoiceContainer.querySelector('.fw-bold.text-primary');
+        var filename = (invoiceNumber ? invoiceNumber.textContent.trim() : 'invoice') + '.pdf';
 
         var opt = {
             filename: filename,
@@ -451,7 +453,8 @@ $user = \App\Models\User::first();
             }
         };
 
-        html2pdf().set(opt).from(bodyContent).save().catch(function(error) {
+        // Use the cloned content - same as print function
+        html2pdf().set(opt).from(printContents).save().catch(function(error) {
             console.error('PDF generation error:', error);
         });
     }
