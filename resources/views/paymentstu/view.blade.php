@@ -434,6 +434,18 @@ $user = \App\Models\User::first();
         var invoiceNumber = invoiceContainer.querySelector('.fw-bold.text-primary');
         var filename = (invoiceNumber ? invoiceNumber.textContent.trim() : 'invoice') + '.pdf';
 
+        // Create a temporary container with all CSS - same as print function
+        var tempDiv = document.createElement('div');
+
+        // Add all CSS
+        var styleHTML = '';
+        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
+            styleHTML += node.outerHTML;
+        });
+
+        tempDiv.innerHTML = '<html><head><title>Invoice</title>' + styleHTML + '</head><body></body></html>';
+        tempDiv.querySelector('body').appendChild(printContents);
+
         var opt = {
             filename: filename,
             image: {
@@ -453,7 +465,7 @@ $user = \App\Models\User::first();
             }
         };
 
-        // Use the cloned content - same as print function
+        // Use the cloned content with CSS - same as print function
         html2pdf().set(opt).from(printContents).save().catch(function(error) {
             console.error('PDF generation error:', error);
         });
