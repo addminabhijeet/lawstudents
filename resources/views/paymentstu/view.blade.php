@@ -393,7 +393,6 @@ $user = \App\Models\User::first();
 </main>
 <!-- Add this in your blade file before </body> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
 <script>
     function printInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
