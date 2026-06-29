@@ -86,7 +86,14 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
 </head>
 <body>
+@if ($notFound)
+<div class="alert alert-warning text-center">
+    <strong>Please Complete Your Payment</strong>
+</div>
+@endif
 
+@if (!$notFound && $payments->count())
+@foreach ($payments as $payment)
 <div class="page-container">
     
 <section class="page" style="width: 909px; height: 1286px;" aria-label="Page 1">
@@ -176,7 +183,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 </section>
 
 </div>
-
+@endforeach
+@endif
 <script>
     const metadata = JSON.parse(document.getElementById("metadata").text);
     document.title = metadata.title || metadata.fileName;
