@@ -92,6 +92,9 @@ $user = \App\Models\User::first();
     cursor:pointer;
 
     background:#ffffff;          /* Remove blue background */
+    color:#222222;               /* Dark icon/text */
+    border:1px solid #dcdcdc;    /* Light border */
+    transition:all .2s ease;
 }
 
 .invoice-toolbar .avatar-text:hover{
@@ -100,6 +103,7 @@ $user = \App\Models\User::first();
     color:#000;
 }
 </style>
+<script src="https://unpkg.com/feather-icons"></script>
 
 <style id="fonts1" type="text/css" >
 
@@ -358,7 +362,6 @@ $totalAmount += $course->price;
 </script>
 <!-- Add this in your blade file before </body> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
-<script src="https://unpkg.com/feather-icons"></script>
 <script>
     function printInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
