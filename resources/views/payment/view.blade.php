@@ -420,85 +420,167 @@ $user = \App\Models\User::first();
 
         });
     }
-
+    
     function downloadInvoice(invoiceContainer) {
-    if (!invoiceContainer) return;
 
-    var bodyContent = invoiceContainer.querySelector('.page');
-    if (!bodyContent) return;
+        if (!invoiceContainer) return;
 
-    // Clone the page so the original view is not affected
-    var clone = bodyContent.cloneNode(true);
+        const bodyContent = invoiceContainer.querySelector('.page');
+        if (!bodyContent) return;
 
-    // Remove any box shadow from the cloned page
-    clone.style.boxShadow = "none";
-    clone.style.margin = "0";
+        // Clone page
+        const clone = bodyContent.cloneNode(true);
 
-    // Get filename
-    var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
-    var filename = (invoiceNumber
-        ? invoiceNumber.textContent.trim()
-        : 'invoice') + '.pdf';
+        clone.style.margin = "0";
+        clone.style.boxShadow = "none";
+        clone.style.background = "#fff";
 
-    // Wait until all images are loaded
-    const images = clone.querySelectorAll("img");
+        // Create hidden wrapper
+        const wrapper = document.createElement("div");
+        wrapper.style.position = "fixed";
+        wrapper.style.left = "-100000px";
+        wrapper.style.top = "0";
+        wrapper.style.background = "#fff";
+        wrapper.style.padding = "0";
+        wrapper.style.margin = "0";
+        wrapper.appendChild(clone);
 
-    Promise.all(
-        Array.from(images).map(img => {
-            return new Promise(resolve => {
-                if (img.complete && img.naturalWidth !== 0) {
-                    resolve();
-                } else {
-                    img.onload = resolve;
-                    img.onerror = resolve;
-                }
-            });
-        })
-    ).then(() => {
+        document.body.appendChild(wrapper);
 
-        html2pdf().set({
+        // Copy computed styles so html2canvas renders exactly
+        clone.querySelectorAll("*").forEach(function(el, index){
 
-            margin: 0,
+            const source = bodyContent.querySelectorAll("*")[index];
+            if(!source) return;
 
-            filename: filename,
+            const style = window.getComputedStyle(source);
 
-            image: {
-                type: 'jpeg',
-                quality: 1
-            },
-
-            html2canvas: {
-                scale: 4,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: "#ffffff",
-                scrollX: 0,
-                scrollY: 0,
-                logging: false,
-                letterRendering: true
-            },
-
-            jsPDF: {
-                unit: 'px',
-                format: [909, 1286],   // Same as your page size
-                orientation: 'portrait',
-                compress: true
-            },
-
-            pagebreak: {
-                mode: ['avoid-all']
+            for(let i=0;i<style.length;i++){
+                const property = style[i];
+                el.style.setProperty(
+                    property,
+                    style.getPropertyValue(property),
+                    style.getPropertyPriority(property)
+                );
             }
 
-        })
-        .from(clone)
-        .save()
-        .catch(function (err) {
-            console.error(err);
-            alert("Error generating PDF.");
         });
 
-    });
-}
+        const images = wrapper.querySelectorAll("img");
+
+        Promise.all(
+
+            Array.from(images).map(img => {
+
+                return new Promise(resolve => {
+
+                    if(img.complete && img.naturalWidth){
+
+                        resolve();
+
+                    }else{
+
+                        img.onload = resolve;
+                        img.onerror = resolve;
+
+                    }
+
+                });
+
+            })
+
+        ).then(() => {
+
+            requestAnimationFrame(function(){
+
+                setTimeout(function(){
+
+                    const opt = {
+
+                        margin:0,
+
+                        filename:"invoice.pdf",
+
+                        image:{
+                            type:"jpeg",
+                            quality:1
+                        },
+
+                        html2canvas:{
+
+                            scale:4,
+
+                            useCORS:true,
+
+                            allowTaint:true,
+
+                            backgroundColor:"#ffffff",
+
+                            logging:false,
+
+                            letterRendering:true,
+
+                            foreignObjectRendering:true,
+
+                            removeContainer:false,
+
+                            scrollX:0,
+
+                            scrollY:0,
+
+                            width:909,
+
+                            height:1286,
+
+                            windowWidth:909,
+
+                            windowHeight:1286
+
+                        },
+
+                        jsPDF:{
+
+                            unit:"px",
+
+                            format:[909,1286],
+
+                            orientation:"portrait",
+
+                            compress:true
+
+                        },
+
+                        pagebreak:{
+                            mode:["avoid-all"]
+                        }
+
+                    };
+
+                    html2pdf()
+                        .set(opt)
+                        .from(wrapper)
+                        .save()
+                        .then(function(){
+
+                            wrapper.remove();
+
+                        })
+                        .catch(function(err){
+
+                            wrapper.remove();
+
+                            console.error(err);
+
+                        });
+
+                },300);
+
+            });
+
+        });
+
+    }
+
 </script>
 </body>
 </html>
