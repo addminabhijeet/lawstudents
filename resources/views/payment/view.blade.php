@@ -442,36 +442,34 @@ function downloadInvoice(invoiceContainer) {
     var bodyContent = invoiceContainer.querySelector('.page');
     if (!bodyContent) return;
 
-    // Clone the page so the original view is not affected
     var clone = bodyContent.cloneNode(true);
-
-    // Remove any box shadow from the cloned page
     clone.style.boxShadow = "none";
     clone.style.margin = "0";
 
-    // Get filename
     var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
     var filename = (invoiceNumber
         ? invoiceNumber.textContent.trim()
         : 'invoice') + '.pdf';
 
-    // Wait until all images are loaded, including SVGs
     const images = clone.querySelectorAll("img");
 
     Promise.all(
         Array.from(images).map(img => {
             return new Promise(resolve => {
-                // Force reload SVG images to ensure they render
                 if (img.src && img.src.includes('data:image/svg+xml')) {
-                    // Create a new image element to force proper loading
-                    const svgImg = new Image();
-                    svgImg.onload = () => {
-                        img.src = svgImg.src;
+                    // Decode and re-encode SVG for better compatibility
+                    try {
+                        const xhr = new XMLHttpRequest();
+                        xhr.onload = () => {
+                            img.src = img.src; // Keep original, just ensure it's loaded
+                            resolve();
+                        };
+                        xhr.onerror = resolve;
+                        xhr.open('GET', img.src);
+                        xhr.send();
+                    } catch (e) {
                         resolve();
-                    };
-                    svgImg.onerror = resolve;
-                    svgImg.crossOrigin = 'anonymous';
-                    svgImg.src = img.src;
+                    }
                 } else if (img.complete && img.naturalWidth !== 0) {
                     resolve();
                 } else {
@@ -481,18 +479,10 @@ function downloadInvoice(invoiceContainer) {
             });
         })
     ).then(() => {
-
         html2pdf().set({
-
             margin: 0,
-
             filename: filename,
-
-            image: {
-                type: 'jpeg',
-                quality: 1
-            },
-
+            image: { type: 'jpeg', quality: 1 },
             html2canvas: {
                 scale: 4,
                 useCORS: true,
@@ -502,19 +492,13 @@ function downloadInvoice(invoiceContainer) {
                 scrollY: 0,
                 logging: false,
                 letterRendering: true,
-                // Add these options for better SVG rendering
-                foreignObjectRendering: true,
-                ignoreElements: [],
-
             },
-
             jsPDF: {
                 unit: 'px',
                 format: [909, 1286],
                 orientation: 'portrait',
                 compress: true
             }
-
         })
         .from(clone)
         .save()
