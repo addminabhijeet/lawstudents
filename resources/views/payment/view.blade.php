@@ -437,114 +437,122 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
         });
     }
     function downloadInvoice(invoiceContainer) {
-        if (!invoiceContainer) return;
+    if (!invoiceContainer) return;
 
-        var bodyContent = invoiceContainer.querySelector('.page');
-        if (!bodyContent) return;
+    var bodyContent = invoiceContainer.querySelector('.page');
+    if (!bodyContent) return;
 
-        var clone = bodyContent.cloneNode(true);
-        clone.style.boxShadow = "none";
-        clone.style.margin = "0";
+    var clone = bodyContent.cloneNode(true);
+    clone.style.boxShadow = "none";
+    clone.style.margin = "0";
 
-        var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
-        var filename = (invoiceNumber
-            ? invoiceNumber.textContent.trim()
-            : 'invoice') + '.pdf';
+    var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
+    var filename = (invoiceNumber
+        ? invoiceNumber.textContent.trim()
+        : 'invoice') + '.pdf';
 
-        // Convert SVG data URIs to PNG data URIs
-        const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
-        
-        let svgPromises = Array.from(svgImages).map(img => {
-            return new Promise((resolve) => {
-                try {
-                    const svgDataUri = img.src;
+    // Convert SVG data URIs to PNG data URIs with higher resolution
+    const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
+    
+    let svgPromises = Array.from(svgImages).map(img => {
+        return new Promise((resolve) => {
+            try {
+                const svgDataUri = img.src;
+                
+                // Create canvas with higher DPI scaling
+                const dpiScale = 3; // Increase scale from 2 to 3 for better quality
+                const canvas = document.createElement('canvas');
+                canvas.width = (img.width || 909) * dpiScale;
+                canvas.height = (img.height || 1286) * dpiScale;
+                const ctx = canvas.getContext('2d');
+                
+                // Enable image smoothing for better quality
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                
+                // Create image from SVG
+                const image = new Image();
+                image.crossOrigin = "anonymous";
+                
+                image.onload = function() {
+                    // Draw image to canvas with scaling
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
                     
-                    // Create canvas
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width || 909;
-                    canvas.height = img.height || 1286;
-                    const ctx = canvas.getContext('2d');
+                    // Convert canvas to PNG data URI with higher quality
+                    const pngDataUri = canvas.toDataURL('image/png');
+                    img.src = pngDataUri;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.display = 'block';
+                    img.style.imageRendering = 'crisp-edges'; // Prevent browser scaling blur
                     
-                    // Create image from SVG
-                    const image = new Image();
-                    image.crossOrigin = "anonymous";
-                    
-                    image.onload = function() {
-                        // Draw image to canvas
-                        ctx.drawImage(image, 0, 0);
-                        
-                        // Convert canvas to PNG data URI
-                        const pngDataUri = canvas.toDataURL('image/png');
-                        img.src = pngDataUri;
-                        img.style.width = '100%';
-                        img.style.height = '100%';
-                        img.style.display = 'block';
-                        
-                        resolve();
-                    };
-                    
-                    image.onerror = function() {
-                        console.warn("SVG failed to load, skipping conversion");
-                        resolve();
-                    };
-                    
-                    // Load SVG
-                    image.src = svgDataUri;
-                    
-                } catch (error) {
-                    console.error("SVG conversion error:", error);
                     resolve();
-                }
-            });
+                };
+                
+                image.onerror = function() {
+                    console.warn("SVG failed to load, skipping conversion");
+                    resolve();
+                };
+                
+                // Load SVG
+                image.src = svgDataUri;
+                
+            } catch (error) {
+                console.error("SVG conversion error:", error);
+                resolve();
+            }
         });
+    });
 
-        Promise.all(svgPromises).then(() => {
-            setTimeout(() => {
-                html2pdf().set({
-                    margin: 0,
-                    filename: filename,
-                    image: {
-                        type: 'png',
-                        quality: 1.0
-                    },
-                    html2canvas: {
-                        scale: 2,
-                        useCORS: true,
-                        allowTaint: true,
-                        backgroundColor: "#ffffff",
-                        scrollX: 0,
-                        scrollY: 0,
-                        logging: false,
-                        letterRendering: true,
-                        imageTimeout: 15000,
-                        onclone: function(clonedDocument) {
-                            const clonedImages = clonedDocument.querySelectorAll('img');
-                            clonedImages.forEach(img => {
-                                img.style.display = "block";
-                                img.style.visibility = "visible";
-
-                            });
-                        }
-                    },
-                    jsPDF: {
-                        unit: 'px',
-                        format: [909, 1286],
-                        orientation: 'portrait',
-                        compress: true
+    Promise.all(svgPromises).then(() => {
+        setTimeout(() => {
+            html2pdf().set({
+                margin: 0,
+                filename: filename,
+                image: {
+                    type: 'png',
+                    quality: 1.0
+                },
+                html2canvas: {
+                    scale: 3, // Increased from 2 to 3 for higher resolution
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: "#ffffff",
+                    scrollX: 0,
+                    scrollY: 0,
+                    logging: false,
+                    letterRendering: true,
+                    imageTimeout: 15000,
+                    windowHeight: 1286 * 3, // Match the scale
+                    windowWidth: 909 * 3,   // Match the scale
+                    onclone: function(clonedDocument) {
+                        const clonedImages = clonedDocument.querySelectorAll('img');
+                        clonedImages.forEach(img => {
+                            img.style.display = "block";
+                            img.style.visibility = "visible";
+                            img.style.imageRendering = 'crisp-edges';
+                        });
                     }
-                })
-                .from(clone)
-                .save()
-                .catch(err => {
-                    console.error("PDF error:", err);
-                    alert("Error generating PDF. Please try again.");
-                });
-            }, 500);
-        }).catch(err => {
-            console.error("Promise error:", err);
-            alert("Error processing images for PDF.");
-        });
-    }
+                },
+                jsPDF: {
+                    unit: 'px',
+                    format: [909, 1286],
+                    orientation: 'portrait',
+                    compress: false // Disable compression to maintain quality
+                }
+            })
+            .from(clone)
+            .save()
+            .catch(err => {
+                console.error("PDF error:", err);
+                alert("Error generating PDF. Please try again.");
+            });
+        }, 500);
+    }).catch(err => {
+        console.error("Promise error:", err);
+        alert("Error processing images for PDF.");
+    });
+}
 </script>
 </body>
 </html>
