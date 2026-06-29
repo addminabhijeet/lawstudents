@@ -492,8 +492,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
         scrollY: 0,
         logging: false,
         letterRendering: true,
-        windowHeight: 1286,
-        windowWidth: 909
+
     },
 
     jsPDF: {
