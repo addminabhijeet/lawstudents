@@ -170,7 +170,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
     
 <section class="page" style="width: 909px; height: 1286px;" aria-label="Page 1">
 <div id="pg1Overlay" style="width:100%; height:100%; position:absolute; z-index:1; background-color:rgba(0,0,0,0); -webkit-user-select: none; user-select: none;"></div>
-<div style="position:absolute; left:107px; bottom:1085px; width:1286px; height:2px; background-color:#000;"></div>
+<div style="position:absolute; left:0px; bottom:1085px; width:1286px; height:2px; background-color:#000;"></div>
 <div class="text-container"><span class="t s0" style="left:107px;bottom:1058px;letter-spacing:0.22px;">To </span>
 <span class="t s0" style="left:107px;bottom:1038px;letter-spacing:0.12px;word-spacing:0.37px;">Ms. Sayantani Roy </span>
 <span class="t s0" style="left:107px;bottom:1019px;letter-spacing:0.19px;word-spacing:-0.05px;">Natun Gram. Moyanapur. </span>
@@ -238,7 +238,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:394px;bottom:197px;letter-spacing:0.16px;">Sd/- </span>
 <span class="t s0" style="left:382px;bottom:176px;letter-spacing:0.3px;word-spacing:-0.48px;">(RIZWANA BEGUM) </span>
 <span class="t s0" style="left:385px;bottom:147px;letter-spacing:0.28px;word-spacing:-0.06px;">FOR LAWSTUDENT </span>
-<div style="position:absolute; left:185px; bottom:115px; width:1286px; height:2px; background-color:#000;"></div>
+<div style="position:absolute; left:0px; bottom:115px; width:1286px; height:2px; background-color:#000;"></div>
 <span class="t s0" style="left:380px;bottom:86px;letter-spacing:0.16px;word-spacing:0.36px;">Advocate Rizwana Begum </span><span class="t s0" style="left:185px;bottom:66px;letter-spacing:0.11px;word-spacing:0.35px;">B. A. (Hons); M. A.; LL. M. (1st Class); PGDCL (Cyber Law-NALSAR-1st Class] </span>
 <span class="t s7" style="left:575px;bottom:1040px;letter-spacing:0.16px;word-spacing:0.15px;">Class Time- Saturday &amp; Sunday </span>
 <span class="t s7" style="left:575px;bottom:1021px;letter-spacing:0.14px;word-spacing:-0.05px;">(Available in a separate sheet). </span>
