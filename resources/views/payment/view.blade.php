@@ -211,6 +211,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:621px;bottom:510px;letter-spacing:0.11px;word-spacing:0.35px;">Rs. 6500/- 13-03.2026 </span>
 <span class="t s0" style="left:142px;bottom:489px;letter-spacing:0.38px;">5. </span><span class="t s0" style="left:168px;bottom:489px;letter-spacing:0.18px;word-spacing:-0.06px;">March, 2026 </span><span class="t s0" style="left:315px;bottom:489px;letter-spacing:0.16px;word-spacing:0.2px;">English +Preli+ Main=Rs. 14,000/- </span><span class="t s0" style="left:621px;bottom:489px;letter-spacing:0.13px;">Received </span>
 <span class="t s0" style="left:621px;bottom:469px;letter-spacing:0.12px;word-spacing:0.35px;">Rs. 1400/- 11-04-2026 </span>
+<span class="t s0" style="left:142px;bottom:449px;letter-spacing:0.38px;">6. </span><span class="t s0" style="left:168px;bottom:449px;letter-spacing:0.18px;word-spacing:0.29px;">April, 2026 </span><span class="t s0" style="left:315px;bottom:449px;letter-spacing:0.16px;word-spacing:0.2px;">English +Preli+ Main=Rs. 14,000/- </span><span class="t s0" style="left:621px;bottom:449px;letter-spacing:0.17px;word-spacing:-0.05px;">Payment Due: Rs. 14000/- </span>
 <span class="t s2" style="left:107px;bottom:427px;letter-spacing:-0.07px;word-spacing:0.12px;">Terms &amp; Conditions: </span>
 <span class="t s3" style="left:134px;bottom:399px;letter-spacing:-0.17px;">1. </span><span class="t s3" style="left:161px;bottom:399px;letter-spacing:-0.08px;word-spacing:0.11px;">Classes are for two days a week. </span>
 <span class="t s3" style="left:134px;bottom:381px;letter-spacing:-0.17px;">2. </span><span class="t s3" style="left:161px;bottom:381px;letter-spacing:-0.1px;word-spacing:0.22px;">Class will be scheduled with any other Batch if the class is missed for any genuine Reason </span>
@@ -435,8 +436,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         });
     }
-
-    function downloadInvoice(invoiceContainer) {
+function downloadInvoice(invoiceContainer) {
     if (!invoiceContainer) return;
 
     var bodyContent = invoiceContainer.querySelector('.page');
@@ -494,8 +494,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
             },
 
             jsPDF: {
-                unit: 'px',
-                format: [909, 1250],   // Same as your page size
+                unit: 'mm',
+                format: 'a4',
                 orientation: 'portrait',
                 compress: true
             },
