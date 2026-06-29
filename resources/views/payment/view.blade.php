@@ -220,16 +220,16 @@ $totalAmount += $course->price;
 @endforeach
 @endif
 <span class="t s0" style="left:621px;bottom:728px;letter-spacing:0.13px;">Received </span>
-<span class="t s0" style="left:621px;bottom:708px;letter-spacing:0.12px;word-spacing:0.23px;">Rs. 6500/- on 27-12-2025 </span>
-<span class="t s0" style="left:621px;bottom:689px;letter-spacing:0.12px;word-spacing:0.23px;">Rs. 7500/- on 28-12-2025 </span>
+<span class="t s0" style="left:621px;bottom:708px;letter-spacing:0.12px;word-spacing:0.23px;"></span>
+<span class="t s0" style="left:621px;bottom:689px;letter-spacing:0.12px;word-spacing:0.23px;"> </span>
 <span class="t s0" style="left:142px;bottom:609px;letter-spacing:0.38px;">3. </span><span class="t s0" style="left:168px;bottom:609px;letter-spacing:0.14px;word-spacing:0.32px;">Jan, 2026 </span><span class="t s0" style="left:315px;bottom:609px;letter-spacing:0.16px;word-spacing:0.2px;">English +Preli+ Main=Rs. 14,000/- </span><span class="t s0" style="left:621px;bottom:609px;letter-spacing:0.13px;">Received </span>
-<span class="t s0" style="left:621px;bottom:589px;letter-spacing:0.13px;word-spacing:0.34px;">Rs. 7500/- 30/01/2026 </span>
-<span class="t s0" style="left:621px;bottom:570px;letter-spacing:0.13px;word-spacing:0.34px;">Rs. 6500/-02/02/2026 </span>
+<span class="t s0" style="left:621px;bottom:589px;letter-spacing:0.13px;word-spacing:0.34px;"></span>
+<span class="t s0" style="left:621px;bottom:570px;letter-spacing:0.13px;word-spacing:0.34px;"></span>
 <span class="t s0" style="left:142px;bottom:549px;letter-spacing:0.38px;">4. </span><span class="t s0" style="left:168px;bottom:549px;letter-spacing:0.17px;word-spacing:0.29px;">Feb, 2026 </span><span class="t s0" style="left:315px;bottom:549px;letter-spacing:0.16px;word-spacing:0.2px;">English +Preli+ Main=Rs. 14,000/- </span><span class="t s0" style="left:621px;bottom:549px;letter-spacing:0.13px;">Received </span>
-<span class="t s0" style="left:621px;bottom:530px;letter-spacing:0.12px;word-spacing:0.35px;">Rs. 7500/- 10-03-2026 </span>
-<span class="t s0" style="left:621px;bottom:510px;letter-spacing:0.11px;word-spacing:0.35px;">Rs. 6500/- 13-03.2026 </span>
-<span class="t s0" style="left:142px;bottom:489px;letter-spacing:0.38px;">5. </span><span class="t s0" style="left:168px;bottom:489px;letter-spacing:0.18px;word-spacing:-0.06px;">March, 2026 </span><span class="t s0" style="left:315px;bottom:489px;letter-spacing:0.16px;word-spacing:0.2px;">English +Preli+ Main=Rs. 14,000/- </span><span class="t s0" style="left:621px;bottom:489px;letter-spacing:0.13px;">Received </span>
-<span class="t s0" style="left:621px;bottom:469px;letter-spacing:0.12px;word-spacing:0.35px;">Rs. 1400/- 11-04-2026 </span>
+<span class="t s0" style="left:621px;bottom:530px;letter-spacing:0.12px;word-spacing:0.35px;"></span>
+<span class="t s0" style="left:621px;bottom:510px;letter-spacing:0.11px;word-spacing:0.35px;"></span>
+<span class="t s0" style="left:142px;bottom:489px;letter-spacing:0.38px;">5. </span><span class="t s0" style="left:168px;bottom:489px;letter-spacing:0.18px;word-spacing:-0.06px;"></span><span class="t s0" style="left:315px;bottom:489px;letter-spacing:0.16px;word-spacing:0.2px;">English +Preli+ Main=Rs. 14,000/- </span><span class="t s0" style="left:621px;bottom:489px;letter-spacing:0.13px;">Received </span>
+<span class="t s0" style="left:621px;bottom:469px;letter-spacing:0.12px;word-spacing:0.35px;"></span>
 <span class="t s0" style="left:142px;bottom:449px;letter-spacing:0.38px;">6. </span><span class="t s0" style="left:168px;bottom:449px;letter-spacing:0.18px;word-spacing:0.29px;">April, 2026 </span><span class="t s0" style="left:315px;bottom:449px;letter-spacing:0.16px;word-spacing:0.2px;">English +Preli+ Main=Rs. 14,000/- </span><span class="t s0" style="left:621px;bottom:449px;letter-spacing:0.17px;word-spacing:-0.05px;">Payment Due: Rs. 14000/- </span>
 <span class="t s2" style="left:107px;bottom:427px;letter-spacing:-0.07px;word-spacing:0.12px;">Terms &amp; Conditions: </span>
 <span class="t s3" style="left:134px;bottom:399px;letter-spacing:-0.17px;">1. </span><span class="t s3" style="left:161px;bottom:399px;letter-spacing:-0.08px;word-spacing:0.11px;">Classes are for two days a week. </span>
