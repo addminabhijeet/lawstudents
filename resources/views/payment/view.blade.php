@@ -523,8 +523,6 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                     logging: false,
                     letterRendering: true,
                     imageTimeout: 15000,
-                    windowHeight: 1286 * 3, // Match the scale
-                    windowWidth: 909 * 3,   // Match the scale
                     onclone: function(clonedDocument) {
                         const clonedImages = clonedDocument.querySelectorAll('img');
                         clonedImages.forEach(img => {
