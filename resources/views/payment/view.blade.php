@@ -327,27 +327,98 @@ $user = \App\Models\User::first();
     function printInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
 
-        // Get the inner card-body
         var bodyContent = invoiceContainer.querySelector('.page');
         if (!bodyContent) return;
 
+        // Clone the page
         var printContents = bodyContent.cloneNode(true);
 
-        var printWindow = window.open('', '', 'height=800,width=1200');
-        printWindow.document.write('<html><head><title>Invoice</title>');
+        // Wait for images to load
+        const images = printContents.querySelectorAll('img');
 
-        // Include all CSS
-        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
-            printWindow.document.write(node.outerHTML);
+        Promise.all(
+            Array.from(images).map(img => {
+                return new Promise(resolve => {
+                    if (img.complete && img.naturalWidth !== 0) {
+                        resolve();
+                    } else {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    }
+                });
+            })
+        ).then(() => {
+
+            var printWindow = window.open('', '_blank');
+
+            printWindow.document.open();
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Invoice</title>
+            `);
+
+            // Copy ALL existing styles
+            document.querySelectorAll('style, link[rel="stylesheet"]').forEach(function(el){
+                printWindow.document.write(el.outerHTML);
+            });
+
+            printWindow.document.write(`
+                <style>
+                    html,body{
+                        margin:0;
+                        padding:0;
+                        background:#fff;
+                    }
+
+                    body{
+                        display:flex;
+                        justify-content:center;
+                        align-items:flex-start;
+                    }
+
+                    .page{
+                        margin:0 !important;
+                        box-shadow:none !important;
+                        page-break-after:avoid;
+                        break-after:avoid;
+                    }
+
+                    @page{
+                        margin:0;
+                        size:A4 portrait;
+                    }
+                </style>
+                </head>
+                <body>
+            `);
+
+            printWindow.document.body.appendChild(printContents);
+
+            printWindow.document.write(`
+                </body>
+                </html>
+            `);
+
+            printWindow.document.close();
+
+            printWindow.onload = function () {
+
+                setTimeout(function () {
+
+                    printWindow.focus();
+
+                    printWindow.print();
+
+                    printWindow.close();
+
+                }, 500);
+
+            };
+
         });
-
-        printWindow.document.write('</head><body>');
-        printWindow.document.body.appendChild(printContents);
-        printWindow.document.write('</body></html>');
-
-        printWindow.document.close();
-        printWindow.focus();
-        printWindow.print();
     }
 
     function downloadInvoice(invoiceContainer) {
