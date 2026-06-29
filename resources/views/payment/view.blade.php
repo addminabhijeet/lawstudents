@@ -436,115 +436,115 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         });
     }
-function downloadInvoice(invoiceContainer) {
-    if (!invoiceContainer) return;
+    function downloadInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
 
-    var bodyContent = invoiceContainer.querySelector('.page');
-    if (!bodyContent) return;
+        var bodyContent = invoiceContainer.querySelector('.page');
+        if (!bodyContent) return;
 
-    var clone = bodyContent.cloneNode(true);
-    clone.style.boxShadow = "none";
-    clone.style.margin = "0";
+        var clone = bodyContent.cloneNode(true);
+        clone.style.boxShadow = "none";
+        clone.style.margin = "0";
 
-    var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
-    var filename = (invoiceNumber
-        ? invoiceNumber.textContent.trim()
-        : 'invoice') + '.pdf';
+        var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
+        var filename = (invoiceNumber
+            ? invoiceNumber.textContent.trim()
+            : 'invoice') + '.pdf';
 
-    // Convert SVG data URIs to PNG data URIs
-    const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
-    
-    let svgPromises = Array.from(svgImages).map(img => {
-        return new Promise((resolve) => {
-            try {
-                const svgDataUri = img.src;
-                
-                // Create canvas
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width || 909;
-                canvas.height = img.height || 1286;
-                const ctx = canvas.getContext('2d');
-                
-                // Create image from SVG
-                const image = new Image();
-                image.crossOrigin = "anonymous";
-                
-                image.onload = function() {
-                    // Draw image to canvas
-                    ctx.drawImage(image, 0, 0);
+        // Convert SVG data URIs to PNG data URIs
+        const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
+        
+        let svgPromises = Array.from(svgImages).map(img => {
+            return new Promise((resolve) => {
+                try {
+                    const svgDataUri = img.src;
                     
-                    // Convert canvas to PNG data URI
-                    const pngDataUri = canvas.toDataURL('image/png');
-                    img.src = pngDataUri;
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.display = 'block';
+                    // Create canvas
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width || 909;
+                    canvas.height = img.height || 1286;
+                    const ctx = canvas.getContext('2d');
                     
+                    // Create image from SVG
+                    const image = new Image();
+                    image.crossOrigin = "anonymous";
+                    
+                    image.onload = function() {
+                        // Draw image to canvas
+                        ctx.drawImage(image, 0, 0);
+                        
+                        // Convert canvas to PNG data URI
+                        const pngDataUri = canvas.toDataURL('image/png');
+                        img.src = pngDataUri;
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                        img.style.display = 'block';
+                        
+                        resolve();
+                    };
+                    
+                    image.onerror = function() {
+                        console.warn("SVG failed to load, skipping conversion");
+                        resolve();
+                    };
+                    
+                    // Load SVG
+                    image.src = svgDataUri;
+                    
+                } catch (error) {
+                    console.error("SVG conversion error:", error);
                     resolve();
-                };
-                
-                image.onerror = function() {
-                    console.warn("SVG failed to load, skipping conversion");
-                    resolve();
-                };
-                
-                // Load SVG
-                image.src = svgDataUri;
-                
-            } catch (error) {
-                console.error("SVG conversion error:", error);
-                resolve();
-            }
-        });
-    });
-
-    Promise.all(svgPromises).then(() => {
-        setTimeout(() => {
-            html2pdf().set({
-                margin: 0,
-                filename: filename,
-                image: {
-                    type: 'png',
-                    quality: 1.0
-                },
-                html2canvas: {
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: true,
-                    backgroundColor: "#ffffff",
-                    scrollX: 0,
-                    scrollY: 0,
-                    logging: false,
-                    letterRendering: true,
-                    imageTimeout: 15000,
-                    onclone: function(clonedDocument) {
-                        const clonedImages = clonedDocument.querySelectorAll('img');
-                        clonedImages.forEach(img => {
-                            img.style.display = "block";
-                            img.style.visibility = "visible";
-                            img.style.opacity = "1";
-                        });
-                    }
-                },
-                jsPDF: {
-                    unit: 'px',
-                    format: [909, 1286],
-                    orientation: 'portrait',
-                    compress: true
                 }
-            })
-            .from(clone)
-            .save()
-            .catch(err => {
-                console.error("PDF error:", err);
-                alert("Error generating PDF. Please try again.");
             });
-        }, 500);
-    }).catch(err => {
-        console.error("Promise error:", err);
-        alert("Error processing images for PDF.");
-    });
-}
+        });
+
+        Promise.all(svgPromises).then(() => {
+            setTimeout(() => {
+                html2pdf().set({
+                    margin: 0,
+                    filename: filename,
+                    image: {
+                        type: 'png',
+                        quality: 1.0
+                    },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: "#ffffff",
+                        scrollX: 0,
+                        scrollY: 0,
+                        logging: false,
+                        letterRendering: true,
+                        imageTimeout: 15000,
+                        onclone: function(clonedDocument) {
+                            const clonedImages = clonedDocument.querySelectorAll('img');
+                            clonedImages.forEach(img => {
+                                img.style.display = "block";
+                                img.style.visibility = "visible";
+                                img.style.opacity = "1";
+                            });
+                        }
+                    },
+                    jsPDF: {
+                        unit: 'px',
+                        format: [909, 1286],
+                        orientation: 'portrait',
+                        compress: true
+                    }
+                })
+                .from(clone)
+                .save()
+                .catch(err => {
+                    console.error("PDF error:", err);
+                    alert("Error generating PDF. Please try again.");
+                });
+            }, 500);
+        }).catch(err => {
+            console.error("Promise error:", err);
+            alert("Error processing images for PDF.");
+        });
+    }
 </script>
 </body>
 </html>
