@@ -420,167 +420,154 @@ $user = \App\Models\User::first();
 
         });
     }
-    
+
     function downloadInvoice(invoiceContainer) {
+    if (!invoiceContainer) return;
 
-        if (!invoiceContainer) return;
+    var bodyContent = invoiceContainer.querySelector('.page');
+    if (!bodyContent) return;
 
-        const bodyContent = invoiceContainer.querySelector('.page');
-        if (!bodyContent) return;
+    // Clone the page so the original view is not affected
+    var clone = bodyContent.cloneNode(true);
 
-        // Clone page
-        const clone = bodyContent.cloneNode(true);
+    // Keep original layout
+    clone.style.boxShadow = "none";
+    clone.style.margin = "0";
+    clone.style.width = "909px";
+    clone.style.height = "1286px";
+    clone.style.position = "relative";
+    clone.style.overflow = "visible";
+    clone.style.background = "#ffffff";
+    clone.style.pageBreakInside = "avoid";
+    clone.style.breakInside = "avoid";
+    clone.style.pageBreakBefore = "avoid";
+    clone.style.pageBreakAfter = "avoid";
+    // Get filename
+    var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
+    var filename = (invoiceNumber
+        ? invoiceNumber.textContent.trim()
+        : 'invoice') + '.pdf';
 
-        clone.style.margin = "0";
-        clone.style.boxShadow = "none";
-        clone.style.background = "#fff";
+    // Wait until all images are loaded
+    const images = clone.querySelectorAll("img");
 
-        // Create hidden wrapper
-        const wrapper = document.createElement("div");
-        wrapper.style.position = "fixed";
-        wrapper.style.left = "-100000px";
-        wrapper.style.top = "0";
-        wrapper.style.background = "#fff";
-        wrapper.style.padding = "0";
-        wrapper.style.margin = "0";
-        wrapper.appendChild(clone);
+    images.forEach(function(img){
 
-        document.body.appendChild(wrapper);
+        img.style.display = "block";
+        img.style.maxWidth = "100%";
 
-        // Copy computed styles so html2canvas renders exactly
-        clone.querySelectorAll("*").forEach(function(el, index){
+        if(img.naturalWidth){
 
-            const source = bodyContent.querySelectorAll("*")[index];
-            if(!source) return;
+            img.style.width = img.naturalWidth + "px";
 
-            const style = window.getComputedStyle(source);
+        }
 
-            for(let i=0;i<style.length;i++){
-                const property = style[i];
-                el.style.setProperty(
-                    property,
-                    style.getPropertyValue(property),
-                    style.getPropertyPriority(property)
-                );
-            }
+        img.style.height = "auto";
 
-        });
+    });
 
-        const images = wrapper.querySelectorAll("img");
-
-        Promise.all(
-
-            Array.from(images).map(img => {
-
-                return new Promise(resolve => {
-
-                    if(img.complete && img.naturalWidth){
-
-                        resolve();
-
-                    }else{
-
-                        img.onload = resolve;
-                        img.onerror = resolve;
-
-                    }
-
-                });
-
-            })
-
-        ).then(() => {
-
-            requestAnimationFrame(function(){
-
-                setTimeout(function(){
-
-                    const opt = {
-
-                        margin:0,
-
-                        filename:"invoice.pdf",
-
-                        image:{
-                            type:"jpeg",
-                            quality:1
-                        },
-
-                        html2canvas:{
-
-                            scale:4,
-
-                            useCORS:true,
-
-                            allowTaint:true,
-
-                            backgroundColor:"#ffffff",
-
-                            logging:false,
-
-                            letterRendering:true,
-
-                            foreignObjectRendering:true,
-
-                            removeContainer:false,
-
-                            scrollX:0,
-
-                            scrollY:0,
-
-                            width:909,
-
-                            height:1286,
-
-                            windowWidth:909,
-
-                            windowHeight:1286
-
-                        },
-
-                        jsPDF:{
-
-                            unit:"px",
-
-                            format:[909,1286],
-
-                            orientation:"portrait",
-
-                            compress:true
-
-                        },
-
-                        pagebreak:{
-                            mode:["avoid-all"]
-                        }
-
-                    };
-
-                    html2pdf()
-                        .set(opt)
-                        .from(wrapper)
-                        .save()
-                        .then(function(){
-
-                            wrapper.remove();
-
-                        })
-                        .catch(function(err){
-
-                            wrapper.remove();
-
-                            console.error(err);
-
-                        });
-
-                },300);
-
+    Promise.all(
+        Array.from(images).map(img => {
+            return new Promise(resolve => {
+                if (img.complete && img.naturalWidth !== 0) {
+                    resolve();
+                } else {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                }
             });
+        })
+    ).then(() => {
+
+            html2pdf().set({
+
+        margin: 0,
+
+        filename: filename,
+
+        image: {
+            type: 'jpeg',
+            quality: 1
+        },
+
+        html2canvas: {
+
+            scale: 2,
+
+            useCORS: true,
+
+            allowTaint: true,
+
+            backgroundColor: "#ffffff",
+
+            scrollX: 0,
+
+            scrollY: 0,
+
+            width: clone.scrollWidth,
+
+            height: clone.scrollHeight,
+
+            windowWidth: clone.scrollWidth,
+
+            windowHeight: clone.scrollHeight,
+
+            logging: false,
+
+            letterRendering: true
+
+        },
+
+        jsPDF: {
+
+            unit: "pt",
+
+            format: "a4",
+
+            orientation: "portrait",
+
+            compress: true
+
+        },
+
+        pagebreak: {
+
+            mode: ["css","legacy"]
+
+        }
+
+        })
+        clone.style.position = "absolute";
+        clone.style.left = "-99999px";
+        clone.style.top = "0";
+
+        document.body.appendChild(clone);
+
+        html2pdf()
+        .set({
+
+            // Your existing options here
+
+        })
+        .from(clone)
+        .save()
+        .then(function(){
+
+            document.body.removeChild(clone);
+
+        })
+        .catch(function(err){
+
+            document.body.removeChild(clone);
+
+            console.error(err);
+
+            alert("Error generating PDF.");
 
         });
 
-    }
-
+    });
+}
 </script>
 </body>
 </html>
