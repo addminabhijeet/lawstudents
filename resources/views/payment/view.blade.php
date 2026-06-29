@@ -449,7 +449,6 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
     // Remove any box shadow from the cloned page
     clone.style.boxShadow = "none";
     clone.style.margin = "0";
-    clone.style.padding = "0";
 
     // Get filename
     var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
@@ -473,21 +472,44 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
         })
     ).then(() => {
 
-        const element = clone;
-        const opt = {
-            margin: 0,
-            filename: filename,
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'px', format: [909, 1286], orientation: 'portrait' }
-        };
+        html2pdf().set({
 
-        html2pdf().set(opt).from(element).save()
-        .catch(function (err) {
-            console.error(err);
-            alert("Error generating PDF.");
-        });
+    margin: 0,
 
+    filename: filename,
+
+    image: {
+        type: 'jpeg',
+        quality: 1
+    },
+
+    html2canvas: {
+        scale: 4,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+        scrollX: 0,
+        scrollY: 0,
+        logging: false,
+        letterRendering: true,
+        windowHeight: 1286,
+        windowWidth: 909
+    },
+
+    jsPDF: {
+        unit: 'px',
+        format: [909, 1286],
+        orientation: 'portrait',
+        compress: true
+    }
+
+})
+.from(clone)
+.save()
+.catch(function (err) {
+    console.error(err);
+    alert("Error generating PDF.");
+});
     });
 }
 </script>
