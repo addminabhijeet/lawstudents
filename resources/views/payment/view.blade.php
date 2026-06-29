@@ -187,13 +187,13 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:413px;bottom:898px;letter-spacing:0.23px;word-spacing:-0.1px;">Monthly Fee </span>
 <span class="t s0" style="left:363px;bottom:878px;letter-spacing:0.15px;word-spacing:0.34px;">(Enrollment Fee one-time) </span>
 <span class="t s0" style="left:661px;bottom:898px;letter-spacing:0.15px;word-spacing:0.33px;">Receiver’s Signature </span>
-<div style="position:absolute; left:661px; bottom:890px; width:400px; height:2px; background-color:#000;"></div>
+<div style="position:absolute; left:120px; bottom:845px; width:400px; height:2px; background-color:#000;"></div>
 <span class="t s0" style="left:168px;bottom:838px;letter-spacing:0.18px;">Saturday </span>
 <span class="t s0" style="left:168px;bottom:818px;letter-spacing:0.21px;word-spacing:0.3px;">&amp; Sunday </span>
 <span class="t s0" style="left:324px;bottom:838px;letter-spacing:0.13px;word-spacing:0.3px;">Enrollment FEE + Spoken English &amp; </span>
 <span class="t s0" style="left:319px;bottom:818px;letter-spacing:0.14px;word-spacing:0.19px;">Judicial Preli Fee +Main -All Subjects </span>
 <span class="t s0" style="left:621px;bottom:838px;letter-spacing:0.2px;word-spacing:-0.06px;">Payment Received </span>
-<div style="position:absolute; left:621px; bottom:820px; width:400px; height:2px; background-color:#000;"></div>
+<div style="position:absolute; left:120px; bottom:820px; width:400px; height:2px; background-color:#000;"></div>
 <span class="t s0" style="left:142px;bottom:788px;letter-spacing:0.38px;">1. </span><span class="t s0" style="left:168px;bottom:788px;letter-spacing:0.29px;word-spacing:-0.15px;">Nov, 2025 </span><span class="t s0" style="left:315px;bottom:788px;letter-spacing:0.18px;word-spacing:0.13px;">English +Preli+ Main </span><span class="t s0" style="left:621px;bottom:788px;letter-spacing:0.13px;">Received </span>
 <span class="t s0" style="left:621px;bottom:768px;letter-spacing:0.13px;word-spacing:0.22px;">Rs. 5500/- on 21/11/2025 </span>
 <span class="t s0" style="left:621px;bottom:748px;letter-spacing:0.13px;word-spacing:0.22px;">Rs, 7500/- on 27/11/2025 </span>
