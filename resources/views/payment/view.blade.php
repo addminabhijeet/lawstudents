@@ -460,10 +460,25 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                     const svgDataUri = img.src;
                     
                     // Create canvas
+                    // Create high-resolution canvas
                     const canvas = document.createElement('canvas');
-                    canvas.width = img.width || 909;
-                    canvas.height = img.height || 1286;
-                    const ctx = canvas.getContext('2d');
+
+                    const scale = window.devicePixelRatio || 2;
+
+                    const width = img.naturalWidth || img.width || 909;
+                    const height = img.naturalHeight || img.height || 1286;
+
+                    canvas.width = width * scale;
+                    canvas.height = height * scale;
+
+                    canvas.style.width = width + "px";
+                    canvas.style.height = height + "px";
+
+                    const ctx = canvas.getContext("2d");
+
+                    ctx.setTransform(scale, 0, 0, scale, 0, 0);
+                    ctx.imageSmoothingEnabled = true;
+                    ctx.imageSmoothingQuality = "high";
                     
                     // Create image from SVG
                     const image = new Image();
@@ -471,7 +486,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                     
                     image.onload = function() {
                         // Draw image to canvas
-                        ctx.drawImage(image, 0, 0);
+                        ctx.drawImage(image, 0, 0, width, height);
                         
                         // Convert canvas to PNG data URI
                         const pngDataUri = canvas.toDataURL('image/png');
@@ -508,29 +523,43 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                         quality: 1.0
                     },
                     html2canvas: {
-                        scale: 2,
+                        scale: window.devicePixelRatio > 2 ? window.devicePixelRatio : 4,
+                        dpi: 300,
                         useCORS: true,
-                        allowTaint: true,
+                        allowTaint: false,
                         backgroundColor: "#ffffff",
                         scrollX: 0,
                         scrollY: 0,
                         logging: false,
                         letterRendering: true,
-                        imageTimeout: 15000,
-                        onclone: function(clonedDocument) {
-                            const clonedImages = clonedDocument.querySelectorAll('img');
-                            clonedImages.forEach(img => {
+                        imageTimeout: 30000,
+                        removeContainer: true,
+                        imageSmoothingEnabled: true,
+                        foreignObjectRendering: true,
+
+                        onclone: function (clonedDocument) {
+
+                            const clonedImages = clonedDocument.querySelectorAll("img");
+
+                            clonedImages.forEach(function (img) {
+
                                 img.style.display = "block";
                                 img.style.visibility = "visible";
+                                img.style.imageRendering = "high-quality";
+                                img.style.objectFit = "contain";
+                                img.style.maxWidth = "100%";
+                                img.style.height = "auto";
 
                             });
+
                         }
                     },
                     jsPDF: {
-                        unit: 'px',
+                        unit: "px",
                         format: [909, 1286],
-                        orientation: 'portrait',
-                        compress: true
+                        orientation: "portrait",
+                        compress: false,
+                        hotfixes: ["px_scaling"]
                     }
                 })
                 .from(clone)
