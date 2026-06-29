@@ -436,146 +436,115 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         });
     }
-function downloadInvoice(invoiceContainer) {
-    if (!invoiceContainer) return;
+    function downloadInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
 
-    var bodyContent = invoiceContainer.querySelector('.page');
-    if (!bodyContent) return;
+        var bodyContent = invoiceContainer.querySelector('.page');
+        if (!bodyContent) return;
 
-    var clone = bodyContent.cloneNode(true);
-    clone.style.boxShadow = "none";
-    clone.style.margin = "0";
+        var clone = bodyContent.cloneNode(true);
+        clone.style.boxShadow = "none";
+        clone.style.margin = "0";
 
-    var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
-    var filename = (invoiceNumber
-        ? invoiceNumber.textContent.trim()
-        : 'invoice') + '.pdf';
+        var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
+        var filename = (invoiceNumber
+            ? invoiceNumber.textContent.trim()
+            : 'invoice') + '.pdf';
 
-    // Convert SVG data URIs to high-quality PNG
-    const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
-    
-    let svgPromises = Array.from(svgImages).map(img => {
-        return new Promise((resolve) => {
-            try {
-                const svgDataUri = img.src;
-                
-                // Create canvas with higher resolution
-                const canvas = document.createElement('canvas');
-                const scale = 3; // Increase scale for better quality
-                canvas.width = (img.width || 909) * scale;
-                canvas.height = (img.height || 1286) * scale;
-                const ctx = canvas.getContext('2d');
-                
-                // Set background to white
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                // Create image from SVG
-                const image = new Image();
-                image.crossOrigin = "anonymous";
-                
-                image.onload = function() {
-                    // Draw image to canvas with scaling
-                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        // Convert SVG data URIs to PNG data URIs
+        const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
+        
+        let svgPromises = Array.from(svgImages).map(img => {
+            return new Promise((resolve) => {
+                try {
+                    const svgDataUri = img.src;
                     
-                    // Convert canvas to PNG data URI with high quality
-                    const pngDataUri = canvas.toDataURL('image/png', 1.0);
-                    img.src = pngDataUri;
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.display = 'block';
-                    img.style.imageRendering = 'crisp-edges';
+                    // Create canvas
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width || 909;
+                    canvas.height = img.height || 1286;
+                    const ctx = canvas.getContext('2d');
                     
-                    resolve();
-                };
-                
-                image.onerror = function() {
-                    console.warn("SVG failed to load, skipping conversion");
-                    resolve();
-                };
-                
-                // Load SVG
-                image.src = svgDataUri;
-                
-            } catch (error) {
-                console.error("SVG conversion error:", error);
-                resolve();
-            }
-        });
-    });
-
-    Promise.all(svgPromises).then(() => {
-        setTimeout(() => {
-            html2pdf().set({
-                margin: 0,
-                filename: filename,
-                image: {
-                    type: 'png',
-                    quality: 0.98
-                },
-                html2canvas: {
-                    scale: 3,
-                    useCORS: true,
-                    allowTaint: true,
-                    backgroundColor: "#ffffff",
-                    scrollX: 0,
-                    scrollY: 0,
-                    logging: false,
-                    letterRendering: true,
-                    imageTimeout: 30000,
-                    windowWidth: 909,
-                    windowHeight: 1286,
-                    removeContainer: true,
-                    onclone: function(clonedDocument) {
-                        // Remove unnecessary styles
-                        const style = clonedDocument.createElement('style');
-                        style.textContent = `
-                            * {
-                                -webkit-font-smoothing: antialiased;
-                                -moz-osx-font-smoothing: grayscale;
-                            }
-                            img {
-                                display: block !important;
-                                visibility: visible !important;
-                                opacity: 1 !important;
-                                image-rendering: crisp-edges !important;
-                            }
-                            .page {
-                                background: #fff !important;
-                            }
-                        `;
-                        clonedDocument.head.appendChild(style);
+                    // Create image from SVG
+                    const image = new Image();
+                    image.crossOrigin = "anonymous";
+                    
+                    image.onload = function() {
+                        // Draw image to canvas
+                        ctx.drawImage(image, 0, 0);
                         
-                        const clonedImages = clonedDocument.querySelectorAll('img');
-                        clonedImages.forEach(img => {
-                            img.style.display = "block";
-                            img.style.visibility = "visible";
-                            img.style.opacity = "1";
-                            img.style.imageRendering = "crisp-edges";
-                            img.removeAttribute('data-src');
-                        });
-                    }
-                },
-                jsPDF: {
-                    unit: 'px',
-                    format: [909, 1286],
-                    orientation: 'portrait',
-                    compress: false,
-                    precision: 10
+                        // Convert canvas to PNG data URI
+                        const pngDataUri = canvas.toDataURL('image/png');
+                        img.src = pngDataUri;
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                        img.style.display = 'block';
+                        
+                        resolve();
+                    };
+                    
+                    image.onerror = function() {
+                        console.warn("SVG failed to load, skipping conversion");
+                        resolve();
+                    };
+                    
+                    // Load SVG
+                    image.src = svgDataUri;
+                    
+                } catch (error) {
+                    console.error("SVG conversion error:", error);
+                    resolve();
                 }
-            })
-            .from(clone)
-            .save()
-            .catch(err => {
-                console.error("PDF error:", err);
-                alert("Error generating PDF. Please try again.");
             });
-        }, 1000);
-    }).catch(err => {
-        console.error("Promise error:", err);
-        alert("Error processing images for PDF.");
-    });
-}
+        });
+
+        Promise.all(svgPromises).then(() => {
+            setTimeout(() => {
+                html2pdf().set({
+                    margin: 0,
+                    filename: filename,
+                    image: {
+                        type: 'png',
+                        quality: 1.0
+                    },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: true,
+                        backgroundColor: "#ffffff",
+                        scrollX: 0,
+                        scrollY: 0,
+                        logging: false,
+                        letterRendering: true,
+                        imageTimeout: 15000,
+                        onclone: function(clonedDocument) {
+                            const clonedImages = clonedDocument.querySelectorAll('img');
+                            clonedImages.forEach(img => {
+                                img.style.display = "block";
+                                img.style.visibility = "visible";
+
+                            });
+                        }
+                    },
+                    jsPDF: {
+                        unit: 'px',
+                        format: [909, 1286],
+                        orientation: 'portrait',
+                        compress: true
+                    }
+                })
+                .from(clone)
+                .save()
+                .catch(err => {
+                    console.error("PDF error:", err);
+                    alert("Error generating PDF. Please try again.");
+                });
+            }, 500);
+        }).catch(err => {
+            console.error("Promise error:", err);
+            alert("Error processing images for PDF.");
+        });
+    }
 </script>
 </body>
 </html>
