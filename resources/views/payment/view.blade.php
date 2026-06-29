@@ -496,7 +496,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
             jsPDF: {
                 unit: 'px',
-                format: [909, 1284],   // Same as your page size
+                format: [912, 1280],   // Same as your page size
                 orientation: 'portrait',
                 compress: true
             },
