@@ -442,57 +442,42 @@ function downloadInvoice(invoiceContainer) {
     var bodyContent = invoiceContainer.querySelector('.page');
     if (!bodyContent) return;
 
-    // Clone the page so the original view is not affected
     var clone = bodyContent.cloneNode(true);
-
-    // Remove any box shadow from the cloned page
     clone.style.boxShadow = "none";
     clone.style.margin = "0";
 
-    // Get filename
     var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
     var filename = (invoiceNumber
         ? invoiceNumber.textContent.trim()
         : 'invoice') + '.pdf';
 
-    // Wait until all images are loaded
-    const images = clone.querySelectorAll("img");
-    let imagePromises = [];
-
-    Array.from(images).forEach(img => {
-        // Force reload of SVG images
-        if (img.src && img.src.includes('data:image/svg+xml')) {
-            img.crossOrigin = "anonymous";
-            img.style.display = "block";
-        }
-
-        imagePromises.push(new Promise(resolve => {
-            if (img.complete && img.naturalWidth !== 0) {
+    // Convert SVG data URIs to ensure compatibility
+    const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
+    
+    let svgPromises = Array.from(svgImages).map(img => {
+        return new Promise(resolve => {
+            // Decode and re-encode SVG to ensure proper rendering
+            const svgDataUri = img.src;
+            const img2 = new Image();
+            img2.crossOrigin = "anonymous";
+            
+            img2.onload = function() {
+                img.src = img2.src;
                 resolve();
-            } else {
-                img.onload = function() {
-                    resolve();
-                };
-                img.onerror = function() {
-                    console.warn("Image failed to load:", img.src);
-                    resolve(); // Continue even if image fails
-                };
-                // Trigger load
-                img.src = img.src;
-            }
-        }));
+            };
+            img2.onerror = function() {
+                resolve(); // Continue anyway
+            };
+            img2.src = svgDataUri;
+        });
     });
 
-    Promise.all(imagePromises).then(() => {
-        // Small delay to ensure rendering
+    Promise.all(svgPromises).then(() => {
         setTimeout(() => {
             html2pdf().set({
                 margin: 0,
                 filename: filename,
-                image: {
-                    type: 'jpeg',
-                    quality: 0.98
-                },
+                image: {type: 'jpeg', quality: 0.98},
                 html2canvas: {
                     scale: 3,
                     useCORS: true,
@@ -502,15 +487,7 @@ function downloadInvoice(invoiceContainer) {
                     scrollY: 0,
                     logging: false,
                     letterRendering: true,
-                    imageTimeout: 5000,
-                    onclone: function(clonedDocument) {
-                        // Ensure SVG images are visible in the cloned document
-                        const clonedImages = clonedDocument.querySelectorAll('img');
-                        clonedImages.forEach(img => {
-                            img.style.display = "block";
-                            img.style.visibility = "visible";
-                        });
-                    }
+                    imageTimeout: 10000
                 },
                 jsPDF: {
                     unit: 'px',
@@ -521,14 +498,11 @@ function downloadInvoice(invoiceContainer) {
             })
             .from(clone)
             .save()
-            .catch(function (err) {
-                console.error("PDF generation error:", err);
-                alert("Error generating PDF. Please try again.");
+            .catch(err => {
+                console.error("PDF error:", err);
+                alert("Error generating PDF.");
             });
         }, 500);
-    }).catch(err => {
-        console.error("Error loading images:", err);
-        alert("Error loading images for PDF.");
     });
 }
 </script>
