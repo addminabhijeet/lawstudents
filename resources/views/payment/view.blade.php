@@ -503,6 +503,10 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                 compress: true
             },
 
+            pagebreak: {
+                mode: ['avoid-all']
+            }
+
         })
         .from(clone)
         .save()
