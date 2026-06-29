@@ -94,6 +94,32 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
 @if (!$notFound && $payments->count())
 @foreach ($payments as $payment)
+
+<div class="card-header">
+    <!-- Print button -->
+    <div class="card-header">
+        <!-- Print button -->
+        <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
+            class="d-flex me-1 printBTN"
+            onclick="printInvoice(this.closest('.invoice-container'))">
+            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                title="Print Invoice">
+                <i class="feather feather-printer"></i>
+            </div>
+        </a>
+
+        <!-- Download button -->
+        <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
+            class="d-flex me-1 file-download"
+            onclick="downloadInvoice(this.closest('.invoice-container'))">
+            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+                title="Download Invoice">
+                <i class="feather feather-download"></i>
+            </div>
+        </a>
+    </div>
+</div>
+
 <div class="page-container">
     
 <section class="page" style="width: 909px; height: 1286px;" aria-label="Page 1">
@@ -263,6 +289,97 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
         pageAnnotations.annotations.forEach(annotation => createAnnotation(annotationsContainer, annotation, pageNo));
         pages[pageNo - 1].appendChild(annotationsContainer);
     });
+</script>
+<!-- Add this in your blade file before </body> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
+<script>
+    function printInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Get the inner card-body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        if (!bodyContent) return;
+
+        var printContents = bodyContent.cloneNode(true);
+
+        var printWindow = window.open('', '', 'height=800,width=1200');
+        printWindow.document.write('<html><head><title>Invoice</title>');
+
+        // Include all CSS
+        Array.from(document.querySelectorAll('link[rel="stylesheet"], style')).forEach(function(node) {
+            printWindow.document.write(node.outerHTML);
+        });
+
+        printWindow.document.write('</head><body>');
+        printWindow.document.body.appendChild(printContents);
+        printWindow.document.write('</body></html>');
+
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+    }
+
+    function downloadInvoice(invoiceContainer) {
+        if (!invoiceContainer) return;
+
+        // Use original rendered invoice body
+        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        if (!bodyContent) return;
+
+        // Get invoice number
+        var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
+        var filename = (invoiceNumber ?
+            invoiceNumber.textContent.trim() :
+            'invoice') + '.pdf';
+
+        // Wait for all images inside this invoice
+        const images = bodyContent.querySelectorAll('img');
+
+        Promise.all(
+            Array.from(images).map(img => {
+                return new Promise(resolve => {
+                    if (img.complete && img.naturalHeight !== 0) {
+                        resolve();
+                    } else {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    }
+                });
+            })
+        ).then(() => {
+
+            const opt = {
+                margin: 0.2,
+                filename: filename,
+                image: {
+                    type: 'jpeg',
+                    quality: 1
+                },
+                html2canvas: {
+                    scale: 3,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false,
+                    scrollY: 0
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
+
+            html2pdf()
+                .set(opt)
+                .from(bodyContent)
+                .save()
+                .catch(function(error) {
+                    console.error('PDF generation error:', error);
+                    alert('Error generating PDF.');
+                });
+
+        });
+    }
 </script>
 </body>
 </html>
