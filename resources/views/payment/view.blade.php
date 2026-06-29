@@ -436,8 +436,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         });
     }
-
-    function downloadInvoice(invoiceContainer) {
+function downloadInvoice(invoiceContainer) {
     if (!invoiceContainer) return;
 
     var bodyContent = invoiceContainer.querySelector('.page');
@@ -449,6 +448,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
     // Remove any box shadow from the cloned page
     clone.style.boxShadow = "none";
     clone.style.margin = "0";
+    clone.style.padding = "0";
 
     // Get filename
     var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
@@ -491,18 +491,23 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                 scrollX: 0,
                 scrollY: 0,
                 logging: false,
-                letterRendering: true
+                letterRendering: true,
+                windowHeight: 1286,
+                windowWidth: 909
             },
 
             jsPDF: {
                 unit: 'px',
-                format: [909, 1286],   // Same as your page size
+                format: [909, 1286],
                 orientation: 'portrait',
                 compress: true
             },
 
             pagebreak: {
-                mode: ['avoid-all']
+                mode: ['avoid-all'],
+                before: [],
+                after: [],
+                avoid: []
             }
 
         })
