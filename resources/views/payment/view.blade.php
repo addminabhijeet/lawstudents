@@ -491,9 +491,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                 scrollX: 0,
                 scrollY: 0,
                 logging: false,
-                letterRendering: true,
-                windowHeight: 1286,
-                windowWidth: 909
+                letterRendering: true
             },
 
             jsPDF: {
@@ -503,9 +501,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                 compress: true
             },
 
-            pagebreak: {
-                mode: ['avoid-all']
-            }
+            splittingContainer: clone
+
 
         })
         .from(clone)
