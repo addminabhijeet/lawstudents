@@ -445,12 +445,10 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
     // Clone the page so the original view is not affected
     var clone = bodyContent.cloneNode(true);
-    clone.style.pageBreakInside = "avoid";
 
     // Remove any box shadow from the cloned page
     clone.style.boxShadow = "none";
     clone.style.margin = "0";
-    clone.style.display = "block";
 
     // Get filename
     var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
@@ -493,26 +491,18 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                 scrollX: 0,
                 scrollY: 0,
                 logging: false,
-
-                width: clone.scrollWidth,
-                height: clone.scrollHeight,
-                windowWidth: clone.scrollWidth,
-                windowHeight: clone.scrollHeight,
-
-                foreignObjectRendering: true,
-                removeContainer: false
+                letterRendering: true
             },
 
             jsPDF: {
                 unit: 'px',
-                format: [909, 1286],
+                format: [909, 1286],   // Same as your page size
                 orientation: 'portrait',
-                compress: true,
-                hotfixes: ["px_scaling"]
+                compress: true
             },
 
             pagebreak: {
-                mode: ['css', 'avoid-all']
+                mode: ['avoid-all']
             }
 
         })
