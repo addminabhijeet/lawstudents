@@ -436,7 +436,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         });
     }
-function downloadInvoice(invoiceContainer) {
+
+    function downloadInvoice(invoiceContainer) {
     if (!invoiceContainer) return;
 
     var bodyContent = invoiceContainer.querySelector('.page');
@@ -471,19 +472,6 @@ function downloadInvoice(invoiceContainer) {
         })
     ).then(() => {
 
-        // Create a container div to hold both the page content and any tables
-        var downloadContainer = document.createElement('div');
-        downloadContainer.appendChild(clone);
-
-        // Check if there's a table in the invoice container and append it
-        var table = invoiceContainer.querySelector('table');
-        if (table) {
-            var tableClone = table.cloneNode(true);
-            tableClone.style.marginTop = "20px";
-            tableClone.style.width = "100%";
-            downloadContainer.appendChild(tableClone);
-        }
-
         html2pdf().set({
 
             margin: 0,
@@ -508,7 +496,7 @@ function downloadInvoice(invoiceContainer) {
 
             jsPDF: {
                 unit: 'px',
-                format: [909, 1286],
+                format: [909, 1286],   // Same as your page size
                 orientation: 'portrait',
                 compress: true
             },
@@ -518,7 +506,7 @@ function downloadInvoice(invoiceContainer) {
             }
 
         })
-        .from(downloadContainer)
+        .from(clone)
         .save()
         .catch(function (err) {
             console.error(err);
@@ -527,7 +515,6 @@ function downloadInvoice(invoiceContainer) {
 
     });
 }
-
 </script>
 </body>
 </html>
