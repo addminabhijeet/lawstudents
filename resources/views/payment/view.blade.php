@@ -322,12 +322,13 @@ $user = \App\Models\User::first();
 </script>
 <!-- Add this in your blade file before </body> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.11.0/html2pdf.bundle.min.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
 <script>
     function printInvoice(invoiceContainer) {
         if (!invoiceContainer) return;
 
         // Get the inner card-body
-        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        var bodyContent = invoiceContainer.querySelector('.page');
         if (!bodyContent) return;
 
         var printContents = bodyContent.cloneNode(true);
@@ -353,7 +354,7 @@ $user = \App\Models\User::first();
         if (!invoiceContainer) return;
 
         // Use original rendered invoice body
-        var bodyContent = invoiceContainer.querySelector('.card-body.p-0');
+        var bodyContent = invoiceContainer.querySelector('.page');
         if (!bodyContent) return;
 
         // Get invoice number
