@@ -178,7 +178,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:107px;bottom:979px;letter-spacing:0.18px;word-spacing:-0.07px;">Email ID- </span><span class="t s1" style="left:184px;bottom:979px;letter-spacing:0.16px;word-spacing:0.33px;">sayantani1996.roy @gmail.com </span>
 <span class="t s0" style="left:107px;bottom:960px;letter-spacing:0.15px;word-spacing:0.09px;">Contact No- +91-89183 63476. </span>
 <span class="t s0" style="left:107px;bottom:940px;letter-spacing:0.15px;word-spacing:0.15px;">Alternate No. +91-9474725644. </span>
-<div style="position:absolute; left:107px; bottom:920px; width:400px; height:2px; background-color:#000;"></div>
+<div style="position:absolute; left:107px; bottom:910px; width:400px; height:2px; background-color:#000;"></div>
 <span class="t s0" style="left:126px;bottom:898px;">Sl </span>
 <span class="t s0" style="left:120px;bottom:878px;letter-spacing:0.14px;">No. </span>
 <span class="t s0" style="left:184px;bottom:898px;letter-spacing:0.16px;word-spacing:0.32px;">Subjects: WB </span>
@@ -187,7 +187,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:413px;bottom:898px;letter-spacing:0.23px;word-spacing:-0.1px;">Monthly Fee </span>
 <span class="t s0" style="left:363px;bottom:878px;letter-spacing:0.15px;word-spacing:0.34px;">(Enrollment Fee one-time) </span>
 <span class="t s0" style="left:661px;bottom:898px;letter-spacing:0.15px;word-spacing:0.33px;">Receiver’s Signature </span>
-<div style="position:absolute; left:120px; bottom:865px; width:400px; height:2px; background-color:#000;"></div>
+<div style="position:absolute; left:120px; bottom:855px; width:400px; height:2px; background-color:#000;"></div>
 <span class="t s0" style="left:168px;bottom:838px;letter-spacing:0.18px;">Saturday </span>
 <span class="t s0" style="left:168px;bottom:818px;letter-spacing:0.21px;word-spacing:0.3px;">&amp; Sunday </span>
 <span class="t s0" style="left:324px;bottom:838px;letter-spacing:0.13px;word-spacing:0.3px;">Enrollment FEE + Spoken English &amp; </span>
