@@ -523,6 +523,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                                 img.style.display = "block";
                                 img.style.visibility = "visible";
                                 img.style.opacity = "1";
+                                img.style.backgroundColor = "transparent";
+                                img.parentElement.style.backgroundColor = "transparent";
                             });
                         }
                     },
