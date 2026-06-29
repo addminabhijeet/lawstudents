@@ -436,8 +436,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         });
     }
-
-    function downloadInvoice(invoiceContainer) {
+function downloadInvoice(invoiceContainer) {
     if (!invoiceContainer) return;
 
     var bodyContent = invoiceContainer.querySelector('.page');
@@ -456,13 +455,24 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
         ? invoiceNumber.textContent.trim()
         : 'invoice') + '.pdf';
 
-    // Wait until all images are loaded
+    // Wait until all images are loaded, including SVGs
     const images = clone.querySelectorAll("img");
 
     Promise.all(
         Array.from(images).map(img => {
             return new Promise(resolve => {
-                if (img.complete && img.naturalWidth !== 0) {
+                // Force reload SVG images to ensure they render
+                if (img.src && img.src.includes('data:image/svg+xml')) {
+                    // Create a new image element to force proper loading
+                    const svgImg = new Image();
+                    svgImg.onload = () => {
+                        img.src = svgImg.src;
+                        resolve();
+                    };
+                    svgImg.onerror = resolve;
+                    svgImg.crossOrigin = 'anonymous';
+                    svgImg.src = img.src;
+                } else if (img.complete && img.naturalWidth !== 0) {
                     resolve();
                 } else {
                     img.onload = resolve;
@@ -492,6 +502,9 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                 scrollY: 0,
                 logging: false,
                 letterRendering: true,
+                // Add these options for better SVG rendering
+                foreignObjectRendering: true,
+                ignoreElements: [],
 
             },
 
