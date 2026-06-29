@@ -91,12 +91,16 @@ $user = \App\Models\User::first();
     border-radius:50%;
     cursor:pointer;
 
-    background:#0d6efd;
-    color:#fff;
+    background:#ffffff;          /* Remove blue background */
+    color:#222222;               /* Dark icon/text */
+    border:1px solid #dcdcdc;    /* Light border */
+    transition:all .2s ease;
 }
 
 .invoice-toolbar .avatar-text:hover{
-    opacity:.9;
+    background:#f5f5f5;
+    border-color:#bfbfbf;
+    color:#000;
 }
 </style>
 
