@@ -178,6 +178,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:107px;bottom:979px;letter-spacing:0.18px;word-spacing:-0.07px;">Email ID- </span><span class="t s1" style="left:184px;bottom:979px;letter-spacing:0.16px;word-spacing:0.33px;">sayantani1996.roy @gmail.com </span>
 <span class="t s0" style="left:107px;bottom:960px;letter-spacing:0.15px;word-spacing:0.09px;">Contact No- +91-89183 63476. </span>
 <span class="t s0" style="left:107px;bottom:940px;letter-spacing:0.15px;word-spacing:0.15px;">Alternate No. +91-9474725644. </span>
+<div style="position:absolute; left:107px; bottom:920px; width:400px; height:2px; background-color:#000;"></div>
 <span class="t s0" style="left:126px;bottom:898px;">Sl </span>
 <span class="t s0" style="left:120px;bottom:878px;letter-spacing:0.14px;">No. </span>
 <span class="t s0" style="left:184px;bottom:898px;letter-spacing:0.16px;word-spacing:0.32px;">Subjects: WB </span>
@@ -191,6 +192,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:324px;bottom:838px;letter-spacing:0.13px;word-spacing:0.3px;">Enrollment FEE + Spoken English &amp; </span>
 <span class="t s0" style="left:319px;bottom:818px;letter-spacing:0.14px;word-spacing:0.19px;">Judicial Preli Fee +Main -All Subjects </span>
 <span class="t s0" style="left:621px;bottom:838px;letter-spacing:0.2px;word-spacing:-0.06px;">Payment Received </span>
+<div style="position:absolute; left:600px; bottom:925px; width:400px; height:2px; background-color:#000;"></div>
 <span class="t s0" style="left:142px;bottom:788px;letter-spacing:0.38px;">1. </span><span class="t s0" style="left:168px;bottom:788px;letter-spacing:0.29px;word-spacing:-0.15px;">Nov, 2025 </span><span class="t s0" style="left:315px;bottom:788px;letter-spacing:0.18px;word-spacing:0.13px;">English +Preli+ Main </span><span class="t s0" style="left:621px;bottom:788px;letter-spacing:0.13px;">Received </span>
 <span class="t s0" style="left:621px;bottom:768px;letter-spacing:0.13px;word-spacing:0.22px;">Rs. 5500/- on 21/11/2025 </span>
 <span class="t s0" style="left:621px;bottom:748px;letter-spacing:0.13px;word-spacing:0.22px;">Rs, 7500/- on 27/11/2025 </span>
