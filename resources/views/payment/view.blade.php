@@ -474,44 +474,42 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         html2pdf().set({
 
-    margin: 0,
+            margin: 0,
 
-    filename: filename,
+            filename: filename,
 
-    image: {
-        type: 'jpeg',
-        quality: 1
-    },
+            image: {
+                type: 'jpeg',
+                quality: 1
+            },
 
-    html2canvas: {
-        scale: 4,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: "#ffffff",
-        scrollX: 0,
-        scrollY: 0,
-        logging: false,
-        letterRendering: true,
-        windowHeight: 1286,
-        windowWidth: 909
-    },
+            html2canvas: {
+                scale: 4,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: "#ffffff",
+                scrollX: 0,
+                scrollY: 0,
+                logging: false,
+                letterRendering: true,
+                windowHeight: 1286,
+                windowWidth: 909
+            },
 
-    jsPDF: {
-        unit: 'px',
-        format: [909, 1286],
-        orientation: 'portrait',
-        compress: true
-    },
+            jsPDF: {
+                unit: 'px',
+                format: [909, 1284],   // Same as your page size
+                orientation: 'portrait',
+                compress: true
+            },
 
-    splittingContainer: clone
-
-})
-.from(clone)
-.save()
-.catch(function (err) {
-    console.error(err);
-    alert("Error generating PDF.");
-});
+        })
+        .from(clone)
+        .save()
+        .catch(function (err) {
+            console.error(err);
+            alert("Error generating PDF.");
+        });
 
     });
 }
