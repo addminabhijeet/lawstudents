@@ -436,7 +436,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 
         });
     }
-function downloadInvoice(invoiceContainer) {
+
+    function downloadInvoice(invoiceContainer) {
     if (!invoiceContainer) return;
 
     var bodyContent = invoiceContainer.querySelector('.page');
@@ -494,8 +495,8 @@ function downloadInvoice(invoiceContainer) {
             },
 
             jsPDF: {
-                unit: 'mm',
-                format: 'a4',
+                unit: 'px',
+                format: [909, 1286],   // Same as your page size
                 orientation: 'portrait',
                 compress: true
             },
