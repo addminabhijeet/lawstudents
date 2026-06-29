@@ -422,66 +422,83 @@ $user = \App\Models\User::first();
     }
 
     function downloadInvoice(invoiceContainer) {
-        if (!invoiceContainer) return;
+    if (!invoiceContainer) return;
 
-        // Use original rendered invoice body
-        var bodyContent = invoiceContainer.querySelector('.page');
-        if (!bodyContent) return;
+    var bodyContent = invoiceContainer.querySelector('.page');
+    if (!bodyContent) return;
 
-        // Get invoice number
-        var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
-        var filename = (invoiceNumber ?
-            invoiceNumber.textContent.trim() :
-            'invoice') + '.pdf';
+    // Clone the page so the original view is not affected
+    var clone = bodyContent.cloneNode(true);
 
-        // Wait for all images inside this invoice
-        const images = bodyContent.querySelectorAll('img');
+    // Remove any box shadow from the cloned page
+    clone.style.boxShadow = "none";
+    clone.style.margin = "0";
 
-        Promise.all(
-            Array.from(images).map(img => {
-                return new Promise(resolve => {
-                    if (img.complete && img.naturalHeight !== 0) {
-                        resolve();
-                    } else {
-                        img.onload = resolve;
-                        img.onerror = resolve;
-                    }
-                });
-            })
-        ).then(() => {
+    // Get filename
+    var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
+    var filename = (invoiceNumber
+        ? invoiceNumber.textContent.trim()
+        : 'invoice') + '.pdf';
 
-            const opt = {
-                margin: 0.2,
-                filename: filename,
-                image: {
-                    type: 'jpeg',
-                    quality: 1
-                },
-                html2canvas: {
-                    scale: 3,
-                    useCORS: true,
-                    allowTaint: true,
-                    logging: false,
-                    scrollY: 0
-                },
-                jsPDF: {
-                    unit: 'mm',
-                    format: 'a4',
-                    orientation: 'portrait'
+    // Wait until all images are loaded
+    const images = clone.querySelectorAll("img");
+
+    Promise.all(
+        Array.from(images).map(img => {
+            return new Promise(resolve => {
+                if (img.complete && img.naturalWidth !== 0) {
+                    resolve();
+                } else {
+                    img.onload = resolve;
+                    img.onerror = resolve;
                 }
-            };
+            });
+        })
+    ).then(() => {
 
-            html2pdf()
-                .set(opt)
-                .from(bodyContent)
-                .save()
-                .catch(function(error) {
-                    console.error('PDF generation error:', error);
-                    alert('Error generating PDF.');
-                });
+        html2pdf().set({
 
+            margin: 0,
+
+            filename: filename,
+
+            image: {
+                type: 'jpeg',
+                quality: 1
+            },
+
+            html2canvas: {
+                scale: 4,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: "#ffffff",
+                scrollX: 0,
+                scrollY: 0,
+                logging: false,
+                letterRendering: true
+            },
+
+            jsPDF: {
+                unit: 'px',
+                format: [909, 1286],   // Same as your page size
+                orientation: 'portrait',
+                compress: true
+            },
+
+            pagebreak: {
+                mode: ['avoid-all']
+            }
+
+        })
+        .from(clone)
+        .save()
+        .catch(function (err) {
+            console.error(err);
+            alert("Error generating PDF.");
         });
-    }
+
+    });
+}
 </script>
 </body>
 </html>
