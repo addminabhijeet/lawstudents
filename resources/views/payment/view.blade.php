@@ -126,7 +126,6 @@ $user = \App\Models\User::first();
     stroke:currentColor !important;
 }
 </style>
-<script src="https://unpkg.com/feather-icons"></script>
 
 <style id="fonts1" type="text/css" >
 
