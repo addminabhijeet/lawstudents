@@ -448,7 +448,6 @@ function downloadInvoice(invoiceContainer) {
     // Remove any box shadow from the cloned page
     clone.style.boxShadow = "none";
     clone.style.margin = "0";
-    clone.style.padding = "0";
 
     // Get filename
     var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
@@ -456,7 +455,7 @@ function downloadInvoice(invoiceContainer) {
         ? invoiceNumber.textContent.trim()
         : 'invoice') + '.pdf';
 
-    // Wait until all images are loaded
+    // Wait until all images are loaded with increased timeout
     const images = clone.querySelectorAll("img");
 
     Promise.all(
@@ -467,56 +466,58 @@ function downloadInvoice(invoiceContainer) {
                 } else {
                     img.onload = resolve;
                     img.onerror = resolve;
+                    
+                    // Set a timeout to resolve even if image fails to load
+                    setTimeout(() => resolve(), 3000);
                 }
             });
         })
     ).then(() => {
+        
+        // Add additional wait time before PDF generation
+        setTimeout(() => {
+            html2pdf().set({
 
-        html2pdf().set({
+                margin: 0,
 
-            margin: 0,
+                filename: filename,
 
-            filename: filename,
+                image: {
+                    type: 'jpeg',
+                    quality: 1
+                },
 
-            image: {
-                type: 'jpeg',
-                quality: 1
-            },
+                html2canvas: {
+                    scale: 4,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: "#ffffff",
+                    scrollX: 0,
+                    scrollY: 0,
+                    logging: false,
+                    letterRendering: true,
+                    delay: 2000  // Add delay for rendering
+                },
 
-            html2canvas: {
-                scale: 4,
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: "#ffffff",
-                scrollX: 0,
-                scrollY: 0,
-                logging: false,
-                letterRendering: true,
-                windowHeight: 1286,
-                windowWidth: 909
-            },
+                jsPDF: {
+                    unit: 'px',
+                    format: [909, 1286],
+                    orientation: 'portrait',
+                    compress: true
+                },
 
-            jsPDF: {
-                unit: 'px',
-                format: [909, 1286],
-                orientation: 'portrait',
-                compress: true
-            },
+                pagebreak: {
+                    mode: ['avoid-all']
+                }
 
-            pagebreak: {
-                mode: ['avoid-all'],
-                before: [],
-                after: [],
-                avoid: []
-            }
-
-        })
-        .from(clone)
-        .save()
-        .catch(function (err) {
-            console.error(err);
-            alert("Error generating PDF.");
-        });
+            })
+            .from(clone)
+            .save()
+            .catch(function (err) {
+                console.error(err);
+                alert("Error generating PDF.");
+            });
+        }, 1500);  // Wait 1.5 seconds before starting PDF generation
 
     });
 }
