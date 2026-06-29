@@ -60,7 +60,7 @@ $user = \App\Models\User::first();
 }
 .invoice-container{
     position:relative;
-    width:fit-content;
+    width:100%;
     margin:20px auto;
 }
 
@@ -81,26 +81,49 @@ $user = \App\Models\User::first();
 }
 
 .invoice-toolbar .avatar-text{
-    display:flex;
+    display:flex !important;
     align-items:center;
     justify-content:center;
 
     width:40px;
     height:40px;
+    min-width:40px;
+    min-height:40px;
 
     border-radius:50%;
     cursor:pointer;
 
-    background:#ffffff;          /* Remove blue background */
-    color:#222222;               /* Dark icon/text */
-    border:1px solid #dcdcdc;    /* Light border */
-    transition:all .2s ease;
+    background:#ffffff !important;
+    color:#222222 !important;
+    border:1px solid #dcdcdc !important;
+
+    box-sizing:border-box;
+    overflow:hidden;
 }
 
 .invoice-toolbar .avatar-text:hover{
-    background:#f5f5f5;
-    border-color:#bfbfbf;
-    color:#000;
+    background:#f5f5f5 !important;
+    border-color:#bfbfbf !important;
+    color:#000 !important;
+}
+
+.invoice-toolbar a{
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none !important;
+}
+
+.invoice-toolbar i{
+    font-size:18px !important;
+    line-height:1 !important;
+    color:inherit !important;
+}
+
+.invoice-toolbar svg{
+    width:18px !important;
+    height:18px !important;
+    stroke:currentColor !important;
 }
 </style>
 <script src="https://unpkg.com/feather-icons"></script>
