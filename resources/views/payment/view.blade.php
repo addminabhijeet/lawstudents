@@ -460,7 +460,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                 const svgDataUri = img.src;
                 
                 // Create canvas with higher DPI scaling
-                const dpiScale = 3; // Increase scale from 2 to 3 for better quality
+                const dpiScale = 1; // Increase scale from 2 to 3 for better quality
                 const canvas = document.createElement('canvas');
                 canvas.width = (img.width || 909) * dpiScale;
                 canvas.height = (img.height || 1286) * dpiScale;
@@ -514,7 +514,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
                     quality: 1.0
                 },
                 html2canvas: {
-                    scale: 3, // Increased from 2 to 3 for higher resolution
+                    scale: 1, // Increased from 2 to 3 for higher resolution
                     useCORS: true,
                     allowTaint: true,
                     backgroundColor: "#ffffff",
