@@ -1,3 +1,7 @@
+@include('layouts.partials.admin.dashboard')
+@php
+$user = \App\Models\User::first();
+@endphp
 <!doctype html>
 <html>
 <head>
@@ -255,3 +259,4 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 </script>
 </body>
 </html>
+@include('layouts.partials.admin.theme')
