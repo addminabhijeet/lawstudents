@@ -131,7 +131,7 @@ $user = \App\Models\User::first();
             <div class="avatar-text avatar-md"
                  data-bs-toggle="tooltip"
                  title="Print Invoice">
-                <i class="feather feather-printer"></i>
+                <i class="fas fa-print"></i>
             </div>
         </a>
 
@@ -143,7 +143,7 @@ $user = \App\Models\User::first();
             <div class="avatar-text avatar-md"
                  data-bs-toggle="tooltip"
                  title="Download Invoice">
-                <i class="feather feather-download"></i>
+                <i class="fas fa-download"></i>
             </div>
         </a>
     </div>
