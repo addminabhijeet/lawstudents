@@ -1,7 +1,7 @@
 @php
 $user = \App\Models\User::first();
+$totalAmount = 0;
 @endphp
-@php $totalAmount = 0; @endphp
 
 @if ($payment && $payment->course)
 @php
