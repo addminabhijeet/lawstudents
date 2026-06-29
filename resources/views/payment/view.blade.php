@@ -95,30 +95,26 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 @if (!$notFound && $payments->count())
 @foreach ($payments as $payment)
 
-<div class="card-header">
-    <!-- Print button -->
-    <div class="card-header">
-        <!-- Print button -->
-        <a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
-            class="d-flex me-1 printBTN"
-            onclick="printInvoice(this.closest('.invoice-container'))">
-            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                title="Print Invoice">
-                <i class="feather feather-printer"></i>
-            </div>
-        </a>
 
-        <!-- Download button -->
-        <a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
-            class="d-flex me-1 file-download"
-            onclick="downloadInvoice(this.closest('.invoice-container'))">
-            <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
-                title="Download Invoice">
-                <i class="feather feather-download"></i>
-            </div>
-        </a>
+<a href="javascript:void(0);" id="print-btn-{{ $payment->id }}"
+    class="d-flex me-1 printBTN"
+    onclick="printInvoice(this.closest('.invoice-container'))">
+    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+        title="Print Invoice">
+        <i class="feather feather-printer"></i>
     </div>
-</div>
+</a>
+
+<!-- Download button -->
+<a href="javascript:void(0);" id="download-btn-{{ $payment->id }}"
+    class="d-flex me-1 file-download"
+    onclick="downloadInvoice(this.closest('.invoice-container'))">
+    <div class="avatar-text avatar-md" data-bs-toggle="tooltip"
+        title="Download Invoice">
+        <i class="feather feather-download"></i>
+    </div>
+</a>
+
 
 <div class="page-container">
     
