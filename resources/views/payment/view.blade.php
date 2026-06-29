@@ -3,16 +3,6 @@ $user = \App\Models\User::first();
 @endphp
 @php $totalAmount = 0; @endphp
 
-@if ($payment && $payment->course)
-@php
-$courseIds = explode(',', $payment->course_id);
-$courses = \App\Models\Course::whereIn('id', $courseIds)->get();
-@endphp
-
-@foreach ($courses as $course)
-@php
-$totalAmount += $course->price;
-@endphp
 <!doctype html>
 <html>
 <head>
@@ -186,7 +176,7 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <div class="text-container"><span class="t s0" style="left:107px;bottom:1058px;letter-spacing:0.22px;">To </span>
 <span class="t s0" style="left:107px;bottom:1038px;letter-spacing:0.12px;word-spacing:0.37px;">{{ $payment->to_name }} </span>
 <span class="t s0" style="left:107px;bottom:1019px;letter-spacing:0.19px;word-spacing:-0.05px;">{{ $payment->to_address }} </span>
-<span class="t s0" style="left:107px;bottom:999px;letter-spacing:0.16px;">Bankura-722038. </span>
+<span class="t s0" style="left:107px;bottom:999px;letter-spacing:0.16px;"></span>
 <span class="t s0" style="left:107px;bottom:979px;letter-spacing:0.18px;word-spacing:-0.07px;">Email ID- </span><span class="t s1" style="left:184px;bottom:979px;letter-spacing:0.16px;word-spacing:0.33px;">{{ $payment->to_email }} </span>
 <span class="t s0" style="left:107px;bottom:960px;letter-spacing:0.15px;word-spacing:0.09px;">Phone: {{ $payment->to_phone }}</span>
 <!-- <span class="t s0" style="left:107px;bottom:940px;letter-spacing:0.15px;word-spacing:0.15px;">Alternate No. +91-9474725644. </span> -->
@@ -206,6 +196,18 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:319px;bottom:818px;letter-spacing:0.14px;word-spacing:0.19px;">Judicial Preli Fee +Main -All Subjects </span>
 <span class="t s0" style="left:621px;bottom:838px;letter-spacing:0.2px;word-spacing:-0.06px;">Payment Received </span>
 <div style="position:absolute; left:107px; bottom:815px; width:720px; height:2px; background-color:#000;"></div>
+@php $totalAmount = 0; @endphp
+
+@if ($payment && $payment->course)
+@php
+$courseIds = explode(',', $payment->course_id);
+$courses = \App\Models\Course::whereIn('id', $courseIds)->get();
+@endphp
+
+@foreach ($courses as $course)
+@php
+$totalAmount += $course->price;
+@endphp
 <span class="t s0" style="left:142px;bottom:788px;letter-spacing:0.38px;">1. </span><span class="t s0" style="left:168px;bottom:788px;letter-spacing:0.29px;word-spacing:-0.15px;">Nov, 2025 </span><span class="t s0" style="left:315px;bottom:788px;letter-spacing:0.18px;word-spacing:0.13px;">English +Preli+ Main </span><span class="t s0" style="left:621px;bottom:788px;letter-spacing:0.13px;">Received </span>
 <span class="t s0" style="left:621px;bottom:768px;letter-spacing:0.13px;word-spacing:0.22px;"></span>
 <span class="t s0" style="left:621px;bottom:748px;letter-spacing:0.13px;word-spacing:0.22px;"></span>
@@ -215,6 +217,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <span class="t s0" style="left:315px;bottom:669px;letter-spacing:0.16px;word-spacing:0.32px;">=Rs. {{ $payment->currency }}{{ number_format($course->price, 2) }}/-Discount={{ $payment->currency }}{{ number_format($payment->discount, 2) }} </span>
 <span class="t s0" style="left:315px;bottom:649px;letter-spacing:0.19px;word-spacing:-0.07px;">After discount payable = Rs.{{ $payment->currency }}{{ number_format($payment->grand_total, 2) }}- </span>
 <span class="t s0" style="left:315px;bottom:629px;letter-spacing:0.16px;word-spacing:0.32px;">(included Bengali) </span>
+@endforeach
+@endif
 <span class="t s0" style="left:621px;bottom:728px;letter-spacing:0.13px;">Received </span>
 <span class="t s0" style="left:621px;bottom:708px;letter-spacing:0.12px;word-spacing:0.23px;">Rs. 6500/- on 27-12-2025 </span>
 <span class="t s0" style="left:621px;bottom:689px;letter-spacing:0.12px;word-spacing:0.23px;">Rs. 7500/- on 28-12-2025 </span>
