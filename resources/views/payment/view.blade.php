@@ -451,24 +451,50 @@ function downloadInvoice(invoiceContainer) {
         ? invoiceNumber.textContent.trim()
         : 'invoice') + '.pdf';
 
-    // Convert SVG data URIs to ensure compatibility
+    // Convert SVG data URIs to PNG data URIs
     const svgImages = clone.querySelectorAll('img[src*="data:image/svg"]');
     
     let svgPromises = Array.from(svgImages).map(img => {
-        return new Promise(resolve => {
-            // Decode and re-encode SVG to ensure proper rendering
-            const svgDataUri = img.src;
-            const img2 = new Image();
-            img2.crossOrigin = "anonymous";
-            
-            img2.onload = function() {
-                img.src = img2.src;
+        return new Promise((resolve) => {
+            try {
+                const svgDataUri = img.src;
+                
+                // Create canvas
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width || 909;
+                canvas.height = img.height || 1286;
+                const ctx = canvas.getContext('2d');
+                
+                // Create image from SVG
+                const image = new Image();
+                image.crossOrigin = "anonymous";
+                
+                image.onload = function() {
+                    // Draw image to canvas
+                    ctx.drawImage(image, 0, 0);
+                    
+                    // Convert canvas to PNG data URI
+                    const pngDataUri = canvas.toDataURL('image/png');
+                    img.src = pngDataUri;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.display = 'block';
+                    
+                    resolve();
+                };
+                
+                image.onerror = function() {
+                    console.warn("SVG failed to load, skipping conversion");
+                    resolve();
+                };
+                
+                // Load SVG
+                image.src = svgDataUri;
+                
+            } catch (error) {
+                console.error("SVG conversion error:", error);
                 resolve();
-            };
-            img2.onerror = function() {
-                resolve(); // Continue anyway
-            };
-            img2.src = svgDataUri;
+            }
         });
     });
 
@@ -477,9 +503,12 @@ function downloadInvoice(invoiceContainer) {
             html2pdf().set({
                 margin: 0,
                 filename: filename,
-                image: {type: 'jpeg', quality: 0.98},
+                image: {
+                    type: 'png',
+                    quality: 1.0
+                },
                 html2canvas: {
-                    scale: 3,
+                    scale: 2,
                     useCORS: true,
                     allowTaint: true,
                     backgroundColor: "#ffffff",
@@ -487,7 +516,15 @@ function downloadInvoice(invoiceContainer) {
                     scrollY: 0,
                     logging: false,
                     letterRendering: true,
-                    imageTimeout: 10000
+                    imageTimeout: 15000,
+                    onclone: function(clonedDocument) {
+                        const clonedImages = clonedDocument.querySelectorAll('img');
+                        clonedImages.forEach(img => {
+                            img.style.display = "block";
+                            img.style.visibility = "visible";
+                            img.style.opacity = "1";
+                        });
+                    }
                 },
                 jsPDF: {
                     unit: 'px',
@@ -500,9 +537,12 @@ function downloadInvoice(invoiceContainer) {
             .save()
             .catch(err => {
                 console.error("PDF error:", err);
-                alert("Error generating PDF.");
+                alert("Error generating PDF. Please try again.");
             });
         }, 500);
+    }).catch(err => {
+        console.error("Promise error:", err);
+        alert("Error processing images for PDF.");
     });
 }
 </script>
