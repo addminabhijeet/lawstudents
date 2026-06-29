@@ -174,9 +174,10 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
            class="d-flex me-1 printBTN"
            onclick="printInvoice(this.closest('.invoice-container'))">
             <div class="avatar-text avatar-md"
-            data-bs-toggle="tooltip"
-            title="Print Invoice"
-            style="background:#0d6efd !important; color:#fff !important; border:1px solid #0d6efd !important;">
+                 data-bs-toggle="tooltip"
+                 title="Print Invoice">
+                <i class="fas fa-print"></i>
+            </div>
         </a>
 
         <!-- Download button -->
@@ -184,11 +185,12 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
            id="download-btn-{{ $payment->id }}"
            class="d-flex me-1 file-download"
            onclick="downloadInvoice(this.closest('.invoice-container'))">
-             <div class="avatar-text avatar-md"
-            data-bs-toggle="tooltip"
-            title="Download Invoice"
-            style="background:#198754 !important; color:#fff !important; border:1px solid #198754 !important;">
-                </a>
+            <div class="avatar-text avatar-md"
+                 data-bs-toggle="tooltip"
+                 title="Download Invoice">
+                <i class="fas fa-download"></i>
+            </div>
+        </a>
     </div>
 
     <div class="card-body p-0">
