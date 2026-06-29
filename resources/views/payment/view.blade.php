@@ -430,18 +430,10 @@ $user = \App\Models\User::first();
     // Clone the page so the original view is not affected
     var clone = bodyContent.cloneNode(true);
 
-    // Keep original layout
+    // Remove any box shadow from the cloned page
     clone.style.boxShadow = "none";
     clone.style.margin = "0";
-    clone.style.width = "909px";
-    clone.style.height = "1286px";
-    clone.style.position = "relative";
-    clone.style.overflow = "visible";
-    clone.style.background = "#ffffff";
-    clone.style.pageBreakInside = "avoid";
-    clone.style.breakInside = "avoid";
-    clone.style.pageBreakBefore = "avoid";
-    clone.style.pageBreakAfter = "avoid";
+
     // Get filename
     var invoiceNumber = bodyContent.querySelector('.fw-bold.text-primary');
     var filename = (invoiceNumber
@@ -450,21 +442,6 @@ $user = \App\Models\User::first();
 
     // Wait until all images are loaded
     const images = clone.querySelectorAll("img");
-
-    images.forEach(function(img){
-
-        img.style.display = "block";
-        img.style.maxWidth = "100%";
-
-        if(img.naturalWidth){
-
-            img.style.width = img.naturalWidth + "px";
-
-        }
-
-        img.style.height = "auto";
-
-    });
 
     Promise.all(
         Array.from(images).map(img => {
@@ -479,91 +456,45 @@ $user = \App\Models\User::first();
         })
     ).then(() => {
 
-            html2pdf().set({
+        html2pdf().set({
 
-        margin: 0,
+            margin: 0,
 
-        filename: filename,
+            filename: filename,
 
-        image: {
-            type: 'jpeg',
-            quality: 1
-        },
+            image: {
+                type: 'jpeg',
+                quality: 1
+            },
 
-        html2canvas: {
+            html2canvas: {
+                scale: 4,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: "#ffffff",
+                scrollX: 0,
+                scrollY: 0,
+                logging: false,
+                letterRendering: true
+            },
 
-            scale: 2,
+            jsPDF: {
+                unit: 'px',
+                format: [909, 1286],   // Same as your page size
+                orientation: 'portrait',
+                compress: true
+            },
 
-            useCORS: true,
-
-            allowTaint: true,
-
-            backgroundColor: "#ffffff",
-
-            scrollX: 0,
-
-            scrollY: 0,
-
-            width: clone.scrollWidth,
-
-            height: clone.scrollHeight,
-
-            windowWidth: clone.scrollWidth,
-
-            windowHeight: clone.scrollHeight,
-
-            logging: false,
-
-            letterRendering: true
-
-        },
-
-        jsPDF: {
-
-            unit: "pt",
-
-            format: "a4",
-
-            orientation: "portrait",
-
-            compress: true
-
-        },
-
-        pagebreak: {
-
-            mode: ["css","legacy"]
-
-        }
-
-        })
-        clone.style.position = "absolute";
-        clone.style.left = "-99999px";
-        clone.style.top = "0";
-
-        document.body.appendChild(clone);
-
-        html2pdf()
-        .set({
-
-            // Your existing options here
+            pagebreak: {
+                mode: ['avoid-all']
+            }
 
         })
         .from(clone)
         .save()
-        .then(function(){
-
-            document.body.removeChild(clone);
-
-        })
-        .catch(function(err){
-
-            document.body.removeChild(clone);
-
+        .catch(function (err) {
             console.error(err);
-
             alert("Error generating PDF.");
-
         });
 
     });
