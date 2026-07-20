@@ -15,6 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin.auth' => \App\Http\Middleware\RedirectIfNotAdmin::class,
             'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
+            'throttle.otp' => \App\Http\Middleware\ThrottleOtpRequests::class,
+            'validate.otp' => \App\Http\Middleware\ValidateOtpSecurely::class,
         ]);
 
     })
