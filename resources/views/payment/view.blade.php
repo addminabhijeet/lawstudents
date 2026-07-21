@@ -234,16 +234,16 @@ $courses = \App\Models\Course::whereIn('id', $courseIds)->get();
 @foreach ($courses as $course)
 @php
 $totalAmount += $course->price;
-$offset = $loop->index * 180;
+$offset = $loop->index * 45;
 @endphp
-<span class="t s0" style="left:142px;bottom:{{ 788 - $offset }}px;letter-spacing:0.38px;"></span><span class="t s0" style="left:168px;bottom:{{ 788 - $offset }}px;letter-spacing:0.29px;word-spacing:-0.15px;">  </span><span class="t s0" style="left:315px;bottom:{{ 788 - $offset }}px;letter-spacing:0.18px;word-spacing:0.13px;"></span><span class="t s0" style="left:621px;bottom:{{ 788 - $offset }}px;letter-spacing:0.13px;"></span>
-<span class="t s0" style="left:621px;bottom:{{ 768 - $offset }}px;letter-spacing:0.13px;word-spacing:0.22px;"></span>
-<span class="t s0" style="left:621px;bottom:{{ 748 - $offset }}px;letter-spacing:0.13px;word-spacing:0.22px;"></span>
-<span class="t s0" style="left:142px;bottom:{{ 728 - $offset }}px;letter-spacing:0.38px;">{{ $loop->index + 1 }}. </span><span class="t s0" style="left:168px;bottom:{{ 728 - $offset }}px;letter-spacing:0.18px;word-spacing:0.29px;">@if (!is_null($payment->issue_date)) {{ $payment->issue_date->format('d M, Y') }}@endif </span><span class="t s0" style="left:315px;bottom:{{ 728 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;">{{ $course->title }}</span>
-<span class="t s0" style="left:315px;bottom:{{ 708 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;"></span>
+<span class="t s0" style="left:142px;bottom:{{ 788 - $offset }}px;letter-spacing:0.38px;font-size:11px;"></span><span class="t s0" style="left:168px;bottom:{{ 788 - $offset }}px;letter-spacing:0.29px;word-spacing:-0.15px;font-size:11px;">  </span><span class="t s0" style="left:315px;bottom:{{ 788 - $offset }}px;letter-spacing:0.18px;word-spacing:0.13px;font-size:11px;"></span><span class="t s0" style="left:621px;bottom:{{ 788 - $offset }}px;letter-spacing:0.13px;font-size:11px;"></span>
+<span class="t s0" style="left:621px;bottom:{{ 768 - $offset }}px;letter-spacing:0.13px;word-spacing:0.22px;font-size:11px;"></span>
+<span class="t s0" style="left:621px;bottom:{{ 748 - $offset }}px;letter-spacing:0.13px;word-spacing:0.22px;font-size:11px;"></span>
+<span class="t s0" style="left:142px;bottom:{{ 728 - $offset }}px;letter-spacing:0.38px;font-size:11px;">{{ $loop->index + 1 }}. </span><span class="t s0" style="left:168px;bottom:{{ 728 - $offset }}px;letter-spacing:0.18px;word-spacing:0.29px;font-size:11px;">@if (!is_null($payment->issue_date)) {{ $payment->issue_date->format('d M, Y') }}@endif </span><span class="t s0" style="left:315px;bottom:{{ 728 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;font-size:11px;">{{ $course->title }}</span>
+<span class="t s0" style="left:520px;bottom:{{ 728 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;font-size:11px;"><span style="display:none;">After discount payable = </span>Rs.{{ $payment->currency }}{{ number_format($payment->grand_total, 2) }}- </span>
+<span class="t s0" style="left:315px;bottom:{{ 708 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;display:none;"></span>
 <span class="t s0" style="left:315px;bottom:{{ 689 - $offset }}px;letter-spacing:0.18px;word-spacing:-0.05px;display:none;">Rs. ({{ $payment->currency }}{{ number_format($course->price, 2) }}) </span>
 <span class="t s0" style="left:315px;bottom:{{ 669 - $offset }}px;letter-spacing:0.16px;word-spacing:0.32px;display:none;">=Rs. {{ $payment->currency }}{{ number_format($course->price, 2) }}/-Discount={{ $payment->currency }}{{ number_format($payment->discount, 2) }} </span>
-<span class="t s0" style="left:315px;bottom:{{ 649 - $offset }}px;letter-spacing:0.19px;word-spacing:-0.07px;transform:translateX(306px);"><span style="display:none;">After discount payable = </span>Rs.{{ $payment->currency }}{{ number_format($payment->grand_total, 2) }}- </span>
 <span class="t s0" style="left:315px;bottom:{{ 629 - $offset }}px;letter-spacing:0.16px;word-spacing:0.32px;display:none;">(included Bengali) </span>
 @endforeach
 @endif
