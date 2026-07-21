@@ -240,22 +240,12 @@ $offset = $loop->index * 45;
 <span class="t s0" style="left:621px;bottom:{{ 768 - $offset }}px;letter-spacing:0.13px;word-spacing:0.22px;font-size:11px;"></span>
 <span class="t s0" style="left:621px;bottom:{{ 748 - $offset }}px;letter-spacing:0.13px;word-spacing:0.22px;font-size:11px;"></span>
 <span class="t s0" style="left:142px;bottom:{{ 728 - $offset }}px;letter-spacing:0.38px;font-size:11px;">{{ $loop->index + 1 }}. </span><span class="t s0" style="left:168px;bottom:{{ 728 - $offset }}px;letter-spacing:0.18px;word-spacing:0.29px;font-size:11px;">@if (!is_null($payment->issue_date)) {{ $payment->issue_date->format('d M, Y') }}@endif </span><span class="t s0" style="left:315px;bottom:{{ 728 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;font-size:11px;">{{ $course->title }}</span>
-<span class="t s0" style="left:621px;bottom:{{ 728 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;font-size:11px;display:none;"><span style="display:none;">After discount payable = </span>Rs.<span style="display:none;">{{ $payment->currency }}</span>{{ number_format($payment->grand_total, 2) }}<span style="display:none;">- </span></span>
+<span class="t s0" style="left:621px;bottom:{{ 728 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;font-size:11px;"><span style="display:none;">After discount payable = </span>Rs.<span style="display:none;">{{ $payment->currency }}</span>{{ number_format($payment->grand_total, 2) }}<span style="display:none;">- </span></span>
 <span class="t s0" style="left:315px;bottom:{{ 708 - $offset }}px;letter-spacing:0.17px;word-spacing:0.13px;display:none;"></span>
 <span class="t s0" style="left:315px;bottom:{{ 689 - $offset }}px;letter-spacing:0.18px;word-spacing:-0.05px;display:none;">Rs. ({{ $payment->currency }}{{ number_format($course->price, 2) }}) </span>
 <span class="t s0" style="left:315px;bottom:{{ 669 - $offset }}px;letter-spacing:0.16px;word-spacing:0.32px;display:none;">=Rs. {{ $payment->currency }}{{ number_format($course->price, 2) }}/-Discount={{ $payment->currency }}{{ number_format($payment->discount, 2) }} </span>
 <span class="t s0" style="left:315px;bottom:{{ 629 - $offset }}px;letter-spacing:0.16px;word-spacing:0.32px;display:none;">(included Bengali) </span>
 @endforeach
-@php
-$coursesCount = count($courses ?? []);
-$summaryBottom = 728 - ($coursesCount * 45) - 80;
-@endphp
-<span class="t s0" style="left:315px;bottom:{{ $summaryBottom + 40 }}px;letter-spacing:0.18px;word-spacing:-0.05px;font-size:11px;">Total Amount </span>
-<span class="t s0" style="left:621px;bottom:{{ $summaryBottom + 40 }}px;letter-spacing:0.18px;word-spacing:-0.05px;font-size:11px;">Rs.{{ number_format($totalAmount, 2) }} </span>
-<span class="t s0" style="left:315px;bottom:{{ $summaryBottom + 20 }}px;letter-spacing:0.16px;word-spacing:0.32px;font-size:11px;">Discount </span>
-<span class="t s0" style="left:621px;bottom:{{ $summaryBottom + 20 }}px;letter-spacing:0.16px;word-spacing:0.32px;font-size:11px;">Rs.{{ number_format($payment->discount, 2) }} </span>
-<span class="t s0" style="left:315px;bottom:{{ $summaryBottom }}px;letter-spacing:0.19px;word-spacing:-0.07px;font-size:11px;">After discount payable </span>
-<span class="t s0" style="left:621px;bottom:{{ $summaryBottom }}px;letter-spacing:0.19px;word-spacing:-0.07px;font-size:11px;">Rs.{{ number_format($payment->grand_total, 2) }}</span>
 @endif
 <span class="t s0" style="left:621px;bottom:728px;letter-spacing:0.13px;"></span>
 <span class="t s0" style="left:621px;bottom:708px;letter-spacing:0.12px;word-spacing:0.23px;"></span>
