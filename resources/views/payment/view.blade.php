@@ -234,7 +234,7 @@ $courses = \App\Models\Course::whereIn('id', $courseIds)->get();
 @foreach ($courses as $course)
 @php
 $totalAmount += $course->price;
-$offset = $loop->index * 70;
+$offset = $loop->index * 180;
 @endphp
 <span class="t s0" style="left:142px;bottom:{{ 788 - $offset }}px;letter-spacing:0.38px;"></span><span class="t s0" style="left:168px;bottom:{{ 788 - $offset }}px;letter-spacing:0.29px;word-spacing:-0.15px;">  </span><span class="t s0" style="left:315px;bottom:{{ 788 - $offset }}px;letter-spacing:0.18px;word-spacing:0.13px;"></span><span class="t s0" style="left:621px;bottom:{{ 788 - $offset }}px;letter-spacing:0.13px;"></span>
 <span class="t s0" style="left:621px;bottom:{{ 768 - $offset }}px;letter-spacing:0.13px;word-spacing:0.22px;"></span>
