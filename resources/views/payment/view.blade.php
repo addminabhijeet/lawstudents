@@ -250,9 +250,12 @@ $offset = $loop->index * 45;
 $coursesCount = count($courses ?? []);
 $summaryBottom = 728 - ($coursesCount * 45) - 80;
 @endphp
-<span class="t s0" style="left:315px;bottom:{{ $summaryBottom + 40 }}px;letter-spacing:0.18px;word-spacing:-0.05px;font-size:11px;">Total Amount = Rs.{{ number_format($totalAmount, 2) }} </span>
-<span class="t s0" style="left:315px;bottom:{{ $summaryBottom + 20 }}px;letter-spacing:0.16px;word-spacing:0.32px;font-size:11px;">Discount = Rs.{{ number_format($payment->discount, 2) }} </span>
-<span class="t s0" style="left:315px;bottom:{{ $summaryBottom }}px;letter-spacing:0.19px;word-spacing:-0.07px;font-size:11px;">After discount payable = Rs.{{ number_format($payment->grand_total, 2) }}</span>
+<span class="t s0" style="left:315px;bottom:{{ $summaryBottom + 40 }}px;letter-spacing:0.18px;word-spacing:-0.05px;font-size:11px;">Total Amount </span>
+<span class="t s0" style="left:621px;bottom:{{ $summaryBottom + 40 }}px;letter-spacing:0.18px;word-spacing:-0.05px;font-size:11px;">Rs.{{ number_format($totalAmount, 2) }} </span>
+<span class="t s0" style="left:315px;bottom:{{ $summaryBottom + 20 }}px;letter-spacing:0.16px;word-spacing:0.32px;font-size:11px;">Discount </span>
+<span class="t s0" style="left:621px;bottom:{{ $summaryBottom + 20 }}px;letter-spacing:0.16px;word-spacing:0.32px;font-size:11px;">Rs.{{ number_format($payment->discount, 2) }} </span>
+<span class="t s0" style="left:315px;bottom:{{ $summaryBottom }}px;letter-spacing:0.19px;word-spacing:-0.07px;font-size:11px;">After discount payable </span>
+<span class="t s0" style="left:621px;bottom:{{ $summaryBottom }}px;letter-spacing:0.19px;word-spacing:-0.07px;font-size:11px;">Rs.{{ number_format($payment->grand_total, 2) }}</span>
 @endif
 <span class="t s0" style="left:621px;bottom:728px;letter-spacing:0.13px;"></span>
 <span class="t s0" style="left:621px;bottom:708px;letter-spacing:0.12px;word-spacing:0.23px;"></span>
