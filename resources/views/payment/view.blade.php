@@ -107,6 +107,26 @@ $user = \App\Models\User::first();
     color:#000 !important;
 }
 
+.invoice-toolbar .printBTN,
+.invoice-toolbar .file-download{
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    min-width:45px;
+    min-height:45px;
+    text-decoration:none;
+    visibility:visible;
+    opacity:1;
+    z-index:10000;
+}
+
+.invoice-toolbar .printBTN i,
+.invoice-toolbar .file-download i{
+    display:block;
+    font-size:18px;
+    color:#222222;
+}
+
 .invoice-toolbar a{
     display:flex !important;
     align-items:center;
