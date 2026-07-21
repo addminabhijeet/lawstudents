@@ -109,35 +109,42 @@ $user = \App\Models\User::first();
 
 .invoice-toolbar .printBTN,
 .invoice-toolbar .file-download{
-    display:flex !important;
+    display:inline-flex !important;
     align-items:center !important;
     justify-content:center !important;
-    min-width:50px;
-    min-height:50px;
-    text-decoration:none;
+    width:50px !important;
+    height:50px !important;
+    min-width:50px !important;
+    min-height:50px !important;
+    text-decoration:none !important;
     visibility:visible !important;
     opacity:1 !important;
-    z-index:10000;
-    background:#f0f0f0 !important;
+    z-index:99999 !important;
+    background:#0066cc !important;
     border:2px solid #0066cc !important;
-    border-radius:6px;
-    cursor:pointer;
+    border-radius:6px !important;
+    cursor:pointer !important;
+    padding:0 !important;
+    margin:0 5px !important;
+    position:relative !important;
 }
 
 .invoice-toolbar .printBTN:hover,
 .invoice-toolbar .file-download:hover{
-    background:#e0e0e0 !important;
-    border-color:#0052a3 !important;
+    background:#0052a3 !important;
+    border-color:#003d7a !important;
+    transform:scale(1.05);
 }
 
 .invoice-toolbar .printBTN i,
 .invoice-toolbar .file-download i{
-    display:block !important;
-    font-size:20px !important;
-    color:#0066cc !important;
-    width:24px;
-    height:24px;
-    line-height:24px;
+    display:inline-block !important;
+    font-size:22px !important;
+    color:#ffffff !important;
+    width:auto !important;
+    height:auto !important;
+    line-height:1 !important;
+    text-align:center !important;
 }
 
 .invoice-toolbar a{
