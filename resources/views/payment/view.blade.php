@@ -641,6 +641,42 @@ $offset = $loop->index * 45;
         alert("Error processing images for PDF.");
     });
 }
+
+// Make Print and Download buttons visible and functional
+document.addEventListener('DOMContentLoaded', function() {
+    // Find toolbar
+    const toolbars = document.querySelectorAll('.invoice-toolbar');
+
+    toolbars.forEach(toolbar => {
+        // Ensure toolbar is visible
+        toolbar.style.display = 'flex !important';
+        toolbar.style.visibility = 'visible !important';
+        toolbar.style.opacity = '1 !important';
+        toolbar.style.zIndex = '99999 !important';
+
+        // Find and enhance print button
+        const printBtn = toolbar.querySelector('.printBTN');
+        if (printBtn) {
+            printBtn.style.display = 'flex !important';
+            printBtn.style.visibility = 'visible !important';
+            printBtn.style.opacity = '1 !important';
+            printBtn.innerHTML = '<span style="font-size:24px; color:#fff;">🖨</span>';
+            printBtn.title = 'Print Invoice';
+        }
+
+        // Find and enhance download button
+        const downloadBtn = toolbar.querySelector('.file-download');
+        if (downloadBtn) {
+            downloadBtn.style.display = 'flex !important';
+            downloadBtn.style.visibility = 'visible !important';
+            downloadBtn.style.opacity = '1 !important';
+            downloadBtn.innerHTML = '<span style="font-size:24px; color:#fff;">⬇</span>';
+            downloadBtn.title = 'Download Invoice';
+        }
+    });
+
+    console.log('Print and Download buttons are now visible and functional');
+});
 </script>
 </body>
 </html>
