@@ -110,21 +110,34 @@ $user = \App\Models\User::first();
 .invoice-toolbar .printBTN,
 .invoice-toolbar .file-download{
     display:flex !important;
-    align-items:center;
-    justify-content:center;
-    min-width:45px;
-    min-height:45px;
+    align-items:center !important;
+    justify-content:center !important;
+    min-width:50px;
+    min-height:50px;
     text-decoration:none;
-    visibility:visible;
-    opacity:1;
+    visibility:visible !important;
+    opacity:1 !important;
     z-index:10000;
+    background:#f0f0f0 !important;
+    border:2px solid #0066cc !important;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.invoice-toolbar .printBTN:hover,
+.invoice-toolbar .file-download:hover{
+    background:#e0e0e0 !important;
+    border-color:#0052a3 !important;
 }
 
 .invoice-toolbar .printBTN i,
 .invoice-toolbar .file-download i{
-    display:block;
-    font-size:18px;
-    color:#222222;
+    display:block !important;
+    font-size:20px !important;
+    color:#0066cc !important;
+    width:24px;
+    height:24px;
+    line-height:24px;
 }
 
 .invoice-toolbar a{
