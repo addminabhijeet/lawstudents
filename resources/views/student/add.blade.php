@@ -102,31 +102,69 @@
                                     <div class="col-lg-6 mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" name="email" id="email" class="form-control"
-                                            placeholder="Email"
-                                            oninput="restrictEmail(this)" required>
+                                            placeholder="Email (e.g., user@gmail.com)"
+                                            oninput="restrictEmail(this)"
+                                            onblur="validateEmailFormat(this)"
+                                            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                                            title="Please enter a valid email (e.g., user@gmail.com)"
+                                            required>
+                                        <small id="emailError" class="text-danger d-none">Email must be valid (e.g., user@gmail.com)</small>
                                     </div>
 
                                     <script>
                                         function restrictEmail(input) {
                                             let value = input.value;
 
-                                            // Step 1: remove everything except lowercase letters, numbers, @, and .
-                                            value = value.replace(/[^a-z0-9@.]/g, '');
+                                            // Convert to lowercase and allow only valid email characters
+                                            value = value.toLowerCase().replace(/[^a-z0-9@.\-_+]/g, '');
 
-                                            // Step 2: allow only the first @
-                                            let atIndex = value.indexOf('@');
-                                            if (atIndex !== -1) {
-                                                value = value.slice(0, atIndex + 1) + value.slice(atIndex + 1).replace(/@/g, '');
-                                            }
-
-                                            // Step 3: allow only the first .
-                                            let dotIndex = value.indexOf('.');
-                                            if (dotIndex !== -1) {
-                                                value = value.slice(0, dotIndex + 1) + value.slice(dotIndex + 1).replace(/\./g, '');
+                                            // Allow only one @ symbol
+                                            let atCount = (value.match(/@/g) || []).length;
+                                            if (atCount > 1) {
+                                                let lastAtIndex = value.lastIndexOf('@');
+                                                value = value.substring(0, lastAtIndex).replace(/@/g, '') + '@' + value.substring(lastAtIndex + 1);
                                             }
 
                                             input.value = value;
+                                            validateEmailFormat(input);
                                         }
+
+                                        function validateEmailFormat(input) {
+                                            const emailRegex = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
+                                            const errorElement = document.getElementById('emailError');
+
+                                            if (input.value.length === 0) {
+                                                errorElement.classList.add('d-none');
+                                                input.classList.remove('is-invalid');
+                                                return;
+                                            }
+
+                                            if (emailRegex.test(input.value)) {
+                                                errorElement.classList.add('d-none');
+                                                input.classList.remove('is-invalid');
+                                            } else {
+                                                errorElement.classList.remove('d-none');
+                                                input.classList.add('is-invalid');
+                                            }
+                                        }
+
+                                        // Validate on form submit
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            const form = document.querySelector('form');
+                                            if (form) {
+                                                form.addEventListener('submit', function(e) {
+                                                    const emailInput = document.getElementById('email');
+                                                    const emailRegex = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
+
+                                                    if (!emailRegex.test(emailInput.value)) {
+                                                        e.preventDefault();
+                                                        emailInput.classList.add('is-invalid');
+                                                        document.getElementById('emailError').classList.remove('d-none');
+                                                        return false;
+                                                    }
+                                                });
+                                            }
+                                        });
                                     </script>
 
                                     <div class="col-lg-6 mb-3">

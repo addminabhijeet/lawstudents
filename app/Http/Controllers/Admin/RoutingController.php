@@ -410,8 +410,19 @@ class RoutingController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:100',
-            'email' => 'required|email|max:150|unique:students,email',
+            'email' => [
+                'required',
+                'email',
+                'max:150',
+                'unique:students,email',
+                'regex:/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/'
+            ],
             'password' => 'required|confirmed|min:6',
+        ], [
+            'email.required' => 'Email is required.',
+            'email.email' => 'Please enter a valid email format (e.g., user@gmail.com).',
+            'email.unique' => 'This email is already registered.',
+            'email.regex' => 'Email format is invalid. Must contain @ and a domain with a dot (e.g., user@gmail.com).',
         ]);
 
         // Generate username
