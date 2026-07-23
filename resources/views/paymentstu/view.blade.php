@@ -1,3 +1,4 @@
+@include('layouts.partials.student.dashboard')
 @php
 $user = \App\Models\User::first();
 @endphp
@@ -680,3 +681,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+@include('layouts.partials.student.theme')
