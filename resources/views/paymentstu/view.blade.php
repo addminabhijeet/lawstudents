@@ -1,4 +1,4 @@
-@include('layouts.partials.student.dashboard')
+
 @php
 $user = \App\Models\User::first();
 @endphp
