@@ -681,4 +681,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-@include('layouts.partials.student.theme')
