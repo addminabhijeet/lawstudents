@@ -346,6 +346,8 @@ $offset = $loop->index * 45;
 </section>
 
 </div>
+</div>
+</div>
 @endforeach
 @endif
 <script>
