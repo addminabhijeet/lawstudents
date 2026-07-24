@@ -215,7 +215,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('listfreenotes');
             Route::put('course-notes/{id}', [CourseNoteController::class, 'updatenotes'])
                 ->name('updatenotes');
-            Route::put('course-notes/{id}', [CourseNoteController::class, 'deletenotes'])
+            Route::delete('course-notes/{id}', [CourseNoteController::class, 'deletenotes'])
                 ->name('deletenotes');
             Route::get('course-notes/view/{id}', [CourseNoteController::class, 'viewNote'])
                 ->name('viewnote');

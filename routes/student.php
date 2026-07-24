@@ -40,7 +40,7 @@ Route::middleware(['auth:student'])
         Route::get('edit-admission/{id}', [StudentAdmissinControllerStu::class, 'edit'])
             ->name('editadmission');
 
-        Route::get('destroy-admission', [StudentAdmissinControllerStu::class, 'destroy'])
+        Route::delete('destroy-admission/{id}', [StudentAdmissinControllerStu::class, 'destroy'])
             ->name('destroyadmission');
 
         Route::get('add-payment', [RoutingControllerStu::class, 'addpayment'])
