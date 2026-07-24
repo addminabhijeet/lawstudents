@@ -1,0 +1,683 @@
+<?php echo $__env->make('layouts.partials.admin.dashboard', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<main class="nxl-container">
+    <div class="nxl-content">
+        <div class="page-header">
+            <div class="page-header-left d-flex align-items-center">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Admin</h5>
+                </div>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">Applications</li>
+                    <li class="breadcrumb-item">Edit</li>
+                </ul>
+            </div>
+            <div class="page-header-right ms-auto">
+                <div class="page-header-right-items">
+                    <div class="d-flex d-md-none">
+                        <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                            <i class="feather-arrow-left me-2"></i>
+                            <span>Back</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-md-none d-flex align-items-center">
+                    <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                        <i class="feather-align-right fs-20"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <form method="POST" action="<?php echo e(route('admin.updateadmsubmit', $admission->id)); ?>"
+            enctype="multipart/form-data">
+            <?php echo csrf_field(); ?>
+            <div class="main-content">
+                <?php if($errors->any()): ?>
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <ul class="mb-0">
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <?php endif; ?>
+
+                <?php if(session('error')): ?>
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <?php echo e(session('error')); ?>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <?php endif; ?>
+
+                <?php if(session('success')): ?>
+                <div class="alert alert-success alert-dismissible fade show">
+                    <?php echo e(session('success')); ?>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <?php endif; ?>
+                <div class="row">
+
+                    <input type="hidden" name="student_id" value="<?php echo e(auth()->id()); ?>">
+
+                    <!-- LEFT COLUMN -->
+                    <div class="col-xl-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+
+                                <h6 class="fw-bold mb-4 text-primary">Student Information</h6>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Adm No</label>
+                                    <input type="text" class="form-control" name="admno"
+                                        value="<?php echo e(old('admno', $admission->admno)); ?>" readonly>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Full Name *</label>
+
+                                    <input type="text" class="form-control" name="full_name"
+                                        value="<?php echo e(old('full_name', $admission->full_name)); ?>"
+                                        placeholder="Enter full name"
+                                        oninput="formatFullName(this)">
+                                </div>
+
+                                <script>
+                                    function formatFullName(input) {
+                                        let value = input.value;
+
+                                        // Remove everything except letters and spaces
+                                        value = value.replace(/[^a-zA-Z\s]/g, '');
+
+                                        // Capitalize first letter of each word
+                                        value = value.replace(/\b\w/g, c => c.toUpperCase());
+
+                                        input.value = value;
+                                    }
+                                </script>
+
+                                <!-- Email Section -->
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Email ID</label>
+                                    <input type="email" class="form-control mb-2" name="email"
+                                        value="<?php echo e(old('email', $admission->email)); ?>" placeholder="Enter email"
+                                        oninput="restrictEmail(this)">
+                                </div>
+
+                                <script>
+                                    function restrictEmail(input) {
+                                        let value = input.value;
+
+                                        // Step 1: remove everything except lowercase letters, numbers, @, and .
+                                        value = value.replace(/[^a-z0-9@.]/g, '');
+
+                                        // Step 2: allow only the first @
+                                        let atIndex = value.indexOf('@');
+                                        if (atIndex !== -1) {
+                                            value = value.slice(0, atIndex + 1) + value.slice(atIndex + 1).replace(/@/g, '');
+                                        }
+
+                                        // Step 3: allow only the first .
+                                        let dotIndex = value.indexOf('.');
+                                        if (dotIndex !== -1) {
+                                            value = value.slice(0, dotIndex + 1) + value.slice(dotIndex + 1).replace(/\./g, '');
+                                        }
+
+                                        input.value = value;
+                                    }
+                                </script>
+                                <div class="d-flex gap-2 mb-2">
+                                    <button type="button" onclick="sendEmailOtp()"
+                                        class="btn btn-outline-primary btn-sm">
+                                        Send OTP
+                                    </button>
+                                </div>
+
+                                <div class="input-group">
+                                    <input type="number" name="email_otp" id="emailOtp" class="form-control"
+                                        placeholder="Enter Email OTP">
+                                    <button type="button" onclick="verifyEmailOtp()" class="btn btn-success">
+                                        Verify
+                                    </button>
+                                </div>
+
+
+                                <!-- Phone Section -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Contact Number</label>
+                                    <!-- Student Phone -->
+                                    <input type="text" class="form-control mb-2" name="phone"
+                                        value="<?php echo e(old('phone', $admission->phone)); ?>"
+                                        placeholder="Enter phone number"
+                                        oninput="formatPhone(this)">
+
+                                    <script>
+                                        function formatPhone(input) {
+                                            let value = input.value;
+
+                                            // Remove +91 if already exists
+                                            value = value.replace(/^\+91/, '');
+
+                                            // Remove anything that's not a number
+                                            value = value.replace(/[^0-9]/g, '');
+
+                                            // Limit to maximum 10 digits
+                                            value = value.slice(0, 10);
+
+                                            // Add +91 only if there is some value
+                                            input.value = value.length ? '+91' + value : '';
+                                        }
+                                    </script>
+                                    <!-- <div class="d-flex gap-2 mb-2">
+                                        <button type="button" onclick="sendPhoneOtp()"
+                                            class="btn btn-outline-primary btn-sm">
+                                            Send OTP
+                                        </button>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <input type="text" name="phone_otp" id="phoneOtp" class="form-control"
+                                            placeholder="Enter Phone OTP">
+                                        <button type="button" onclick="verifyPhoneOtp()" class="btn btn-success">
+                                            Verify
+                                        </button>
+                                    </div> -->
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Father's / Guardian Name</label>
+                                    <input type="text" class="form-control" name="father_name"
+                                        placeholder="Enter guardian name"
+                                        value="<?php echo e(old('father_name', $admission->father_name)); ?>"
+                                        oninput="formatFullName(this)">
+                                </div>
+
+                                <script>
+                                    function formatFullName(input) {
+                                        let value = input.value;
+
+                                        // Remove everything except letters and spaces
+                                        value = value.replace(/[^a-zA-Z\s]/g, '');
+
+                                        // Capitalize first letter of each word
+                                        value = value.replace(/\b\w/g, c => c.toUpperCase());
+
+                                        input.value = value;
+                                    }
+                                </script>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Guardian Contact Number</label>
+                                    <input type="text" class="form-control mb-2" name="guardian_phone"
+                                        value="<?php echo e(old('guardian_phone', $admission->guardian_phone)); ?>"
+                                        placeholder="Enter guardian phone number"
+                                        oninput="formatPhone(this)">
+                                </div>
+
+                                <script>
+                                    function formatPhone(input) {
+                                        let value = input.value;
+
+                                        // Remove +91 if already exists
+                                        value = value.replace(/^\+91/, '');
+
+                                        // Remove anything that's not a number
+                                        value = value.replace(/[^0-9]/g, '');
+
+                                        // Limit to maximum 10 digits
+                                        value = value.slice(0, 10);
+
+                                        // Add +91 only if there is some value
+                                        input.value = value.length ? '+91' + value : '';
+                                    }
+                                </script>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Choose from below Course</label>
+
+                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
+                                        <div class="row">
+                                            <?php $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <div class="col-md-6">
+                                                <div class="form-check mb-2 p-2 border rounded">
+                                                    <input class="form-check-input course-checkbox"
+                                                        type="checkbox" name="course_ids[]"
+                                                        value="<?php echo e($course->id); ?>"
+                                                        data-price="<?php echo e($course->price); ?>"
+                                                        id="course<?php echo e($course->id); ?>"
+                                                        <?php echo e(in_array($course->id, old('course_ids', $admission->course_ids ?? [])) ? 'checked' : ''); ?>>
+
+                                                    <label class="form-check-label fw-semibold"
+                                                        for="course<?php echo e($course->id); ?>">
+                                                        <?php echo e($course->title); ?>
+
+                                                        <br>
+                                                        <small class="text-muted">
+                                                            ₹<?php echo e($course->price); ?> | <?php echo e($course->duration); ?>
+
+                                                        </small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                            
+                                            <?php if($courses->isEmpty()): ?>
+                                            <div class="col-12">
+                                                <div class="alert alert-warning text-center mb-0">
+                                                    Please add course
+                                                </div>
+                                            </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Admission Status</label>
+                                    <select class="form-select" name="admission_status">
+                                        <option value="pending"
+                                            <?php echo e(old('admission_status', $admission->admission_status) == 'pending' ? 'selected' : ''); ?>>
+                                            Pending</option>
+                                        <option value="approved"
+                                            <?php echo e(old('admission_status', $admission->admission_status) == 'approved' ? 'selected' : ''); ?>>
+                                            Approved</option>
+                                        <option value="rejected"
+                                            <?php echo e(old('admission_status', $admission->admission_status) == 'rejected' ? 'selected' : ''); ?>>
+                                            Rejected</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div class="col-xl-6">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+
+                                <h6 class="fw-bold mb-4 text-primary">Address & Documents</h6>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Address</label>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" name="address_line1"
+                                                placeholder="Address Line 1"
+                                                value="<?php echo e(old('address_line1', $admission->address_line1)); ?>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" name="address_line2"
+                                                placeholder="Address Line 2"
+                                                value="<?php echo e(old('address_line2', $admission->address_line2)); ?>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Pincode</label>
+                                    <input type="text" class="form-control mb-2" name="pincode"
+                                        value="<?php echo e(old('pincode', $admission->pincode)); ?>"
+                                        placeholder="Enter pincode"
+                                        maxlength="6"
+                                        pattern="\d{6}"
+                                        inputmode="numeric">
+                                </div>
+
+                                <!-- Passport Photo -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold">
+                                        Passport Size Photo (JPEG/PNG)
+                                        <small class="text-muted">(Max 2MB)</small>
+                                    </label>
+                                    <input type="file" name="photo" id="photoInput" class="form-control mb-2"
+                                        accept="image/*" onchange="validateAndPreview(event, 'photoPreview', 2)">
+
+                                    <div class="invalid-feedback" id="photoError"></div>
+
+                                    <div class="text-center">
+
+                                        <?php if($admission->photo): ?>
+                                        <img id="photoPreview"
+                                            src="<?php echo e(asset('storage/app/public/' . $admission->photo)); ?>"
+                                            class="img-thumbnail" style="max-height: 180px;">
+                                        <?php else: ?>
+                                        <img id="photoPreview" class="img-thumbnail d-none"
+                                            style="max-height: 180px;">
+                                        <?php endif; ?>
+
+                                    </div>
+                                </div>
+
+                                <!-- Signature -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">
+                                        Signature (JPEG/PNG)
+                                        <small class="text-muted">(Max 1MB)</small>
+                                    </label>
+                                    <input type="file" name="signature" id="signInput" class="form-control mb-2"
+                                        accept="image/*" onchange="validateAndPreview(event, 'signPreview', 1)">
+
+                                    <div class="invalid-feedback" id="signError"></div>
+
+                                    <div class="text-center">
+                                        <?php if($admission->signature): ?>
+                                        <img id="signPreview"
+                                            src="<?php echo e(asset('storage/app/public/' . $admission->signature)); ?>"
+                                            class="img-thumbnail" style="max-height:150px;">
+                                        <?php else: ?>
+                                        <img id="signPreview" class="img-thumbnail d-none"
+                                            style="max-height:150px;">
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <!-- Fee Structure Section -->
+                                <h6 class="fw-bold text-primary mt-3">Fee Structure</h6>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Subtotal:</span>
+                                        <span>₹<span id="subtotal">0.00</span></span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <span>Discount %:</span>
+                                        <input type="number" id="customDiscount" class="form-control"
+                                            min="0" max="100"
+                                            value="<?php echo e(old('discount_percent', $admission->discount_percent ?? 0)); ?>">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <span>Discount:</span>
+                                        <span>- ₹<span id="discount">0.00</span></span>
+                                    </div>
+
+                                    <hr>
+
+                                    <!-- Hidden fields for backend -->
+                                    <input type="hidden" name="discount_percent" id="discountPercentInput"
+                                        value="<?php echo e(old('discount_percent', $admission->discount_percent ?? 0)); ?>">
+                                    <input type="hidden" name="discount" id="discountInput"
+                                        value="<?php echo e(old('discount', $admission->discount ?? 0)); ?>">
+
+                                    <div class="d-flex justify-content-between fw-bold">
+                                        <span>Total Payable:</span>
+                                        <span>₹<span id="grandtotal">0.00</span></span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Paid Amount:</span>
+                                        <input type="number" name="paidamount" id="paidamount"
+                                            class="form-control w-50" min="0"
+                                            value="<?php echo e(old('paidamount', $admission->paidamount ?? 0)); ?>">
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fw-semibold">Remaining Amount:</span>
+                                        <span>₹<span
+                                                id="remainingamount"><?php echo e(old('remamount', $admission->remamount ?? 0)); ?></span></span>
+                                    </div>
+
+                                    <input type="hidden" name="remamount" id="remamount"
+                                        value="<?php echo e(old('remamount', $admission->remamount ?? 0)); ?>">
+                                </div>
+
+                                <!-- Declaration -->
+                                <?php if(isset($declaration)): ?>
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" name="declaration_accept"
+                                        id="declarationCheck" required>
+
+                                    <label class="form-check-label" for="declarationCheck">
+                                        <?php echo $declaration->declaration; ?>
+
+                                    </label>
+                                </div>
+                                <?php endif; ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="card-title">Aadhar Card Upload</h6>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">
+                                    ID Proof (PDF)
+                                    <small class="text-muted">(Max 2MB)</small>
+                                </label>
+                                <input type="file" name="id_proof" id="idProofInputCard" class="form-control mb-2"
+                                    accept="application/pdf"
+                                    onchange="previewPDF(event, 'idProofPreviewCard', 'idProofButtonCard')">
+
+                                <div class="invalid-feedback" id="idProofErrorCard"></div>
+
+                                <div class="text-center mt-2">
+                                    <?php if($admission->id_proof): ?>
+
+                                    <iframe id="idProofPreviewCard"
+                                        src="<?php echo e(asset('storage/app/public/' . $admission->id_proof)); ?>"
+                                        style="display:block; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                                    <?php else: ?>
+                                    <a id="idProofButtonCard" class="btn btn-outline-secondary w-100 mb-2">
+                                        No file selected
+                                    </a>
+                                    <iframe id="idProofPreviewCard"
+                                        style="display:none; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        function previewPDF(event, iframeId, buttonId) {
+                            const file = event.target.files[0];
+                            const iframe = document.getElementById(iframeId);
+                            const button = document.getElementById(buttonId);
+
+                            if (file) {
+                                const fileURL = URL.createObjectURL(file);
+                                iframe.src = fileURL;
+                                iframe.style.display = 'block'; // Show PDF
+                                button.style.display = 'none'; // Hide button when viewing new file
+                            } else {
+                                iframe.src = '';
+                                iframe.style.display = 'none'; // Hide iframe if no file selected
+                                button.style.display = 'inline-block'; // Show button fallback
+                            }
+                        }
+                    </script>
+
+                    <!-- SUBMIT BUTTON -->
+                    <div class="col-12 mb-3">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Update Admission
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script>
+    function sendEmailOtp() {
+        fetch("<?php echo e(route('admin.sendemailotp')); ?>", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: document.querySelector('[name=email]').value
+            })
+        }).then(res => res.json()).then(data => alert(data.message));
+    }
+
+    function verifyEmailOtp() {
+        fetch("<?php echo e(route('admin.verifyemailotp')); ?>", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                otp: document.getElementById('emailOtp').value
+            })
+        }).then(res => res.json()).then(data => {
+            if (data.success) alert("Email Verified");
+            else alert("Invalid OTP");
+        });
+    }
+
+    function sendPhoneOtp() {
+        fetch("<?php echo e(route('admin.sendphoneotp')); ?>", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phone: document.querySelector('[name=phone]').value
+            })
+        }).then(res => res.json()).then(data => alert(data.message));
+    }
+
+    function verifyPhoneOtp() {
+        fetch("<?php echo e(route('admin.verifyphoneotp')); ?>", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                otp: document.getElementById('phoneOtp').value
+            })
+        }).then(res => res.json()).then(data => {
+            if (data.success) alert("Phone Verified");
+            else alert("Invalid OTP");
+        });
+    }
+</script>
+<script>
+    function previewImage(event, previewId) {
+        const input = event.target;
+        const preview = document.getElementById(previewId);
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove('d-none');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script>
+    function validateAndPreview(event, previewId, maxSizeMB) {
+
+        const input = event.target;
+        const file = input.files[0];
+        const preview = document.getElementById(previewId);
+
+        const errorElement = previewId === 'photoPreview' ?
+            document.getElementById('photoError') :
+            document.getElementById('signError');
+
+        if (!file) return;
+
+        const maxSizeBytes = maxSizeMB * 1024 * 1024;
+
+        // Reset state
+        input.classList.remove('is-invalid');
+        errorElement.textContent = "";
+        preview.classList.remove('d-none');
+
+        if (file.size > maxSizeBytes) {
+
+            input.value = ""; // Clear file
+            input.classList.add('is-invalid');
+            errorElement.textContent = "File size exceeds " + maxSizeMB + "MB limit.";
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.classList.remove('d-none');
+        };
+
+        reader.readAsDataURL(file);
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const checkboxes = document.querySelectorAll('.course-checkbox');
+        const subtotalEl = document.getElementById('subtotal');
+        const discountEl = document.getElementById('discount');
+        const grandTotalEl = document.getElementById('grandtotal');
+        const discountInput = document.getElementById('customDiscount');
+        const paidInput = document.getElementById('paidamount');
+        const remainingEl = document.getElementById('remainingamount');
+        const hiddenRemInput = document.getElementById('remamount');
+
+        function calculateFees() {
+            // Calculate subtotal
+            let subtotal = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) subtotal += parseFloat(cb.dataset.price) || 0;
+            });
+
+            // Discount
+            let discountPercent = parseFloat(discountInput.value) || 0;
+            if (discountPercent < 0) discountPercent = 0;
+            if (discountPercent > 100) discountPercent = 100;
+
+            let discount = subtotal * (discountPercent / 100);
+
+            // Grand total
+            let grandTotal = subtotal - discount;
+
+            // Paid and remaining
+            let paid = parseFloat(paidInput.value) || 0;
+            if (paid < 0) paid = 0;
+
+            let remaining = grandTotal - paid;
+            if (remaining < 0) remaining = 0;
+
+            // Update DOM
+            subtotalEl.innerText = subtotal.toFixed(2);
+            discountEl.innerText = discount.toFixed(2);
+            grandTotalEl.innerText = grandTotal.toFixed(2);
+            remainingEl.innerText = remaining.toFixed(2);
+            hiddenRemInput.value = remaining.toFixed(2);
+
+            // Update hidden inputs for backend
+            document.getElementById('discountPercentInput').value = discountPercent.toFixed(2);
+            document.getElementById('discountInput').value = discount.toFixed(2);
+        }
+
+        // Event listeners
+        checkboxes.forEach(cb => cb.addEventListener('change', calculateFees));
+        discountInput.addEventListener('input', calculateFees);
+        paidInput.addEventListener('input', calculateFees);
+
+        // Initial load fix (important for edit mode)
+        setTimeout(() => {
+            calculateFees();
+        }, 100);
+    });
+</script>
+<?php echo $__env->make('layouts.partials.admin.theme', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\lawstudents\resources\views/admission/edit.blade.php ENDPATH**/ ?>
