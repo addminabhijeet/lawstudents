@@ -182,7 +182,12 @@ class StudentAdmissinController extends Controller
         // Validation
         $data = $request->validate([
             'full_name' => 'required|string|max:150',
-            'email' => 'nullable|email|max:150',
+            'email' => [
+                'nullable',
+                'email',
+                'max:150',
+                'regex:/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/'
+            ],
             'phone' => 'nullable|string|max:20',
             'pincode' => 'nullable|string|max:20',
             'guardian_phone' => 'nullable|string|max:20',

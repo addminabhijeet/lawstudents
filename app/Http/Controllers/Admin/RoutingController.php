@@ -550,7 +550,13 @@ class RoutingController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string|max:100',
-            'email' => 'required|email|max:150|unique:students,email,' . $student->id,
+            'email' => [
+                'required',
+                'email',
+                'max:150',
+                'unique:students,email,' . $student->id,
+                'regex:/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/'
+            ],
             'password' => 'nullable|confirmed|min:6',
         ]);
 

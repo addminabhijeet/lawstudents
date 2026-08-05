@@ -109,7 +109,7 @@
                                         let value = input.value;
 
                                         // Step 1: remove everything except lowercase letters, numbers, @, and .
-                                        value = value.replace(/[^a-z0-9@.]/g, '');
+                                        value = value.replace(/[^a-z0-9@.+\-_]/g, '');
 
                                         // Step 2: allow only the first @
                                         let atIndex = value.indexOf('@');
@@ -117,11 +117,8 @@
                                             value = value.slice(0, atIndex + 1) + value.slice(atIndex + 1).replace(/@/g, '');
                                         }
 
-                                        // Step 3: allow only the first .
-                                        let dotIndex = value.indexOf('.');
-                                        if (dotIndex !== -1) {
-                                            value = value.slice(0, dotIndex + 1) + value.slice(dotIndex + 1).replace(/\./g, '');
-                                        }
+                                        // Step 3: ALLOW MULTIPLE DOTS (removed the restriction for multiple dots)
+                                        // Now allows emails like: john.doe.smith@example.co.uk
 
                                         input.value = value;
                                     }
