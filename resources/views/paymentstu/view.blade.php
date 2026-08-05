@@ -502,6 +502,33 @@ $offset = $loop->index * 45;
                         margin:0;
                         size:A4 portrait;
                     }
+
+                    @media print {
+                        * {
+                            -webkit-print-color-adjust: exact !important;
+                            print-color-adjust: exact !important;
+                            color-adjust: exact !important;
+                        }
+
+                        img, svg {
+                            image-rendering: crisp-edges !important;
+                            image-rendering: pixelated !important;
+                            -webkit-font-smoothing: antialiased !important;
+                            -moz-osx-font-smoothing: grayscale !important;
+                        }
+
+                        text, p, span, div {
+                            -webkit-font-smoothing: antialiased !important;
+                            -moz-osx-font-smoothing: grayscale !important;
+                            text-rendering: optimizeLegibility !important;
+                        }
+
+                        .page {
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            box-shadow: none !important;
+                        }
+                    }
                 </style>
                 </head>
                 <body>
@@ -556,7 +583,7 @@ $offset = $loop->index * 45;
                 const svgDataUri = img.src;
                 
                 // Create canvas with higher DPI scaling
-                const dpiScale = 1; // Increase scale from 2 to 3 for better quality
+                const dpiScale = 3; // Enhanced quality: 3x resolution for crisp PDFs
                 const canvas = document.createElement('canvas');
                 canvas.width = (img.width || 909) * dpiScale;
                 canvas.height = (img.height || 1286) * dpiScale;
@@ -610,7 +637,7 @@ $offset = $loop->index * 45;
                     quality: 1.0
                 },
                 html2canvas: {
-                    scale: 1, // Increased from 2 to 3 for higher resolution
+                    scale: 3, // Enhanced quality: 3x resolution for crisp PDFs
                     useCORS: true,
                     allowTaint: true,
                     backgroundColor: "#ffffff",
