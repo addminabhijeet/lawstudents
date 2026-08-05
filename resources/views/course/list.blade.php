@@ -178,6 +178,13 @@
                                         accept="application/pdf">
                                 </div>
 
+                                <!-- Thumbnail Image -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Upload Thumbnail (Image)</label>
+                                    <input type="file" name="thumbnail" class="form-control"
+                                        accept="image/*">
+                                </div>
+
                                 <!-- Price -->
                                 <div class="col-md-12 mb-3">
                                     <label class="form-label">Price</label>
@@ -351,6 +358,14 @@
                                     <input type="file" name="brochure" class="form-control"
                                         accept="application/pdf">
                                     <div id="existingBrochure" class="mb-2"></div>
+                                </div>
+
+                                <!-- Thumbnail Image -->
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Upload Thumbnail (Image)</label>
+                                    <input type="file" name="thumbnail" class="form-control"
+                                        accept="image/*">
+                                    <div id="existingThumbnail" class="mb-2"></div>
                                 </div>
 
                                 <!-- Price -->
@@ -885,8 +900,23 @@
                         `<span class="text-muted">No brochure uploaded</span>`);
                 }
 
-                // Reset file input
+                // Show existing thumbnail
+                if (data.thumbnail) {
+                    $("#existingThumbnail").html(`
+                    <div style="margin-top:8px;">
+                        <img src="/storage/app/public/${data.thumbnail}" alt="Current Thumbnail" style="max-width:100px; max-height:100px; border-radius:4px;">
+                        <br>
+                        <small class="text-muted">Current thumbnail</small>
+                    </div>
+                `);
+                } else {
+                    $("#existingThumbnail").html(
+                        `<span class="text-muted">No thumbnail uploaded</span>`);
+                }
+
+                // Reset file inputs
                 modal.find("input[name='brochure']").val("");
+                modal.find("input[name='thumbnail']").val("");
 
                 // Show modal
                 modal.modal("show");

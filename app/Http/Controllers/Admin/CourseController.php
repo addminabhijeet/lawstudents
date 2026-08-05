@@ -902,15 +902,21 @@ class CourseController extends Controller
 
             'duration' => 'nullable|integer|min:1',
             'discount' => 'nullable|numeric|min:0',
-            'brochure' => 'nullable|mimes:pdf|max:2048'
+            'brochure' => 'nullable|mimes:pdf|max:2048',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'title.unique' => 'This course already exists.'
         ]);
 
         $brochurePath = null;
+        $thumbnailPath = null;
 
         if ($request->hasFile('brochure')) {
             $brochurePath = $request->file('brochure')->store('brochures', 'public');
+        }
+
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
         }
 
         Course::create([
@@ -922,6 +928,7 @@ class CourseController extends Controller
             'duration' => $request->duration,
             'discount' => $request->discount ?? 0,
             'brochure' => $brochurePath,
+            'thumbnail' => $thumbnailPath,
         ]);
 
         return back()->with('success', 'Course Created Successfully');
@@ -944,7 +951,8 @@ class CourseController extends Controller
             // SAME VALIDATION (no change)
             'duration' => 'nullable|integer|min:1',
             'discount' => 'nullable|numeric|min:0',
-            'brochure' => 'nullable|mimes:pdf|max:2048'
+            'brochure' => 'nullable|mimes:pdf|max:2048',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         // Handle brochure update
@@ -958,6 +966,17 @@ class CourseController extends Controller
             $course->brochure = $brochurePath;
         }
 
+        // Handle thumbnail update
+        if ($request->hasFile('thumbnail')) {
+            // delete old thumbnail
+            if ($course->thumbnail && Storage::disk('public')->exists($course->thumbnail)) {
+                Storage::disk('public')->delete($course->thumbnail);
+            }
+
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            $course->thumbnail = $thumbnailPath;
+        }
+
         // Update data (same structure as store)
         $course->update([
             'category_id' => $request->category_id,
@@ -969,6 +988,8 @@ class CourseController extends Controller
             // NEW FIELDS
             'duration' => $request->duration,
             'discount' => $request->discount ?? 0,
+            'brochure' => $course->brochure,
+            'thumbnail' => $course->thumbnail,
         ]);
 
         return back()->with('success', 'Course Updated Successfully');

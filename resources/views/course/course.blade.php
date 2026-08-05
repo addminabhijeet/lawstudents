@@ -53,11 +53,16 @@
                             style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:15px; padding:15px;">
                             @foreach ($category->courses as $course)
                             <div class="course-card"
-                                style="border:1px solid #eee; border-radius:20px; padding:16px; background: linear-gradient(145deg, #ffffff, #f9f9f9); 
-            display:flex; flex-direction:column; justify-content:space-between; box-shadow: 0 6px 12px rgba(0,0,0,0.08); 
+                                style="border:1px solid #eee; border-radius:20px; padding:16px; background: linear-gradient(145deg, #ffffff, #f9f9f9);
+            display:flex; flex-direction:column; justify-content:space-between; box-shadow: 0 6px 12px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;">
 
                                 <div>
+                                    @if($course->thumbnail)
+                                    <img src="{{ asset('storage/app/public/' . $course->thumbnail) }}" alt="{{ $course->title }}"
+                                        style="width:100%; height:150px; object-fit:cover; border-radius:10px; margin-bottom:12px;">
+                                    @endif
+
                                     <h4
                                         style="font-size:16px; font-weight:700; margin-bottom:6px; color:#222; line-height:1.3;">
                                         {{ $course->title }}
