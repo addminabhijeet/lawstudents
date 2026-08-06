@@ -61,22 +61,128 @@
 
             <div style="width:100%; max-width:1100px; margin:auto;">
 
-                <!-- SEARCH -->
-                <div style="max-width:600px; margin:0 auto 20px; position:relative;">
-                    <input type="text" id="copySearch" class="form-control"
-                        placeholder="Search Free Notes..." onkeyup="searchCopys(this.value)">
+                <!-- FILTER AND SEARCH CONTAINER -->
+                <div style="background:linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); padding:30px 25px; border-radius:12px;
+                            margin-bottom:35px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border:1px solid #e5e7eb;">
 
-                    <div id="copySuggestions"
-                        style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none; position:absolute; width:100%; background:#fff; z-index:999;">
+                    <!-- HEADER -->
+                    <div style="text-align:center; margin-bottom:20px;">
+                        <h3 style="font-size:18px; font-weight:700; color:#1f2937; margin:0 0 8px 0;">
+                            <i class="fa-solid fa-sliders" style="margin-right:8px; color:#128C7E;"></i>Find Free Notes
+                        </h3>
+                        <p style="font-size:13px; color:#6b7280; margin:0;">Filter by category or search by keywords</p>
                     </div>
+
+                    <!-- FILTER AND SEARCH ROW -->
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:15px;">
+
+                        <!-- CATEGORY DROPDOWN FILTER -->
+                        <div class="category-filter-wrapper" style="position:relative;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#374151; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">
+                                <i class="fa-solid fa-filter" style="margin-right:6px;"></i>Notes Category
+                            </label>
+                            <div style="position:relative;">
+                                <button type="button" id="categoryDropdownBtn"
+                                    style="width:100%; padding:14px 16px; background:#fff; border:2px solid #e5e7eb; border-radius:10px;
+                                            font-size:14px; font-weight:600; text-align:left; cursor:pointer;
+                                            display:flex; justify-content:space-between; align-items:center;
+                                            transition: all 0.3s ease; color:#1f2937;
+                                            box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                    <span id="selectedCategory" style="display:flex; align-items:center;">
+                                        <i class="fa-solid fa-layer-group" style="margin-right:8px; color:#128C7E; font-size:14px;"></i>
+                                        All Categories
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down" style="font-size:12px; color:#9ca3af; transition: transform 0.3s ease;"></i>
+                                </button>
+
+                                <!-- DROPDOWN MENU -->
+                                <div id="categoryDropdownMenu"
+                                    style="position:absolute; top:100%; left:0; right:0; background:#fff; border:2px solid #e5e7eb;
+                                            border-radius:10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-height:0; overflow:hidden;
+                                            z-index:1000; transition: max-height 0.3s ease, box-shadow 0.3s ease; margin-top:8px;">
+
+                                    <div style="max-height:380px; overflow-y:auto;">
+                                        <!-- All Categories Option -->
+                                        <div class="dropdown-item" data-category-id="all"
+                                            style="padding:14px 16px; cursor:pointer; border-bottom:1px solid #f3f4f6;
+                                                    font-weight:600; color:#128C7E; background:linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%);
+                                                    transition: all 0.2s ease;">
+                                            <i class="fa-solid fa-list" style="margin-right:8px;"></i>All Notes
+                                        </div>
+
+                                        @foreach ($categories as $category)
+                                        <!-- Parent Category -->
+                                        <div class="dropdown-item-parent" data-category-id="{{ $category->id }}"
+                                            style="padding:14px 16px; cursor:pointer; border-bottom:1px solid #f3f4f6;
+                                                    display:flex; justify-content:space-between; align-items:center;
+                                                    transition: all 0.2s ease; font-weight:500; color:#1f2937;">
+                                            <span>
+                                                <i class="fa-solid fa-folder" style="margin-right:8px; color:#128C7E;"></i>
+                                                {{ $category->name }}
+                                            </span>
+                                            @if($category->subcategories->count() > 0)
+                                            <i class="fa-solid fa-chevron-right" style="font-size:12px; color:#d1d5db; transition: transform 0.2s ease;"></i>
+                                            @endif
+                                        </div>
+
+                                        <!-- Child Categories (Subcategories) -->
+                                        @if($category->subcategories->count() > 0)
+                                        @foreach ($category->subcategories as $sub)
+                                        <div class="dropdown-item-child" data-parent-id="{{ $category->id }}" data-category-id="{{ $sub->id }}"
+                                            style="padding:12px 16px 12px 40px; cursor:pointer; border-bottom:1px solid #f3f4f6;
+                                                    background:#fafbfc; font-size:13px; color:#4b5563;
+                                                    transition: all 0.2s ease; display:none;">
+                                            <i class="fa-solid fa-tag" style="margin-right:8px; color:#25D366; font-size:11px;"></i>
+                                            {{ $sub->name }}
+                                        </div>
+                                        @endforeach
+                                        @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEARCH CONTAINER -->
+                        <div class="search-container" style="position:relative;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#374151; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">
+                                <i class="fa-solid fa-magnifying-glass" style="margin-right:6px;"></i>Quick Search
+                            </label>
+                            <div style="position:relative;">
+                                <input type="text" id="copySearch" class="form-control"
+                                    placeholder="Search Free Notes..." onkeyup="searchCopys(this.value)"
+                                    style="padding:14px 16px 14px 16px; padding-right:40px; border:2px solid #e5e7eb; border-radius:10px;
+                                            font-size:14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: all 0.3s ease;"
+                                    onfocus="this.style.borderColor='#128C7E'; this.style.boxShadow='0 0 0 3px rgba(18,140,126,0.1)';"
+                                    onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.06)';">
+                                <i class="fa-solid fa-search" style="position:absolute; right:14px; top:50%; transform:translateY(-50%);
+                                                                      color:#9ca3af; pointer-events:none; font-size:14px;"></i>
+
+                                <div id="copySuggestions"
+                                    style="border:2px solid #e5e7eb; border-top:0; max-height:250px; overflow:auto; display:none;
+                                            position:absolute; top:100%; left:0; right:0; background:#fff;
+                                            border-radius:0 0 10px 10px; z-index:999; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top:-2px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESPONSIVE MOBILE LAYOUT -->
+                    <style>
+                        @media (max-width: 768px) {
+                            .filter-search-grid {
+                                grid-template-columns: 1fr !important;
+                            }
+                        }
+                    </style>
                 </div>
 
                 @foreach ($categories as $category)
                 <!-- CATEGORY -->
-                <div style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
+                <div data-category-id="{{ $category->id }}" style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
                     <div onclick="toggleAccordion('copyCat{{ $category->id }}')"
                         style="cursor:pointer; padding:15px; background:#fff; font-weight:600;">
-                        {{ $category->name }}
+                        <i class="fa-solid fa-folder-open" style="margin-right:8px; color:#128C7E;"></i>{{ $category->name }}
                     </div>
 
                     <div id="copyCat{{ $category->id }}" class="accordion-content" style="max-height:1000px;">
@@ -140,6 +246,197 @@
 </style>
 
 <script>
+    // ===== CATEGORY DROPDOWN FUNCTIONALITY =====
+    let selectedCategoryId = 'all';
+
+    // Dropdown Button Hover Effects
+    document.getElementById('categoryDropdownBtn').addEventListener('mouseenter', function() {
+        if (this.style.borderColor !== 'rgb(18, 140, 126)') {
+            this.style.borderColor = '#d1d5db';
+            this.style.background = '#f9fafb';
+            this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.08)';
+        }
+    });
+
+    document.getElementById('categoryDropdownBtn').addEventListener('mouseleave', function() {
+        if (this.style.borderColor !== 'rgb(18, 140, 126)') {
+            this.style.borderColor = '#e5e7eb';
+            this.style.background = '#fff';
+            this.style.boxShadow = '0 1px 3px rgba(0,0,0,0.06)';
+        }
+    });
+
+    // Open/Close Dropdown
+    document.getElementById('categoryDropdownBtn').addEventListener('click', function() {
+        let menu = document.getElementById('categoryDropdownMenu');
+        const isOpen = menu.style.maxHeight && menu.style.maxHeight !== '0px';
+        menu.style.maxHeight = !isOpen ? menu.scrollHeight + 'px' : '0px';
+
+        // Update button styling when open
+        if (!isOpen) {
+            this.style.background = '#f3f4f6';
+            this.style.borderColor = '#128C7E';
+            this.querySelector('i').style.transform = 'rotate(180deg)';
+            this.querySelector('i').style.color = '#128C7E';
+        } else {
+            this.style.background = '#fff';
+            this.style.borderColor = '#e5e7eb';
+            this.querySelector('i').style.transform = 'rotate(0deg)';
+            this.querySelector('i').style.color = '#9ca3af';
+        }
+    });
+
+    // Handle Parent Category Click
+    document.querySelectorAll('.dropdown-item-parent').forEach(item => {
+        item.addEventListener('click', function() {
+            const categoryId = this.dataset.categoryId;
+            const categoryName = this.querySelector('span').innerText.replace(/[^\w\s-]/g, '').trim();
+
+            // Update selected category
+            selectedCategoryId = categoryId;
+            document.getElementById('selectedCategory').innerText = categoryName;
+
+            // Close dropdown
+            const menu = document.getElementById('categoryDropdownMenu');
+            const btn = document.getElementById('categoryDropdownBtn');
+            menu.style.maxHeight = '0px';
+            btn.style.background = '#fff';
+            btn.style.borderColor = '#e5e7eb';
+            btn.querySelector('i').style.transform = 'rotate(0deg)';
+            btn.querySelector('i').style.color = '#9ca3af';
+
+            // Filter categories
+            filterCategoriesBy(categoryId);
+        });
+
+        // Toggle subcategories on hover
+        this.addEventListener('mouseenter', function() {
+            const parentId = this.dataset.categoryId;
+            const children = document.querySelectorAll(`.dropdown-item-child[data-parent-id="${parentId}"]`);
+            children.forEach(child => child.style.display = 'block');
+        });
+    });
+
+    // Handle Child Category Click
+    document.querySelectorAll('.dropdown-item-child').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const categoryId = this.dataset.categoryId;
+            const categoryName = this.innerText.replace(/[^\w\s-]/g, '').trim();
+
+            // Update selected category
+            selectedCategoryId = categoryId;
+            document.getElementById('selectedCategory').innerText = categoryName;
+
+            // Close dropdown
+            const menu = document.getElementById('categoryDropdownMenu');
+            const btn = document.getElementById('categoryDropdownBtn');
+            menu.style.maxHeight = '0px';
+            btn.style.background = '#fff';
+            btn.style.borderColor = '#e5e7eb';
+            btn.querySelector('i').style.transform = 'rotate(0deg)';
+            btn.querySelector('i').style.color = '#9ca3af';
+
+            // Filter categories
+            filterCategoriesBy(categoryId);
+        });
+    });
+
+    // Handle "All Categories" Option
+    document.querySelector('[data-category-id="all"]').addEventListener('click', function() {
+        selectedCategoryId = 'all';
+        document.getElementById('selectedCategory').innerText = 'All Categories';
+
+        // Close dropdown
+        const menu = document.getElementById('categoryDropdownMenu');
+        const btn = document.getElementById('categoryDropdownBtn');
+        menu.style.maxHeight = '0px';
+        btn.style.background = '#fff';
+        btn.style.borderColor = '#e5e7eb';
+        btn.querySelector('i').style.transform = 'rotate(0deg)';
+        btn.querySelector('i').style.color = '#9ca3af';
+
+        // Show all categories
+        filterCategoriesBy('all');
+    });
+
+    // Dropdown Item Hover Effects
+    document.querySelectorAll('.dropdown-item, .dropdown-item-parent, .dropdown-item-child').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            if (item.classList.contains('dropdown-item')) {
+                this.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                this.style.color = '#fff';
+            } else if (item.classList.contains('dropdown-item-parent')) {
+                this.style.background = '#eff6ff';
+                this.style.color = '#0c4a6e';
+            } else {
+                this.style.background = '#dbeafe';
+                this.style.color = '#164e63';
+            }
+        });
+
+        item.addEventListener('mouseleave', function() {
+            if (item.classList.contains('dropdown-item')) {
+                this.style.background = 'linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%)';
+                this.style.color = '#128C7E';
+            } else if (item.classList.contains('dropdown-item-parent')) {
+                this.style.background = '';
+                this.style.color = '#1f2937';
+            } else {
+                this.style.background = '#fafbfc';
+                this.style.color = '#4b5563';
+            }
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.category-filter-wrapper');
+        if (!dropdown.contains(event.target)) {
+            const menu = document.getElementById('categoryDropdownMenu');
+            const btn = document.getElementById('categoryDropdownBtn');
+            menu.style.maxHeight = '0px';
+            btn.style.background = '#fff';
+            btn.style.borderColor = '#e5e7eb';
+            if (btn.querySelector('i')) {
+                btn.querySelector('i').style.transform = 'rotate(0deg)';
+                btn.querySelector('i').style.color = '#9ca3af';
+            }
+        }
+    });
+
+    // Filter categories by ID
+    function filterCategoriesBy(categoryId) {
+        const categoryDivs = document.querySelectorAll('[data-category-id]');
+
+        categoryDivs.forEach(div => {
+            if (categoryId === 'all') {
+                div.style.display = 'block';
+                div.style.animation = 'fadeIn 0.3s ease';
+            } else {
+                if (div.dataset.categoryId == categoryId) {
+                    div.style.display = 'block';
+                    div.style.animation = 'fadeIn 0.3s ease';
+                } else {
+                    div.style.display = 'none';
+                }
+            }
+        });
+
+        // Add smooth fade animation
+        if (!document.getElementById('fadeInStyle')) {
+            const style = document.createElement('style');
+            style.id = 'fadeInStyle';
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
     function toggleAccordion(id) {
         return; // Disabled toggle
     }
