@@ -1,4 +1,4 @@
-@extends('layouts.landing', ['title' => 'Law Students'])
+@extends('layouts.landing', ['title' => 'Courses'])
 
 @section('content')
 <!--===== WELCOME STARTS =======-->
@@ -9,8 +9,8 @@
         <div class="row">
             <div class="col-lg-3 m-auto">
                 <div class="welcome-inner-header text-center">
-                    <h1>Course</h1>
-                    <a href="">Home <span><i class="fa-light fa-angle-right"></i></span>Course</a>
+                    <h1>Courses</h1>
+                    <a href="">Home <span><i class="fa-light fa-angle-right"></i></span>Courses</a>
                     <img src="/img/elements/elementor20.png" alt="">
                 </div>
             </div>
@@ -19,11 +19,10 @@
 </div>
 <!--===== WELCOME ENDS =======-->
 
-<!--===== BLOG STARTS =======-->
+<!--===== COURSES SECTION STARTS =======-->
 <div class="blog1-section-area sp3">
     <div class="container">
         <div class="row">
-
             <div style="width:100%; max-width:1100px; margin:auto;">
 
                 <!-- FILTER AND SEARCH CONTAINER -->
@@ -68,7 +67,7 @@
 
                                     <div style="max-height:380px; overflow-y:auto;">
                                         <!-- All Categories Option -->
-                                        <div class="dropdown-item" data-category-id="all"
+                                        <div class="dropdown-item-course" data-category-id="all"
                                             style="padding:14px 16px; cursor:pointer; border-bottom:1px solid #f3f4f6;
                                                     font-weight:600; color:#128C7E; background:linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%);
                                                     transition: all 0.2s ease;">
@@ -87,8 +86,8 @@
                                 <i class="fa-solid fa-magnifying-glass" style="margin-right:6px;"></i>Quick Search
                             </label>
                             <div style="position:relative;">
-                                <input type="text" id="noteSearch" class="form-control"
-                                    placeholder="Search notes, course..." onkeyup="searchNotes(this.value)"
+                                <input type="text" id="courseSearch" class="form-control"
+                                    placeholder="Search courses..." onkeyup="searchCourses(this.value)"
                                     style="padding:14px 16px 14px 16px; padding-right:40px; border:2px solid #e5e7eb; border-radius:10px;
                                             font-size:14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: all 0.3s ease;"
                                     onfocus="this.style.borderColor='#128C7E'; this.style.boxShadow='0 0 0 3px rgba(18,140,126,0.1)';"
@@ -96,7 +95,7 @@
                                 <i class="fa-solid fa-search" style="position:absolute; right:14px; top:50%; transform:translateY(-50%);
                                                                       color:#9ca3af; pointer-events:none; font-size:14px;"></i>
 
-                                <div id="searchSuggestions"
+                                <div id="courseSuggestions"
                                     style="border:2px solid #e5e7eb; border-top:0; max-height:250px; overflow:auto; display:none;
                                             position:absolute; top:100%; left:0; right:0; background:#fff;
                                             border-radius:0 0 10px 10px; z-index:999; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top:-2px;">
@@ -115,185 +114,433 @@
                     </style>
                 </div>
 
-                <div class="category-grid"
-                    style="display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:20px;">
+                <!-- COURSES GRID -->
+                <div class="courses-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; margin-bottom: 40px;">
 
-                    @foreach ($categories as $category)
-                    <div class="category-card" data-category-id="{{ $category->id }}"
-                        style="border:1px solid #e4e6eb; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.05); background:#fff;">
+                    @forelse ($allCourses as $course)
+                    <div class="course-card-item" data-category-id="{{ $course->category_id }}" data-course-id="{{ $course->id }}"
+                        style="border:1px solid #ddd; border-radius:12px; overflow:hidden; background:#fff;
+                                box-shadow:0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; display: flex; flex-direction: column;">
 
-                        <!-- CATEGORY HEADER -->
-                        <div
-                            style="padding:15px; font-size:18px; font-weight:600; display:flex; justify-content:space-between; align-items:center; background:#f9f9f9;">
-                            <span>{{ $category->name }}</span>
+                        <!-- THUMBNAIL -->
+                        @if($course->thumbnail)
+                        <div style="width:100%; height:180px; overflow:hidden; background:#f0f0f0;">
+                            <img src="{{ asset('storage/app/public/' . $course->thumbnail) }}" alt="{{ $course->title }}"
+                                style="width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease;">
                         </div>
+                        @else
+                        <div style="width:100%; height:180px; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); display:flex; align-items:center; justify-content:center;">
+                            <i class="fa-solid fa-book" style="font-size:48px; color:#fff;"></i>
+                        </div>
+                        @endif
 
-                        <!-- COURSES GRID -->
-                        <div class="courses-grid"
-                            style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:15px; padding:15px;">
-                            @foreach ($category->courses as $course)
-                            <div class="course-card"
-                                style="border:1px solid #eee; border-radius:20px; padding:16px; background: linear-gradient(145deg, #ffffff, #f9f9f9);
-            display:flex; flex-direction:column; justify-content:space-between; box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <!-- CONTENT -->
+                        <div style="padding:16px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
 
-                                <div>
-                                    @if($course->thumbnail)
-                                    <img src="{{ asset('storage/app/public/' . $course->thumbnail) }}" alt="{{ $course->title }}"
-                                        style="width:100%; height:150px; object-fit:cover; border-radius:10px; margin-bottom:12px;">
-                                    @endif
+                            <div>
+                                <h4 style="font-size:16px; font-weight:700; margin:0 0 8px 0; color:#1f2937; line-height:1.4;">
+                                    {{ $course->title }}
+                                </h4>
 
-                                    <h4
-                                        style="font-size:16px; font-weight:700; margin-bottom:6px; color:#222; line-height:1.3;">
-                                        {{ $course->title }}
-                                    </h4>
-
-                                    <div
-                                        style="font-size:13px; color:#555; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
-                                        📄 Notes: {{ $course->notes->count() }}
-                                    </div>
-
-                                    <div style="font-size:13px; color:#777; margin-bottom:4px;">
-                                        Price: <span
-                                            style="font-weight:600; color:#000;">₹{{ $course->price ?? 0 }}</span>
-                                    </div>
-
-                                    <div style="font-size:13px; color:#777;">
-                                        Discount: <span
-                                            style="font-weight:600; color:#FF4C4C;">₹{{ $course->discount ?? 0 }}</span>
-                                    </div>
+                                <div style="font-size:13px; color:#6b7280; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+                                    <i class="fa-solid fa-file-pdf" style="color:#128C7E;"></i>
+                                    Notes: {{ $course->notes->count() }}
                                 </div>
 
-                                <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
-                                    <a href=""
-                                        style="flex:1; text-align:center; background: linear-gradient(135deg, #25D366, #128C7E); 
-                  color:#fff; padding:10px 0; border-radius:30px; font-size:13px; text-decoration:none; 
-                  font-weight:600; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                                        Enroll Now
-                                    </a>
-
-                                    <!-- Add Brochure Button -->
-                                    @if($course->brochure)
-                                    <a href="{{ asset('storage/app/public/' . $course->brochure) }}" target="_blank"
-                                        style="flex:1; text-align:center; background: linear-gradient(135deg, #4A90E2, #357ABD); 
-           color:#fff; padding:8px 0; border-radius:30px; font-size:13px; text-decoration:none; 
-           font-weight:600; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                                        Brochure
-                                    </a>
-                                    @endif
+                                <div style="font-size:13px; color:#6b7280; margin-bottom:8px;">
+                                    Price: <span style="font-weight:700; color:#1f2937;">₹{{ number_format($course->price ?? 0, 2) }}</span>
                                 </div>
+
+                                @if($course->discount)
+                                <div style="font-size:13px; color:#6b7280;">
+                                    Discount: <span style="font-weight:700; color:#ef4444;">₹{{ number_format($course->discount ?? 0, 2) }}</span>
+                                </div>
+                                @endif
                             </div>
 
-                            <script>
-                                // Hover effect for card
-                                const cards = document.querySelectorAll('.course-card');
-                                cards.forEach(card => {
-                                    card.addEventListener('mouseenter', () => {
-                                        card.style.transform = 'translateY(-6px)';
-                                        card.style.boxShadow = '0 12px 24px rgba(0,0,0,0.12)';
-                                    });
-                                    card.addEventListener('mouseleave', () => {
-                                        card.style.transform = 'translateY(0)';
-                                        card.style.boxShadow = '0 6px 12px rgba(0,0,0,0.08)';
-                                    });
-                                });
+                            <!-- BUTTONS -->
+                            <div style="margin-top:16px; display:flex; gap:10px;">
+                                <a href=""
+                                    style="flex:1; text-align:center; background: linear-gradient(135deg, #10b981, #059669);
+                                            color:#fff; padding:11px 0; border-radius:8px; font-size:13px; font-weight:600;
+                                            text-decoration:none; border:none; cursor:pointer;
+                                            transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                                    Enroll Now
+                                </a>
 
-                                // Hover effect for button
-                                const buttons = document.querySelectorAll('.course-card a');
-                                buttons.forEach(btn => {
-                                    btn.addEventListener('mouseenter', () => {
-                                        btn.style.transform = 'scale(1.08)';
-                                        btn.style.boxShadow = '0 6px 12px rgba(0,0,0,0.2)';
-                                    });
-                                    btn.addEventListener('mouseleave', () => {
-                                        btn.style.transform = 'scale(1)';
-                                        btn.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
-                                    });
-                                });
-                            </script>
-                            @endforeach
-
-                            <!-- CHILD CATEGORIES -->
-                            @foreach ($category->children as $child)
-                            <div class="child-category-card"
-                                style="border:1px solid #eee; border-radius:8px; padding:12px; background:#f0fdf4; display:flex; flex-direction:column;">
-
-                                <h5 style="font-size:14px; font-weight:600; margin-bottom:8px;">
-                                    {{ $child->name }}
-                                </h5>
-
-                                <div class="child-courses-grid"
-                                    style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:10px;">
-                                    @foreach ($child->courses as $childCourse)
-                                    <div class="course-card"
-                                        style="border:1px solid #ddd; border-radius:6px; padding:10px; background:#ffffff; display:flex; flex-direction:column; justify-content:space-between;">
-
-                                        <div>
-                                            <h6 style="font-size:14px; font-weight:500; margin-bottom:5px;">
-                                                {{ $childCourse->title }}
-                                            </h6>
-                                            <div style="font-size:12px; color:#555;">Notes:
-                                                {{ $childCourse->notes->count() }}
-                                            </div>
-                                        </div>
-
-                                        <div style="margin-top:8px; display:flex; gap:5px; flex-wrap:wrap;">
-                                            @foreach ($childCourse->notes as $note)
-                                            @if (auth()->check())
-                                            <a href="{{ route('frontend.viewnote', $note->id) }}"
-                                                style="flex:1; text-align:center; background:#25D366; color:#fff; padding:4px 0; border-radius:20px; font-size:11px; text-decoration:none;">
-                                                Download
-                                            </a>
-                                            @else
-                                            <a href="{{ route('google.login') }}"
-                                                style="flex:1; text-align:center; background:#25D366; color:#fff; padding:4px 0; border-radius:20px; font-size:11px; text-decoration:none;">
-                                                Download
-                                            </a>
-                                            @endif
-                                            @endforeach
-                                        </div>
-
-                                    </div>
-                                    @endforeach
-                                </div>
-
+                                @if($course->brochure)
+                                <a href="{{ asset('storage/app/public/' . $course->brochure) }}" target="_blank"
+                                    style="flex:1; text-align:center; background: linear-gradient(135deg, #3b82f6, #2563eb);
+                                            color:#fff; padding:11px 0; border-radius:8px; font-size:13px; font-weight:600;
+                                            text-decoration:none; border:none; cursor:pointer;
+                                            transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
+                                    Brochure
+                                </a>
+                                @endif
                             </div>
-                            @endforeach
-
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px;">
+                        <i class="fa-solid fa-inbox" style="font-size: 48px; color: #9ca3af; margin-bottom: 16px;"></i>
+                        <p style="font-size: 16px; color: #6b7280;">No courses found</p>
+                    </div>
+                    @endforelse
 
                 </div>
-            </div>
-        </div>
 
-        <div class="col-lg-12 m-auto">
-            <div class="pagination-area">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fa-regular fa-angle-left"></i></span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">12</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true"><i class="fa-regular fa-angle-right"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <!-- PAGINATION -->
+                @if($allCourses->hasPages())
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 40px;">
+                    <nav aria-label="Page navigation" style="width: 100%;">
+                        <ul class="pagination" style="display: flex; justify-content: center; align-items: center; gap: 5px; margin: 0; padding: 0; list-style: none;">
+
+                            <!-- Previous Button -->
+                            @if($allCourses->onFirstPage())
+                            <li class="page-item disabled">
+                                <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+                                             border: 2px solid #e5e7eb; border-radius: 6px; color: #9ca3af; cursor: not-allowed;">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                            </li>
+                            @else
+                            <li class="page-item">
+                                <a href="{{ $allCourses->previousPageUrl() }}"
+                                    style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+                                            border: 2px solid #e5e7eb; border-radius: 6px; color: #374151; text-decoration: none;
+                                            transition: all 0.3s ease; cursor: pointer;"
+                                    onmouseover="this.style.borderColor='#128C7E'; this.style.color='#128C7E';"
+                                    onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151';">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </a>
+                            </li>
+                            @endif
+
+                            <!-- Page Numbers -->
+                            @foreach($allCourses->getUrlRange(1, $allCourses->lastPage()) as $page => $url)
+                                @if($page == $allCourses->currentPage())
+                                <li class="page-item active">
+                                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+                                                 background: linear-gradient(135deg, #ff9800, #ff7043); border: 2px solid #ff9800;
+                                                 border-radius: 6px; color: #fff; font-weight: 700; cursor: pointer;">
+                                        {{ $page }}
+                                    </span>
+                                </li>
+                                @elseif($page == 1 || $page == $allCourses->lastPage() || abs($page - $allCourses->currentPage()) <= 1)
+                                <li class="page-item">
+                                    <a href="{{ $url }}"
+                                        style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+                                                border: 2px solid #e5e7eb; border-radius: 6px; color: #374151; text-decoration: none;
+                                                font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
+                                        onmouseover="this.style.borderColor='#128C7E'; this.style.color='#128C7E'; this.style.background='#f0fdf4';"
+                                        onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151'; this.style.background='transparent';">
+                                        {{ $page }}
+                                    </a>
+                                </li>
+                                @elseif($page == 2 && $allCourses->currentPage() > 3)
+                                <li style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;">
+                                    <span style="color: #9ca3af;">...</span>
+                                </li>
+                                @elseif($page == $allCourses->lastPage() - 1 && $allCourses->currentPage() < $allCourses->lastPage() - 2)
+                                <li style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;">
+                                    <span style="color: #9ca3af;">...</span>
+                                </li>
+                                @endif
+                            @endforeach
+
+                            <!-- Next Button -->
+                            @if($allCourses->hasMorePages())
+                            <li class="page-item">
+                                <a href="{{ $allCourses->nextPageUrl() }}"
+                                    style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+                                            border: 2px solid #e5e7eb; border-radius: 6px; color: #374151; text-decoration: none;
+                                            transition: all 0.3s ease; cursor: pointer;"
+                                    onmouseover="this.style.borderColor='#128C7E'; this.style.color='#128C7E';"
+                                    onmouseout="this.style.borderColor='#e5e7eb'; this.style.color='#374151';">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            @else
+                            <li class="page-item disabled">
+                                <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+                                             border: 2px solid #e5e7eb; border-radius: 6px; color: #9ca3af; cursor: not-allowed;">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </li>
+                            @endif
+
+                        </ul>
+                    </nav>
+                </div>
+                @endif
+
             </div>
         </div>
     </div>
 </div>
-</div>
+<!--===== COURSES SECTION ENDS =======-->
+
+<!-- ENHANCED STYLING & FUNCTIONALITY -->
+<style>
+    /* Hover effects for course cards */
+    .course-card-item {
+        transition: all 0.3s ease;
+    }
+
+    .course-card-item:hover {
+        box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        transform: translateY(-8px);
+    }
+
+    .course-card-item:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Button hover effects */
+    .course-card-item a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    /* Dropdown Item Styling */
+    .dropdown-item-course:hover {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: #fff !important;
+    }
+
+    .dropdown-item-course:hover i {
+        color: #fff !important;
+    }
+
+    /* Dropdown Button Hover */
+    #categoryDropdownBtn:hover {
+        border-color: #d1d5db;
+        background: #f9fafb;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    }
+
+    #categoryDropdownBtn.active {
+        background: #f3f4f6;
+        border-color: #128C7E;
+    }
+
+    /* Search Input Focus */
+    #courseSearch:focus {
+        border-color: #128C7E;
+        box-shadow: 0 0 0 3px rgba(18,140,126,0.1);
+    }
+
+    /* Suggestions hover */
+    #courseSuggestions div:hover {
+        background: #f0fdf4;
+    }
+
+    /* Pagination responsiveness */
+    @media (max-width: 768px) {
+        .pagination {
+            flex-wrap: wrap;
+        }
+
+        .pagination li {
+            margin: 4px;
+        }
+    }
+
+    /* No courses found message */
+    .no-courses-message {
+        text-align: center;
+        padding: 60px 20px;
+    }
+</style>
+
+<script>
+    // ===== CATEGORY DROPDOWN FUNCTIONALITY =====
+    let selectedCourseCategory = 'all';
+
+    // Open/Close Dropdown
+    document.getElementById('categoryDropdownBtn').addEventListener('click', function() {
+        let menu = document.getElementById('categoryDropdownMenu');
+        menu.style.maxHeight = menu.style.maxHeight === '0px' || !menu.style.maxHeight ? menu.scrollHeight + 'px' : '0px';
+        this.style.background = menu.style.maxHeight !== '0px' ? '#f9f9f9' : '#fff';
+    });
+
+    // Handle Category Item Click
+    document.querySelectorAll('.dropdown-category-item-course').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const categoryId = this.dataset.categoryId;
+            const categoryName = this.querySelector('span:last-of-type').innerText.trim();
+
+            selectedCourseCategory = categoryId;
+            document.getElementById('selectedCategory').innerHTML =
+                '<i class="fa-solid fa-layer-group" style="margin-right:8px; color:#128C7E; font-size:14px;"></i>' + categoryName;
+
+            // Close dropdown
+            document.getElementById('categoryDropdownMenu').style.maxHeight = '0px';
+            document.getElementById('categoryDropdownBtn').style.background = '#fff';
+
+            // Filter courses
+            filterCoursesByCategory(categoryId);
+        });
+    });
+
+    // Handle "All Categories" Option
+    document.querySelector('[data-category-id="all"]').addEventListener('click', function() {
+        selectedCourseCategory = 'all';
+        document.getElementById('selectedCategory').innerHTML =
+            '<i class="fa-solid fa-layer-group" style="margin-right:8px; color:#128C7E; font-size:14px;"></i>All Categories';
+
+        // Close dropdown
+        document.getElementById('categoryDropdownMenu').style.maxHeight = '0px';
+        document.getElementById('categoryDropdownBtn').style.background = '#fff';
+
+        // Show all courses
+        filterCoursesByCategory('all');
+    });
+
+    // Dropdown Item Hover Effects
+    document.querySelectorAll('.dropdown-item-course, .dropdown-category-item-course, .dropdown-item-child-course').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            if (item.classList.contains('dropdown-item-course') && item.dataset.categoryId === 'all') {
+                this.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                this.style.color = '#fff';
+            }
+        });
+
+        item.addEventListener('mouseleave', function() {
+            if (item.classList.contains('dropdown-item-course') && item.dataset.categoryId === 'all') {
+                this.style.background = 'linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%)';
+                this.style.color = '#128C7E';
+            }
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.category-filter-wrapper');
+        if (!dropdown.contains(event.target)) {
+            document.getElementById('categoryDropdownMenu').style.maxHeight = '0px';
+            document.getElementById('categoryDropdownBtn').style.background = '#fff';
+        }
+    });
+
+    // Filter courses by category
+    function filterCoursesByCategory(categoryId) {
+        const courseCards = document.querySelectorAll('.course-card-item');
+        let visibleCount = 0;
+
+        courseCards.forEach(card => {
+            if (categoryId === 'all') {
+                card.style.display = 'block';
+                card.style.animation = 'fadeIn 0.3s ease';
+                visibleCount++;
+            } else {
+                const cardCategoryId = card.dataset.categoryId;
+                if (cardCategoryId == categoryId) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.3s ease';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+
+        // Add smooth fade animation
+        if (!document.getElementById('fadeInStyle')) {
+            const style = document.createElement('style');
+            style.id = 'fadeInStyle';
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // ===== SEARCH FUNCTIONALITY =====
+    function searchCourses(query) {
+        let suggestionBox = document.getElementById('courseSuggestions');
+
+        if (query.length < 2) {
+            suggestionBox.style.display = 'none';
+            suggestionBox.innerHTML = '';
+            return;
+        }
+
+        fetch(`{{ route('frontend.coursesearch') }}?q=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    suggestionBox.innerHTML = '<div style="padding:12px; text-align:center; color:#9ca3af;">No courses found</div>';
+                } else {
+                    suggestionBox.innerHTML = data.map(item => `
+                        <div style="padding:12px 16px; border-bottom:1px solid #eee; cursor:pointer; transition: background 0.2s ease;"
+                             onmouseover="this.style.background='#f0fdf4';"
+                             onmouseout="this.style.background='transparent';"
+                             onclick="highlightCourse(${item.course_id})">
+                            <div style="font-weight:600; color:#1f2937;">${item.title}</div>
+                            <div style="font-size:12px; color:#9ca3af; margin-top:4px;">
+                                <i class="fa-solid fa-graduation-cap" style="margin-right:4px;"></i>${item.category_name}
+                            </div>
+                        </div>
+                    `).join('');
+                }
+                suggestionBox.style.display = 'block';
+            })
+            .catch(error => console.log('Search error:', error));
+    }
+
+    function highlightCourse(courseId) {
+        const courseCard = document.querySelector(`[data-course-id="${courseId}"]`);
+        if (courseCard) {
+            courseCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            courseCard.style.background = '#fff3cd';
+            setTimeout(() => {
+                courseCard.style.background = '#fff';
+            }, 2000);
+        }
+        document.getElementById('courseSuggestions').style.display = 'none';
+        document.getElementById('courseSearch').value = '';
+    }
+
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+        let box = document.getElementById('courseSuggestions');
+        let input = document.getElementById('courseSearch');
+        if (!box.contains(e.target) && e.target !== input) {
+            box.style.display = 'none';
+        }
+    });
+
+    // AOS visibility fix (same as acts page)
+    function ensureAOSElementsVisible() {
+        document.querySelectorAll('[data-aos]').forEach(element => {
+            element.style.opacity = '1';
+            element.style.visibility = 'visible';
+            element.style.transform = 'none';
+        });
+
+        if (typeof AOS !== 'undefined' && AOS.init) {
+            AOS.refresh();
+        }
+    }
+
+    // Call on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            ensureAOSElementsVisible();
+        }, 500);
+    });
+
+    window.addEventListener('load', function() {
+        ensureAOSElementsVisible();
+    });
+</script>
+
+@endsection
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 

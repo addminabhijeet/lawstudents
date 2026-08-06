@@ -5,7 +5,7 @@
     @endphp
 
     <!-- Category Item -->
-    <div class="dropdown-category-item" data-category-id="{{ $category->id }}" data-depth="{{ $depth }}"
+    <div class="dropdown-category-item-course" data-category-id="{{ $category->id }}" data-depth="{{ $depth }}"
         style="padding:14px 16px; padding-left:{{ $padding }}px; cursor:pointer; border-bottom:1px solid #f3f4f6;
                 display:flex; justify-content:space-between; align-items:center;
                 transition: all 0.2s ease; font-weight:500; color:#1f2937; background:{{ $bgColor }};">

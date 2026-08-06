@@ -45,20 +45,22 @@ class CourseController extends Controller
             ])
             ->get();
 
-        $courses = Course::where('status', 1)
+        // Paginated courses for display (12 per page)
+        $allCourses = Course::where('status', 1)
             ->whereHas('notes', function ($query) {
                 $query->where('status', 1);
             })
-            ->get();
+            ->with(['notes', 'category'])
+            ->paginate(12);
 
-        return view('course.course', compact('categories', 'courses'));
+        return view('course.course', compact('categories', 'allCourses'));
     }
 
     public function coursesearch(Request $request)
     {
         $query = $request->get('q');
 
-        if (strlen($query) < 3) {
+        if (strlen($query) < 2) {
             return response()->json([]);
         }
 
@@ -80,7 +82,7 @@ class CourseController extends Controller
                             ->where('title', 'LIKE', "%{$query}%");
                     });
             })
-            ->limit(10)
+            ->limit(15)
             ->get()
             ->map(function ($course) {
 
@@ -89,7 +91,7 @@ class CourseController extends Controller
 
                 return [
                     'title' => $course->title,
-                    'type' => 'Course',
+                    'category_name' => $course->category->name ?? 'Uncategorized',
                     'course_id' => $course->id,
                     'category_id' => $course->category_id ?? null,
                     'note_id' => $note->id ?? null,
