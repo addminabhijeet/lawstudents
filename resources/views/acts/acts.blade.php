@@ -396,5 +396,53 @@
             box.style.display = 'none';
         }
     });
+
+    // ===== ENSURE AOS ELEMENTS ARE VISIBLE AFTER FILTERING =====
+    // This function resets the visibility of AOS elements
+    function ensureAOSElementsVisible() {
+        // Ensure all data-aos elements are visible
+        document.querySelectorAll('[data-aos]').forEach(element => {
+            element.style.opacity = '1';
+            element.style.visibility = 'visible';
+            element.style.transform = 'none';
+        });
+
+        // Reinitialize AOS if available
+        if (typeof AOS !== 'undefined' && AOS.init) {
+            AOS.refresh();
+        }
+    }
+
+    // Override the filterActsByCategory function to reset AOS
+    const originalFilter = filterActsByCategory;
+    window.filterActsByCategory = function(categoryId) {
+        originalFilter(categoryId);
+        // Reset AOS visibility after filter
+        setTimeout(() => {
+            ensureAOSElementsVisible();
+        }, 100);
+    };
+
+    // Override openActSearch to reset AOS
+    const originalOpenActSearch = openActSearch;
+    window.openActSearch = function(catId, subId, actId) {
+        originalOpenActSearch(catId, subId, actId);
+        // Reset AOS visibility after search
+        setTimeout(() => {
+            ensureAOSElementsVisible();
+        }, 100);
+    };
+
+    // Ensure elements are visible on initial page load
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            ensureAOSElementsVisible();
+        }, 500);
+    });
+
+    // Also ensure visibility when page is fully loaded
+    window.addEventListener('load', function() {
+        ensureAOSElementsVisible();
+    });
 </script>
 @endsection
