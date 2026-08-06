@@ -75,34 +75,40 @@
                                             <i class="fa-solid fa-list" style="margin-right:8px;"></i>All Courses
                                         </div>
 
-                                        @foreach ($categories as $category)
-                                        <!-- Parent Category -->
-                                        <div class="dropdown-item-parent" data-category-id="{{ $category->id }}"
-                                            style="padding:14px 16px; cursor:pointer; border-bottom:1px solid #f3f4f6;
+                                        @php
+                                            function renderCategoryTree($categories, $depth = 0) {
+                                                foreach ($categories as $category) {
+                                                    $padding = 14 + ($depth * 24);
+                                                    $bgColor = $depth % 2 === 0 ? '#fff' : '#fafbfc';
+                                        ?>
+                                        <!-- Category Item -->
+                                        <div class="dropdown-category-item" data-category-id="{{ $category->id }}" data-depth="{{ $depth }}"
+                                            style="padding:14px 16px; padding-left:{{ $padding }}px; cursor:pointer; border-bottom:1px solid #f3f4f6;
                                                     display:flex; justify-content:space-between; align-items:center;
-                                                    transition: all 0.2s ease; font-weight:500; color:#1f2937;">
-                                            <span style="font-weight:500;">
-                                                <i class="fa-solid fa-folder" style="margin-right:8px; color:#128C7E;"></i>
-                                                {{ $category->name }}
+                                                    transition: all 0.2s ease; font-weight:500; color:#1f2937; background:{{ $bgColor }};">
+                                            <span style="display:flex; align-items:center; flex:1;">
+                                                @if($depth === 0)
+                                                    <i class="fa-solid fa-folder" style="margin-right:8px; color:#128C7E; font-size:14px;"></i>
+                                                @else
+                                                    <i class="fa-solid fa-tag" style="margin-right:8px; color:#25D366; font-size:11px;"></i>
+                                                @endif
+                                                <span style="font-size:{{ $depth > 0 ? '13px' : '14px' }};">{{ $category->name }}</span>
                                             </span>
                                             @if($category->children->count() > 0)
-                                            <i class="fa-solid fa-chevron-right" style="font-size:12px; color:#d1d5db; transition: transform 0.2s ease;"></i>
+                                            <i class="fa-solid fa-chevron-right" style="font-size:11px; color:#d1d5db; transition: transform 0.2s ease; margin-left:8px;"></i>
                                             @endif
                                         </div>
 
-                                        <!-- Child Categories (Subcategories) -->
+                                        <!-- Recursive Child Categories -->
                                         @if($category->children->count() > 0)
-                                        @foreach ($category->children as $child)
-                                        <div class="dropdown-item-child" data-parent-id="{{ $category->id }}" data-category-id="{{ $child->id }}"
-                                            style="padding:12px 16px 12px 40px; cursor:pointer; border-bottom:1px solid #f3f4f6;
-                                                    background:#fafbfc; font-size:13px; color:#4b5563;
-                                                    transition: all 0.2s ease; display:none;">
-                                            <i class="fa-solid fa-tag" style="margin-right:8px; color:#25D366; font-size:11px;"></i>
-                                            {{ $child->name }}
-                                        </div>
-                                        @endforeach
+                                            {!! renderCategoryTree($category->children, $depth + 1) !!}
                                         @endif
-                                        @endforeach
+                                        @php
+                                                }
+                                            }
+                                        @endphp
+
+                                        @php renderCategoryTree($categories) @endphp
                                     </div>
                                 </div>
                             </div>
@@ -367,42 +373,17 @@
         this.style.background = menu.style.maxHeight !== '0px' ? '#f9f9f9' : '#fff';
     });
 
-    // Handle Parent Category Click
-    document.querySelectorAll('.dropdown-item-parent').forEach(item => {
-        item.addEventListener('click', function() {
-            const categoryId = this.dataset.categoryId;
-            const categoryName = this.querySelector('span').innerText.replace(/[^\w\s-]/g, '').trim();
-
-            // Update selected category
-            selectedCategoryId = categoryId;
-            document.getElementById('selectedCategory').innerText = categoryName;
-
-            // Close dropdown
-            document.getElementById('categoryDropdownMenu').style.maxHeight = '0px';
-            document.getElementById('categoryDropdownBtn').style.background = '#fff';
-
-            // Filter courses
-            filterCoursesByCategory(categoryId);
-        });
-
-        // Toggle subcategories on hover
-        this.addEventListener('mouseenter', function() {
-            const parentId = this.dataset.categoryId;
-            const children = document.querySelectorAll(`.dropdown-item-child[data-parent-id="${parentId}"]`);
-            children.forEach(child => child.style.display = 'block');
-        });
-    });
-
-    // Handle Child Category Click
-    document.querySelectorAll('.dropdown-item-child').forEach(item => {
+    // Handle Category Item Click (for all nesting levels)
+    document.querySelectorAll('.dropdown-category-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.stopPropagation();
             const categoryId = this.dataset.categoryId;
-            const categoryName = this.innerText.replace(/[^\w\s-]/g, '').trim();
+            const categoryName = this.querySelector('span:last-of-type').innerText.trim();
 
             // Update selected category
             selectedCategoryId = categoryId;
-            document.getElementById('selectedCategory').innerText = categoryName;
+            document.getElementById('selectedCategory').innerHTML =
+                '<i class="fa-solid fa-layer-group" style="margin-right:8px; color:#128C7E; font-size:14px;"></i>' + categoryName;
 
             // Close dropdown
             document.getElementById('categoryDropdownMenu').style.maxHeight = '0px';
@@ -572,23 +553,21 @@
     }
 
     /* Dropdown Item Styling */
-    .dropdown-item:hover,
-    .dropdown-item-parent:hover {
+    .dropdown-item:hover {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: #fff !important;
     }
 
-    .dropdown-item:hover i,
-    .dropdown-item-parent:hover i {
+    .dropdown-item:hover i {
         color: #fff !important;
     }
 
-    .dropdown-item-child:hover {
+    .dropdown-category-item:hover {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: #fff !important;
     }
 
-    .dropdown-item-child:hover i {
+    .dropdown-category-item:hover i {
         color: #fff !important;
     }
 
