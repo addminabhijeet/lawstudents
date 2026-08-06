@@ -67,42 +67,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $allCategories = [];
-                                            function flattenCategories($cats, $depth = 0, &$result = []) {
-                                                foreach ($cats as $cat) {
-                                                    $result[] = ['category' => $cat, 'depth' => $depth];
-                                                    if ($cat->children->count() > 0) {
-                                                        flattenCategories($cat->children, $depth + 1, $result);
-                                                    }
-                                                }
-                                                return $result;
-                                            }
-                                            $flatCategories = flattenCategories($categories);
-                                        @endphp
-
-                                        @forelse ($flatCategories as $item)
-                                        @php $category = $item['category']; $depth = $item['depth']; @endphp
+                                        @forelse ($categories->whereNull('parent_id') as $category)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                <span style="margin-left: {{ $depth * 20 }}px; display: inline-block;">
-                                                    @if($depth > 0)
-                                                        <i class="feather-corner-down-right text-muted" style="font-size: 12px;"></i>
-                                                    @endif
-                                                    @if($category->children->count() > 0)
-                                                        <i class="feather-folder text-warning"></i>
-                                                    @else
-                                                        <i class="feather-layers text-info"></i>
-                                                    @endif
-                                                    {{ $category->name }}
-                                                    @if($category->parent_id)
-                                                        <small class="text-muted">(Depth: {{ $depth }})</small>
-                                                    @else
-                                                        <span class="badge bg-success">Main</span>
-                                                    @endif
-                                                </span>
-                                            </td>
+                                            <td>{{ $category->name }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
@@ -299,29 +267,24 @@
                         <input type="text" name="name" id="edit_category_name" class="form-control" required>
                     </div>
 
-                    <!-- Parent Category - Supports Unlimited Nesting -->
-                    <div class="mb-3">
-                        <label class="form-label">Parent Category <span class="badge bg-info">Optional</span></label>
+                    <!-- Parent Category -->
+                    <!-- <div class="mb-3">
+                        <label class="form-label">Parent Category</label>
                         <select name="parent_id" id="edit_parent_id" class="form-control">
-                            <option value="">-- No Parent (Main Category) --</option>
+                            <option value="">-- Main Category --</option>
 
-                            @php
-                                function renderEditCategoryOptions($cats, $depth = 0, $excludeId = null) {
-                                    foreach ($cats as $cat) {
-                                        if ($cat->id != $excludeId) {
-                                            $indent = str_repeat('─ ', $depth);
-                                            echo '<option value="' . $cat->id . '">' . $indent . $cat->name . '</option>';
-                                            if ($cat->children->count() > 0) {
-                                                renderEditCategoryOptions($cat->children, $depth + 1, $excludeId);
-                                            }
-                                        }
-                                    }
-                                }
-                                renderEditCategoryOptions($categories);
-                            @endphp
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">
+                                {{ $category->name }}
+                            </option>
+                            @endforeach
                         </select>
-                        <small class="text-muted d-block mt-2">Select a parent to create unlimited nested levels. Leave empty for top-level categories.</small>
-                    </div>
+
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="editMainCategoryCheck">
+                            <label class="form-check-label">Set as Main Category</label>
+                        </div>
+                    </div> -->
 
                 </div>
 
@@ -449,26 +412,24 @@
                             required>
                     </div>
 
-                    <!-- Parent Category - Supports Unlimited Nesting -->
-                    <div class="mb-3">
-                        <label class="form-label">Parent Category <span class="badge bg-info">Optional</span></label>
+                    <!-- Parent Category -->
+                    <!-- <div class="mb-3">
+                        <label class="form-label">Parent Category (Optional)</label>
                         <select name="parent_id" class="form-control" id="parentCategorySelect">
-                            <option value="">-- No Parent (Main Category) --</option>
-                            @php
-                                function renderAddCategoryOptions($cats, $depth = 0) {
-                                    foreach ($cats as $cat) {
-                                        $indent = str_repeat('─ ', $depth);
-                                        echo '<option value="' . $cat->id . '">' . $indent . $cat->name . '</option>';
-                                        if ($cat->children->count() > 0) {
-                                            renderAddCategoryOptions($cat->children, $depth + 1);
-                                        }
-                                    }
-                                }
-                                renderAddCategoryOptions($categories);
-                            @endphp
-                        </select>
-                        <small class="text-muted d-block mt-2">Select a parent to create unlimited nested levels. Leave empty for top-level categories.</small>
-                    </div>
+                            <option value="">-- Main Category --</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">
+                                {{ $category->name }}
+                            </option>
+                            @endforeach
+                        </select>-->
+
+                    <!-- Add checkbox for main category -->
+                    <!--<div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="mainCategoryCheck">
+                            <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
+                        </div> 
+                    </div> -->
                 </div>
 
                 <div class="modal-footer">
@@ -982,20 +943,14 @@
 
     });
 
-    // Parent category selection logic for edit form
-    $(document).on("click", ".edit-category", function() {
-        // When edit modal loads, properly set parent_id
-        setTimeout(function() {
-            const parentSelect = $("#edit_parent_id");
-            const currentParentId = parentSelect.val();
-
-            // Remove the current category from parent options to prevent selecting itself
-            const currentCategoryId = $("#edit_category_id").val();
-            parentSelect.find('option').prop('disabled', false);
-
-            // Disable the current category and its children from being selected as parent
-            parentSelect.find('option[value="' + currentCategoryId + '"]').prop('disabled', true);
-        }, 100);
+    // checkbox logic
+    $("#editMainCategoryCheck").on("change", function() {
+        if (this.checked) {
+            $("#edit_parent_id").val("");
+            $("#edit_parent_id").prop("disabled", true);
+        } else {
+            $("#edit_parent_id").prop("disabled", false);
+        }
     });
 </script>
 
