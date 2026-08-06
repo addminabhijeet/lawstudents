@@ -12,49 +12,28 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 8px;
+            gap: 6px;
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 14px;
+            font-size: 13px;
+            padding: 8px 10px;
         }
     }
 
     /* Medium screens */
     @media (max-width: 1199px) {
         .site-logo {
-            width: 280px !important;
+            width: 260px !important;
         }
 
         .header-top-area {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .social-area {
-            gap: 10px !important;
+            gap: 8px !important;
             flex-wrap: wrap !important;
-        }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 13px;
-            padding: 6px 10px;
-        }
-    }
-
-    /* Smaller medium screens */
-    @media (max-width: 1024px) {
-        .site-logo {
-            width: 250px !important;
-        }
-
-        .header-elements {
-            flex-wrap: wrap;
-            gap: 10px;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -63,7 +42,27 @@
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 12px;
-            padding: 5px 8px;
+            padding: 6px 8px;
+        }
+    }
+
+    /* Smaller medium screens */
+    @media (max-width: 1024px) {
+        .site-logo {
+            width: 240px !important;
+        }
+
+        .header-elements {
+            gap: 8px;
+        }
+
+        .main-menu-ex.homepage6 ul {
+            gap: 3px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 11px;
+            padding: 5px 6px;
         }
 
         .contact-3 {
@@ -86,7 +85,7 @@
     .header-elements {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
         flex-wrap: nowrap;
         justify-content: space-between;
         width: 100%;
@@ -94,8 +93,16 @@
 
     @media (max-width: 1199px) {
         .header-elements {
-            flex-wrap: wrap;
-            justify-content: flex-start;
+            gap: 10px;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .header-elements {
+            gap: 8px;
+            justify-content: space-between;
         }
     }
 
@@ -103,18 +110,18 @@
     .main-menu-ex.homepage6 {
         flex: 1;
         min-width: 0;
-        overflow-x: auto;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 
     .main-menu-ex.homepage6 ul {
         display: flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         margin: 0;
         padding: 0;
         list-style: none;
+        justify-content: flex-start;
     }
 
     /* Email and phone responsive wrapping */
@@ -190,29 +197,50 @@
     .main-menu-ex.homepage6 ul li a {
         font-size: 14px;
         display: inline-block;
+        padding: 8px 10px;
+        white-space: nowrap;
+        transition: all 0.3s ease;
     }
 
     /* Prevent horizontal overflow on smaller screens */
     @media (max-width: 1024px) {
         .main-menu-ex.homepage6 ul li a {
-            padding: 5px 8px !important;
-            font-size: 12px !important;
+            padding: 5px 6px !important;
+            font-size: 11px !important;
+            letter-spacing: -0.3px;
         }
 
         .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 5px 12px !important;
+            padding: 5px 8px !important;
         }
+    }
+
+    /* Hide scrollbar if it appears */
+    .main-menu-ex.homepage6::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-menu-ex.homepage6 {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 
     /* Spacing between header sections */
     .header-elements {
-        min-height: 90px;
+        min-height: 85px;
+        padding: 5px 0;
     }
 
     /* Prevent logo distortion */
     .site-logo img {
         max-width: 100%;
         max-height: 100%;
+        display: block;
+    }
+
+    /* Optimize menu layout */
+    .main-menu-ex.homepage6 ul li {
+        flex-shrink: 0;
     }
 
     /* Hamburger menu position */
@@ -221,6 +249,29 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    /* Large desktop screens */
+    @media (min-width: 1600px) {
+        .site-logo {
+            width: 380px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 15px;
+            padding: 10px 12px;
+        }
+
+        .main-menu-ex.homepage6 ul {
+            gap: 8px;
+        }
+    }
+
+    /* Tablet layouts - better spacing */
+    @media (min-width: 1200px) and (max-width: 1399px) {
+        .header-elements {
+            gap: 10px;
+        }
     }
 
     /* Additional small screen adjustments */
@@ -236,6 +287,15 @@
         .header {
             display: none !important;
         }
+    }
+
+    /* Remove scrollbar indicator styling */
+    .main-menu-ex.homepage6::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .main-menu-ex.homepage6::-webkit-scrollbar-thumb {
+        background: transparent;
     }
 </style>
 
@@ -310,20 +370,20 @@
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </a>
                             </div>
-                            <div class="main-menu-ex homepage6" style="flex: 1; min-width: 0; overflow-x: auto; overflow-y: hidden;">
-                                <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; white-space: nowrap;">
-                                    <li style="list-style: none;"><a href="{{ route('frontend.home') }}" class=" mainhome">Home</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.about') }}">About Us</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.acts') }}">Acts</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.rules') }}">Rules</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.clientele') }}">Client</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.course') }}">Course</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
-                                    <li style="list-style: none;"><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
-                                    <li style="list-style: none;">
+                            <div class="main-menu-ex homepage6" style="flex: 1; min-width: 0; overflow: hidden;">
+                                <ul style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0; padding: 0; list-style: none;">
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.acts') }}" style="white-space: nowrap;">Acts</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.rules') }}" style="white-space: nowrap;">Rules</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.copys') }}" style="white-space: nowrap;">Free Notes</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.clientele') }}" style="white-space: nowrap;">Client</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.course') }}" style="white-space: nowrap;">Course</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.gallery') }}" style="white-space: nowrap;">Gallery</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.contact') }}" style="white-space: nowrap;">Contact Us</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;">
                                         <a href="{{ route('login') }}" class="btn"
-                                            style="background-color:#ff5722; color:#fff; border-color:#ff5722;">
+                                            style="background-color:#ff5722; color:#fff; border-color:#ff5722; white-space: nowrap;">
                                             Login
                                         </a>
                                     </li>
