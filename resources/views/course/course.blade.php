@@ -27,84 +27,119 @@
             <div style="width:100%; max-width:1100px; margin:auto;">
 
                 <!-- FILTER AND SEARCH CONTAINER -->
-                <div style="display:flex; gap:15px; margin-bottom:25px; flex-wrap:wrap; align-items:center; justify-content:center;">
+                <div style="background:linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); padding:30px 25px; border-radius:12px;
+                            margin-bottom:35px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border:1px solid #e5e7eb;">
 
-                    <!-- CATEGORY DROPDOWN FILTER -->
-                    <div class="category-filter-wrapper" style="position:relative; min-width:250px;">
-                        <div style="position:relative;">
-                            <button type="button" id="categoryDropdownBtn"
-                                style="width:100%; padding:12px 15px; background:#fff; border:2px solid #e4e6eb; border-radius:8px;
-                                        font-size:14px; font-weight:600; text-align:left; cursor:pointer;
-                                        display:flex; justify-content:space-between; align-items:center;
-                                        transition: all 0.3s ease; color:#333;">
-                                <span id="selectedCategory">All Categories</span>
-                                <i class="fa-solid fa-chevron-down" style="font-size:12px;"></i>
-                            </button>
+                    <!-- HEADER -->
+                    <div style="text-align:center; margin-bottom:20px;">
+                        <h3 style="font-size:18px; font-weight:700; color:#1f2937; margin:0 0 8px 0;">
+                            <i class="fa-solid fa-sliders" style="margin-right:8px; color:#128C7E;"></i>Find Your Course
+                        </h3>
+                        <p style="font-size:13px; color:#6b7280; margin:0;">Filter by category or search by keywords</p>
+                    </div>
 
-                            <!-- DROPDOWN MENU -->
-                            <div id="categoryDropdownMenu"
-                                style="position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #e4e6eb;
-                                        border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); max-height:0; overflow:hidden;
-                                        z-index:1000; transition: max-height 0.3s ease; margin-top:5px;">
+                    <!-- FILTER AND SEARCH ROW -->
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:15px;">
 
-                                <div style="max-height:350px; overflow-y:auto;">
-                                    <!-- All Categories Option -->
-                                    <div class="dropdown-item" data-category-id="all"
-                                        style="padding:12px 15px; cursor:pointer; border-bottom:1px solid #f0f0f0;
-                                                font-weight:600; color:#128C7E; background:#f9f9f9;
-                                                transition: background 0.2s ease;">
-                                        <i class="fa-solid fa-list" style="margin-right:8px;"></i>All Courses
-                                    </div>
+                        <!-- CATEGORY DROPDOWN FILTER -->
+                        <div class="category-filter-wrapper" style="position:relative;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#374151; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">
+                                <i class="fa-solid fa-filter" style="margin-right:6px;"></i>Course Category
+                            </label>
+                            <div style="position:relative;">
+                                <button type="button" id="categoryDropdownBtn"
+                                    style="width:100%; padding:14px 16px; background:#fff; border:2px solid #e5e7eb; border-radius:10px;
+                                            font-size:14px; font-weight:600; text-align:left; cursor:pointer;
+                                            display:flex; justify-content:space-between; align-items:center;
+                                            transition: all 0.3s ease; color:#1f2937;
+                                            box-shadow: 0 1px 3px rgba(0,0,0,0.06);">
+                                    <span id="selectedCategory" style="display:flex; align-items:center;">
+                                        <i class="fa-solid fa-layer-group" style="margin-right:8px; color:#128C7E; font-size:14px;"></i>
+                                        All Categories
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down" style="font-size:12px; color:#9ca3af; transition: transform 0.3s ease;"></i>
+                                </button>
 
-                                    @foreach ($categories as $category)
-                                    <!-- Parent Category -->
-                                    <div class="dropdown-item-parent" data-category-id="{{ $category->id }}"
-                                        style="padding:12px 15px; cursor:pointer; border-bottom:1px solid #f0f0f0;
-                                                display:flex; justify-content:space-between; align-items:center;
-                                                transition: background 0.2s ease;">
-                                        <span style="font-weight:500;">
-                                            <i class="fa-solid fa-folder" style="margin-right:8px; color:#128C7E;"></i>
-                                            {{ $category->name }}
-                                        </span>
+                                <!-- DROPDOWN MENU -->
+                                <div id="categoryDropdownMenu"
+                                    style="position:absolute; top:100%; left:0; right:0; background:#fff; border:2px solid #e5e7eb;
+                                            border-radius:10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-height:0; overflow:hidden;
+                                            z-index:1000; transition: max-height 0.3s ease, box-shadow 0.3s ease; margin-top:8px;">
+
+                                    <div style="max-height:380px; overflow-y:auto;">
+                                        <!-- All Categories Option -->
+                                        <div class="dropdown-item" data-category-id="all"
+                                            style="padding:14px 16px; cursor:pointer; border-bottom:1px solid #f3f4f6;
+                                                    font-weight:600; color:#128C7E; background:linear-gradient(135deg, #f0fdf4 0%, #f9fafb 100%);
+                                                    transition: all 0.2s ease;">
+                                            <i class="fa-solid fa-list" style="margin-right:8px;"></i>All Courses
+                                        </div>
+
+                                        @foreach ($categories as $category)
+                                        <!-- Parent Category -->
+                                        <div class="dropdown-item-parent" data-category-id="{{ $category->id }}"
+                                            style="padding:14px 16px; cursor:pointer; border-bottom:1px solid #f3f4f6;
+                                                    display:flex; justify-content:space-between; align-items:center;
+                                                    transition: all 0.2s ease; font-weight:500; color:#1f2937;">
+                                            <span style="font-weight:500;">
+                                                <i class="fa-solid fa-folder" style="margin-right:8px; color:#128C7E;"></i>
+                                                {{ $category->name }}
+                                            </span>
+                                            @if($category->children->count() > 0)
+                                            <i class="fa-solid fa-chevron-right" style="font-size:12px; color:#d1d5db; transition: transform 0.2s ease;"></i>
+                                            @endif
+                                        </div>
+
+                                        <!-- Child Categories (Subcategories) -->
                                         @if($category->children->count() > 0)
-                                        <i class="fa-solid fa-chevron-right" style="font-size:12px; color:#888;"></i>
+                                        @foreach ($category->children as $child)
+                                        <div class="dropdown-item-child" data-parent-id="{{ $category->id }}" data-category-id="{{ $child->id }}"
+                                            style="padding:12px 16px 12px 40px; cursor:pointer; border-bottom:1px solid #f3f4f6;
+                                                    background:#fafbfc; font-size:13px; color:#4b5563;
+                                                    transition: all 0.2s ease; display:none;">
+                                            <i class="fa-solid fa-tag" style="margin-right:8px; color:#25D366; font-size:11px;"></i>
+                                            {{ $child->name }}
+                                        </div>
+                                        @endforeach
                                         @endif
+                                        @endforeach
                                     </div>
+                                </div>
+                            </div>
+                        </div>
 
-                                    <!-- Child Categories (Subcategories) -->
-                                    @if($category->children->count() > 0)
-                                    @foreach ($category->children as $child)
-                                    <div class="dropdown-item-child" data-parent-id="{{ $category->id }}" data-category-id="{{ $child->id }}"
-                                        style="padding:12px 15px 12px 35px; cursor:pointer; border-bottom:1px solid #f0f0f0;
-                                                background:#f9f9f9; font-size:13px; color:#555;
-                                                transition: background 0.2s ease; display:none;">
-                                        <i class="fa-solid fa-tag" style="margin-right:8px; color:#25D366;"></i>
-                                        {{ $child->name }}
-                                    </div>
-                                    @endforeach
-                                    @endif
-                                    @endforeach
+                        <!-- SEARCH CONTAINER -->
+                        <div class="search-container" style="position:relative;">
+                            <label style="display:block; font-size:12px; font-weight:700; color:#374151; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">
+                                <i class="fa-solid fa-magnifying-glass" style="margin-right:6px;"></i>Quick Search
+                            </label>
+                            <div style="position:relative;">
+                                <input type="text" id="noteSearch" class="form-control"
+                                    placeholder="Search notes, course..." onkeyup="searchNotes(this.value)"
+                                    style="padding:14px 16px 14px 16px; padding-right:40px; border:2px solid #e5e7eb; border-radius:10px;
+                                            font-size:14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: all 0.3s ease;"
+                                    onfocus="this.style.borderColor='#128C7E'; this.style.boxShadow='0 0 0 3px rgba(18,140,126,0.1)';"
+                                    onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='0 1px 3px rgba(0,0,0,0.06)';">
+                                <i class="fa-solid fa-search" style="position:absolute; right:14px; top:50%; transform:translateY(-50%);
+                                                                      color:#9ca3af; pointer-events:none; font-size:14px;"></i>
+
+                                <div id="searchSuggestions"
+                                    style="border:2px solid #e5e7eb; border-top:0; max-height:250px; overflow:auto; display:none;
+                                            position:absolute; top:100%; left:0; right:0; background:#fff;
+                                            border-radius:0 0 10px 10px; z-index:999; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top:-2px;">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- SEARCH CONTAINER -->
-                    <div class="search-container" style="flex:1; min-width:200px; max-width:400px;">
-                        <div style="position:relative;">
-                            <input type="text" id="noteSearch" class="form-control"
-                                placeholder="Search notes, course..." onkeyup="searchNotes(this.value)"
-                                style="padding-right:40px;">
-                            <i class="fa-solid fa-search" style="position:absolute; right:12px; top:50%; transform:translateY(-50%);
-                                                                  color:#999; pointer-events:none; font-size:14px;"></i>
-
-                            <div id="searchSuggestions"
-                                style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none;
-                                        position:absolute; top:100%; left:0; right:0; background:#fff;
-                                        border-radius:0 0 8px 8px; z-index:999;">
-                            </div>
-                        </div>
-                    </div>
+                    <!-- RESPONSIVE MOBILE LAYOUT -->
+                    <style>
+                        @media (max-width: 768px) {
+                            .filter-search-grid {
+                                grid-template-columns: 1fr !important;
+                            }
+                        }
+                    </style>
                 </div>
 
                 <div class="category-grid"
@@ -521,4 +556,72 @@
         document.getElementById('searchSuggestions').style.display = 'none';
     }
 </script>
+
+<!-- ENHANCED STYLING -->
+<style>
+    /* Dropdown Button Hover */
+    #categoryDropdownBtn:hover {
+        border-color: #d1d5db;
+        background: #f9fafb;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    }
+
+    #categoryDropdownBtn.active {
+        background: #f3f4f6;
+        border-color: #128C7E;
+    }
+
+    /* Dropdown Item Styling */
+    .dropdown-item:hover,
+    .dropdown-item-parent:hover {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: #fff !important;
+    }
+
+    .dropdown-item:hover i,
+    .dropdown-item-parent:hover i {
+        color: #fff !important;
+    }
+
+    .dropdown-item-child:hover {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: #fff !important;
+    }
+
+    .dropdown-item-child:hover i {
+        color: #fff !important;
+    }
+
+    /* Search Input Focus */
+    #noteSearch:focus {
+        border-color: #128C7E;
+        box-shadow: 0 0 0 3px rgba(18,140,126,0.1);
+    }
+
+    /* Suggestions hover */
+    #searchSuggestions div:hover {
+        background: #f0fdf4;
+    }
+
+    /* Category Cards Hover */
+    .category-card {
+        transition: all 0.3s ease;
+    }
+
+    .category-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+    }
+
+    /* Course Card Hover */
+    .course-card {
+        transition: all 0.3s ease;
+    }
+
+    .course-card:hover {
+        box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        transform: translateY(-6px);
+    }
+</style>
+
 @endsection
