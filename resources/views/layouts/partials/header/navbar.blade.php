@@ -1,3 +1,244 @@
+<!--===== RESPONSIVE HEADER STYLES =======-->
+<style>
+    /* Responsive logo sizing */
+    .site-logo {
+        width: 350px !important;
+    }
+
+    /* Tablets and smaller desktops */
+    @media (max-width: 1399px) {
+        .site-logo {
+            width: 300px !important;
+        }
+
+        .main-menu-ex.homepage6 ul {
+            gap: 8px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px;
+        }
+    }
+
+    /* Medium screens */
+    @media (max-width: 1199px) {
+        .site-logo {
+            width: 280px !important;
+        }
+
+        .header-top-area {
+            margin-bottom: 10px;
+        }
+
+        .social-area {
+            gap: 10px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .main-menu-ex.homepage6 ul {
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 13px;
+            padding: 6px 10px;
+        }
+    }
+
+    /* Smaller medium screens */
+    @media (max-width: 1024px) {
+        .site-logo {
+            width: 250px !important;
+        }
+
+        .header-elements {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .main-menu-ex.homepage6 ul {
+            gap: 4px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 12px;
+            padding: 5px 8px;
+        }
+
+        .contact-3 {
+            order: -1;
+        }
+    }
+
+    /* Adjust header top spacing */
+    .header-top-border {
+        padding: 12px 0 !important;
+    }
+
+    @media (max-width: 1199px) {
+        .header-top-border {
+            padding: 8px 0 !important;
+        }
+    }
+
+    /* Ensure menu doesn't overlap with logo */
+    .header-elements {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    @media (max-width: 1199px) {
+        .header-elements {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    }
+
+    /* Main menu responsive */
+    .main-menu-ex.homepage6 {
+        flex: 1;
+        min-width: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .main-menu-ex.homepage6 ul {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* Email and phone responsive wrapping */
+    .social-area ul {
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 1199px) {
+        .social-area {
+            order: 3;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .social-area ul {
+            width: 100%;
+        }
+    }
+
+    /* Contact area responsive */
+    .col-lg-4 {
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 1199px) {
+        .col-lg-4 {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+
+    /* Prevent text overflow */
+    .top-content-area .content p,
+    .social-area a {
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* Header row responsive gaps */
+    .header-top-area .row {
+        row-gap: 8px;
+    }
+
+    @media (max-width: 1199px) {
+        .header-top-area .row {
+            row-gap: 12px;
+        }
+    }
+
+    /* Email text truncation on smaller screens */
+    @media (max-width: 1024px) {
+        .social-area a {
+            font-size: 12px;
+        }
+
+        .social-area a span {
+            max-width: 150px;
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    /* Ensure contact area doesn't cause horizontal scroll */
+    .header-top-area {
+        overflow: hidden;
+    }
+
+    /* Menu items font size adjustment */
+    .main-menu-ex.homepage6 ul li a {
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    /* Prevent horizontal overflow on smaller screens */
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul li a {
+            padding: 5px 8px !important;
+            font-size: 12px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li:last-child a {
+            padding: 5px 12px !important;
+        }
+    }
+
+    /* Spacing between header sections */
+    .header-elements {
+        min-height: 90px;
+    }
+
+    /* Prevent logo distortion */
+    .site-logo img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    /* Hamburger menu position */
+    .header__bar-icon {
+        min-width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Additional small screen adjustments */
+    @media (max-width: 991px) {
+        .site-logo {
+            width: 240px !important;
+        }
+
+        .main-menu-ex.homepage6 {
+            display: none;
+        }
+
+        .header {
+            display: none !important;
+        }
+    }
+</style>
+
 <!--===== HEADER STARTS =======-->
 <header class="header d-none d-lg-block" style="position:relative; z-index:999;">
     <div class="header-area header homepage7 header-sticky" id="header" style="position:relative; top:auto;">
@@ -7,17 +248,17 @@
                     <div class="header-top-area">
                         <div class="header-top-border"
                             style="background-image: url(/img/bacground/header7-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
-                            <div class="row">
-                                <div class="col-lg-6">
+                            <div class="row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+                                <div class="col-lg-6" style="flex: 0 1 auto; min-width: 0;">
                                     <div class="top-content-area">
                                         <div class="content">
-                                            <p>Start your journey into the world of law today.<a
+                                            <p style="margin: 0; word-break: break-word; overflow-wrap: break-word;">Start your journey into the world of law today.<a
                                                     href="{{ route('frontend.contact') }}">Contact Us</a></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-2"></div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-2" style="display: none;"></div>
+                                <div class="col-lg-4" style="flex: 1 1 auto; min-width: auto; display: flex; align-items: center; justify-content: flex-end;">
                                     @php
                                         $user = \App\Models\User::first();
                                         $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
@@ -34,24 +275,24 @@
                                     @endphp
 
                                     <div class="social-area"
-                                        style="display:flex; align-items:center; gap:20px; flex-wrap:nowrap; white-space:nowrap;">
+                                        style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; white-space:normal;">
 
-                                        <ul style="display:flex; align-items:center; margin:0; padding:0;">
+                                        <ul style="display:flex; align-items:center; margin:0; padding:0; white-space: nowrap;">
                                             <li style="list-style:none;">
                                                 <a href="mailto:{{ $email }}"
-                                                    style="display:flex; align-items:center; gap:8px;">
-                                                    <img src="/img/icons/email3.svg" alt="">
-                                                    {{ $email }}
+                                                    style="display:flex; align-items:center; gap:8px; font-size: 13px; white-space: nowrap;">
+                                                    <img src="/img/icons/email3.svg" alt="" style="min-width: 16px;">
+                                                    <span style="overflow: hidden; text-overflow: ellipsis;">{{ $email }}</span>
                                                 </a>
                                             </li>
                                         </ul>
 
                                         <ul class="list"
-                                            style="display:flex; align-items:center; margin:0; padding:0;">
+                                            style="display:flex; align-items:center; margin:0; padding:0; white-space: nowrap;">
                                             <li style="list-style:none;">
                                                 <a href="tel:{{ $mobile }}"
-                                                    style="display:flex; align-items:center; gap:8px;">
-                                                    <img src="/img/icons/phone3.svg" alt="">
+                                                    style="display:flex; align-items:center; gap:8px; font-size: 13px; white-space: nowrap;">
+                                                    <img src="/img/icons/phone3.svg" alt="" style="min-width: 16px;">
                                                     {{ $mobile }}
                                                 </a>
                                             </li>
@@ -61,26 +302,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="header-elements">
+                        <div class="header-elements" style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 15px; flex-wrap: nowrap;">
                             <div class="site-logo"
-                                style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                                style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink: 0;">
                                 <a href="" style="display:block; width:100%; height:100%;">
                                     <img src="assets/images/logo-full.png" alt=""
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </a>
                             </div>
-                            <div class="main-menu-ex homepage6">
-                                <ul>
-                                    <li><a href="{{ route('frontend.home') }}" class=" mainhome">Home</a></li>
-                                    <li><a href="{{ route('frontend.about') }}">About Us</a></li>
-                                    <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
-                                    <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
-                                    <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
-                                    <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">Course</a></li>
-                                    <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
-                                    <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
-                                    <li>
+                            <div class="main-menu-ex homepage6" style="flex: 1; min-width: 0; overflow-x: auto; overflow-y: hidden;">
+                                <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 12px; margin: 0; padding: 0; list-style: none; white-space: nowrap;">
+                                    <li style="list-style: none;"><a href="{{ route('frontend.home') }}" class=" mainhome">Home</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.about') }}">About Us</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.acts') }}">Acts</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.rules') }}">Rules</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.clientele') }}">Client</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.course') }}">Course</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                                    <li style="list-style: none;"><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+                                    <li style="list-style: none;">
                                         <a href="{{ route('login') }}" class="btn"
                                             style="background-color:#ff5722; color:#fff; border-color:#ff5722;">
                                             Login
@@ -88,7 +329,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="contact-3 d-lg-block d-none">
+                            <div class="contact-3 d-lg-block d-none" style="flex-shrink: 0;">
                                 <div class="consulting2 consulting3">
                                     <div class="marginsp1"></div>
                                     <a class="header__bar hamburger_menu header__bar-icon header_bar5"
