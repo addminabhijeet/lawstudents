@@ -24,6 +24,16 @@
 
             <div style="width:100%; max-width:1100px; margin:auto;">
 
+                <!-- FILTER DROPDOWN -->
+                <div style="max-width:600px; margin:0 auto 20px; position:relative;">
+                    <select id="categoryFilter" class="form-control" onchange="filterActCategory(this.value)" style="margin-bottom: 15px;">
+                        <option value="">All Categories</option>
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <!-- SEARCH -->
                 <div style="max-width:600px; margin:0 auto 20px; position:relative;">
                     <input type="text" id="actSearch" class="form-control"
@@ -36,7 +46,7 @@
 
                 @foreach ($categories as $category)
                 <!-- CATEGORY -->
-                <div style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
+                <div class="act-category" data-category-id="{{ $category->id }}" style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
 
                     <div onclick="toggleAccordion('actCat{{ $category->id }}')"
                         style="cursor:pointer; padding:15px; background:#fff; font-weight:600;">
@@ -121,6 +131,17 @@
 <script>
     function toggleAccordion(id) {
         return; // disabled toggle
+    }
+
+    function filterActCategory(categoryId) {
+        const categories = document.querySelectorAll('.act-category');
+        categories.forEach(category => {
+            if (categoryId === '' || category.dataset.categoryId === categoryId) {
+                category.style.display = 'block';
+            } else {
+                category.style.display = 'none';
+            }
+        });
     }
 
     function searchActs(query) {
