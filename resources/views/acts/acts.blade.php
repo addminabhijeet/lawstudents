@@ -142,7 +142,7 @@
 
                 @foreach ($categories as $category)
                 <!-- CATEGORY -->
-                <div class="act-category-container" data-category-id="{{ $category->id }}" style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
+                <div data-category-id="{{ $category->id }}" style="margin-bottom:15px; border:1px solid #ddd; border-radius:10px; overflow:hidden;">
 
                     <div onclick="toggleAccordion('actCat{{ $category->id }}')"
                         style="cursor:pointer; padding:15px; background:#fff; font-weight:600;">
@@ -285,7 +285,7 @@
             btn.querySelector('i').style.color = '#9ca3af';
 
             // Filter categories
-            filterActsByCategory(categoryId);
+            filterCategoriesBy(categoryId);
         });
 
         // Toggle subcategories on hover
@@ -317,12 +317,12 @@
             btn.querySelector('i').style.color = '#9ca3af';
 
             // Filter categories
-            filterActsByCategory(categoryId);
+            filterCategoriesBy(categoryId);
         });
     });
 
     // Handle "All Categories" Option
-    document.querySelector('.dropdown-item[data-category-id="all"]').addEventListener('click', function() {
+    document.querySelector('[data-category-id="all"]').addEventListener('click', function() {
         selectedCategoryId = 'all';
         document.getElementById('selectedCategory').innerText = 'All Categories';
 
@@ -384,20 +384,20 @@
         }
     });
 
-    // Filter acts by category
-    function filterActsByCategory(categoryId) {
-        const categoryContainers = document.querySelectorAll('.act-category-container');
+    // Filter categories by ID
+    function filterCategoriesBy(categoryId) {
+        const categoryDivs = document.querySelectorAll('[data-category-id]');
 
-        categoryContainers.forEach(container => {
+        categoryDivs.forEach(div => {
             if (categoryId === 'all') {
-                container.style.display = 'block';
-                container.style.animation = 'fadeIn 0.3s ease';
+                div.style.display = 'block';
+                div.style.animation = 'fadeIn 0.3s ease';
             } else {
-                if (container.dataset.categoryId == categoryId) {
-                    container.style.display = 'block';
-                    container.style.animation = 'fadeIn 0.3s ease';
+                if (div.dataset.categoryId == categoryId) {
+                    div.style.display = 'block';
+                    div.style.animation = 'fadeIn 0.3s ease';
                 } else {
-                    container.style.display = 'none';
+                    div.style.display = 'none';
                 }
             }
         });
