@@ -61,23 +61,66 @@
 
             <div style="width:100%; max-width:1100px; margin:auto;">
 
-                <!-- FILTER DROPDOWN -->
-                <div style="max-width:600px; margin:0 auto 20px; position:relative;">
-                    <select id="categoryFilter" class="form-control" onchange="filterCopyCategory(this.value)" style="margin-bottom: 15px;">
-                        <option value="">All Categories</option>
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <!-- FILTER DROPDOWN & SEARCH -->
+                <div style="display:flex; gap:15px; margin-bottom:20px; flex-wrap:wrap; align-items:center; justify-content:center;">
 
-                <!-- SEARCH -->
-                <div style="max-width:600px; margin:0 auto 20px; position:relative;">
-                    <input type="text" id="copySearch" class="form-control"
-                        placeholder="Search Free Notes..." onkeyup="searchCopys(this.value)">
+                    <!-- CATEGORY DROPDOWN -->
+                    <div class="category-filter-wrapper" style="position:relative; min-width:250px;">
+                        <div style="position:relative;">
+                            <button type="button" id="categoryDropdownBtn"
+                                style="width:100%; padding:12px 15px; background:#fff; border:2px solid #e4e6eb; border-radius:8px;
+                                        font-size:14px; font-weight:600; text-align:left; cursor:pointer;
+                                        display:flex; justify-content:space-between; align-items:center;
+                                        transition: all 0.3s ease; color:#333;">
+                                <span id="selectedCategory">All Categories</span>
+                                <i class="fa-solid fa-chevron-down" style="font-size:12px;"></i>
+                            </button>
 
-                    <div id="copySuggestions"
-                        style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none; position:absolute; width:100%; background:#fff; z-index:999;">
+                            <!-- DROPDOWN MENU -->
+                            <div id="categoryDropdownMenu"
+                                style="position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #e4e6eb;
+                                        border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); max-height:0; overflow:hidden;
+                                        z-index:1000; transition: max-height 0.3s ease; margin-top:5px;">
+
+                                <div style="max-height:350px; overflow-y:auto;">
+                                    <!-- All Categories Option -->
+                                    <div class="dropdown-item-copy" data-category-id="all"
+                                        style="padding:12px 15px; cursor:pointer; border-bottom:1px solid #f0f0f0;
+                                                font-weight:600; color:#128C7E; background:#f9f9f9;
+                                                transition: background 0.2s ease;">
+                                        <i class="fa-solid fa-list" style="margin-right:8px;"></i>All Categories
+                                    </div>
+
+                                    @foreach ($categories as $category)
+                                    <!-- Parent Category -->
+                                    <div class="dropdown-parent-copy" data-category-id="{{ $category->id }}"
+                                        style="padding:12px 15px; cursor:pointer; border-bottom:1px solid #f0f0f0;
+                                                display:flex; justify-content:space-between; align-items:center;
+                                                transition: background 0.2s ease; font-weight:500;">
+                                        <span>
+                                            <i class="fa-solid fa-folder" style="margin-right:8px; color:#128C7E;"></i>
+                                            {{ $category->name }}
+                                        </span>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEARCH -->
+                    <div class="search-container" style="flex:1; min-width:200px; max-width:400px; position:relative;">
+                        <input type="text" id="copySearch" class="form-control"
+                            placeholder="Search Free Notes..." onkeyup="searchCopys(this.value)"
+                            style="padding-right:40px;">
+                        <i class="fa-solid fa-search" style="position:absolute; right:12px; top:50%; transform:translateY(-50%);
+                                                              color:#999; pointer-events:none; font-size:14px;"></i>
+
+                        <div id="copySuggestions"
+                            style="border:1px solid #ddd; border-top:0; max-height:250px; overflow:auto; display:none;
+                                    position:absolute; top:100%; left:0; right:0; background:#fff;
+                                    border-radius:0 0 8px 8px; z-index:999;">
+                        </div>
                     </div>
                 </div>
 
@@ -150,19 +193,90 @@
 </style>
 
 <script>
-    function toggleAccordion(id) {
-        return; // Disabled toggle
-    }
+    let selectedCopyCategoryId = 'all';
 
-    function filterCopyCategory(categoryId) {
-        const categories = document.querySelectorAll('.copy-category');
-        categories.forEach(category => {
-            if (categoryId === '' || category.dataset.categoryId === categoryId) {
-                category.style.display = 'block';
+    // Open/Close Dropdown
+    document.getElementById('categoryDropdownBtn').addEventListener('click', function() {
+        let menu = document.getElementById('categoryDropdownMenu');
+        menu.style.maxHeight = menu.style.maxHeight === '0px' || !menu.style.maxHeight ? menu.scrollHeight + 'px' : '0px';
+        this.style.background = menu.style.maxHeight !== '0px' ? '#f9f9f9' : '#fff';
+    });
+
+    // Handle Category Click
+    document.querySelectorAll('.dropdown-parent-copy').forEach(item => {
+        item.addEventListener('click', function() {
+            const categoryId = this.dataset.categoryId;
+            const categoryName = this.querySelector('span').innerText.replace(/[^\w\s-]/g, '').trim();
+
+            selectedCopyCategoryId = categoryId;
+            document.getElementById('selectedCategory').innerText = categoryName;
+
+            // Close dropdown
+            let menu = document.getElementById('categoryDropdownMenu');
+            menu.style.maxHeight = '0px';
+            document.getElementById('categoryDropdownBtn').style.background = '#fff';
+
+            // Filter
+            filterCopysByCategory(categoryId);
+        });
+    });
+
+    // Handle "All Categories" Option
+    document.querySelector('.dropdown-item-copy[data-category-id="all"]').addEventListener('click', function() {
+        selectedCopyCategoryId = 'all';
+        document.getElementById('selectedCategory').innerText = 'All Categories';
+
+        let menu = document.getElementById('categoryDropdownMenu');
+        menu.style.maxHeight = '0px';
+        document.getElementById('categoryDropdownBtn').style.background = '#fff';
+
+        filterCopysByCategory('all');
+    });
+
+    // Dropdown Item Hover Effects
+    document.querySelectorAll('.dropdown-item-copy, .dropdown-parent-copy').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.background = '#e8f5f3';
+        });
+
+        item.addEventListener('mouseleave', function() {
+            if (item.classList.contains('dropdown-item-copy')) {
+                this.style.background = '#f9f9f9';
             } else {
-                category.style.display = 'none';
+                this.style.background = '';
             }
         });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.category-filter-wrapper');
+        if (!dropdown.contains(event.target)) {
+            document.getElementById('categoryDropdownMenu').style.maxHeight = '0px';
+            document.getElementById('categoryDropdownBtn').style.background = '#fff';
+        }
+    });
+
+    // Filter copys by category
+    function filterCopysByCategory(categoryId) {
+        const categoryCards = document.querySelectorAll('.copy-category');
+
+        categoryCards.forEach(card => {
+            if (categoryId === 'all') {
+                card.style.display = 'block';
+            } else {
+                const cardCategoryId = card.dataset.categoryId;
+                if (cardCategoryId == categoryId) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    function toggleAccordion(id) {
+        return; // Disabled toggle
     }
 
     function searchCopys(query) {
