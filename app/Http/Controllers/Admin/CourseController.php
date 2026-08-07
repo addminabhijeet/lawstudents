@@ -35,10 +35,18 @@ class CourseController extends Controller
 
     public function listcourse()
     {
-        $categories = Category::with(['courses' => function ($query) {
-            $query->where('delete', 1); // filter courses
-        }])
-            ->where('delete', 1) // filter categories
+        // Load only root categories with full hierarchy
+        $categories = Category::with([
+            'courses' => function ($query) {
+                $query->where('delete', 1);
+            },
+            'children' => function ($query) {
+                $query->where('status', 1)->where('delete', 1);
+            }
+        ])
+            ->where('delete', 1)
+            ->whereNull('parent_id')  // Only root categories
+            ->orderBy('sort_order')
             ->get();
 
         return view('course.list', compact('categories'));
@@ -46,22 +54,39 @@ class CourseController extends Controller
 
     public function listcoursecategory()
     {
-        // Paginate categories instead of using get()
-        $categories = Category::with(['courses' => function ($query) {
-            $query->where('delete', 1); // filter courses
-        }])
-            ->where('delete', 1) // filter categories
-            ->paginate(10); // set pagination, 10 per page
+        // Fetch all root categories with full hierarchy for display
+        $allCategories = Category::with([
+            'courses' => function ($query) {
+                $query->where('delete', 1);
+            },
+            'children' => function ($query) {
+                $query->where('status', 1)->where('delete', 1);
+            }
+        ])
+            ->where('delete', 1)
+            ->whereNull('parent_id')
+            ->orderBy('sort_order')
+            ->get();
 
-        return view('course.listcategory', compact('categories'));
+        // Paginate for table display
+        $categories = Category::where('delete', 1)
+            ->paginate(10);
+
+        return view('course.listcategory', compact('categories', 'allCategories'));
     }
 
     public function listcoursesubcategory()
     {
-        $categories = Category::with(['courses' => function ($query) {
-            $query->where('delete', 1); // filter courses
-        }])
-            ->where('delete', 1) // filter categories
+        $categories = Category::with([
+            'courses' => function ($query) {
+                $query->where('delete', 1);
+            },
+            'children' => function ($query) {
+                $query->where('status', 1)->where('delete', 1);
+            }
+        ])
+            ->where('delete', 1)
+            ->orderBy('sort_order')
             ->paginate(10);
 
         return view('course.listsubcategory', compact('categories'));

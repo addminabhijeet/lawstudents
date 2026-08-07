@@ -61,32 +61,22 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="wd-30">#</th>
-                                            <th>Name</th>
+                                            <th class="wd-10">#</th>
+                                            <th>Category Name</th>
+                                            <th>Courses</th>
+                                            <th>Status</th>
                                             <th class="text-end">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($categories->whereNull('parent_id') as $category)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>
-                                                <div class="hstack gap-2 justify-content-end">
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-light edit-category"
-                                                        data-id="{{ $category->id }}">
-                                                        <i class="feather-edit"></i>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-danger delete-category"
-                                                        data-id="{{ $category->id }}">
-                                                        <i class="feather-trash-2"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                            @include('course.partials.admin-category-row', [
+                                                'category' => $category,
+                                                'depth' => 0
+                                            ])
                                         @empty
                                         <tr>
-                                            <td colspan="3" class="text-center">No Categories Found</td>
+                                            <td colspan="5" class="text-center">No Categories Found</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
@@ -148,12 +138,13 @@
                             <div class="row">
                                 <!-- Category -->
                                 <div class="col-md-12 mb-3">
-                                    <label class="form-label">Select Category</label>
+                                    <label class="form-label">Select Category <span class="text-danger">*</span></label>
                                     <select name="category_id" class="form-control" required>
                                         <option value="">-- Select Category --</option>
-                                        @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
+                                        @include('course.partials.category-select-tree', [
+                                            'categories' => $allCategories ?? $categories->whereNull('parent_id'),
+                                            'depth' => 0
+                                        ])
                                     </select>
                                 </div>
 
@@ -268,23 +259,23 @@
                     </div>
 
                     <!-- Parent Category -->
-                    <!-- <div class="mb-3">
-                        <label class="form-label">Parent Category</label>
+                    <div class="mb-3">
+                        <label class="form-label">Parent Category (Optional)</label>
                         <select name="parent_id" id="edit_parent_id" class="form-control">
-                            <option value="">-- Main Category --</option>
-
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">
-                                {{ $category->name }}
-                            </option>
-                            @endforeach
+                            <option value="">-- Make This a Root Category --</option>
+                            @include('course.partials.category-select-tree', [
+                                'categories' => $categories->whereNull('parent_id'),
+                                'depth' => 0
+                            ])
                         </select>
 
                         <div class="form-check mt-2">
                             <input type="checkbox" class="form-check-input" id="editMainCategoryCheck">
-                            <label class="form-check-label">Set as Main Category</label>
+                            <label class="form-check-label" for="editMainCategoryCheck">
+                                Set as Root Category
+                            </label>
                         </div>
-                    </div> -->
+                    </div>
 
                 </div>
 
@@ -321,12 +312,13 @@
                                 <input type="hidden" name="id" id="edit_course_id">
                                 <!-- Category -->
                                 <div class="col-md-12 mb-3">
-                                    <label class="form-label">Select Category</label>
+                                    <label class="form-label">Select Category <span class="text-danger">*</span></label>
                                     <select name="category_id" class="form-control" required>
                                         <option value="">-- Select Category --</option>
-                                        @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
+                                        @include('course.partials.category-select-tree', [
+                                            'categories' => $allCategories ?? $categories->whereNull('parent_id'),
+                                            'depth' => 0
+                                        ])
                                     </select>
                                 </div>
 
@@ -413,23 +405,22 @@
                     </div>
 
                     <!-- Parent Category -->
-                    <!-- <div class="mb-3">
+                    <div class="mb-3">
                         <label class="form-label">Parent Category (Optional)</label>
                         <select name="parent_id" class="form-control" id="parentCategorySelect">
-                            <option value="">-- Main Category --</option>
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">
-                                {{ $category->name }}
-                            </option>
-                            @endforeach
-                        </select>-->
+                            <option value="">-- Make This a Root Category --</option>
+                            @include('course.partials.category-select-tree', [
+                                'categories' => $categories->whereNull('parent_id'),
+                                'depth' => 0
+                            ])
+                        </select>
 
-                    <!-- Add checkbox for main category -->
-                    <!--<div class="form-check mt-2">
+                        <!-- Add checkbox for main category -->
+                        <div class="form-check mt-2">
                             <input type="checkbox" class="form-check-input" id="mainCategoryCheck">
-                            <label class="form-check-label" for="mainCategoryCheck">Set as Main Category</label>
-                        </div> 
-                    </div> -->
+                            <label class="form-check-label" for="mainCategoryCheck">Set as Root Category</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
