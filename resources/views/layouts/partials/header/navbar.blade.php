@@ -12,7 +12,7 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 6px;
+            gap: 4px;
         }
 
         .main-menu-ex.homepage6 ul li a {
@@ -37,7 +37,7 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 4px;
+            gap: 3px;
         }
 
         .main-menu-ex.homepage6 ul li a {
@@ -57,7 +57,7 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 3px;
+            gap: 2px;
         }
 
         .main-menu-ex.homepage6 ul li a {
@@ -117,7 +117,7 @@
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 10px;
+        gap: 5px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -263,7 +263,7 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 8px;
+            gap: 6px;
         }
     }
 
@@ -292,7 +292,7 @@
     /* Ultra-small screens - ensure single line */
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul {
-            gap: 2px;
+            gap: 1px;
         }
 
         .main-menu-ex.homepage6 ul li a {
@@ -308,7 +308,7 @@
     /* Extra small screens */
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul {
-            gap: 1px;
+            gap: 0.5px;
         }
 
         .main-menu-ex.homepage6 ul li a {
@@ -403,7 +403,7 @@
                                 </a>
                             </div>
                             <div class="main-menu-ex homepage6" style="flex: 1; min-width: 0; overflow: hidden;">
-                                <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 10px; margin: 0; padding: 0; list-style: none;">
+                                <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 5px; margin: 0; padding: 0; list-style: none;">
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.acts') }}" style="white-space: nowrap;">Acts</a></li>
