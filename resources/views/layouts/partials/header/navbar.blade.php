@@ -12,12 +12,12 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 4px;
+            gap: 0px;
         }
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 13px;
-            padding: 6px 8px;
+            padding: 5px 6px;
         }
     }
 
@@ -37,12 +37,12 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 3px;
+            gap: 0px;
         }
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 12px;
-            padding: 6px 8px;
+            padding: 5px 5px;
         }
     }
 
@@ -57,12 +57,12 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 2px;
+            gap: 0px;
         }
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 11px;
-            padding: 5px 6px;
+            padding: 4px 4px;
         }
 
         .contact-3 {
@@ -85,7 +85,7 @@
     .header-elements {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 5px;
         flex-wrap: nowrap;
         justify-content: space-between;
         width: 100%;
@@ -93,7 +93,7 @@
 
     @media (max-width: 1199px) {
         .header-elements {
-            gap: 8px;
+            gap: 5px;
             flex-wrap: nowrap;
             justify-content: space-between;
         }
@@ -101,7 +101,7 @@
 
     @media (max-width: 1024px) {
         .header-elements {
-            gap: 8px;
+            gap: 5px;
             justify-content: space-between;
         }
     }
@@ -117,7 +117,7 @@
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 2px;
+        gap: 0px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -197,7 +197,7 @@
     .main-menu-ex.homepage6 ul li a {
         font-size: 14px;
         display: inline-block;
-        padding: 6px 8px;
+        padding: 5px 6px;
         white-space: nowrap;
         transition: all 0.3s ease;
     }
@@ -263,7 +263,7 @@
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 3px;
+            gap: 0px;
         }
     }
 
@@ -292,7 +292,7 @@
     /* Ultra-small screens - ensure single line */
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul {
-            gap: 1px;
+            gap: 0px;
         }
 
         .main-menu-ex.homepage6 ul li a {
@@ -308,7 +308,7 @@
     /* Extra small screens */
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul {
-            gap: 0.5px;
+            gap: 0px;
         }
 
         .main-menu-ex.homepage6 ul li a {
@@ -403,7 +403,7 @@
                                 </a>
                             </div>
                             <div class="main-menu-ex homepage6" style="flex: 1; min-width: 0; overflow: hidden;">
-                                <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 2px; margin: 0; padding: 0; list-style: none;">
+                                <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 0px; margin: 0; padding: 0; list-style: none;">
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.acts') }}" style="white-space: nowrap;">Acts</a></li>
