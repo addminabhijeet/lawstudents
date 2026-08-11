@@ -2,13 +2,15 @@
 <style>
     /* Responsive logo sizing */
     .site-logo {
-        width: 350px !important;
+        width: 240px !important;
+        flex-shrink: 0;
+        height: 70px !important;
     }
 
     /* Tablets and smaller desktops */
     @media (max-width: 1399px) {
         .site-logo {
-            width: 300px !important;
+            width: 220px !important;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -16,15 +18,16 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 13px;
-            padding: 5px 6px;
+            font-size: 11px;
+            padding: 3px 4px;
+            letter-spacing: -0.4px;
         }
     }
 
     /* Medium screens */
     @media (max-width: 1199px) {
         .site-logo {
-            width: 260px !important;
+            width: 220px !important;
         }
 
         .header-top-area {
@@ -41,8 +44,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 12px;
-            padding: 5px 5px;
+            font-size: 11px;
+            padding: 3px 4px;
+            letter-spacing: -0.3px;
         }
     }
 
@@ -61,8 +65,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 4px 4px;
+            font-size: 10px;
+            padding: 3px 3px;
+            letter-spacing: -0.4px;
         }
 
         .contact-3 {
@@ -85,15 +90,17 @@
     .header-elements {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 3px;
         flex-wrap: nowrap;
         justify-content: space-between;
         width: 100%;
+        min-height: 75px;
+        padding: 0 !important;
     }
 
     @media (max-width: 1199px) {
         .header-elements {
-            gap: 5px;
+            gap: 3px;
             flex-wrap: nowrap;
             justify-content: space-between;
         }
@@ -101,7 +108,7 @@
 
     @media (max-width: 1024px) {
         .header-elements {
-            gap: 5px;
+            gap: 3px;
             justify-content: space-between;
         }
     }
@@ -195,11 +202,12 @@
 
     /* Menu items font size adjustment */
     .main-menu-ex.homepage6 ul li a {
-        font-size: 14px;
+        font-size: 12px;
         display: inline-block;
-        padding: 5px 6px;
+        padding: 3px 4px;
         white-space: nowrap;
         transition: all 0.3s ease;
+        letter-spacing: -0.4px;
     }
 
     /* Prevent horizontal overflow on smaller screens */
@@ -245,21 +253,24 @@
 
     /* Hamburger menu position */
     .header__bar-icon {
-        min-width: 40px;
+        min-width: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
+        font-size: 18px;
     }
 
     /* Large desktop screens */
     @media (min-width: 1600px) {
         .site-logo {
-            width: 380px !important;
+            width: 280px !important;
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 15px;
-            padding: 8px 10px;
+            font-size: 12px;
+            padding: 3px 4px;
+            letter-spacing: -0.4px;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -296,12 +307,13 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 9px !important;
-            padding: 4px 4px !important;
+            font-size: 8px !important;
+            padding: 3px 3px !important;
+            letter-spacing: -0.4px;
         }
 
         .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 4px 6px !important;
+            padding: 3px 4px !important;
         }
     }
 
@@ -312,12 +324,13 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 8px !important;
-            padding: 3px 3px !important;
+            font-size: 7px !important;
+            padding: 2px 2px !important;
+            letter-spacing: -0.5px;
         }
 
         .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 3px 5px !important;
+            padding: 2px 3px !important;
         }
     }
 
