@@ -1,8 +1,284 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
-    <!-- ===== TEAM SECTION RESPONSIVE STYLES ======= -->
+    <!-- ===== COURSES & TEAM SECTION RESPONSIVE STYLES ======= -->
     <style>
+        /* ===== COURSES SECTION ===== */
+        /* Courses section - ensure 3 column layout on all screens */
+        .service7-section-area .col-lg-4 {
+            width: 33.333333% !important;
+            flex: 0 0 33.333333% !important;
+            max-width: 33.333333% !important;
+        }
+
+        /* Course box - flex column layout (image on top, text below) */
+        .service7-box-area {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service7-boxarea {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: auto;
+            margin-bottom: 0;
+        }
+
+        /* Course image at top */
+        .service-images {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .service-images img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Course author area below image */
+        .service7-author-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .service-icons {
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .service-icons img {
+            width: 45px;
+            height: 45px;
+        }
+
+        .service-7-content a {
+            font-size: 16px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Course description content */
+        .service7-content {
+            text-align: center;
+        }
+
+        .service7-content p {
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0 0 10px 0;
+        }
+
+        .service7-content a {
+            font-size: 12px;
+            color: #ff5722;
+            text-decoration: none;
+        }
+
+        /* Course header section */
+        .service7-header-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .service7-header-area span {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .service7-header-area h2 {
+            font-size: 32px;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .service7-header-area .defence {
+            color: #ff5722;
+        }
+
+        /* Tablet screens */
+        @media (max-width: 1024px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service-images {
+                margin-bottom: 10px;
+            }
+
+            .service-icons img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .service-7-content a {
+                font-size: 15px;
+                margin-bottom: 6px;
+            }
+
+            .service7-content p {
+                font-size: 12px;
+            }
+
+            .service7-header-area h2 {
+                font-size: 28px;
+            }
+        }
+
+        /* Medium screens */
+        @media (max-width: 768px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service7-box-area {
+                padding: 8px;
+            }
+
+            .service-images {
+                margin-bottom: 8px;
+            }
+
+            .service7-author-area {
+                margin-bottom: 8px;
+            }
+
+            .service-icons img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .service-7-content a {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .service7-content p {
+                font-size: 11px;
+            }
+
+            .service7-header-area span {
+                font-size: 12px;
+            }
+
+            .service7-header-area h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Small screens */
+        @media (max-width: 576px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service7-box-area {
+                padding: 6px;
+            }
+
+            .service-images {
+                margin-bottom: 6px;
+            }
+
+            .service7-author-area {
+                margin-bottom: 6px;
+            }
+
+            .service-icons img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .service-7-content a {
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+
+            .service7-content p {
+                font-size: 10px;
+                line-height: 1.3;
+            }
+
+            .service7-content a {
+                font-size: 10px;
+            }
+
+            .service7-header-area span {
+                font-size: 11px;
+            }
+
+            .service7-header-area h2 {
+                font-size: 20px;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service7-box-area {
+                padding: 4px;
+            }
+
+            .service-images {
+                margin-bottom: 4px;
+            }
+
+            .service7-author-area {
+                margin-bottom: 4px;
+            }
+
+            .service-icons img {
+                width: 28px;
+                height: 28px;
+            }
+
+            .service-7-content a {
+                font-size: 11px;
+                margin-bottom: 3px;
+            }
+
+            .service7-content p {
+                font-size: 9px;
+                line-height: 1.2;
+                margin: 0 0 6px 0;
+            }
+
+            .service7-content a {
+                font-size: 9px;
+            }
+
+            .service7-header-area span {
+                font-size: 10px;
+                margin-bottom: 10px;
+            }
+
+            .service7-header-area h2 {
+                font-size: 18px;
+                line-height: 1.2;
+            }
+        }
+
+        /* ===== TEAM SECTION ===== */
         /* Team section - ensure 3 column layout on all screens */
         .team7-section-area .col-lg-4 {
             width: 33.333333% !important;
