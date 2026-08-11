@@ -1,262 +1,187 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
-    <!-- ===== COURSES SECTION RESPONSIVE STYLES ======= -->
+    <!-- ===== TEAM SECTION RESPONSIVE STYLES ======= -->
     <style>
-        /* Ensure courses section maintains 3-column layout on all screens */
-        .service7-section-area .col-lg-4 {
+        /* Team section - ensure 3 column layout on all screens */
+        .team7-section-area .col-lg-4 {
             width: 33.333333% !important;
             flex: 0 0 33.333333% !important;
             max-width: 33.333333% !important;
         }
 
-        /* Make course cards responsive without breaking layout */
-        .service7-box-area {
+        /* Team main box - flex column layout (image on top, text below) */
+        .team6-main-boxarea {
             display: flex;
             flex-direction: column;
-            height: 100%;
         }
 
-        .service7-boxarea {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+        .team6-boxarea {
+            width: 100%;
+            height: auto;
+            margin-bottom: 12px;
         }
 
-        .service-images {
+        .team6-img {
             width: 100%;
             height: auto;
             overflow: hidden;
         }
 
-        .service-images img {
+        .team6-img img {
             width: 100%;
             height: auto;
             display: block;
         }
 
-        /* Course card content responsive */
-        .service7-author-area {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            flex-wrap: nowrap;
+        .team6-images {
+            display: none;
         }
 
-        .service-icons {
-            flex-shrink: 0;
-            min-width: 40px;
+        /* Team content text below image */
+        .team-content {
+            text-align: center;
+            padding: 10px 0;
         }
 
-        .service-icons img {
-            width: 40px;
-            height: 40px;
-        }
-
-        .service-7-content {
-            flex: 1;
-        }
-
-        .service-7-content a {
-            font-size: 14px;
+        .team-content a {
+            font-size: 16px;
             font-weight: 600;
             display: block;
+            margin-bottom: 4px;
         }
 
-        .service7-content {
-            margin-top: 8px;
+        .team-content p {
+            font-size: 13px;
+            margin: 0;
         }
 
-        .service7-content p {
-            font-size: 12px;
-            line-height: 1.4;
-            margin: 0 0 8px 0;
-        }
-
-        .service7-content a {
-            font-size: 11px;
-        }
-
-        /* Tablet screens - maintain 3 columns */
+        /* Tablet screens */
         @media (max-width: 1024px) {
-            .service7-section-area .col-lg-4 {
+            .team7-section-area .col-lg-4 {
                 width: 33.333333% !important;
                 flex: 0 0 33.333333% !important;
                 max-width: 33.333333% !important;
             }
 
-            .service-icons img {
-                width: 35px;
-                height: 35px;
+            .team-content a {
+                font-size: 15px;
             }
 
-            .service-7-content a {
-                font-size: 13px;
-            }
-
-            .service7-content p {
-                font-size: 11px;
-            }
-
-            .service7-content a {
-                font-size: 10px;
-            }
-        }
-
-        /* Medium screens - maintain 3 columns */
-        @media (max-width: 768px) {
-            .service7-section-area .col-lg-4 {
-                width: 33.333333% !important;
-                flex: 0 0 33.333333% !important;
-                max-width: 33.333333% !important;
-            }
-
-            .service7-author-area {
-                gap: 8px;
-            }
-
-            .service-icons img {
-                width: 32px;
-                height: 32px;
-            }
-
-            .service-7-content a {
+            .team-content p {
                 font-size: 12px;
             }
-
-            .service7-content p {
-                font-size: 10px;
-                line-height: 1.3;
-            }
-
-            .service7-content a {
-                font-size: 9px;
-            }
         }
 
-        /* Small screens - maintain 3 columns */
-        @media (max-width: 576px) {
-            .service7-section-area .col-lg-4 {
+        /* Medium screens */
+        @media (max-width: 768px) {
+            .team7-section-area .col-lg-4 {
                 width: 33.333333% !important;
                 flex: 0 0 33.333333% !important;
                 max-width: 33.333333% !important;
             }
 
-            .service7-box-area {
-                padding: 8px !important;
+            .team6-boxarea {
+                margin-bottom: 10px;
             }
 
-            .service-images {
-                height: 100px;
-            }
-
-            .service-images img {
-                height: 100px;
-                object-fit: cover;
-            }
-
-            .service7-author-area {
-                gap: 6px;
+            .team-content {
                 padding: 8px 0;
             }
 
-            .service-icons img {
-                width: 28px;
-                height: 28px;
+            .team-content a {
+                font-size: 14px;
+                margin-bottom: 3px;
             }
 
-            .service-7-content a {
+            .team-content p {
                 font-size: 11px;
-            }
-
-            .service7-content p {
-                font-size: 9px;
-                line-height: 1.2;
-                margin: 4px 0;
-            }
-
-            .service7-content a {
-                font-size: 8px;
             }
         }
 
-        /* Extra small screens - maintain 3 columns */
-        @media (max-width: 480px) {
-            .service7-section-area .col-lg-4 {
+        /* Small screens */
+        @media (max-width: 576px) {
+            .team7-section-area .col-lg-4 {
                 width: 33.333333% !important;
                 flex: 0 0 33.333333% !important;
                 max-width: 33.333333% !important;
             }
 
-            .service-images {
-                height: 80px;
+            .team6-boxarea {
+                margin-bottom: 8px;
             }
 
-            .service-images img {
-                height: 80px;
-                object-fit: cover;
-            }
-
-            .service7-box-area {
-                padding: 6px !important;
-            }
-
-            .service7-author-area {
-                gap: 5px;
+            .team-content {
                 padding: 6px 0;
             }
 
-            .service-icons img {
-                width: 24px;
-                height: 24px;
+            .team-content a {
+                font-size: 12px;
+                margin-bottom: 2px;
             }
 
-            .service-7-content a {
+            .team-content p {
                 font-size: 10px;
-            }
-
-            .service7-content p {
-                font-size: 8px;
-                line-height: 1.2;
-                margin: 3px 0;
-            }
-
-            .service7-content a {
-                font-size: 7px;
             }
         }
 
-        /* Header section responsive */
-        .service7-header-area {
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .team7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .team6-boxarea {
+                margin-bottom: 6px;
+            }
+
+            .team-content {
+                padding: 4px 0;
+            }
+
+            .team-content a {
+                font-size: 11px;
+                margin-bottom: 2px;
+            }
+
+            .team-content p {
+                font-size: 9px;
+            }
+        }
+
+        /* Team header section */
+        .team6-header {
             text-align: center;
             margin-bottom: 30px;
         }
 
-        .service7-header-area span {
+        .team6-header span {
             font-size: 14px;
         }
 
-        .service7-header-area h2 {
+        .team6-header h2 {
             font-size: 28px;
             line-height: 1.3;
         }
 
         @media (max-width: 768px) {
-            .service7-header-area span {
+            .team6-header span {
                 font-size: 12px;
             }
 
-            .service7-header-area h2 {
+            .team6-header h2 {
                 font-size: 22px;
             }
         }
 
         @media (max-width: 480px) {
-            .service7-header-area span {
+            .team6-header span {
                 font-size: 11px;
             }
 
-            .service7-header-area h2 {
+            .team6-header h2 {
                 font-size: 18px;
             }
         }
