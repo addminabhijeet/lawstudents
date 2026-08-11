@@ -2,15 +2,15 @@
 <style>
     /* Responsive logo sizing */
     .site-logo {
-        width: 240px !important;
+        width: 200px !important;
         flex-shrink: 0;
-        height: 70px !important;
+        height: 60px !important;
     }
 
     /* Tablets and smaller desktops */
     @media (max-width: 1399px) {
         .site-logo {
-            width: 220px !important;
+            width: 190px !important;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -18,16 +18,16 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 3px 4px;
-            letter-spacing: -0.4px;
+            font-size: 10px;
+            padding: 2px 3px;
+            letter-spacing: -0.5px;
         }
     }
 
     /* Medium screens */
     @media (max-width: 1199px) {
         .site-logo {
-            width: 220px !important;
+            width: 170px !important;
         }
 
         .header-top-area {
@@ -44,20 +44,20 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 3px 4px;
-            letter-spacing: -0.3px;
+            font-size: 9px;
+            padding: 2px 2px;
+            letter-spacing: -0.5px;
         }
     }
 
     /* Smaller medium screens */
     @media (max-width: 1024px) {
         .site-logo {
-            width: 240px !important;
+            width: 160px !important;
         }
 
         .header-elements {
-            gap: 8px;
+            gap: 2px;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -65,9 +65,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 10px;
-            padding: 3px 3px;
-            letter-spacing: -0.4px;
+            font-size: 9px;
+            padding: 1px 2px;
+            letter-spacing: -0.5px;
         }
 
         .contact-3 {
@@ -90,17 +90,17 @@
     .header-elements {
         display: flex;
         align-items: center;
-        gap: 3px;
+        gap: 2px;
         flex-wrap: nowrap;
         justify-content: space-between;
         width: 100%;
-        min-height: 75px;
-        padding: 0 !important;
+        min-height: 65px;
+        padding: 2px 0 !important;
     }
 
     @media (max-width: 1199px) {
         .header-elements {
-            gap: 3px;
+            gap: 2px;
             flex-wrap: nowrap;
             justify-content: space-between;
         }
@@ -108,7 +108,7 @@
 
     @media (max-width: 1024px) {
         .header-elements {
-            gap: 3px;
+            gap: 2px;
             justify-content: space-between;
         }
     }
@@ -202,12 +202,12 @@
 
     /* Menu items font size adjustment */
     .main-menu-ex.homepage6 ul li a {
-        font-size: 12px;
+        font-size: 11px;
         display: inline-block;
-        padding: 3px 4px;
+        padding: 2px 3px;
         white-space: nowrap;
         transition: all 0.3s ease;
-        letter-spacing: -0.4px;
+        letter-spacing: -0.5px;
     }
 
     /* Prevent horizontal overflow on smaller screens */
@@ -264,13 +264,13 @@
     /* Large desktop screens */
     @media (min-width: 1600px) {
         .site-logo {
-            width: 280px !important;
+            width: 250px !important;
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 12px;
-            padding: 3px 4px;
-            letter-spacing: -0.4px;
+            font-size: 11px;
+            padding: 2px 3px;
+            letter-spacing: -0.5px;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -302,35 +302,43 @@
 
     /* Ultra-small screens - ensure single line */
     @media (max-width: 768px) {
+        .site-logo {
+            width: 150px !important;
+        }
+
         .main-menu-ex.homepage6 ul {
             gap: 0px;
         }
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 8px !important;
-            padding: 3px 3px !important;
-            letter-spacing: -0.4px;
+            padding: 1px 2px !important;
+            letter-spacing: -0.5px;
         }
 
         .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 3px 4px !important;
+            padding: 1px 2px !important;
         }
     }
 
     /* Extra small screens */
     @media (max-width: 480px) {
+        .site-logo {
+            width: 140px !important;
+        }
+
         .main-menu-ex.homepage6 ul {
             gap: 0px;
         }
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 7px !important;
-            padding: 2px 2px !important;
-            letter-spacing: -0.5px;
+            padding: 1px 1px !important;
+            letter-spacing: -0.6px;
         }
 
         .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 2px 3px !important;
+            padding: 1px 2px !important;
         }
     }
 
