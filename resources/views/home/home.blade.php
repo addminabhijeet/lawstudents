@@ -1,6 +1,266 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
+    <!-- ===== COURSES SECTION RESPONSIVE STYLES ======= -->
+    <style>
+        /* Ensure courses section maintains 3-column layout on all screens */
+        .service7-section-area .col-lg-4 {
+            width: 33.333333% !important;
+            flex: 0 0 33.333333% !important;
+            max-width: 33.333333% !important;
+        }
+
+        /* Make course cards responsive without breaking layout */
+        .service7-box-area {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service7-boxarea {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-images {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .service-images img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Course card content responsive */
+        .service7-author-area {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .service-icons {
+            flex-shrink: 0;
+            min-width: 40px;
+        }
+
+        .service-icons img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .service-7-content {
+            flex: 1;
+        }
+
+        .service-7-content a {
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .service7-content {
+            margin-top: 8px;
+        }
+
+        .service7-content p {
+            font-size: 12px;
+            line-height: 1.4;
+            margin: 0 0 8px 0;
+        }
+
+        .service7-content a {
+            font-size: 11px;
+        }
+
+        /* Tablet screens - maintain 3 columns */
+        @media (max-width: 1024px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service-icons img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .service-7-content a {
+                font-size: 13px;
+            }
+
+            .service7-content p {
+                font-size: 11px;
+            }
+
+            .service7-content a {
+                font-size: 10px;
+            }
+        }
+
+        /* Medium screens - maintain 3 columns */
+        @media (max-width: 768px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service7-author-area {
+                gap: 8px;
+            }
+
+            .service-icons img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .service-7-content a {
+                font-size: 12px;
+            }
+
+            .service7-content p {
+                font-size: 10px;
+                line-height: 1.3;
+            }
+
+            .service7-content a {
+                font-size: 9px;
+            }
+        }
+
+        /* Small screens - maintain 3 columns */
+        @media (max-width: 576px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service7-box-area {
+                padding: 8px !important;
+            }
+
+            .service-images {
+                height: 100px;
+            }
+
+            .service-images img {
+                height: 100px;
+                object-fit: cover;
+            }
+
+            .service7-author-area {
+                gap: 6px;
+                padding: 8px 0;
+            }
+
+            .service-icons img {
+                width: 28px;
+                height: 28px;
+            }
+
+            .service-7-content a {
+                font-size: 11px;
+            }
+
+            .service7-content p {
+                font-size: 9px;
+                line-height: 1.2;
+                margin: 4px 0;
+            }
+
+            .service7-content a {
+                font-size: 8px;
+            }
+        }
+
+        /* Extra small screens - maintain 3 columns */
+        @media (max-width: 480px) {
+            .service7-section-area .col-lg-4 {
+                width: 33.333333% !important;
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            .service-images {
+                height: 80px;
+            }
+
+            .service-images img {
+                height: 80px;
+                object-fit: cover;
+            }
+
+            .service7-box-area {
+                padding: 6px !important;
+            }
+
+            .service7-author-area {
+                gap: 5px;
+                padding: 6px 0;
+            }
+
+            .service-icons img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .service-7-content a {
+                font-size: 10px;
+            }
+
+            .service7-content p {
+                font-size: 8px;
+                line-height: 1.2;
+                margin: 3px 0;
+            }
+
+            .service7-content a {
+                font-size: 7px;
+            }
+        }
+
+        /* Header section responsive */
+        .service7-header-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .service7-header-area span {
+            font-size: 14px;
+        }
+
+        .service7-header-area h2 {
+            font-size: 28px;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .service7-header-area span {
+                font-size: 12px;
+            }
+
+            .service7-header-area h2 {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service7-header-area span {
+                font-size: 11px;
+            }
+
+            .service7-header-area h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
     <!-- ===== WELCOME STARTS ======= -->
     @php
         $banner = $banner instanceof \Illuminate\Support\Collection ? $banner->first() : $banner;
