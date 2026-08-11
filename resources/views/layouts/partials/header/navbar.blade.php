@@ -2,15 +2,15 @@
 <style>
     /* Responsive logo sizing */
     .site-logo {
-        width: 200px !important;
+        width: 140px !important;
         flex-shrink: 0;
-        height: 60px !important;
+        height: 55px !important;
     }
 
     /* Tablets and smaller desktops */
     @media (max-width: 1399px) {
         .site-logo {
-            width: 190px !important;
+            width: 130px !important;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -18,16 +18,16 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 10px;
-            padding: 2px 3px;
-            letter-spacing: -0.5px;
+            font-size: 11px;
+            padding: 3px 4px;
+            letter-spacing: -0.4px;
         }
     }
 
     /* Medium screens */
     @media (max-width: 1199px) {
         .site-logo {
-            width: 170px !important;
+            width: 120px !important;
         }
 
         .header-top-area {
@@ -44,16 +44,16 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 9px;
-            padding: 2px 2px;
-            letter-spacing: -0.5px;
+            font-size: 11px;
+            padding: 3px 3px;
+            letter-spacing: -0.4px;
         }
     }
 
     /* Smaller medium screens */
     @media (max-width: 1024px) {
         .site-logo {
-            width: 160px !important;
+            width: 110px !important;
         }
 
         .header-elements {
@@ -65,9 +65,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 9px;
-            padding: 1px 2px;
-            letter-spacing: -0.5px;
+            font-size: 10px;
+            padding: 2px 3px;
+            letter-spacing: -0.4px;
         }
 
         .contact-3 {
@@ -90,26 +90,26 @@
     .header-elements {
         display: flex;
         align-items: center;
-        gap: 2px;
+        gap: 3px;
         flex-wrap: nowrap;
-        justify-content: space-between;
+        justify-content: flex-start;
         width: 100%;
-        min-height: 65px;
-        padding: 2px 0 !important;
+        min-height: 60px;
+        padding: 0 !important;
     }
 
     @media (max-width: 1199px) {
         .header-elements {
-            gap: 2px;
+            gap: 3px;
             flex-wrap: nowrap;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
     }
 
     @media (max-width: 1024px) {
         .header-elements {
             gap: 2px;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
     }
 
@@ -202,12 +202,12 @@
 
     /* Menu items font size adjustment */
     .main-menu-ex.homepage6 ul li a {
-        font-size: 11px;
+        font-size: 12px;
         display: inline-block;
-        padding: 2px 3px;
+        padding: 3px 4px;
         white-space: nowrap;
         transition: all 0.3s ease;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.4px;
     }
 
     /* Prevent horizontal overflow on smaller screens */
@@ -264,17 +264,17 @@
     /* Large desktop screens */
     @media (min-width: 1600px) {
         .site-logo {
-            width: 250px !important;
+            width: 160px !important;
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 2px 3px;
-            letter-spacing: -0.5px;
+            font-size: 13px;
+            padding: 3px 5px;
+            letter-spacing: -0.4px;
         }
 
         .main-menu-ex.homepage6 ul {
-            gap: 0px;
+            gap: 1px;
         }
     }
 
@@ -303,7 +303,28 @@
     /* Ultra-small screens - ensure single line */
     @media (max-width: 768px) {
         .site-logo {
-            width: 150px !important;
+            width: 100px !important;
+        }
+
+        .main-menu-ex.homepage6 ul {
+            gap: 0px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 9px !important;
+            padding: 2px 3px !important;
+            letter-spacing: -0.4px;
+        }
+
+        .main-menu-ex.homepage6 ul li:last-child a {
+            padding: 2px 3px !important;
+        }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 480px) {
+        .site-logo {
+            width: 90px !important;
         }
 
         .main-menu-ex.homepage6 ul {
@@ -314,27 +335,6 @@
             font-size: 8px !important;
             padding: 1px 2px !important;
             letter-spacing: -0.5px;
-        }
-
-        .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 1px 2px !important;
-        }
-    }
-
-    /* Extra small screens */
-    @media (max-width: 480px) {
-        .site-logo {
-            width: 140px !important;
-        }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 0px;
-        }
-
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 7px !important;
-            padding: 1px 1px !important;
-            letter-spacing: -0.6px;
         }
 
         .main-menu-ex.homepage6 ul li:last-child a {
