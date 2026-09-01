@@ -13,6 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
 
+        $middleware->web(append: [
+            \App\Http\Middleware\FixAssetPaths::class,
+        ]);
+
         $middleware->alias([
             'admin.auth' => \App\Http\Middleware\RedirectIfNotAdmin::class,
             'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
