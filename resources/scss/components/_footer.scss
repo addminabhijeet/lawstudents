@@ -501,14 +501,28 @@
     position: relative;
     z-index: 1;
     padding: 0;
+    border-top: 4px solid #ff5722;
+    margin-top: 40px;
     .footer-all-section-area{
          border-bottom: 1px solid $bg10;
+         display: block !important;
          @media #{$xs} {
             padding: 50px 0 50px;
          }
          @media #{$md} {
             padding: 50px 0 50px;
          }
+    }
+
+    .footer-all-section-area .row {
+        display: flex !important;
+        align-items: flex-start !important;
+    }
+
+    .footer-all-section-area .row > div {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
     }
 
      .footer-text-area{
@@ -527,17 +541,19 @@
              li{
                  display: inline-block;
                  a{
-                     height: 32px;
-                     width: 32px;
-                     line-height: 32px;
+                     height: 40px;
+                     width: 40px;
+                     line-height: 40px;
                      text-align: center;
-                     color: $color5;
+                     color: $white;
                      transition: all .4s ease-in-out;
-                     background: $section_bg4;
-                     display: inline-block;
+                     background: #ff5722 !important;
+                     display: inline-flex;
+                     align-items: center;
+                     justify-content: center;
                      border-radius: 50%;
                      font-size: $small_font_size;
-                     margin: 0 3px 0 0;
+                     margin: 0 8px 0 0;
                      &:hover{
                          background: $color8;
                          color: $white;
@@ -561,7 +577,7 @@
              font-size: $heading4_size - 4;
              line-height: 24px;
              font-weight: $medium;
-             color: $color5;
+             color: #ff5722 !important;
              margin-bottom: 4px;
          }
          ul{
@@ -601,7 +617,7 @@
              font-size: $heading4_size - 4;
              line-height: 24px;
              font-weight: $medium;
-             color: $color5;
+             color: #ff5722 !important;
              margin-bottom: 4px;
          }
          ul{
@@ -638,10 +654,10 @@
              font-size: $heading4_size - 4;
              line-height: 24px;
              font-weight: $medium;
-             color: $color6;
+             color: #ff5722 !important;
              margin-bottom: 4px;
          }
- 
+
          form{
              position: relative;
              z-index: 1;
