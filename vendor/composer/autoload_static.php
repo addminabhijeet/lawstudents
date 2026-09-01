@@ -125,6 +125,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        'd21d43db5f6e840ee7b10744ec7fdf66' => __DIR__ . '/../..' . '/app/Helpers/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -680,6 +681,8 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
     );
 
     public static $classMap = array (
+        'App\\Helpers\\AssetHelper' => __DIR__ . '/../..' . '/app/Helpers/AssetHelper.php',
+        'App\\Helpers\\CategoryHelper' => __DIR__ . '/../..' . '/app/Helpers/CategoryHelper.php',
         'App\\Http\\Controllers\\Admin\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CourseController.php',
         'App\\Http\\Controllers\\Admin\\CourseNoteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CourseNoteController.php',
         'App\\Http\\Controllers\\Admin\\RoutingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RoutingController.php',
@@ -687,6 +690,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\Auth\\AdminLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminLoginController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\StudentPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/StudentPasswordController.php',
+        'App\\Http\\Controllers\\CategoryApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryApiController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Frontend\\AboutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/AboutController.php',
         'App\\Http\\Controllers\\Frontend\\ActController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ActController.php',
@@ -701,12 +705,20 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\Student\\CourseNoteControllerStu' => __DIR__ . '/../..' . '/app/Http/Controllers/Student/CourseNoteControllerStu.php',
         'App\\Http\\Controllers\\Student\\RoutingControllerStu' => __DIR__ . '/../..' . '/app/Http/Controllers/Student/RoutingControllerStu.php',
         'App\\Http\\Controllers\\Student\\StudentAdmissinControllerStu' => __DIR__ . '/../..' . '/app/Http/Controllers/Student/StudentAdmissinControllerStu.php',
+        'App\\Http\\Middleware\\FixAssetPaths' => __DIR__ . '/../..' . '/app/Http/Middleware/FixAssetPaths.php',
         'App\\Http\\Middleware\\RedirectIfNotAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfNotAdmin.php',
         'App\\Http\\Middleware\\RedirectIfNotStudent' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfNotStudent.php',
+        'App\\Http\\Middleware\\ThrottleOtpRequests' => __DIR__ . '/../..' . '/app/Http/Middleware/ThrottleOtpRequests.php',
+        'App\\Http\\Middleware\\ValidateOtpSecurely' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateOtpSecurely.php',
         'App\\Http\\Requests\\AdminLoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AdminLoginRequest.php',
+        'App\\Http\\Requests\\SendEmailOtpRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SendEmailOtpRequest.php',
+        'App\\Http\\Requests\\SendPhoneOtpRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SendPhoneOtpRequest.php',
         'App\\Http\\Requests\\StudentResetPasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StudentResetPasswordRequest.php',
         'App\\Http\\Requests\\StudentSendOtpRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StudentSendOtpRequest.php',
         'App\\Http\\Requests\\StudentVerifyOtpRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StudentVerifyOtpRequest.php',
+        'App\\Http\\Requests\\VerifyOtpRequest' => __DIR__ . '/../..' . '/app/Http/Requests/VerifyOtpRequest.php',
+        'App\\Mail\\ContactMail' => __DIR__ . '/../..' . '/app/Mail/ContactMail.php',
+        'App\\Mail\\PaymentMail' => __DIR__ . '/../..' . '/app/Mail/PaymentMail.php',
         'App\\Mail\\StudentOtpMail' => __DIR__ . '/../..' . '/app/Mail/StudentOtpMail.php',
         'App\\Models\\Act' => __DIR__ . '/../..' . '/app/Models/Act.php',
         'App\\Models\\ActCategory' => __DIR__ . '/../..' . '/app/Models/ActCategory.php',
@@ -715,6 +727,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Models\\Banner' => __DIR__ . '/../..' . '/app/Models/Banner.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Clientele' => __DIR__ . '/../..' . '/app/Models/Clientele.php',
+        'App\\Models\\ContactForm' => __DIR__ . '/../..' . '/app/Models/ContactForm.php',
         'App\\Models\\Copy' => __DIR__ . '/../..' . '/app/Models/Copy.php',
         'App\\Models\\CopyCategory' => __DIR__ . '/../..' . '/app/Models/CopyCategory.php',
         'App\\Models\\CopySubcategory' => __DIR__ . '/../..' . '/app/Models/CopySubcategory.php',
@@ -736,6 +749,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\WhatsappSetting' => __DIR__ . '/../..' . '/app/Models/WhatsappSetting.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
+        'App\\Providers\\SecurityServiceProvider' => __DIR__ . '/../..' . '/app/Providers/SecurityServiceProvider.php',
+        'App\\Services\\FileManagementService' => __DIR__ . '/../..' . '/app/Services/FileManagementService.php',
+        'App\\Services\\OtpSecurityService' => __DIR__ . '/../..' . '/app/Services/OtpSecurityService.php',
         'App\\Services\\StudentPasswordService' => __DIR__ . '/../..' . '/app/Services/StudentPasswordService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Barryvdh\\DomPDF\\Facade\\Pdf' => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src/Facade/Pdf.php',
