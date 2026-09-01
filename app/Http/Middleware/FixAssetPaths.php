@@ -4,16 +4,18 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class FixAssetPaths
 {
     /**
      * Handle an incoming request.
+     * Automatically fixes hardcoded asset paths to work on both localhost and production
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
 
@@ -21,15 +23,15 @@ class FixAssetPaths
         if ($this->isHtmlResponse($response)) {
             $content = $response->getContent();
 
-            // Get the base path from the APP_URL
-            $basePath = parse_url(config('app.url'), PHP_URL_PATH) ?? '';
+            if (is_string($content)) {
+                // Get the base URL
+                $baseUrl = rtrim(config('app.url'), '/');
 
-            // Fix all issues in content
-            $content = $this->fixMetaTags($content);
-            $content = $this->fixAssetPaths($content, $basePath);
-            $content = $this->fixFontAwesome($content);
+                // Replace hardcoded asset paths
+                $content = $this->fixAssetPaths($content, $baseUrl);
 
-            $response->setContent($content);
+                $response->setContent($content);
+            }
         }
 
         return $response;
@@ -38,71 +40,36 @@ class FixAssetPaths
     /**
      * Check if response is HTML
      */
-    private function isHtmlResponse(Response $response): bool
+    private function isHtmlResponse($response): bool
     {
         $contentType = $response->headers->get('Content-Type', '');
-        return str_contains($contentType, 'text/html') || empty($contentType);
-    }
-
-    /**
-     * Fix meta tags with incorrect syntax
-     */
-    private function fixMetaTags(string $content): string
-    {
-        // Fix viewport meta tag: remove backticks and incorrect comma
-        $content = preg_replace(
-            '/content="width=`device-width`,\s*initial-scale=1\.0"/',
-            'content="width=device-width, initial-scale=1.0"',
-            $content
-        );
-
-        return $content;
-    }
-
-    /**
-     * Fix FontAwesome CDN issues
-     */
-    private function fixFontAwesome(string $content): string
-    {
-        // Use latest CDN with integrity check
-        $faUrl = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css';
-
-        // Replace any font-awesome CDN link with the correct one
-        $content = preg_replace(
-            '/href="[^"]*font-awesome[^"]*\.css"/',
-            'href="' . $faUrl . '"',
-            $content
-        );
-
-        return $content;
+        return strpos($contentType, 'text/html') !== false || empty($contentType);
     }
 
     /**
      * Fix asset paths in HTML content
      */
-    private function fixAssetPaths(string $content, string $basePath): string
+    private function fixAssetPaths($content, $baseUrl): string
     {
-        // Patterns to fix
+        // Patterns to match and fix
         $patterns = [
-            // Fix /img/ paths
-            '/href="\/img\//i' => 'href="' . $basePath . '/img/',
-            '/src="\/img\//i' => 'src="' . $basePath . '/img/',
-            '/url\(\/img\//i' => 'url(' . $basePath . '/img/',
+            // src="/img/..." → src="BASEURL/img/..."
+            '/src=["\']\/img\/([^"\']*)["\']/' => 'src="' . $baseUrl . '/img/$1"',
 
-            // Fix /css/ paths
-            '/href="\/css\//i' => 'href="' . $basePath . '/css/',
-            '/src="\/css\//i' => 'src="' . $basePath . '/css/',
+            // href="/img/..." → href="BASEURL/img/..."
+            '/href=["\']\/img\/([^"\']*)["\']/' => 'href="' . $baseUrl . '/img/$1"',
 
-            // Fix /js/ paths
-            '/src="\/js\//i' => 'src="' . $basePath . '/js/',
-            '/href="\/js\//i' => 'href="' . $basePath . '/js/',
+            // data-image="/img/..." → data-image="BASEURL/img/..."
+            '/data-image=["\']\/img\/([^"\']*)["\']/' => 'data-image="' . $baseUrl . '/img/$1"',
 
-            // Fix /assets/ paths
-            '/href="\/assets\//i' => 'href="' . $basePath . '/assets/',
-            '/src="\/assets\//i' => 'src="' . $basePath . '/assets/',
-            '/url\(\/assets\//i' => 'url(' . $basePath . '/assets/',
+            // style="background-image:url('/img/...')" 
+            '/style=["\']([^"\']*)(url\([\'"]?\/img\/([^)\'\"]*)[\'"]?\))([^"\']*)["\']/' => 'style="$1url(' . $baseUrl . '/img/$3)$4"',
+
+            // favicon href="/img/..." → href="BASEURL/img/..."
+            '/rel=["\']shortcut icon["\'][^>]*href=["\']\/img\/([^"\']*)["\']/' => 'rel="shortcut icon" href="' . $baseUrl . '/img/$1"',
         ];
 
+        // Apply all replacements
         foreach ($patterns as $pattern => $replacement) {
             $content = preg_replace($pattern, $replacement, $content);
         }

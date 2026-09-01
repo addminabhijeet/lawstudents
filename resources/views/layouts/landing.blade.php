@@ -16,6 +16,8 @@
 
 <body class="inner-pages @yield('body_attribute')">
 
+    @include('layouts.partials.fix-asset-paths')
+
     @include('layouts.partials.loader')
 
     @include('layouts.partials.header.navbar')

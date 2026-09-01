@@ -16,6 +16,8 @@
 
 <body @yield('body_attribute')>
 
+    @include('layouts.partials.fix-asset-paths')
+
     @yield('content')
 
 
