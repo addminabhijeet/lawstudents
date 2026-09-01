@@ -78,11 +78,15 @@
     /* Adjust header top spacing */
     .header-top-border {
         padding: 12px 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     @media (max-width: 1199px) {
         .header-top-border {
             padding: 8px 0 !important;
+            margin: 0 !important;
         }
     }
 
@@ -236,7 +240,46 @@
     /* Spacing between header sections */
     .header-elements {
         min-height: 85px;
-        padding: 5px 0;
+        padding: 5px 15px !important;
+    }
+
+    /* Responsive padding for header elements */
+    @media (min-width: 576px) {
+        .header-elements {
+            padding: 5px 20px !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .header-elements {
+            padding: 5px 30px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .header-elements {
+            padding: 5px 40px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .header-elements {
+            padding: 5px 50px !important;
+        }
+    }
+
+    /* Move menu to right side - reorder flexbox items */
+    .site-logo {
+        order: 1 !important;
+    }
+
+    .main-menu-ex.homepage6 {
+        order: 2 !important;
+        margin-left: auto !important;
+    }
+
+    .contact-3 {
+        order: 3 !important;
     }
 
     /* Prevent logo distortion */
@@ -350,13 +393,99 @@
     .main-menu-ex.homepage6::-webkit-scrollbar-thumb {
         background: transparent;
     }
+
+    /* Fill header container with orange color */
+    .header-top-border {
+        background-color: #ff5722 !important;
+        background-image: none !important;
+        width: 100% !important;
+    }
+
+    /* Text color adjustments for better contrast */
+    .top-content-area .content p {
+        color: white !important;
+        font-weight: 500 !important;
+    }
+
+    .social-area a {
+        color: white !important;
+    }
+
+    .social-area a span {
+        color: white !important;
+    }
+
+    /* Full width container with orange fill */
+    .container-fluid.px-0 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Orange background fills 100% with NO padding on sides */
+    .header-top-area {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Content spacing inside the full-width orange area */
+    .header-top-border {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    /* Responsive content padding */
+    @media (min-width: 576px) {
+        .header-top-border {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .header-top-border {
+            padding-left: 30px !important;
+            padding-right: 30px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .header-top-border {
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .header-top-border {
+            padding-left: 50px !important;
+            padding-right: 50px !important;
+        }
+    }
+
+    /* Move menu to right side - flexbox reordering */
+    .site-logo {
+        order: 1 !important;
+    }
+
+    .main-menu-ex.homepage6 {
+        order: 2 !important;
+        margin-left: auto !important;
+    }
+
+    .contact-3 {
+        order: 3 !important;
+    }
 </style>
 
 <!--===== HEADER STARTS =======-->
 <header class="header d-none d-lg-block" style="position:relative; z-index:999;">
     <div class="header-area header homepage7 header-sticky" id="header" style="position:relative; top:auto;">
-        <div class="container">
-            <div class="row">
+        <div class="container-fluid px-0">
+            <div class="row g-0">
                 <div class="col-12">
                     <div class="header-top-area">
                         <div class="header-top-border"
@@ -441,7 +570,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="contact-3 d-lg-block d-none" style="flex-shrink: 0;">
+                            <div class="contact-3 d-none" style="flex-shrink: 0;">
                                 <div class="consulting2 consulting3">
                                     <div class="marginsp1"></div>
                                     <a class="header__bar hamburger_menu header__bar-icon header_bar5"
