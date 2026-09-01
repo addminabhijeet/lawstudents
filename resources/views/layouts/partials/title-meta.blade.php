@@ -1,11 +1,23 @@
 <meta charset="UTF-8">
-<meta name="viewport" content="width=`device-width`, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!--=====TITLE=======-->
 <title>{{ $title }}</title>
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<!-- Font Awesome with proper crossorigin for web fonts -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<!-- Prevent EventEmitter memory leak warnings from console -->
+<script>
+    if (typeof EventEmitter !== 'undefined' && EventEmitter.prototype) {
+        EventEmitter.prototype.setMaxListeners(0);
+    }
+    if (typeof window !== 'undefined' && window.EventEmitter) {
+        window.EventEmitter.prototype.setMaxListeners(0);
+    }
+</script>
+
 <!--=====FAV ICON=======-->
 @if (isset($logo4))
     <link rel="shortcut icon" href="/img/logo/logo4.png">

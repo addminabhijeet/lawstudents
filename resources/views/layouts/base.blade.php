@@ -10,6 +10,8 @@
 
     @yield('css')
 
+    @include('layouts.partials.error-suppression')
+
 </head>
 
 <body @yield('body_attribute')>
