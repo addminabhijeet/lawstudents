@@ -3,14 +3,14 @@
 
 <head>
 
+    @include('layouts.partials.error-suppression')
+
     @include('layouts.partials.title-meta')
 
     <!--===== CSS LINK =======-->
     @vite(['resources/scss/master.scss' , 'resources/scss/typography.css'])
 
     @yield('css')
-
-    @include('layouts.partials.error-suppression')
 
 </head>
 
