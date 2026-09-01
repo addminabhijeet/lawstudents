@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Blade;
 use App\Models\MailSetting;
+use App\Helpers\AssetHelper;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // ===== REGISTER BLADE DIRECTIVES FOR ASSET URLS =====
+        Blade::directive('asset', function ($expression) {
+            return "<?php echo \\App\\Helpers\\AssetHelper::assetUrl({$expression}); ?>";
+        });
+
+        Blade::directive('img', function ($expression) {
+            return "<?php echo \\App\\Helpers\\AssetHelper::img({$expression}); ?>";
+        });
+
+        Blade::directive('css', function ($expression) {
+            return "<?php echo \\App\\Helpers\\AssetHelper::css({$expression}); ?>";
+        });
+
+        Blade::directive('js', function ($expression) {
+            return "<?php echo \\App\\Helpers\\AssetHelper::js({$expression}); ?>";
+        });
+
+        // ===== SHARE HELPER WITH ALL VIEWS =====
+        view()->share('AssetHelper', new AssetHelper());
+
         // ===== LOAD EXTRA ROUTE FILES (ADMIN + STUDENT) =====
 
         Route::middleware('web')
