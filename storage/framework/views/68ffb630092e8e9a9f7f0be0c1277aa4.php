@@ -1,0 +1,187 @@
+<?php $__env->startSection('content'); ?>
+<!--===== WELCOME STARTS =======-->
+<div class="welcome-inner-section-area"
+    style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <img src="/img/elements/elementor40.png" alt="" class="elementor40 keyframe3 d-lg-block d-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 m-auto">
+                <div class="welcome-inner-header text-center">
+                    <h1>Contact Us</h1>
+                    <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> Contact Us</a>
+                    <img src="/img/elements/elementor20.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== WELCOME ENDS =======-->
+
+<!--===== CONTACT STARTS =======-->
+
+<?php
+$user = \App\Models\User::first();
+$address = !empty($user->webaddress) ? $user->webaddress : 'email@gmail.com';
+$email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
+$mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
+$twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
+$pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
+$instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
+$facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
+$linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+$description = !empty($user->description)
+? $user->description
+: 'Revolutionize Your Future: Harness the Power of Technology for Unparalleled
+Growth and Success!';
+?>
+
+<div class="contact1-section-area sp1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="contact-auhtor-area contact2">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <?php if(session('success')): ?>
+                            <div class="alert alert-success">
+                                <?php echo e(session('success')); ?>
+
+                            </div>
+                            <?php endif; ?>
+                            <div class="contact-submit-area">
+                                <h3>Send Us A Message</h3>
+                                <p>Our response time is within 30 minutes during business hours</p>
+                                <form action="<?php echo e(route('frontend.contactstore')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="contact-inner">
+                                                <input type="text" name="first_name" id="first_name" placeholder="First Name" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="contact-inner">
+                                                <input type="text" name="last_name" id="last_name" placeholder="Last Name" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="contact-inner">
+                                                <input type="text" name="phone" id="phone" placeholder="Phone Number"
+                                                    pattern="[0-9]{10}" maxlength="10" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="contact-inner">
+                                                <input type="email" name="email" id="email" placeholder="Email Address" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="contact-inner">
+                                                <input type="text" name="service_type" id="service_type" placeholder="Service Type" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="contact-inner">
+                                                <textarea name="message" id="message" placeholder="Message" cols="30" rows="10" required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="contact-inner">
+                                                <button type="submit">
+                                                    Free Case Evaluation
+                                                    <i class="fa-light fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="contact-content-area">
+                                <h2>Connect with Our Law Experts and Mentors Today</h2>
+                                <p>
+                                    At Law School Name, we understand the importance of personalized guidance in your
+                                    legal education. Our team of experienced instructors and mentors is here to provide
+                                    you with support and practical insights. Whether you're exploring criminal law,
+                                    corporate law, or traffic law courses, our commitment is to help you succeed in your
+                                    legal career.
+                                </p>
+                                <p>
+                                    When learning law, having a dedicated and knowledgeable team by your side can make
+                                    all the difference. At Law School Name, we prioritize your growth and provide
+                                    exceptional mentorship tailored to your goals.
+                                </p>
+                                <a href="#" class="welcome-btn3">Meet Our Mentors <i
+                                        class="fa-light fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="contact-box-area">
+                                <div class="contact-widget-area">
+                                    <div class="clock-img">
+                                        <img src="/img/icons/clock1.svg" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h4>Contact Us</h4>
+                                        <a><?php echo e($address); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="contact-box-area">
+                                <div class="contact-widget-area">
+                                    <div class="clock-img">
+                                        <img src="/img/icons/phone2.svg" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h4>Call or text</h4>
+                                        <a href="<?php echo e($mobile); ?>"><?php echo e($mobile); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="contact-box-area">
+                                <div class="contact-widget-area">
+                                    <div class="clock-img">
+                                        <img src="/img/icons/email2.svg" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h4>Email us today</h4>
+                                        <a href="<?php echo e($email); ?>"><?php echo e($email); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space60"></div>
+            <div class="col-lg-12">
+                <div class="map-section-area">
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4506257.120552435!2d88.67021924228865!3d21.954385721237916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1704088968016!5m2!1sen!2sbd"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== CONTACT ENDS =======-->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.landing', ['title' => 'Law Students'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /home/u792878158/domains/law.norloxsolutionscrm.com/public_html/resources/views/contact/contact.blade.php ENDPATH**/ ?>
