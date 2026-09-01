@@ -365,8 +365,7 @@
                                 <div class="col-lg-6" style="flex: 0 1 auto; min-width: 0;">
                                     <div class="top-content-area">
                                         <div class="content">
-                                            <p style="margin: 0; word-break: break-word; overflow-wrap: break-word;">Start your journey into the world of law today.<a
-                                                    href="{{ route('frontend.contact') }}">Contact Us</a></p>
+                                            <p style="margin: 0; word-break: break-word; overflow-wrap: break-word;">• Legal Education • Legal Knowledge • Legal Resources</p>
                                         </div>
                                     </div>
                                 </div>
