@@ -471,15 +471,130 @@
         order: 1 !important;
     }
 
-    .main-menu-ex.homepage6 {
+    .header-elements .main-menu-ex.homepage6 {
         order: 2 !important;
         margin-left: auto !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: fit-content !important;
     }
 
     .contact-3 {
         order: 3 !important;
     }
+
+    /* Responsive font sizing for navbar menu items */
+    .main-menu-ex.homepage6 ul li a {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+    }
+
+    .top-content-area .content p {
+        font-size: 14px !important;
+    }
+
+    @media (min-width: 576px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 13px !important;
+        }
+
+        .top-content-area .content p {
+            font-size: 14px !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px !important;
+        }
+
+        .top-content-area .content p {
+            font-size: 15px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 15px !important;
+        }
+
+        .top-content-area .content p {
+            font-size: 16px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 16px !important;
+        }
+
+        .top-content-area .content p {
+            font-size: 17px !important;
+        }
+    }
 </style>
+
+<script>
+(function() {
+    let styleBlock = null;
+
+    function getFontSize() {
+        const windowWidth = window.innerWidth;
+        if (windowWidth >= 1200) {
+            return { menu: '16px', tagline: '17px' };
+        } else if (windowWidth >= 992) {
+            return { menu: '15px', tagline: '16px' };
+        } else if (windowWidth >= 768) {
+            return { menu: '14px', tagline: '15px' };
+        } else if (windowWidth >= 576) {
+            return { menu: '13px', tagline: '14px' };
+        }
+        return { menu: '13px', tagline: '14px' };
+    }
+
+    function createOrUpdateStyles() {
+        // Remove old style if exists
+        if (styleBlock && styleBlock.parentNode) {
+            styleBlock.parentNode.removeChild(styleBlock);
+        }
+
+        const sizes = getFontSize();
+
+        // Create style block that loads in <head> at end
+        styleBlock = document.createElement('style');
+        styleBlock.id = 'navbar-font-override-' + Date.now();
+        styleBlock.innerHTML = `
+            .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
+            .top-content-area .content p { font-size: ${sizes.tagline} !important; }
+        `;
+
+        document.head.appendChild(styleBlock);
+
+        // Also add to end of body as fallback
+        const bodyStyle = document.createElement('style');
+        bodyStyle.innerHTML = `
+            .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
+            .top-content-area .content p { font-size: ${sizes.tagline} !important; }
+        `;
+        document.body.appendChild(bodyStyle);
+    }
+
+    // Apply on DOMContentLoaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(createOrUpdateStyles, 100);
+        });
+    } else {
+        setTimeout(createOrUpdateStyles, 100);
+    }
+
+    // Reapply on any stylesheet load
+    window.addEventListener('load', createOrUpdateStyles);
+
+    // Apply on resize
+    window.addEventListener('resize', createOrUpdateStyles);
+})();
+</script>
 
 <!--===== HEADER STARTS =======-->
 <header class="header d-none d-lg-block" style="position:relative; z-index:999;">
@@ -543,7 +658,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="header-elements" style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 15px; flex-wrap: nowrap;">
+                        <div class="header-elements" style="display: flex; align-items: center; justify-content: flex-start; width: 100%; gap: 15px; flex-wrap: nowrap;">
                             <div class="site-logo"
                                 style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink: 0;">
                                 <a href="" style="display:block; width:100%; height:100%;">
@@ -551,7 +666,7 @@
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </a>
                             </div>
-                            <div class="main-menu-ex homepage6" style="flex: 1; min-width: 0; overflow: hidden;">
+                            <div class="main-menu-ex homepage6" style="flex: 0 0 auto; min-width: 0; overflow: hidden; margin-left: auto !important;">
                                 <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 0px; margin: 0; padding: 0; list-style: none;">
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
@@ -781,3 +896,64 @@
     </div>
 </div>
 <!--===== MOBILE HEADER ENDS =======-->
+
+<!-- Override the 12px font-size rule from sheet 6 that's overriding everything -->
+<style>
+.header .main-menu-ex.homepage6 ul li a {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+}
+
+@media (min-width: 576px) {
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 13px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 14px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 15px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 16px !important;
+    }
+}
+
+/* Tagline font sizes */
+.header-top-border .top-content-area .content p {
+    font-size: 14px !important;
+}
+
+@media (min-width: 576px) {
+    .header-top-border .top-content-area .content p {
+        font-size: 14px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .header-top-border .top-content-area .content p {
+        font-size: 15px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .header-top-border .top-content-area .content p {
+        font-size: 16px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .header-top-border .top-content-area .content p {
+        font-size: 17px !important;
+    }
+}
+</style>
