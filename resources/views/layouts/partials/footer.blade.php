@@ -401,6 +401,210 @@ div[class*="col-lg-"] {
         justify-content: center !important;
     }
 }
+
+/* ===== DESIGN IMPROVEMENTS: Visual Hierarchy & Professional Polish ===== */
+
+/* IMPROVEMENT 1: Enhanced Header Styling - Make Headers More Distinctive */
+.footer-last-section h3,
+.about-links-area h3,
+.get-links-area h3,
+.footer-contact-area h3 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    color: #ff5722 !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    padding-bottom: 12px !important;
+}
+
+@media (min-width: 576px) {
+    .footer-last-section h3,
+    .about-links-area h3,
+    .get-links-area h3,
+    .footer-contact-area h3 {
+        font-size: 19px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-last-section h3,
+    .about-links-area h3,
+    .get-links-area h3,
+    .footer-contact-area h3 {
+        font-size: 20px !important;
+    }
+}
+
+/* Header divider line using ::after pseudo-element */
+.footer-last-section h3::after,
+.about-links-area h3::after,
+.get-links-area h3::after,
+.footer-contact-area h3::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 40px !important;
+    height: 3px !important;
+    background: #ff5722 !important;
+}
+
+/* IMPROVEMENT 2: Enhanced Whitespace & Section Padding */
+.footer-all-section-area {
+    padding: 40px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area {
+        padding: 50px 40px !important;
+    }
+}
+
+/* IMPROVEMENT 3: Visual Section Separation - Borders & Backgrounds */
+@media (min-width: 768px) {
+    .about-links-area {
+        border-left: 4px solid #ff5722 !important;
+        padding-left: 20px !important;
+        background: rgba(255, 87, 34, 0.03) !important;
+        padding: 20px 20px 20px 20px !important;
+        border-radius: 6px !important;
+    }
+
+    .get-links-area {
+        border-left: 4px solid #ff5722 !important;
+        padding-left: 20px !important;
+        background: rgba(255, 87, 34, 0.03) !important;
+        padding: 20px 20px 20px 20px !important;
+        border-radius: 6px !important;
+    }
+
+    .footer-contact-area {
+        border-left: 4px solid #ff5722 !important;
+        padding-left: 20px !important;
+        background: linear-gradient(135deg, rgba(255, 87, 34, 0.08) 0%, rgba(255, 87, 34, 0.03) 100%) !important;
+        padding: 20px !important;
+        border-radius: 6px !important;
+    }
+}
+
+/* IMPROVEMENT 4: Link Styling with Orange Bullet Points */
+.about-links-area ul li a::before,
+.get-links-area ul li a::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+    background: #ff5722 !important;
+    border-radius: 50% !important;
+    margin-right: 10px !important;
+    vertical-align: middle !important;
+}
+
+/* IMPROVEMENT 5: Enhanced Link Hover Effects */
+.about-links-area ul li a,
+.get-links-area ul li a {
+    position: relative !important;
+    transition: all 0.3s ease !important;
+}
+
+.about-links-area ul li a:hover::before,
+.get-links-area ul li a:hover::before {
+    background: #e64a19 !important;
+    transform: scale(1.3) !important;
+}
+
+.about-links-area ul li a:hover,
+.get-links-area ul li a:hover {
+    color: #ff5722 !important;
+    padding-left: 8px !important;
+}
+
+/* IMPROVEMENT 6: Enhanced Button Styling with Gradient & Shadow */
+.footer-btn button {
+    background: linear-gradient(135deg, #ff5722 0%, #ff7043 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.25) !important;
+    transition: all 0.3s ease !important;
+    font-weight: 700 !important;
+}
+
+.footer-btn button:hover {
+    background: linear-gradient(135deg, #e64a19 0%, #ff5722 100%) !important;
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.35) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* IMPROVEMENT 7: Enhanced Input Field Styling */
+.footer-form-area input {
+    border: 2px solid #ff5722 !important;
+    transition: all 0.3s ease !important;
+    background: #fafafa !important;
+}
+
+.footer-form-area input:focus {
+    border-color: #e64a19 !important;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.2) !important;
+    background: white !important;
+    outline: none !important;
+}
+
+.footer-form-area input::placeholder {
+    color: #bbb !important;
+}
+
+/* IMPROVEMENT 8: Increased List Item Spacing */
+.about-links-area ul li,
+.get-links-area ul li {
+    margin-bottom: 14px !important;
+}
+
+/* IMPROVEMENT 9: Newsletter Section Enhancement */
+.footer-contact-area h3 {
+    font-size: 19px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-contact-area h3 {
+        font-size: 21px !important;
+    }
+}
+
+/* IMPROVEMENT 10: Social Icons Hover Enhancement */
+.social-list-area ul li a {
+    transition: all 0.3s ease !important;
+}
+
+.social-list-area ul li a:hover {
+    background-color: #e64a19 !important;
+    transform: translateY(-4px) scale(1.05) !important;
+    box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3) !important;
+}
+
+/* IMPROVEMENT 11: Footer All Section Area Spacing Optimization */
+@media (min-width: 768px) {
+    .footer-all-section-area .row > div {
+        margin-bottom: 0 !important;
+        padding-right: 20px !important;
+    }
+
+    .footer-all-section-area .row > div:last-child {
+        padding-right: 0 !important;
+    }
+}
+
+/* IMPROVEMENT 12: Text Area Padding Optimization */
+.footer-text-area {
+    margin-bottom: 25px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-text-area {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ===== END DESIGN IMPROVEMENTS ===== */
 </style>
 
 <div class="footer3-section-area">
