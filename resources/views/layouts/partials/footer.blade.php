@@ -413,7 +413,7 @@ div[class*="col-lg-"] {
                                 @endphp
 
                                 <div class="footer-text-area text-center">
-                                    <p>{{ $description }}</p>
+                                    <p>{!! nl2br($description) !!}</p>
 
                                     <div class="social-list-area">
                                         <ul style="display:flex; justify-content:center; padding:0;">

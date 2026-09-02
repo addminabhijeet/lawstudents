@@ -707,7 +707,7 @@
                                         </a>
                                     </div>
                                     <div class="sidebar-content">
-                                        <p>{{ $description }}</p>
+                                        <p>{!! nl2br($description) !!}</p>
                                     </div>
 
                                     <div class="sidebar-contact-header">
