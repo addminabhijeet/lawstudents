@@ -134,6 +134,54 @@ div[class*="col-lg-"] {
     margin-bottom: 20px !important;
 }
 
+/* ENHANCEMENT: Logo & Description Professional Styling */
+.about-links-area > div:first-child {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 25px !important;
+}
+
+.about-links-area > div:first-child img {
+    max-width: 120px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+.about-links-area > div:nth-child(2) p {
+    font-size: 13px !important;
+    line-height: 1.8 !important;
+    color: #555 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    word-spacing: 2px !important;
+    margin-top: 15px !important;
+}
+
+@media (min-width: 576px) {
+    .about-links-area > div:first-child img {
+        max-width: 140px !important;
+    }
+
+    .about-links-area > div:nth-child(2) p {
+        font-size: 13px !important;
+        line-height: 1.9 !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-links-area > div:first-child img {
+        max-width: 150px !important;
+    }
+
+    .about-links-area > div:nth-child(2) p {
+        font-size: 14px !important;
+        line-height: 2 !important;
+    }
+}
+
 @media (min-width: 576px) {
     .footer-text-area p {
         font-size: 15px !important;
@@ -373,6 +421,31 @@ div[class*="col-lg-"] {
     min-width: 20px !important;
 }
 
+/* Hide Contact section labels (Email, Address, Phone) to reduce space */
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li div > span {
+    display: none !important;
+}
+
+/* Remove bullets from Contact section */
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li::before {
+    content: none !important;
+    display: none !important;
+}
+
 /* About links list styling */
 .about-links-area ul li {
     margin-bottom: 8px !important;
@@ -381,6 +454,14 @@ div[class*="col-lg-"] {
 .about-links-area ul {
     padding-left: 0 !important;
     list-style: none !important;
+}
+
+/* Two-Column Layout for QUICK LINKS and COURSES sections (First Row Only) */
+.footer-all-section-area > .row:first-of-type .about-links-area ul {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 20px !important;
+    padding: 0 !important;
 }
 
 /* Text centering for mobile */
@@ -632,6 +713,29 @@ div[class*="col-lg-"] {
     justify-content: center !important;
     flex-wrap: wrap !important;
     gap: 15px !important;
+}
+
+/* Orange Container - White Text */
+.copyright-pera[style*="background-color: #ff5722"] {
+    color: white !important;
+}
+
+.copyright-pera[style*="background-color: #ff5722"] a {
+    color: white !important;
+    transition: all 0.3s ease !important;
+}
+
+.copyright-pera[style*="background-color: #ff5722"] span {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* White Container - Dark Text */
+.copyright-pera[style*="background-color: white"] {
+    color: #333 !important;
+}
+
+.copyright-pera[style*="background-color: white"] p {
+    color: #333 !important;
 }
 
 .copyright-pera a {
