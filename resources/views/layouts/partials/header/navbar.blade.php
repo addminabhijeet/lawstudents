@@ -121,7 +121,7 @@
     .main-menu-ex.homepage6 {
         flex: 1;
         min-width: 0;
-        overflow: hidden;
+        overflow: visible !important;
     }
 
     .main-menu-ex.homepage6 ul {
@@ -532,6 +532,131 @@
             font-size: 17px !important;
         }
     }
+
+    /* ===== DROPDOWN MENU STYLING FOR ACTS & RULES ===== */
+    .dropdown-menu-item {
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        flex-shrink: 0 !important;
+        height: auto !important;
+        z-index: 9999 !important;
+    }
+
+    .dropdown-menu-item > a {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        white-space: nowrap !important;
+    }
+
+    .dropdown-menu-item > a::after {
+        content: '▼';
+        font-size: 8px;
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu-item:hover > a::after {
+        transform: rotate(180deg);
+    }
+
+    /* Dropdown submenu styling */
+    .dropdown-submenu {
+        position: absolute !important;
+        top: 155px !important;
+        left: 0 !important;
+        background-color: #fff !important;
+        min-width: 150px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 4px !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(0) !important;
+        transition: all 0.3s ease !important;
+        z-index: 99999 !important;
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .dropdown-menu-item:hover .dropdown-submenu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+
+    .dropdown-submenu li {
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .dropdown-submenu li a {
+        display: block !important;
+        padding: 12px 20px !important;
+        color: #333 !important;
+        text-decoration: none !important;
+        font-size: 13px !important;
+        white-space: nowrap !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .dropdown-submenu li a:hover {
+        background-color: #f5f5f5;
+        color: #ff5722 !important;
+        padding-left: 24px !important;
+    }
+
+    .dropdown-submenu li:first-child a {
+        border-top: none;
+    }
+
+    @media (min-width: 768px) {
+        .dropdown-submenu li a {
+            font-size: 14px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .dropdown-submenu li a {
+            font-size: 15px !important;
+        }
+    }
+
+    /* Fix overflow clipping of dropdown menu */
+    body {
+        overflow-x: visible !important;
+    }
+
+    .header-area {
+        overflow: visible !important;
+        position: relative !important;
+        z-index: 999 !important;
+    }
+
+    .header {
+        overflow: visible !important;
+    }
+
+    .header-elements {
+        overflow: visible !important;
+    }
+
+    .container-fluid.px-0 {
+        overflow: visible !important;
+    }
+
+    .main-menu-ex.homepage6 {
+        overflow: visible !important;
+    }
 </style>
 
 <script>
@@ -566,6 +691,7 @@
         styleBlock.innerHTML = `
             .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
             .top-content-area .content p { font-size: ${sizes.tagline} !important; }
+            .dropdown-submenu { z-index: 99999 !important; }
         `;
 
         document.head.appendChild(styleBlock);
@@ -575,6 +701,7 @@
         bodyStyle.innerHTML = `
             .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
             .top-content-area .content p { font-size: ${sizes.tagline} !important; }
+            .dropdown-submenu { z-index: 99999 !important; top: calc(100% + 30px) !important; }
         `;
         document.body.appendChild(bodyStyle);
     }
@@ -593,6 +720,43 @@
 
     // Apply on resize
     window.addEventListener('resize', createOrUpdateStyles);
+
+    // Fix dropdown positioning to prevent banner overlap - FORCEFUL VERSION
+    function fixDropdownPosition() {
+        const dropdown = document.querySelector('.dropdown-submenu');
+        const dropdownParent = document.querySelector('.dropdown-menu-item');
+
+        if (dropdown && dropdownParent) {
+            // Calculate absolute position
+            // Dropdown should be positioned at least 155px from top to avoid banner overlap
+            const header = document.querySelector('.header');
+            const headerBottom = header?.getBoundingClientRect().bottom || 134;
+
+            // Position dropdown 25px below banner start (banner starts at headerBottom)
+            const targetTop = headerBottom + 25;
+
+            // Use transform to move dropdown down by the offset
+            const offset = Math.max(0, targetTop - 50);
+            dropdown.style.setProperty('transform', `translateY(${offset}px)`, 'important');
+        }
+    }
+
+    // Apply on multiple events to ensure it works
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(fixDropdownPosition, 100);
+        });
+    } else {
+        setTimeout(fixDropdownPosition, 100);
+    }
+    window.addEventListener('load', fixDropdownPosition);
+
+    // Also fix on hover
+    const dropdownItem = document.querySelector('.dropdown-menu-item');
+    if (dropdownItem) {
+        dropdownItem.addEventListener('mouseenter', fixDropdownPosition);
+        dropdownItem.addEventListener('mouseleave', fixDropdownPosition);
+    }
 })();
 </script>
 
@@ -671,8 +835,13 @@
                                 <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 0px; margin: 0; padding: 0; list-style: none;">
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
-                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.acts') }}" style="white-space: nowrap;">Acts</a></li>
-                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.rules') }}" style="white-space: nowrap;">Rules</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;" class="dropdown-menu-item">
+                                        <a href="#" style="white-space: nowrap;">Acts & Rules</a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
+                                            <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
+                                        </ul>
+                                    </li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.copys') }}" style="white-space: nowrap;">Free Notes</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.clientele') }}" style="white-space: nowrap;">Client</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.course') }}" style="white-space: nowrap;">Course</a></li>
@@ -897,6 +1066,25 @@
     </div>
 </div>
 <!--===== MOBILE HEADER ENDS =======-->
+
+<!-- ENSURE DROPDOWN Z-INDEX IS ULTRA-HIGH AND POSITION BELOW BANNER -->
+<style>
+.dropdown-submenu {
+    z-index: 99999 !important;
+    top: 155px !important;
+    position: absolute !important;
+}
+</style>
+
+<!-- MAXIMUM SPECIFICITY DROPDOWN FIX -->
+<style>
+.main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
+    top: 160px !important !important;
+    transform: none !important;
+    position: fixed !important;
+    left: auto !important;
+}
+</style>
 
 <!-- Override the 12px font-size rule from sheet 6 that's overriding everything -->
 <style>
