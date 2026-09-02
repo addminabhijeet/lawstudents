@@ -407,8 +407,9 @@ div[class*="col-lg-"] {
                                     $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
                                     $description = !empty($user->description)
                                         ? $user->description
-                                        : 'Revolutionize Your Future: Harness the Power of Technology for Unparalleled
-                                            Growth and Success!';
+                                        : 'Learn Law.
+                                            Understand Law.
+                                            Build Your Future.';
                                 @endphp
 
                                 <div class="footer-text-area text-center">
