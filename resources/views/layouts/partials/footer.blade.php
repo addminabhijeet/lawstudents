@@ -604,6 +604,48 @@ div[class*="col-lg-"] {
     }
 }
 
+/* ENHANCEMENT: Social Media Icons in Social Media Section */
+.about-links-area ul li a[href*="facebook"],
+.about-links-area ul li a[href*="twitter"],
+.about-links-area ul li a[href*="instagram"],
+.about-links-area ul li a[href*="linkedin"] {
+    transition: all 0.3s ease !important;
+    position: relative !important;
+}
+
+.about-links-area ul li a[href*="facebook"]:hover,
+.about-links-area ul li a[href*="twitter"]:hover,
+.about-links-area ul li a[href*="instagram"]:hover,
+.about-links-area ul li a[href*="linkedin"]:hover {
+    background-color: #e64a19 !important;
+    transform: translateY(-4px) scale(1.05) !important;
+    box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3) !important;
+}
+
+/* ENHANCEMENT: Footer Bottom - Full Width Containers */
+.copyright-pera {
+    margin-left: -9999px !important;
+    margin-right: -9999px !important;
+    padding-left: calc(9999px + 15px) !important;
+    padding-right: calc(9999px + 15px) !important;
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+}
+
+.copyright-pera a {
+    transition: all 0.3s ease !important;
+}
+
+.footer3-section-area .copyright-pera {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* Orange links container styling - already in inline styles, just ensure full width */
+/* White copyright container styling - already in inline styles, just ensure full width */
+
 /* ===== END DESIGN IMPROVEMENTS ===== */
 </style>
 
@@ -641,22 +683,6 @@ div[class*="col-lg-"] {
 
                                 <div style="margin-top: 15px;">
                                     <p style="font-size: 14px; line-height: 1.6; color: #333; margin: 0; margin-bottom: 20px;">{!! nl2br($description) !!}</p>
-
-                                    <!-- Social Icons -->
-                                    <div style="display: flex; gap: 12px; justify-content: flex-start;">
-                                        <a href="{{ $facebook }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
-                                            <i class="fa-brands fa-facebook-f"></i>
-                                        </a>
-                                        <a href="{{ $twitter }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
-                                            <i class="fa-brands fa-x-twitter"></i>
-                                        </a>
-                                        <a href="{{ $linkedin }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
-                                            <i class="fa-brands fa-linkedin"></i>
-                                        </a>
-                                        <a href="{{ $instagram }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
-                                            <i class="fa-brands fa-instagram"></i>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -783,21 +809,21 @@ div[class*="col-lg-"] {
                 </div>
 
                 <!-- Footer Bottom Links -->
-                <div class="copyright-pera" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-                    <a href="#">Privacy Policy</a>
-                    <span style="color: #999;">|</span>
-                    <a href="#">Terms & Conditions</a>
-                    <span style="color: #999;">|</span>
-                    <a href="#">Disclaimer</a>
-                    <span style="color: #999;">|</span>
-                    <a href="#">Refund Policy</a>
-                    <span style="color: #999;">|</span>
-                    <a href="#">Sitemap</a>
+                <div class="copyright-pera" style="margin-top: 30px; background-color: #ff5722; color: white;">
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Privacy Policy</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Terms & Conditions</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Disclaimer</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Refund Policy</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Sitemap</a>
                 </div>
 
                 <!-- Copyright -->
-                <div class="copyright-pera" style="text-align: center; margin-top: 15px;">
-                    <p>© 2026 LawStudent. All Rights Reserved.</p>
+                <div class="copyright-pera" style="background-color: white; text-align: center;">
+                    <p style="color: #666; margin: 0; font-size: 14px;">© 2026 LawStudent. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
