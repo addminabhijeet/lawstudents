@@ -561,11 +561,32 @@
         transform: rotate(180deg);
     }
 
+    /* When dropdown is hovered, expand header to prevent banner overlap */
+    .dropdown-menu-item:hover ~ .header-area,
+    .dropdown-menu-item:hover {
+        /* Signal that dropdown is active */
+    }
+
+    /* Dynamically expand header when dropdown shows */
+    .header-area {
+        transition: padding-bottom 0.3s ease !important;
+    }
+
+    .main-menu-ex.homepage6:has(.dropdown-menu-item:hover) {
+        /* Parent flex container - maintain layout */
+    }
+
+    /* Expand header-top-area when dropdown is visible */
+    .header:has(.dropdown-menu-item:hover) {
+        padding-bottom: 120px !important;
+    }
+
     /* Dropdown submenu styling */
     .dropdown-submenu {
         position: absolute !important;
-        top: 155px !important;
+        top: 100% !important;
         left: 0 !important;
+        margin-top: 8px !important;
         background-color: #fff !important;
         min-width: 150px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
@@ -701,7 +722,7 @@
         bodyStyle.innerHTML = `
             .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
             .top-content-area .content p { font-size: ${sizes.tagline} !important; }
-            .dropdown-submenu { z-index: 99999 !important; top: calc(100% + 30px) !important; }
+            .dropdown-submenu { z-index: 99999 !important; }
         `;
         document.body.appendChild(bodyStyle);
     }
@@ -720,6 +741,17 @@
 
     // Apply on resize
     window.addEventListener('resize', createOrUpdateStyles);
+
+    // Fix dropdown positioning after all CSS loads
+    setTimeout(function() {
+        const dd = document.querySelector('.dropdown-submenu');
+        if (dd) {
+            dd.style.setProperty('position', 'absolute', 'important');
+            dd.style.setProperty('top', '100%', 'important');
+            dd.style.setProperty('left', '0', 'important');
+            dd.style.setProperty('margin-top', '8px', 'important');
+        }
+    }, 500);
 
     // Fix dropdown positioning to prevent banner overlap - FORCEFUL VERSION
     function fixDropdownPosition() {
@@ -751,11 +783,52 @@
     }
     window.addEventListener('load', fixDropdownPosition);
 
-    // Also fix on hover
+    // FINAL FIX: Remove bad position:fixed CSS and inject correct absolute positioning
+    function fixDropdownPositioningFinal() {
+        // Find and remove the problematic style block with position: fixed
+        const styles = Array.from(document.querySelectorAll('style'));
+        styles.forEach(style => {
+            if (style.innerHTML && style.innerHTML.includes('position: fixed') && style.innerHTML.includes('dropdown-menu-item')) {
+                style.remove();
+            }
+        });
+
+        // Inject correct CSS rule
+        const correctStyle = document.createElement('style');
+        correctStyle.id = 'dropdown-position-fix';
+        correctStyle.innerHTML = `.main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            margin-top: 8px !important;
+            transform: none !important;
+        }`;
+        document.head.appendChild(correctStyle);
+    }
+
+    // Apply the fix immediately and on delays to catch late-loading CSS
+    fixDropdownPositioningFinal();
+    setTimeout(fixDropdownPositioningFinal, 100);
+    setTimeout(fixDropdownPositioningFinal, 500);
+    setTimeout(fixDropdownPositioningFinal, 1000);
+
+    // Also handle header expansion and dropdown visibility
     const dropdownItem = document.querySelector('.dropdown-menu-item');
-    if (dropdownItem) {
-        dropdownItem.addEventListener('mouseenter', fixDropdownPosition);
-        dropdownItem.addEventListener('mouseleave', fixDropdownPosition);
+    const header = document.querySelector('.header');
+    const dropdown = document.querySelector('.dropdown-submenu');
+
+    if (dropdownItem && header && dropdown) {
+        // Ensure menu container doesn't clip dropdown
+        const menuContainer = document.querySelector('.main-menu-ex.homepage6');
+        if (menuContainer) {
+            menuContainer.style.setProperty('overflow', 'visible', 'important');
+        }
+
+        // Ensure header area doesn't clip dropdown
+        const headerArea = document.querySelector('.header-area');
+        if (headerArea) {
+            headerArea.style.setProperty('overflow', 'visible', 'important');
+        }
     }
 })();
 </script>
@@ -831,7 +904,7 @@
                                         style="width:100%; height:100%; object-fit:contain;">
                                 </a>
                             </div>
-                            <div class="main-menu-ex homepage6" style="flex: 0 0 auto; min-width: 0; overflow: hidden; margin-left: auto !important;">
+                            <div class="main-menu-ex homepage6" style="flex: 0 0 auto; min-width: 0; overflow: visible !important; margin-left: auto !important;">
                                 <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 0px; margin: 0; padding: 0; list-style: none;">
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
@@ -842,9 +915,14 @@
                                             <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                                         </ul>
                                     </li>
-                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.copys') }}" style="white-space: nowrap;">Free Notes</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;" class="dropdown-menu-item">
+                                        <a href="#" style="white-space: nowrap;">Courses & Free Notes</a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="{{ route('frontend.course') }}">Course</a></li>
+                                            <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
+                                        </ul>
+                                    </li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.clientele') }}" style="white-space: nowrap;">Client</a></li>
-                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.course') }}" style="white-space: nowrap;">Course</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.gallery') }}" style="white-space: nowrap;">Gallery</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.contact') }}" style="white-space: nowrap;">Contact Us</a></li>
                                     <li style="list-style: none; flex-shrink: 0;">
@@ -1067,22 +1145,31 @@
 </div>
 <!--===== MOBILE HEADER ENDS =======-->
 
-<!-- ENSURE DROPDOWN Z-INDEX IS ULTRA-HIGH AND POSITION BELOW BANNER -->
+<!-- CORRECT DROPDOWN POSITIONING - BELOW MENU ITEM -->
 <style>
 .dropdown-submenu {
-    z-index: 99999 !important;
-    top: 155px !important;
     position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    margin-top: 8px !important;
+    z-index: 99999 !important;
 }
-</style>
 
-<!-- MAXIMUM SPECIFICITY DROPDOWN FIX -->
-<style>
 .main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
-    top: 160px !important !important;
-    transform: none !important;
-    position: fixed !important;
-    left: auto !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    margin-top: 8px !important;
+}
+
+/* Force absolute positioning - override all compiled CSS */
+html .main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    margin-top: 8px !important;
+    right: auto !important;
+    bottom: auto !important;
 }
 </style>
 
