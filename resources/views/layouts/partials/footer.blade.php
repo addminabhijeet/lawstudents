@@ -448,20 +448,33 @@ div[class*="col-lg-"] {
 
 /* About links list styling */
 .about-links-area ul li {
-    margin-bottom: 8px !important;
+    margin-bottom: 12px !important;
+    list-style: none !important;
 }
 
 .about-links-area ul {
     padding-left: 0 !important;
     list-style: none !important;
+    margin: 0 !important;
 }
 
 /* Two-Column Layout for QUICK LINKS and COURSES sections (First Row Only) */
-.footer-all-section-area > .row:first-of-type .about-links-area ul {
+.footer-all-section-area > .row:first-of-type .about-links-area:nth-child(1) ul,
+.footer-all-section-area > .row:first-of-type .about-links-area:nth-child(2) ul {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 0 20px !important;
     padding: 0 !important;
+    flex-direction: unset !important;
+    align-items: unset !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area > .row:first-of-type .about-links-area ul {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0 20px !important;
+    }
 }
 
 /* Text centering for mobile */
@@ -493,11 +506,12 @@ div[class*="col-lg-"] {
     font-size: 18px !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
-    letter-spacing: 1px !important;
+    letter-spacing: 1.2px !important;
     color: #ff5722 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 22px !important;
     position: relative !important;
-    padding-bottom: 12px !important;
+    padding-bottom: 15px !important;
+    text-align: center !important;
 }
 
 @media (min-width: 576px) {
@@ -701,6 +715,79 @@ div[class*="col-lg-"] {
     background-color: #e64a19 !important;
     transform: translateY(-4px) scale(1.05) !important;
     box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3) !important;
+}
+
+/* ENHANCEMENT: Professional Styling for All Footer Sections */
+
+/* Section Container Alignment & Spacing */
+.footer-all-section-area > .row > div {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+/* Professional List Item Styling for QUICK LINKS, COURSES, RESOURCES */
+.footer-all-section-area > .row:first-of-type .about-links-area ul li,
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Professional Section Text Alignment */
+@media (max-width: 767px) {
+    .footer-all-section-area > .row:first-of-type .about-links-area,
+    .footer-all-section-area > .row:nth-of-type(2) .about-links-area {
+        text-align: center !important;
+    }
+
+    .footer-all-section-area > .row:first-of-type .about-links-area ul,
+    .footer-all-section-area > .row:nth-of-type(2) .about-links-area ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}
+
+/* Professional Link Styling for All Footer Sections */
+.footer-all-section-area .about-links-area a {
+    color: #333 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    line-height: 1.8 !important;
+}
+
+.footer-all-section-area .about-links-area a:hover {
+    color: #ff5722 !important;
+    transform: translateX(4px) !important;
+}
+
+/* Remove All Bullets from Footer Lists */
+.footer-all-section-area ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.footer-all-section-area ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.footer-all-section-area ul li::before,
+.footer-all-section-area ul li::marker {
+    display: none !important;
+    content: none !important;
 }
 
 /* ENHANCEMENT: Footer Bottom - Full Width Containers */
