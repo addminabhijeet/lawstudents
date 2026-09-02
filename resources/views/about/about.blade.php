@@ -74,6 +74,172 @@
     </div>
     <!-- ===== ABOUT ENDS======= -->
 
+    <!-- ===== ABOUT LAWSTUDENT SECTION STARTS ======= -->
+    <style>
+        .about-lawstudent-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+            padding: 80px 20px;
+        }
+
+        .about-lawstudent-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-lawstudent-content {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .about-lawstudent-heading {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .about-lawstudent-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff5722 0%, #ff7a50 100%);
+            border-radius: 2px;
+        }
+
+        .about-lawstudent-intro {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #555;
+            text-align: center;
+            margin: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-lawstudent-intro strong {
+            color: #ff5722;
+            font-weight: 600;
+        }
+
+        .about-lawstudent-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 0 15px;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 87, 34, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .about-lawstudent-section {
+                padding: 60px 15px;
+            }
+
+            .about-lawstudent-content {
+                padding: 35px 25px;
+            }
+
+            .about-lawstudent-heading {
+                font-size: 28px;
+                margin-bottom: 25px;
+            }
+
+            .about-lawstudent-intro {
+                font-size: 14px;
+            }
+
+            .about-lawstudent-features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 40px;
+                padding-top: 30px;
+            }
+        }
+    </style>
+
+    <div class="about-lawstudent-section">
+        <div class="about-lawstudent-container">
+            <div class="about-lawstudent-content">
+                <h2 class="about-lawstudent-heading">Welcome to LawStudent</h2>
+
+                <p class="about-lawstudent-intro">
+                    <strong>LawStudent</strong> is an educational and knowledge platform dedicated to students, aspirants and
+                    professionals pursuing legal and professional education. The platform provides structured courses,
+                    study materials, Bare Acts, Rules, Notifications, legal knowledge resources and examination-
+                    oriented preparation.
+                </p>
+
+                <div class="about-lawstudent-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-title">Comprehensive Courses</div>
+                        <div class="feature-text">Structured learning programs designed for all levels</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">📖</div>
+                        <div class="feature-title">Study Materials</div>
+                        <div class="feature-text">Curated resources and study guides</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">⚖️</div>
+                        <div class="feature-title">Legal Knowledge</div>
+                        <div class="feature-text">Bare Acts, Rules, and legal resources</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">📢</div>
+                        <div class="feature-title">Notifications</div>
+                        <div class="feature-text">Latest updates and important notices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ABOUT LAWSTUDENT SECTION ENDS ======= -->
+
     <!-- ===== SERVICE STARTS======= -->
     <div class="about-servce-section-area sp1">
         <div class="container">

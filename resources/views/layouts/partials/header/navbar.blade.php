@@ -1,143 +1,314 @@
-<!--===== RESPONSIVE HEADER STYLES =======-->
+<!--===== RESPONSIVE HEADER STYLES (IMPROVED) =======-->
 <style>
-    /* Responsive logo sizing */
+    /* ===== IMPROVED LOGO SIZING (Single Responsive Scale) ===== */
     .site-logo {
-        width: 140px !important;
-        flex-shrink: 0;
+        width: 150px !important;
         height: 55px !important;
+        flex-shrink: 0;
     }
 
-    /* Tablets and smaller desktops */
     @media (max-width: 1399px) {
+        .site-logo {
+            width: 140px !important;
+        }
+    }
+
+    @media (max-width: 1199px) {
         .site-logo {
             width: 130px !important;
         }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 0px;
-        }
-
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 3px 4px;
-            letter-spacing: -0.4px;
-        }
     }
 
-    /* Medium screens */
-    @media (max-width: 1199px) {
+    @media (max-width: 1024px) {
         .site-logo {
             width: 120px !important;
         }
-
-        .header-top-area {
-            margin-bottom: 8px;
-        }
-
-        .social-area {
-            gap: 8px !important;
-            flex-wrap: wrap !important;
-        }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 0px;
-        }
-
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 3px 3px;
-            letter-spacing: -0.4px;
-        }
     }
 
-    /* Smaller medium screens */
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
         .site-logo {
             width: 110px !important;
-        }
-
-        .header-elements {
-            gap: 2px;
-        }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 0px;
-        }
-
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 10px;
-            padding: 2px 3px;
-            letter-spacing: -0.4px;
-        }
-
-        .contact-3 {
-            order: -1;
+            height: 45px !important;
         }
     }
 
-    /* Adjust header top spacing */
-    .header-top-border {
-        padding: 12px 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    @media (max-width: 1199px) {
-        .header-top-border {
-            padding: 8px 0 !important;
-            margin: 0 !important;
+    @media (max-width: 480px) {
+        .site-logo {
+            width: 90px !important;
+            height: 40px !important;
         }
     }
 
-    /* Ensure menu doesn't overlap with logo */
+    @media (min-width: 1600px) {
+        .site-logo {
+            width: 160px !important;
+            height: 60px !important;
+        }
+    }
+
+    /* ===== IMPROVED HEADER ELEMENTS SPACING ===== */
     .header-elements {
         display: flex;
         align-items: center;
-        gap: 3px;
+        gap: 20px;
         flex-wrap: nowrap;
         justify-content: flex-start;
         width: 100%;
-        min-height: 60px;
-        padding: 0 !important;
+        min-height: 70px;
+        padding: 15px 15px !important;
+        transition: all 0.3s ease;
     }
 
-    @media (max-width: 1199px) {
+    @media (min-width: 576px) {
         .header-elements {
-            gap: 3px;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
+            gap: 25px;
+            min-height: 75px;
+            padding: 15px 20px !important;
         }
     }
 
-    @media (max-width: 1024px) {
+    @media (min-width: 768px) {
         .header-elements {
-            gap: 2px;
-            justify-content: flex-start;
+            gap: 30px;
+            min-height: 80px;
+            padding: 15px 30px !important;
         }
     }
 
-    /* Main menu responsive */
+    @media (min-width: 992px) {
+        .header-elements {
+            gap: 35px;
+            min-height: 85px;
+            padding: 15px 40px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .header-elements {
+            gap: 40px;
+            min-height: 85px;
+            padding: 15px 50px !important;
+        }
+    }
+
+    /* ===== IMPROVED HEADER TOP AREA SPACING ===== */
+    .header-top-border {
+        padding: 14px 15px !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        background-color: #ff5722 !important;
+        background-image: none !important;
+    }
+
+    @media (min-width: 576px) {
+        .header-top-border {
+            padding: 14px 20px !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .header-top-border {
+            padding: 14px 30px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .header-top-border {
+            padding: 14px 40px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .header-top-border {
+            padding: 14px 50px !important;
+        }
+    }
+
+    /* ===== IMPROVED MAIN MENU STYLING (Clean Gaps) ===== */
     .main-menu-ex.homepage6 {
         flex: 1;
         min-width: 0;
         overflow: visible !important;
+        order: 2 !important;
+        margin-left: auto !important;
+        flex-basis: auto !important;
+        max-width: fit-content !important;
     }
 
     .main-menu-ex.homepage6 ul {
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 0px;
+        gap: 15px;
         margin: 0;
         padding: 0;
         list-style: none;
         justify-content: flex-start;
     }
 
-    /* Email and phone responsive wrapping */
-    .social-area ul {
+    /* Responsive gaps for menu items */
+    @media (max-width: 1399px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 14px;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 13px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 12px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 8px;
+        }
+    }
+
+    /* ===== IMPROVED MENU ITEMS TYPOGRAPHY ===== */
+    .main-menu-ex.homepage6 ul li a {
+        font-size: 14px;
+        display: inline-block;
+        padding: 6px 10px;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+        letter-spacing: normal;
+        line-height: 1.5;
+        color: #333 !important;
+    }
+
+    /* Large desktop (1600px+) */
+    @media (min-width: 1600px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px;
+            padding: 6px 11px;
+            letter-spacing: 0.3px;
+        }
+    }
+
+    /* Desktop (1200px - 1599px) */
+    @media (min-width: 1200px) and (max-width: 1599px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px;
+            padding: 6px 10px;
+            letter-spacing: 0.2px;
+        }
+    }
+
+    /* Tablet Large (1024px - 1199px) */
+    @media (max-width: 1199px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 13px;
+            padding: 5px 9px;
+            letter-spacing: 0px;
+        }
+    }
+
+    /* Tablet Small (768px - 1023px) */
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 12px;
+            padding: 5px 8px;
+            letter-spacing: -0.1px;
+        }
+    }
+
+    /* Mobile Large (480px - 767px) */
+    @media (max-width: 768px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 11px;
+            padding: 4px 7px;
+            letter-spacing: -0.2px;
+        }
+    }
+
+    /* Mobile Small (< 480px) */
+    @media (max-width: 480px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 10px;
+            padding: 3px 6px;
+            letter-spacing: -0.3px;
+        }
+    }
+
+    /* ===== IMPROVED HEADER TOP TEXT SCALING ===== */
+    .top-content-area .content p {
+        color: white !important;
+        font-weight: 500 !important;
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    @media (max-width: 1199px) {
+        .top-content-area .content p {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .top-content-area .content p {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .top-content-area .content p {
+            font-size: 11px;
+        }
+    }
+
+    /* ===== IMPROVED SOCIAL AREA (Email & Phone) ===== */
+    .social-area {
+        display: flex;
+        align-items: center;
+        gap: 20px;
         flex-wrap: wrap;
+        white-space: normal;
+    }
+
+    .social-area ul {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        list-style: none;
+    }
+
+    .social-area a {
+        color: white !important;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .social-area a:hover {
+        opacity: 0.85;
+    }
+
+    .social-area a span {
+        color: white !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     @media (max-width: 1199px) {
@@ -146,27 +317,100 @@
             width: 100%;
             flex-direction: column;
             align-items: flex-start;
+            gap: 10px;
         }
 
         .social-area ul {
             width: 100%;
         }
-    }
 
-    /* Contact area responsive */
-    .col-lg-4 {
-        display: flex;
-        align-items: center;
-    }
-
-    @media (max-width: 1199px) {
-        .col-lg-4 {
-            margin-top: 10px;
-            width: 100%;
+        .social-area a {
+            font-size: 12px;
         }
     }
 
-    /* Prevent text overflow */
+    @media (max-width: 1024px) {
+        .social-area a {
+            font-size: 11px;
+        }
+
+        .social-area a span {
+            max-width: 150px;
+            display: inline-block;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .social-area a {
+            font-size: 10px;
+        }
+
+        .social-area a span {
+            max-width: 120px;
+        }
+    }
+
+    /* ===== IMPROVED LOGIN/REGISTER BUTTON ===== */
+    .main-menu-ex.homepage6 ul li .btn {
+        background-color: #e64a19 !important;
+        color: white !important;
+        border-color: #e64a19 !important;
+        padding: 8px 16px !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        border-radius: 5px !important;
+        transition: all 0.3s ease !important;
+        white-space: nowrap !important;
+        cursor: pointer !important;
+        line-height: 1.5 !important;
+    }
+
+    .main-menu-ex.homepage6 ul li .btn:hover {
+        background-color: #d43b0a !important;
+        border-color: #d43b0a !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul li .btn {
+            padding: 7px 14px !important;
+            font-size: 12px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .main-menu-ex.homepage6 ul li .btn {
+            padding: 6px 12px !important;
+            font-size: 11px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-menu-ex.homepage6 ul li .btn {
+            padding: 5px 10px !important;
+            font-size: 10px !important;
+        }
+    }
+
+    /* ===== CONTACT AREA STYLING ===== */
+    .contact-3 {
+        flex-shrink: 0;
+        order: 3 !important;
+    }
+
+    .col-lg-4 {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        min-width: auto;
+    }
+
+    .header-top-area .row {
+        row-gap: 10px;
+    }
+
+    /* ===== PREVENT TEXT OVERFLOW ===== */
     .top-content-area .content p,
     .social-area a {
         white-space: normal;
@@ -174,127 +418,28 @@
         word-break: break-word;
     }
 
-    /* Header row responsive gaps */
-    .header-top-area .row {
-        row-gap: 8px;
-    }
-
-    @media (max-width: 1199px) {
+    /* ===== RESPONSIVE MENU LAYOUT ===== */
+    @media (max-width: 768px) {
         .header-top-area .row {
             row-gap: 12px;
         }
     }
 
-    /* Email text truncation on smaller screens */
-    @media (max-width: 1024px) {
-        .social-area a {
-            font-size: 12px;
-        }
-
-        .social-area a span {
-            max-width: 150px;
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    /* ===== MENU ITEMS OPTIMIZATION ===== */
+    .main-menu-ex.homepage6 ul li {
+        flex-shrink: 0;
+        list-style: none;
     }
 
-    /* Ensure contact area doesn't cause horizontal scroll */
-    .header-top-area {
-        overflow: hidden;
-    }
-
-    /* Menu items font size adjustment */
-    .main-menu-ex.homepage6 ul li a {
-        font-size: 12px;
-        display: inline-block;
-        padding: 3px 4px;
-        white-space: nowrap;
-        transition: all 0.3s ease;
-        letter-spacing: -0.4px;
-    }
-
-    /* Prevent horizontal overflow on smaller screens */
-    @media (max-width: 1024px) {
-        .main-menu-ex.homepage6 ul li a {
-            padding: 5px 6px !important;
-            font-size: 11px !important;
-            letter-spacing: -0.3px;
-        }
-
-        .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 5px 8px !important;
-        }
-    }
-
-    /* Hide scrollbar if it appears */
-    .main-menu-ex.homepage6::-webkit-scrollbar {
-        display: none;
-    }
-
-    .main-menu-ex.homepage6 {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    /* Spacing between header sections */
-    .header-elements {
-        min-height: 85px;
-        padding: 5px 15px !important;
-    }
-
-    /* Responsive padding for header elements */
-    @media (min-width: 576px) {
-        .header-elements {
-            padding: 5px 20px !important;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .header-elements {
-            padding: 5px 30px !important;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .header-elements {
-            padding: 5px 40px !important;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .header-elements {
-            padding: 5px 50px !important;
-        }
-    }
-
-    /* Move menu to right side - reorder flexbox items */
-    .site-logo {
-        order: 1 !important;
-    }
-
-    .main-menu-ex.homepage6 {
-        order: 2 !important;
-        margin-left: auto !important;
-    }
-
-    .contact-3 {
-        order: 3 !important;
-    }
-
-    /* Prevent logo distortion */
+    /* ===== LOGO STYLING ===== */
     .site-logo img {
         max-width: 100%;
         max-height: 100%;
         display: block;
+        object-fit: contain;
     }
 
-    /* Optimize menu layout */
-    .main-menu-ex.homepage6 ul li {
-        flex-shrink: 0;
-    }
-
-    /* Hamburger menu position */
+    /* ===== HAMBURGER MENU STYLING ===== */
     .header__bar-icon {
         min-width: 30px;
         display: flex;
@@ -302,120 +447,23 @@
         justify-content: center;
         flex-shrink: 0;
         font-size: 18px;
+        cursor: pointer;
     }
 
-    /* Large desktop screens */
-    @media (min-width: 1600px) {
-        .site-logo {
-            width: 160px !important;
-        }
+    /* ===== CONTACT INFO STYLING ===== */
+    .col-lg-4 {
+        display: flex;
+        align-items: center;
+    }
 
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 13px;
-            padding: 3px 5px;
-            letter-spacing: -0.4px;
-        }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 1px;
+    @media (max-width: 1199px) {
+        .col-lg-4 {
+            margin-top: 0;
+            width: 100%;
         }
     }
 
-    /* Tablet layouts - better spacing */
-    @media (min-width: 1200px) and (max-width: 1399px) {
-        .header-elements {
-            gap: 10px;
-        }
-    }
-
-    /* Additional small screen adjustments */
-    @media (max-width: 991px) {
-        .site-logo {
-            width: 240px !important;
-        }
-
-        .main-menu-ex.homepage6 {
-            display: none;
-        }
-
-        .header {
-            display: none !important;
-        }
-    }
-
-    /* Ultra-small screens - ensure single line */
-    @media (max-width: 768px) {
-        .site-logo {
-            width: 100px !important;
-        }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 0px;
-        }
-
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 9px !important;
-            padding: 2px 3px !important;
-            letter-spacing: -0.4px;
-        }
-
-        .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 2px 3px !important;
-        }
-    }
-
-    /* Extra small screens */
-    @media (max-width: 480px) {
-        .site-logo {
-            width: 90px !important;
-        }
-
-        .main-menu-ex.homepage6 ul {
-            gap: 0px;
-        }
-
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 8px !important;
-            padding: 1px 2px !important;
-            letter-spacing: -0.5px;
-        }
-
-        .main-menu-ex.homepage6 ul li:last-child a {
-            padding: 1px 2px !important;
-        }
-    }
-
-    /* Remove scrollbar indicator styling */
-    .main-menu-ex.homepage6::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .main-menu-ex.homepage6::-webkit-scrollbar-thumb {
-        background: transparent;
-    }
-
-    /* Fill header container with orange color */
-    .header-top-border {
-        background-color: #ff5722 !important;
-        background-image: none !important;
-        width: 100% !important;
-    }
-
-    /* Text color adjustments for better contrast */
-    .top-content-area .content p {
-        color: white !important;
-        font-weight: 500 !important;
-    }
-
-    .social-area a {
-        color: white !important;
-    }
-
-    .social-area a span {
-        color: white !important;
-    }
-
-    /* Full width container with orange fill */
+    /* ===== HEADER CONTAINER STYLING ===== */
     .container-fluid.px-0 {
         padding-left: 0 !important;
         padding-right: 0 !important;
@@ -425,112 +473,29 @@
         max-width: 100% !important;
     }
 
-    /* Orange background fills 100% with NO padding on sides */
     .header-top-area {
+        overflow: hidden;
         padding-left: 0 !important;
         padding-right: 0 !important;
+        margin-bottom: 0;
     }
 
-    /* Content spacing inside the full-width orange area */
-    .header-top-border {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
+    /* ===== SCROLLBAR HIDING ===== */
+    .main-menu-ex.homepage6::-webkit-scrollbar {
+        display: none;
     }
 
-    /* Responsive content padding */
-    @media (min-width: 576px) {
-        .header-top-border {
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-        }
+    .main-menu-ex.homepage6 {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 
-    @media (min-width: 768px) {
-        .header-top-border {
-            padding-left: 30px !important;
-            padding-right: 30px !important;
-        }
+    .main-menu-ex.homepage6::-webkit-scrollbar-track {
+        background: transparent;
     }
 
-    @media (min-width: 992px) {
-        .header-top-border {
-            padding-left: 40px !important;
-            padding-right: 40px !important;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .header-top-border {
-            padding-left: 50px !important;
-            padding-right: 50px !important;
-        }
-    }
-
-    /* Move menu to right side - flexbox reordering */
-    .site-logo {
-        order: 1 !important;
-    }
-
-    .header-elements .main-menu-ex.homepage6 {
-        order: 2 !important;
-        margin-left: auto !important;
-        flex: 0 0 auto !important;
-        width: auto !important;
-        max-width: fit-content !important;
-    }
-
-    .contact-3 {
-        order: 3 !important;
-    }
-
-    /* Responsive font sizing for navbar menu items */
-    .main-menu-ex.homepage6 ul li a {
-        font-size: 13px !important;
-        line-height: 1.4 !important;
-    }
-
-    .top-content-area .content p {
-        font-size: 14px !important;
-    }
-
-    @media (min-width: 576px) {
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 13px !important;
-        }
-
-        .top-content-area .content p {
-            font-size: 14px !important;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 14px !important;
-        }
-
-        .top-content-area .content p {
-            font-size: 15px !important;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 15px !important;
-        }
-
-        .top-content-area .content p {
-            font-size: 16px !important;
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .main-menu-ex.homepage6 ul li a {
-            font-size: 16px !important;
-        }
-
-        .top-content-area .content p {
-            font-size: 17px !important;
-        }
+    .main-menu-ex.homepage6::-webkit-scrollbar-thumb {
+        background: transparent;
     }
 
     /* ===== DROPDOWN MENU STYLING FOR ACTS & RULES ===== */
@@ -909,12 +874,13 @@
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
                                     <li style="list-style: none; flex-shrink: 0;" class="dropdown-menu-item">
-                                        <a href="#" style="white-space: nowrap;">Acts & Rules</a>
+                                        <a href="#" style="white-space: nowrap;">Bare Acts & Rules</a>
                                         <ul class="dropdown-submenu">
                                             <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
                                             <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                                         </ul>
                                     </li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.legal-knowledge') }}" style="white-space: nowrap;">Legal Knowledge</a></li>
                                     <li style="list-style: none; flex-shrink: 0;" class="dropdown-menu-item">
                                         <a href="#" style="white-space: nowrap;">Courses & Free Notes</a>
                                         <ul class="dropdown-submenu">
@@ -923,12 +889,13 @@
                                         </ul>
                                     </li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.clientele') }}" style="white-space: nowrap;">Client</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" style="white-space: nowrap;">Centre & State Govt. Examination</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.gallery') }}" style="white-space: nowrap;">Gallery</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.contact') }}" style="white-space: nowrap;">Contact Us</a></li>
                                     <li style="list-style: none; flex-shrink: 0;">
                                         <a href="{{ route('login') }}" class="btn"
                                             style="background-color:#ff5722; color:#fff; border-color:#ff5722; white-space: nowrap;">
-                                            Login
+                                            Login / Register
                                         </a>
                                     </li>
                                 </ul>

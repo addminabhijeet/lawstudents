@@ -462,41 +462,179 @@
             }
         }
     </style>
-    <!-- ===== WELCOME STARTS ======= -->
-    @php
-        $banner = $banner instanceof \Illuminate\Support\Collection ? $banner->first() : $banner;
-    @endphp
+    <!-- ===== HERO/LANDING SECTION STARTS ======= -->
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            padding: 80px 20px;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+        .hero-content {
+            max-width: 900px;
+        }
 
-        <div class="carousel-inner">
+        .hero-branding {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-            @if ($banner && $banner->image_1)
-                <div class="carousel-item active text-center">
-                    <img src="{{ asset('storage/app/public/' . $banner->image_1) }}" class="img-fluid"
-                        style="width:100%; height:100%;">
-                </div>
-            @endif
+        .hero-branding img {
+            height: 60px;
+            width: auto;
+        }
 
-            @if ($banner && $banner->image_2)
-                <div class="carousel-item {{ !$banner->image_1 ? 'active' : '' }} text-center">
-                    <img src="{{ asset('storage/app/public/' . $banner->image_2) }}" class="img-fluid"
-                        style="width:100%; height:100%;">
-                </div>
-            @endif
+        .hero-branding h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
-            @if ($banner && $banner->image_3)
-                <div class="carousel-item {{ !$banner->image_1 && !$banner->image_2 ? 'active' : '' }} text-center">
-                    <img src="{{ asset('storage/app/public/' . $banner->image_3) }}" class="img-fluid"
-                        style="width:100%; height:100%;">
-                </div>
-            @endif
+        .hero-tagline {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 25px 0 20px 0;
+            line-height: 1.4;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        .hero-supporting-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin: 0 0 50px 0;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .hero-btn {
+            padding: 14px 36px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 2px solid;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            min-width: 200px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-btn-primary {
+            background-color: #ff5722;
+            color: white;
+            border-color: #ff5722;
+        }
+
+        .hero-btn-primary:hover {
+            background-color: #e64a19;
+            border-color: #e64a19;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        }
+
+        .hero-btn-secondary {
+            background-color: transparent;
+            color: #2c3e50;
+            border-color: #2c3e50;
+        }
+
+        .hero-btn-secondary:hover {
+            background-color: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 20px;
+                min-height: auto;
+            }
+
+            .hero-branding {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-branding h1 {
+                font-size: 36px;
+            }
+
+            .hero-tagline {
+                font-size: 22px;
+                margin: 20px 0 15px 0;
+            }
+
+            .hero-supporting-text {
+                font-size: 14px;
+                margin: 0 0 35px 0;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-btn {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+    </style>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-branding">
+                <img src="/img/logo/logo11.png" alt="LawStudents Logo" style="height: 50px;">
+                <h1>LawStudents</h1>
+            </div>
+
+            <div class="hero-tagline">
+                Learn Law. Understand Law. Build Your Future.
+            </div>
+
+            <div class="hero-supporting-text">
+                A comprehensive platform for Legal Education, Examination Preparation, Legal Knowledge,
+                Bare Acts, Rules, Notifications and Study Materials.
+            </div>
+
+            <div class="hero-buttons">
+                <a href="{{ route('frontend.course') }}" class="hero-btn hero-btn-primary">
+                    Explore Courses
+                </a>
+                <a href="{{ route('frontend.copys') }}" class="hero-btn hero-btn-secondary">
+                    Free Notes
+                </a>
+                <a href="{{ route('frontend.home') }}" class="hero-btn hero-btn-secondary">
+                    Legal Knowledge
+                </a>
+            </div>
         </div>
-
     </div>
 
-    <!-- ===== WELCOME ENDS ======= -->
+    <!-- ===== HERO/LANDING SECTION ENDS ======= -->
 
     <!-- ===== ABOUT STARTS ======= -->
     <div class="about7-section-area sp1">

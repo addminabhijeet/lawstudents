@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\ClienteleController;
+use App\Http\Controllers\Frontend\LegalKnowledgeController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,8 @@ Route::middleware(['web'])
         Route::get('course', CourseController::class)->name('course');
         Route::get('gallery', GalleryController::class)->name('gallery');
         Route::get('contact-us', ContactController::class)->name('contact');
+        Route::get('legal-knowledge', [LegalKnowledgeController::class, 'index'])->name('legal-knowledge');
+        Route::post('legal-knowledge-store', [LegalKnowledgeController::class, 'store'])->name('legal-knowledge-store');
         Route::get('viewnote-watermark/{id}/{index?}', [FreeNotesController::class, 'viewnoteWatermarked'])->name('viewnoteWatermarked');
         Route::get('rules-search-notes', [RuleController::class, 'rulessearch'])->name('rulessearch');
         Route::get('acts-search-notes', [ActController::class, 'actssearch'])->name('actssearch');
