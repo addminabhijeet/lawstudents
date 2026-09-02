@@ -126,9 +126,9 @@ div[class*="col-lg-"] {
     }
 }
 
-/* Footer text - responsive sizing */
+/* Footer text - responsive sizing (IMPROVED) */
 .footer-text-area p {
-    font-size: 13px !important;
+    font-size: 14px !important;
     line-height: 1.6 !important;
     color: #666 !important;
     margin-bottom: 20px !important;
@@ -136,34 +136,35 @@ div[class*="col-lg-"] {
 
 @media (min-width: 576px) {
     .footer-text-area p {
-        font-size: 14px !important;
+        font-size: 15px !important;
     }
 }
 
 @media (min-width: 768px) {
     .footer-text-area p {
-        font-size: 14px !important;
+        font-size: 16px !important;
     }
 }
 
 @media (min-width: 1200px) {
     .footer-text-area p {
-        font-size: 15px !important;
+        font-size: 16px !important;
     }
 }
 
-/* Footer links - responsive sizing */
+/* Footer links - responsive sizing (IMPROVED) */
 .about-links-area ul li a,
 .get-links-area ul li a {
-    font-size: 13px !important;
+    font-size: 14px !important;
     color: #333 !important;
     transition: all 0.3s ease !important;
+    line-height: 1.6 !important;
 }
 
 @media (min-width: 576px) {
     .about-links-area ul li a,
     .get-links-area ul li a {
-        font-size: 13px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -177,7 +178,7 @@ div[class*="col-lg-"] {
 @media (min-width: 1200px) {
     .about-links-area ul li a,
     .get-links-area ul li a {
-        font-size: 14px !important;
+        font-size: 15px !important;
     }
 }
 
@@ -231,7 +232,7 @@ div[class*="col-lg-"] {
 }
 
 .footer-form-area input {
-    font-size: 13px !important;
+    font-size: 14px !important;
     padding: 12px 15px !important;
     border: 1px solid #ddd !important;
     border-radius: 4px 0 0 4px !important;
@@ -245,8 +246,15 @@ div[class*="col-lg-"] {
     }
 }
 
+@media (min-width: 768px) {
+    .footer-form-area input {
+        font-size: 15px !important;
+        padding: 13px 18px !important;
+    }
+}
+
 .footer-btn button {
-    font-size: 13px !important;
+    font-size: 14px !important;
     padding: 12px 20px !important;
     background-color: #ff5722 !important;
     color: white !important;
@@ -261,6 +269,13 @@ div[class*="col-lg-"] {
     .footer-btn button {
         font-size: 14px !important;
         padding: 13px 25px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-btn button {
+        font-size: 15px !important;
+        padding: 13px 28px !important;
     }
 }
 
@@ -294,6 +309,7 @@ div[class*="col-lg-"] {
     font-size: 12px !important;
     color: #999 !important;
     margin: 0 !important;
+    line-height: 1.5 !important;
 }
 
 @media (min-width: 576px) {
@@ -316,6 +332,12 @@ div[class*="col-lg-"] {
 }
 
 @media (min-width: 576px) {
+    .copyright-pera a {
+        font-size: 13px !important;
+    }
+}
+
+@media (min-width: 1200px) {
     .copyright-pera a {
         font-size: 13px !important;
     }
@@ -386,101 +408,192 @@ div[class*="col-lg-"] {
         <div class="row">
             <div class="col-lg-12">
                 <div class="footer-all-section-area sp5">
+                    @php
+                        $user = \App\Models\User::first();
+                        $address = !empty($user->webaddress) ? $user->webaddress : 'email@gmail.com';
+                        $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
+                        $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
+                        $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
+                        $pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
+                        $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
+                        $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
+                        $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+                        $description = !empty($user->description)
+                            ? $user->description
+                            : 'Learn Law.
+                                Understand Law.
+                                Build Your Future.';
+                    @endphp
+
+                    <!-- First Row: Logo, Quick Links, Courses -->
                     <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-last-section text-center">
-                                <div class="footer-imgage"
-                                    style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden; margin:0 auto 15px;">
-                                    <img src="assets/images/logo-full.png" alt=""
-                                        style="width:100%; height:100%; object-fit:contain;">
+                        <!-- Column 1: Logo and Description -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <!-- Logo Image -->
+                                <div style="margin-bottom: 20px;">
+                                    <img src="assets/images/logo-full.png" alt="Law Students Logo" style="width: 250px; height: auto; max-width: 100%;">
                                 </div>
 
-                                @php
-                                    $user = \App\Models\User::first();
-                                    $address = !empty($user->webaddress) ? $user->webaddress : 'email@gmail.com';
-                                    $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
-                                    $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
-                                    $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
-                                    $pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
-                                    $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
-                                    $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
-                                    $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
-                                    $description = !empty($user->description)
-                                        ? $user->description
-                                        : 'Learn Law.
-                                            Understand Law.
-                                            Build Your Future.';
-                                @endphp
+                                <div style="margin-top: 15px;">
+                                    <p style="font-size: 14px; line-height: 1.6; color: #333; margin: 0; margin-bottom: 20px;">{!! nl2br($description) !!}</p>
 
-                                <div class="footer-text-area text-center">
-                                    <p>{!! nl2br($description) !!}</p>
-
-                                    <div class="social-list-area">
-                                        <ul style="display:flex; justify-content:center; padding:0;">
-                                            <li><a href="{{ $facebook }}"><i
-                                                        class="fa-brands fa-facebook-f"></i></a></li>
-                                            <li><a href="{{ $twitter }}"><i class="fa-brands fa-x-twitter"></i></a>
-                                            </li>
-                                            <li><a href="{{ $linkedin }}"><i class="fa-brands fa-linkedin"></i></a>
-                                            </li>
-                                            <li><a href="{{ $instagram }}"><i class="fa-brands fa-instagram"></i></a>
-                                            </li>
-                                        </ul>
+                                    <!-- Social Icons -->
+                                    <div style="display: flex; gap: 12px; justify-content: flex-start;">
+                                        <a href="{{ $facebook }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                        <a href="{{ $twitter }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-x-twitter"></i>
+                                        </a>
+                                        <a href="{{ $linkedin }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </a>
+                                        <a href="{{ $instagram }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-6">
-                            <div class="about-links-area">
-                                <h3>About Link</h3>
-                                <ul>
-                                    <li><a href="{{ route('frontend.about') }}">About Us</a></li>
-                                    <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
-                                    <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
-                                    <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
-                                    <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">Course</a></li>
-                                    <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
-                                    <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
-                                    <li><a href="{{ route('login') }}">Login</a></li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="get-links-area">
-                                <h3>Get In Touch</h3>
-                                <ul>
-                                    <li><img src="/img/icons/footer-email2.svg" alt=""><a
-                                            href="maito:{{ $email }}">{{ $email }}</a></li>
-                                    <li><img src="/img/icons/footer-location1.svg" alt=""><a
-                                            href="#">{{ $address }}</a>
-                                    </li>
-                                    <li><img src="/img/icons/footer-phn.svg" alt=""><a
-                                            href="tel:{{ $mobile }}">{{ $mobile }}</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <!-- Column 2: Quick Links -->
                         <div class="col-lg-4 col-md-6">
-                            <div class="footer-contact-area">
-                                <h3>Subscribe Our Newsletter</h3>
-                                <div class="footer-form-area">
-                                    <form>
-                                        <input type="email" placeholder="Enter Your Email">
-                                        <div class="footer-btn">
-                                            <button type="submit">Subscribe <i
-                                                    class="fa-light fa-arrow-right"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
+                            <div class="about-links-area">
+                                <h3>QUICK LINKS</h3>
+                                <ul>
+                                    <li><a href="{{ route('frontend.home') }}">Home</a></li>
+                                    <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+                                    <li><a href="{{ route('frontend.acts') }}">Acts & Rules</a></li>
+                                    <li><a href="{{ route('frontend.copys') }}">Legal Knowledge</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">Courses</a></li>
+                                    <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
+                                    <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                                </ul>
                             </div>
                         </div>
 
+                        <!-- Column 3: Courses -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>COURSES</h3>
+                                <ul>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. Entrance</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. 3 Years</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. 5 Years</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.M.</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">Judiciary</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CSEET</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CA</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CS</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CMA</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Row: Contact, Resources, Social Media -->
+                    <div class="row" style="margin-top: 30px;">
+                        <!-- Column 1: Contact -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>CONTACT</h3>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <!-- Email -->
+                                    <li style="margin-bottom: 25px; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <img src="/img/icons/footer-email2.svg" alt="Email" style="width: 20px; height: 20px;">
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Email</span>
+                                            <a href="mailto:{{ $email }}" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $email }}</a>
+                                        </div>
+                                    </li>
+
+                                    <!-- Address -->
+                                    <li style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+                                            <img src="/img/icons/footer-location1.svg" alt="Address" style="width: 20px; height: 20px;">
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Address</span>
+                                            <a href="#" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; line-height: 1.5; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $address }}</a>
+                                        </div>
+                                    </li>
+
+                                    <!-- Phone -->
+                                    <li style="display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                            <img src="/img/icons/footer-phn.svg" alt="Phone" style="width: 20px; height: 20px;">
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Phone</span>
+                                            <a href="tel:{{ $mobile }}" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $mobile }}</a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Resources -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>RESOURCES</h3>
+                                <ul>
+                                    <li><a href="{{ route('frontend.acts') }}">Bare Acts</a></li>
+                                    <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
+                                    <li><a href="#">Notifications</a></li>
+                                    <li><a href="#">Govt. Exams</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Column 3: Social Media -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>SOCIAL MEDIA</h3>
+                                <ul style="list-style: none; padding: 0; display: flex; gap: 15px; flex-wrap: wrap;">
+                                    <li>
+                                        <a href="{{ $facebook }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ $twitter }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-x-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ $instagram }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ $linkedin }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="copyright-pera">
-                    <p>© Copyright 2024 Law Students</p>
+
+                <!-- Footer Bottom Links -->
+                <div class="copyright-pera" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
                     <a href="#">Privacy Policy</a>
+                    <span style="color: #999;">|</span>
+                    <a href="#">Terms & Conditions</a>
+                    <span style="color: #999;">|</span>
+                    <a href="#">Disclaimer</a>
+                    <span style="color: #999;">|</span>
+                    <a href="#">Refund Policy</a>
+                    <span style="color: #999;">|</span>
+                    <a href="#">Sitemap</a>
+                </div>
+
+                <!-- Copyright -->
+                <div class="copyright-pera" style="text-align: center; margin-top: 15px;">
+                    <p>© 2026 LawStudent. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
