@@ -140,7 +140,7 @@
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 15px;
+        gap: 18px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -150,13 +150,13 @@
     /* Responsive gaps for menu items */
     @media (max-width: 1399px) {
         .main-menu-ex.homepage6 ul {
-            gap: 14px;
+            gap: 16px;
         }
     }
 
     @media (max-width: 1199px) {
         .main-menu-ex.homepage6 ul {
-            gap: 13px;
+            gap: 14px;
         }
     }
 
@@ -180,21 +180,22 @@
 
     /* ===== IMPROVED MENU ITEMS TYPOGRAPHY ===== */
     .main-menu-ex.homepage6 ul li a {
-        font-size: 14px;
+        font-size: 17px;
         display: inline-block;
-        padding: 6px 10px;
+        padding: 8px 12px;
         white-space: nowrap;
         transition: all 0.3s ease;
-        letter-spacing: normal;
+        letter-spacing: 0.2px;
         line-height: 1.5;
         color: #333 !important;
+        font-weight: 500;
     }
 
     /* Large desktop (1600px+) */
     @media (min-width: 1600px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 14px;
-            padding: 6px 11px;
+            font-size: 18px;
+            padding: 8px 13px;
             letter-spacing: 0.3px;
         }
     }
@@ -202,8 +203,8 @@
     /* Desktop (1200px - 1599px) */
     @media (min-width: 1200px) and (max-width: 1599px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 14px;
-            padding: 6px 10px;
+            font-size: 17px;
+            padding: 8px 12px;
             letter-spacing: 0.2px;
         }
     }
@@ -211,36 +212,36 @@
     /* Tablet Large (1024px - 1199px) */
     @media (max-width: 1199px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 13px;
-            padding: 5px 9px;
-            letter-spacing: 0px;
+            font-size: 15px;
+            padding: 7px 10px;
+            letter-spacing: 0.1px;
         }
     }
 
     /* Tablet Small (768px - 1023px) */
     @media (max-width: 1024px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 12px;
-            padding: 5px 8px;
-            letter-spacing: -0.1px;
+            font-size: 14px;
+            padding: 6px 9px;
+            letter-spacing: 0px;
         }
     }
 
     /* Mobile Large (480px - 767px) */
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 4px 7px;
-            letter-spacing: -0.2px;
+            font-size: 13px;
+            padding: 5px 8px;
+            letter-spacing: -0.1px;
         }
     }
 
     /* Mobile Small (< 480px) */
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 10px;
-            padding: 3px 6px;
-            letter-spacing: -0.3px;
+            font-size: 11px;
+            padding: 4px 6px;
+            letter-spacing: -0.2px;
         }
     }
 
@@ -248,7 +249,7 @@
     .top-content-area .content p {
         color: white !important;
         font-weight: 500 !important;
-        font-size: 14px;
+        font-size: 13px;
         line-height: 1.5;
         margin: 0;
         word-break: break-word;
@@ -257,19 +258,19 @@
 
     @media (max-width: 1199px) {
         .top-content-area .content p {
-            font-size: 13px;
+            font-size: 12px;
         }
     }
 
     @media (max-width: 1024px) {
         .top-content-area .content p {
-            font-size: 12px;
+            font-size: 11px;
         }
     }
 
     @media (max-width: 768px) {
         .top-content-area .content p {
-            font-size: 11px;
+            font-size: 10px;
         }
     }
 
@@ -296,9 +297,10 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 13px;
+        font-size: 12px;
         text-decoration: none;
         transition: all 0.3s ease;
+        font-weight: 500;
     }
 
     .social-area a:hover {
@@ -325,13 +327,13 @@
         }
 
         .social-area a {
-            font-size: 12px;
+            font-size: 11px;
         }
     }
 
     @media (max-width: 1024px) {
         .social-area a {
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .social-area a span {
@@ -342,7 +344,7 @@
 
     @media (max-width: 768px) {
         .social-area a {
-            font-size: 10px;
+            font-size: 9px;
         }
 
         .social-area a span {
@@ -355,14 +357,15 @@
         background-color: #e64a19 !important;
         color: white !important;
         border-color: #e64a19 !important;
-        padding: 8px 16px !important;
-        font-size: 13px !important;
+        padding: 9px 18px !important;
+        font-size: 14px !important;
         font-weight: 600 !important;
         border-radius: 5px !important;
         transition: all 0.3s ease !important;
         white-space: nowrap !important;
         cursor: pointer !important;
         line-height: 1.5 !important;
+        letter-spacing: 0.5px !important;
     }
 
     .main-menu-ex.homepage6 ul li .btn:hover {
@@ -374,22 +377,22 @@
 
     @media (max-width: 1024px) {
         .main-menu-ex.homepage6 ul li .btn {
-            padding: 7px 14px !important;
-            font-size: 12px !important;
+            padding: 8px 16px !important;
+            font-size: 13px !important;
         }
     }
 
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul li .btn {
-            padding: 6px 12px !important;
-            font-size: 11px !important;
+            padding: 7px 14px !important;
+            font-size: 12px !important;
         }
     }
 
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul li .btn {
-            padding: 5px 10px !important;
-            font-size: 10px !important;
+            padding: 6px 12px !important;
+            font-size: 11px !important;
         }
     }
 
