@@ -50,44 +50,44 @@
     .header-elements {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 6px;
         flex-wrap: nowrap;
         justify-content: flex-start;
         width: 100%;
-        min-height: 70px;
-        padding: 15px 15px !important;
+        min-height: 65px;
+        padding: 10px 10px !important;
         transition: all 0.3s ease;
     }
 
     @media (min-width: 576px) {
         .header-elements {
-            gap: 25px;
-            min-height: 75px;
-            padding: 15px 20px !important;
+            gap: 8px;
+            min-height: 68px;
+            padding: 10px 15px !important;
         }
     }
 
     @media (min-width: 768px) {
         .header-elements {
-            gap: 30px;
-            min-height: 80px;
-            padding: 15px 30px !important;
+            gap: 10px;
+            min-height: 70px;
+            padding: 10px 20px !important;
         }
     }
 
     @media (min-width: 992px) {
         .header-elements {
-            gap: 35px;
-            min-height: 85px;
-            padding: 15px 40px !important;
+            gap: 12px;
+            min-height: 72px;
+            padding: 10px 30px !important;
         }
     }
 
     @media (min-width: 1200px) {
         .header-elements {
-            gap: 40px;
-            min-height: 85px;
-            padding: 15px 50px !important;
+            gap: 12px;
+            min-height: 72px;
+            padding: 10px 35px !important;
         }
     }
 
@@ -140,7 +140,7 @@
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
-        gap: 18px;
+        gap: 4px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -150,43 +150,43 @@
     /* Responsive gaps for menu items */
     @media (max-width: 1399px) {
         .main-menu-ex.homepage6 ul {
-            gap: 16px;
+            gap: 4px;
         }
     }
 
     @media (max-width: 1199px) {
         .main-menu-ex.homepage6 ul {
-            gap: 14px;
+            gap: 3px;
         }
     }
 
     @media (max-width: 1024px) {
         .main-menu-ex.homepage6 ul {
-            gap: 12px;
+            gap: 3px;
         }
     }
 
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul {
-            gap: 10px;
+            gap: 2px;
         }
     }
 
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul {
-            gap: 8px;
+            gap: 1px;
         }
     }
 
     /* ===== IMPROVED MENU ITEMS TYPOGRAPHY ===== */
     .main-menu-ex.homepage6 ul li a {
-        font-size: 17px;
+        font-size: 11px;
         display: inline-block;
-        padding: 8px 12px;
+        padding: 3px 4px;
         white-space: nowrap;
         transition: all 0.3s ease;
-        letter-spacing: 0.2px;
-        line-height: 1.5;
+        letter-spacing: 0px;
+        line-height: 1.2;
         color: #333 !important;
         font-weight: 500;
     }
@@ -194,35 +194,35 @@
     /* Large desktop (1600px+) */
     @media (min-width: 1600px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 18px;
-            padding: 8px 13px;
-            letter-spacing: 0.3px;
+            font-size: 12px;
+            padding: 3px 5px;
+            letter-spacing: 0px;
         }
     }
 
     /* Desktop (1200px - 1599px) */
     @media (min-width: 1200px) and (max-width: 1599px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 17px;
-            padding: 8px 12px;
-            letter-spacing: 0.2px;
+            font-size: 11px;
+            padding: 3px 4px;
+            letter-spacing: 0px;
         }
     }
 
     /* Tablet Large (1024px - 1199px) */
     @media (max-width: 1199px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 15px;
-            padding: 7px 10px;
-            letter-spacing: 0.1px;
+            font-size: 10px;
+            padding: 3px 4px;
+            letter-spacing: 0px;
         }
     }
 
     /* Tablet Small (768px - 1023px) */
     @media (max-width: 1024px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 14px;
-            padding: 6px 9px;
+            font-size: 10px;
+            padding: 2px 3px;
             letter-spacing: 0px;
         }
     }
@@ -230,18 +230,18 @@
     /* Mobile Large (480px - 767px) */
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 13px;
-            padding: 5px 8px;
-            letter-spacing: -0.1px;
+            font-size: 9px;
+            padding: 2px 3px;
+            letter-spacing: 0px;
         }
     }
 
     /* Mobile Small (< 480px) */
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 11px;
-            padding: 4px 6px;
-            letter-spacing: -0.2px;
+            font-size: 8px;
+            padding: 2px 2px;
+            letter-spacing: 0px;
         }
     }
 
@@ -357,15 +357,15 @@
         background-color: #e64a19 !important;
         color: white !important;
         border-color: #e64a19 !important;
-        padding: 9px 18px !important;
-        font-size: 14px !important;
+        padding: 4px 8px !important;
+        font-size: 10px !important;
         font-weight: 600 !important;
-        border-radius: 5px !important;
+        border-radius: 4px !important;
         transition: all 0.3s ease !important;
         white-space: nowrap !important;
         cursor: pointer !important;
-        line-height: 1.5 !important;
-        letter-spacing: 0.5px !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0px !important;
     }
 
     .main-menu-ex.homepage6 ul li .btn:hover {
@@ -377,22 +377,22 @@
 
     @media (max-width: 1024px) {
         .main-menu-ex.homepage6 ul li .btn {
-            padding: 8px 16px !important;
-            font-size: 13px !important;
+            padding: 3px 7px !important;
+            font-size: 9px !important;
         }
     }
 
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul li .btn {
-            padding: 7px 14px !important;
-            font-size: 12px !important;
+            padding: 3px 6px !important;
+            font-size: 8px !important;
         }
     }
 
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul li .btn {
-            padding: 6px 12px !important;
-            font-size: 11px !important;
+            padding: 2px 5px !important;
+            font-size: 7px !important;
         }
     }
 
@@ -1146,31 +1146,31 @@ html .main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
 <!-- Override the 12px font-size rule from sheet 6 that's overriding everything -->
 <style>
 .header .main-menu-ex.homepage6 ul li a {
-    font-size: 13px !important;
-    line-height: 1.4 !important;
+    font-size: 9px !important;
+    line-height: 1.2 !important;
 }
 
 @media (min-width: 576px) {
     .header .main-menu-ex.homepage6 ul li a {
-        font-size: 13px !important;
+        font-size: 9px !important;
     }
 }
 
 @media (min-width: 768px) {
     .header .main-menu-ex.homepage6 ul li a {
-        font-size: 14px !important;
+        font-size: 10px !important;
     }
 }
 
 @media (min-width: 992px) {
     .header .main-menu-ex.homepage6 ul li a {
-        font-size: 15px !important;
+        font-size: 10px !important;
     }
 }
 
 @media (min-width: 1200px) {
     .header .main-menu-ex.homepage6 ul li a {
-        font-size: 16px !important;
+        font-size: 11px !important;
     }
 }
 
