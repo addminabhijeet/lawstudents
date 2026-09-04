@@ -508,7 +508,7 @@
         align-items: center !important;
         flex-shrink: 0 !important;
         height: auto !important;
-        z-index: 9999 !important;
+        z-index: 1000 !important;
     }
 
     .dropdown-menu-item > a {
@@ -516,6 +516,7 @@
         align-items: center !important;
         gap: 6px !important;
         white-space: nowrap !important;
+        cursor: pointer !important;
     }
 
     .dropdown-menu-item > a::after {
@@ -529,53 +530,31 @@
         transform: rotate(180deg);
     }
 
-    /* When dropdown is hovered, expand header to prevent banner overlap */
-    .dropdown-menu-item:hover ~ .header-area,
-    .dropdown-menu-item:hover {
-        /* Signal that dropdown is active */
-    }
-
-    /* Dynamically expand header when dropdown shows */
-    .header-area {
-        transition: padding-bottom 0.3s ease !important;
-    }
-
-    .main-menu-ex.homepage6:has(.dropdown-menu-item:hover) {
-        /* Parent flex container - maintain layout */
-    }
-
-    /* Expand header-top-area when dropdown is visible */
-    .header:has(.dropdown-menu-item:hover) {
-        padding-bottom: 120px !important;
-    }
-
     /* Dropdown submenu styling */
     .dropdown-submenu {
         position: absolute !important;
-        top: 100% !important;
+        top: calc(100% + 8px) !important;
         left: 0 !important;
-        margin-top: 8px !important;
         background-color: #fff !important;
-        min-width: 150px !important;
+        min-width: 160px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
         border-radius: 4px !important;
         overflow: hidden !important;
         opacity: 0 !important;
         visibility: hidden !important;
-        transform: translateY(0) !important;
+        pointer-events: none !important;
         transition: all 0.3s ease !important;
-        z-index: 99999 !important;
+        z-index: 9999 !important;
         list-style: none !important;
         padding: 0 !important;
         margin: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
+        display: block !important;
     }
 
     .dropdown-menu-item:hover .dropdown-submenu {
         opacity: 1 !important;
         visibility: visible !important;
-        transform: translateY(0) !important;
+        pointer-events: auto !important;
     }
 
     .dropdown-submenu li {
@@ -596,10 +575,11 @@
         transition: all 0.3s ease !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        line-height: 1.4 !important;
     }
 
     .dropdown-submenu li a:hover {
-        background-color: #f5f5f5;
+        background-color: #f5f5f5 !important;
         color: #ff5722 !important;
         padding-left: 24px !important;
     }
@@ -650,8 +630,7 @@
 
 <script>
 (function() {
-    let styleBlock = null;
-
+    // Simple font size management
     function getFontSize() {
         const windowWidth = window.innerWidth;
         if (windowWidth >= 1200) {
@@ -666,138 +645,56 @@
         return { menu: '13px', tagline: '14px' };
     }
 
-    function createOrUpdateStyles() {
-        // Remove old style if exists
-        if (styleBlock && styleBlock.parentNode) {
-            styleBlock.parentNode.removeChild(styleBlock);
-        }
-
+    function applyFontSizes() {
         const sizes = getFontSize();
-
-        // Create style block that loads in <head> at end
-        styleBlock = document.createElement('style');
-        styleBlock.id = 'navbar-font-override-' + Date.now();
-        styleBlock.innerHTML = `
+        const style = document.createElement('style');
+        style.innerHTML = `
             .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
             .top-content-area .content p { font-size: ${sizes.tagline} !important; }
-            .dropdown-submenu { z-index: 99999 !important; }
         `;
-
-        document.head.appendChild(styleBlock);
-
-        // Also add to end of body as fallback
-        const bodyStyle = document.createElement('style');
-        bodyStyle.innerHTML = `
-            .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
-            .top-content-area .content p { font-size: ${sizes.tagline} !important; }
-            .dropdown-submenu { z-index: 99999 !important; }
-        `;
-        document.body.appendChild(bodyStyle);
+        document.head.appendChild(style);
     }
 
-    // Apply on DOMContentLoaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(createOrUpdateStyles, 100);
-        });
-    } else {
-        setTimeout(createOrUpdateStyles, 100);
-    }
-
-    // Reapply on any stylesheet load
-    window.addEventListener('load', createOrUpdateStyles);
-
-    // Apply on resize
-    window.addEventListener('resize', createOrUpdateStyles);
-
-    // Fix dropdown positioning after all CSS loads
-    setTimeout(function() {
-        const dd = document.querySelector('.dropdown-submenu');
-        if (dd) {
-            dd.style.setProperty('position', 'absolute', 'important');
-            dd.style.setProperty('top', '100%', 'important');
-            dd.style.setProperty('left', '0', 'important');
-            dd.style.setProperty('margin-top', '8px', 'important');
-        }
-    }, 500);
-
-    // Fix dropdown positioning to prevent banner overlap - FORCEFUL VERSION
-    function fixDropdownPosition() {
-        const dropdown = document.querySelector('.dropdown-submenu');
-        const dropdownParent = document.querySelector('.dropdown-menu-item');
-
-        if (dropdown && dropdownParent) {
-            // Calculate absolute position
-            // Dropdown should be positioned at least 155px from top to avoid banner overlap
-            const header = document.querySelector('.header');
-            const headerBottom = header?.getBoundingClientRect().bottom || 134;
-
-            // Position dropdown 25px below banner start (banner starts at headerBottom)
-            const targetTop = headerBottom + 25;
-
-            // Use transform to move dropdown down by the offset
-            const offset = Math.max(0, targetTop - 50);
-            dropdown.style.setProperty('transform', `translateY(${offset}px)`, 'important');
-        }
-    }
-
-    // Apply on multiple events to ensure it works
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(fixDropdownPosition, 100);
-        });
-    } else {
-        setTimeout(fixDropdownPosition, 100);
-    }
-    window.addEventListener('load', fixDropdownPosition);
-
-    // FINAL FIX: Remove bad position:fixed CSS and inject correct absolute positioning
-    function fixDropdownPositioningFinal() {
-        // Find and remove the problematic style block with position: fixed
-        const styles = Array.from(document.querySelectorAll('style'));
-        styles.forEach(style => {
-            if (style.innerHTML && style.innerHTML.includes('position: fixed') && style.innerHTML.includes('dropdown-menu-item')) {
-                style.remove();
-            }
-        });
-
-        // Inject correct CSS rule
-        const correctStyle = document.createElement('style');
-        correctStyle.id = 'dropdown-position-fix';
-        correctStyle.innerHTML = `.main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
-            position: absolute !important;
-            top: 100% !important;
-            left: 0 !important;
-            margin-top: 8px !important;
-            transform: none !important;
-        }`;
-        document.head.appendChild(correctStyle);
-    }
-
-    // Apply the fix immediately and on delays to catch late-loading CSS
-    fixDropdownPositioningFinal();
-    setTimeout(fixDropdownPositioningFinal, 100);
-    setTimeout(fixDropdownPositioningFinal, 500);
-    setTimeout(fixDropdownPositioningFinal, 1000);
-
-    // Also handle header expansion and dropdown visibility
-    const dropdownItem = document.querySelector('.dropdown-menu-item');
-    const header = document.querySelector('.header');
-    const dropdown = document.querySelector('.dropdown-submenu');
-
-    if (dropdownItem && header && dropdown) {
-        // Ensure menu container doesn't clip dropdown
+    // Ensure dropdown containers have overflow visible
+    function ensureDropdownVisibility() {
         const menuContainer = document.querySelector('.main-menu-ex.homepage6');
         if (menuContainer) {
-            menuContainer.style.setProperty('overflow', 'visible', 'important');
+            menuContainer.style.overflow = 'visible';
+            menuContainer.style.zIndex = '999';
         }
 
-        // Ensure header area doesn't clip dropdown
         const headerArea = document.querySelector('.header-area');
         if (headerArea) {
-            headerArea.style.setProperty('overflow', 'visible', 'important');
+            headerArea.style.overflow = 'visible';
+        }
+
+        const header = document.querySelector('.header');
+        if (header) {
+            header.style.overflow = 'visible';
         }
     }
+
+    // Initialize on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            applyFontSizes();
+            ensureDropdownVisibility();
+        });
+    } else {
+        applyFontSizes();
+        ensureDropdownVisibility();
+    }
+
+    // Reapply on load
+    window.addEventListener('load', function() {
+        applyFontSizes();
+        ensureDropdownVisibility();
+    });
+
+    // Reapply on resize
+    window.addEventListener('resize', function() {
+        applyFontSizes();
+    });
 })();
 </script>
 
@@ -1115,74 +1012,34 @@
 </div>
 <!--===== MOBILE HEADER ENDS =======-->
 
-<!-- CORRECT DROPDOWN POSITIONING - BELOW MENU ITEM -->
+<!-- DROPDOWN POSITIONING -->
 <style>
-.dropdown-submenu {
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    margin-top: 8px !important;
-    z-index: 99999 !important;
+/* Ensure dropdown appears below menu item with proper positioning */
+.main-menu-ex.homepage6 .dropdown-menu-item {
+    position: relative !important;
+    overflow: visible !important;
 }
 
 .main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
     position: absolute !important;
-    top: 100% !important;
+    top: calc(100% + 8px) !important;
     left: 0 !important;
-    margin-top: 8px !important;
-}
-
-/* Force absolute positioning - override all compiled CSS */
-html .main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    margin-top: 8px !important;
+    z-index: 9999 !important;
     right: auto !important;
     bottom: auto !important;
 }
 </style>
 
-<!-- Override the 12px font-size rule from sheet 6 that's overriding everything -->
+<!-- Font size overrides -->
 <style>
 .header .main-menu-ex.homepage6 ul li a {
-    font-size: 9px !important;
-    line-height: 1.2 !important;
-}
-
-@media (min-width: 576px) {
-    .header .main-menu-ex.homepage6 ul li a {
-        font-size: 9px !important;
-    }
-}
-
-@media (min-width: 768px) {
-    .header .main-menu-ex.homepage6 ul li a {
-        font-size: 10px !important;
-    }
-}
-
-@media (min-width: 992px) {
-    .header .main-menu-ex.homepage6 ul li a {
-        font-size: 10px !important;
-    }
-}
-
-@media (min-width: 1200px) {
-    .header .main-menu-ex.homepage6 ul li a {
-        font-size: 11px !important;
-    }
+    font-size: 11px !important;
+    line-height: 1.4 !important;
 }
 
 /* Tagline font sizes */
 .header-top-border .top-content-area .content p {
     font-size: 14px !important;
-}
-
-@media (min-width: 576px) {
-    .header-top-border .top-content-area .content p {
-        font-size: 14px !important;
-    }
 }
 
 @media (min-width: 768px) {
@@ -1198,6 +1055,10 @@ html .main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
 }
 
 @media (min-width: 1200px) {
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 11px !important;
+    }
+
     .header-top-border .top-content-area .content p {
         font-size: 17px !important;
     }
