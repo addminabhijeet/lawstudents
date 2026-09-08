@@ -549,12 +549,16 @@
         padding: 0 !important;
         margin: 0 !important;
         display: block !important;
+        max-height: 0 !important;
+        transform: translateY(-10px) !important;
     }
 
     .dropdown-menu-item:hover .dropdown-submenu {
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
+        max-height: 160px !important;
+        transform: translateY(0) !important;
     }
 
     .dropdown-submenu li {
@@ -619,6 +623,10 @@
         overflow: visible !important;
     }
 
+    .header-top-area {
+        overflow: visible !important;
+    }
+
     .container-fluid.px-0 {
         overflow: visible !important;
     }
@@ -671,6 +679,11 @@
         const header = document.querySelector('.header');
         if (header) {
             header.style.overflow = 'visible';
+        }
+
+        const headerTopArea = document.querySelector('.header-top-area');
+        if (headerTopArea) {
+            headerTopArea.style.overflow = 'visible';
         }
     }
 
