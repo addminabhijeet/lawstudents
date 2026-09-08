@@ -972,7 +972,7 @@
                             <img src="/img/icons/footer-phn.svg" alt="">
                         </div>
                         <div class="contact-info-text">
-                            <a href="tel:+3(924)4596512">+3(924)4596512</a>
+                            <a href="tel:{{ $mobile }}">{{ $mobile }}</a>
                         </div>
                     </div>
 
@@ -981,21 +981,7 @@
                             <img src="/img/icons/footer-email2.svg" alt="">
                         </div>
                         <div class="contact-info-text">
-                            <a href="mailto:info@example.com">info@example.com</a>
-                        </div>
-                    </div>
-
-                    <div class="single-footer single-footer-menu single-footer4">
-                        <h3>Our Location</h3>
-
-                        <div class="contact-info-single">
-                            <div class="contact-info-icon">
-                                <img src="/img/icons/footer-location1.svg" alt="">
-                            </div>
-                            <div class="contact-info-text">
-                                <a href="mailto:info@example.com">55 East Birchwood Ave.Brooklyn, <br> New York
-                                    11201,United States</a>
-                            </div>
+                            <a href="mailto:{{ $email }}">{{ $email }}</a>
                         </div>
                     </div>
                 </div>
@@ -1055,5 +1041,36 @@
     .header-top-border .top-content-area .content p {
         font-size: 17px !important;
     }
+}
+</style>
+
+<!-- Mobile sidebar light background override -->
+<style>
+.mobile-sidebar.sidebar6 {
+    background: #ffffff !important;
+}
+
+.mobile-sidebar.sidebar6 .mobile-nav li a,
+.mobile-sidebar.sidebar6 .allmobilesection h3,
+.mobile-sidebar.sidebar6 .allmobilesection a {
+    color: #0a141c !important;
+}
+
+.mobile-sidebar.sidebar6 .menu-close i {
+    color: #0a141c !important;
+}
+
+.mobile-sidebar.sidebar6 span.submenu-button:before,
+.mobile-sidebar.sidebar6 span.submenu-button:after {
+    background: #0a141c !important;
+}
+
+.mobile-sidebar.sidebar6 .allmobilesection .contact-info-single img {
+    filter: none !important;
+}
+
+.mobile-sidebar.sidebar6 .allmobilesection .welcome5-btn {
+    color: #ffffff !important;
+    background: #0a141c !important;
 }
 </style>
