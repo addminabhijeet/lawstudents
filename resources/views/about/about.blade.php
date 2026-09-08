@@ -197,6 +197,47 @@
         }
     </style>
 
+    <div class="about-lawstudent-section">
+        <div class="about-lawstudent-container">
+            <div class="about-lawstudent-content">
+                <h2 class="about-lawstudent-heading">Welcome to LawStudent</h2>
+
+                <p class="about-lawstudent-intro">
+                    <strong>LawStudent</strong> is an educational and knowledge platform dedicated to students, aspirants and
+                    professionals pursuing legal and professional education. The platform provides structured courses,
+                    study materials, Bare Acts, Rules, Notifications, legal knowledge resources and examination-
+                    oriented preparation.
+                </p>
+
+                <div class="about-lawstudent-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-title">Comprehensive Courses</div>
+                        <div class="feature-text">Structured learning programs designed for all levels</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">📖</div>
+                        <div class="feature-title">Study Materials</div>
+                        <div class="feature-text">Curated resources and study guides</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">⚖️</div>
+                        <div class="feature-title">Legal Knowledge</div>
+                        <div class="feature-text">Bare Acts, Rules, and legal resources</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">📢</div>
+                        <div class="feature-title">Notifications</div>
+                        <div class="feature-text">Latest updates and important notices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== ABOUT LAWSTUDENT SECTION ENDS ======= -->
 
     <!-- ===== SERVICE STARTS======= -->

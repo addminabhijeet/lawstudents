@@ -703,29 +703,22 @@
         }
     </style>
 
-    <div class="quick-access-section">
-        <div class="quick-access-container">
-            <div class="quick-access-grid">
-                <a href="{{ route('frontend.acts') }}" class="quick-access-item">
-                    <div class="quick-access-icon">📜</div>
-                    <h3>Acts</h3>
-                </a>
-                <a href="{{ route('frontend.copys') }}" class="quick-access-item">
-                    <div class="quick-access-icon">📝</div>
-                    <h3>Free Notes</h3>
-                </a>
-                <a href="{{ route('frontend.course') }}" class="quick-access-item">
-                    <div class="quick-access-icon">📚</div>
-                    <h3>Courses</h3>
-                </a>
-                <a href="{{ route('frontend.home') }}" class="quick-access-item">
-                    <div class="quick-access-icon">🎓</div>
-                    <h3>Exams</h3>
-                </a>
+
+    <div class="about-lawstudent-section">
+        <div class="about-lawstudent-container">
+            <div class="about-lawstudent-content">
+                <h2 class="about-lawstudent-heading">Welcome to LawStudent</h2>
+
+                <p class="about-lawstudent-intro">
+                    <strong>LawStudent</strong> is an educational and knowledge platform dedicated to students, aspirants and
+                    professionals pursuing legal and professional education. The platform provides structured courses,
+                    study materials, Bare Acts, Rules, Notifications, legal knowledge resources and examination-
+                    oriented preparation.
+                </p>
             </div>
         </div>
     </div>
-    <!-- ===== QUICK ACCESS SECTION ENDS ======= -->
+
 
     <!-- ===== ABOUT SECTION STARTS ======= -->
     <div class="about7-section-area sp1">
