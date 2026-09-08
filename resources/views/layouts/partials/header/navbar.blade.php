@@ -976,6 +976,7 @@
             </div>
         </div>
 
+        @unless(request()->routeIs('frontend.home'))
         <div class="mobile-hero-branding">
             <img src="/img/logo/logo11.png" alt="LawStudents Logo">
             <h1>LawStudents</h1>
@@ -989,6 +990,7 @@
             A comprehensive platform for Legal Education, Examination Preparation, Legal Knowledge,
             Bare Acts, Rules, Notifications and Study Materials.
         </div>
+        @endunless
     </div>
 </div>
 
