@@ -968,6 +968,15 @@
     justify-content: center;
     width: 100%;
 }
+
+.mobile-sidebar.sidebar6 .menu-home-btn {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 22px;
+    color: #0a141c;
+    cursor: pointer;
+}
 </style>
 <div class="mobile-header mobile-homepage6 d-block d-lg-none">
     <div class="container-fluid">
@@ -1009,6 +1018,11 @@
 
 <div class="mobile-sidebar sidebar6">
     <div class="logosicon-area">
+        @unless(request()->routeIs('frontend.home'))
+        <a href="{{ route('frontend.home') }}" class="menu-home-btn" title="Back to Home">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        @endunless
         <div class="logos">
             <img src="/img/logo/logo11.png" alt="">
         </div>
