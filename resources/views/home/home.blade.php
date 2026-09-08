@@ -2607,6 +2607,10 @@
 
 <div class="gallery-section">
     <div class="gallery-container">
+        <div class="gallery-header">
+            <span class="gallery-eyebrow">Gallery</span>
+            <p>Glimpses of our campus, events, and learning environment</p>
+        </div>
 
         @php
             $homeGalleryGrouped = \App\Models\Gallery::active()->get()
