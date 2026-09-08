@@ -918,7 +918,7 @@
         <div class="col-12">
             <div class="mobile-header-elements">
                 <div class="mobile-logo">
-                    <a href=""><img src="/img/logo/logo11.png" alt=""></a>
+                    <a href="{{ route('frontend.home') }}"><img src="/img/logo/logo11.png" alt=""></a>
                 </div>
                 <div class="mobile-nav-icon dots-menu">
                     <i class="fa-solid fa-bars"></i>
