@@ -971,7 +971,7 @@
 
 .mobile-sidebar.sidebar6 .menu-home-btn {
     position: absolute;
-    left: 20px;
+    right: 55px;
     top: 20px;
     font-size: 22px;
     color: #0a141c;
@@ -1018,11 +1018,9 @@
 
 <div class="mobile-sidebar sidebar6">
     <div class="logosicon-area">
-        @unless(request()->routeIs('frontend.home'))
         <a href="{{ route('frontend.home') }}" class="menu-home-btn" title="Back to Home">
             <i class="fa-solid fa-house"></i>
         </a>
-        @endunless
         <div class="logos">
             <img src="/img/logo/logo11.png" alt="">
         </div>
