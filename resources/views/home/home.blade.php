@@ -704,9 +704,80 @@
     </style>
 
 
+    <!-- ===== ABOUT LAWSTUDENT SECTION STARTS ======= -->
+    <style>
+        .about-lawstudent-section {
+            padding: 80px 0;
+        }
+
+        .about-lawstudent-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .about-lawstudent-content {
+            text-align: center;
+        }
+
+        .about-lawstudent-eyebrow {
+            color: #ff5722;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 16px;
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background: #ff57221a;
+            margin-bottom: 20px;
+        }
+
+        .about-lawstudent-heading {
+            color: #0a141c;
+            font-family: 'Outfit', sans-serif;
+            font-size: 44px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 54px;
+            text-align: center;
+        }
+
+        .about-lawstudent-intro {
+            color: var(--Paragraph-Color, #515456);
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .about-lawstudent-intro strong {
+            color: #ff5722;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .about-lawstudent-section {
+                padding: 60px 0;
+            }
+
+            .about-lawstudent-heading {
+                font-size: 32px;
+                line-height: 42px;
+            }
+
+            .about-lawstudent-intro {
+                font-size: 14px;
+            }
+        }
+    </style>
+
     <div class="about-lawstudent-section">
         <div class="about-lawstudent-container">
             <div class="about-lawstudent-content">
+                <span class="about-lawstudent-eyebrow">About Platform</span>
                 <h2 class="about-lawstudent-heading">Welcome to LawStudent</h2>
 
                 <p class="about-lawstudent-intro">
@@ -718,6 +789,7 @@
             </div>
         </div>
     </div>
+    <!-- ===== ABOUT LAWSTUDENT SECTION ENDS ======= -->
 
 
     <!-- ===== ABOUT SECTION STARTS ======= -->
