@@ -913,6 +913,56 @@
 <!--===== HEADER ENDS =======-->
 
 <!--===== MOBILE HEADER STARTS =======-->
+<style>
+.mobile-header.mobile-homepage6 {
+    position: relative !important;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+}
+
+.mobile-header.mobile-homepage6 .mobile-nav-icon {
+    color: #1a1a1a !important;
+}
+
+.mobile-hero-branding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 20px 0 20px;
+    text-align: center;
+}
+
+.mobile-hero-branding img {
+    height: 36px;
+    width: auto;
+}
+
+.mobile-hero-branding h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.mobile-hero-tagline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    margin: 12px 20px 8px 20px;
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif;
+}
+
+.mobile-hero-supporting-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    text-align: center;
+    margin: 0 20px 20px 20px;
+}
+</style>
 <div class="mobile-header mobile-homepage6 d-block d-lg-none">
     <div class="container-fluid">
         <div class="col-12">
@@ -924,6 +974,20 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
+        </div>
+
+        <div class="mobile-hero-branding">
+            <img src="/img/logo/logo11.png" alt="LawStudents Logo">
+            <h1>LawStudents</h1>
+        </div>
+
+        <div class="mobile-hero-tagline">
+            Learn Law. Understand Law. Build Your Future.
+        </div>
+
+        <div class="mobile-hero-supporting-text">
+            A comprehensive platform for Legal Education, Examination Preparation, Legal Knowledge,
+            Bare Acts, Rules, Notifications and Study Materials.
         </div>
     </div>
 </div>
