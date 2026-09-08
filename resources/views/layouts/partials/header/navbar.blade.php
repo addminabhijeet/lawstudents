@@ -940,33 +940,26 @@
     <div class="mobile-nav">
 
         <ul class="mobile-nav-list">
-            <li><a href="#">Home </a>
+            <li><a href="{{ route('frontend.home') }}">Home</a></li>
+            <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+            <li><a href="#">Bare Acts & Rules</a>
                 <ul class="sub-menu">
-                    <li><a href="">Home One</a></li>
+                    <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
+                    <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                 </ul>
             </li>
-            <li><a href="#">Pages</a>
+            <li><a href="{{ route('frontend.legal-knowledge') }}">Legal Knowledge</a></li>
+            <li><a href="#">Courses & Free Notes</a>
                 <ul class="sub-menu">
-                    <li><a href="">Our Team 01</a></li>
+                    <li><a href="{{ route('frontend.course') }}">Course</a></li>
+                    <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
                 </ul>
             </li>
-            <li><a href="#">Practice Areas</a>
-                <ul class="sub-menu">
-                    <li><a href="">Service One</a></li>
-
-                </ul>
-            </li>
-
-            <li><a href="#">Blogs </a>
-                <ul class="sub-menu">
-                    <li><a href="">Blog One</a></li>
-                </ul>
-            </li>
-            <li><a href="">Contact</a>
-                <ul class="sub-menu">
-                    <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
-                </ul>
-            </li>
+            <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
+            <li><a href="{{ route('frontend.home') }}">Centre & State Govt. Examination</a></li>
+            <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+            <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+            <li><a href="{{ route('login') }}">Login / Register</a></li>
         </ul>
 
         <div class="allmobilesection">
