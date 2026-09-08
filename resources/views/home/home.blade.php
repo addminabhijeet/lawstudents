@@ -808,17 +808,32 @@
     }
 
     .courses-notes-header h2 {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1a1a1a;
+        font-size: 44px;
+        font-weight: 600;
+        color: #0a141c;
         margin: 0 0 15px 0;
-        font-family: 'Poppins', sans-serif;
+        line-height: 54px;
+        font-family: 'Outfit', sans-serif;
     }
 
     .courses-notes-header p {
         font-size: 16px;
-        color: #666;
+        color: var(--Paragraph-Color, #515456);
+        font-family: 'Outfit', sans-serif;
         margin: 0;
+    }
+
+    .courses-notes-eyebrow {
+        color: #ff5722;
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background: #ff57221a;
+        margin-bottom: 20px;
     }
 
     .courses-notes-grid {
@@ -851,6 +866,24 @@
         color: white;
         font-size: 48px;
         font-weight: bold;
+        overflow: hidden;
+    }
+
+    .course-note-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .course-note-card-price {
+        font-size: 13px;
+        color: #666;
+        margin: 0 0 15px 0;
+    }
+
+    .course-note-card-price strong {
+        color: #1a1a1a;
+        font-weight: 700;
     }
 
     .course-note-card-body {
@@ -922,6 +955,40 @@
         padding: 40px;
         color: #999;
         font-size: 16px;
+    }
+
+    /* Free Notes preview: plain bordered list style (same as the real Free Notes page,
+       which has no thumbnails/cards, just flat bordered boxes) */
+    .note-plain-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: none;
+        overflow: visible;
+        padding: 15px;
+    }
+
+    .note-plain-card:hover {
+        box-shadow: none;
+        transform: none;
+    }
+
+    .note-plain-card .course-note-card-body {
+        padding: 0 0 10px 0;
+    }
+
+    .note-plain-card .course-note-card-body h3 {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .note-plain-card .course-note-card-body p {
+        min-height: 0;
+        margin: 8px 0 0 0;
+    }
+
+    .note-plain-card .course-note-card-footer {
+        padding: 0;
     }
 
     /* Responsive */
@@ -1007,6 +1074,7 @@
         <!-- COURSES SECTION -->
         <div style="margin-bottom: 80px;">
             <div class="courses-notes-header">
+                <span class="courses-notes-eyebrow">Courses</span>
                 <h2>📚 Explore Our Courses</h2>
                 <p>Comprehensive learning programs designed by legal experts</p>
             </div>
@@ -1017,10 +1085,19 @@
                 @endphp
                 @forelse($courses as $course)
                 <div class="course-note-card">
-                    <div class="course-note-card-image">📖</div>
+                    <div class="course-note-card-image">
+                        @if($course->thumbnail)
+                        <img src="{{ asset('storage/app/public/' . $course->thumbnail) }}" alt="{{ $course->title }}">
+                        @else
+                        <i class="fa-solid fa-book"></i>
+                        @endif
+                    </div>
                     <div class="course-note-card-body">
                         <h3>{{ $course->title ?? 'Course Title' }}</h3>
                         <p>{{ Str::limit($course->description ?? 'Learn comprehensive legal knowledge', 80) }}</p>
+                        <div class="course-note-card-price">
+                            Price: <strong>₹{{ number_format($course->price ?? 0, 2) }}</strong>
+                        </div>
                     </div>
                     <div class="course-note-card-footer">
                         <a href="{{ route('frontend.course') }}" class="course-note-link">
@@ -1043,6 +1120,7 @@
         <!-- FREE NOTES SECTION -->
         <div>
             <div class="courses-notes-header">
+                <span class="courses-notes-eyebrow">Free Notes</span>
                 <h2>📝 Free Study Notes</h2>
                 <p>Access valuable study materials and notes for your legal education</p>
             </div>
@@ -1052,11 +1130,13 @@
                 $notes = \App\Models\Copy::limit(9)->get();
                 @endphp
                 @forelse($notes as $note)
-                <div class="course-note-card">
-                    <div class="course-note-card-image">📄</div>
+                <div class="course-note-card note-plain-card">
                     <div class="course-note-card-body">
-                        <h3>{{ $note->title ?? 'Study Note' }}</h3>
-                        <p>{{ Str::limit($note->description ?? 'Important study material for legal learning', 80) }}</p>
+                        <h3>{{ Str::limit($note->description ?? 'Study Note', 60) }}</h3>
+                        <p>
+                            <i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>
+                            {{ count($note->pdfs ?? []) }} PDF{{ count($note->pdfs ?? []) === 1 ? '' : 's' }} available
+                        </p>
                     </div>
                     <div class="course-note-card-footer">
                         <a href="{{ route('frontend.copys') }}" class="course-note-link">
@@ -1096,17 +1176,32 @@
         margin-bottom: 50px;
     }
 
+    .acts-rules-eyebrow {
+        color: #ff5722;
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background: #ff57221a;
+        margin-bottom: 20px;
+    }
+
     .acts-rules-header h2 {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1a1a1a;
+        font-size: 44px;
+        font-weight: 600;
+        color: #0a141c;
         margin: 0 0 15px 0;
-        font-family: 'Poppins', sans-serif;
+        line-height: 54px;
+        font-family: 'Outfit', sans-serif;
     }
 
     .acts-rules-header p {
         font-size: 16px;
-        color: #666;
+        color: var(--Paragraph-Color, #515456);
+        font-family: 'Outfit', sans-serif;
         margin: 0;
     }
 
@@ -1130,17 +1225,19 @@
     }
 
     .acts-rules-card-header {
-        background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
-        padding: 30px;
+        background: #fff;
+        padding: 25px 30px 0 30px;
         text-align: center;
-        color: white;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 20px;
     }
 
     .acts-rules-card-header h3 {
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
+        color: #1a1a1a;
         margin: 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Outfit', sans-serif;
     }
 
     .acts-rules-card-body {
@@ -1152,30 +1249,26 @@
     .acts-rules-item {
         display: flex;
         align-items: flex-start;
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #eee;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 6px;
     }
 
     .acts-rules-item:last-child {
-        border-bottom: none;
         margin-bottom: 0;
-        padding-bottom: 0;
     }
 
     .acts-rules-item-icon {
         width: 24px;
         height: 24px;
-        background-color: #ff5722;
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-weight: bold;
+        color: #ff5722;
         flex-shrink: 0;
         margin-right: 15px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .acts-rules-item-content {
@@ -1304,73 +1397,78 @@
 <div class="acts-rules-section">
     <div class="acts-rules-container">
         <div class="acts-rules-header">
+            <span class="acts-rules-eyebrow">Legal Resources</span>
             <h2>Bare Acts & Rules</h2>
             <p>Access comprehensive legal documents and regulatory frameworks</p>
         </div>
 
-        <div class="acts-rules-wrapper">
-            <!-- Acts Card -->
-            <div class="acts-rules-card" data-aos="fade-right" data-aos-duration="800">
-                <div class="acts-rules-card-header">
-                    <h3>📜 Acts</h3>
-                </div>
-                <div class="acts-rules-card-body">
-                    @php
-                    $acts = \App\Models\Act::limit(6)->get();
-                    $counter = 1;
-                    @endphp
-                    @forelse($acts as $act)
-                    <div class="acts-rules-item">
-                        <div class="acts-rules-item-icon">{{ $counter }}</div>
-                        <div class="acts-rules-item-content">
-                            <a href="{{ route('frontend.acts') }}">{{ $act->title ?? 'Legal Act' }}</a>
-                            <p>{{ Str::limit($act->description ?? 'Important legal framework', 60) }}</p>
-                        </div>
-                    </div>
-                    @php $counter++; @endphp
-                    @empty
-                    <div class="acts-rules-item">
-                        <div class="acts-rules-item-content">
-                            <p style="color: #999; text-align: center;">Acts will be displayed here</p>
-                        </div>
-                    </div>
-                    @endforelse
-                </div>
-                <div class="acts-rules-card-footer">
-                    <a href="{{ route('frontend.acts') }}" class="acts-rules-view-all">View All Acts →</a>
-                </div>
+        <!-- Acts -->
+        <div style="margin-bottom: 60px;">
+            <div class="acts-rules-card-header" style="text-align:left; border-bottom:none; padding:0 0 20px 0;">
+                <h3>📜 Acts</h3>
             </div>
+            <div class="courses-notes-grid" data-aos="fade-up">
+                @php
+                $acts = \App\Models\Act::limit(9)->get();
+                @endphp
+                @forelse($acts as $act)
+                <div class="course-note-card note-plain-card">
+                    <div class="course-note-card-body">
+                        <h3>{{ Str::limit($act->description ?? 'Legal Act', 60) }}</h3>
+                        <p>
+                            <i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>
+                            {{ count($act->pdfs ?? []) }} PDF{{ count($act->pdfs ?? []) === 1 ? '' : 's' }} available
+                        </p>
+                    </div>
+                    <div class="course-note-card-footer">
+                        <a href="{{ route('frontend.acts') }}" class="course-note-link">
+                            View Act <span>→</span>
+                        </a>
+                    </div>
+                </div>
+                @empty
+                <div class="no-content-message" style="grid-column: 1 / -1;">
+                    Acts will be displayed here
+                </div>
+                @endforelse
+            </div>
+            <div class="courses-notes-view-all">
+                <a href="{{ route('frontend.acts') }}" class="courses-notes-view-all-btn">View All Acts</a>
+            </div>
+        </div>
 
-            <!-- Rules Card -->
-            <div class="acts-rules-card" data-aos="fade-left" data-aos-duration="800">
-                <div class="acts-rules-card-header">
-                    <h3>⚖️ Rules</h3>
-                </div>
-                <div class="acts-rules-card-body">
-                    @php
-                    $rules = \App\Models\Rule::limit(6)->get();
-                    $counter = 1;
-                    @endphp
-                    @forelse($rules as $rule)
-                    <div class="acts-rules-item">
-                        <div class="acts-rules-item-icon">{{ $counter }}</div>
-                        <div class="acts-rules-item-content">
-                            <a href="{{ route('frontend.rules') }}">{{ $rule->title ?? 'Legal Rule' }}</a>
-                            <p>{{ Str::limit($rule->description ?? 'Important legal rule', 60) }}</p>
-                        </div>
+        <!-- Rules -->
+        <div>
+            <div class="acts-rules-card-header" style="text-align:left; border-bottom:none; padding:0 0 20px 0;">
+                <h3>⚖️ Rules</h3>
+            </div>
+            <div class="courses-notes-grid" data-aos="fade-up">
+                @php
+                $rules = \App\Models\Rule::limit(9)->get();
+                @endphp
+                @forelse($rules as $rule)
+                <div class="course-note-card note-plain-card">
+                    <div class="course-note-card-body">
+                        <h3>{{ Str::limit($rule->description ?? 'Legal Rule', 60) }}</h3>
+                        <p>
+                            <i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>
+                            {{ count($rule->pdfs ?? []) }} PDF{{ count($rule->pdfs ?? []) === 1 ? '' : 's' }} available
+                        </p>
                     </div>
-                    @php $counter++; @endphp
-                    @empty
-                    <div class="acts-rules-item">
-                        <div class="acts-rules-item-content">
-                            <p style="color: #999; text-align: center;">Rules will be displayed here</p>
-                        </div>
+                    <div class="course-note-card-footer">
+                        <a href="{{ route('frontend.rules') }}" class="course-note-link">
+                            View Rule <span>→</span>
+                        </a>
                     </div>
-                    @endforelse
                 </div>
-                <div class="acts-rules-card-footer">
-                    <a href="{{ route('frontend.rules') }}" class="acts-rules-view-all">View All Rules →</a>
+                @empty
+                <div class="no-content-message" style="grid-column: 1 / -1;">
+                    Rules will be displayed here
                 </div>
+                @endforelse
+            </div>
+            <div class="courses-notes-view-all">
+                <a href="{{ route('frontend.rules') }}" class="courses-notes-view-all-btn">View All Rules</a>
             </div>
         </div>
     </div>
