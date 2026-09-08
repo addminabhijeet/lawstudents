@@ -923,6 +923,10 @@
     color: #1a1a1a !important;
 }
 
+.mobile-header.mobile-homepage6 .mobile-header-elements {
+    justify-content: flex-end !important;
+}
+
 .mobile-hero-branding {
     display: flex;
     align-items: center;
@@ -982,15 +986,7 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="mobile-header-elements">
-                <div class="mobile-logo">
-                    <a href="{{ route('frontend.home') }}"><img src="/img/logo/logo11.png" alt=""></a>
-                </div>
                 <div class="mobile-header-icons" style="display:flex;align-items:center;gap:10px;">
-                    @unless(request()->routeIs('frontend.home'))
-                    <a href="{{ route('frontend.home') }}" class="mobile-nav-icon mobile-home-btn" title="Back to Home">
-                        <i class="fa-solid fa-house"></i>
-                    </a>
-                    @endunless
                     <div class="mobile-nav-icon dots-menu">
                         <i class="fa-solid fa-bars"></i>
                     </div>
@@ -1019,7 +1015,7 @@
 <div class="mobile-sidebar sidebar6">
     <div class="logosicon-area">
         <a href="{{ route('frontend.home') }}" class="menu-home-btn" title="Back to Home">
-            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-xmark"></i>
         </a>
         <div class="logos">
             <img src="/img/logo/logo11.png" alt="">
