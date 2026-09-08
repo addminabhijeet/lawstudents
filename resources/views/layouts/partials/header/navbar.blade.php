@@ -976,8 +976,15 @@
                 <div class="mobile-logo">
                     <a href="{{ route('frontend.home') }}"><img src="/img/logo/logo11.png" alt=""></a>
                 </div>
-                <div class="mobile-nav-icon dots-menu">
-                    <i class="fa-solid fa-bars"></i>
+                <div class="mobile-header-icons" style="display:flex;align-items:center;gap:10px;">
+                    @unless(request()->routeIs('frontend.home'))
+                    <a href="{{ route('frontend.home') }}" class="mobile-nav-icon mobile-home-btn" title="Back to Home">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                    @endunless
+                    <div class="mobile-nav-icon dots-menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
                 </div>
             </div>
         </div>
