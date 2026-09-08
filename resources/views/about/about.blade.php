@@ -19,61 +19,6 @@
     </div>
     <!-- ===== WELCOME ENDS======= -->
 
-    <!-- ===== ABOUT STARTS======= -->
-    <div class="about3-section-area about-inner">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about3-textarea">
-                        <span>About Us</span>
-                        <h2>Law Students was created to empower aspiring legal professionals:</h2>
-                        <p>Our platform helps students gain practical legal knowledge, build expertise in various law
-                            domains, and prepare for successful careers.</p>
-                        <div class="about3-textarea-list">
-                            <ul>
-                                <li>
-                                    <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Expert
-                                        Instructors & Knowledge</a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Comprehensive
-                                        Curriculum</a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Hands-on
-                                        Learning</a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Career
-                                        Advancement</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="about3-pera-text">
-                            <p>We provide interactive courses, case studies, and mentorship programs so that students can
-                                apply legal knowledge practically and confidently in real-world scenarios.</p>
-                        </div>
-                        <div class="div">
-                            <a href="" class="casebtn1">Enroll Now <span><i
-                                        class="fa-regular fa-arrow-right"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about3-images-area">
-                        <img src="/img/images/about-img3.png" alt="" />
-                        <div class="elementors21">
-                            <img src="/img/elements/elementor21.png" alt="" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ===== ABOUT ENDS======= -->
-
     <!-- ===== ABOUT LAWSTUDENT SECTION STARTS ======= -->
     <style>
         .about-lawstudent-section {
