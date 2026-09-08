@@ -208,32 +208,6 @@
                     study materials, Bare Acts, Rules, Notifications, legal knowledge resources and examination-
                     oriented preparation.
                 </p>
-
-                <div class="about-lawstudent-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">📚</div>
-                        <div class="feature-title">Comprehensive Courses</div>
-                        <div class="feature-text">Structured learning programs designed for all levels</div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">📖</div>
-                        <div class="feature-title">Study Materials</div>
-                        <div class="feature-text">Curated resources and study guides</div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">⚖️</div>
-                        <div class="feature-title">Legal Knowledge</div>
-                        <div class="feature-text">Bare Acts, Rules, and legal resources</div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">📢</div>
-                        <div class="feature-title">Notifications</div>
-                        <div class="feature-text">Latest updates and important notices</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
