@@ -2400,17 +2400,32 @@
         margin-bottom: 50px;
     }
 
+    .gallery-header .gallery-eyebrow {
+        color: #ff5722;
+        font-family: 'Outfit', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background: #ff57221a;
+        margin-bottom: 20px;
+    }
+
     .gallery-header h2 {
-        font-size: 32px;
-        font-weight: 700;
-        color: #1a1a1a;
+        font-size: 44px;
+        font-weight: 600;
+        color: #0a141c;
         margin: 0 0 15px 0;
-        font-family: 'Poppins', sans-serif;
+        line-height: 54px;
+        font-family: 'Outfit', sans-serif;
     }
 
     .gallery-header p {
         font-size: 16px;
-        color: #666;
+        color: var(--Paragraph-Color, #515456);
+        font-family: 'Outfit', sans-serif;
         margin: 0;
     }
 
@@ -2507,29 +2522,115 @@
             gap: 15px;
         }
     }
+
+    /* Stacked photo-group card design (same as the full Gallery page) */
+    .gallery-section .gallery-item.group-card {
+        aspect-ratio: auto;
+        overflow: visible;
+        box-shadow: none;
+        border-radius: 0;
+        display: block;
+        text-decoration: none;
+    }
+
+    .gallery-section .gallery-item.group-card:hover {
+        box-shadow: none;
+        transform: none;
+    }
+
+    .gallery-section .group-card {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .gallery-section .image-stack {
+        position: relative;
+        height: 220px;
+    }
+
+    .gallery-section .stack-img {
+        position: absolute;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 12px;
+        transition: 0.4s;
+    }
+
+    .gallery-section .stack-0 {
+        top: 0;
+        left: 0;
+        z-index: 3;
+    }
+
+    .gallery-section .stack-1 {
+        top: 8px;
+        left: 8px;
+        z-index: 2;
+    }
+
+    .gallery-section .stack-2 {
+        top: 16px;
+        left: 16px;
+        z-index: 1;
+    }
+
+    .gallery-section .group-card:hover .stack-img {
+        transform: scale(1.05);
+    }
+
+    .gallery-section .group-title {
+        margin-bottom: 8px;
+    }
+
+    .gallery-section .group-title strong {
+        font-family: 'Outfit', sans-serif;
+        color: #0a141c;
+    }
+
+    .gallery-section .group-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 15px;
+        border-radius: 12px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        color: #fff;
+    }
+
+    .gallery-section .group-overlay span {
+        font-size: 12px;
+        opacity: 0.8;
+    }
 </style>
 
 <div class="gallery-section">
     <div class="gallery-container">
-        <div class="gallery-header">
-            <h2>🖼️ Gallery Preview</h2>
-            <p>Glimpses of our campus, events, and learning environment</p>
-        </div>
 
         @php
-            $homeGalleryImages = \App\Models\Gallery::active()->latest()->take(6)->get();
+            $homeGalleryGrouped = \App\Models\Gallery::active()->get()
+                ->groupBy(function ($item) {
+                    return $item->group_name ?: 'Ungrouped';
+                })
+                ->take(6);
         @endphp
 
         <div class="gallery-grid">
-            @forelse ($homeGalleryImages as $index => $galleryItem)
-            <div class="gallery-item" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
-                <div class="gallery-image">
-                    <img src="{{ asset('storage/app/public/' . $galleryItem->image) }}" alt="{{ $galleryItem->group_name ?: 'Gallery' }}">
+            @forelse ($homeGalleryGrouped as $homeGroupName => $homeGroupItems)
+            <a href="{{ route('frontend.gallery') }}" class="gallery-item group-card" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                <div class="group-title text-center">
+                    <strong>{{ $homeGroupName }}</strong>
                 </div>
-                <div class="gallery-overlay">
-                    <div class="gallery-overlay-icon">🔍</div>
+                <div class="image-stack">
+                    @foreach ($homeGroupItems->take(3) as $stackIndex => $homeGroupItem)
+                    <img src="{{ asset('storage/app/public/' . $homeGroupItem->image) }}" class="stack-img stack-{{ $stackIndex }}">
+                    @endforeach
+                    <div class="group-overlay">
+                        <span>{{ $homeGroupItems->count() }} Photos</span>
+                    </div>
                 </div>
-            </div>
+            </a>
             @empty
             <div class="gallery-item" data-aos="fade-up">
                 <div class="gallery-image">📚</div>
