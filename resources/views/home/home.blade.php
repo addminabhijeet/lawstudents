@@ -2446,6 +2446,13 @@
         font-size: 48px;
     }
 
+    .gallery-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
     .gallery-overlay {
         position: absolute;
         top: 0;
@@ -2509,7 +2516,21 @@
             <p>Glimpses of our campus, events, and learning environment</p>
         </div>
 
+        @php
+            $homeGalleryImages = \App\Models\Gallery::active()->latest()->take(6)->get();
+        @endphp
+
         <div class="gallery-grid">
+            @forelse ($homeGalleryImages as $index => $galleryItem)
+            <div class="gallery-item" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                <div class="gallery-image">
+                    <img src="{{ asset('storage/app/public/' . $galleryItem->image) }}" alt="{{ $galleryItem->group_name ?: 'Gallery' }}">
+                </div>
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-icon">🔍</div>
+                </div>
+            </div>
+            @empty
             <div class="gallery-item" data-aos="fade-up">
                 <div class="gallery-image">📚</div>
                 <div class="gallery-overlay">
@@ -2551,6 +2572,7 @@
                     <div class="gallery-overlay-icon">🔍</div>
                 </div>
             </div>
+            @endforelse
         </div>
 
         <div class="gallery-view-all">
