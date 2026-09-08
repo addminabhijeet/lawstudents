@@ -962,6 +962,12 @@
     text-align: center;
     margin: 0 20px 20px 20px;
 }
+
+.mobile-sidebar.sidebar6 .logosicon-area .logos {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 </style>
 <div class="mobile-header mobile-homepage6 d-block d-lg-none">
     <div class="container-fluid">
