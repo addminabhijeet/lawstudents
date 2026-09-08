@@ -1003,6 +1003,20 @@
             <i class="fa-solid fa-xmark"></i>
         </div>
     </div>
+
+    <div class="mobile-hero-branding">
+        <h1>LawStudents</h1>
+    </div>
+
+    <div class="mobile-hero-tagline">
+        Learn Law. Understand Law. Build Your Future.
+    </div>
+
+    <div class="mobile-hero-supporting-text">
+        A comprehensive platform for Legal Education, Examination Preparation, Legal Knowledge,
+        Bare Acts, Rules, Notifications and Study Materials.
+    </div>
+
     <div class="mobile-nav">
 
         <ul class="mobile-nav-list">
