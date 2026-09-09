@@ -509,6 +509,11 @@
         flex-shrink: 0 !important;
         height: auto !important;
         z-index: 1000 !important;
+        /* Match the row height of the plain (non-dropdown) menu items.
+           Flex sizing ignores line-height, so without this the dropdown
+           item's box comes out shorter than its siblings and its label
+           ends up sitting visibly higher than the rest of the menu. */
+        align-self: stretch !important;
     }
 
     .dropdown-menu-item > a {
@@ -517,6 +522,10 @@
         gap: 6px !important;
         white-space: nowrap !important;
         cursor: pointer !important;
+        /* The plain menu links sit a few pixels below true vertical center
+           (theme's own line-height/baseline behaviour), while flex-centering
+           here lands on the exact geometric center. Nudge down to match. */
+        margin-top: 4.8px !important;
     }
 
     .dropdown-menu-item > a::after {
@@ -1206,4 +1215,73 @@
     color: #ffffff !important;
     background: #0a141c !important;
 }
+</style>
+
+<!-- ===== NAVBAR TEXT: LARGER + BOLD FOR VISIBILITY (matches homepage body-text scale) =====
+     Pure addition placed last in the cascade so it overrides the earlier, much smaller
+     (11px) navbar font-size rules above without editing any of them. Nothing here removes
+     or changes any previous declaration or script logic; it only re-declares the same
+     selectors afterwards with larger/bolder values. Desktop/tablet/mobile top nav links,
+     the dropdown trigger + its submenu options, the Login/Register button, and the mobile
+     sidebar's nav links are all covered so the whole navbar reads consistently, on every
+     device, at a size/weight comparable to the rest of the site's body text. -->
+<style>
+    /* Top-level nav links (desktop + the same rule's responsive breakpoints).
+       Padding is tightened slightly (was 3px 4px) to reclaim just enough
+       horizontal room for the bigger/bolder text to still fit one row at
+       common desktop widths (~1280px) without pushing "Login / Register"
+       off-screen. */
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        padding: 3px 2px !important;
+    }
+
+    @media (min-width: 1600px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 11px !important;
+            font-weight: 700 !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 10px !important;
+            font-weight: 700 !important;
+        }
+    }
+
+    /* Dropdown trigger label ("Bare Acts & Rules", "Courses & Free Notes") */
+    .dropdown-menu-item > a {
+        font-weight: 700 !important;
+    }
+
+    /* Dropdown submenu options (Acts, Rules, Course, Free Notes) */
+    .dropdown-submenu li a {
+        font-weight: 700 !important;
+    }
+
+    /* Login / Register button */
+    .main-menu-ex.homepage6 ul li .btn {
+        font-size: 13px !important;
+        font-weight: 700 !important;
+    }
+
+    @media (min-width: 1024px) {
+        .main-menu-ex.homepage6 ul li .btn {
+            font-size: 14px !important;
+        }
+    }
+
+    /* Mobile off-canvas sidebar nav links */
+    .mobile-sidebar.sidebar6 .mobile-nav li a {
+        font-weight: 700 !important;
+    }
 </style>
