@@ -597,6 +597,15 @@
         width: 100% !important;
     }
 
+    /* Some browsers still render the default bullet's ::marker (often shown
+       in the browser/OS accent colour) even with list-style:none on the <li>
+       itself. Killing the marker pseudo-element directly removes it for good,
+       without touching the list-style declaration above. */
+    .dropdown-submenu li::marker {
+        content: none !important;
+        display: none !important;
+    }
+
     .dropdown-submenu li a {
         display: block !important;
         padding: 12px 20px !important;
@@ -1232,9 +1241,17 @@
        common desktop widths (~1280px) without pushing "Login / Register"
        off-screen. */
     .header .main-menu-ex.homepage6 ul li a {
-        font-size: 12px !important;
+        font-size: 11px !important;
         font-weight: 700 !important;
-        padding: 3px 2px !important;
+        padding: 2px 1.5px !important;
+    }
+
+    @media (min-width: 1400px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            padding: 3px 2px !important;
+        }
     }
 
     @media (min-width: 1600px) {

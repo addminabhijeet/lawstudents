@@ -837,6 +837,18 @@ div[class*="col-lg-"] {
 /* Orange links container styling - already in inline styles, just ensure full width */
 /* White copyright container styling - already in inline styles, just ensure full width */
 
+/* FIX: .copyright-pera's full-bleed technique above uses -9999px margins with
+   matching 9999px+ padding to stretch it edge-to-edge inside a contained
+   layout. Without an ancestor to clip that at, the huge box (~20,000px wide)
+   extends the whole page's horizontal scroll area, which can shift/cut off
+   content elsewhere on the page (e.g. the navbar's right side) on any
+   screen. Clipping it here, right at its own container, contains the
+   full-bleed effect to just this section without touching the technique
+   itself or anything above it on the page. */
+.footer3-section-area {
+    overflow-x: hidden !important;
+}
+
 /* ===== END DESIGN IMPROVEMENTS ===== */
 </style>
 
