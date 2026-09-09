@@ -530,6 +530,20 @@
         transform: rotate(180deg);
     }
 
+    /* Invisible hover-bridge covering the gap between the menu link and the
+       submenu (top: calc(100% + 8px) below) so moving the cursor down into
+       the dropdown doesn't momentarily leave .dropdown-menu-item and cause
+       the option to become unclickable / the menu to start closing. Purely
+       additive and absolutely positioned, so it does not affect layout. */
+    .dropdown-menu-item::before {
+        content: '';
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 8px !important;
+    }
+
     /* Dropdown submenu styling */
     .dropdown-submenu {
         position: absolute !important;
