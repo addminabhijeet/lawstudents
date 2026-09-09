@@ -1245,16 +1245,18 @@
     }
 
     @media (max-width: 1024px) {
-        .main-menu-ex.homepage6 ul li a {
+        .header .main-menu-ex.homepage6 ul li a {
             font-size: 11px !important;
             font-weight: 700 !important;
+            padding: 3px 2px !important;
         }
     }
 
     @media (max-width: 480px) {
-        .main-menu-ex.homepage6 ul li a {
+        .header .main-menu-ex.homepage6 ul li a {
             font-size: 10px !important;
             font-weight: 700 !important;
+            padding: 2px 2px !important;
         }
     }
 
