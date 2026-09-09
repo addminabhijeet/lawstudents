@@ -544,6 +544,9 @@
         visibility: hidden !important;
         pointer-events: none !important;
         transition: all 0.3s ease !important;
+        /* Delay hiding the dropdown so the cursor has time to move from the
+           menu item into the submenu without it closing first. */
+        transition-delay: 1.2s !important;
         z-index: 9999 !important;
         list-style: none !important;
         padding: 0 !important;
@@ -559,6 +562,8 @@
         pointer-events: auto !important;
         max-height: 160px !important;
         transform: translateY(0) !important;
+        /* Show immediately on hover; only hiding is delayed (see above). */
+        transition-delay: 0s !important;
     }
 
     .dropdown-submenu li {
