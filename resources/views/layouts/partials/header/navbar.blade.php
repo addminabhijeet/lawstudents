@@ -1327,7 +1327,8 @@
         .main-menu-ex.homepage6 ul li a.btn {
             font-size: 9px !important;
             font-weight: 700 !important;
-            padding: 2px 3px !important;
+            padding: 2px 0px !important;
+            margin-right: -36px !important;
         }
     }
 </style>
