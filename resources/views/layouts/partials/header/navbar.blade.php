@@ -1246,9 +1246,38 @@
         padding: 2px 1.5px !important;
     }
 
+    /* The container's own side padding steps up from 30px to 35px exactly
+       at 1200px (pre-existing, untouched), independently of the font-size
+       breakpoints here. That leaves 1025px-1199px (still the 30px-padding
+       tier, but not yet the wider 1400px+ font tier) as its own tight
+       range that needs a smaller size to actually fit — verified against
+       its narrowest width (1025px). */
+    @media (max-width: 1199px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 9px !important;
+            font-weight: 700 !important;
+            padding: 1px 0px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a.btn {
+            margin-right: -21px !important;
+        }
+    }
+
+    /* Same reasoning as the 1199px block above, but for the 1200px-1399px
+       range: the container's padding just stepped up to 35px here while
+       this tier's font-size/padding otherwise stays at the base values,
+       leaving the right side visibly under-filled at the narrow end
+       (1200px) — checked and corrected against that exact width. */
+    @media (min-width: 1200px) and (max-width: 1399px) {
+        .main-menu-ex.homepage6 ul li a.btn {
+            margin-right: -28px !important;
+        }
+    }
+
     @media (min-width: 1400px) {
         .header .main-menu-ex.homepage6 ul li a {
-            font-size: 12px !important;
+            font-size: 13px !important;
             font-weight: 700 !important;
             padding: 3px 2px !important;
         }
@@ -1256,7 +1285,7 @@
 
     @media (min-width: 1600px) {
         .header .main-menu-ex.homepage6 ul li a {
-            font-size: 14px !important;
+            font-size: 16px !important;
             font-weight: 700 !important;
         }
     }
@@ -1287,16 +1316,14 @@
         font-weight: 700 !important;
     }
 
-    /* Login / Register button */
+    /* Login / Register button: no separate font-size here — .btn is itself
+       an <a> matching ".header .main-menu-ex.homepage6 ul li a" above, so it
+       already inherits that same tiered size. Giving it its own fixed size
+       (previously 13px/14px regardless of tier) collided badly with the
+       narrower tiers, where 14px no longer fit. font-weight kept for clarity
+       even though the general rule already sets it too. */
     .main-menu-ex.homepage6 ul li a.btn {
-        font-size: 13px !important;
         font-weight: 700 !important;
-    }
-
-    @media (min-width: 1024px) {
-        .main-menu-ex.homepage6 ul li a.btn {
-            font-size: 14px !important;
-        }
     }
 
     /* Mobile off-canvas sidebar nav links */
