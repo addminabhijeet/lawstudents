@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\RoutingController;
 use App\Http\Controllers\Admin\StudentAdmissinController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseNoteController;
+use App\Http\Controllers\Admin\GovtExamController;
+use App\Http\Controllers\Admin\LegalKnowledgeLibraryController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -156,6 +158,102 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::post('delete-rules/{id}', [CourseController::class, 'rulesfiledelete'])
                 ->name('rulesfiledelete');
+
+            // ===== Centre & State Govt. Examination (new, standalone feature) =====
+
+            Route::get('list-govt-exams', [GovtExamController::class, 'listexams'])
+                ->name('listgovtexams');
+
+            Route::get('add-govt-exams', [GovtExamController::class, 'addexam'])
+                ->name('addgovtexams');
+
+            Route::post('store-govt-exams', [GovtExamController::class, 'storeexam'])
+                ->name('storegovtexams');
+
+            Route::get('edit-govt-exams/{id}', [GovtExamController::class, 'editexam'])
+                ->name('editgovtexams');
+
+            Route::post('update-govt-exams/{id}', [GovtExamController::class, 'updateexam'])
+                ->name('updategovtexams');
+
+            Route::post('delete-govt-exams/{id}', [GovtExamController::class, 'examfiledelete'])
+                ->name('govtexamsfiledelete');
+
+            Route::get('govtexamcategories-list', [GovtExamController::class, 'listcategories'])
+                ->name('listgovtexamcategories');
+            Route::get('govtexamcategories-add', [GovtExamController::class, 'addcategory'])
+                ->name('addgovtexamcategory');
+            Route::post('govtexamcategories-store', [GovtExamController::class, 'storecategory'])
+                ->name('storegovtexamcategory');
+            Route::get('govtexamcategories-edit/{id}', [GovtExamController::class, 'editcategory'])
+                ->name('editgovtexamcategory');
+            Route::post('govtexamcategories-update/{id}', [GovtExamController::class, 'updatecategory'])
+                ->name('updategovtexamcategory');
+            Route::post('govtexamcategories-filedelete/{id}', [GovtExamController::class, 'deletecategoryfile'])
+                ->name('deletegovtexamcategoryfile');
+
+            Route::get('govtexamsubcategories-list', [GovtExamController::class, 'listsubcategories'])
+                ->name('listgovtexamsubcategories');
+            Route::get('govtexamsubcategories-add', [GovtExamController::class, 'addsubcategory'])
+                ->name('addgovtexamsubcategory');
+            Route::post('govtexamsubcategories-store', [GovtExamController::class, 'storesubcategory'])
+                ->name('storegovtexamsubcategory');
+            Route::get('govtexamsubcategories-edit/{id}', [GovtExamController::class, 'editsubcategory'])
+                ->name('editgovtexamsubcategory');
+            Route::post('govtexamsubcategories-update/{id}', [GovtExamController::class, 'updatesubcategory'])
+                ->name('updategovtexamsubcategory');
+            Route::post('govtexamsubcategories-filedelete/{id}', [GovtExamController::class, 'deletesubcategoryfile'])
+                ->name('deletegovtexamsubcategoryfile');
+
+            // ===== end Centre & State Govt. Examination =====
+
+            // ===== Legal Knowledge (new, standalone library feature) =====
+
+            Route::get('list-legal-knowledge-library', [LegalKnowledgeLibraryController::class, 'listnotes'])
+                ->name('listlegalknowledgelibrary');
+
+            Route::get('add-legal-knowledge-library', [LegalKnowledgeLibraryController::class, 'addnote'])
+                ->name('addlegalknowledgelibrary');
+
+            Route::post('store-legal-knowledge-library', [LegalKnowledgeLibraryController::class, 'storenote'])
+                ->name('storelegalknowledgelibrary');
+
+            Route::get('edit-legal-knowledge-library/{id}', [LegalKnowledgeLibraryController::class, 'editnote'])
+                ->name('editlegalknowledgelibrary');
+
+            Route::post('update-legal-knowledge-library/{id}', [LegalKnowledgeLibraryController::class, 'updatenote'])
+                ->name('updatelegalknowledgelibrary');
+
+            Route::post('delete-legal-knowledge-library/{id}', [LegalKnowledgeLibraryController::class, 'notefiledelete'])
+                ->name('legalknowledgelibraryfiledelete');
+
+            Route::get('legalknowledgelibrarycategories-list', [LegalKnowledgeLibraryController::class, 'listcategories'])
+                ->name('listlegalknowledgelibrarycategories');
+            Route::get('legalknowledgelibrarycategories-add', [LegalKnowledgeLibraryController::class, 'addcategory'])
+                ->name('addlegalknowledgelibrarycategory');
+            Route::post('legalknowledgelibrarycategories-store', [LegalKnowledgeLibraryController::class, 'storecategory'])
+                ->name('storelegalknowledgelibrarycategory');
+            Route::get('legalknowledgelibrarycategories-edit/{id}', [LegalKnowledgeLibraryController::class, 'editcategory'])
+                ->name('editlegalknowledgelibrarycategory');
+            Route::post('legalknowledgelibrarycategories-update/{id}', [LegalKnowledgeLibraryController::class, 'updatecategory'])
+                ->name('updatelegalknowledgelibrarycategory');
+            Route::post('legalknowledgelibrarycategories-filedelete/{id}', [LegalKnowledgeLibraryController::class, 'deletecategoryfile'])
+                ->name('deletelegalknowledgelibrarycategoryfile');
+
+            Route::get('legalknowledgelibrarysubcategories-list', [LegalKnowledgeLibraryController::class, 'listsubcategories'])
+                ->name('listlegalknowledgelibrarysubcategories');
+            Route::get('legalknowledgelibrarysubcategories-add', [LegalKnowledgeLibraryController::class, 'addsubcategory'])
+                ->name('addlegalknowledgelibrarysubcategory');
+            Route::post('legalknowledgelibrarysubcategories-store', [LegalKnowledgeLibraryController::class, 'storesubcategory'])
+                ->name('storelegalknowledgelibrarysubcategory');
+            Route::get('legalknowledgelibrarysubcategories-edit/{id}', [LegalKnowledgeLibraryController::class, 'editsubcategory'])
+                ->name('editlegalknowledgelibrarysubcategory');
+            Route::post('legalknowledgelibrarysubcategories-update/{id}', [LegalKnowledgeLibraryController::class, 'updatesubcategory'])
+                ->name('updatelegalknowledgelibrarysubcategory');
+            Route::post('legalknowledgelibrarysubcategories-filedelete/{id}', [LegalKnowledgeLibraryController::class, 'deletesubcategoryfile'])
+                ->name('deletelegalknowledgelibrarysubcategoryfile');
+
+            // ===== end Legal Knowledge =====
 
             Route::get('banner', [CourseController::class, 'listbanner'])
                 ->name('listbanner');

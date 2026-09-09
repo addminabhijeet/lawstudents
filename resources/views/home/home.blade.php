@@ -2017,42 +2017,33 @@
             <p>Comprehensive preparation for competitive legal examinations</p>
         </div>
 
-        <div class="exams-grid">
-            <div class="exam-card" data-aos="fade-up">
-                <div class="exam-icon">📋</div>
-                <h3>UGC NET</h3>
-                <p>National Eligibility Test preparation for law teaching positions</p>
+        <div class="courses-notes-grid" data-aos="fade-up">
+            @php
+            $govtExams = \App\Models\GovtExam::where('delete', 1)->latest()->limit(9)->get();
+            @endphp
+            @forelse($govtExams as $govtExam)
+            <div class="course-note-card note-plain-card">
+                <div class="course-note-card-body">
+                    <h3>{{ Str::limit($govtExam->description ?? 'Govt. Examination Notification', 60) }}</h3>
+                    <p>
+                        <i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>
+                        {{ count($govtExam->pdfs ?? []) }} PDF{{ count($govtExam->pdfs ?? []) === 1 ? '' : 's' }} available
+                    </p>
+                </div>
+                <div class="course-note-card-footer">
+                    <a href="{{ route('frontend.govtexams') }}" class="course-note-link">
+                        View Notification <span>→</span>
+                    </a>
+                </div>
             </div>
-
-            <div class="exam-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="exam-icon">⚖️</div>
-                <h3>Judicial Exam</h3>
-                <p>State and Central judicial service examination preparation</p>
+            @empty
+            <div class="no-content-message" style="grid-column: 1 / -1;">
+                Govt. Examination notifications will be displayed here
             </div>
-
-            <div class="exam-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="exam-icon">📚</div>
-                <h3>Bar Council Exam</h3>
-                <p>All India Bar Examination (AIBE) comprehensive guidance</p>
-            </div>
-
-            <div class="exam-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="exam-icon">🏆</div>
-                <h3>CLAT Preparation</h3>
-                <p>Common Law Admission Test coaching and study material</p>
-            </div>
-
-            <div class="exam-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="exam-icon">📖</div>
-                <h3>Law Entrance</h3>
-                <p>Various state and national law entrance exam preparation</p>
-            </div>
-
-            <div class="exam-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="exam-icon">✍️</div>
-                <h3>Practice Tests</h3>
-                <p>Mock tests and sample papers for all legal examinations</p>
-            </div>
+            @endforelse
+        </div>
+        <div class="courses-notes-view-all">
+            <a href="{{ route('frontend.govtexams') }}" class="courses-notes-view-all-btn">View All Govt. Examinations</a>
         </div>
     </div>
 </div>
@@ -2442,40 +2433,34 @@
             <p>Stay updated with the latest developments in law and legal practice</p>
         </div>
 
-        <div class="legal-articles">
-            <div class="article-card" data-aos="fade-up">
-                <div class="article-image">⚖️</div>
-                <div class="article-body">
-                    <div class="article-date">Latest Update</div>
-                    <h3>Understanding Criminal Procedure Code</h3>
-                    <p>A comprehensive guide to the Criminal Procedure Code and its provisions for criminal justice.</p>
-                    <a href="{{ route('frontend.legal-knowledge') }}" class="article-link">Read More →</a>
+        <div class="courses-notes-grid" data-aos="fade-up">
+            @php
+            $legalKnowledgeNotes = \App\Models\LegalKnowledgeNote::where('delete', 1)->latest()->limit(9)->get();
+            @endphp
+            @forelse($legalKnowledgeNotes as $legalKnowledgeNote)
+            <div class="course-note-card note-plain-card">
+                <div class="course-note-card-body">
+                    <h3>{{ Str::limit($legalKnowledgeNote->description ?? 'Legal Knowledge', 60) }}</h3>
+                    <p>
+                        <i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>
+                        {{ count($legalKnowledgeNote->pdfs ?? []) }} PDF{{ count($legalKnowledgeNote->pdfs ?? []) === 1 ? '' : 's' }} available
+                    </p>
+                </div>
+                <div class="course-note-card-footer">
+                    <a href="{{ route('frontend.legalknowledgelibrary') }}" class="course-note-link">
+                        View Legal Knowledge <span>→</span>
+                    </a>
                 </div>
             </div>
-
-            <div class="article-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="article-image">📜</div>
-                <div class="article-body">
-                    <div class="article-date">Recent News</div>
-                    <h3>Corporate Law Updates</h3>
-                    <p>Latest updates in corporate law including company regulations and compliance requirements.</p>
-                    <a href="{{ route('frontend.legal-knowledge') }}" class="article-link">Read More →</a>
-                </div>
+            @empty
+            <div class="no-content-message" style="grid-column: 1 / -1;">
+                Legal Knowledge notes will be displayed here
             </div>
-
-            <div class="article-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="article-image">👨‍⚖️</div>
-                <div class="article-body">
-                    <div class="article-date">Expert Opinion</div>
-                    <h3>Family Law Amendments</h3>
-                    <p>Recent amendments in family law and their implications for matrimonial disputes and succession.</p>
-                    <a href="{{ route('frontend.legal-knowledge') }}" class="article-link">Read More →</a>
-                </div>
-            </div>
+            @endforelse
         </div>
 
         <div class="legal-knowledge-view-all">
-            <a href="{{ route('frontend.legal-knowledge') }}" class="legal-knowledge-btn">View All Legal Knowledge</a>
+            <a href="{{ route('frontend.legalknowledgelibrary') }}" class="legal-knowledge-btn">View All Legal Knowledge</a>
         </div>
     </div>
 </div>

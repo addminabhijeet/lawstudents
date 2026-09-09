@@ -183,6 +183,48 @@
                         </ul>
                     </li>
 
+                    <!-- Centre & State Govt. Examination -->
+
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-award"></i></span>
+                            <span class="nxl-mtext">Govt. Examination</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listgovtexamcategories') }}">List Categories</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listgovtexamsubcategories') }}">List Sub Categories</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listgovtexams') }}">List</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Legal Knowledge (library) -->
+
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-book-open"></i></span>
+                            <span class="nxl-mtext">Legal Knowledge</span>
+                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listlegalknowledgelibrarycategories') }}">List Categories</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listlegalknowledgelibrarysubcategories') }}">List Sub Categories</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listlegalknowledgelibrary') }}">List</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <!-- Free Notes -->
 
                     <li class="nxl-item nxl-hasmenu">
