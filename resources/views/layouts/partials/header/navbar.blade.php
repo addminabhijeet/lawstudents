@@ -1271,13 +1271,13 @@
     }
 
     /* Login / Register button */
-    .main-menu-ex.homepage6 ul li .btn {
+    .main-menu-ex.homepage6 ul li a.btn {
         font-size: 13px !important;
         font-weight: 700 !important;
     }
 
     @media (min-width: 1024px) {
-        .main-menu-ex.homepage6 ul li .btn {
+        .main-menu-ex.homepage6 ul li a.btn {
             font-size: 14px !important;
         }
     }
@@ -1285,5 +1285,32 @@
     /* Mobile off-canvas sidebar nav links */
     .mobile-sidebar.sidebar6 .mobile-nav li a {
         font-weight: 700 !important;
+    }
+</style>
+
+<!-- ===== NAVBAR TEXT: 1024px-WIDE OVERFLOW FIX =====
+     At ~1024px (just above the lg breakpoint where the desktop nav is still
+     shown instead of the mobile hamburger) all 10 nav items + the button no
+     longer fit on one row once the text above is made bigger/bolder. This
+     block only tightens sizing further AT that narrow width specifically —
+     it does not touch the sizes used at 1200px+ (already verified to fit
+     with room to spare) and does not change any previous rule or script. -->
+<style>
+    @media (max-width: 1024px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 9px !important;
+            font-weight: 700 !important;
+            padding: 1px 0px !important;
+        }
+
+        .dropdown-menu-item > a {
+            gap: 2px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a.btn {
+            font-size: 9px !important;
+            font-weight: 700 !important;
+            padding: 2px 3px !important;
+        }
     }
 </style>
