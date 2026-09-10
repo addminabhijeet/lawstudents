@@ -1,6 +1,43 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
+    <!-- The compiled theme stylesheet renders this section's "Our Instructors"
+         eyebrow at rgb(255,125,0) on a rgb(245,232,217) badge background, via
+         ".inner-pages .team2-section-area .team1-header span" — contrast ratio
+         ~2.1:1, noticeably harder to read than the same eyebrow-badge pattern
+         used elsewhere on the site. That selector's specificity has to be
+         matched to win the cascade, so this re-declares it identically with
+         just a darker shade of the same orange (additive — nothing in the
+         theme CSS or markup below is changed), raising it to ~4.6:1 while
+         keeping the same brand-orange look. -->
+    <style>
+        .inner-pages .team2-section-area .team1-header span {
+            color: #b8410f;
+        }
+
+        /* Same brand orange (rgb(255,125,0) / #FF7D00), same low-contrast problem,
+           repeated in three more spots further down this page — additive fixes,
+           matching each theme rule's own selector so the cascade picks these up:
+           - ".about3-textarea span" ("About Us" eyebrow): orange text on a 10%-tint
+             orange badge, ~2.57:1 -> darkened to the same #b8410f used above, ~5.0:1.
+           - ".about-history-sction-area .history-header span" ("Our Journey"
+             eyebrow): orange text on a 20%-tint badge, ~2.57:1 -> same #b8410f,
+             ~4.6:1.
+           - ".experiance-area" (the "Years of Legal Education Experience" badge)
+             and ".about-history-tabs a.active" (the "2017" active year tab): white
+             text on a solid orange background, ~2.57:1 -> same darker orange used
+             for the CTA banner fix (#c25200) applied to just this background,
+             ~4.7:1. */
+        .inner-pages .about3-section-area .about3-textarea span,
+        .inner-pages .about-history-sction-area .history-header span {
+            color: #b8410f;
+        }
+
+        .inner-pages .about-servce-section-area .about-service-area .experiance-area,
+        .inner-pages .about-history-sction-area .about-history-tabs a.active {
+            background: #c25200;
+        }
+    </style>
     <!-- ===== WELCOME STARTS======= -->
     <div class="welcome-inner-section-area"
         style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">

@@ -235,7 +235,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="document">Upload Document <span style="color: #999;">(Optional)</span></label>
+                        <label for="document">Upload Document <span style="color: #767676;">(Optional)</span></label>
                         <input type="file" id="document" name="document" accept=".pdf,.doc,.docx,.txt">
                     </div>
 

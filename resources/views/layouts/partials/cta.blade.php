@@ -26,6 +26,32 @@
         opacity: 1 !important;
         visibility: visible !important;
     }
+
+    /* ===== CTA ORANGE CONTRAST FIX (sitewide) =====
+       The compiled theme stylesheet paints this "Get in Touch with LawStudent"
+       banner (this partial, included on every page via layouts/landing.blade.php)
+       with background: rgb(255,125,0) — its white h2/p text and its white-background
+       "Send Message" button (orange text) both land at only ~2.57:1 contrast,
+       under the WCAG AA minimum. The same orange, from the same theme rule
+       (".inner-pages .contact1-section-area .contact-auhtor-area
+       .contact-submit-area .contact-inner button", white text), is reused by the
+       Clientele and Contact Us page's submit buttons ("Join Our Client" /
+       "Free Case Evaluation"). Since this partial already loads on every page,
+       darkening just this one shade here (additive — no existing rule, markup,
+       or script above is changed) fixes all of these consistently in one place:
+       ~4.6:1 against white, comfortably passing AA, while staying the same
+       recognizable brand orange. */
+    .ca3-scetion-area {
+        background: #c25200 !important;
+    }
+
+    .ca3-scetion-area a.cta3-btn1 {
+        color: #c25200 !important;
+    }
+
+    .inner-pages .contact1-section-area .contact-auhtor-area .contact-submit-area .contact-inner button {
+        background: #c25200 !important;
+    }
 </style>
 
 <!--===== CTA STARTS =======-->

@@ -1538,6 +1538,20 @@
         box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3);
     }
 
+    /* The theme's JS replaces the real <select> above with its own "nice-select"
+       widget (a sibling .nice-select div showing the current choice, plus a
+       .list/.option dropdown) — the ".legal-knowledge-inquiry-form select" rule
+       above styles the now-hidden native element, never this visible stand-in.
+       Its label and options don't set their own text color, so they inherit the
+       white text color of this dark ".legal-knowledge-inquiry-section", landing
+       on the widget's own white background: white-on-white, unreadable. Giving
+       just the widget's text the same dark color used for the other fields
+       (additive — nothing above is changed) makes it match and stay legible. */
+    .legal-knowledge-inquiry-form .nice-select .current,
+    .legal-knowledge-inquiry-form .nice-select .list .option {
+        color: #1a1a1a;
+    }
+
     .legal-knowledge-inquiry-form textarea {
         resize: vertical;
         min-height: 100px;
