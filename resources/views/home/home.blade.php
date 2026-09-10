@@ -1396,17 +1396,14 @@
 
 <div class="acts-rules-section">
     <div class="acts-rules-container">
-        <div class="acts-rules-header">
-            <span class="acts-rules-eyebrow">Legal Resources</span>
-            <h2>Bare Acts & Rules</h2>
-            <p>Access comprehensive legal documents and regulatory frameworks</p>
-        </div>
-
-        <!-- Acts -->
-        <div style="margin-bottom: 60px;">
-            <div class="acts-rules-card-header" style="text-align:left; border-bottom:none; padding:0 0 20px 0;">
-                <h3>📜 Acts</h3>
+        <!-- ACTS SECTION -->
+        <div style="margin-bottom: 80px;">
+            <div class="courses-notes-header">
+                <span class="courses-notes-eyebrow">Bare Acts</span>
+                <h2>📜 Acts</h2>
+                <p>Access comprehensive Bare Acts and legal documents</p>
             </div>
+
             <div class="courses-notes-grid" data-aos="fade-up">
                 @php
                 $acts = \App\Models\Act::limit(9)->get();
@@ -1432,16 +1429,20 @@
                 </div>
                 @endforelse
             </div>
+
             <div class="courses-notes-view-all">
                 <a href="{{ route('frontend.acts') }}" class="courses-notes-view-all-btn">View All Acts</a>
             </div>
         </div>
 
-        <!-- Rules -->
+        <!-- RULES SECTION -->
         <div>
-            <div class="acts-rules-card-header" style="text-align:left; border-bottom:none; padding:0 0 20px 0;">
-                <h3>⚖️ Rules</h3>
+            <div class="courses-notes-header">
+                <span class="courses-notes-eyebrow">Legal Rules</span>
+                <h2>⚖️ Rules</h2>
+                <p>Access comprehensive Rules and regulatory frameworks</p>
             </div>
+
             <div class="courses-notes-grid" data-aos="fade-up">
                 @php
                 $rules = \App\Models\Rule::limit(9)->get();
@@ -1467,6 +1468,7 @@
                 </div>
                 @endforelse
             </div>
+
             <div class="courses-notes-view-all">
                 <a href="{{ route('frontend.rules') }}" class="courses-notes-view-all-btn">View All Rules</a>
             </div>
