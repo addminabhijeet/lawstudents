@@ -114,7 +114,7 @@
 
                                             <div
                                                 class="icon-md bg-light rounded d-flex align-items-center justify-content-center">
-                                                📄
+                                                <i class="fa-solid fa-file-pdf"></i>
                                             </div>
 
                                             <div>
@@ -155,7 +155,7 @@
                                             <button
                                                 class="btn btn-sm {{ $isWishlisted ? 'btn-danger' : 'btn-outline-danger' }} wishlist-btn"
                                                 data-note="{{ $note->id }}">
-                                                ❤
+                                                <i class="fa-{{ $isWishlisted ? 'solid' : 'regular' }} fa-heart"></i>
                                             </button>
 
                                             <button class="btn btn-sm btn-outline-primary"

@@ -2935,7 +2935,7 @@
 					</code>
 						</pre>
                 </div>
-                <h4 class="fs-13">👋 Threds</h4>
+                <h4 class="fs-13"><i class="fa-solid fa-comments"></i> Threds</h4>
                 <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                 <div class="mb-5">
                     <pre><code class="language-js">
@@ -2948,7 +2948,7 @@ const code = `var data = 1;`;
 const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 						</code></pre>
                 </div>
-                <h4 class="fs-13">📌 Inbox</h4>
+                <h4 class="fs-13"><i class="fa-solid fa-inbox"></i> Inbox</h4>
                 <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                 <div class="mb-5">
                     <pre><code class="language-js">
@@ -2961,7 +2961,7 @@ const code = `var data = 1;`;
 const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 						</code></pre>
                 </div>
-                <h4 class="fs-13">👙 Bundles</h4>
+                <h4 class="fs-13"><i class="fa-solid fa-box"></i> Bundles</h4>
                 <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                 <div class="mb-5">
                     <pre><code class="language-js">
@@ -2974,7 +2974,7 @@ const code = `var data = 1;`;
 const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 						</code></pre>
                 </div>
-                <h4 class="fs-13">⌚ Snoozen</h4>
+                <h4 class="fs-13"><i class="fa-solid fa-clock"></i> Snoozen</h4>
                 <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                 <div class="mb-5">
                     <pre><code class="language-js">
@@ -2987,7 +2987,7 @@ const code = `var data = 1;`;
 const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 						</code></pre>
                 </div>
-                <h4 class="fs-13">🎂 Groups</h4>
+                <h4 class="fs-13"><i class="fa-solid fa-users"></i> Groups</h4>
                 <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                 <div class="mb-5">
                     <pre><code class="language-js">
@@ -3000,7 +3000,7 @@ const code = `var data = 1;`;
 const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 						</code></pre>
                 </div>
-                <h4 class="fs-13">😳 Channel</h4>
+                <h4 class="fs-13"><i class="fa-solid fa-hashtag"></i> Channel</h4>
                 <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                 <div class="mb-5">
                     <pre><code class="language-js">
@@ -3013,7 +3013,7 @@ const code = `var data = 1;`;
 const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');
 						</code></pre>
                 </div>
-                <h4 class="fs-13">🎉 Favorite</h4>
+                <h4 class="fs-13"><i class="fa-solid fa-star"></i> Favorite</h4>
                 <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque officiis minus omnis veniam cupiditate molestiae itaque hic quibusdam fuga modi quam cumque recusandae harum nulla vero, tempore possimus aliquid animi!</p>
                 <div>
                     <pre><code class="language-js">
