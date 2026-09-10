@@ -1798,6 +1798,13 @@
         border-radius: 5px;
         font-size: 14px;
         font-family: inherit;
+        background-color: white;
+        color: #1a1a1a;
+    }
+
+    .enquiry-form input::placeholder,
+    .enquiry-form textarea::placeholder {
+        color: #888;
     }
 
     .enquiry-form input:focus,
