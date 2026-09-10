@@ -840,7 +840,8 @@ div[class*="col-lg-"] {
 /* FIX: .copyright-pera's full-bleed technique above uses -9999px margins with
    matching 9999px+ padding to stretch it edge-to-edge inside a contained
    layout. Without an ancestor to clip that at, the huge box (~20,000px wide)
-   extends the whole page's horizontal scroll area, which can shift/cut off
+   extends the whole page's horizo
+   tal scroll area, which can shift/cut off
    content elsewhere on the page (e.g. the navbar's right side) on any
    screen. Clipping it here, right at its own container, contains the
    full-bleed effect to just this section without touching the technique
@@ -850,6 +851,208 @@ div[class*="col-lg-"] {
 }
 
 /* ===== END DESIGN IMPROVEMENTS ===== */
+
+/* ===== COMPACT & SYMMETRICAL LAYOUT + ORANGE THEME BACKGROUND =====
+   Three things were off, purely visually — nothing below changes any markup,
+   PHP data/logic, or existing rule above; every declaration here just wins
+   the cascade with matching specificity (!important, same as the rest of
+   this file) or adds a new one.
+
+   1) ASYMMETRY: the three columns in each row (e.g. Logo/Quick Links/Courses)
+      hold very different amounts of content, so with the existing top-aligned
+      columns their card backgrounds/borders (added above, "Visual Section
+      Separation") end at very different heights — a ragged, unbalanced look.
+      Stretching the row and each card to the tallest sibling's height lines
+      their bottoms up again without touching what's inside them.
+   2) BLANK SPACE: section padding, the gap between the two rows, heading
+      margins and list-item spacing were all generously sized (some doubled
+      up across the two style passes above) — trimmed down for a tighter,
+      less airy footer.
+   3) ORANGE THEME BACKGROUND: the footer itself was plain white apart from
+      thin accent borders and the bottom bar — a soft warm-orange wash behind
+      the whole section (fading back to white) ties it to the site's orange
+      brand instead of reading as a mostly-white block under an orange divider. */
+
+.footer3-section-area {
+    background: linear-gradient(180deg, #fff4ee 0%, #ffffff 55%) !important;
+}
+
+/* The section headings (QUICK LINKS, COURSES, ...) are the same brand orange
+   (#ff5722) used against plain white further up this file — on white that
+   already sits right at ~4:1, and the new peach wash right behind it at the
+   top of the section (above) pulls that down under the 3:1 AA minimum for
+   this bold/uppercase "large text". A darker shade of the same orange
+   (matching the one already used to fix this identical problem elsewhere on
+   the site) restores it to ~5:1 against the wash without touching the color
+   used anywhere else in this file. */
+.footer3-section-area .footer-last-section h3,
+.footer3-section-area .about-links-area h3,
+.footer3-section-area .get-links-area h3,
+.footer3-section-area .footer-contact-area h3 {
+    color: #b8410f !important;
+}
+
+.footer3-section-area .footer-last-section h3::after,
+.footer3-section-area .about-links-area h3::after,
+.footer3-section-area .get-links-area h3::after,
+.footer3-section-area .footer-contact-area h3::after {
+    background: #b8410f !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area .row {
+        align-items: stretch !important;
+    }
+
+    .footer-all-section-area .row > div {
+        display: flex !important;
+    }
+
+    .footer-all-section-area .about-links-area,
+    .footer-all-section-area .footer-contact-area {
+        height: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* Compact section padding (was 30-60px depending on breakpoint) */
+.footer3-section-area {
+    padding: 24px 15px !important;
+}
+
+@media (min-width: 576px) {
+    .footer3-section-area {
+        padding: 28px 20px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer3-section-area {
+        padding: 32px 30px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer3-section-area {
+        padding: 36px 40px !important;
+    }
+}
+
+.footer-all-section-area {
+    padding: 24px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area {
+        padding: 28px 24px !important;
+    }
+}
+
+/* Compact gap between the two footer rows (was 30px, then 16px) */
+.footer-all-section-area > .row + .row {
+    margin-top: 8px !important;
+}
+
+/* Compact heading spacing (was 22px margin / 15px padding, then 14px/10px) */
+.footer-last-section h3,
+.about-links-area h3,
+.get-links-area h3,
+.footer-contact-area h3 {
+    margin-bottom: 8px !important;
+    padding-bottom: 6px !important;
+}
+
+/* Compact list-item spacing (was 12-14px, then 8px). A more specific rule
+   further up this file — ".footer-all-section-area > .row:first-of-type
+   .about-links-area ul li" / "...nth-of-type(2)..." — outranks the plain
+   ".about-links-area ul li" selector below it and was still landing at
+   12px regardless, so it's matched here (same selector, later in the
+   cascade) to actually take effect everywhere, not just in the one row
+   the plainer selector reached. */
+.about-links-area ul li,
+.get-links-area ul li,
+.footer-all-section-area > .row:first-of-type .about-links-area ul li,
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li {
+    margin-bottom: 4px !important;
+}
+
+/* The Contact column's Email/Address/Phone <li> rows set their own inline
+   "margin-bottom: 25px" (no !important) — the ".about-links-area ul li" rule
+   above already reaches them too (Contact is markup-wise just another
+   ".about-links-area" column) and, being a stylesheet rule with !important,
+   overrides that inline value down to the same 4px without editing that
+   markup. */
+
+/* THE actual biggest source of the footer's excess height: the compiled
+   theme stylesheet gives every link in ".about-links-area ul li a" (Quick
+   Links, Courses, Resources, and — since Contact's <a> tags match the same
+   selector — the Contact column too) its own "margin-top: 20px". Combined
+   with normal line-height that's ~49px per row instead of ~29px, and since
+   every column in a row is stretched to match the tallest one (further up
+   this file, to fix the earlier ragged/asymmetric look), that inflation
+   multiplies into every column, not just the long ones — the single biggest
+   contributor to the footer's overall height. Zeroing it out (matching the
+   theme's own selector so this actually wins) is what gets the footer back
+   to roughly half its height, exactly as asked. */
+.footer3-section-area .about-links-area ul li a {
+    margin-top: 0 !important;
+}
+
+/* Compact card padding on desktop (was 20px all round, then 14px/16px) */
+@media (min-width: 768px) {
+    .about-links-area,
+    .get-links-area,
+    .footer-contact-area {
+        padding: 8px 12px 8px 12px !important;
+    }
+}
+
+/* The "About Us" logo block's own margin-bottom (25px, set further up this
+   file) and the paragraph's margin-top (15px) add extra air above/below the
+   description text on top of the card padding above. */
+.about-links-area > div:first-child {
+    margin-bottom: 10px !important;
+}
+
+.about-links-area > div:nth-child(2) p {
+    margin-top: 6px !important;
+}
+
+/* Compact copyright bar spacing (was 30px margin / 20px top+bottom padding,
+   then 18px/14px+14px) */
+.copyright-pera {
+    margin-top: 8px !important;
+}
+
+.footer3-section-area .copyright-pera {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+/* Link line-height (was 1.8, i.e. 25.2px tall for 14px text) is the other
+   big per-row contributor alongside the margin-top fixed above — tightened
+   to a still-readable 1.3 (18.2px) so each link row takes noticeably less
+   vertical space, most visible in the longer Courses/Contact lists that
+   otherwise set the height every column in their row gets stretched to. */
+.footer-all-section-area .about-links-area a {
+    line-height: 1.3 !important;
+}
+
+/* The Contact column's icon boxes are set inline to a fixed 40x40 with a
+   15px gap to the text — harmless at the old, roomier row height, but now
+   oversized next to the tightened text next to them. A stylesheet rule
+   with !important overrides those inline values without editing that
+   markup, matching the more compact scale used everywhere else above. */
+.about-links-area ul li > div[style*="border-radius: 8px"] {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.about-links-area ul li[style*="gap: 15px"] {
+    gap: 10px !important;
+}
+
+/* ===== END COMPACT & SYMMETRICAL LAYOUT ===== */
 </style>
 
 <div class="footer3-section-area">
