@@ -915,36 +915,39 @@ div[class*="col-lg-"] {
     }
 }
 
-/* Compact section padding (was 30-60px depending on breakpoint) */
+/* Compact section padding (was 30-60px, then 24-36px depending on
+   breakpoint). Top/bottom trimmed further than left/right so the section
+   stays comfortably readable sideways while losing more of the vertical
+   air specifically asked for. */
 .footer3-section-area {
-    padding: 24px 15px !important;
+    padding: 14px 15px !important;
 }
 
 @media (min-width: 576px) {
     .footer3-section-area {
-        padding: 28px 20px !important;
+        padding: 16px 20px !important;
     }
 }
 
 @media (min-width: 768px) {
     .footer3-section-area {
-        padding: 32px 30px !important;
+        padding: 18px 30px !important;
     }
 }
 
 @media (min-width: 1200px) {
     .footer3-section-area {
-        padding: 36px 40px !important;
+        padding: 20px 40px !important;
     }
 }
 
 .footer-all-section-area {
-    padding: 24px !important;
+    padding: 14px 24px !important;
 }
 
 @media (min-width: 768px) {
     .footer-all-section-area {
-        padding: 28px 24px !important;
+        padding: 16px 24px !important;
     }
 }
 
@@ -1019,14 +1022,17 @@ div[class*="col-lg-"] {
 }
 
 /* Compact copyright bar spacing (was 30px margin / 20px top+bottom padding,
-   then 18px/14px+14px) */
+   then 18px/14px+14px, then 8px/8px+8px). This is the footer's bottom-most
+   element, so its own bottom padding is effectively the last bit of space
+   before the page ends — trimmed to the smallest amount that still keeps
+   the copyright text from touching the very edge. */
 .copyright-pera {
-    margin-top: 8px !important;
+    margin-top: 4px !important;
 }
 
 .footer3-section-area .copyright-pera {
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
 }
 
 /* Link line-height (was 1.8, i.e. 25.2px tall for 14px text) is the other

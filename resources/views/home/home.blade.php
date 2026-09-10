@@ -2442,44 +2442,44 @@
             </a>
             @empty
             <div class="gallery-item" data-aos="fade-up">
-                <div class="gallery-image">📚</div>
+                <div class="gallery-image"><i class="fa-solid fa-book"></i></div>
                 <div class="gallery-overlay">
-                    <div class="gallery-overlay-icon">🔍</div>
+                    <div class="gallery-overlay-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                 </div>
             </div>
 
             <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="gallery-image">🏫</div>
+                <div class="gallery-image"><i class="fa-solid fa-school"></i></div>
                 <div class="gallery-overlay">
-                    <div class="gallery-overlay-icon">🔍</div>
+                    <div class="gallery-overlay-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                 </div>
             </div>
 
             <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="gallery-image">👥</div>
+                <div class="gallery-image"><i class="fa-solid fa-users"></i></div>
                 <div class="gallery-overlay">
-                    <div class="gallery-overlay-icon">🔍</div>
+                    <div class="gallery-overlay-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                 </div>
             </div>
 
             <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="gallery-image">🎓</div>
+                <div class="gallery-image"><i class="fa-solid fa-graduation-cap"></i></div>
                 <div class="gallery-overlay">
-                    <div class="gallery-overlay-icon">🔍</div>
+                    <div class="gallery-overlay-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                 </div>
             </div>
 
             <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-                <div class="gallery-image">🏆</div>
+                <div class="gallery-image"><i class="fa-solid fa-trophy"></i></div>
                 <div class="gallery-overlay">
-                    <div class="gallery-overlay-icon">🔍</div>
+                    <div class="gallery-overlay-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                 </div>
             </div>
 
             <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
-                <div class="gallery-image">⭐</div>
+                <div class="gallery-image"><i class="fa-solid fa-star"></i></div>
                 <div class="gallery-overlay">
-                    <div class="gallery-overlay-icon">🔍</div>
+                    <div class="gallery-overlay-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                 </div>
             </div>
             @endforelse

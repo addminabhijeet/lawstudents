@@ -69,8 +69,8 @@
 <div id="galleryModal" class="lightbox">
     <span class="close-btn" onclick="closeModal()">&times;</span>
     <img id="modalImage">
-    <button class="nav prev" onclick="prevImage()">❮</button>
-    <button class="nav next" onclick="nextImage()">❯</button>
+    <button class="nav prev" onclick="prevImage()"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="nav next" onclick="nextImage()"><i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
 <!--===== TEAM ENDS =======-->
