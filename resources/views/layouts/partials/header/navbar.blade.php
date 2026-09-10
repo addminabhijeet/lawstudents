@@ -625,6 +625,22 @@
         padding-left: 24px !important;
     }
 
+    /* The compiled theme stylesheet (public/build/assets/master-*.css) draws its
+       own small underline bar via "...ul li ul li a:hover::after" (an absolutely
+       positioned 2px-tall, 10px-wide orange-red bar, left:10px) — sized and placed
+       so it lands mid-text and reads as a strikethrough across the submenu option's
+       label on hover, e.g. "Acts". That pseudo-element belongs to the theme's own
+       compiled CSS, not to any rule in this file, and loads after this block, so it
+       still draws even though nothing here creates it. Suppressing just that
+       pseudo-element (additive — nothing above is changed) removes the red
+       strike-through line while leaving the rest of the hover styling untouched. */
+    .header .header-area.homepage7 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover::after,
+    .header .header-area.homepage6 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover::after {
+        content: none !important;
+        display: none !important;
+        background: transparent !important;
+    }
+
     .dropdown-submenu li:first-child a {
         border-top: none;
     }
