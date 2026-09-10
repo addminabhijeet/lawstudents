@@ -32,7 +32,7 @@
                                                     <div class="d-flex align-items-center mb-3">
 
                                                         <div class="bg-light rounded p-2 me-2">
-                                                            📚
+                                                            <i class="fa-solid fa-book"></i>
                                                         </div>
 
                                                         <h5 class="note-title text-truncate mb-0">

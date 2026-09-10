@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', function() {
             printBtn.style.display = 'flex !important';
             printBtn.style.visibility = 'visible !important';
             printBtn.style.opacity = '1 !important';
-            printBtn.innerHTML = '<span style="font-size:24px; color:#fff;">🖨</span>';
+            printBtn.innerHTML = '<i class="fas fa-print" style="font-size:24px; color:#fff;"></i>';
             printBtn.title = 'Print Invoice';
         }
 
@@ -703,7 +703,7 @@ document.addEventListener('DOMContentLoaded', function() {
             downloadBtn.style.display = 'flex !important';
             downloadBtn.style.visibility = 'visible !important';
             downloadBtn.style.opacity = '1 !important';
-            downloadBtn.innerHTML = '<span style="font-size:24px; color:#fff;">⬇</span>';
+            downloadBtn.innerHTML = '<i class="fas fa-download" style="font-size:24px; color:#fff;"></i>';
             downloadBtn.title = 'Download Invoice';
         }
     });
