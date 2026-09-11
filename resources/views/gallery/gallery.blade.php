@@ -205,7 +205,7 @@
     function openGalleryModal(el) {
         let images = JSON.parse(el.getAttribute('data-images'));
 
-        galleryImages = images.map(img => `/storage/app/public/${img}`);
+        galleryImages = images.map(img => `{{ asset('storage/app/public') }}/${img}`);
         currentIndex = 0;
 
         document.getElementById('galleryModal').style.display = 'flex';

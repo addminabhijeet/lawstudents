@@ -370,7 +370,7 @@
                 ctx.restore();
             });
 
-            fetch("/student/save-progress", {
+            fetch("{{ url('/student/save-progress') }}", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

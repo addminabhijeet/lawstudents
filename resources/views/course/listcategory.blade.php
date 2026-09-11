@@ -859,7 +859,7 @@
         let id = $(this).data("id");
 
         $.ajax({
-            url: "/admin/course-edit/" + id,
+            url: "{{ url('/admin/course-edit') }}/" + id,
             type: "GET",
             success: function(data) {
 
@@ -875,12 +875,12 @@
                 modal.find("input[name='price']").val(data.price);
 
                 // Set form action
-                $("#editCourseForm").attr("action", "/admin/course-update/" + data.id);
+                $("#editCourseForm").attr("action", "{{ url('/admin/course-update') }}/" + data.id);
 
                 // Show existing brochure
                 if (data.brochure) {
                     $("#existingBrochure").html(`
-                    <a href="/storage/${data.brochure}" target="_blank" class="text-primary">
+                    <a href="{{ asset('storage') }}/${data.brochure}" target="_blank" class="text-primary">
                         View Current Brochure
                     </a>
                 `);
@@ -908,7 +908,7 @@
         let id = $(this).data("id");
 
         $.ajax({
-            url: "/admin/category-edit/" + id,
+            url: "{{ url('/admin/category-edit') }}/" + id,
             type: "GET",
             success: function(data) {
 
@@ -917,7 +917,7 @@
                 $("#edit_parent_id").val(data.parent_id);
 
                 // Set form action
-                $("#editCategoryForm").attr("action", "/admin/category-update/" + data.id);
+                $("#editCategoryForm").attr("action", "{{ url('/admin/category-update') }}/" + data.id);
 
                 // Handle main category checkbox
                 if (!data.parent_id) {
@@ -951,7 +951,7 @@
         let id = $(this).data("id");
 
         // Set form action dynamically
-        $("#deleteCategoryForm").attr("action", "/admin/category-delete/" + id);
+        $("#deleteCategoryForm").attr("action", "{{ url('/admin/category-delete') }}/" + id);
 
         // Show modal
         $("#deleteCategoryModal").modal("show");
