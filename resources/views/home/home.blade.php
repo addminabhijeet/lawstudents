@@ -1075,7 +1075,7 @@
         <div style="margin-bottom: 80px;">
             <div class="courses-notes-header">
                 <span class="courses-notes-eyebrow">Courses</span>
-                <h2>📚 Explore Our Courses</h2>
+                <h2>Explore Our Courses</h2>
                 <p>Comprehensive learning programs designed by legal experts</p>
             </div>
 
@@ -1121,7 +1121,7 @@
         <div>
             <div class="courses-notes-header">
                 <span class="courses-notes-eyebrow">Free Notes</span>
-                <h2>📝 Free Study Notes</h2>
+                <h2>Free Study Notes</h2>
                 <p>Access valuable study materials and notes for your legal education</p>
             </div>
 
@@ -1400,7 +1400,7 @@
         <div style="margin-bottom: 80px;">
             <div class="courses-notes-header">
                 <span class="courses-notes-eyebrow">Bare Acts</span>
-                <h2>📜 Acts</h2>
+                <h2>Acts</h2>
                 <p>Access comprehensive Bare Acts and legal documents</p>
             </div>
 
@@ -1439,7 +1439,7 @@
         <div>
             <div class="courses-notes-header">
                 <span class="courses-notes-eyebrow">Legal Rules</span>
-                <h2>⚖️ Rules</h2>
+                <h2>Rules</h2>
                 <p>Access comprehensive Rules and regulatory frameworks</p>
             </div>
 
@@ -1728,7 +1728,7 @@
 <div class="exams-section">
     <div class="exams-container">
         <div class="exams-header">
-            <h2>🎓 Centre & State Govt. Examination</h2>
+            <h2>Centre & State Govt. Examination</h2>
             <p>Comprehensive preparation for competitive legal examinations</p>
         </div>
 

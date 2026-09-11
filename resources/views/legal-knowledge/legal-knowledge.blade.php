@@ -243,7 +243,7 @@
                 </form>
 
                 <div class="disclaimer-section">
-                    <div class="disclaimer-title">⚠️ Important Disclaimer</div>
+                    <div class="disclaimer-title"><i class="fa-solid fa-triangle-exclamation"></i> Important Disclaimer</div>
                     <div class="disclaimer-text">
                         This inquiry facility is intended for preliminary communication and legal/educational
                         information. Submission of an inquiry does not by itself create an advocate-client relationship.

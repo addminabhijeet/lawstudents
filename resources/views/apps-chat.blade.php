@@ -3183,7 +3183,7 @@
                                 </div>
                             </div>
                             <div class="wd-500 p-3 rounded-5 bg-gray-200">
-                                <p class="py-2 px-3 rounded-5 bg-white">Thanks. I'm worried😳 it won't arrive in time⌚ for my daughter's birthday🎂 party🎉 this weekend.</p>
+                                <p class="py-2 px-3 rounded-5 bg-white">Thanks. I'm worried it won't arrive in time for my daughter's birthday party this weekend.</p>
                                 <p class="py-2 px-3 rounded-5 bg-white mb-0">Order tracking number is: <a href="javascript:void(0);">#698745</a></p>
                             </div>
                         </div>
@@ -3267,7 +3267,7 @@
                                 </div>
                             </div>
                             <div class="wd-500 p-3 rounded-5 bg-gray-200">
-                                <p class="py-2 px-3 rounded-5 bg-white">The birthday🎂 ceremony preparation almost completed</p>
+                                <p class="py-2 px-3 rounded-5 bg-white">The birthday ceremony preparation almost completed</p>
                                 <p class="py-2 px-3 rounded-5 bg-white mb-0">Thank your so much.....!!!!</p>
                             </div>
                         </div>
@@ -3952,7 +3952,7 @@
                                         </div>
                                         <div>
                                             <a href="javascript:void(0)" class="fs-13 fw-bold d-flex align-items-center mb-1">Erna Serpa</a>
-                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">Thanks. I'm worried😳 it won't arrive in time⌚ for my daughter's birthday🎂 party🎉 this weekend.</div>
+                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">Thanks. I'm worried it won't arrive in time for my daughter's birthday party this weekend.</div>
                                         </div>
                                     </div>
                                     <div class="dropdown ms-3">
@@ -4010,7 +4010,7 @@
                                         </div>
                                         <div>
                                             <a href="javascript:void(0)" class="fs-13 fw-bold d-flex align-items-center mb-1">Erna Serpa</a>
-                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">The birthday🎂 ceremony preparation almost completed</div>
+                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">The birthday ceremony preparation almost completed</div>
                                         </div>
                                     </div>
                                     <div class="dropdown ms-3">
@@ -4252,7 +4252,7 @@
                                         </div>
                                         <div>
                                             <a href="javascript:void(0)" class="fs-13 fw-bold d-flex align-items-center mb-1">Erna Serpa</a>
-                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">Thanks. I'm worried😳 it won't arrive in time⌚ for my daughter's birthday🎂 party🎉 this weekend.</div>
+                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">Thanks. I'm worried it won't arrive in time for my daughter's birthday party this weekend.</div>
                                         </div>
                                     </div>
                                     <div class="dropdown ms-3">
@@ -4310,7 +4310,7 @@
                                         </div>
                                         <div>
                                             <a href="javascript:void(0)" class="fs-13 fw-bold d-flex align-items-center mb-1">Erna Serpa</a>
-                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">The birthday🎂 ceremony preparation almost completed</div>
+                                            <div class="fs-12 fw-normal text-muted text-truncate-2-line">The birthday ceremony preparation almost completed</div>
                                         </div>
                                     </div>
                                     <div class="dropdown ms-3">
