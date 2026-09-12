@@ -27,8 +27,6 @@
     @yield('content')
 
 
-    @include('layouts.partials.cta')
-
     @include('layouts.partials.footer')
 
     @yield('scripts')

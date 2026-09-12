@@ -1482,7 +1482,7 @@
 <style>
     .legal-knowledge-inquiry-section {
         padding: 60px 20px;
-        background-color: #1a1a1a;
+        background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%);
         color: white;
     }
 
@@ -1558,8 +1558,8 @@
     }
 
     .legal-knowledge-inquiry-btn {
-        background-color: #ff5722;
-        color: white;
+        background-color: white;
+        color: #b8410f;
         padding: 12px 30px;
         border: none;
         border-radius: 5px;
@@ -1571,9 +1571,9 @@
     }
 
     .legal-knowledge-inquiry-btn:hover {
-        background-color: #e64a19;
+        background-color: #f1ece2;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     @media (max-width: 768px) {
