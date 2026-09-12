@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\RoutingController;
 use App\Http\Controllers\Admin\StudentAdmissinController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseNoteController;
+use App\Http\Controllers\Admin\CourseSubjectController;
 use App\Http\Controllers\Admin\GovtExamController;
 use App\Http\Controllers\Admin\LegalKnowledgeLibraryController;
 
@@ -319,6 +320,20 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('viewnote');
             Route::post('store-notes', [CourseNoteController::class, 'storenotes'])
                 ->name('storenotes');
+
+            // Course Subjects — additive "Subject" grouping level (Course → Subject → Chapter/PDF Notes)
+            Route::get('course-subjects', [CourseSubjectController::class, 'listsubjects'])
+                ->name('listsubjects');
+            Route::get('course-subjects-add', [CourseSubjectController::class, 'addsubject'])
+                ->name('addsubject');
+            Route::post('course-subjects-store', [CourseSubjectController::class, 'storesubject'])
+                ->name('storesubject');
+            Route::get('course-subjects-edit/{id}', [CourseSubjectController::class, 'editsubject'])
+                ->name('editsubject');
+            Route::post('course-subjects-update/{id}', [CourseSubjectController::class, 'updatesubject'])
+                ->name('updatesubject');
+            Route::post('course-subjects-delete/{id}', [CourseSubjectController::class, 'deletesubject'])
+                ->name('deletesubject');
             Route::post('send-email-otp', [StudentAdmissinController::class, 'sendEmailOtp'])
                 ->name('sendemailotp');
             Route::post('verify-email-otp', [StudentAdmissinController::class, 'verifyEmailOtp'])

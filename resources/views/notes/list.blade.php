@@ -171,6 +171,18 @@
                                         placeholder="Enter Note Title" minlength="5" required>
                                 </div>
 
+                                <!-- Subject (optional — groups this note as a Chapter under a Subject) -->
+                                <div class="mb-3">
+                                    <label class="form-label">Subject (optional)</label>
+                                    <select name="subject_id" class="form-select">
+                                        <option value="">-- No Subject --</option>
+                                        @foreach ($subjects as $subject)
+                                        <option value="{{ $subject->id }}">
+                                            {{ $subject->course->title ?? '' }} — {{ $subject->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                             </div>
 
@@ -278,6 +290,19 @@
                                     <label class="form-label">Note Title *</label>
                                     <input type="text" name="title" id="editNoteTitle" class="form-control"
                                         minlength="5" required>
+                                </div>
+
+                                <!-- Subject (optional — groups this note as a Chapter under a Subject) -->
+                                <div class="mb-3">
+                                    <label class="form-label">Subject (optional)</label>
+                                    <select name="subject_id" id="editSubjectId" class="form-select">
+                                        <option value="">-- No Subject --</option>
+                                        @foreach ($subjects as $subject)
+                                        <option value="{{ $subject->id }}">
+                                            {{ $subject->course->title ?? '' }} — {{ $subject->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                             </div>

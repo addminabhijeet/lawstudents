@@ -106,6 +106,93 @@
 
                                 <div class="card-body">
 
+                                    @if($course->subjects->isNotEmpty())
+                                    {{-- Subject -> Chapter structure (doc's "Course Page Structure"). Each
+                                         chapter row below uses the exact same wishlist/View/Download markup,
+                                         tokens and routes as the flat list further down — nothing about how
+                                         viewing/downloading/wishlisting a note works has changed. --}}
+                                    <div class="accordion" id="courseSubjectsAccordion">
+                                        @foreach($course->subjects as $subject)
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button {{ $loop->first ? '' : 'collapsed' }}" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#subjectCollapse{{ $subject->id }}">
+                                                    {{ $subject->name }}
+                                                    <span class="badge bg-secondary ms-2">{{ $subject->chapters->count() }} Chapters</span>
+                                                </button>
+                                            </h2>
+                                            <div id="subjectCollapse{{ $subject->id }}"
+                                                class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                                data-bs-parent="#courseSubjectsAccordion">
+                                                <div class="accordion-body">
+                                                    @forelse($subject->chapters as $note)
+                                                    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+                                                        <div class="d-flex align-items-center gap-3">
+                                                            <div class="icon-md bg-light rounded d-flex align-items-center justify-content-center">
+                                                                <i class="fa-solid fa-file-pdf"></i>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1">{{ $note->title }}</h6>
+                                                                @if($note->description)
+                                                                <p class="mb-1 text-muted small">{{ $note->description }}</p>
+                                                                @endif
+                                                                <small class="text-muted">
+                                                                    {{ $note->formatted_size }}
+                                                                    |
+                                                                    {{ $note->page_count }} pages
+                                                                </small>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex gap-2">
+                                                            @php
+                                                            $token = Crypt::encrypt(
+                                                            json_encode([
+                                                            'note_id' => $note->id,
+                                                            'ip' => request()->ip(),
+                                                            'expires_at' => now()->addMinutes(5),
+                                                            ]),
+                                                            );
+                                                            @endphp
+
+                                                            @php
+                                                            $isWishlisted = \App\Models\NoteWishlist::where(
+                                                            'student_id',
+                                                            auth()->id(),
+                                                            )
+                                                            ->where('note_id', $note->id)
+                                                            ->exists();
+                                                            @endphp
+
+                                                            <button
+                                                                class="btn btn-sm {{ $isWishlisted ? 'btn-danger' : 'btn-outline-danger' }} wishlist-btn"
+                                                                data-note="{{ $note->id }}">
+                                                                <i class="fa-{{ $isWishlisted ? 'solid' : 'regular' }} fa-heart"></i>
+                                                            </button>
+
+                                                            <button class="btn btn-sm btn-outline-primary"
+                                                                onclick="openPDF(`{{ route('student.viewnote', $note->id) }}?token={{ $token }}`, `{{ $note->id }}`)">
+                                                                View
+                                                            </button>
+
+                                                            @if ($note->is_downloadable)
+                                                            <a href="{{ route('student.downloadnote', $note->id) }}"
+                                                                class="btn btn-sm btn-success">
+                                                                Download
+                                                            </a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    @empty
+                                                    <p class="text-muted mb-0">No chapters yet.</p>
+                                                    @endforelse
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    @else
+
                                     @forelse($course->notes as $note)
                                     <div
                                         class="d-flex justify-content-between align-items-center border-bottom py-3">
@@ -178,6 +265,7 @@
 
                                     <p class="text-muted">No materials available.</p>
                                     @endforelse
+                                    @endif
 
                                 </div>
 

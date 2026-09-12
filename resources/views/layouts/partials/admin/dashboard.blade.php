@@ -123,6 +123,10 @@
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Notes</a>
                             </li>
                         </ul>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listsubjects') }}">Course Subjects</a>
+                            </li>
+                        </ul>
                     </li>
 
                     <!-- Client -->

@@ -41,4 +41,12 @@ class Course extends Model
     {
         return $this->hasMany(CourseNote::class);
     }
+
+    // Additive relation — Subject grouping level (Subject → Chapters/PDF
+    // notes) added for the doc's Course Page Structure. Does not change
+    // notes()/category() above or anything that already uses them.
+    public function subjects()
+    {
+        return $this->hasMany(CourseSubject::class)->where('delete', 1)->orderBy('sort_order');
+    }
 }

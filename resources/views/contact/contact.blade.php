@@ -166,6 +166,34 @@ Build Your Future.';
                             </div>
                         </div>
                     </div>
+                    <div class="row" style="margin-top: 30px;">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="contact-box-area">
+                                <div class="contact-widget-area">
+                                    <div class="clock-img">
+                                        <i class="fa-brands fa-whatsapp" style="font-size: 24px; color: #ff5722;"></i>
+                                    </div>
+                                    <div class="content">
+                                        <h4>WhatsApp Us</h4>
+                                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $mobile) }}" target="_blank" rel="noopener">{{ $mobile }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="contact-box-area">
+                                <div class="contact-widget-area">
+                                    <div class="clock-img">
+                                        <i class="fa-solid fa-globe" style="font-size: 24px; color: #ff5722;"></i>
+                                    </div>
+                                    <div class="content">
+                                        <h4>Website</h4>
+                                        <a href="{{ url('/') }}">{{ request()->getHost() }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="space60"></div>

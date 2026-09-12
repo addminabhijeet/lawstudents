@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseNote;
+use App\Models\CourseSubject;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -54,7 +55,12 @@ class CourseNoteController extends Controller
             ->where('delete', 1) // added delete check
             ->get();
 
-        return view('notes.list', compact('categories', 'courses'));
+        // Additive — lets the Add/Edit Note modals optionally assign a note
+        // to a Subject (its "Chapter" grouping). Leaving it unselected keeps
+        // the note exactly as it behaved before Subjects existed.
+        $subjects = CourseSubject::where('delete', 1)->with('course')->orderBy('course_id')->orderBy('sort_order')->get();
+
+        return view('notes.list', compact('categories', 'courses', 'subjects'));
     }
 
     public function listfreenotes()
@@ -86,9 +92,10 @@ class CourseNoteController extends Controller
     public function storenotes(Request $request)
     {
         $request->validate([
-            'course_id' => 'required|exists:courses,id',
-            'title'     => 'required|string|max:255',
-            'pdf'       => 'required|mimes:pdf|max:20480',
+            'course_id'  => 'required|exists:courses,id',
+            'title'      => 'required|string|max:255',
+            'pdf'        => 'required|mimes:pdf|max:20480',
+            'subject_id' => 'nullable|exists:course_subjects,id',
         ]);
 
         $course = Course::findOrFail($request->course_id);
@@ -98,7 +105,9 @@ class CourseNoteController extends Controller
 
         CourseNote::create([
             'course_id'       => $course->id,
+            'subject_id'      => $request->subject_id ?: null,
             'title'           => $request->title,
+            'description'     => $request->description,
             'file_path'       => $path,
             'file_size'       => $file->getSize(),
             'page_count'      => null,
@@ -112,15 +121,18 @@ class CourseNoteController extends Controller
     public function updatenotes(Request $request, $id)
     {
         $request->validate([
-            'course_id' => 'required|exists:courses,id',
-            'title'     => 'required|string|max:255',
-            'pdf'       => 'nullable|mimes:pdf|max:20480',
+            'course_id'  => 'required|exists:courses,id',
+            'title'      => 'required|string|max:255',
+            'pdf'        => 'nullable|mimes:pdf|max:20480',
+            'subject_id' => 'nullable|exists:course_subjects,id',
         ]);
 
         $note = CourseNote::findOrFail($id);
 
         $note->course_id       = $request->course_id;
+        $note->subject_id      = $request->subject_id ?: null;
         $note->title           = $request->title;
+        $note->description     = $request->description;
 
         // If new PDF uploaded
         if ($request->hasFile('pdf')) {

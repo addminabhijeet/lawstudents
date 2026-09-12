@@ -77,6 +77,12 @@ class CourseControllerStu extends Controller
             'category',
             'notes' => function ($query) {
                 $query->where('status', 1);
+            },
+            // Additive — Subject -> Chapter structure; empty for any course
+            // that has no subjects, so the view's existing flat notes list
+            // still renders for those exactly as before.
+            'subjects.chapters' => function ($query) {
+                $query->where('status', 1);
             }
         ])->findOrFail($id);
 

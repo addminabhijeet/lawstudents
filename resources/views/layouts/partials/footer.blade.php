@@ -1076,6 +1076,7 @@ div[class*="col-lg-"] {
                         $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
                         $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
                         $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+                        $youtube = !empty($user->youtube) ? $user->youtube : '#';
                         $description = !empty($user->description)
                             ? $user->description
                             : 'Learn Law.
@@ -1172,6 +1173,17 @@ div[class*="col-lg-"] {
                                             <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Phone</span>
                                             <a href="tel:{{ $mobile }}" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $mobile }}</a>
                                         </li>
+
+                                    <!-- WhatsApp -->
+                                    <li style="margin-top: 25px; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 18px;">
+                                            <i class="fa-brands fa-whatsapp"></i>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">WhatsApp</span>
+                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $mobile) }}" target="_blank" rel="noopener" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $mobile }}</a>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -1194,6 +1206,11 @@ div[class*="col-lg-"] {
                             <div class="about-links-area">
                                 <h3>SOCIAL MEDIA</h3>
                                 <ul style="list-style: none; padding: 0; display: flex; gap: 15px; flex-wrap: wrap;">
+                                    <li>
+                                        <a href="{{ $youtube }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ $facebook }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
                                             <i class="fa-brands fa-facebook-f"></i>

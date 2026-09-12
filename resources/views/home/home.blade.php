@@ -1392,10 +1392,101 @@
             font-size: 11px;
         }
     }
+
+    /* Home-page Acts/Rules search facility — additive, does not touch the
+       acts.blade.php / rules.blade.php live-search JS or routes it calls. */
+    .acts-rules-search-bar {
+        display: flex;
+        gap: 10px;
+        max-width: 700px;
+        margin: 0 auto 50px auto;
+        flex-wrap: wrap;
+    }
+
+    .acts-rules-search-bar input[type="text"] {
+        flex: 1;
+        min-width: 220px;
+        padding: 14px 18px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+    }
+
+    .acts-rules-search-bar select {
+        padding: 14px 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+        background: #fff;
+    }
+
+    .acts-rules-search-bar button {
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0 26px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .acts-rules-search-bar button:hover {
+        background-color: #e64a19;
+    }
+
+    .acts-rules-search-results {
+        max-width: 700px;
+        margin: -30px auto 50px auto;
+        display: none;
+    }
+
+    .acts-rules-search-results.has-results {
+        display: block;
+    }
+
+    .acts-rules-search-results a {
+        display: block;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        color: #1a1a1a;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .acts-rules-search-results a:hover {
+        border-color: #ff5722;
+        color: #ff5722;
+    }
+
+    .acts-rules-search-results .acts-rules-search-empty {
+        color: #888;
+        font-size: 13px;
+        text-align: center;
+    }
 </style>
 
 <div class="acts-rules-section">
     <div class="acts-rules-container">
+        <!-- SEARCH FACILITY -->
+        <form class="acts-rules-search-bar" onsubmit="return false;">
+            <select id="actsRulesSearchType" aria-label="Search in">
+                <option value="acts">Acts</option>
+                <option value="rules">Rules</option>
+            </select>
+            <input type="text" id="actsRulesSearchInput" placeholder="Search Act / Rule / Section / Notification">
+            <button type="button" onclick="homeActsRulesSearch()">Search</button>
+        </form>
+        <div class="acts-rules-search-results" id="actsRulesSearchResults"></div>
+
         <!-- ACTS SECTION -->
         <div style="margin-bottom: 80px;">
             <div class="courses-notes-header">
@@ -1475,8 +1566,186 @@
         </div>
     </div>
 </div>
+<script>
+    function homeActsRulesSearch() {
+        var type = document.getElementById('actsRulesSearchType').value;
+        var query = document.getElementById('actsRulesSearchInput').value.trim();
+        var resultsBox = document.getElementById('actsRulesSearchResults');
+
+        if (query.length < 3) {
+            resultsBox.classList.remove('has-results');
+            resultsBox.innerHTML = '<p class="acts-rules-search-empty">Type at least 3 characters to search.</p>';
+            resultsBox.classList.add('has-results');
+            return;
+        }
+
+        var url = type === 'rules'
+            ? "{{ route('frontend.rulessearch') }}"
+            : "{{ route('frontend.actssearch') }}";
+        var viewAllUrl = type === 'rules'
+            ? "{{ route('frontend.rules') }}"
+            : "{{ route('frontend.acts') }}";
+
+        fetch(url + '?q=' + encodeURIComponent(query))
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                resultsBox.innerHTML = '';
+                if (!data || data.length === 0) {
+                    resultsBox.innerHTML = '<p class="acts-rules-search-empty">No matching ' + type + ' found.</p>';
+                } else {
+                    data.forEach(function (item) {
+                        var a = document.createElement('a');
+                        a.href = viewAllUrl;
+                        a.textContent = item.title || (type === 'rules' ? 'Rule' : 'Act');
+                        resultsBox.appendChild(a);
+                    });
+                }
+                resultsBox.classList.add('has-results');
+            })
+            .catch(function () {
+                resultsBox.innerHTML = '<p class="acts-rules-search-empty">Search is temporarily unavailable.</p>';
+                resultsBox.classList.add('has-results');
+            });
+    }
+</script>
 <!-- ===== BARE ACTS & RULES SECTION ENDS ======= -->
 
+<!-- ===== LEGAL KNOWLEDGE CATEGORIES SECTION STARTS ======= -->
+<style>
+    .legal-knowledge-categories-section {
+        padding: 60px 20px;
+        background-color: #fff;
+    }
+
+    .legal-knowledge-categories-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .legal-knowledge-categories-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .legal-knowledge-categories-header h2 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 15px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .legal-knowledge-categories-header p {
+        font-size: 16px;
+        color: #666;
+        margin: 0;
+    }
+
+    .legal-knowledge-categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+    }
+
+    .legal-knowledge-category-card {
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: block;
+    }
+
+    .legal-knowledge-category-card:hover {
+        box-shadow: 0 4px 20px rgba(255, 87, 34, 0.18);
+        transform: translateY(-6px);
+        border-color: #ff5722;
+    }
+
+    .legal-knowledge-category-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin: 0 auto 18px auto;
+    }
+
+    .legal-knowledge-category-card h3 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 10px 0;
+    }
+
+    .legal-knowledge-category-card span {
+        font-size: 13px;
+        font-weight: 600;
+        color: #ff5722;
+    }
+
+    @media (max-width: 480px) {
+        .legal-knowledge-categories-section {
+            padding: 40px 15px;
+        }
+
+        .legal-knowledge-categories-header h2 {
+            font-size: 24px;
+        }
+    }
+</style>
+
+<div class="legal-knowledge-categories-section">
+    <div class="legal-knowledge-categories-container">
+        <div class="legal-knowledge-categories-header">
+            <h2>Legal Knowledge</h2>
+            <p>Explore legal concepts, cases and compliance-oriented resources by category</p>
+        </div>
+
+        <div class="legal-knowledge-categories-grid" data-aos="fade-up">
+            @php
+                $legalKnowledgeIcons = [
+                    'Cheque Bounce Cases'   => 'fa-money-check-dollar',
+                    'Civil Law'             => 'fa-scale-balanced',
+                    'Criminal Law'          => 'fa-gavel',
+                    'Writs & Applications'  => 'fa-file-signature',
+                    'Company Law'           => 'fa-building',
+                    'Hindu Law'             => 'fa-landmark',
+                    'Muslim Law'            => 'fa-moon',
+                    'Labour Law'            => 'fa-hard-hat',
+                    'Cyber Security'        => 'fa-shield-halved',
+                    'Cyber Crime'           => 'fa-user-secret',
+                    'Legal Compliances'     => 'fa-clipboard-check',
+                    'Constitutional Law'    => 'fa-book-open',
+                    'Cyber Law'             => 'fa-laptop-code',
+                    'Consumer Awareness'    => 'fa-bullhorn',
+                ];
+                $legalKnowledgeCategories = \App\Models\LegalKnowledgeCategory::where('delete', 1)->get();
+            @endphp
+            @forelse($legalKnowledgeCategories as $lkCategory)
+            <a href="{{ route('frontend.legalknowledgelibrary') }}" class="legal-knowledge-category-card" data-aos="fade-up">
+                <div class="legal-knowledge-category-icon">
+                    <i class="fa-solid {{ $legalKnowledgeIcons[$lkCategory->name] ?? 'fa-scale-balanced' }}"></i>
+                </div>
+                <h3>{{ $lkCategory->name }}</h3>
+                <span>Explore <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            @empty
+            <div class="no-content-message" style="grid-column: 1 / -1;">
+                Legal Knowledge categories will be displayed here
+            </div>
+            @endforelse
+        </div>
+    </div>
+</div>
+<!-- ===== LEGAL KNOWLEDGE CATEGORIES SECTION ENDS ======= -->
 
 <!-- ===== LEGAL KNOWLEDGE INQUIRY FORM SECTION STARTS ======= -->
 <style>
@@ -1555,6 +1824,28 @@
     .legal-knowledge-inquiry-form textarea {
         resize: vertical;
         min-height: 100px;
+    }
+
+    .legal-knowledge-inquiry-upload-label {
+        font-size: 13px;
+        font-weight: 600;
+        opacity: 0.9;
+        margin: -5px 0 -8px 0;
+    }
+
+    .legal-knowledge-inquiry-form input[type="file"] {
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    .legal-knowledge-inquiry-disclaimer {
+        max-width: 1000px;
+        margin: 35px auto 0 auto;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 12.5px;
+        line-height: 1.7;
+        opacity: 0.8;
     }
 
     .legal-knowledge-inquiry-btn {
@@ -1637,10 +1928,20 @@
                     <option value="international">International Law</option>
                 </select>
                 <textarea placeholder="Describe your inquiry or learning interests"></textarea>
+                <label class="legal-knowledge-inquiry-upload-label" for="legalKnowledgeInquiryUpload">
+                    Upload Document (Optional)
+                </label>
+                <input type="file" id="legalKnowledgeInquiryUpload" name="document">
                 <button type="submit" class="legal-knowledge-inquiry-btn">Send Inquiry</button>
             </form>
         </div>
     </div>
+    <p class="legal-knowledge-inquiry-disclaimer">
+        Disclaimer: This inquiry facility is intended for preliminary communication and legal/educational
+        information. Submission of an inquiry does not by itself create an advocate-client relationship.
+        Formal legal advice, representation or engagement shall be subject to separate communication and
+        acceptance.
+    </p>
 </div>
 <!-- ===== LEGAL KNOWLEDGE INQUIRY FORM SECTION ENDS ======= -->
 
@@ -1806,7 +2107,8 @@
     }
 
     .enquiry-form input,
-    .enquiry-form textarea {
+    .enquiry-form textarea,
+    .enquiry-form select {
         padding: 12px 15px;
         border: none;
         border-radius: 5px;
@@ -1876,8 +2178,28 @@
 
             <form class="enquiry-form" method="POST" action="#" data-aos="fade-left">
                 <input type="text" placeholder="Your Full Name" required>
-                <input type="email" placeholder="Your Email Address" required>
                 <input type="tel" placeholder="Your Phone Number" required>
+                <input type="email" placeholder="Your Email Address">
+                <select required>
+                    <option value="">Course Interested In</option>
+                    <option value="llb-entrance">LL.B. Entrance Examination</option>
+                    <option value="llb-3-years">LL.B. – 3 Years</option>
+                    <option value="llb-5-years">LL.B. – 5 Years</option>
+                    <option value="llm">LL.M.</option>
+                    <option value="judiciary">Judiciary Examination</option>
+                    <option value="cseet">CSEET</option>
+                    <option value="ca">CA</option>
+                    <option value="cs">CS</option>
+                    <option value="cma">CMA</option>
+                    <option value="english-grammar">English Grammar</option>
+                    <option value="spoken-english">Spoken English</option>
+                </select>
+                <select required>
+                    <option value="">Preferred Mode</option>
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                    <option value="both">Both</option>
+                </select>
                 <textarea placeholder="Your Message or Course Inquiry"></textarea>
                 <button type="submit" class="enquiry-btn">Send Enquiry</button>
             </form>
@@ -2011,6 +2333,136 @@
         </div>
     </div>
 </div>
+<!-- ===== WHY LAWSTUDENT SECTION ENDS ======= -->
+
+<!-- ===== HOW IT WORKS SECTION STARTS ======= -->
+<style>
+    .how-it-works-section {
+        padding: 60px 20px;
+        background-color: #fff;
+    }
+
+    .how-it-works-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .how-it-works-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .how-it-works-header h2 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 15px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .how-it-works-header p {
+        font-size: 16px;
+        color: #666;
+        margin: 0;
+    }
+
+    .how-it-works-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .how-it-works-step {
+        text-align: center;
+        position: relative;
+    }
+
+    .how-it-works-step-number {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 auto 20px auto;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .how-it-works-step h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 10px 0;
+    }
+
+    .how-it-works-step p {
+        font-size: 13.5px;
+        color: #666;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .how-it-works-steps {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 20px;
+        }
+
+        .how-it-works-header h2 {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .how-it-works-section {
+            padding: 40px 15px;
+        }
+
+        .how-it-works-steps {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="how-it-works-section">
+    <div class="how-it-works-container">
+        <div class="how-it-works-header">
+            <h2>How It Works</h2>
+            <p>Your path from choosing a programme to achieving your legal career goals</p>
+        </div>
+
+        <div class="how-it-works-steps" data-aos="fade-up">
+            <div class="how-it-works-step">
+                <div class="how-it-works-step-number">01</div>
+                <h3>Select</h3>
+                <p>Choose your programme &mdash; Course, Notes, Bare Acts or Exam preparation</p>
+            </div>
+
+            <div class="how-it-works-step">
+                <div class="how-it-works-step-number">02</div>
+                <h3>Study</h3>
+                <p>Go through structured notes, classes and resources at your own pace</p>
+            </div>
+
+            <div class="how-it-works-step">
+                <div class="how-it-works-step-number">03</div>
+                <h3>Practise</h3>
+                <p>Reinforce learning with MCQs, tests and practical resources</p>
+            </div>
+
+            <div class="how-it-works-step">
+                <div class="how-it-works-step-number">04</div>
+                <h3>Achieve</h3>
+                <p>Walk into your examination or career with confidence</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===== HOW IT WORKS SECTION ENDS ======= -->
 
 <!-- ===== LATEST LEGAL KNOWLEDGE SECTION STARTS ======= -->
 <style>
@@ -2490,5 +2942,284 @@
         </div>
     </div>
 </div>
+<!-- ===== GALLERY PREVIEW SECTION ENDS ======= -->
+
+<!-- ===== CONTACT US SECTION STARTS ======= -->
+<style>
+    .home-contact-section {
+        padding: 60px 20px;
+        background-color: #f9f9f9;
+    }
+
+    .home-contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .home-contact-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .home-contact-header h2 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 15px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .home-contact-header p {
+        font-size: 16px;
+        color: #666;
+        margin: 0;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .home-contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 40px;
+        align-items: start;
+        margin-top: 50px;
+    }
+
+    .home-contact-info-card {
+        background: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .home-contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .home-contact-info-item:last-child {
+        border-bottom: none;
+    }
+
+    .home-contact-info-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    .home-contact-info-item h4 {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #888;
+        margin: 0 0 4px 0;
+    }
+
+    .home-contact-info-item p,
+    .home-contact-info-item a {
+        font-size: 14.5px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+        text-decoration: none;
+    }
+
+    .home-contact-info-item a:hover {
+        color: #ff5722;
+    }
+
+    .home-contact-whatsapp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 15px;
+        background-color: #25D366;
+        color: #fff;
+        padding: 12px 22px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    /* Placed below the message form (instead of inside the info card) so the
+       two actions read as distinct: the form messages the admin panel, this
+       button opens WhatsApp directly. Additive — the base .home-contact-whatsapp-btn
+       rule above is untouched. */
+    .home-contact-whatsapp-btn-below-form {
+        display: flex;
+        justify-content: center;
+        margin: 18px 0 0 0;
+        width: 100%;
+    }
+
+    .home-contact-whatsapp-btn:hover {
+        background-color: #1ebe57;
+        transform: translateY(-2px);
+    }
+
+    .home-contact-form {
+        background: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .home-contact-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .home-contact-form input,
+    .home-contact-form textarea {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        font-family: inherit;
+        color: #1a1a1a;
+        width: 100%;
+    }
+
+    .home-contact-form textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .home-contact-form input:focus,
+    .home-contact-form textarea:focus {
+        outline: none;
+        border-color: #ff5722;
+        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.15);
+    }
+
+    .home-contact-form button {
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 13px 30px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+    }
+
+    .home-contact-form button:hover {
+        background-color: #e64a19;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+        .home-contact-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .home-contact-section {
+            padding: 40px 15px;
+        }
+
+        .home-contact-header h2 {
+            font-size: 24px;
+        }
+
+        .home-contact-form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="home-contact-section">
+    <div class="home-contact-container">
+        <div class="home-contact-header">
+            <h2>Get in Touch with LawStudent</h2>
+            <p>Have questions about our courses, Bare Acts, or study materials? Our team is ready to help you every step of the way in your legal education journey.</p>
+        </div>
+
+        @php
+            $contactUser = \App\Models\User::first();
+            $contactEmail = !empty($contactUser->webemail) ? $contactUser->webemail : 'email@gmail.com';
+            $contactMobile = !empty($contactUser->mobile) ? $contactUser->mobile : '9876543210';
+            $contactAddress = !empty($contactUser->webaddress) ? $contactUser->webaddress : 'New Delhi, India';
+        @endphp
+
+        <div class="home-contact-grid">
+            <div class="home-contact-info-card">
+                <div class="home-contact-info-item">
+                    <div class="home-contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <h4>Address</h4>
+                        <p>{{ $contactAddress }}</p>
+                    </div>
+                </div>
+
+                <div class="home-contact-info-item">
+                    <div class="home-contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <h4>Phone</h4>
+                        <a href="tel:{{ $contactMobile }}">{{ $contactMobile }}</a>
+                    </div>
+                </div>
+
+                <div class="home-contact-info-item">
+                    <div class="home-contact-info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contactMobile) }}" target="_blank" rel="noopener">{{ $contactMobile }}</a>
+                    </div>
+                </div>
+
+                <div class="home-contact-info-item">
+                    <div class="home-contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <h4>Email</h4>
+                        <a href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div>
+                <form class="home-contact-form" method="POST" action="{{ route('frontend.contactstore') }}">
+                    @csrf
+                    <div class="home-contact-form-row">
+                        <input type="text" name="first_name" placeholder="First Name" required>
+                        <input type="text" name="last_name" placeholder="Last Name" required>
+                    </div>
+                    <div class="home-contact-form-row">
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="text" name="phone" placeholder="Mobile Number" required>
+                    </div>
+                    <input type="text" name="service_type" placeholder="Subject">
+                    <textarea name="message" placeholder="Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+
+                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contactMobile) }}" target="_blank" rel="noopener" class="home-contact-whatsapp-btn home-contact-whatsapp-btn-below-form">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===== CONTACT US SECTION ENDS ======= -->
 
 @endsection
