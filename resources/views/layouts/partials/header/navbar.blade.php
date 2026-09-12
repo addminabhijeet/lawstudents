@@ -805,7 +805,7 @@
                                         <ul style="display:flex; align-items:center; margin:0; padding:0; white-space: nowrap;">
                                             <li style="list-style:none;">
                                                 <a href="mailto:{{ $email }}"
-                                                    style="display:flex; align-items:center; gap:8px; font-size: 13px; white-space: nowrap;">
+                                                    style="display:flex; align-items:center; gap:8px; font-size: 16px; font-weight: 500; white-space: nowrap;">
                                                     <img src="/img/icons/email3.svg" alt="" style="min-width: 16px;">
                                                     <span style="overflow: hidden; text-overflow: ellipsis;">{{ $email }}</span>
                                                 </a>
@@ -816,7 +816,7 @@
                                             style="display:flex; align-items:center; margin:0; padding:0; white-space: nowrap;">
                                             <li style="list-style:none;">
                                                 <a href="tel:{{ $mobile }}"
-                                                    style="display:flex; align-items:center; gap:8px; font-size: 13px; white-space: nowrap;">
+                                                    style="display:flex; align-items:center; gap:8px; font-size: 16px; font-weight: 500; white-space: nowrap;">
                                                     <img src="/img/icons/phone3.svg" alt="" style="min-width: 16px;">
                                                     {{ $mobile }}
                                                 </a>
