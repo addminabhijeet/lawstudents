@@ -91,6 +91,7 @@ div[class*="col-lg-"] {
 .about-links-area h3,
 .get-links-area h3,
 .footer-contact-area h3 {
+    font-family: 'Poppins', sans-serif !important;
     font-size: 16px !important;
     font-weight: 600 !important;
     color: #ff5722 !important;
@@ -562,7 +563,7 @@ div[class*="col-lg-"] {
     .about-links-area {
         border-left: 4px solid #ff5722 !important;
         padding-left: 20px !important;
-        background: rgba(255, 87, 34, 0.03) !important;
+        background: #fff !important;
         padding: 20px 20px 20px 20px !important;
         border-radius: 6px !important;
     }
