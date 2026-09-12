@@ -777,7 +777,7 @@
                                 <div class="col-lg-6" style="flex: 0 1 auto; min-width: 0;">
                                     <div class="top-content-area">
                                         <div class="content">
-                                            <p style="margin: 0; word-break: break-word; overflow-wrap: break-word;">• Legal Education • Legal Knowledge • Legal Resources</p>
+                                            <p style="margin: 0; word-break: break-word; overflow-wrap: break-word; font-size: 13px;">• Legal Education • Legal Knowledge • Legal Resources</p>
                                         </div>
                                     </div>
                                 </div>
