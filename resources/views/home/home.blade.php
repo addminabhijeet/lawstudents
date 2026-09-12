@@ -1393,99 +1393,10 @@
         }
     }
 
-    /* Home-page Acts/Rules search facility — additive, does not touch the
-       acts.blade.php / rules.blade.php live-search JS or routes it calls. */
-    .acts-rules-search-bar {
-        display: flex;
-        gap: 10px;
-        max-width: 700px;
-        margin: 0 auto 50px auto;
-        flex-wrap: wrap;
-    }
-
-    .acts-rules-search-bar input[type="text"] {
-        flex: 1;
-        min-width: 220px;
-        padding: 14px 18px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 14px;
-        font-family: inherit;
-    }
-
-    .acts-rules-search-bar select {
-        padding: 14px 12px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 14px;
-        font-family: inherit;
-        background: #fff;
-    }
-
-    .acts-rules-search-bar button {
-        background-color: #ff5722;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 0 26px;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .acts-rules-search-bar button:hover {
-        background-color: #e64a19;
-    }
-
-    .acts-rules-search-results {
-        max-width: 700px;
-        margin: -30px auto 50px auto;
-        display: none;
-    }
-
-    .acts-rules-search-results.has-results {
-        display: block;
-    }
-
-    .acts-rules-search-results a {
-        display: block;
-        background: #fff;
-        border: 1px solid #eee;
-        border-radius: 6px;
-        padding: 12px 16px;
-        margin-bottom: 8px;
-        color: #1a1a1a;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .acts-rules-search-results a:hover {
-        border-color: #ff5722;
-        color: #ff5722;
-    }
-
-    .acts-rules-search-results .acts-rules-search-empty {
-        color: #888;
-        font-size: 13px;
-        text-align: center;
-    }
 </style>
 
 <div class="acts-rules-section">
     <div class="acts-rules-container">
-        <!-- SEARCH FACILITY -->
-        <form class="acts-rules-search-bar" onsubmit="return false;">
-            <select id="actsRulesSearchType" aria-label="Search in">
-                <option value="acts">Acts</option>
-                <option value="rules">Rules</option>
-            </select>
-            <input type="text" id="actsRulesSearchInput" placeholder="Search Act / Rule / Section / Notification">
-            <button type="button" onclick="homeActsRulesSearch()">Search</button>
-        </form>
-        <div class="acts-rules-search-results" id="actsRulesSearchResults"></div>
 
         <!-- ACTS SECTION -->
         <div style="margin-bottom: 80px;">
@@ -1566,48 +1477,6 @@
         </div>
     </div>
 </div>
-<script>
-    function homeActsRulesSearch() {
-        var type = document.getElementById('actsRulesSearchType').value;
-        var query = document.getElementById('actsRulesSearchInput').value.trim();
-        var resultsBox = document.getElementById('actsRulesSearchResults');
-
-        if (query.length < 3) {
-            resultsBox.classList.remove('has-results');
-            resultsBox.innerHTML = '<p class="acts-rules-search-empty">Type at least 3 characters to search.</p>';
-            resultsBox.classList.add('has-results');
-            return;
-        }
-
-        var url = type === 'rules'
-            ? "{{ route('frontend.rulessearch') }}"
-            : "{{ route('frontend.actssearch') }}";
-        var viewAllUrl = type === 'rules'
-            ? "{{ route('frontend.rules') }}"
-            : "{{ route('frontend.acts') }}";
-
-        fetch(url + '?q=' + encodeURIComponent(query))
-            .then(function (res) { return res.json(); })
-            .then(function (data) {
-                resultsBox.innerHTML = '';
-                if (!data || data.length === 0) {
-                    resultsBox.innerHTML = '<p class="acts-rules-search-empty">No matching ' + type + ' found.</p>';
-                } else {
-                    data.forEach(function (item) {
-                        var a = document.createElement('a');
-                        a.href = viewAllUrl;
-                        a.textContent = item.title || (type === 'rules' ? 'Rule' : 'Act');
-                        resultsBox.appendChild(a);
-                    });
-                }
-                resultsBox.classList.add('has-results');
-            })
-            .catch(function () {
-                resultsBox.innerHTML = '<p class="acts-rules-search-empty">Search is temporarily unavailable.</p>';
-                resultsBox.classList.add('has-results');
-            });
-    }
-</script>
 <!-- ===== BARE ACTS & RULES SECTION ENDS ======= -->
 
 <!-- ===== LEGAL KNOWLEDGE CATEGORIES SECTION STARTS ======= -->
@@ -2866,6 +2735,7 @@
     <div class="gallery-container">
         <div class="gallery-header">
             <span class="gallery-eyebrow">Gallery</span>
+            <h2>Our Gallery</h2>
             <p>Glimpses of our campus, events, and learning environment</p>
         </div>
 
@@ -3053,15 +2923,19 @@
         transition: all 0.3s ease;
     }
 
-    /* Placed below the message form (instead of inside the info card) so the
-       two actions read as distinct: the form messages the admin panel, this
-       button opens WhatsApp directly. Additive — the base .home-contact-whatsapp-btn
-       rule above is untouched. */
-    .home-contact-whatsapp-btn-below-form {
+    /* Row holding Send Message + WhatsApp Us side by side, on the same
+       horizontal line, right after the message field. Additive — the base
+       .home-contact-whatsapp-btn and .home-contact-form button rules above
+       are untouched; this only arranges the two elements next to each other. */
+    .home-contact-form-actions {
         display: flex;
-        justify-content: center;
-        margin: 18px 0 0 0;
-        width: 100%;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .home-contact-form-actions .home-contact-whatsapp-btn {
+        margin: 0;
     }
 
     .home-contact-whatsapp-btn:hover {
@@ -3210,12 +3084,13 @@
                     </div>
                     <input type="text" name="service_type" placeholder="Subject">
                     <textarea name="message" placeholder="Message" required></textarea>
-                    <button type="submit">Send Message</button>
+                    <div class="home-contact-form-actions">
+                        <button type="submit">Send Message</button>
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contactMobile) }}" target="_blank" rel="noopener" class="home-contact-whatsapp-btn">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                    </div>
                 </form>
-
-                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contactMobile) }}" target="_blank" rel="noopener" class="home-contact-whatsapp-btn home-contact-whatsapp-btn-below-form">
-                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
-                </a>
             </div>
         </div>
     </div>
