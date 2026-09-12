@@ -47,7 +47,7 @@
                 <div class="col-lg-3 m-auto">
                     <div class="welcome-inner-header text-center">
                         <h1>About Us</h1>
-                        <a href="">Home <span><i class="fa-light fa-angle-right"></i></span> About Us</a>
+                        <a href="{{ route('frontend.home') }}">Home <span><i class="fa-light fa-angle-right"></i></span> About Us</a>
                         <img src="/img/elements/elementor20.png" alt="" />
                     </div>
                 </div>

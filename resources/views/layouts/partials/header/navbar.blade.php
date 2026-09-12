@@ -855,7 +855,7 @@
                                         </ul>
                                     </li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.clientele') }}" style="white-space: nowrap;">Client</a></li>
-                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" style="white-space: nowrap;">Centre & State Govt. Examination</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.govtexams') }}" style="white-space: nowrap;">Centre & State Govt. Examination</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.gallery') }}" style="white-space: nowrap;">Gallery</a></li>
                                     <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.contact') }}" style="white-space: nowrap;">Contact Us</a></li>
                                     <li style="list-style: none; flex-shrink: 0;">
@@ -1123,7 +1123,7 @@
                 </ul>
             </li>
             <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
-            <li><a href="{{ route('frontend.home') }}">Centre & State Govt. Examination</a></li>
+            <li><a href="{{ route('frontend.govtexams') }}">Centre & State Govt. Examination</a></li>
             <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
             <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
             <li><a href="{{ route('login') }}">Login / Register</a></li>

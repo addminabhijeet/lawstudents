@@ -10,7 +10,7 @@
             <div class="col-lg-3 m-auto">
                 <div class="welcome-inner-header text-center">
                     <h1>Client</h1>
-                    <a href="">Home <span><i class="fa-light fa-angle-right"></i></span>Client</a>
+                    <a href="{{ route('frontend.home') }}">Home <span><i class="fa-light fa-angle-right"></i></span>Client</a>
                     <img src="/img/elements/elementor20.png" alt="">
                 </div>
             </div>

@@ -1108,7 +1108,7 @@ div[class*="col-lg-"] {
                                     <li><a href="{{ route('frontend.home') }}">Home</a></li>
                                     <li><a href="{{ route('frontend.about') }}">About Us</a></li>
                                     <li><a href="{{ route('frontend.acts') }}">Acts & Rules</a></li>
-                                    <li><a href="{{ route('frontend.copys') }}">Legal Knowledge</a></li>
+                                    <li><a href="{{ route('frontend.legal-knowledge') }}">Legal Knowledge</a></li>
                                     <li><a href="{{ route('frontend.course') }}">Courses</a></li>
                                     <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
@@ -1196,7 +1196,7 @@ div[class*="col-lg-"] {
                                     <li><a href="{{ route('frontend.acts') }}">Bare Acts</a></li>
                                     <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                                     <li><a href="#">Notifications</a></li>
-                                    <li><a href="#">Govt. Exams</a></li>
+                                    <li><a href="{{ route('frontend.govtexams') }}">Govt. Exams</a></li>
                                 </ul>
                             </div>
                         </div>
