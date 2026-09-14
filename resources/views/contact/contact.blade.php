@@ -51,7 +51,7 @@ Build Your Future.';
                             </div>
                             @endif
                             <div class="contact-submit-area">
-                                <h3>Send Us A Message</h3>
+                                <h3>Send Us Your Inquiry</h3>
                                 <p>Our response time is within 30 minutes during business hours</p>
                                 <form action="{{ route('frontend.contactstore') }}" method="POST">
                                     @csrf
@@ -83,7 +83,7 @@ Build Your Future.';
 
                                         <div class="col-lg-12">
                                             <div class="contact-inner">
-                                                <input type="text" name="service_type" id="service_type" placeholder="Service Type" required>
+                                                <input type="text" name="service_type" id="service_type" placeholder="Program of Interest" required>
                                             </div>
                                         </div>
 
@@ -96,7 +96,7 @@ Build Your Future.';
                                         <div class="col-lg-12">
                                             <div class="contact-inner">
                                                 <button type="submit">
-                                                    Free Case Evaluation
+                                                    Send Inquiry
                                                     <i class="fa-light fa-arrow-right"></i>
                                                 </button>
                                             </div>
@@ -107,12 +107,12 @@ Build Your Future.';
                         </div>
                         <div class="col-lg-6">
                             <div class="contact-content-area">
-                                <h2>Connect with Our Law Experts and Mentors Today</h2>
+                                <h2>Connect with Our Expert Instructors and Mentors Today</h2>
                                 <p>
-                                    At Law School Name, we understand the importance of personalized guidance in your
+                                    At Law Students, we understand the importance of personalized guidance in your
                                     legal education. Our team of experienced instructors and mentors is here to provide
-                                    you with support and practical insights. Whether you're exploring criminal law,
-                                    corporate law, or traffic law courses, our commitment is to help you succeed in your
+                                    you with support and practical insights. Whether you're exploring Criminal Law,
+                                    Corporate Law, Constitutional Law, or Traffic Law courses, our commitment is to help you succeed in your
                                     legal career.
                                 </p>
                                 <p>
