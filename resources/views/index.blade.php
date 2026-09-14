@@ -15,31 +15,31 @@
         </div>
         <div class="col-lg-8">
           <div class="welcome3-header-area text-center">
-            <h1 data-aos="fade-up" data-aos-duration="800">Expert Criminal Defense, <img src="/img/elements/elementor20.png" alt="" class="aniamtion-key-1 d-lg-block d-md-none" />Strongest <a class="video-play-button1"><span class="video-play-button"><i class="fa-duotone fa-play"></i></span>Play Now</a>Advocate</h1>
+            <h1 data-aos="fade-up" data-aos-duration="800">Master Legal Knowledge, <img src="/img/elements/elementor20.png" alt="" class="aniamtion-key-1 d-lg-block d-md-none" />Build Your Career <a class="video-play-button1"><span class="video-play-button"><i class="fa-duotone fa-play"></i></span>Play Now</a>Path</h1>
             <p data-aos="fade-up" data-aos-duration="1000">
-              We know that every case is unique, and we approach each with meticulous attention <br /> has detail. Whether you're facing charges related DUI, drug offenses, assault.
+              Learn from industry experts with comprehensive legal education. Gain structured knowledge through our carefully designed curriculum <br /> and prepare for your successful legal career.
             </p>
             <div data-aos="fade-up" data-aos-duration="1200">
-              <a href="{{ route('second', ['contact', 'v1']) }}" class="casebtn1">Request Case Evolution <span><i class="fa-regular fa-arrow-right"></i></span></a>
-              <a href="{{ route('second', ['contact', 'v2']) }}" class="casebtn2">Learn More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+              <a href="{{ route('second', ['contact', 'v1']) }}" class="casebtn1">Explore Courses <span><i class="fa-regular fa-arrow-right"></i></span></a>
+              <a href="{{ route('second', ['contact', 'v2']) }}" class="casebtn2">Start Learning <span><i class="fa-regular fa-arrow-right"></i></span></a>
             </div>
           </div>
         </div>
         <div class="col-lg-2">
           <div class="welcome3-counter-area">
             <div class="welcome3-counter-box text-center" data-aos="fade-left" data-aos-duration="800">
-              <h3><span class="counter">98</span>%</h3>
-              <p>Successful Client</p>
+              <h3><span class="counter">500</span>+</h3>
+              <p>Students Enrolled</p>
             </div>
 
             <div class="welcome3-counter-box text-center" data-aos="fade-left" data-aos-duration="1000">
-              <h3><span class="counter">1</span>M+</h3>
-              <p>Criminals Law Success</p>
+              <h3><span class="counter">100</span>+</h3>
+              <p>Courses Available</p>
             </div>
 
             <div class="welcome3-counter-box text-center" data-aos="fade-left" data-aos-duration="=1200">
-              <h3>$<span class="counter">50</span>M</h3>
-              <p>Trade Value Filled</p>
+              <h3><span class="counter">50</span>+</h3>
+              <p>Expert Instructors</p>
             </div>
           </div>
         </div>
@@ -97,32 +97,32 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="about3-textarea">
-            <span data-aos="fade-right" data-aos-duration="600">About Us</span>
-            <h2 data-aos="fade-right" data-aos-duration="800">Navigating & Legal Maze with a Criminal Defense Expert</h2>
-            <p data-aos="fade-right" data-aos-duration="1000">Service providers can differentiate themselves by offering high-quality and reliable services. Airlines, for instance, promote their safety records and.</p>
+            <span data-aos="fade-right" data-aos-duration="600">About Our Institution</span>
+            <h2 data-aos="fade-right" data-aos-duration="800">Building Tomorrow's Legal Professionals Today</h2>
+            <p data-aos="fade-right" data-aos-duration="1000">We are dedicated to providing world-class legal education to aspiring lawyers. With industry experts as instructors and comprehensive curriculum, we prepare students for successful legal careers.</p>
             <div class="about3-textarea-list" data-aos="fade-right" data-aos-duration="1200">
               <ul>
                 <li>
-                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Expertise & Knowledge</a>
+                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />World-Class Curriculum</a>
                 </li>
                 <li>
-                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Quality & Reliability</a>
+                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Expert Faculty Members</a>
                 </li>
               </ul>
               <ul>
                 <li>
-                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Improved Efficiency</a>
+                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Hands-On Training</a>
                 </li>
                 <li>
-                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Environment Benefits</a>
+                  <a href="#"><img src="/img/icons/check-img2.svg" alt="" />Career Support & Placement</a>
                 </li>
               </ul>
             </div>
             <div class="about3-pera-text" data-aos="fade-right" data-aos-duration="700" data-aos-easing="linear">
-              <p>Some services emphasize environmental sustainability as a benefit, Car-sharing services like Zipcar promote reduced emissions and the use of fewer vehicles, contributing to a greener environment.</p>
+              <p>We emphasize practical knowledge and industry exposure. Our graduates work at top law firms, corporate houses, and government institutions across the country, making meaningful impacts in their legal careers.</p>
             </div>
             <div class="div" data-aos="fade-right" data-aos-duration="800" data-aos-easing="linear">
-              <a href="{{ route('second', ['pages', 'about']) }}" class="casebtn1">Request Case Evolution <span><i class="fa-regular fa-arrow-right"></i></span></a>
+              <a href="{{ route('second', ['pages', 'about']) }}" class="casebtn1">Discover Our Programs <span><i class="fa-regular fa-arrow-right"></i></span></a>
             </div>
           </div>
         </div>
@@ -145,8 +145,8 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="service3-header-text text-center">
-            <span data-aos="fade-up" data-aos-duration="600">Practice Areas</span>
-            <h2 class="text-capitalize" data-aos="fade-up" data-aos-duration="800">Experience, Strategy, and Compassion in Defense</h2>
+            <span data-aos="fade-up" data-aos-duration="600">Popular Courses</span>
+            <h2 class="text-capitalize" data-aos="fade-up" data-aos-duration="800">Comprehensive Legal Education for Every Level</h2>
           </div>
         </div>
       </div>
@@ -195,97 +195,97 @@
               <div class="col-lg-6">
                 <div class="slider-nav1">
                   <div class="testimonial-listarea">
-                    <h3>01 <img src="/img/elements/line-img1.png" alt="" />Lawyer</h3>
-                    <h4>Federal Crime</h4>
+                    <h3>01 <img src="/img/elements/line-img1.png" alt="" />Program</h3>
+                    <h4>LL.B. Entrance Preparation</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
+                        <span>IPC Basics:</span> Learn fundamental principles of the Indian Penal Code, essential concepts and legal framework required for law entrance examinations.
                       </p>
                       <p>
-                        <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
+                        <span>Constitutional Law:</span> Understand core principles of constitutional law, fundamental rights, directive principles and constitutional amendments.
                       </p>
                       <p>
-                        <span>Federal Conspiracy:</span> Engaging in a criminal conspiracy that spans multiple states or involves federal agencies can result in federal.
+                        <span>Legal Writing:</span> Develop essential legal writing skills including drafting, case analysis, and effective communication required for legal practice.
                       </p>
                     </div>
                     <div class="div">
-                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">View Details <span><i class="fa-regular fa-arrow-right"></i></span></a>
                     </div>
                   </div>
 
                   <div class="testimonial-listarea">
-                    <h3>01 <img src="/img/elements/line-img1.png" alt="" />Lawyer</h3>
-                    <h4>Federal Crime</h4>
+                    <h3>02 <img src="/img/elements/line-img1.png" alt="" />Program</h3>
+                    <h4>LL.B. 3-Year Program</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Criminal Law:</span> Comprehensive study of criminal law including procedural aspects, evidence, and criminal justice system implementation.
                       </p>
                       <p>
-                        <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
+                        <span>Civil & Administrative Law:</span> Learn civil law procedures, contract law, administrative law, and regulatory frameworks governing civil practice.
                       </p>
                       <p>
-                        <span>Federal Conspiracy:</span> Engaging in a criminal conspiracy that spans multiple states or involves federal agencies can result in federal.
+                        <span>Constitutional Framework:</span> Deep dive into constitutional law, judicial interpretation, and constitutional rights protection and remedies.
                       </p>
                     </div>
                     <div class="div">
-                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">View Details <span><i class="fa-regular fa-arrow-right"></i></span></a>
                     </div>
                   </div>
 
                   <div class="testimonial-listarea">
-                    <h3>01 <img src="/img/elements/line-img1.png" alt="" />Lawyer</h3>
-                    <h4>Federal Crime</h4>
+                    <h3>03 <img src="/img/elements/line-img1.png" alt="" />Program</h3>
+                    <h4>LL.B. 5-Year Program</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Complete Curriculum:</span> Comprehensive legal curriculum covering all major areas of law with specialized electives and practical training modules.
                       </p>
                       <p>
-                        <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
+                        <span>Internships & Externships:</span> Mandatory internship programs with law firms, courts, and corporate offices to gain real-world legal experience.
                       </p>
                       <p>
-                        <span>Federal Conspiracy:</span> Engaging in a criminal conspiracy that spans multiple states or involves federal agencies can result in federal.
+                        <span>Moot Court & Competitions:</span> Active participation in moot courts, legal writing competitions, and inter-college legal contests for skill development.
                       </p>
                     </div>
                     <div class="div">
-                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">View Details <span><i class="fa-regular fa-arrow-right"></i></span></a>
                     </div>
                   </div>
 
                   <div class="testimonial-listarea">
-                    <h3>01 <img src="/img/elements/line-img1.png" alt="" />Lawyer</h3>
-                    <h4>Federal Crime</h4>
+                    <h3>04 <img src="/img/elements/line-img1.png" alt="" />Program</h3>
+                    <h4>LL.M. Specialization</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
+                        <span>Corporate Law:</span> Advanced study of corporate law, mergers and acquisitions, securities regulation, and corporate governance practices.
                       </p>
                       <p>
-                        <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
+                        <span>International Law:</span> International legal frameworks, international trade, human rights law, and cross-border legal compliance requirements.
                       </p>
                       <p>
-                        <span>Federal Conspiracy:</span> Engaging in a criminal conspiracy that spans multiple states or involves federal agencies can result in federal.
+                        <span>Criminal Law Specialization:</span> Advanced criminal law topics including criminal procedure, evidence, international criminal law, and forensic law.
                       </p>
                     </div>
                     <div class="div">
-                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">View Details <span><i class="fa-regular fa-arrow-right"></i></span></a>
                     </div>
                   </div>
 
                   <div class="testimonial-listarea">
-                    <h3>01 <img src="/img/elements/line-img1.png" alt="" />Lawyer</h3>
-                    <h4>Federal Crime</h4>
+                    <h3>05 <img src="/img/elements/line-img1.png" alt="" />Program</h3>
+                    <h4>Judiciary & Competitive Exams</h4>
                     <div class="service-pera1">
                       <p>
-                        <span>Drug Trafficking:</span> The distribution, manufacturing, or trafficking of the controlled substances, such as narcotics, cocaine, heroin, or Law Students law methamphetamine, in to be continue violation of the Controlled.
+                        <span>CLAT Preparation:</span> Comprehensive preparation for Common Law Admission Test including logical reasoning, legal reasoning, and current affairs.
                       </p>
                       <p>
-                        <span>White-Collar Crimes:</span> These involve financial or economic crimes, such as fraud, embezzlement, insider trading, tax evasion, and money.
+                        <span>Judiciary Exam Coaching:</span> Specialized coaching for state and national level judiciary exams with expert instructors and practice materials.
                       </p>
                       <p>
-                        <span>Federal Conspiracy:</span> Engaging in a criminal conspiracy that spans multiple states or involves federal agencies can result in federal.
+                        <span>Civil Services Support:</span> Preparation and guidance for aspiring law graduates pursuing civil services examinations and government legal positions.
                       </p>
                     </div>
                     <div class="div">
-                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">Read More <span><i class="fa-regular fa-arrow-right"></i></span></a>
+                      <a href="{{ route('second', ['service', 'single']) }}" class="casebtn1">View Details <span><i class="fa-regular fa-arrow-right"></i></span></a>
                     </div>
                   </div>
                 </div>
@@ -312,8 +312,8 @@
       <div class="row">
         <div class="col-lg-4 m-auto">
           <div class="work3-progress text-center">
-            <span data-aos="fade-up" data-aos-duration="600">Work Process</span>
-            <h2 data-aos="fade-up" data-aos-duration="800">Our Work Process</h2>
+            <span data-aos="fade-up" data-aos-duration="600">Learning Journey</span>
+            <h2 data-aos="fade-up" data-aos-duration="800">How Students Succeed With Us</h2>
           </div>
         </div>
       </div>
@@ -330,8 +330,8 @@
             <h3>1</h3>
             <div class="work-progress-content">
               <img src="/img/elements/polygon4.png" alt="" />
-              <a href="{{ route('second', ['service', 'single']) }}">Investigation</a>
-              <p>Tax authorities, such as the Internal Revenue to Service (IRS) in the United States.</p>
+              <a href="{{ route('second', ['service', 'single']) }}">Enroll & Learn</a>
+              <p>Join our comprehensive legal education programs. Access structured courses taught by industry experts and learn at your own pace with flexible schedules.</p>
             </div>
           </div>
         </div>
@@ -348,8 +348,8 @@
             <h3>2</h3>
             <div class="work-progress-content">
               <img src="/img/elements/polygon4.png" alt="" />
-              <a href="{{ route('second', ['service', 'single']) }}">Legal Representation</a>
-              <p>Tax authorities, such as the Internal Revenue to Service (IRS) in the United States.</p>
+              <a href="{{ route('second', ['service', 'single']) }}">Practice & Internship</a>
+              <p>Gain hands-on experience through internships, moot courts, and live client counseling sessions. Build practical legal skills in real-world scenarios.</p>
             </div>
           </div>
         </div>
@@ -365,8 +365,8 @@
             <h3>3</h3>
             <div class="work-progress-content">
               <img src="/img/elements/polygon4.png" alt="" />
-              <a href="{{ route('second', ['service', 'single']) }}">Compliance & Solution</a>
-              <p>Tax authorities, such as the Internal Revenue to Service (IRS) in the United States.</p>
+              <a href="{{ route('second', ['service', 'single']) }}">Career & Success</a>
+              <p>Get placed at top law firms and corporations. Receive career guidance, networking opportunities, and launch your successful legal career.</p>
             </div>
           </div>
         </div>
@@ -381,8 +381,8 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="contcat3-header text-center">
-            <span data-aos="fade-up" data-aos-duration="600">Request A Quote</span>
-            <h2 class="text-capitalize" data-aos="fade-up" data-aos-duration="800">Your Shield in the Courtroom, Criminal Defense Specialists</h2>
+            <span data-aos="fade-up" data-aos-duration="600">Get Course Information</span>
+            <h2 class="text-capitalize" data-aos="fade-up" data-aos-duration="800">Interested in Our Legal Education Programs?</h2>
           </div>
         </div>
       </div>
@@ -398,23 +398,23 @@
               <div class="message-img">
                 <img src="/img/icons/messege1.svg" alt="" />
               </div>
-              <h3 class="text-center">Get In Touch Now</h3>
+              <h3 class="text-center">Request Course Information</h3>
               <div class="contact3-content-area">
                 <div class="contcat3-input">
-                  <input type="text" placeholder="Name*" />
+                  <input type="text" placeholder="Full Name*" />
                 </div>
                 <div class="contcat3-input">
-                  <input type="email" placeholder="Email*" />
+                  <input type="email" placeholder="Email Address*" />
                 </div>
                 <div class="contcat3-input">
-                  <input type="text" placeholder="Subject*" />
+                  <input type="text" placeholder="Program of Interest*" />
                 </div>
                 <div class="contcat3-input">
-                  <textarea cols="30" rows="10" placeholder="Write Msseage*"></textarea>
+                  <textarea cols="30" rows="10" placeholder="Tell us about your legal career goals*"></textarea>
                 </div>
               </div>
               <div class="div" style="text-align: end;">
-                <button type="submit" class="text-right contactbtn1">Submit Now <i class="fa-light fa-arrow-right"></i></button>
+                <button type="submit" class="text-right contactbtn1">Send Inquiry <i class="fa-light fa-arrow-right"></i></button>
               </div>
             </div>
           </div>
@@ -430,8 +430,8 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="testimonial3-header text-center">
-            <span data-aos="fade-up" data-aos-duration="600">Testimonials</span>
-            <h2 data-aos="fade-up" data-aos-duration="800">Legal Victory Starts Here</h2>
+            <span data-aos="fade-up" data-aos-duration="600">Success Stories</span>
+            <h2 data-aos="fade-up" data-aos-duration="800">Hear From Our Successful Alumni</h2>
           </div>
         </div>
       </div>
@@ -519,14 +519,14 @@
                       </ul>
                       <img src="/img/icons/quito3.svg" alt="" />
                     </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
                       </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
                       </div>
                     </div>
                   </div>
@@ -647,47 +647,14 @@
                       </ul>
                       <img src="/img/icons/quito3.svg" alt="" />
                     </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
                       </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="testimonial3-slider-content-area">
-                    <div class="testimonial3-author-area">
-                      <ul>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                      </ul>
-                      <img src="/img/icons/quito3.svg" alt="" />
-                    </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
-                      </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
                       </div>
                     </div>
                   </div>
@@ -713,47 +680,14 @@
                       </ul>
                       <img src="/img/icons/quito3.svg" alt="" />
                     </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
                       </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="testimonial3-slider-content-area">
-                    <div class="testimonial3-author-area">
-                      <ul>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                      </ul>
-                      <img src="/img/icons/quito3.svg" alt="" />
-                    </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
-                      </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
                       </div>
                     </div>
                   </div>
@@ -779,47 +713,14 @@
                       </ul>
                       <img src="/img/icons/quito3.svg" alt="" />
                     </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
                       </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="testimonial3-slider-content-area">
-                    <div class="testimonial3-author-area">
-                      <ul>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                      </ul>
-                      <img src="/img/icons/quito3.svg" alt="" />
-                    </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
-                      </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
                       </div>
                     </div>
                   </div>
@@ -845,47 +746,14 @@
                       </ul>
                       <img src="/img/icons/quito3.svg" alt="" />
                     </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
                       </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="testimonial3-slider-content-area">
-                    <div class="testimonial3-author-area">
-                      <ul>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                        <li>
-                          <a href=""><i class="fa-solid fa-star"></i></a>
-                        </li>
-                      </ul>
-                      <img src="/img/icons/quito3.svg" alt="" />
-                    </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
-                      </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
                       </div>
                     </div>
                   </div>
@@ -911,14 +779,14 @@
                       </ul>
                       <img src="/img/icons/quito3.svg" alt="" />
                     </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
                       </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
                       </div>
                     </div>
                   </div>
@@ -944,14 +812,146 @@
                       </ul>
                       <img src="/img/icons/quito3.svg" alt="" />
                     </div>
-                    <p>"I cannot express how grateful I am for the legal has expertise and support provided by Your Law Firm to Name. Facing criminal charges was a nightmare, but their team was a beacon of hope my darkest”</p>
-                    <div class="testimonial3-man-info-area">
-                      <div class="mans-img">
-                        <img src="/img/images/testimonial3-img1.png" alt="" />
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
                       </div>
-                      <div class="man3-text">
-                        <a href="{{ route('second', ['pages', 'team1']) }}">Ben Stokes</a>
-                        <p>Owner Taxfirm</p>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial3-slider-content-area">
+                    <div class="testimonial3-author-area">
+                      <ul>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                      </ul>
+                      <img src="/img/icons/quito3.svg" alt="" />
+                    </div>
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
+                      </div>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial3-slider-content-area">
+                    <div class="testimonial3-author-area">
+                      <ul>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                      </ul>
+                      <img src="/img/icons/quito3.svg" alt="" />
+                    </div>
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
+                      </div>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial3-slider-content-area">
+                    <div class="testimonial3-author-area">
+                      <ul>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                      </ul>
+                      <img src="/img/icons/quito3.svg" alt="" />
+                    </div>
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
+                      </div>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial3-slider-content-area">
+                    <div class="testimonial3-author-area">
+                      <ul>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                        <li>
+                          <a href=""><i class="fa-solid fa-star"></i></a>
+                        </li>
+                      </ul>
+                      <img src="/img/icons/quito3.svg" alt="" />
+                    </div>
+                    <p>”This program transformed my legal knowledge and career prospects. The faculty was exceptional and the practical training prepared me perfectly for my role at the law firm. I'm grateful for the strong foundation.”</p>
+                    <div class=”testimonial3-man-info-area”>
+                      <div class=”mans-img”>
+                        <img src=”/img/images/testimonial3-img1.png” alt=”” />
+                      </div>
+                      <div class=”man3-text”>
+                        <a href=”{{ route('second', ['pages', 'team1']) }}”>Priya Sharma</a>
+                        <p>Associate, XYZ Law Firm</p>
                       </div>
                     </div>
                   </div>
@@ -979,8 +979,8 @@
       <div class="row">
         <div class="col-lg-6 m-auto">
           <div class="blog3-header text-center">
-            <span data-aos="fade-up" data-aos-duration="600">Our Blog</span>
-            <h2 data-aos="fade-up" data-aos-duration="800">Our Latest Blog & News</h2>
+            <span data-aos="fade-up" data-aos-duration="600">Learning Resources</span>
+            <h2 data-aos="fade-up" data-aos-duration="800">Latest Articles, Case Studies & Legal Insights</h2>
           </div>
         </div>
       </div>
@@ -997,8 +997,8 @@
                   <a href="#">10 October 2024</a>
                 </div>
               </div>
-              <a href="{{ route('second', ['blog', 'single']) }}">The Role of a Criminal Defense Our Best Attorney</a>
-              <p>Our team of dedicated criminal defense attorneys is here to has provide unwavering support and expert legal guidance lawyer.</p>
+              <a href="{{ route('second', ['blog', 'single']) }}">Understanding Constitutional Law: A Comprehensive Guide</a>
+              <p>Learn about key constitutional principles that shape Indian law. This guide covers fundamental rights, directive principles of state policy, and amendment procedures.</p>
               <a href="{{ route('second', ['blog', 'single']) }}" class="learnmore">Learn More <i class="fa-regular fa-arrow-right"></i></a>
             </div>
           </div>
@@ -1016,15 +1016,15 @@
                   <a href="#">10 October 2024</a>
                 </div>
               </div>
-              <a href="{{ route('second', ['blog', 'single']) }}">The Role of a Criminal Defense Our Best Attorney</a>
-              <p>Our team of dedicated criminal defense attorneys is here to has provide unwavering support and expert legal guidance lawyer.</p>
+              <a href="{{ route('second', ['blog', 'single']) }}">Understanding Constitutional Law: A Comprehensive Guide</a>
+              <p>Learn about key constitutional principles that shape Indian law. This guide covers fundamental rights, directive principles of state policy, and amendment procedures.</p>
               <a href="{{ route('second', ['blog', 'single']) }}" class="learnmore">Learn More <i class="fa-regular fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
         <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1200">
           <div class="div text-center">
-            <a href="{{ route('second', ['blog', 'single']) }}" class="casebtn1">See More Articles <span><i class="fa-regular fa-arrow-right"></i></span></a>
+            <a href="{{ route('second', ['blog', 'single']) }}" class="casebtn1">Explore More Resources <span><i class="fa-regular fa-arrow-right"></i></span></a>
           </div>
         </div>
       </div>

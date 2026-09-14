@@ -150,12 +150,12 @@ div[class*="col-lg-"] {
 }
 
 .about-links-area > div:nth-child(2) p {
-    font-size: 13px !important;
-    line-height: 1.8 !important;
-    color: #555 !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    color: #2c3e50 !important;
     margin: 0 !important;
     text-align: center !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
     letter-spacing: 0.3px !important;
     word-spacing: 2px !important;
     margin-top: 15px !important;
@@ -167,8 +167,8 @@ div[class*="col-lg-"] {
     }
 
     .about-links-area > div:nth-child(2) p {
-        font-size: 13px !important;
-        line-height: 1.9 !important;
+        font-size: 16px !important;
+        line-height: 1.4 !important;
     }
 }
 
@@ -178,8 +178,8 @@ div[class*="col-lg-"] {
     }
 
     .about-links-area > div:nth-child(2) p {
-        font-size: 14px !important;
-        line-height: 2 !important;
+        font-size: 16px !important;
+        line-height: 1.4 !important;
     }
 }
 
@@ -1096,7 +1096,7 @@ div[class*="col-lg-"] {
                                 </div>
 
                                 <div style="margin-top: 15px;">
-                                    <p style="font-size: 14px; line-height: 1.6; color: #333; margin: 0; margin-bottom: 20px;">{!! nl2br($description) !!}</p>
+                                    <p style="font-size: 16px; font-weight: 600; font-family: 'Poppins', sans-serif; line-height: 1.4; color: #333; margin: 0; margin-bottom: 20px;">Quality Legal Education for Aspiring Professionals. Learn Law. Understand Law. Build Your Future.</p>
                                 </div>
                             </div>
                         </div>
@@ -1109,9 +1109,9 @@ div[class*="col-lg-"] {
                                     <li><a href="{{ route('frontend.home') }}">Home</a></li>
                                     <li><a href="{{ route('frontend.about') }}">About Us</a></li>
                                     <li><a href="{{ route('frontend.acts') }}">Acts & Rules</a></li>
-                                    <li><a href="{{ route('frontend.legal-knowledge') }}">Legal Knowledge</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">Courses</a></li>
-                                    <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
+                                    <li><a href="{{ route('frontend.legal-knowledge') }}">Learning Hub</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">All Courses</a></li>
+                                    <li><a href="{{ route('frontend.copys') }}">Study Materials</a></li>
                                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
                                 </ul>
                             </div>
@@ -1120,17 +1120,17 @@ div[class*="col-lg-"] {
                         <!-- Column 3: Courses -->
                         <div class="col-lg-4 col-md-6">
                             <div class="about-links-area">
-                                <h3>COURSES</h3>
+                                <h3>PROGRAMS</h3>
                                 <ul>
-                                    <li><a href="{{ route('frontend.course') }}">LL.B. Entrance</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">LL.B. 3 Years</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">LL.B. 5 Years</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">LL.M.</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">Judiciary</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">CSEET</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">CA</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">CS</a></li>
-                                    <li><a href="{{ route('frontend.course') }}">CMA</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. Entrance Prep</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. (3-Year)</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. (5-Year)</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.M. Specialization</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">Judiciary Exams</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CSEET Preparation</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CA Studies</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CS Studies</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CMA Studies</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -1145,8 +1145,8 @@ div[class*="col-lg-"] {
                                 <ul style="list-style: none; padding: 0; margin: 0;">
                                     <!-- Email -->
                                     <li style="margin-bottom: 25px; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
-                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <img src="/img/icons/footer-email2.svg" alt="Email" style="width: 20px; height: 20px;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 18px;">
+                                            <i class="fa-solid fa-envelope"></i>
                                         </div>
                                         <div style="display: flex; flex-direction: column;">
                                             <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Email</span>
@@ -1156,8 +1156,8 @@ div[class*="col-lg-"] {
 
                                     <!-- Address -->
                                     <li style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px; transition: all 0.3s ease;">
-                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
-                                            <img src="/img/icons/footer-location1.svg" alt="Address" style="width: 20px; height: 20px;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; color: #ff5722; font-size: 18px;">
+                                            <i class="fa-solid fa-location-dot"></i>
                                         </div>
                                         <div style="display: flex; flex-direction: column;">
                                             <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Address</span>
@@ -1167,19 +1167,35 @@ div[class*="col-lg-"] {
 
                                     <!-- Phone -->
                                     <li style="display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
-                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <img src="/img/icons/footer-phn.svg" alt="Phone" style="width: 20px; height: 20px;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 18px;">
+                                            <i class="fa-solid fa-phone"></i>
                                         </div>
                                         <div style="display: flex; flex-direction: column;">
                                             <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Phone</span>
                                             <a href="tel:{{ $mobile }}" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $mobile }}</a>
-                                        </li>
+                                        </div>
+                                    </li>
 
                                     <!-- WhatsApp -->
-                                    <li style="margin-top: 25px; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
-                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 18px;">
-                                            <i class="fa-brands fa-whatsapp"></i>
+                                    <li style="display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 14px;">
+                                            <i class="fa-brands fa-whatsapp footer-whatsapp-icon"></i>
                                         </div>
+
+                                        <style>
+                                            /* FontAwesome replaces this <i> with an <svg> (its "i2svg" conversion),
+                                               and font-weight has no effect on an SVG's vector path — it only
+                                               works on real font glyphs. Adding a stroke on top of the existing
+                                               fill is the correct way to make an SVG icon visually bolder;
+                                               additive only, nothing else about the icon (size, color, position)
+                                               is touched. */
+                                            .footer-whatsapp-icon,
+                                            svg.footer-whatsapp-icon {
+                                                stroke: currentColor !important;
+                                                stroke-width: 24px !important;
+                                                paint-order: stroke fill !important;
+                                            }
+                                        </style>
                                         <div style="display: flex; flex-direction: column;">
                                             <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">WhatsApp</span>
                                             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $mobile) }}" target="_blank" rel="noopener" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $mobile }}</a>
@@ -1195,9 +1211,9 @@ div[class*="col-lg-"] {
                                 <h3>RESOURCES</h3>
                                 <ul>
                                     <li><a href="{{ route('frontend.acts') }}">Bare Acts</a></li>
-                                    <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
-                                    <li><a href="#">Notifications</a></li>
-                                    <li><a href="{{ route('frontend.govtexams') }}">Govt. Exams</a></li>
+                                    <li><a href="{{ route('frontend.rules') }}">Rules & Regulations</a></li>
+                                    <li><a href="#">Announcements</a></li>
+                                    <li><a href="{{ route('frontend.govtexams') }}">Competitive Exams</a></li>
                                 </ul>
                             </div>
                         </div>
