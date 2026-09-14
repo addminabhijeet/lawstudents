@@ -1096,7 +1096,7 @@ div[class*="col-lg-"] {
                                 </div>
 
                                 <div style="margin-top: 15px;">
-                                    <p style="font-size: 16px; font-weight: 600; font-family: 'Poppins', sans-serif; line-height: 1.4; color: #333; margin: 0; margin-bottom: 20px;">Quality Legal Education for Aspiring Professionals. Learn Law. Understand Law. Build Your Future.</p>
+                                    <p style="font-size: 16px; font-weight: 600; font-family: 'Poppins', sans-serif; line-height: 1.4; color: #333; margin: 0; margin-bottom: 20px;">Learn Law. Understand Law. Build Your Future.</p>
                                 </div>
                             </div>
                         </div>
