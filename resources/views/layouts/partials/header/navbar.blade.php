@@ -944,28 +944,6 @@
                                     </ul>
                                 </div>
 
-                                <style>
-                                    /* Matches the circular orange-gradient icon badge used by
-                                       .home-contact-info-icon on the home page's Contact section —
-                                       additive only, doesn't touch the theme's existing .social-links
-                                       rules beyond what's overridden here. */
-                                    .social-links li a {
-                                        width: 44px;
-                                        height: 44px;
-                                        border-radius: 50%;
-                                        background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%);
-                                        color: #fff;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        font-size: 16px;
-                                        flex-shrink: 0;
-                                    }
-
-                                    .social-links li a i {
-                                        color: #fff;
-                                    }
-                                </style>
                                 <nav class="side-mobile-menu">
                                     <div class="header-mobile-search">
                                         <form role="search" method="get" action="#">

@@ -1208,27 +1208,27 @@ div[class*="col-lg-"] {
                                 <h3>SOCIAL MEDIA</h3>
                                 <ul style="list-style: none; padding: 0; display: flex; gap: 15px; flex-wrap: wrap;">
                                     <li>
-                                        <a href="{{ $youtube }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                        <a href="{{ $youtube }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
                                             <i class="fa-brands fa-youtube"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ $facebook }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                        <a href="{{ $facebook }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
                                             <i class="fa-brands fa-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ $twitter }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                        <a href="{{ $twitter }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
                                             <i class="fa-brands fa-x-twitter"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ $instagram }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                        <a href="{{ $instagram }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
                                             <i class="fa-brands fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ $linkedin }}" style="width: 45px; height: 45px; background-color: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; text-decoration: none;">
+                                        <a href="{{ $linkedin }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
                                             <i class="fa-brands fa-linkedin"></i>
                                         </a>
                                     </li>
@@ -1237,6 +1237,40 @@ div[class*="col-lg-"] {
                         </div>
                     </div>
                 </div>
+
+                <style>
+                    /* The compiled theme stylesheet applies its own higher-specificity
+                       color/centering rules to icons inside footer links, which beat the
+                       plain inline styles above (same issue documented for the navbar
+                       dropdown elsewhere in this project). Targeting the icons via this
+                       dedicated class, with !important, is what actually wins — additive
+                       only, doesn't touch the inline styles or any other rule. */
+                    .footer3-section-area a.footer-social-icon,
+                    .footer3-section-area a.footer-social-icon:hover {
+                        color: #fff !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                    }
+
+                    .footer3-section-area a.footer-social-icon i,
+                    .footer3-section-area a.footer-social-icon svg {
+                        color: #fff !important;
+                        fill: #fff !important;
+                        margin: 0 !important;
+                    }
+
+                    /* The theme adds an empty ::before to this <a> (content:"", display:block,
+                       width:6px) for an unrelated decoration — as a real flex item inside the
+                       centered flex box, it silently crowds the icon off-centre. Removing just
+                       the pseudo-element (additive, nothing else here is touched) lets the icon
+                       sit truly centred. */
+                    .footer3-section-area a.footer-social-icon::before {
+                        content: none !important;
+                        display: none !important;
+                        width: 0 !important;
+                    }
+                </style>
 
                 <!-- Footer Bottom Links -->
                 <div class="copyright-pera" style="margin-top: 30px; background-color: #ff5722; color: white;">
