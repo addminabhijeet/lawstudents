@@ -608,7 +608,7 @@
 
     .dropdown-submenu li a {
         display: block !important;
-        padding: 12px 20px !important;
+        padding: 12px 20px 12px 28px !important;
         color: #333 !important;
         text-decoration: none !important;
         font-size: 13px !important;
@@ -617,13 +617,12 @@
         width: 100% !important;
         box-sizing: border-box !important;
         line-height: 1.4 !important;
-        text-align: center !important;
     }
 
     .dropdown-submenu li a:hover {
         background-color: #f5f5f5 !important;
         color: #ff5722 !important;
-        padding-left: 24px !important;
+        padding-left: 32px !important;
     }
 
     /* The compiled theme stylesheet (public/build/assets/master-*.css) draws its
@@ -640,6 +639,22 @@
         content: none !important;
         display: none !important;
         background: transparent !important;
+    }
+
+    /* Same compiled-theme specificity problem as the strike-through fix above:
+       the theme's own "...ul li ul.dropdown-submenu li a" rule sets its own
+       padding, which beats the plain ".dropdown-submenu li a" rule further up
+       this file. Matching that exact selector path is the only way to make
+       this option's left padding (breathing room from the dropdown's edge)
+       actually win. */
+    .header .header-area.homepage7 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a,
+    .header .header-area.homepage6 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a {
+        padding-left: 28px !important;
+    }
+
+    .header .header-area.homepage7 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover,
+    .header .header-area.homepage6 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover {
+        padding-left: 32px !important;
     }
 
     .dropdown-submenu li:first-child a {
