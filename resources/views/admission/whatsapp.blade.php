@@ -41,7 +41,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Pre-filled Message</label>
-                                    <textarea name="pre_message" class="form-control" rows="4">{{ $setting ? $setting->pre_message : 'Hello LawStudents, I am interested in...' }}</textarea>
+                                    <textarea name="pre_message" class="form-control" rows="4">{{ $setting ? $setting->pre_message : 'Hello Law Students, I am interested in...' }}</textarea>
                                 </div>
 
                                 <div class="d-flex justify-content-end">

@@ -1079,8 +1079,8 @@
 
         @unless(request()->routeIs('frontend.home'))
         <div class="mobile-hero-branding">
-            <img src="/img/logo/logo11.png" alt="LawStudents Logo">
-            <h1>LawStudents</h1>
+            <img src="/img/logo/logo11.png" alt="Law Students Logo">
+            <h1>Law Students</h1>
         </div>
 
         <div class="mobile-hero-tagline">
@@ -1109,7 +1109,7 @@
     </div>
 
     <div class="mobile-hero-branding">
-        <h1>LawStudents</h1>
+        <h1>Law Students</h1>
     </div>
 
     <div class="mobile-hero-tagline">

@@ -3,7 +3,7 @@
 
     $whatsapp = WhatsappSetting::latest()->first();
     $number = $whatsapp ? $whatsapp->whatsapp_number : '';
-    $message = $whatsapp ? urlencode($whatsapp->pre_message) : urlencode('Hello LawStudents, I am interested in...');
+    $message = $whatsapp ? urlencode($whatsapp->pre_message) : urlencode('Hello Law Students, I am interested in...');
 @endphp
 
 @if ($number)

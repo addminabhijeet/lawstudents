@@ -607,8 +607,8 @@
 <div class="hero-section">
     <div class="hero-content">
         <div class="hero-branding">
-            <img src="/img/logo/logo11.png" alt="LawStudents Logo" style="height: 50px;">
-            <h1>LawStudents</h1>
+            <img src="/img/logo/logo11.png" alt="Law Students Logo" style="height: 50px;">
+            <h1>Law Students</h1>
         </div>
 
         <div class="hero-tagline">
@@ -1573,6 +1573,7 @@
 <div class="legal-knowledge-categories-section">
     <div class="legal-knowledge-categories-container">
         <div class="legal-knowledge-categories-header">
+            <span class="courses-notes-eyebrow">Legal Knowledge</span>
             <h2>Legal Knowledge</h2>
             <p>Explore legal concepts, cases and compliance-oriented resources by category</p>
         </div>
@@ -1774,6 +1775,7 @@
     <div class="legal-knowledge-inquiry-container">
         <div class="legal-knowledge-inquiry-content">
             <div class="legal-knowledge-inquiry-text">
+                <span class="courses-notes-eyebrow">Knowledge Inquiry</span>
                 <h2>Interested in Specific Legal Knowledge?</h2>
                 <p>Submit your inquiry about any legal topic you'd like to explore deeper. Our legal experts will provide guidance and resources tailored to your learning needs.</p>
             </div>
@@ -1897,6 +1899,7 @@
 <div class="exams-section">
     <div class="exams-container">
         <div class="exams-header">
+            <span class="courses-notes-eyebrow">Exams</span>
             <h2>Centre & State Govt. Examination</h2>
             <p>Comprehensive preparation for competitive legal examinations</p>
         </div>
@@ -2040,6 +2043,7 @@
     <div class="enquiry-container">
         <div class="enquiry-content">
             <div class="enquiry-text">
+                <span class="courses-notes-eyebrow">Enquiry</span>
                 <h2>Interested in Our Courses?</h2>
                 <p>Get in touch with our counselors to learn more about our comprehensive law courses and personalized learning programs. We're here to help you achieve your legal education goals.</p>
             </div>
@@ -2164,7 +2168,8 @@
 <div class="why-section">
     <div class="why-container">
         <div class="why-header">
-            <h2>Why LawStudents?</h2>
+            <span class="courses-notes-eyebrow">Why Us</span>
+            <h2>Why Law Students?</h2>
             <p>Discover what makes our platform the best choice for legal education</p>
         </div>
 
@@ -2299,6 +2304,7 @@
 <div class="how-it-works-section">
     <div class="how-it-works-container">
         <div class="how-it-works-header">
+            <span class="courses-notes-eyebrow">Process</span>
             <h2>How It Works</h2>
             <p>Your path from choosing a programme to achieving your legal career goals</p>
         </div>
@@ -2471,6 +2477,7 @@
 <div class="legal-knowledge-section">
     <div class="legal-knowledge-container">
         <div class="legal-knowledge-header">
+            <span class="courses-notes-eyebrow">Updates</span>
             <h2>Latest Legal Knowledge</h2>
             <p>Stay updated with the latest developments in law and legal practice</p>
         </div>
@@ -3023,6 +3030,7 @@
 <div class="home-contact-section">
     <div class="home-contact-container">
         <div class="home-contact-header">
+            <span class="courses-notes-eyebrow">Contact</span>
             <h2>Get in Touch with LawStudent</h2>
             <p>Have questions about our courses, Bare Acts, or study materials? Our team is ready to help you every step of the way in your legal education journey.</p>
         </div>
