@@ -1,6 +1,38 @@
 <!--===== FOOTER STARTS =======-->
 
 <style>
+/* ===== HEADING STYLES FOR FOOTER TO MATCH ABOUT PAGE ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 500 !important;
+}
+
+h1 {
+    font-size: 60px !important;
+    line-height: 60px !important;
+}
+
+h2 {
+    font-size: 46px !important;
+    line-height: 1.3 !important;
+}
+
+h3 {
+    font-size: 40px !important;
+}
+
+h4 {
+    font-size: 32px !important;
+}
+
+h5 {
+    font-size: 24px !important;
+}
+
+h6 {
+    font-size: 20px !important;
+}
+
 /* Footer Improvements - Responsive Design & Orange Theme */
 
 /* Orange divider above footer */
@@ -9,26 +41,26 @@
     margin-top: 40px !important;
 }
 
-/* Responsive padding for footer */
+/* Responsive padding for footer - INCREASED */
 .footer3-section-area {
-    padding: 30px 15px !important;
+    padding: 50px 20px !important;
 }
 
 @media (min-width: 576px) {
     .footer3-section-area {
-        padding: 40px 20px !important;
+        padding: 60px 25px !important;
     }
 }
 
 @media (min-width: 768px) {
     .footer3-section-area {
-        padding: 50px 30px !important;
+        padding: 70px 35px !important;
     }
 }
 
 @media (min-width: 1200px) {
     .footer3-section-area {
-        padding: 60px 50px !important;
+        padding: 80px 60px !important;
     }
 }
 
@@ -86,18 +118,18 @@ div[class*="col-lg-"] {
     }
 }
 
-/* Footer section headers - responsive sizing */
+/* Footer section headers - responsive sizing - INCREASED */
 .footer-last-section h3,
 .about-links-area h3,
 .get-links-area h3,
 .footer-contact-area h3 {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
     color: #ff5722 !important;
-    margin-bottom: 15px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
+    margin-bottom: 20px !important;
+    text-transform: none !important;
+    letter-spacing: 0px !important;
 }
 
 @media (min-width: 576px) {
@@ -105,7 +137,8 @@ div[class*="col-lg-"] {
     .about-links-area h3,
     .get-links-area h3,
     .footer-contact-area h3 {
-        font-size: 17px !important;
+        font-size: 26px !important;
+        margin-bottom: 22px !important;
     }
 }
 
@@ -114,7 +147,8 @@ div[class*="col-lg-"] {
     .about-links-area h3,
     .get-links-area h3,
     .footer-contact-area h3 {
-        font-size: 18px !important;
+        font-size: 28px !important;
+        margin-bottom: 25px !important;
     }
 }
 
@@ -123,81 +157,142 @@ div[class*="col-lg-"] {
     .about-links-area h3,
     .get-links-area h3,
     .footer-contact-area h3 {
-        font-size: 19px !important;
+        font-size: 32px !important;
+        margin-bottom: 28px !important;
     }
 }
 
-/* Footer text - responsive sizing (IMPROVED) */
-.footer-text-area p {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
+/* Footer text - responsive sizing (IMPROVED & SIGNIFICANTLY INCREASED) */
+.footer-text-area p,
+.footer3-section-area p {
+    font-size: 18px !important;
+    line-height: 1.8 !important;
     color: #666 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 28px !important;
 }
 
-/* ENHANCEMENT: Logo & Description Professional Styling */
+/* Increase footer links spacing and sizing */
+.footer-last-section ul li,
+.about-links-area ul li,
+.get-links-area ul li,
+.footer-contact-area ul li {
+    margin-bottom: 16px !important;
+}
+
+.footer-last-section ul li a,
+.about-links-area ul li a,
+.get-links-area ul li a,
+.footer-contact-area ul li a {
+    font-size: 17px !important;
+    line-height: 1.7 !important;
+    color: #333 !important;
+}
+
+/* Footer copyright and bottom text */
+.footer-bottom-area,
+.footer3-section-area .footer-bottom-area,
+footer p,
+.copyright-text {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+}
+
+/* ENHANCEMENT: Logo & Description Professional Styling - INCREASED */
 .about-links-area > div:first-child {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-bottom: 25px !important;
+    margin-bottom: 35px !important;
 }
 
 .about-links-area > div:first-child img {
-    max-width: 120px !important;
+    max-width: 150px !important;
     height: auto !important;
     object-fit: contain !important;
 }
 
 .about-links-area > div:nth-child(2) p {
-    font-size: 16px !important;
-    line-height: 1.4 !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
     color: #2c3e50 !important;
     margin: 0 !important;
     text-align: center !important;
     font-weight: 600 !important;
     letter-spacing: 0.3px !important;
     word-spacing: 2px !important;
-    margin-top: 15px !important;
+    margin-top: 20px !important;
 }
 
 @media (min-width: 576px) {
     .about-links-area > div:first-child img {
-        max-width: 140px !important;
+        max-width: 170px !important;
     }
 
     .about-links-area > div:nth-child(2) p {
-        font-size: 16px !important;
-        line-height: 1.4 !important;
+        font-size: 18px !important;
+        line-height: 1.6 !important;
+        margin-top: 22px !important;
     }
 }
 
 @media (min-width: 768px) {
     .about-links-area > div:first-child img {
-        max-width: 150px !important;
+        max-width: 180px !important;
     }
 
     .about-links-area > div:nth-child(2) p {
-        font-size: 16px !important;
-        line-height: 1.4 !important;
+        font-size: 18px !important;
+        line-height: 1.6 !important;
+        margin-top: 25px !important;
     }
 }
 
 @media (min-width: 576px) {
-    .footer-text-area p {
-        font-size: 15px !important;
+    .footer-text-area p,
+    .footer3-section-area p {
+        font-size: 19px !important;
+        line-height: 1.8 !important;
+        margin-bottom: 28px !important;
+    }
+
+    .footer-last-section ul li a,
+    .about-links-area ul li a,
+    .get-links-area ul li a,
+    .footer-contact-area ul li a {
+        font-size: 18px !important;
     }
 }
 
 @media (min-width: 768px) {
-    .footer-text-area p {
-        font-size: 16px !important;
+    .footer-text-area p,
+    .footer3-section-area p {
+        font-size: 20px !important;
+        line-height: 1.8 !important;
+        margin-bottom: 32px !important;
+    }
+
+    .footer-last-section ul li a,
+    .about-links-area ul li a,
+    .get-links-area ul li a,
+    .footer-contact-area ul li a {
+        font-size: 19px !important;
+        line-height: 1.8 !important;
+    }
+
+    .footer-last-section ul li,
+    .about-links-area ul li,
+    .get-links-area ul li,
+    .footer-contact-area ul li {
+        margin-bottom: 18px !important;
     }
 }
 
 @media (min-width: 1200px) {
-    .footer-text-area p {
-        font-size: 16px !important;
+    .footer-text-area p,
+    .footer3-section-area p {
+        font-size: 20px !important;
+        line-height: 1.9 !important;
+        margin-bottom: 35px !important;
     }
 }
 
