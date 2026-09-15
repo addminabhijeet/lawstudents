@@ -162,39 +162,49 @@ div[class*="col-lg-"] {
     }
 }
 
-/* Footer text - responsive sizing (IMPROVED & SIGNIFICANTLY INCREASED) */
+/* Footer text - responsive sizing (SIGNIFICANTLY INCREASED TO MATCH ABOUT PAGE) */
 .footer-text-area p,
-.footer3-section-area p {
-    font-size: 18px !important;
-    line-height: 1.8 !important;
+.footer3-section-area p,
+.footer-last-section p,
+.about-links-area p,
+.get-links-area p,
+.footer-contact-area p {
+    font-size: 22px !important;
+    font-family: 'Playfair Display', serif !important;
+    line-height: 1.9 !important;
     color: #666 !important;
-    margin-bottom: 28px !important;
+    margin-bottom: 32px !important;
+    font-weight: 500 !important;
 }
 
-/* Increase footer links spacing and sizing */
+/* Increase footer links spacing and sizing - MATCH ABOUT PAGE */
 .footer-last-section ul li,
 .about-links-area ul li,
 .get-links-area ul li,
 .footer-contact-area ul li {
-    margin-bottom: 16px !important;
+    margin-bottom: 20px !important;
 }
 
 .footer-last-section ul li a,
 .about-links-area ul li a,
 .get-links-area ul li a,
 .footer-contact-area ul li a {
-    font-size: 17px !important;
-    line-height: 1.7 !important;
+    font-size: 20px !important;
+    font-family: 'Playfair Display', serif !important;
+    line-height: 1.8 !important;
     color: #333 !important;
+    font-weight: 500 !important;
 }
 
-/* Footer copyright and bottom text */
+/* Footer copyright and bottom text - INCREASED */
 .footer-bottom-area,
 .footer3-section-area .footer-bottom-area,
 footer p,
 .copyright-text {
-    font-size: 16px !important;
-    line-height: 1.7 !important;
+    font-size: 18px !important;
+    font-family: 'Playfair Display', serif !important;
+    line-height: 1.8 !important;
+    font-weight: 500 !important;
 }
 
 /* ENHANCEMENT: Logo & Description Professional Styling - INCREASED */
@@ -249,50 +259,79 @@ footer p,
 
 @media (min-width: 576px) {
     .footer-text-area p,
-    .footer3-section-area p {
-        font-size: 19px !important;
-        line-height: 1.8 !important;
-        margin-bottom: 28px !important;
+    .footer3-section-area p,
+    .footer-last-section p,
+    .about-links-area p,
+    .get-links-area p,
+    .footer-contact-area p {
+        font-size: 23px !important;
+        font-family: 'Playfair Display', serif !important;
+        line-height: 1.9 !important;
+        margin-bottom: 35px !important;
+        font-weight: 500 !important;
     }
 
     .footer-last-section ul li a,
     .about-links-area ul li a,
     .get-links-area ul li a,
     .footer-contact-area ul li a {
-        font-size: 18px !important;
-    }
-}
-
-@media (min-width: 768px) {
-    .footer-text-area p,
-    .footer3-section-area p {
-        font-size: 20px !important;
-        line-height: 1.8 !important;
-        margin-bottom: 32px !important;
-    }
-
-    .footer-last-section ul li a,
-    .about-links-area ul li a,
-    .get-links-area ul li a,
-    .footer-contact-area ul li a {
-        font-size: 19px !important;
-        line-height: 1.8 !important;
+        font-size: 21px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
     }
 
     .footer-last-section ul li,
     .about-links-area ul li,
     .get-links-area ul li,
     .footer-contact-area ul li {
-        margin-bottom: 18px !important;
+        margin-bottom: 22px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-text-area p,
+    .footer3-section-area p,
+    .footer-last-section p,
+    .about-links-area p,
+    .get-links-area p,
+    .footer-contact-area p {
+        font-size: 24px !important;
+        font-family: 'Playfair Display', serif !important;
+        line-height: 1.9 !important;
+        margin-bottom: 36px !important;
+        font-weight: 500 !important;
+    }
+
+    .footer-last-section ul li a,
+    .about-links-area ul li a,
+    .get-links-area ul li a,
+    .footer-contact-area ul li a {
+        font-size: 22px !important;
+        font-family: 'Playfair Display', serif !important;
+        line-height: 1.9 !important;
+        font-weight: 500 !important;
+    }
+
+    .footer-last-section ul li,
+    .about-links-area ul li,
+    .get-links-area ul li,
+    .footer-contact-area ul li {
+        margin-bottom: 24px !important;
     }
 }
 
 @media (min-width: 1200px) {
     .footer-text-area p,
-    .footer3-section-area p {
-        font-size: 20px !important;
+    .footer3-section-area p,
+    .footer-last-section p,
+    .about-links-area p,
+    .get-links-area p,
+    .footer-contact-area p {
+        font-size: 26px !important;
+        font-family: 'Playfair Display', serif !important;
         line-height: 1.9 !important;
-        margin-bottom: 35px !important;
+        margin-bottom: 40px !important;
+        font-weight: 500 !important;
     }
 }
 

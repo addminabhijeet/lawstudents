@@ -55,14 +55,24 @@
         padding: 5px 6px !important;
     }
 
-    /* Increase dropdown/submenu items */
+    /* Increase dropdown/submenu items - MATCH ABOUT PAGE */
     .navbar-nav .nav-item .dropdown-menu {
-        min-width: 250px !important;
+        min-width: 280px !important;
     }
 
     .navbar-nav .dropdown-menu .dropdown-item {
-        font-size: 14px !important;
-        padding: 12px 20px !important;
+        font-size: 18px !important;
+        font-family: 'Playfair Display', serif !important;
+        padding: 16px 24px !important;
+        font-weight: 500 !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Header brand text */
+    .navbar-brand {
+        font-size: 20px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
     }
 
     /* Increase container padding */
@@ -360,52 +370,89 @@
     /* Responsive gaps for menu items */
     @media (max-width: 1399px) {
         .main-menu-ex.homepage6 ul {
-            gap: 4px;
+            gap: 6px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 15px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 5px 7px !important;
+            font-weight: 500 !important;
         }
     }
 
     @media (max-width: 1199px) {
         .main-menu-ex.homepage6 ul {
-            gap: 3px;
+            gap: 5px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 5px 6px !important;
+            font-weight: 500 !important;
         }
     }
 
     @media (max-width: 1024px) {
         .main-menu-ex.homepage6 ul {
-            gap: 3px;
+            gap: 4px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 13px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 4px 5px !important;
+            font-weight: 500 !important;
         }
     }
 
     @media (max-width: 768px) {
         .main-menu-ex.homepage6 ul {
-            gap: 2px;
+            gap: 3px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 12px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 4px 5px !important;
+            font-weight: 500 !important;
         }
     }
 
     @media (max-width: 480px) {
         .main-menu-ex.homepage6 ul {
-            gap: 1px;
+            gap: 2px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 11px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 3px 4px !important;
+            font-weight: 500 !important;
         }
     }
 
-    /* ===== IMPROVED MENU ITEMS TYPOGRAPHY ===== */
+    /* ===== IMPROVED MENU ITEMS TYPOGRAPHY - INCREASED TO MATCH FOOTER/ABOUT PAGE ===== */
     .main-menu-ex.homepage6 ul li a {
-        font-size: 11px;
+        font-size: 16px !important;
+        font-family: 'Playfair Display', serif !important;
         display: inline-block;
-        padding: 3px 4px;
+        padding: 6px 8px !important;
         white-space: nowrap;
         transition: all 0.3s ease;
         letter-spacing: 0px;
-        line-height: 1.2;
+        line-height: 1.4 !important;
         color: #333 !important;
-        font-weight: 500;
+        font-weight: 500 !important;
     }
 
     /* Large desktop (1600px+) */
     @media (min-width: 1600px) {
         .main-menu-ex.homepage6 ul li a {
-            font-size: 12px;
-            padding: 3px 5px;
+            font-size: 18px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 6px 10px !important;
             letter-spacing: 0px;
         }
     }
