@@ -51,9 +51,9 @@
 
     /* Increase menu item sizing */
     .main-menu-ex.homepage6 ul li a {
-        font-size: 13px !important;
-        padding: 5px 6px !important;
-        font-weight: bold !important;
+        font-size: 18px !important;
+        padding: 8px 10px !important;
+        font-weight: 900 !important;
     }
 
     /* Increase dropdown/submenu items - MATCH ABOUT PAGE */
@@ -91,9 +91,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 12px !important;
-            padding: 4px 5px !important;
-            font-weight: bold !important;
+            font-size: 17px !important;
+            padding: 7px 9px !important;
+            font-weight: 900 !important;
         }
     }
 
@@ -107,8 +107,8 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 12px !important;
-            font-weight: bold !important;
+            font-size: 16px !important;
+            font-weight: 900 !important;
         }
     }
 
@@ -122,8 +122,8 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 11px !important;
-            font-weight: bold !important;
+            font-size: 15px !important;
+            font-weight: 900 !important;
         }
     }
 
@@ -158,9 +158,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 10px !important;
-            padding: 4px 4px !important;
-            font-weight: bold !important;
+            font-size: 14px !important;
+            padding: 6px 8px !important;
+            font-weight: 900 !important;
         }
 
         .navbar-nav .dropdown-menu .dropdown-item {
@@ -200,9 +200,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 9px !important;
-            padding: 3px 3px !important;
-            font-weight: bold !important;
+            font-size: 12px !important;
+            padding: 5px 6px !important;
+            font-weight: 900 !important;
         }
     }
 
@@ -217,9 +217,9 @@
         }
 
         .main-menu-ex.homepage6 ul li a {
-            font-size: 14px !important;
-            padding: 5px 7px !important;
-            font-weight: bold !important;
+            font-size: 19px !important;
+            padding: 9px 11px !important;
+            font-weight: 900 !important;
         }
 
         .header-top-border {
