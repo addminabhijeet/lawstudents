@@ -328,7 +328,7 @@ $offset = $loop->index * 45;
 <span class="t s3" style="left:31px;bottom:1166px;letter-spacing:-0.07px;word-spacing:0.1px;">31/1, Tiljala Road. Kolata-700046. </span>
 <span class="t s3" style="left:31px;bottom:1148px;letter-spacing:-0.06px;word-spacing:-0.03px;">Landmark: Near 4 No. Darga Road </span>
 <span class="t s3" style="left:31px;bottom:1130px;letter-spacing:-0.06px;word-spacing:0.16px;">crossing/Park Circus Station </span>
-<span class="t s6" style="left:326px;bottom:1139px;letter-spacing:-0.09px;word-spacing:-0.06px;">Institute of LawStudent </span>
+<span class="t s6" style="left:326px;bottom:1139px;letter-spacing:-0.09px;word-spacing:-0.06px;">Institute of Law Student </span>
 <span class="t s6" style="left:382px;bottom:1111px;letter-spacing:-0.08px;word-spacing:0.3px;">Payment Slip </span>
 <span class="t s0" style="left:394px;bottom:197px;letter-spacing:0.16px;">Sd/- </span>
 <span class="t s0" style="left:382px;bottom:176px;letter-spacing:0.3px;word-spacing:-0.48px;">(RIZWANA BEGUM) </span>

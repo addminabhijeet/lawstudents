@@ -778,10 +778,10 @@
     <div class="about-lawstudent-container">
         <div class="about-lawstudent-content">
             <span class="about-lawstudent-eyebrow">About Platform</span>
-            <h2 class="about-lawstudent-heading">Welcome to LawStudent</h2>
+            <h2 class="about-lawstudent-heading">Welcome to Law Student</h2>
 
             <p class="about-lawstudent-intro">
-                <strong>LawStudent</strong> is an educational and knowledge platform dedicated to students, aspirants and
+                <strong>Law Student</strong> is an educational and knowledge platform dedicated to students, aspirants and
                 professionals pursuing legal and professional education. The platform provides structured courses,
                 study materials, Bare Acts, Rules, Notifications, legal knowledge resources and examination-
                 oriented preparation.
@@ -3038,7 +3038,7 @@
     <div class="home-contact-container">
         <div class="home-contact-header">
             <span class="courses-notes-eyebrow">Contact</span>
-            <h2>Get in Touch with LawStudent</h2>
+            <h2>Get in Touch with Law Student</h2>
             <p>Have questions about our courses, Bare Acts, or study materials? Our team is ready to help you every step of the way in your legal education journey.</p>
         </div>
 

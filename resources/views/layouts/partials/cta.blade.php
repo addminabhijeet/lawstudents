@@ -28,7 +28,7 @@
     }
 
     /* ===== CTA ORANGE CONTRAST FIX (sitewide) =====
-       The compiled theme stylesheet paints this "Get in Touch with LawStudent"
+       The compiled theme stylesheet paints this "Get in Touch with Law Student"
        banner (this partial, included on every page via layouts/landing.blade.php)
        with background: rgb(255,125,0) — its white h2/p text and its white-background
        "Send Message" button (orange text) both land at only ~2.57:1 contrast,
@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-lg-6 m-auto">
                 <div class="cta3-header text-center">
-                    <h2 data-aos="fade-up" data-aos-duration="800">Get in Touch with LawStudent</h2>
+                    <h2 data-aos="fade-up" data-aos-duration="800">Get in Touch with Law Student</h2>
                     <p data-aos="fade-up" data-aos-duration="1000">Have questions about our courses, Bare Acts, or study materials? Our team is ready to help you every step of the way in your legal education journey.</p>
                     <div class="div" data-aos="fade-up" data-aos-duration="1200">
                         <a href="{{ route('frontend.contact') }}" class="cta3-btn1">Send Message</a>

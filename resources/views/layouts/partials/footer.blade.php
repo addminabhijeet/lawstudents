@@ -1292,7 +1292,7 @@ div[class*="col-lg-"] {
 
                 <!-- Copyright -->
                 <div class="copyright-pera" style="background-color: white; text-align: center;">
-                    <p style="color: #666; margin: 0; font-size: 14px;">© 2026 LawStudent. All Rights Reserved.</p>
+                    <p style="color: #666; margin: 0; font-size: 14px;">© 2026 Law Student. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
