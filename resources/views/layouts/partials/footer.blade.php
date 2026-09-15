@@ -533,18 +533,13 @@ div[class*="col-lg-"] {
     }
 }
 
-/* Header divider line using ::after pseudo-element */
+/* Header divider line using ::after pseudo-element - DISABLED */
 .footer-last-section h3::after,
 .about-links-area h3::after,
 .get-links-area h3::after,
 .footer-contact-area h3::after {
-    content: '' !important;
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    width: 40px !important;
-    height: 3px !important;
-    background: #ff5722 !important;
+    content: none !important;
+    display: none !important;
 }
 
 /* IMPROVEMENT 2: Enhanced Whitespace & Section Padding */
@@ -585,17 +580,11 @@ div[class*="col-lg-"] {
     }
 }
 
-/* IMPROVEMENT 4: Link Styling with Orange Bullet Points */
+/* IMPROVEMENT 4: Link Styling with Orange Bullet Points - DISABLED */
 .about-links-area ul li a::before,
 .get-links-area ul li a::before {
-    content: '' !important;
-    display: inline-block !important;
-    width: 6px !important;
-    height: 6px !important;
-    background: #ff5722 !important;
-    border-radius: 50% !important;
-    margin-right: 10px !important;
-    vertical-align: middle !important;
+    content: none !important;
+    display: none !important;
 }
 
 /* IMPROVEMENT 5: Enhanced Link Hover Effects */
