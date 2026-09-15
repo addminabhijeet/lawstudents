@@ -53,6 +53,7 @@
     .main-menu-ex.homepage6 ul li a {
         font-size: 13px !important;
         padding: 5px 6px !important;
+        font-weight: bold !important;
     }
 
     /* Increase dropdown/submenu items - MATCH ABOUT PAGE */
@@ -92,6 +93,7 @@
         .main-menu-ex.homepage6 ul li a {
             font-size: 12px !important;
             padding: 4px 5px !important;
+            font-weight: bold !important;
         }
     }
 
@@ -106,6 +108,7 @@
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 12px !important;
+            font-weight: bold !important;
         }
     }
 
@@ -120,6 +123,7 @@
 
         .main-menu-ex.homepage6 ul li a {
             font-size: 11px !important;
+            font-weight: bold !important;
         }
     }
 
@@ -156,6 +160,7 @@
         .main-menu-ex.homepage6 ul li a {
             font-size: 10px !important;
             padding: 4px 4px !important;
+            font-weight: bold !important;
         }
 
         .navbar-nav .dropdown-menu .dropdown-item {
@@ -197,6 +202,7 @@
         .main-menu-ex.homepage6 ul li a {
             font-size: 9px !important;
             padding: 3px 3px !important;
+            font-weight: bold !important;
         }
     }
 
@@ -213,6 +219,7 @@
         .main-menu-ex.homepage6 ul li a {
             font-size: 14px !important;
             padding: 5px 7px !important;
+            font-weight: bold !important;
         }
 
         .header-top-border {
