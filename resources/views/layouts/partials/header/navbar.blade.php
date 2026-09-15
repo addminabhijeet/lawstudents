@@ -76,6 +76,23 @@
         font-weight: 500 !important;
     }
 
+    /* ===== HEADER TOP TEXT STYLING - MATCH ABOUT PAGE ===== */
+    .top-content-area .content p {
+        font-size: 22px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        color: #fff !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Header top email and phone links */
+    .social-area a {
+        font-size: 22px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        color: #fff !important;
+    }
+
     /* Increase container padding */
     .navbar-container {
         padding: 0 25px !important;
@@ -966,6 +983,67 @@
 
     .main-menu-ex.homepage6 {
         overflow: visible !important;
+    }
+
+    /* ===== RESPONSIVE HEADER TOP TEXT ===== */
+    @media (max-width: 1399px) {
+        .top-content-area .content p {
+            font-size: 20px !important;
+        }
+
+        .social-area a {
+            font-size: 20px !important;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .top-content-area .content p {
+            font-size: 18px !important;
+        }
+
+        .social-area a {
+            font-size: 18px !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .top-content-area .content p {
+            font-size: 17px !important;
+        }
+
+        .social-area a {
+            font-size: 17px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .top-content-area .content p {
+            font-size: 16px !important;
+        }
+
+        .social-area a {
+            font-size: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .top-content-area .content p {
+            font-size: 14px !important;
+        }
+
+        .social-area a {
+            font-size: 14px !important;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .top-content-area .content p {
+            font-size: 24px !important;
+        }
+
+        .social-area a {
+            font-size: 24px !important;
+        }
     }
 </style>
 
