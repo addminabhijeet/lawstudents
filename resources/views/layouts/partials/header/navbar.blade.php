@@ -354,9 +354,9 @@
 
     /* ===== IMPROVED LOGIN/REGISTER BUTTON ===== */
     .main-menu-ex.homepage6 ul li .btn {
-        background-color: #e64a19 !important;
+        background-color: #ff5722 !important;
         color: white !important;
-        border-color: #e64a19 !important;
+        border-color: #ff5722 !important;
         padding: 4px 8px !important;
         font-size: 10px !important;
         font-weight: 600 !important;

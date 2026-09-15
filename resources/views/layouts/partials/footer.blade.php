@@ -261,7 +261,7 @@ div[class*="col-lg-"] {
 }
 
 .social-list-area ul li a:hover {
-    background-color: #e64a19 !important;
+    background-color: #ff5722 !important;
     transform: translateY(-3px) !important;
 }
 
@@ -339,7 +339,7 @@ div[class*="col-lg-"] {
 }
 
 .footer-btn button:hover {
-    background-color: #e64a19 !important;
+    background-color: #ff5722 !important;
 }
 
 /* Copyright section - responsive */
@@ -394,7 +394,7 @@ div[class*="col-lg-"] {
 
 .copyright-pera a:hover {
     text-decoration: underline !important;
-    color: #e64a19 !important;
+    color: #ff5722 !important;
 }
 
 /* Footer section spacing */
@@ -596,7 +596,7 @@ div[class*="col-lg-"] {
 
 .about-links-area ul li a:hover::before,
 .get-links-area ul li a:hover::before {
-    background: #e64a19 !important;
+    background: #ff5722 !important;
     transform: scale(1.3) !important;
 }
 
@@ -615,7 +615,7 @@ div[class*="col-lg-"] {
 }
 
 .footer-btn button:hover {
-    background: linear-gradient(135deg, #e64a19 0%, #ff5722 100%) !important;
+    background: linear-gradient(135deg, #ff5722 0%, #ff5722 100%) !important;
     box-shadow: 0 6px 20px rgba(255, 87, 34, 0.35) !important;
     transform: translateY(-2px) !important;
 }
@@ -628,7 +628,7 @@ div[class*="col-lg-"] {
 }
 
 .footer-form-area input:focus {
-    border-color: #e64a19 !important;
+    border-color: #ff5722 !important;
     box-shadow: 0 0 10px rgba(255, 87, 34, 0.2) !important;
     background: white !important;
     outline: none !important;
@@ -661,7 +661,7 @@ div[class*="col-lg-"] {
 }
 
 .social-list-area ul li a:hover {
-    background-color: #e64a19 !important;
+    background-color: #ff5722 !important;
     transform: translateY(-4px) scale(1.05) !important;
     box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3) !important;
 }
@@ -702,7 +702,7 @@ div[class*="col-lg-"] {
 .about-links-area ul li a[href*="twitter"]:hover,
 .about-links-area ul li a[href*="instagram"]:hover,
 .about-links-area ul li a[href*="linkedin"]:hover {
-    background-color: #e64a19 !important;
+    background-color: #ff5722 !important;
     transform: translateY(-4px) scale(1.05) !important;
     box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3) !important;
 }

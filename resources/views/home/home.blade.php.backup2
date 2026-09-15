@@ -96,10 +96,9 @@
     }
 
     .service7-header-area h2 {
-        font-size: 40px;
+        font-size: 32px;
         line-height: 1.3;
         margin: 0;
-        font-family: 'Playfair Display', serif;
     }
 
     .service7-header-area .defence {
@@ -133,7 +132,7 @@
         }
 
         .service7-header-area h2 {
-            font-size: 40px;
+            font-size: 28px;
         }
     }
 
@@ -176,7 +175,7 @@
         }
 
         .service7-header-area h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
     }
 
@@ -224,7 +223,7 @@
         }
 
         .service7-header-area h2 {
-            font-size: 40px;
+            font-size: 20px;
         }
     }
 
@@ -274,7 +273,7 @@
         }
 
         .service7-header-area h2 {
-            font-size: 40px;
+            font-size: 18px;
             line-height: 1.2;
         }
     }
@@ -439,9 +438,8 @@
     }
 
     .team6-header h2 {
-        font-size: 40px;
+        font-size: 28px;
         line-height: 1.3;
-        font-family: 'Playfair Display', serif;
     }
 
     @media (max-width: 768px) {
@@ -450,7 +448,7 @@
         }
 
         .team6-header h2 {
-            font-size: 40px;
+            font-size: 22px;
         }
     }
 
@@ -460,7 +458,7 @@
         }
 
         .team6-header h2 {
-            font-size: 40px;
+            font-size: 18px;
         }
     }
 </style>
@@ -498,7 +496,7 @@
         font-weight: 700;
         color: #1a1a1a;
         margin: 0;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .hero-tagline {
@@ -550,8 +548,8 @@
     }
 
     .hero-btn-primary:hover {
-        background-color: #ff5722;
-        border-color: #ff5722;
+        background-color: #e64a19;
+        border-color: #e64a19;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
@@ -581,7 +579,7 @@
         }
 
         .hero-branding h1 {
-            font-size: 48px;
+            font-size: 36px;
         }
 
         .hero-tagline {
@@ -679,11 +677,10 @@
     }
 
     .quick-access-item h3 {
-        font-size: 32px;
+        font-size: 16px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0;
-        font-family: 'Playfair Display', serif;
     }
 
     @media (max-width: 768px) {
@@ -701,7 +698,7 @@
         }
 
         .quick-access-item h3 {
-            font-size: 32px;
+            font-size: 14px;
         }
     }
 </style>
@@ -725,7 +722,7 @@
 
     .about-lawstudent-eyebrow {
         color: #ff5722;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         font-size: 16px;
         font-weight: 500;
         line-height: 16px;
@@ -748,7 +745,7 @@
 
     .about-lawstudent-intro {
         color: var(--Paragraph-Color, #515456);
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         font-size: 16px;
         font-weight: 400;
         line-height: 26px;
@@ -811,7 +808,7 @@
     }
 
     .courses-notes-header h2 {
-        font-size: 40px;
+        font-size: 44px;
         font-weight: 600;
         color: #0a141c;
         margin: 0 0 15px 0;
@@ -822,13 +819,13 @@
     .courses-notes-header p {
         font-size: 16px;
         color: var(--Paragraph-Color, #515456);
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         margin: 0;
     }
 
     .courses-notes-eyebrow {
         color: #ff5722;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         font-size: 16px;
         font-weight: 500;
         line-height: 16px;
@@ -862,7 +859,7 @@
     .course-note-card-image {
         width: 100%;
         height: 200px;
-        background: linear-gradient(135deg, #ff5722 0%, #ff5722 100%);
+        background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -894,7 +891,7 @@
     }
 
     .course-note-card-body h3 {
-        font-size: 32px;
+        font-size: 18px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 10px 0;
@@ -926,7 +923,7 @@
     }
 
     .course-note-link:hover {
-        color: #ff5722;
+        color: #e64a19;
         gap: 12px;
     }
 
@@ -948,8 +945,8 @@
     }
 
     .courses-notes-view-all-btn:hover {
-        background-color: #ff5722;
-        border-color: #ff5722;
+        background-color: #e64a19;
+        border-color: #e64a19;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
@@ -982,9 +979,8 @@
     }
 
     .note-plain-card .course-note-card-body h3 {
-        font-size: 32px;
+        font-size: 15px;
         font-weight: 600;
-        font-family: 'Playfair Display', serif;
     }
 
     .note-plain-card .course-note-card-body p {
@@ -1003,7 +999,7 @@
         }
 
         .courses-notes-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .courses-notes-header p {
@@ -1035,7 +1031,7 @@
         }
 
         .courses-notes-header h2 {
-            font-size: 40px;
+            font-size: 20px;
         }
 
         .courses-notes-header p {
@@ -1049,7 +1045,7 @@
 
         .course-note-card-image {
             height: 160px;
-            font-size: 40px;
+            font-size: 36px;
         }
 
         .course-note-card-body {
@@ -1057,7 +1053,7 @@
         }
 
         .course-note-card-body h3 {
-            font-size: 32px;
+            font-size: 16px;
         }
 
         .course-note-card-body p {
@@ -1183,7 +1179,7 @@
 
     .acts-rules-eyebrow {
         color: #ff5722;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         font-size: 16px;
         font-weight: 500;
         line-height: 16px;
@@ -1195,7 +1191,7 @@
     }
 
     .acts-rules-header h2 {
-        font-size: 40px;
+        font-size: 44px;
         font-weight: 600;
         color: #0a141c;
         margin: 0 0 15px 0;
@@ -1206,7 +1202,7 @@
     .acts-rules-header p {
         font-size: 16px;
         color: var(--Paragraph-Color, #515456);
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         margin: 0;
     }
 
@@ -1238,11 +1234,11 @@
     }
 
     .acts-rules-card-header h3 {
-        font-size: 32px;
+        font-size: 20px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
     }
 
     .acts-rules-card-body {
@@ -1318,7 +1314,7 @@
     }
 
     .acts-rules-view-all:hover {
-        color: #ff5722;
+        color: #e64a19;
         transform: translateX(5px);
     }
 
@@ -1330,7 +1326,7 @@
         }
 
         .acts-rules-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .acts-rules-card-header {
@@ -1338,7 +1334,7 @@
         }
 
         .acts-rules-card-header h3 {
-            font-size: 32px;
+            font-size: 20px;
         }
 
         .acts-rules-card-body {
@@ -1357,7 +1353,7 @@
         }
 
         .acts-rules-header h2 {
-            font-size: 40px;
+            font-size: 20px;
         }
 
         .acts-rules-header p {
@@ -1369,7 +1365,7 @@
         }
 
         .acts-rules-card-header h3 {
-            font-size: 32px;
+            font-size: 18px;
         }
 
         .acts-rules-card-body {
@@ -1501,11 +1497,11 @@
     }
 
     .legal-knowledge-categories-header h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 15px 0;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .legal-knowledge-categories-header p {
@@ -1552,11 +1548,10 @@
     }
 
     .legal-knowledge-category-card h3 {
-        font-size: 32px;
+        font-size: 15px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 10px 0;
-        font-family: 'Playfair Display', serif;
     }
 
     .legal-knowledge-category-card span {
@@ -1571,7 +1566,7 @@
         }
 
         .legal-knowledge-categories-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
     }
 </style>
@@ -1643,11 +1638,11 @@
     }
 
     .legal-knowledge-inquiry-text h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         margin: 0 0 20px 0;
         line-height: 1.3;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
         color: #0a141c;
     }
 
@@ -1741,7 +1736,7 @@
     }
 
     .legal-knowledge-inquiry-btn:hover {
-        background-color: #ff5722;
+        background-color: #e64a19;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
@@ -1753,7 +1748,7 @@
         }
 
         .legal-knowledge-inquiry-text h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .legal-knowledge-inquiry-text p {
@@ -1767,7 +1762,7 @@
         }
 
         .legal-knowledge-inquiry-text h2 {
-            font-size: 40px;
+            font-size: 20px;
         }
 
         .legal-knowledge-inquiry-text p {
@@ -1843,11 +1838,11 @@
     }
 
     .exams-header h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 15px 0;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .exams-header p {
@@ -1882,7 +1877,7 @@
     }
 
     .exam-card h3 {
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 10px 0;
@@ -1897,11 +1892,11 @@
 
     @media (max-width: 768px) {
         .exams-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .exam-card h3 {
-            font-size: 24px;
+            font-size: 18px;
         }
     }
 </style>
@@ -1967,11 +1962,11 @@
     }
 
     .enquiry-text h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         margin: 0 0 20px 0;
         line-height: 1.3;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
         color: #0a141c;
     }
 
@@ -2031,7 +2026,7 @@
     }
 
     .enquiry-btn:hover {
-        background-color: #ff5722;
+        background-color: #e64a19;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
@@ -2043,7 +2038,7 @@
         }
 
         .enquiry-text h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .enquiry-text p {
@@ -2111,7 +2106,7 @@
     }
 
     .why-header h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 15px 0;
@@ -2144,7 +2139,7 @@
     }
 
     .why-card h3 {
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 10px 0;
@@ -2169,7 +2164,7 @@
 
     @media (max-width: 768px) {
         .why-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .why-grid {
@@ -2239,11 +2234,11 @@
     }
 
     .how-it-works-header h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 15px 0;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .how-it-works-header p {
@@ -2279,7 +2274,7 @@
     }
 
     .how-it-works-step h3 {
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 10px 0;
@@ -2299,7 +2294,7 @@
         }
 
         .how-it-works-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
     }
 
@@ -2369,11 +2364,11 @@
     }
 
     .legal-knowledge-header h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 15px 0;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .legal-knowledge-header p {
@@ -2404,7 +2399,7 @@
     .article-image {
         width: 100%;
         height: 200px;
-        background: linear-gradient(135deg, #ff5722 0%, #ff5722 100%);
+        background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2424,7 +2419,7 @@
     }
 
     .article-body h3 {
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 10px 0;
@@ -2451,7 +2446,7 @@
 
     .article-link:hover {
         gap: 12px;
-        color: #ff5722;
+        color: #e64a19;
     }
 
     .legal-knowledge-view-all {
@@ -2471,14 +2466,14 @@
     }
 
     .legal-knowledge-btn:hover {
-        background-color: #ff5722;
+        background-color: #e64a19;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
 
     @media (max-width: 768px) {
         .legal-knowledge-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .article-card {
@@ -2547,7 +2542,7 @@
 
     .gallery-header .gallery-eyebrow {
         color: #ff5722;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         font-size: 16px;
         font-weight: 500;
         line-height: 16px;
@@ -2559,7 +2554,7 @@
     }
 
     .gallery-header h2 {
-        font-size: 40px;
+        font-size: 44px;
         font-weight: 600;
         color: #0a141c;
         margin: 0 0 15px 0;
@@ -2570,7 +2565,7 @@
     .gallery-header p {
         font-size: 16px;
         color: var(--Paragraph-Color, #515456);
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         margin: 0;
     }
 
@@ -2599,7 +2594,7 @@
     .gallery-image {
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #ff5722 0%, #ff5722 100%);
+        background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2652,14 +2647,14 @@
     }
 
     .gallery-btn:hover {
-        background-color: #ff5722;
+        background-color: #e64a19;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
 
     @media (max-width: 768px) {
         .gallery-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .gallery-grid {
@@ -2729,7 +2724,7 @@
     }
 
     .gallery-section .group-title strong {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Outfit', sans-serif;
         color: #0a141c;
     }
 
@@ -2851,11 +2846,11 @@
     }
 
     .home-contact-header h2 {
-        font-size: 40px;
+        font-size: 32px;
         font-weight: 700;
         color: #1a1a1a;
         margin: 0 0 15px 0;
-        font-family: 'Playfair Display', serif;
+        font-family: 'Poppins', sans-serif;
     }
 
     .home-contact-header p {
@@ -3015,7 +3010,7 @@
     }
 
     .home-contact-form button:hover {
-        background-color: #ff5722;
+        background-color: #e64a19;
         transform: translateY(-2px);
     }
 
@@ -3031,7 +3026,7 @@
         }
 
         .home-contact-header h2 {
-            font-size: 40px;
+            font-size: 24px;
         }
 
         .home-contact-form-row {

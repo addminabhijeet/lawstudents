@@ -131,8 +131,8 @@ $user = \App\Models\User::first();
 
 .invoice-toolbar .printBTN:hover,
 .invoice-toolbar .file-download:hover{
-    background:#0052a3 !important;
-    border-color:#003d7a !important;
+    background:#ff5722 !important;
+    border-color:#ff5722 !important;
     transform:scale(1.05);
 }
 
