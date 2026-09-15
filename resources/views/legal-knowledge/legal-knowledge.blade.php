@@ -1,6 +1,86 @@
 @extends('layouts.landing', ['title' => 'Legal Knowledge - Law Students'])
 
 @section('content')
+    <!-- ===== HEADING STYLES FOR LEGAL KNOWLEDGE PAGE ======= -->
+    <style>
+        /* Heading styles to match about page EXACTLY */
+        h1 {
+            font-size: 60px !important;
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 500 !important;
+            line-height: 60px !important;
+        }
+
+        h2 {
+            font-size: 46px !important;
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 500 !important;
+            line-height: 1.3 !important;
+        }
+
+        h3 {
+            font-size: 40px !important;
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 500 !important;
+        }
+
+        /* Override legal-inquiry-heading class */
+        .legal-inquiry-heading {
+            font-size: 46px !important;
+            font-family: 'Playfair Display', serif !important;
+            font-weight: 500 !important;
+            line-height: 1.3 !important;
+        }
+
+        /* Protect form labels and buttons */
+        label {
+            font-size: revert !important;
+            font-family: revert !important;
+            font-weight: revert !important;
+        }
+
+        button, input, textarea, select {
+            font-size: revert !important;
+            font-family: revert !important;
+            font-weight: revert !important;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 48px !important;
+            }
+
+            h2 {
+                font-size: 36px !important;
+            }
+
+            h3 {
+                font-size: 32px !important;
+            }
+
+            .legal-inquiry-heading {
+                font-size: 36px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 36px !important;
+            }
+
+            h2 {
+                font-size: 28px !important;
+            }
+
+            h3 {
+                font-size: 24px !important;
+            }
+
+            .legal-inquiry-heading {
+                font-size: 28px !important;
+            }
+        }
+    </style>
     <!-- ===== WELCOME STARTS======= -->
     <div class="welcome-inner-section-area"
         style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
