@@ -1,6 +1,57 @@
 @extends('layouts.landing', ['title' => 'Acts'])
 
 @section('content')
+<!-- ===== HEADING STYLES FOR ACTS PAGE ======= -->
+<style>
+    /* Heading styles to match about page EXACTLY */
+    h1 {
+        font-size: 60px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+    }
+</style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"
     style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
@@ -189,6 +240,40 @@
 </div>
 
 <style>
+    /* Dynamic content text styling to match about page */
+    .act-category > div:first-child {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    .accordion-content > div > div:first-child {
+        font-size: 36px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    [data-act-id] > div:first-child {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Protect button and link text from heading styles */
+    a, button, input, span, p {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    /* Restore View/Download button text */
+    a[href*="storage"], a[style*="color:green"] {
+        font-size: 12px !important;
+        color: inherit !important;
+        font-weight: 400 !important;
+        font-family: inherit !important;
+    }
+
     .act-highlight {
         border: 2px solid #28a745 !important;
         background: #e6ffe6;
