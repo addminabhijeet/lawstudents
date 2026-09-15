@@ -1620,8 +1620,8 @@
 <style>
     .legal-knowledge-inquiry-section {
         padding: 60px 20px;
-        background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%);
-        color: white;
+        background-color: #f5f5f5;
+        color: #1a1a1a;
     }
 
     .legal-knowledge-inquiry-container {
@@ -1642,13 +1642,15 @@
         margin: 0 0 20px 0;
         line-height: 1.3;
         font-family: 'Poppins', sans-serif;
+        color: #0a141c;
     }
 
     .legal-knowledge-inquiry-text p {
         font-size: 16px;
         margin: 0 0 30px 0;
         line-height: 1.6;
-        opacity: 0.95;
+        opacity: 1;
+        color: #515456;
     }
 
     .legal-knowledge-inquiry-form {
@@ -1673,7 +1675,7 @@
     .legal-knowledge-inquiry-form textarea:focus,
     .legal-knowledge-inquiry-form select:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3);
+        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.2);
     }
 
     /* The theme's JS replaces the real <select> above with its own "nice-select"
@@ -1698,8 +1700,9 @@
     .legal-knowledge-inquiry-upload-label {
         font-size: 13px;
         font-weight: 600;
-        opacity: 0.9;
+        opacity: 1;
         margin: -5px 0 -8px 0;
+        color: #1a1a1a;
     }
 
     .legal-knowledge-inquiry-form input[type="file"] {
@@ -1711,15 +1714,16 @@
         max-width: 1000px;
         margin: 35px auto 0 auto;
         padding-top: 25px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: 1px solid #ddd;
         font-size: 12.5px;
         line-height: 1.7;
-        opacity: 0.8;
+        opacity: 1;
+        color: #666;
     }
 
     .legal-knowledge-inquiry-btn {
-        background-color: white;
-        color: #b8410f;
+        background-color: #ff5722;
+        color: white;
         padding: 12px 30px;
         border: none;
         border-radius: 5px;
@@ -1731,9 +1735,9 @@
     }
 
     .legal-knowledge-inquiry-btn:hover {
-        background-color: #f1ece2;
+        background-color: #e64a19;
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
 
     @media (max-width: 768px) {
@@ -1940,8 +1944,8 @@
 <style>
     .enquiry-section {
         padding: 60px 20px;
-        background-color: #ff5722;
-        color: white;
+        background-color: #f5f5f5;
+        color: #1a1a1a;
     }
 
     .enquiry-container {
@@ -1962,13 +1966,15 @@
         margin: 0 0 20px 0;
         line-height: 1.3;
         font-family: 'Poppins', sans-serif;
+        color: #0a141c;
     }
 
     .enquiry-text p {
         font-size: 16px;
         margin: 0 0 30px 0;
         line-height: 1.6;
-        opacity: 0.95;
+        opacity: 1;
+        color: #515456;
     }
 
     .enquiry-form {
@@ -1997,7 +2003,7 @@
     .enquiry-form input:focus,
     .enquiry-form textarea:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.2);
     }
 
     .enquiry-form textarea {
@@ -2006,8 +2012,8 @@
     }
 
     .enquiry-btn {
-        background-color: #1a1a1a;
-        color: #ff5722;
+        background-color: #ff5722;
+        color: white;
         padding: 12px 30px;
         border: none;
         border-radius: 5px;
@@ -2019,8 +2025,9 @@
     }
 
     .enquiry-btn:hover {
-        background-color: #333;
+        background-color: #e64a19;
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
     }
 
     @media (max-width: 768px) {
