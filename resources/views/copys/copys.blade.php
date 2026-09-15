@@ -2,7 +2,205 @@
 
 @section('content')
 
+<!-- ===== HEADING STYLES FOR FREE NOTES PAGE ======= -->
 <style>
+    /* Heading styles to match about page EXACTLY */
+    h1 {
+        font-size: 60px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    h4 {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Override inline h3 styles for Find Free Notes heading */
+    h3[style*="font-size:18px"] {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Override inline h4 styles for notes card titles */
+    h4[style*="font-size:16px"] {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Increase description and info text sizes - all dynamic content */
+    .copy-category div[style*="font-size:13px"],
+    .copy-category p[style*="font-size:13px"],
+    .copy-category span[style*="font-size:13px"],
+    .accordion-content div[style*="font-size:13px"],
+    .accordion-content p[style*="font-size:13px"],
+    .accordion-content span[style*="font-size:13px"],
+    [data-copy-id] div[style*="font-size:13px"],
+    [data-copy-id] p[style*="font-size:13px"],
+    [data-copy-id] span[style*="font-size:13px"] {
+        font-size: 15px !important;
+        margin-bottom: 12px !important;
+        font-family: 'Playfair Display', serif !important;
+    }
+
+    /* Handle other common dynamic font sizes */
+    .copy-category div[style*="font-size:14px"],
+    .copy-category p[style*="font-size:14px"],
+    .copy-category span[style*="font-size:14px"],
+    .accordion-content div[style*="font-size:14px"],
+    .accordion-content p[style*="font-size:14px"],
+    .accordion-content span[style*="font-size:14px"] {
+        font-size: 16px !important;
+        font-family: 'Playfair Display', serif !important;
+    }
+
+    /* Handle 15px dynamic content */
+    .copy-category div[style*="font-size:15px"],
+    .copy-category p[style*="font-size:15px"],
+    .copy-category span[style*="font-size:15px"],
+    .accordion-content div[style*="font-size:15px"],
+    .accordion-content p[style*="font-size:15px"],
+    .accordion-content span[style*="font-size:15px"] {
+        font-size: 17px !important;
+        font-family: 'Playfair Display', serif !important;
+    }
+
+    /* Protect form labels and buttons */
+    label {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    button, input, textarea, select {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+
+        h4 {
+            font-size: 24px !important;
+        }
+
+        h3[style*="font-size:18px"] {
+            font-size: 32px !important;
+        }
+
+        h4[style*="font-size:16px"] {
+            font-size: 24px !important;
+        }
+
+        .copy-category div[style*="font-size:13px"],
+        .copy-category p[style*="font-size:13px"],
+        .copy-category span[style*="font-size:13px"],
+        .accordion-content div[style*="font-size:13px"],
+        .accordion-content p[style*="font-size:13px"],
+        .accordion-content span[style*="font-size:13px"] {
+            font-size: 14px !important;
+        }
+
+        .copy-category div[style*="font-size:14px"],
+        .copy-category p[style*="font-size:14px"],
+        .copy-category span[style*="font-size:14px"],
+        .accordion-content div[style*="font-size:14px"],
+        .accordion-content p[style*="font-size:14px"],
+        .accordion-content span[style*="font-size:14px"] {
+            font-size: 15px !important;
+        }
+
+        .copy-category div[style*="font-size:15px"],
+        .copy-category p[style*="font-size:15px"],
+        .copy-category span[style*="font-size:15px"],
+        .accordion-content div[style*="font-size:15px"],
+        .accordion-content p[style*="font-size:15px"],
+        .accordion-content span[style*="font-size:15px"] {
+            font-size: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+
+        h4 {
+            font-size: 20px !important;
+        }
+
+        h3[style*="font-size:18px"] {
+            font-size: 24px !important;
+        }
+
+        h4[style*="font-size:16px"] {
+            font-size: 20px !important;
+        }
+
+        .copy-category div[style*="font-size:13px"],
+        .copy-category p[style*="font-size:13px"],
+        .copy-category span[style*="font-size:13px"],
+        .accordion-content div[style*="font-size:13px"],
+        .accordion-content p[style*="font-size:13px"],
+        .accordion-content span[style*="font-size:13px"] {
+            font-size: 13px !important;
+        }
+
+        .copy-category div[style*="font-size:14px"],
+        .copy-category p[style*="font-size:14px"],
+        .copy-category span[style*="font-size:14px"],
+        .accordion-content div[style*="font-size:14px"],
+        .accordion-content p[style*="font-size:14px"],
+        .accordion-content span[style*="font-size:14px"] {
+            font-size: 14px !important;
+        }
+
+        .copy-category div[style*="font-size:15px"],
+        .copy-category p[style*="font-size:15px"],
+        .copy-category span[style*="font-size:15px"],
+        .accordion-content div[style*="font-size:15px"],
+        .accordion-content p[style*="font-size:15px"],
+        .accordion-content span[style*="font-size:15px"] {
+            font-size: 15px !important;
+        }
+    }
+
     .pdf-protected-viewer {
         position: relative;
         height: 600px;

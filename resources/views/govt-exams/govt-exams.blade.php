@@ -1,6 +1,259 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
+<!-- ===== HEADING STYLES FOR GOVT EXAMS PAGE ======= -->
+<style>
+    /* Heading styles to match about page EXACTLY */
+    h1 {
+        font-size: 60px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    h4 {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Override inline h3 styles for Find Your Exam heading */
+    h3[style*="font-size:18px"] {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Override inline h4 styles for exam card titles */
+    h4[style*="font-size:16px"] {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Increase exam card size to accommodate larger text */
+    .exams-container {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+        gap: 35px !important;
+    }
+
+    .exam-card-item {
+        padding: 0 !important;
+    }
+
+    .exam-card-item > div:first-child {
+        height: 240px !important;
+    }
+
+    .exam-card-item > div:last-child {
+        padding: 28px 24px !important;
+    }
+
+    .exam-card-item h4 {
+        margin: 0 0 16px 0 !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Increase description and info text sizes - all dynamic content */
+    .exam-card-item div[style*="font-size:13px"],
+    .exam-card-item p[style*="font-size:13px"],
+    .exam-card-item span[style*="font-size:13px"],
+    .exam-category div[style*="font-size:13px"],
+    .exam-category p[style*="font-size:13px"],
+    .exam-category span[style*="font-size:13px"],
+    [data-exam-id] div[style*="font-size:13px"],
+    [data-exam-id] p[style*="font-size:13px"],
+    [data-exam-id] span[style*="font-size:13px"] {
+        font-size: 15px !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Handle other common dynamic font sizes */
+    .exam-card-item div[style*="font-size:14px"],
+    .exam-card-item p[style*="font-size:14px"],
+    .exam-card-item span[style*="font-size:14px"],
+    .exam-category div[style*="font-size:14px"],
+    .exam-category p[style*="font-size:14px"],
+    .exam-category span[style*="font-size:14px"] {
+        font-size: 16px !important;
+    }
+
+    /* Handle 15px dynamic content */
+    .exam-card-item div[style*="font-size:15px"],
+    .exam-card-item p[style*="font-size:15px"],
+    .exam-card-item span[style*="font-size:15px"],
+    .exam-category div[style*="font-size:15px"],
+    .exam-category p[style*="font-size:15px"],
+    .exam-category span[style*="font-size:15px"] {
+        font-size: 17px !important;
+    }
+
+    /* Protect form labels and buttons */
+    label {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    button, input, textarea, select {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+
+        h4 {
+            font-size: 24px !important;
+        }
+
+        h3[style*="font-size:18px"] {
+            font-size: 32px !important;
+        }
+
+        h4[style*="font-size:16px"] {
+            font-size: 24px !important;
+        }
+
+        .exam-card-item h4 {
+            font-size: 24px !important;
+        }
+
+        .exams-container {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+            gap: 25px !important;
+        }
+
+        .exam-card-item > div:first-child {
+            height: 200px !important;
+        }
+
+        .exam-card-item > div:last-child {
+            padding: 20px 18px !important;
+        }
+
+        .exam-card-item div[style*="font-size:13px"],
+        .exam-card-item p[style*="font-size:13px"],
+        .exam-card-item span[style*="font-size:13px"],
+        .exam-category div[style*="font-size:13px"],
+        .exam-category p[style*="font-size:13px"],
+        .exam-category span[style*="font-size:13px"] {
+            font-size: 14px !important;
+        }
+
+        .exam-card-item div[style*="font-size:14px"],
+        .exam-card-item p[style*="font-size:14px"],
+        .exam-card-item span[style*="font-size:14px"],
+        .exam-category div[style*="font-size:14px"],
+        .exam-category p[style*="font-size:14px"],
+        .exam-category span[style*="font-size:14px"] {
+            font-size: 15px !important;
+        }
+
+        .exam-card-item div[style*="font-size:15px"],
+        .exam-card-item p[style*="font-size:15px"],
+        .exam-card-item span[style*="font-size:15px"],
+        .exam-category div[style*="font-size:15px"],
+        .exam-category p[style*="font-size:15px"],
+        .exam-category span[style*="font-size:15px"] {
+            font-size: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+
+        h4 {
+            font-size: 20px !important;
+        }
+
+        h3[style*="font-size:18px"] {
+            font-size: 24px !important;
+        }
+
+        h4[style*="font-size:16px"] {
+            font-size: 20px !important;
+        }
+
+        .exam-card-item h4 {
+            font-size: 20px !important;
+        }
+
+        .exams-container {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+
+        .exam-card-item > div:first-child {
+            height: 160px !important;
+        }
+
+        .exam-card-item > div:last-child {
+            padding: 16px 14px !important;
+        }
+
+        .exam-card-item div[style*="font-size:13px"],
+        .exam-card-item p[style*="font-size:13px"],
+        .exam-card-item span[style*="font-size:13px"],
+        .exam-category div[style*="font-size:13px"],
+        .exam-category p[style*="font-size:13px"],
+        .exam-category span[style*="font-size:13px"] {
+            font-size: 13px !important;
+        }
+
+        .exam-card-item div[style*="font-size:14px"],
+        .exam-card-item p[style*="font-size:14px"],
+        .exam-card-item span[style*="font-size:14px"],
+        .exam-category div[style*="font-size:14px"],
+        .exam-category p[style*="font-size:14px"],
+        .exam-category span[style*="font-size:14px"] {
+            font-size: 14px !important;
+        }
+
+        .exam-card-item div[style*="font-size:15px"],
+        .exam-card-item p[style*="font-size:15px"],
+        .exam-card-item span[style*="font-size:15px"],
+        .exam-category div[style*="font-size:15px"],
+        .exam-category p[style*="font-size:15px"],
+        .exam-category span[style*="font-size:15px"] {
+            font-size: 15px !important;
+        }
+    }
+</style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"
     style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">

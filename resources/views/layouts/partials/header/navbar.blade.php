@@ -1,5 +1,215 @@
 <!--===== RESPONSIVE HEADER STYLES (IMPROVED) =======-->
 <style>
+    /* ===== HEADING STYLES FOR NAVBAR TO MATCH ABOUT PAGE ===== */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    h1 {
+        font-size: 60px !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+    }
+
+    h4 {
+        font-size: 32px !important;
+    }
+
+    h5 {
+        font-size: 24px !important;
+    }
+
+    h6 {
+        font-size: 20px !important;
+    }
+
+    /* ===== NAVBAR CONTAINER & CARD SIZE INCREASES ===== */
+    /* Increase navbar height for larger text */
+    .header-elements {
+        min-height: 85px !important;
+    }
+
+    /* Increase top header area */
+    .header-top-border {
+        padding: 20px 15px !important;
+    }
+
+    /* Increase logo size for navbar consistency */
+    .site-logo {
+        width: 180px !important;
+        height: 65px !important;
+    }
+
+    /* Increase menu item sizing */
+    .main-menu-ex.homepage6 ul li a {
+        font-size: 13px !important;
+        padding: 5px 6px !important;
+    }
+
+    /* Increase dropdown/submenu items */
+    .navbar-nav .nav-item .dropdown-menu {
+        min-width: 250px !important;
+    }
+
+    .navbar-nav .dropdown-menu .dropdown-item {
+        font-size: 14px !important;
+        padding: 12px 20px !important;
+    }
+
+    /* Increase container padding */
+    .navbar-container {
+        padding: 0 25px !important;
+    }
+
+    @media (max-width: 1399px) {
+        .header-elements {
+            min-height: 80px !important;
+        }
+
+        .site-logo {
+            width: 160px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 12px !important;
+            padding: 4px 5px !important;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .header-elements {
+            min-height: 78px !important;
+        }
+
+        .site-logo {
+            width: 150px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 12px !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .header-elements {
+            min-height: 76px !important;
+        }
+
+        .site-logo {
+            width: 140px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 11px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-elements {
+            min-height: 70px !important;
+        }
+
+        .site-logo {
+            width: 130px !important;
+            height: 50px !important;
+        }
+
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+
+        h4 {
+            font-size: 24px !important;
+        }
+
+        .header-top-border {
+            padding: 16px 20px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 10px !important;
+            padding: 4px 4px !important;
+        }
+
+        .navbar-nav .dropdown-menu .dropdown-item {
+            font-size: 13px !important;
+            padding: 10px 16px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header-elements {
+            min-height: 65px !important;
+        }
+
+        .site-logo {
+            width: 110px !important;
+            height: 45px !important;
+        }
+
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+
+        h4 {
+            font-size: 20px !important;
+        }
+
+        .header-top-border {
+            padding: 14px 15px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 9px !important;
+            padding: 3px 3px !important;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .header-elements {
+            min-height: 90px !important;
+        }
+
+        .site-logo {
+            width: 200px !important;
+            height: 70px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px !important;
+            padding: 5px 7px !important;
+        }
+
+        .header-top-border {
+            padding: 22px 50px !important;
+        }
+    }
+
     /* ===== IMPROVED LOGO SIZING (Single Responsive Scale) ===== */
     .site-logo {
         width: 150px !important;

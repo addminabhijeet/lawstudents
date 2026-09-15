@@ -58,6 +58,19 @@
         font-weight: 400 !important;
     }
 
+    /* Protect form labels and buttons */
+    label {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    button, input, textarea, select {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
     @media (max-width: 768px) {
         h1 {
             font-size: 48px !important;

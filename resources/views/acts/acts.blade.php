@@ -24,6 +24,63 @@
         font-weight: 500 !important;
     }
 
+    /* Override inline h3 styles for Find Your Act heading */
+    h3[style*="font-size:18px"] {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Increase description and info text sizes - all dynamic content */
+    .act-category div[style*="font-size:13px"],
+    .act-category p[style*="font-size:13px"],
+    .act-category span[style*="font-size:13px"],
+    .accordion-content div[style*="font-size:13px"],
+    .accordion-content p[style*="font-size:13px"],
+    .accordion-content span[style*="font-size:13px"],
+    [data-act-id] div[style*="font-size:13px"],
+    [data-act-id] p[style*="font-size:13px"],
+    [data-act-id] span[style*="font-size:13px"] {
+        font-size: 15px !important;
+        margin-bottom: 12px !important;
+        font-family: 'Playfair Display', serif !important;
+    }
+
+    /* Handle other common dynamic font sizes */
+    .act-category div[style*="font-size:14px"],
+    .act-category p[style*="font-size:14px"],
+    .act-category span[style*="font-size:14px"],
+    .accordion-content div[style*="font-size:14px"],
+    .accordion-content p[style*="font-size:14px"],
+    .accordion-content span[style*="font-size:14px"] {
+        font-size: 16px !important;
+        font-family: 'Playfair Display', serif !important;
+    }
+
+    /* Handle 15px dynamic content */
+    .act-category div[style*="font-size:15px"],
+    .act-category p[style*="font-size:15px"],
+    .act-category span[style*="font-size:15px"],
+    .accordion-content div[style*="font-size:15px"],
+    .accordion-content p[style*="font-size:15px"],
+    .accordion-content span[style*="font-size:15px"] {
+        font-size: 17px !important;
+        font-family: 'Playfair Display', serif !important;
+    }
+
+    /* Protect form labels and buttons */
+    label {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    button, input, textarea, select {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
     @media (max-width: 768px) {
         h1 {
             font-size: 48px !important;
@@ -35,6 +92,37 @@
 
         h3 {
             font-size: 32px !important;
+        }
+
+        h3[style*="font-size:18px"] {
+            font-size: 32px !important;
+        }
+
+        .act-category div[style*="font-size:13px"],
+        .act-category p[style*="font-size:13px"],
+        .act-category span[style*="font-size:13px"],
+        .accordion-content div[style*="font-size:13px"],
+        .accordion-content p[style*="font-size:13px"],
+        .accordion-content span[style*="font-size:13px"] {
+            font-size: 14px !important;
+        }
+
+        .act-category div[style*="font-size:14px"],
+        .act-category p[style*="font-size:14px"],
+        .act-category span[style*="font-size:14px"],
+        .accordion-content div[style*="font-size:14px"],
+        .accordion-content p[style*="font-size:14px"],
+        .accordion-content span[style*="font-size:14px"] {
+            font-size: 15px !important;
+        }
+
+        .act-category div[style*="font-size:15px"],
+        .act-category p[style*="font-size:15px"],
+        .act-category span[style*="font-size:15px"],
+        .accordion-content div[style*="font-size:15px"],
+        .accordion-content p[style*="font-size:15px"],
+        .accordion-content span[style*="font-size:15px"] {
+            font-size: 16px !important;
         }
     }
 
@@ -49,6 +137,37 @@
 
         h3 {
             font-size: 24px !important;
+        }
+
+        h3[style*="font-size:18px"] {
+            font-size: 24px !important;
+        }
+
+        .act-category div[style*="font-size:13px"],
+        .act-category p[style*="font-size:13px"],
+        .act-category span[style*="font-size:13px"],
+        .accordion-content div[style*="font-size:13px"],
+        .accordion-content p[style*="font-size:13px"],
+        .accordion-content span[style*="font-size:13px"] {
+            font-size: 13px !important;
+        }
+
+        .act-category div[style*="font-size:14px"],
+        .act-category p[style*="font-size:14px"],
+        .act-category span[style*="font-size:14px"],
+        .accordion-content div[style*="font-size:14px"],
+        .accordion-content p[style*="font-size:14px"],
+        .accordion-content span[style*="font-size:14px"] {
+            font-size: 14px !important;
+        }
+
+        .act-category div[style*="font-size:15px"],
+        .act-category p[style*="font-size:15px"],
+        .act-category span[style*="font-size:15px"],
+        .accordion-content div[style*="font-size:15px"],
+        .accordion-content p[style*="font-size:15px"],
+        .accordion-content span[style*="font-size:15px"] {
+            font-size: 15px !important;
         }
     }
 </style>
