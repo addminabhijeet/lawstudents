@@ -1,6 +1,115 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
+<!-- ===== HEADING STYLES FOR RULES PAGE ======= -->
+<style>
+    /* Heading styles to match about page EXACTLY */
+    h1 {
+        font-size: 60px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Category heading - direct text in div */
+    .rule-category > div:nth-child(1) {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Subcategory headings - inside accordion divs */
+    .rule-category .accordion-content > div > div:first-child {
+        font-size: 36px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Rule descriptions */
+    [data-rule-id] > div:first-child {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Protect View/Download button text specifically */
+    a[href*="storage"] {
+        font-size: 12px !important;
+        font-family: inherit !important;
+        font-weight: 400 !important;
+    }
+
+    a[href*="google.login"] {
+        font-size: 12px !important;
+        font-family: inherit !important;
+        font-weight: 400 !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+
+        .rule-category > div:nth-child(1) {
+            font-size: 32px !important;
+        }
+
+        .rule-category .accordion-content > div > div:first-child {
+            font-size: 28px !important;
+        }
+
+        [data-rule-id] > div:first-child {
+            font-size: 24px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+
+        .rule-category > div:nth-child(1) {
+            font-size: 24px !important;
+        }
+
+        .rule-category .accordion-content > div > div:first-child {
+            font-size: 20px !important;
+        }
+
+        [data-rule-id] > div:first-child {
+            font-size: 18px !important;
+        }
+    }
+</style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"
     style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
