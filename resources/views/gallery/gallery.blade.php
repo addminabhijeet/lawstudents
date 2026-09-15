@@ -1,6 +1,163 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
+<!-- ===== HEADING STYLES FOR GALLERY PAGE ======= -->
+<style>
+    /* Heading styles to match about page EXACTLY */
+    h1 {
+        font-size: 60px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    h4 {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Increase gallery card size */
+    .group-card {
+        transform: scale(1.1) !important;
+    }
+
+    .image-stack {
+        height: 280px !important;
+    }
+
+    .stack-img {
+        height: 280px !important;
+    }
+
+    .group-title {
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .overlay span {
+        font-size: 14px !important;
+    }
+
+    /* Increase gallery container spacing */
+    .team2-section-area.team-inner {
+        padding: 60px 20px !important;
+    }
+
+    /* Increase gallery grid gaps */
+    .row.g-4 {
+        gap: 30px !important;
+        justify-content: center !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+
+    /* Center gallery columns */
+    .row.g-4 > div {
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .row.g-4 > div .group-card {
+        width: 100% !important;
+    }
+
+    /* Center gallery container */
+    .team2-section-area.team-inner .container {
+        text-align: center !important;
+    }
+
+    /* Protect form labels and buttons */
+    label {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    button, input, textarea, select {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+
+        h4 {
+            font-size: 24px !important;
+        }
+
+        .group-card {
+            transform: scale(1) !important;
+        }
+
+        .image-stack {
+            height: 220px !important;
+        }
+
+        .stack-img {
+            height: 220px !important;
+        }
+
+        .team2-section-area.team-inner {
+            padding: 50px 15px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+
+        h4 {
+            font-size: 20px !important;
+        }
+
+        .image-stack {
+            height: 180px !important;
+        }
+
+        .stack-img {
+            height: 180px !important;
+        }
+
+        .team2-section-area.team-inner {
+            padding: 40px 10px !important;
+        }
+    }
+</style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"
     style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">

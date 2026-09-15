@@ -1,6 +1,287 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
+<!-- ===== HEADING STYLES FOR CONTACT US PAGE ======= -->
+<style>
+    /* Heading styles to match about page EXACTLY */
+    h1 {
+        font-size: 60px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    h4 {
+        font-size: 32px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* Increase contact form container */
+    .contact-submit-area {
+        padding: 40px !important;
+    }
+
+    .contact-submit-area h3 {
+        margin-bottom: 20px !important;
+    }
+
+    .contact-submit-area p {
+        font-size: 16px !important;
+        margin-bottom: 25px !important;
+    }
+
+    /* Increase contact input fields */
+    .contact-inner input,
+    .contact-inner textarea {
+        padding: 16px 18px !important;
+        font-size: 15px !important;
+        min-height: 50px !important;
+    }
+
+    .contact-inner textarea {
+        min-height: 160px !important;
+    }
+
+    /* Increase contact box size */
+    .contact-box-area {
+        padding: 30px !important;
+        min-height: 180px !important;
+    }
+
+    .contact-widget-area {
+        text-align: center;
+    }
+
+    .clock-img {
+        margin-bottom: 15px !important;
+    }
+
+    .clock-img img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .contact-widget-area .content h4 {
+        font-size: 24px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .contact-widget-area .content a {
+        font-size: 14px !important;
+    }
+
+    /* Increase contact content area */
+    .contact-content-area {
+        padding: 40px 30px !important;
+    }
+
+    .contact-content-area h2 {
+        margin-bottom: 20px !important;
+    }
+
+    .contact-content-area p {
+        font-size: 16px !important;
+        line-height: 1.8 !important;
+        margin-bottom: 18px !important;
+    }
+
+    .welcome-btn3 {
+        font-size: 15px !important;
+        padding: 14px 30px !important;
+        margin-top: 15px !important;
+    }
+
+    /* Increase contact section spacing */
+    .contact1-section-area {
+        padding: 60px 20px !important;
+    }
+
+    .contact-auhtor-area .row {
+        gap: 40px !important;
+    }
+
+    /* Protect form labels and buttons */
+    label {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    button, input, textarea, select {
+        font-size: revert !important;
+        font-family: revert !important;
+        font-weight: revert !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+
+        h4 {
+            font-size: 24px !important;
+        }
+
+        .contact-submit-area {
+            padding: 30px !important;
+        }
+
+        .contact-submit-area p {
+            font-size: 14px !important;
+        }
+
+        .contact-inner input,
+        .contact-inner textarea {
+            padding: 14px 16px !important;
+            font-size: 14px !important;
+        }
+
+        .contact-box-area {
+            padding: 25px !important;
+            min-height: 160px !important;
+        }
+
+        .clock-img img {
+            width: 45px !important;
+            height: 45px !important;
+        }
+
+        .contact-widget-area .content h4 {
+            font-size: 20px !important;
+        }
+
+        .contact-content-area {
+            padding: 30px 20px !important;
+            margin-top: 30px !important;
+        }
+
+        .contact-content-area p {
+            font-size: 14px !important;
+        }
+
+        .contact1-section-area {
+            padding: 50px 15px !important;
+        }
+
+        .contact-auhtor-area .row {
+            gap: 30px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+
+        h4 {
+            font-size: 20px !important;
+        }
+
+        .contact-submit-area {
+            padding: 20px !important;
+        }
+
+        .contact-submit-area h3 {
+            font-size: 28px !important;
+            margin-bottom: 15px !important;
+        }
+
+        .contact-submit-area p {
+            font-size: 13px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .contact-inner input,
+        .contact-inner textarea {
+            padding: 12px 14px !important;
+            font-size: 13px !important;
+            min-height: 45px !important;
+        }
+
+        .contact-inner textarea {
+            min-height: 140px !important;
+        }
+
+        .contact-box-area {
+            padding: 20px !important;
+            min-height: 140px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .clock-img img {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .contact-widget-area .content h4 {
+            font-size: 18px !important;
+            margin-bottom: 10px !important;
+        }
+
+        .contact-widget-area .content a {
+            font-size: 13px !important;
+        }
+
+        .contact-content-area {
+            padding: 20px 15px !important;
+            margin-top: 25px !important;
+        }
+
+        .contact-content-area h2 {
+            font-size: 28px !important;
+            margin-bottom: 15px !important;
+        }
+
+        .contact-content-area p {
+            font-size: 13px !important;
+            line-height: 1.6 !important;
+            margin-bottom: 15px !important;
+        }
+
+        .welcome-btn3 {
+            font-size: 13px !important;
+            padding: 12px 24px !important;
+        }
+
+        .contact1-section-area {
+            padding: 40px 10px !important;
+        }
+
+        .contact-auhtor-area .row {
+            gap: 20px !important;
+        }
+    }
+</style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"
     style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
