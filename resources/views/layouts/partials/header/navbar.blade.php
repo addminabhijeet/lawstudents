@@ -862,9 +862,9 @@
                                             <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                                         </ul>
                                     </li>
-                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.legal-knowledge') }}" style="white-space: nowrap;">Learning Hub</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.legal-knowledge') }}" style="white-space: nowrap;">Legal Knowledge</a></li>
                                     <li style="list-style: none; flex-shrink: 0;" class="dropdown-menu-item">
-                                        <a href="#" style="white-space: nowrap;">All Programs</a>
+                                        <a href="#" style="white-space: nowrap;">Course & Notes</a>
                                         <ul class="dropdown-submenu">
                                             <li><a href="{{ route('frontend.course') }}">Course</a></li>
                                             <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
@@ -1132,8 +1132,8 @@
                     <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
                 </ul>
             </li>
-            <li><a href="{{ route('frontend.legal-knowledge') }}">Learning Hub</a></li>
-            <li><a href="#">All Programs</a>
+            <li><a href="{{ route('frontend.legal-knowledge') }}">Legal Knowledge</a></li>
+            <li><a href="#">Course & Notes</a>
                 <ul class="sub-menu">
                     <li><a href="{{ route('frontend.course') }}">Course</a></li>
                     <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
