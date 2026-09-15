@@ -624,10 +624,10 @@
             <a href="{{ route('frontend.course') }}" class="hero-btn hero-btn-primary">
                 Explore Courses
             </a>
-            <a href="{{ route('frontend.copys') }}" class="hero-btn hero-btn-secondary">
+            <a href="{{ route('frontend.copys') }}" class="hero-btn hero-btn-primary">
                 Free Notes
             </a>
-            <a href="{{ route('frontend.home') }}" class="hero-btn hero-btn-secondary">
+            <a href="{{ route('frontend.home') }}" class="hero-btn hero-btn-primary">
                 Legal Knowledge
             </a>
         </div>
@@ -1392,7 +1392,6 @@
             font-size: 11px;
         }
     }
-
 </style>
 
 <div class="acts-rules-section">
@@ -1580,23 +1579,23 @@
 
         <div class="legal-knowledge-categories-grid" data-aos="fade-up">
             @php
-                $legalKnowledgeIcons = [
-                    'Cheque Bounce Cases'   => 'fa-money-check-dollar',
-                    'Civil Law'             => 'fa-scale-balanced',
-                    'Criminal Law'          => 'fa-gavel',
-                    'Writs & Applications'  => 'fa-file-signature',
-                    'Company Law'           => 'fa-building',
-                    'Hindu Law'             => 'fa-landmark',
-                    'Muslim Law'            => 'fa-moon',
-                    'Labour Law'            => 'fa-hard-hat',
-                    'Cyber Security'        => 'fa-shield-halved',
-                    'Cyber Crime'           => 'fa-user-secret',
-                    'Legal Compliances'     => 'fa-clipboard-check',
-                    'Constitutional Law'    => 'fa-book-open',
-                    'Cyber Law'             => 'fa-laptop-code',
-                    'Consumer Awareness'    => 'fa-bullhorn',
-                ];
-                $legalKnowledgeCategories = \App\Models\LegalKnowledgeCategory::where('delete', 1)->get();
+            $legalKnowledgeIcons = [
+            'Cheque Bounce Cases' => 'fa-money-check-dollar',
+            'Civil Law' => 'fa-scale-balanced',
+            'Criminal Law' => 'fa-gavel',
+            'Writs & Applications' => 'fa-file-signature',
+            'Company Law' => 'fa-building',
+            'Hindu Law' => 'fa-landmark',
+            'Muslim Law' => 'fa-moon',
+            'Labour Law' => 'fa-hard-hat',
+            'Cyber Security' => 'fa-shield-halved',
+            'Cyber Crime' => 'fa-user-secret',
+            'Legal Compliances' => 'fa-clipboard-check',
+            'Constitutional Law' => 'fa-book-open',
+            'Cyber Law' => 'fa-laptop-code',
+            'Consumer Awareness' => 'fa-bullhorn',
+            ];
+            $legalKnowledgeCategories = \App\Models\LegalKnowledgeCategory::where('delete', 1)->get();
             @endphp
             @forelse($legalKnowledgeCategories as $lkCategory)
             <a href="{{ route('frontend.legalknowledgelibrary') }}" class="legal-knowledge-category-card" data-aos="fade-up">
@@ -2740,11 +2739,11 @@
         </div>
 
         @php
-            $homeGalleryGrouped = \App\Models\Gallery::active()->get()
-                ->groupBy(function ($item) {
-                    return $item->group_name ?: 'Ungrouped';
-                })
-                ->take(6);
+        $homeGalleryGrouped = \App\Models\Gallery::active()->get()
+        ->groupBy(function ($item) {
+        return $item->group_name ?: 'Ungrouped';
+        })
+        ->take(6);
         @endphp
 
         <div class="gallery-grid">
@@ -3029,10 +3028,10 @@
         </div>
 
         @php
-            $contactUser = \App\Models\User::first();
-            $contactEmail = !empty($contactUser->webemail) ? $contactUser->webemail : 'email@gmail.com';
-            $contactMobile = !empty($contactUser->mobile) ? $contactUser->mobile : '9876543210';
-            $contactAddress = !empty($contactUser->webaddress) ? $contactUser->webaddress : 'New Delhi, India';
+        $contactUser = \App\Models\User::first();
+        $contactEmail = !empty($contactUser->webemail) ? $contactUser->webemail : 'email@gmail.com';
+        $contactMobile = !empty($contactUser->mobile) ? $contactUser->mobile : '9876543210';
+        $contactAddress = !empty($contactUser->webaddress) ? $contactUser->webaddress : 'New Delhi, India';
         @endphp
 
         <div class="home-contact-grid">
