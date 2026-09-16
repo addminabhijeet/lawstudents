@@ -2723,18 +2723,20 @@
             $legalKnowledgeNotes = \App\Models\LegalKnowledgeNote::where('delete', 1)->latest()->limit(9)->get();
             @endphp
             @forelse($legalKnowledgeNotes as $legalKnowledgeNote)
-            <div class="course-note-card note-plain-card">
-                <div class="course-note-card-body">
-                    <h3>{{ Str::limit($legalKnowledgeNote->description ?? 'Legal Knowledge', 60) }}</h3>
-                    <p>
-                        <i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>
-                        {{ count($legalKnowledgeNote->pdfs ?? []) }} PDF{{ count($legalKnowledgeNote->pdfs ?? []) === 1 ? '' : 's' }} available
-                    </p>
-                </div>
-                <div class="course-note-card-footer">
-                    <a href="{{ route('frontend.legalknowledgelibrary') }}" class="course-note-link">
-                        View Legal Knowledge <span>→</span>
-                    </a>
+            <div style="margin-bottom:15px; padding:18px 20px; border:2px solid #ffe8dd; border-left:4px solid #ff5722; border-radius:8px; background:linear-gradient(135deg, #fff9f5 0%, #ffffff 100%); box-shadow: 0 2px 8px rgba(255,87,34,0.08); transition: all 0.3s ease;">
+                <div style="display:flex; align-items:flex-start; gap:12px;">
+                    <div style="font-size:24px; width:44px; height:44px; background:rgba(255,87,34,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📚</div>
+                    <div style="flex:1;">
+                        <div style="font-weight:700; color:#1f2937; margin-bottom:8px; font-size:15px;">
+                            {{ Str::limit($legalKnowledgeNote->description ?? 'Legal Knowledge', 60) }}
+                        </div>
+                        @if(count($legalKnowledgeNote->pdfs ?? []) > 0)
+                        <div style="margin-top:8px; display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-top:1px solid #f0f0f0;">
+                            <span style="font-size:13px; color:#666;"><i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>{{ count($legalKnowledgeNote->pdfs ?? []) }} PDF{{ count($legalKnowledgeNote->pdfs ?? []) === 1 ? '' : 's' }} available</span>
+                            <a href="{{ route('frontend.legalknowledgelibrary') }}" style="font-size:12px; color:#ff5722; font-weight:600; text-decoration:none; transition: all 0.3s ease;">View All →</a>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </div>
             @empty
