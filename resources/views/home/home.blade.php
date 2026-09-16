@@ -840,21 +840,27 @@
     /* ===== COURSES & NOTES SECTIONS - DUAL DESIGN ===== */
     .courses-notes-section {
         padding: 70px 20px;
-        background: #ffffff;
+        background: linear-gradient(180deg, #fff9f5 0%, #ffffff 100%);
+        position: relative;
+    }
+
+    .free-notes-only-section {
+        padding: 70px 20px;
+        background: linear-gradient(180deg, #f0f0f0 0%, #ffffff 100%);
         position: relative;
     }
 
     .courses-notes-container > div:first-child {
-        background: linear-gradient(180deg, #fff9f5 0%, #ffffff 100%);
-        padding: 50px 30px;
-        border-radius: 12px;
-        margin-bottom: 80px !important;
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        margin-bottom: 80px;
     }
 
     .free-notes-section-wrapper {
-        background: linear-gradient(180deg, #f0f0f0 0%, #ffffff 100%);
-        padding: 50px 30px;
-        border-radius: 12px;
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
     }
 
     .courses-notes-container {
@@ -1152,6 +1158,10 @@
             padding: 40px 15px;
         }
 
+        .free-notes-only-section {
+            padding: 40px 15px;
+        }
+
         .courses-notes-header h2 {
             font-size: 40px;
         }
@@ -1181,6 +1191,10 @@
 
     @media (max-width: 480px) {
         .courses-notes-section {
+            padding: 30px 10px;
+        }
+
+        .free-notes-only-section {
             padding: 30px 10px;
         }
 
@@ -1271,7 +1285,13 @@
                 <a href="{{ route('frontend.course') }}" class="courses-notes-view-all-btn">View All Courses</a>
             </div>
         </div>
+    </div>
+</div>
+<!-- ===== COURSES SECTION ENDS ======= -->
 
+<!-- ===== FREE NOTES SECTION STARTS ======= -->
+<div class="free-notes-only-section">
+    <div class="courses-notes-container">
         <!-- FREE NOTES SECTION -->
         <div class="free-notes-section-wrapper">
             <div class="courses-notes-header">
@@ -1312,13 +1332,18 @@
         </div>
     </div>
 </div>
-<!-- ===== COURSES & FREE NOTES SECTION ENDS ======= -->
+<!-- ===== FREE NOTES SECTION ENDS ======= -->
 
 <!-- ===== BARE ACTS & RULES SECTION STARTS ======= -->
 <style>
     .acts-rules-section {
         padding: 60px 20px;
-        background: linear-gradient(180deg, #e3f2fd 0%, #f1f5f9 100%);
+        background: linear-gradient(180deg, #fff9f5 0%, #ffffff 100%);
+    }
+
+    .rules-only-section {
+        padding: 60px 20px;
+        background: linear-gradient(180deg, #e8f4f8 0%, #d0e8f2 100%);
     }
 
     .acts-rules-container {
@@ -1360,6 +1385,7 @@
         margin: 0;
     }
 
+
     .acts-rules-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1367,11 +1393,19 @@
     }
 
     .acts-rules-card {
-        background: white;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
+        background: white;
+    }
+
+    .acts-rules-card:nth-child(1) {
+        background: white;
+    }
+
+    .acts-rules-card:nth-child(2) {
+        background: white;
     }
 
     .acts-rules-card:hover {
@@ -1474,6 +1508,14 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+        .acts-rules-section {
+            padding: 40px 15px;
+        }
+
+        .rules-only-section {
+            padding: 40px 15px;
+        }
+
         .acts-rules-wrapper {
             grid-template-columns: 1fr;
             gap: 30px;
@@ -1503,6 +1545,10 @@
 
     @media (max-width: 480px) {
         .acts-rules-section {
+            padding: 40px 15px;
+        }
+
+        .rules-only-section {
             padding: 40px 15px;
         }
 
@@ -1590,7 +1636,13 @@
                 <a href="{{ route('frontend.acts') }}" class="courses-notes-view-all-btn">View All Acts</a>
             </div>
         </div>
+    </div>
+</div>
+<!-- ===== ACTS SECTION ENDS ======= -->
 
+<!-- ===== RULES SECTION STARTS ======= -->
+<div class="rules-only-section">
+    <div class="acts-rules-container">
         <!-- RULES SECTION -->
         <div>
             <div class="courses-notes-header">
@@ -1631,7 +1683,7 @@
         </div>
     </div>
 </div>
-<!-- ===== BARE ACTS & RULES SECTION ENDS ======= -->
+<!-- ===== RULES SECTION ENDS ======= -->
 
 <!-- ===== LEGAL KNOWLEDGE CATEGORIES SECTION STARTS ======= -->
 <style>
@@ -2247,7 +2299,7 @@
 <style>
     .why-section {
         padding: 60px 20px;
-        background-color: white;
+        background: linear-gradient(180deg, #fff9f5 0%, #ffffff 100%);
     }
 
     .why-container {
@@ -2380,7 +2432,7 @@
 <style>
     .how-it-works-section {
         padding: 60px 20px;
-        background-color: #fff;
+        background: linear-gradient(180deg, #e8f4f8 0%, #d0e8f2 100%);
     }
 
     .how-it-works-container {
