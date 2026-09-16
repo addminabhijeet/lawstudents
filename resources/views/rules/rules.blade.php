@@ -122,6 +122,43 @@
             font-size: 18px !important;
         }
     }
+
+    /* Increase description and info text sizes - all dynamic content */
+    .rule-category div[style*="font-size:13px"],
+    .rule-category p[style*="font-size:13px"],
+    .rule-category span[style*="font-size:13px"],
+    .accordion-content div[style*="font-size:13px"],
+    .accordion-content p[style*="font-size:13px"],
+    .accordion-content span[style*="font-size:13px"],
+    [data-rule-id] div[style*="font-size:13px"],
+    [data-rule-id] p[style*="font-size:13px"],
+    [data-rule-id] span[style*="font-size:13px"] {
+        font-size: 15px !important;
+        margin-bottom: 12px !important;
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Handle other common dynamic font sizes */
+    .rule-category div[style*="font-size:14px"],
+    .rule-category p[style*="font-size:14px"],
+    .rule-category span[style*="font-size:14px"],
+    .accordion-content div[style*="font-size:14px"],
+    .accordion-content p[style*="font-size:14px"],
+    .accordion-content span[style*="font-size:14px"] {
+        font-size: 16px !important;
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    /* Handle 15px dynamic content */
+    .rule-category div[style*="font-size:15px"],
+    .rule-category p[style*="font-size:15px"],
+    .rule-category span[style*="font-size:15px"],
+    .accordion-content div[style*="font-size:15px"],
+    .accordion-content p[style*="font-size:15px"],
+    .accordion-content span[style*="font-size:15px"] {
+        font-size: 17px !important;
+        font-family: 'Poppins', sans-serif !important;
+    }
 </style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"

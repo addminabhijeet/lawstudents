@@ -43,7 +43,7 @@
     [data-act-id] span[style*="font-size:13px"] {
         font-size: 15px !important;
         margin-bottom: 12px !important;
-        font-family: 'Playfair Display', serif !important;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     /* Handle other common dynamic font sizes */
@@ -54,7 +54,7 @@
     .accordion-content p[style*="font-size:14px"],
     .accordion-content span[style*="font-size:14px"] {
         font-size: 16px !important;
-        font-family: 'Playfair Display', serif !important;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     /* Handle 15px dynamic content */
@@ -65,7 +65,7 @@
     .accordion-content p[style*="font-size:15px"],
     .accordion-content span[style*="font-size:15px"] {
         font-size: 17px !important;
-        font-family: 'Playfair Display', serif !important;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     /* Protect form labels and buttons */
