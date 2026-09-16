@@ -378,24 +378,28 @@
 
                             <div id="copySub{{ $sub->id }}" class="accordion-content" style="padding:10px; max-height:1000px;">
                                 @foreach ($sub->copys as $copy)
-                                <div data-copy-id="{{ $copy->id }}" style="margin-bottom:10px; padding:10px; border:1px solid #eee; border-radius:6px;">
-                                    <div style="font-weight:600;">
-                                        {{ $copy->description }}
-                                    </div>
-                                    @foreach ($copy->pdfs as $index => $pdf)
-                                    <div style="margin-top:5px; display:flex; justify-content:space-between; align-items:center;">
-                                        <span style="font-size:12px;">PDF {{ $index + 1 }}</span>
-                                        <div>
-                                            @if(auth()->check())
-                                            <a href="{{ route('frontend.viewnoteWatermarked', [$copy->id, $index]) }}" target="_blank" style="font-size:12px; color:green;">View PDF</a>
-                                            <span style="margin:0 5px;">|</span>
-                                            <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}" style="font-size:12px; color:blue;">Download</a>
-                                            @else
-                                            <a href="{{ route('google.login') }}" style="font-size:12px; color:green;">View PDF</a>
-                                            @endif
+                                <div data-copy-id="{{ $copy->id }}" style="margin-bottom:15px; padding:18px 20px; border:2px solid #ffe8dd; border-left:4px solid #ff5722; border-radius:8px; background:linear-gradient(135deg, #fff9f5 0%, #ffffff 100%); box-shadow: 0 2px 8px rgba(255,87,34,0.08); transition: all 0.3s ease;">
+                                    <div style="display:flex; align-items:flex-start; gap:12px;">
+                                        <div style="font-size:24px; width:44px; height:44px; background:rgba(255,87,34,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">📄</div>
+                                        <div style="flex:1;">
+                                            <div style="font-weight:700; color:#1f2937; margin-bottom:8px; font-size:15px;">
+                                                {{ $copy->description }}
+                                            </div>
+                                            @foreach ($copy->pdfs as $index => $pdf)
+                                            <div style="margin-top:8px; display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-top:1px solid #f0f0f0;">
+                                                <span style="font-size:13px; color:#666;"><i class="fa-solid fa-file-pdf" style="color:#ff5722; margin-right:6px;"></i>PDF {{ $index + 1 }}</span>
+                                                <div>
+                                                    @if(auth()->check())
+                                                    <a href="{{ route('frontend.viewnoteWatermarked', [$copy->id, $index]) }}" target="_blank" style="font-size:12px; color:#ff5722; font-weight:600; text-decoration:none; margin-right:12px; transition: all 0.3s ease;">View</a>
+                                                    <a href="{{ route('frontend.viewnote', [$copy->id, $index]) }}" style="font-size:12px; color:#ff5722; font-weight:600; text-decoration:none; transition: all 0.3s ease;">Download</a>
+                                                    @else
+                                                    <a href="{{ route('google.login') }}" style="font-size:12px; color:#ff5722; font-weight:600; text-decoration:none; transition: all 0.3s ease;">View PDF</a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    @endforeach
                                 </div>
                                 @endforeach
                             </div>

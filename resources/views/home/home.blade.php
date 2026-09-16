@@ -1343,7 +1343,7 @@
 
     .rules-only-section {
         padding: 60px 20px;
-        background: linear-gradient(180deg, #e8f4f8 0%, #d0e8f2 100%);
+        background: linear-gradient(180deg, #fff0e6 0%, #ffe6d5 100%);
     }
 
     .acts-rules-container {
@@ -1723,21 +1723,23 @@
     }
 
     .legal-knowledge-category-card {
-        background: #fff;
-        border: 1px solid #eee;
+        background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+        border: 2px solid #ffe8dd;
+        border-left: 4px solid #ff5722;
         border-radius: 8px;
         padding: 30px 20px;
         text-align: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 2px 8px rgba(255, 87, 34, 0.08);
         transition: all 0.3s ease;
         text-decoration: none;
         display: block;
     }
 
     .legal-knowledge-category-card:hover {
-        box-shadow: 0 4px 20px rgba(255, 87, 34, 0.18);
+        box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
         transform: translateY(-6px);
         border-color: #ff5722;
+        border-left-color: #ff5722;
     }
 
     .legal-knowledge-category-icon {
@@ -2432,7 +2434,7 @@
 <style>
     .how-it-works-section {
         padding: 60px 20px;
-        background: linear-gradient(180deg, #e8f4f8 0%, #d0e8f2 100%);
+        background: linear-gradient(180deg, #fff0e6 0%, #ffe6d5 100%);
     }
 
     .how-it-works-container {
