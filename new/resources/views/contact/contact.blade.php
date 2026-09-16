@@ -1,8 +1,147 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
-<!-- ===== HEADING STYLES FOR CONTACT US PAGE ======= -->
+<!-- ===== MODERN MOBILE REDESIGN FOR CONTACT US PAGE ======= -->
 <style>
+    /* ===== MODERN MOBILE-FIRST DESIGN ===== */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* ===== MODERN FORM STYLES ===== */
+    .form-control, input, textarea, select {
+        border-radius: 8px !important;
+        border: 1px solid #e0e0e0 !important;
+        padding: 12px 14px !important;
+        font-size: 14px !important;
+        font-family: 'Poppins', sans-serif !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        border-color: #ff5722 !important;
+        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1) !important;
+        outline: none !important;
+    }
+
+    /* ===== MODERN BUTTON STYLES ===== */
+    button, .btn, a[class*="btn"] {
+        border-radius: 8px !important;
+        padding: 14px 28px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        min-height: 44px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+        width: 100% !important;
+        margin-bottom: 12px !important;
+    }
+
+    button:hover, .btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    /* ===== MODERN CARD DESIGN ===== */
+    .card, [class*="contact"], .info-box {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        overflow: hidden !important;
+        padding: 24px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .card:hover, [class*="contact"]:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+        transform: translateY(-4px) !important;
+    }
+
+    /* ===== MODERN SPACING ===== */
+    .container {
+        padding: 20px !important;
+    }
+
+    .row {
+        margin: -15px !important;
+    }
+
+    .row > * {
+        padding: 15px !important;
+    }
+
+    /* ===== MODERN CONTACT INFO STYLING ===== */
+    .contact-info-item {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .contact-info-icon {
+        width: 48px;
+        height: 48px;
+        background: #ff5722;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    /* ===== RESPONSIVE GRID ===== */
+    @media (max-width: 768px) {
+        .col-lg-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .container {
+            padding: 16px !important;
+        }
+
+        .row {
+            margin: -10px !important;
+        }
+
+        .row > * {
+            padding: 10px !important;
+        }
+
+        .card, [class*="contact"] {
+            padding: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-lg-6, .col-md-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .container {
+            padding: 12px !important;
+        }
+
+        .row {
+            margin: -8px !important;
+        }
+
+        .row > * {
+            padding: 8px !important;
+        }
+
+        input, textarea, select {
+            font-size: 16px !important;
+        }
+
+        .card, [class*="contact"] {
+            padding: 14px !important;
+        }
+    }
+
+    /* ===== HEADING STYLES FOR CONTACT US PAGE (MODERN) ===== */
     /* Heading styles to match about page EXACTLY */
     h1 {
         font-size: 60px !important;

@@ -709,46 +709,88 @@
 
 <!-- ===== ABOUT LAWSTUDENT SECTION STARTS ======= -->
 <style>
+    /* ===== ABOUT PLATFORM SECTION - PREMIUM DESIGN ===== */
     .about-lawstudent-section {
-        padding: 80px 0;
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+        border-top: 4px solid #ff5722;
+        border-bottom: 4px solid #ff5722;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-lawstudent-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 87, 34, 0.08);
+        border-radius: 50%;
+    }
+
+    .about-lawstudent-section::after {
+        content: '';
+        position: absolute;
+        bottom: -50px;
+        left: -100px;
+        width: 250px;
+        height: 250px;
+        background: rgba(255, 87, 34, 0.06);
+        border-radius: 50%;
     }
 
     .about-lawstudent-container {
         max-width: 900px;
         margin: 0 auto;
         padding: 0 20px;
+        position: relative;
+        z-index: 1;
     }
 
     .about-lawstudent-content {
         text-align: center;
+        background: white;
+        padding: 50px 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(255, 87, 34, 0.1);
+        border: 2px solid rgba(255, 87, 34, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .about-lawstudent-content:hover {
+        box-shadow: 0 15px 50px rgba(255, 87, 34, 0.2);
+        border-color: rgba(255, 87, 34, 0.3);
     }
 
     .about-lawstudent-eyebrow {
         color: #ff5722;
         font-family: 'Playfair Display', serif;
         font-size: 16px;
-        font-weight: 500;
-        line-height: 16px;
+        font-weight: 600;
         display: inline-block;
-        padding: 8px 12px;
-        border-radius: 4px;
+        padding: 8px 16px;
+        border-radius: 50px;
         background: #ff57221a;
         margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     .about-lawstudent-heading {
         color: #0a141c;
         font-family: 'Playfair Display', serif;
         font-size: 44px;
-        font-weight: 600;
-        margin-bottom: 20px;
+        font-weight: 700;
+        margin-bottom: 25px;
         line-height: 54px;
         text-align: center;
     }
 
     .about-lawstudent-intro {
-        color: var(--Paragraph-Color, #515456);
-        font-family: 'Playfair Display', serif;
+        color: #555;
+        font-family: 'Poppins', sans-serif;
         font-size: 16px;
         font-weight: 400;
         line-height: 26px;
@@ -758,7 +800,7 @@
 
     .about-lawstudent-intro strong {
         color: #ff5722;
-        font-weight: 600;
+        font-weight: 700;
     }
 
     @media (max-width: 768px) {
@@ -795,9 +837,24 @@
 <!-- ===== ABOUT LAWSTUDENT SECTION ENDS ======= -->
 
 <style>
+    /* ===== COURSES & NOTES SECTIONS - DUAL DESIGN ===== */
     .courses-notes-section {
-        padding: 60px 20px;
-        background-color: #fff;
+        padding: 70px 20px;
+        background: #ffffff;
+        position: relative;
+    }
+
+    .courses-notes-container > div:first-child {
+        background: linear-gradient(180deg, #fff9f5 0%, #ffffff 100%);
+        padding: 50px 30px;
+        border-radius: 12px;
+        margin-bottom: 80px !important;
+    }
+
+    .free-notes-section-wrapper {
+        background: linear-gradient(180deg, #f0f0f0 0%, #ffffff 100%);
+        padding: 50px 30px;
+        border-radius: 12px;
     }
 
     .courses-notes-container {
@@ -807,12 +864,24 @@
 
     .courses-notes-header {
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 60px;
+        position: relative;
+    }
+
+    .courses-notes-header::before {
+        content: '';
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #ff5722, transparent);
     }
 
     .courses-notes-header h2 {
-        font-size: 40px;
-        font-weight: 600;
+        font-size: 42px;
+        font-weight: 700;
         color: #0a141c;
         margin: 0 0 15px 0;
         line-height: 54px;
@@ -821,22 +890,24 @@
 
     .courses-notes-header p {
         font-size: 16px;
-        color: var(--Paragraph-Color, #515456);
-        font-family: 'Playfair Display', serif;
+        color: #666;
+        font-family: 'Poppins', sans-serif;
         margin: 0;
+        font-weight: 500;
     }
 
     .courses-notes-eyebrow {
         color: #ff5722;
         font-family: 'Playfair Display', serif;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 16px;
+        font-size: 13px;
+        font-weight: 700;
         display: inline-block;
-        padding: 8px 12px;
-        border-radius: 4px;
-        background: #ff57221a;
+        padding: 8px 16px;
+        border-radius: 50px;
+        background: rgba(255, 87, 34, 0.1);
         margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
     }
 
     .courses-notes-grid {
@@ -847,22 +918,41 @@
 
     .course-note-card {
         background: white;
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
-        border: 1px solid #f0f0f0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 87, 34, 0.1);
+        position: relative;
+    }
+
+    .course-note-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ff5722, #ff7043);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
     }
 
     .course-note-card:hover {
-        box-shadow: 0 4px 20px rgba(255, 87, 34, 0.15);
-        transform: translateY(-8px);
+        box-shadow: 0 12px 35px rgba(255, 87, 34, 0.2);
+        transform: translateY(-10px);
+        border-color: rgba(255, 87, 34, 0.3);
+    }
+
+    .course-note-card:hover::before {
+        transform: scaleX(1);
     }
 
     .course-note-card-image {
         width: 100%;
         height: 200px;
-        background: linear-gradient(135deg, #ff5722 0%, #ff5722 100%);
+        background: linear-gradient(135deg, #ff5722 0%, #ff7043 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -870,23 +960,38 @@
         font-size: 48px;
         font-weight: bold;
         overflow: hidden;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .course-note-card:hover .course-note-card-image {
+        background: linear-gradient(135deg, #ff7043 0%, #ff5722 100%);
+        transform: scale(1.05);
     }
 
     .course-note-card-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .course-note-card:hover .course-note-card-image img {
+        transform: scale(1.08);
     }
 
     .course-note-card-price {
-        font-size: 13px;
-        color: #666;
-        margin: 0 0 15px 0;
+        font-size: 12px;
+        color: #999;
+        margin: 0 0 12px 0;
+        font-family: 'Poppins', sans-serif;
     }
 
     .course-note-card-price strong {
-        color: #1a1a1a;
-        font-weight: 700;
+        color: #ff5722;
+        font-weight: 800;
+        font-size: 18px;
+        display: block;
     }
 
     .course-note-card-body {
@@ -894,20 +999,21 @@
     }
 
     .course-note-card-body h3 {
-        font-size: 32px;
+        font-size: 20px;
         font-weight: 700;
         color: #1a1a1a;
-        margin: 0 0 10px 0;
+        margin: 0 0 8px 0;
         line-height: 1.4;
         font-family: 'Playfair Display', serif;
+        min-height: 50px;
     }
 
     .course-note-card-body p {
-        font-size: 14px;
+        font-size: 13px;
         color: #666;
-        margin: 0 0 15px 0;
+        margin: 0 0 12px 0;
         line-height: 1.6;
-        min-height: 40px;
+        min-height: 38px;
     }
 
     .course-note-card-footer {
@@ -936,22 +1042,25 @@
     }
 
     .courses-notes-view-all-btn {
-        background-color: #ff5722;
+        background: linear-gradient(135deg, #ff5722 0%, #ff7043 100%);
         color: white;
-        padding: 14px 36px;
+        padding: 15px 40px;
         text-decoration: none;
-        border-radius: 5px;
+        border-radius: 50px;
         font-weight: 600;
         display: inline-block;
-        transition: all 0.3s ease;
-        border: 2px solid #ff5722;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 8px 20px rgba(255, 87, 34, 0.25);
     }
 
     .courses-notes-view-all-btn:hover {
-        background-color: #ff5722;
-        border-color: #ff5722;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        background: linear-gradient(135deg, #ff7043 0%, #ff5722 100%);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(255, 87, 34, 0.4);
     }
 
     .no-content-message {
@@ -961,39 +1070,80 @@
         font-size: 16px;
     }
 
-    /* Free Notes preview: plain bordered list style (same as the real Free Notes page,
-       which has no thumbnails/cards, just flat bordered boxes) */
+    /* ===== FREE NOTES SECTION - DISTINCT ICON-BASED DESIGN ===== */
     .note-plain-card {
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: none;
+        background: linear-gradient(135deg, #fff9f5 0%, #ffffff 100%);
+        border: 2px solid #ffe8dd;
+        border-left: 4px solid #ff5722;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(255, 87, 34, 0.08);
         overflow: visible;
-        padding: 15px;
+        padding: 18px 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+
+    .note-plain-card::before {
+        content: '📄';
+        font-size: 28px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 87, 34, 0.12);
+        border-radius: 10px;
     }
 
     .note-plain-card:hover {
-        box-shadow: none;
-        transform: none;
+        box-shadow: 0 8px 20px rgba(255, 87, 34, 0.15);
+        transform: translateX(8px);
+        border-left-color: #ff5722;
+        background: linear-gradient(135deg, #fff0e6 0%, #ffffff 100%);
     }
 
     .note-plain-card .course-note-card-body {
-        padding: 0 0 10px 0;
+        padding: 0;
+        flex: 1;
     }
 
     .note-plain-card .course-note-card-body h3 {
-        font-size: 32px;
-        font-weight: 600;
-        font-family: 'Playfair Display', serif;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Poppins', sans-serif;
+        color: #333;
+        margin: 0 0 6px 0;
+        line-height: 1.5;
     }
 
     .note-plain-card .course-note-card-body p {
         min-height: 0;
-        margin: 8px 0 0 0;
+        margin: 0;
+        font-size: 13px;
+        color: #999;
+        font-family: 'Poppins', sans-serif;
     }
 
     .note-plain-card .course-note-card-footer {
         padding: 0;
+        margin-top: 8px;
+    }
+
+    .note-plain-card .course-note-link {
+        font-size: 12px;
+        color: #4CAF50;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .note-plain-card:hover .course-note-link {
+        color: #4CAF50;
+        gap: 8px;
     }
 
     /* Responsive */
@@ -1123,7 +1273,7 @@
         </div>
 
         <!-- FREE NOTES SECTION -->
-        <div>
+        <div class="free-notes-section-wrapper">
             <div class="courses-notes-header">
                 <span class="courses-notes-eyebrow">Free Notes</span>
                 <h2>Free Study Notes</h2>

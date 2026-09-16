@@ -1,8 +1,80 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
-<!-- ===== HEADING STYLES FOR GOVT EXAMS PAGE ======= -->
+<!-- ===== MODERN MOBILE REDESIGN FOR GOVT EXAMS PAGE ======= -->
 <style>
+    /* ===== MODERN MOBILE-FIRST DESIGN ===== */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* ===== MODERN CARD DESIGN ===== */
+    .card, [class*="box"] {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        overflow: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+        transform: translateY(-4px) !important;
+    }
+
+    /* ===== MODERN BUTTON STYLES ===== */
+    button, .btn, a[class*="btn"] {
+        border-radius: 8px !important;
+        padding: 14px 28px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        min-height: 44px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+
+    button:hover, .btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    /* ===== MODERN SPACING ===== */
+    .container {
+        padding: 20px !important;
+    }
+
+    /* ===== RESPONSIVE GRID ===== */
+    @media (max-width: 768px) {
+        .col-lg-4 {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+        }
+
+        .container {
+            padding: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-lg-4, .col-md-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .container {
+            padding: 12px !important;
+        }
+
+        button, .btn {
+            width: 100% !important;
+            margin-bottom: 12px !important;
+        }
+
+        input, textarea, select {
+            font-size: 16px !important;
+        }
+    }
+
+    /* ===== HEADING STYLES FOR GOVT EXAMS PAGE (MODERN) ===== */
     /* Heading styles to match about page EXACTLY */
     h1 {
         font-size: 60px !important;

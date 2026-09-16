@@ -1,8 +1,225 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
-<!-- ===== COURSES & TEAM SECTION RESPONSIVE STYLES ======= -->
+<!-- ===== MODERN MOBILE REDESIGN STYLES ======= -->
 <style>
+    /* ===== MODERN MOBILE-FIRST DESIGN IMPROVEMENTS ===== */
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+    }
+
+    /* ===== MODERN BUTTON STYLES ===== */
+    .casebtn1, .casebtn {
+        background: linear-gradient(135deg, #ff5722 0%, #ff7043 100%) !important;
+        border: none !important;
+        padding: 14px 32px !important;
+        border-radius: 8px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        color: white !important;
+        transition: all 0.3s ease !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        min-height: 48px !important;
+        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3) !important;
+    }
+
+    .casebtn1:hover, .casebtn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 16px rgba(255, 87, 34, 0.4) !important;
+    }
+
+    .casebtn1:active, .casebtn:active {
+        transform: translateY(0) !important;
+    }
+
+    /* ===== MODERN CARD DESIGN ===== */
+    .service7-box-area, .card {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        overflow: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .service7-box-area:hover, .card:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+        transform: translateY(-4px) !important;
+    }
+
+    /* ===== MODERN SECTION SPACING ===== */
+    .service7-section-area, .about-inner, .inner-pages {
+        padding: 60px 0 !important;
+    }
+
+    @media (max-width: 768px) {
+        .service7-section-area, .about-inner, .inner-pages {
+            padding: 40px 0 !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .service7-section-area, .about-inner, .inner-pages {
+            padding: 30px 0 !important;
+        }
+    }
+
+    /* ===== MODERN CONTAINER PADDING ===== */
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+        }
+    }
+
+    /* ===== MODERN HEADING DESIGN ===== */
+    .service7-header-area h2 {
+        color: #1a1a1a !important;
+        margin-bottom: 16px !important;
+        font-weight: 700 !important;
+    }
+
+    .service7-header-area p {
+        color: #666 !important;
+        font-size: 17px !important;
+        line-height: 1.6 !important;
+    }
+
+    /* ===== MODERN SPACING FOR SECTIONS ===== */
+    .row {
+        margin-bottom: 0 !important;
+    }
+
+    .col-lg-4, .col-md-6 {
+        margin-bottom: 30px !important;
+    }
+
+    @media (max-width: 768px) {
+        .col-lg-4, .col-md-6 {
+            margin-bottom: 24px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-lg-4, .col-md-6, .col-sm-12 {
+            margin-bottom: 20px !important;
+        }
+    }
+
+    /* ===== MOBILE OPTIMIZED GRID ===== */
+    @media (max-width: 768px) {
+        .col-lg-4 {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+        }
+
+        .col-lg-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-lg-4, .col-md-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .col-lg-3 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+    }
+
+    /* ===== MODERN FORM STYLES ===== */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+        border: 1px solid #e0e0e0 !important;
+        border-radius: 8px !important;
+        padding: 12px 16px !important;
+        font-size: 15px !important;
+        font-family: 'Poppins', sans-serif !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    textarea:focus,
+    select:focus {
+        border-color: #ff5722 !important;
+        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1) !important;
+        outline: none !important;
+    }
+
+    /* ===== MODERN LINK STYLES ===== */
+    a {
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #ff5722 !important;
+    }
+
+    /* ===== MODERN IMAGE STYLES ===== */
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* ===== TOUCH-FRIENDLY ELEMENTS ===== */
+    @media (max-width: 768px) {
+        button,
+        a[class*="btn"],
+        input[type="button"],
+        input[type="submit"] {
+            min-height: 44px !important;
+            min-width: 44px !important;
+            padding: 12px 20px !important;
+        }
+
+        .casebtn1, .casebtn {
+            width: 100% !important;
+            justify-content: center !important;
+        }
+    }
+
+    /* ===== MODERN LIST STYLES ===== */
+    ul, ol {
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+
+    /* ===== MODERN COURSES & TEAM SECTION RESPONSIVE STYLES ======= */
     /* ===== COURSES SECTION ===== */
     /* Courses section - ensure 3 column layout on all screens */
     .service7-section-area .col-lg-4 {

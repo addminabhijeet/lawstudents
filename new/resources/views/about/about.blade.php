@@ -1,16 +1,9 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
-    <!-- The compiled theme stylesheet renders this section's "Our Instructors"
-         eyebrow at rgb(255,125,0) on a rgb(245,232,217) badge background, via
-         ".inner-pages .team2-section-area .team1-header span" — contrast ratio
-         ~2.1:1, noticeably harder to read than the same eyebrow-badge pattern
-         used elsewhere on the site. That selector's specificity has to be
-         matched to win the cascade, so this re-declares it identically with
-         just a darker shade of the same orange (additive — nothing in the
-         theme CSS or markup below is changed), raising it to ~4.6:1 while
-         keeping the same brand-orange look. -->
+    <!-- ===== MODERN MOBILE REDESIGN FOR ABOUT PAGE ===== -->
     <style>
+        /* ===== MODERN COLOR CONTRAST IMPROVEMENTS ===== */
         .inner-pages .team2-section-area .team1-header span {
             color: #b8410f;
         }

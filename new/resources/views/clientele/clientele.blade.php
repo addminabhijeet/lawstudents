@@ -1,6 +1,95 @@
 @extends('layouts.landing', ['title' => 'Law Students'])
 
 @section('content')
+<!-- ===== MODERN MOBILE REDESIGN FOR CLIENTELE PAGE ======= -->
+<style>
+    /* ===== MODERN MOBILE-FIRST DESIGN ===== */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* ===== MODERN FORM STYLES ===== */
+    .form-control, input, textarea, select {
+        border-radius: 8px !important;
+        border: 1px solid #e0e0e0 !important;
+        padding: 12px 14px !important;
+        font-size: 14px !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        border-color: #ff5722 !important;
+        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1) !important;
+        outline: none !important;
+    }
+
+    /* ===== MODERN BUTTON STYLES ===== */
+    button, .btn, a[class*="btn"] {
+        border-radius: 8px !important;
+        padding: 14px 28px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        min-height: 44px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+
+    button:hover, .btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    /* ===== MODERN CARD DESIGN ===== */
+    .card, [class*="contact"] {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        overflow: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+        transform: translateY(-4px) !important;
+    }
+
+    /* ===== MODERN SPACING ===== */
+    .container {
+        padding: 20px !important;
+    }
+
+    /* ===== RESPONSIVE GRID ===== */
+    @media (max-width: 768px) {
+        .col-lg-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .container {
+            padding: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-lg-6, .col-md-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .container {
+            padding: 12px !important;
+        }
+
+        button, .btn {
+            width: 100% !important;
+            margin-bottom: 12px !important;
+        }
+
+        input, textarea, select {
+            font-size: 16px !important;
+        }
+    }
+</style>
 <!--===== WELCOME STARTS =======-->
 <div class="welcome-inner-section-area"
     style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">

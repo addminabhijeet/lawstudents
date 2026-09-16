@@ -1,8 +1,156 @@
 @extends('layouts.landing', ['title' => 'Acts'])
 
 @section('content')
-<!-- ===== HEADING STYLES FOR ACTS PAGE ======= -->
+<!-- ===== MODERN MOBILE REDESIGN FOR ACTS PAGE ======= -->
 <style>
+    /* ===== MODERN MOBILE-FIRST DESIGN IMPROVEMENTS ===== */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* ===== MODERN BUTTON STYLES ===== */
+    button, .btn, a[class*="btn"] {
+        border-radius: 8px !important;
+        padding: 14px 28px !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+        min-height: 44px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+
+    button:hover, .btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    /* ===== MODERN CARD STYLES ===== */
+    .accordion-item, .card, [class*="box"] {
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        transition: all 0.3s ease !important;
+        overflow: hidden;
+    }
+
+    .accordion-item:hover, .card:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+    }
+
+    /* ===== MODERN SPACING ===== */
+    .container {
+        padding: 20px !important;
+    }
+
+    .row {
+        margin: -15px !important;
+    }
+
+    .row > * {
+        padding: 15px !important;
+    }
+
+    /* ===== MODERN ACCORDION STYLES ===== */
+    .accordion-button {
+        border-radius: 8px !important;
+        border: none !important;
+        padding: 16px 20px !important;
+        font-weight: 600 !important;
+        background: #f8f8f8 !important;
+        transition: all 0.3s ease;
+    }
+
+    .accordion-button:hover {
+        background: #f0f0f0 !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background: #ff5722 !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3) !important;
+    }
+
+    .accordion-body {
+        padding: 20px !important;
+    }
+
+    /* ===== MODERN FORM STYLES ===== */
+    input, textarea, select {
+        border-radius: 8px !important;
+        border: 1px solid #e0e0e0 !important;
+        padding: 12px 14px !important;
+        font-size: 14px !important;
+        transition: all 0.3s ease;
+        width: 100% !important;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        border-color: #ff5722 !important;
+        box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1) !important;
+        outline: none !important;
+    }
+
+    /* ===== MODERN SEARCH STYLES ===== */
+    .search-container, [class*="search"] {
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    /* ===== RESPONSIVE GRID ===== */
+    @media (max-width: 768px) {
+        .col-lg-4 {
+            flex: 0 0 50% !important;
+            max-width: 50% !important;
+        }
+
+        .col-lg-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .container {
+            padding: 16px !important;
+        }
+
+        .row {
+            margin: -10px !important;
+        }
+
+        .row > * {
+            padding: 10px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .col-lg-4, .col-md-6 {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+        }
+
+        .container {
+            padding: 12px !important;
+        }
+
+        .row {
+            margin: -8px !important;
+        }
+
+        .row > * {
+            padding: 8px !important;
+        }
+
+        button, .btn {
+            width: 100% !important;
+            margin-bottom: 12px !important;
+        }
+
+        input, textarea, select {
+            font-size: 16px !important; /* Prevents zoom on iOS */
+        }
+    }
+
+    /* ===== HEADING STYLES FOR ACTS PAGE (MODERN) ===== */
     /* Heading styles to match about page EXACTLY */
     h1 {
         font-size: 60px !important;
