@@ -46,7 +46,7 @@
     .group-title {
         font-size: 18px !important;
         font-weight: 600 !important;
-        margin-bottom: 15px !important;
+        margin-top: 15px !important;
     }
 
     .overlay span {
@@ -195,11 +195,6 @@
                     onclick="openGalleryModal(this)"
                     data-images='@json($items->pluck("image"))'>
 
-                    <!-- GROUP TITLE -->
-                    <div class="group-title text-center mb-2">
-                        <strong>{{ $groupName }}</strong>
-                    </div>
-
                     <div class="image-stack">
 
                         @foreach ($items->take(3) as $index => $item)
@@ -211,6 +206,11 @@
                             <span>{{ $items->count() }} Photos</span>
                         </div>
 
+                    </div>
+
+                    <!-- GROUP TITLE -->
+                    <div class="group-title text-center mb-2">
+                        <strong>{{ $groupName }}</strong>
                     </div>
 
                 </div>

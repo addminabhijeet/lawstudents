@@ -2176,6 +2176,11 @@
             grid-template-columns: 1fr;
         }
     }
+
+    /* Remove tick marks */
+    .why-card h3::before {
+        display: none !important;
+    }
 </style>
 
 <div class="why-section">
