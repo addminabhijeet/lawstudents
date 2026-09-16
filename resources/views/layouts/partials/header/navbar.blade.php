@@ -1601,6 +1601,31 @@
 }
 </style>
 
+<!-- ===== MATCH EMAIL/PHONE FONT SIZE TO TAGLINE TEXT ===== -->
+<style>
+    .social-area a {
+        font-size: 14px !important;
+    }
+
+    @media (min-width: 768px) {
+        .social-area a {
+            font-size: 15px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .social-area a {
+            font-size: 16px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .social-area a {
+            font-size: 17px !important;
+        }
+    }
+</style>
+
 <!-- ===== NAVBAR TEXT: LARGER + BOLD FOR VISIBILITY (matches homepage body-text scale) =====
      Pure addition placed last in the cascade so it overrides the earlier, much smaller
      (11px) navbar font-size rules above without editing any of them. Nothing here removes
