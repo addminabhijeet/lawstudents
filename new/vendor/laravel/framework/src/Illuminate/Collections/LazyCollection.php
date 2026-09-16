@@ -77,9 +77,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      * @param  int  $from
      * @param  int  $to
      * @param  int  $step
-     * @return ($step is zero ? never : static<int, int>)
-     *
-     * @throws \InvalidArgumentException
+     * @return static<int, int>
      */
     public static function range($from, $to, $step = 1)
     {
@@ -914,7 +912,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      *
      * @param  int  $step
      * @param  int  $offset
-     * @return ($step is positive-int ? static : never)
+     * @return static
      *
      * @throws \InvalidArgumentException
      */
@@ -1028,12 +1026,11 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      * Get one or a specified number of items randomly from the collection.
      *
      * @param  int|null  $number
-     * @param  bool  $preserveKeys
      * @return static<int, TValue>|TValue
      *
      * @throws \InvalidArgumentException
      */
-    public function random($number = null, $preserveKeys = false)
+    public function random($number = null)
     {
         $result = $this->collect()->random(...func_get_args());
 
@@ -1436,7 +1433,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      * Split a collection into a certain number of groups, and fill the first groups completely.
      *
      * @param  int  $numberOfGroups
-     * @return ($numberOfGroups is positive-int ? static<int, static> : never)
+     * @return static<int, static>
      *
      * @throws \InvalidArgumentException
      */
@@ -1704,12 +1701,11 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Flatten a multi-dimensional associative array with dots.
      *
-     * @param  int  $depth
      * @return static
      */
-    public function dot($depth = INF)
+    public function dot()
     {
-        return $this->passthru(__FUNCTION__, [$depth]);
+        return $this->passthru(__FUNCTION__, []);
     }
 
     /**

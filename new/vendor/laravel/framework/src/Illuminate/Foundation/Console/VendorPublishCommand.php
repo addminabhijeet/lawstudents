@@ -190,7 +190,7 @@ class VendorPublishCommand extends Command
      * Publishes the assets for a tag.
      *
      * @param  string  $tag
-     * @return void
+     * @return mixed
      */
     protected function publishTag($tag)
     {

@@ -26,7 +26,6 @@ use const E_USER_WARNING;
 use const E_WARNING;
 use function array_keys;
 use function array_values;
-use function assert;
 use function debug_backtrace;
 use function defined;
 use function error_reporting;
@@ -34,7 +33,6 @@ use function restore_error_handler;
 use function set_error_handler;
 use function sprintf;
 use PHPUnit\Event;
-use PHPUnit\Event\Code\IssueTrigger\Code;
 use PHPUnit\Event\Code\IssueTrigger\IssueTrigger;
 use PHPUnit\Event\Code\NoTestCaseObjectOnCallStackException;
 use PHPUnit\Event\Code\TestMethod;
@@ -51,11 +49,10 @@ use PHPUnit\Util\ExcludeList;
  */
 final class ErrorHandler
 {
-    private const UNHANDLEABLE_LEVELS   = E_ERROR | E_PARSE | E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_COMPILE_WARNING;
-    private const INSUPPRESSIBLE_LEVELS = E_ERROR | E_PARSE | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR;
-    private static ?self $instance      = null;
-    private ?Baseline $baseline         = null;
-    private ExcludeList $excludeList;
+    private const UNHANDLEABLE_LEVELS         = E_ERROR | E_PARSE | E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_COMPILE_WARNING;
+    private const INSUPPRESSIBLE_LEVELS       = E_ERROR | E_PARSE | E_CORE_ERROR | E_COMPILE_ERROR | E_USER_ERROR | E_RECOVERABLE_ERROR;
+    private static ?self $instance            = null;
+    private ?Baseline $baseline               = null;
     private bool $enabled                     = false;
     private ?int $originalErrorReportingLevel = null;
     private readonly bool $identifyIssueTrigger;
@@ -84,7 +81,6 @@ final class ErrorHandler
 
     private function __construct(bool $identifyIssueTrigger)
     {
-        $this->excludeList          = new ExcludeList;
         $this->identifyIssueTrigger = $identifyIssueTrigger;
     }
 
@@ -95,10 +91,8 @@ final class ErrorHandler
     {
         $suppressed = (error_reporting() & ~self::INSUPPRESSIBLE_LEVELS) === 0;
 
-        if ($suppressed && $this->excludeList->isExcluded($errorFile)) {
-            // @codeCoverageIgnoreStart
+        if ($suppressed && (new ExcludeList)->isExcluded($errorFile)) {
             return false;
-            // @codeCoverageIgnoreEnd
         }
 
         /**
@@ -107,9 +101,7 @@ final class ErrorHandler
          * @see https://github.com/sebastianbergmann/phpunit/issues/5956
          */
         if (defined('E_STRICT') && $errorNumber === 2048) {
-            // @codeCoverageIgnoreStart
             $errorNumber = E_NOTICE;
-            // @codeCoverageIgnoreEnd
         }
 
         $test = Event\Code\TestMethodBuilder::fromCallStack();
@@ -175,7 +167,7 @@ final class ErrorHandler
                     $suppressed,
                     $ignoredByBaseline,
                     $ignoredByTest,
-                    $this->trigger($test, false, $errorFile),
+                    $this->trigger($test, false),
                 );
 
                 break;
@@ -217,7 +209,9 @@ final class ErrorHandler
 
     public function enable(): void
     {
-        assert(!$this->enabled);
+        if ($this->enabled) {
+            return;
+        }
 
         $oldErrorHandler = set_error_handler($this);
 
@@ -274,73 +268,52 @@ final class ErrorHandler
         return $this->baseline->has(Issue::from($file, $line, null, $description));
     }
 
-    /**
-     * @param null|non-empty-string $errorFile
-     */
-    private function trigger(TestMethod $test, bool $isUserland, ?string $errorFile = null): IssueTrigger
+    private function trigger(TestMethod $test, bool $filterTrigger): IssueTrigger
     {
         if (!$this->identifyIssueTrigger) {
-            return IssueTrigger::from(null, null);
+            return IssueTrigger::unknown();
         }
 
-        if (!$isUserland) {
-            assert($errorFile !== null);
+        $trace = $this->filteredStackTrace($filterTrigger);
 
-            return IssueTrigger::from(Code::PHP, $this->categorizeFile($errorFile, $test));
-        }
-
-        $trace = $this->filteredStackTrace();
-
-        return $this->triggerForUserlandDeprecation($test, $trace);
-    }
-
-    /**
-     * @param list<array{function: string, line?: int, file?: string, class?: class-string, type?: '->'|'::', args?: list<mixed>, object?: object}> $trace
-     */
-    private function triggerForUserlandDeprecation(TestMethod $test, array $trace): IssueTrigger
-    {
-        $callee = null;
-        $caller = null;
+        $triggeredInFirstPartyCode       = false;
+        $triggerCalledFromFirstPartyCode = false;
 
         if (isset($trace[0]['file'])) {
-            $callee = $this->categorizeFile($trace[0]['file'], $test);
+            if ($trace[0]['file'] === $test->file()) {
+                return IssueTrigger::test();
+            }
+
+            if (SourceFilter::instance()->includes($trace[0]['file'])) {
+                $triggeredInFirstPartyCode = true;
+            }
         }
 
-        if (isset($trace[1]['file'])) {
-            $caller = $this->categorizeFile($trace[1]['file'], $test);
+        if (isset($trace[1]['file']) &&
+            ($trace[1]['file'] === $test->file() ||
+            SourceFilter::instance()->includes($trace[1]['file']))) {
+            $triggerCalledFromFirstPartyCode = true;
         }
 
-        return IssueTrigger::from($callee, $caller);
+        if ($triggerCalledFromFirstPartyCode) {
+            if ($triggeredInFirstPartyCode) {
+                return IssueTrigger::self();
+            }
+
+            return IssueTrigger::direct();
+        }
+
+        return IssueTrigger::indirect();
     }
 
     /**
-     * @param non-empty-string $file
+     * @return list<array{file: string, line: int, class?: string, function?: string, type: string}>
      */
-    private function categorizeFile(string $file, TestMethod $test): Code
-    {
-        if ($file === $test->file()) {
-            return Code::Test;
-        }
-
-        if (SourceFilter::instance()->includes($file)) {
-            return Code::FirstParty;
-        }
-
-        if ($this->excludeList->isExcluded($file)) {
-            return Code::PHPUnit;
-        }
-
-        return Code::ThirdParty;
-    }
-
-    /**
-     * @return list<array{function: string, line?: int, file?: string, class?: class-string, type?: '->'|'::', args?: list<mixed>, object?: object}>
-     */
-    private function filteredStackTrace(): array
+    private function filteredStackTrace(bool $filterDeprecationTriggers): array
     {
         $trace = $this->errorStackTrace();
 
-        if ($this->deprecationTriggers === null) {
+        if ($this->deprecationTriggers === null || !$filterDeprecationTriggers) {
             return array_values($trace);
         }
 
@@ -366,7 +339,7 @@ final class ErrorHandler
     }
 
     /**
-     * @return ?array{function: string, line?: int, file?: string, class?: class-string, type?: '->'|'::', args?: list<mixed>, object?: object}
+     * @return ?array{file: non-empty-string, line: positive-int}
      */
     private function guessDeprecationFrame(): ?array
     {
@@ -394,7 +367,7 @@ final class ErrorHandler
     }
 
     /**
-     * @return list<array{function: string, line?: int, file?: string, class?: class-string, type?: '->'|'::', args?: list<mixed>, object?: object}>
+     * @return list<array{file: string, line: ?int, class?: class-string, function?: string, type: string}>
      */
     private function errorStackTrace(): array
     {
@@ -410,8 +383,8 @@ final class ErrorHandler
     }
 
     /**
-     * @param array{function: string, line?: int, file?: string, class?: class-string, type?: '->'|'::', args?: list<mixed>, object?: object} $frame
-     * @param non-empty-string                                                                                                                $function
+     * @param array{class? : class-string, function?: non-empty-string} $frame
+     * @param non-empty-string                                          $function
      */
     private function frameIsFunction(array $frame, string $function): bool
     {
@@ -419,8 +392,8 @@ final class ErrorHandler
     }
 
     /**
-     * @param array{function: string, line?: int, file?: string, class?: class-string, type?: '->'|'::', args?: list<mixed>, object?: object} $frame
-     * @param array{className: class-string, methodName: non-empty-string}                                                                    $method
+     * @param array{class? : class-string, function?: non-empty-string}    $frame
+     * @param array{className: class-string, methodName: non-empty-string} $method
      */
     private function frameIsMethod(array $frame, array $method): bool
     {
@@ -435,7 +408,8 @@ final class ErrorHandler
      */
     private function stackTrace(): string
     {
-        $buffer = '';
+        $buffer      = '';
+        $excludeList = new ExcludeList(true);
 
         foreach ($this->errorStackTrace() as $frame) {
             /**
@@ -445,7 +419,7 @@ final class ErrorHandler
                 continue;
             }
 
-            if ($this->excludeList->isExcluded($frame['file'])) {
+            if ($excludeList->isExcluded($frame['file'])) {
                 continue;
             }
 

@@ -51,17 +51,7 @@ class ReflectionLanguageConstructParameter extends \ReflectionParameter
      */
     public function isArray(): bool
     {
-        return !empty($this->opts['isArray']);
-    }
-
-    public function hasType(): bool
-    {
-        return false;
-    }
-
-    public function getType(): ?\ReflectionType
-    {
-        return null;
+        return \array_key_exists('isArray', $this->opts) && $this->opts['isArray'];
     }
 
     /**
@@ -98,12 +88,7 @@ class ReflectionLanguageConstructParameter extends \ReflectionParameter
      */
     public function isOptional(): bool
     {
-        return !empty($this->opts['isOptional']);
-    }
-
-    public function isVariadic(): bool
-    {
-        return !empty($this->opts['isVariadic']);
+        return \array_key_exists('isOptional', $this->opts) && $this->opts['isOptional'];
     }
 
     /**
@@ -125,6 +110,6 @@ class ReflectionLanguageConstructParameter extends \ReflectionParameter
      */
     public function isPassedByReference(): bool
     {
-        return !empty($this->opts['isPassedByReference']);
+        return \array_key_exists('isPassedByReference', $this->opts) && $this->opts['isPassedByReference'];
     }
 }

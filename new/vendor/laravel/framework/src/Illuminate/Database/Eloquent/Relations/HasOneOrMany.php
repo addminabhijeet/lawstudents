@@ -2,7 +2,6 @@
 
 namespace Illuminate\Database\Eloquent\Relations;
 
-use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
@@ -204,10 +203,6 @@ abstract class HasOneOrMany extends Relation
         foreach ($results as $key => $item) {
             $pairKey = $this->getDictionaryKey($item->{$foreign});
 
-            if ($pairKey === null) {
-                continue;
-            }
-
             if ($isAssociative) {
                 $dictionary[$pairKey][$key] = $item;
             } else {
@@ -258,10 +253,10 @@ abstract class HasOneOrMany extends Relation
      * Get the first record matching the attributes. If the record is not found, create it.
      *
      * @param  array  $attributes
-     * @param  (\Closure(): array)|array  $values
+     * @param  array  $values
      * @return TRelatedModel
      */
-    public function firstOrCreate(array $attributes = [], Closure|array $values = [])
+    public function firstOrCreate(array $attributes = [], array $values = [])
     {
         if (is_null($instance = (clone $this)->where($attributes)->first())) {
             $instance = $this->createOrFirst($attributes, $values);
@@ -274,13 +269,13 @@ abstract class HasOneOrMany extends Relation
      * Attempt to create the record. If a unique constraint violation occurs, attempt to find the matching record.
      *
      * @param  array  $attributes
-     * @param  (\Closure(): array)|array  $values
+     * @param  array  $values
      * @return TRelatedModel
      */
-    public function createOrFirst(array $attributes = [], Closure|array $values = [])
+    public function createOrFirst(array $attributes = [], array $values = [])
     {
         try {
-            return $this->getQuery()->withSavepointIfNeeded(fn () => $this->create(array_merge($attributes, value($values))));
+            return $this->getQuery()->withSavepointIfNeeded(fn () => $this->create(array_merge($attributes, $values)));
         } catch (UniqueConstraintViolationException $e) {
             return $this->useWritePdo()->where($attributes)->first() ?? throw $e;
         }
@@ -584,7 +579,7 @@ abstract class HasOneOrMany extends Relation
     }
 
     /**
-     * Get the fully-qualified parent key name.
+     * Get the fully qualified parent key name.
      *
      * @return string
      */

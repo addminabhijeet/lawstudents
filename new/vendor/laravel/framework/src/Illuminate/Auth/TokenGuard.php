@@ -80,7 +80,7 @@ class TokenGuard implements Guard
 
         $token = $this->getTokenForRequest();
 
-        if (is_string($token) && ! empty($token)) {
+        if (! empty($token)) {
             $user = $this->provider->retrieveByCredentials([
                 $this->storageKey => $this->hash ? hash('sha256', $token) : $token,
             ]);
@@ -96,10 +96,21 @@ class TokenGuard implements Guard
      */
     public function getTokenForRequest()
     {
-        return $this->request->query($this->inputKey)
-            ?: $this->request->input($this->inputKey)
-            ?: $this->request->bearerToken()
-            ?: $this->request->getPassword();
+        $token = $this->request->query($this->inputKey);
+
+        if (empty($token)) {
+            $token = $this->request->input($this->inputKey);
+        }
+
+        if (empty($token)) {
+            $token = $this->request->bearerToken();
+        }
+
+        if (empty($token)) {
+            $token = $this->request->getPassword();
+        }
+
+        return $token;
     }
 
     /**
@@ -110,13 +121,17 @@ class TokenGuard implements Guard
      */
     public function validate(array $credentials = [])
     {
-        if (! is_string($credentials[$this->inputKey] ?? null) || empty($credentials[$this->inputKey])) {
+        if (empty($credentials[$this->inputKey])) {
             return false;
         }
 
         $credentials = [$this->storageKey => $credentials[$this->inputKey]];
 
-        return (bool) $this->provider->retrieveByCredentials($credentials);
+        if ($this->provider->retrieveByCredentials($credentials)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

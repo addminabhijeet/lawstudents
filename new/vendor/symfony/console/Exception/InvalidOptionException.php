@@ -31,12 +31,4 @@ class InvalidOptionException extends \InvalidArgumentException implements Except
 
         return new self($error);
     }
-
-    /**
-     * @internal
-     */
-    public static function fromInvalidType(string $name, string $value, string $type): self
-    {
-        return new self(\sprintf('The value "%s" is not valid for the "%s" option. Expected a value of type "%s".', $value, $name, $type));
-    }
 }

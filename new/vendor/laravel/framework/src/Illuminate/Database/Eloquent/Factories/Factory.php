@@ -448,29 +448,6 @@ abstract class Factory
     }
 
     /**
-     * Create a collection of models.
-     *
-     * @param  iterable<int, array<string, mixed>>|int|null  $records
-     * @return \Illuminate\Database\Eloquent\Collection<int, TModel>
-     */
-    public function makeMany(iterable|int|null $records = null)
-    {
-        $records ??= ($this->count ?? 1);
-
-        $this->count = null;
-
-        if (is_numeric($records)) {
-            $records = array_fill(0, $records, []);
-        }
-
-        return new EloquentCollection(
-            (new Collection($records))->map(function ($record) {
-                return $this->state($record)->make();
-            })
-        );
-    }
-
-    /**
      * Insert the model records in bulk. No model events are emitted.
      *
      * @param  array<string, mixed>  $attributes
@@ -484,10 +461,6 @@ abstract class Factory
         $madeCollection = $made instanceof Collection
             ? $made
             : $this->newModel()->newCollection([$made]);
-
-        if ($madeCollection->isEmpty()) {
-            return;
-        }
 
         $model = $madeCollection->first();
 
@@ -801,26 +774,6 @@ abstract class Factory
     public function afterCreating(Closure $callback)
     {
         return $this->newInstance(['afterCreating' => $this->afterCreating->concat([$callback])]);
-    }
-
-    /**
-     * Remove the "after making" callbacks from the factory.
-     *
-     * @return static
-     */
-    public function withoutAfterMaking()
-    {
-        return $this->newInstance(['afterMaking' => new Collection]);
-    }
-
-    /**
-     * Remove the "after creating" callbacks from the factory.
-     *
-     * @return static
-     */
-    public function withoutAfterCreating()
-    {
-        return $this->newInstance(['afterCreating' => new Collection]);
     }
 
     /**

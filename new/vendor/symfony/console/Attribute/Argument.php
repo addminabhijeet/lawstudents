@@ -126,10 +126,6 @@ class Argument
             return $this->typeName::tryFrom($value) ?? throw InvalidArgumentException::fromEnumValue($this->name, $value, $this->suggestedValues);
         }
 
-        if (\is_string($value) && \in_array($this->typeName, ['int', 'float'], true) && !is_numeric($value)) {
-            throw InvalidArgumentException::fromInvalidType($this->name, $value, $this->typeName);
-        }
-
         return $value;
     }
 

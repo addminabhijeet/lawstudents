@@ -88,11 +88,11 @@ class ModelIdentifier
      */
     public function getClass(): ?string
     {
-        if (self::$useMorphMap && $this->class !== null) {
-            return Relation::getMorphedModel($this->class) ?? $this->class;
+        if ($this->class === null) {
+            return null;
         }
 
-        return $this->class;
+        return Relation::getMorphedModel($this->class) ?? $this->class;
     }
 
     /**

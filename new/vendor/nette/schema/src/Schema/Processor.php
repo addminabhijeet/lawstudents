@@ -1,13 +1,13 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * This file is part of the Nette Framework (https://nette.org)
  * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
 
-namespace Nette\Schema;
+declare(strict_types=1);
 
-use Nette;
+namespace Nette\Schema;
 
 
 /**
@@ -21,9 +21,6 @@ final class Processor
 	private bool $skipDefaults = false;
 
 
-	/**
-	 * When enabled, properties with default values are omitted from the output.
-	 */
 	public function skipDefaults(bool $value = true): void
 	{
 		$this->skipDefaults = $value;
@@ -38,16 +35,16 @@ final class Processor
 	{
 		$this->createContext();
 		$data = $schema->normalize($data, $this->context);
-		$this->throwErrors();
+		$this->throwsErrors();
 		$data = $schema->complete($data, $this->context);
-		$this->throwErrors();
+		$this->throwsErrors();
 		return $data;
 	}
 
 
 	/**
 	 * Normalizes and validates and merges multiple data. Result is a clean completed data.
-	 * @param  list<mixed>  $dataset
+	 * @param  array<mixed>  $dataset
 	 * @throws ValidationException
 	 */
 	public function processMultiple(Schema $schema, array $dataset): mixed
@@ -57,35 +54,32 @@ final class Processor
 		$first = true;
 		foreach ($dataset as $data) {
 			$data = $schema->normalize($data, $this->context);
-			$this->throwErrors();
+			$this->throwsErrors();
 			$flatten = $first ? $data : $schema->merge($data, $flatten);
 			$first = false;
 		}
 
 		$data = $schema->complete($flatten, $this->context);
-		$this->throwErrors();
+		$this->throwsErrors();
 		return $data;
 	}
 
 
 	/**
-	 * Returns all deprecation warnings collected during the last processing run.
-	 * @return list<string>
+	 * @return string[]
 	 */
 	public function getWarnings(): array
 	{
 		$res = [];
-		if (isset($this->context)) {
-			foreach ($this->context->warnings as $message) {
-				$res[] = $message->toString();
-			}
+		foreach ($this->context->warnings as $message) {
+			$res[] = $message->toString();
 		}
 
 		return $res;
 	}
 
 
-	private function throwErrors(): void
+	private function throwsErrors(): void
 	{
 		if ($this->context->errors) {
 			throw new ValidationException(null, $this->context->errors);
@@ -97,6 +91,8 @@ final class Processor
 	{
 		$this->context = new Context;
 		$this->context->skipDefaults = $this->skipDefaults;
-		Nette\Utils\Arrays::invoke($this->onNewContext, $this->context);
+		foreach ($this->onNewContext as $cb) {
+			$cb($this->context);
+		}
 	}
 }

@@ -178,26 +178,25 @@ class Arr
      *
      * @param  iterable  $array
      * @param  string  $prepend
-     * @param  int  $depth
      * @return array
      */
-    public static function dot($array, $prepend = '', $depth = INF)
+    public static function dot($array, $prepend = '')
     {
         $results = [];
 
-        $flatten = function ($data, $prefix, $currentDepth) use (&$results, &$flatten, $depth): void {
+        $flatten = function ($data, $prefix) use (&$results, &$flatten): void {
             foreach ($data as $key => $value) {
                 $newKey = $prefix.$key;
 
-                if (is_array($value) && ! empty($value) && $currentDepth < $depth) {
-                    $flatten($value, $newKey.'.', $currentDepth + 1);
+                if (is_array($value) && ! empty($value)) {
+                    $flatten($value, $newKey.'.');
                 } else {
                     $results[$newKey] = $value;
                 }
             }
         };
 
-        $flatten($array, $prepend, 0);
+        $flatten($array, $prepend);
 
         // Destroy self-referencing closure to avoid memory leak...
         $flatten = null;
@@ -813,7 +812,7 @@ class Arr
     /**
      * Explode the "value" and "key" arguments passed to "pluck".
      *
-     * @param  Closure|array|string  $value
+     * @param  string|array|Closure  $value
      * @param  string|array|Closure|null  $key
      * @return array
      */
@@ -1154,6 +1153,7 @@ class Arr
      *
      * @param  array<TKey, TValue>  $array
      * @param  int-mask-of<SORT_REGULAR|SORT_NUMERIC|SORT_STRING|SORT_LOCALE_STRING|SORT_NATURAL|SORT_FLAG_CASE>  $options
+     * @param  int  $options
      * @return array<TKey, TValue>
      */
     public static function sortRecursiveDesc($array, $options = SORT_REGULAR)
@@ -1295,11 +1295,10 @@ class Arr
     /**
      * If the given value is not an array and not null, wrap it in one.
      *
-     * @template TKey of array-key = array-key
      * @template TValue
      *
-     * @param  array<TKey, TValue>|TValue|null  $value
-     * @return ($value is null ? array{} : ($value is array ? array<TKey, TValue> : array{TValue}))
+     * @param  TValue  $value
+     * @return ($value is null ? array{} : ($value is array ? TValue : array{TValue}))
      */
     public static function wrap($value)
     {

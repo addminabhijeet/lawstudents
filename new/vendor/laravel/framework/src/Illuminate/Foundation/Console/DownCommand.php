@@ -2,13 +2,12 @@
 
 namespace Illuminate\Foundation\Console;
 
-use App\Http\Middleware\PreventRequestsDuringMaintenance as AppPreventRequestsDuringMaintenance;
+use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use DateTimeInterface;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Events\MaintenanceModeEnabled;
 use Illuminate\Foundation\Exceptions\RegisterErrorViewPaths;
-use Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -45,7 +44,11 @@ class DownCommand extends Command
     public function handle()
     {
         try {
-            $wasAlreadyDown = $this->laravel->maintenanceMode()->active();
+            if ($this->laravel->maintenanceMode()->active() && ! $this->getSecret()) {
+                $this->components->info('Application is already down.');
+
+                return 0;
+            }
 
             $downFilePayload = $this->getDownFilePayload();
 
@@ -58,10 +61,7 @@ class DownCommand extends Command
 
             $this->laravel->get('events')->dispatch(new MaintenanceModeEnabled());
 
-            $this->components->info($wasAlreadyDown
-                ? 'Maintenance mode options updated.'
-                : 'Application is now in maintenance mode.'
-            );
+            $this->components->info('Application is now in maintenance mode.');
 
             if ($downFilePayload['secret'] !== null) {
                 $this->components->info('You may bypass maintenance mode via ['.config('app.url')."/{$downFilePayload['secret']}].");
@@ -102,13 +102,9 @@ class DownCommand extends Command
     protected function excludedPaths()
     {
         try {
-            return $this->laravel->make(AppPreventRequestsDuringMaintenance::class)->getExcludedPaths();
+            return $this->laravel->make(PreventRequestsDuringMaintenance::class)->getExcludedPaths();
         } catch (Throwable) {
-            try {
-                return $this->laravel->make(PreventRequestsDuringMaintenance::class)->getExcludedPaths();
-            } catch (Throwable) {
-                return [];
-            }
+            return [];
         }
     }
 

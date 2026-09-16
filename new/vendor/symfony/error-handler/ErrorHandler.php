@@ -145,11 +145,6 @@ class ErrorHandler
                 $prev[0]->setExceptionHandler($p);
             }
         } else {
-            if (!$handlerIsRegistered && null === $prev) {
-                // another error handler is in charge and there is no exception handler to decorate
-                restore_exception_handler();
-            }
-
             $handler->setExceptionHandler($prev ?? [$handler, 'renderException']);
         }
 
@@ -604,7 +599,7 @@ class ErrorHandler
         }
         if (!$handler) {
             if (null === $error && $exitCode = self::$exitCode) {
-                register_shutdown_function('register_shutdown_function', static function () use ($exitCode) { exit($exitCode); });
+                register_shutdown_function('register_shutdown_function', function () use ($exitCode) { exit($exitCode); });
             }
 
             return;
@@ -643,7 +638,7 @@ class ErrorHandler
         }
 
         if ($exit && $exitCode = self::$exitCode) {
-            register_shutdown_function('register_shutdown_function', static function () use ($exitCode) { exit($exitCode); });
+            register_shutdown_function('register_shutdown_function', function () use ($exitCode) { exit($exitCode); });
         }
     }
 

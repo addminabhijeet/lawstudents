@@ -200,13 +200,11 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds tests that file contents must match. If multiple patterns are given,
-     * files only need to match at least one of them.
+     * Adds tests that file contents must match.
      *
      * Strings or PCRE patterns can be used:
      *
      *     $finder->contains('Lorem ipsum')
-     *     $finder->contains(['Lorem', 'ipsum']) // matches files containing "Lorem", or "ipsum", or both
      *     $finder->contains('/Lorem ipsum/i')
      *     $finder->contains(['dolor', '/ipsum/i'])
      *
@@ -224,13 +222,11 @@ class Finder implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Adds tests that file contents must not match. If multiple patterns are given,
-     * files are excluded as soon as they match any of them.
+     * Adds tests that file contents must not match.
      *
      * Strings or PCRE patterns can be used:
      *
      *     $finder->notContains('Lorem ipsum')
-     *     $finder->notContains(['Lorem', 'ipsum']) // excludes files containing "Lorem", or "ipsum", or both
      *     $finder->notContains('/Lorem ipsum/i')
      *     $finder->notContains(['lorem', '/dolor/i'])
      *
@@ -836,7 +832,7 @@ class Finder implements \IteratorAggregate, \Countable
     /**
      * Normalizes given directory names by removing trailing slashes.
      *
-     * Excluding: stream wrapper schemes such as ftp:// or s3://
+     * Excluding: (s)ftp:// or ssh2.(s)ftp:// wrapper
      */
     private function normalizeDir(string $dir): string
     {
@@ -846,7 +842,7 @@ class Finder implements \IteratorAggregate, \Countable
 
         $dir = rtrim($dir, '/'.\DIRECTORY_SEPARATOR);
 
-        if (preg_match('#^[a-zA-Z][a-zA-Z0-9.+-]*://#', $dir)) {
+        if (preg_match('#^(ssh2\.)?s?ftp://#', $dir)) {
             $dir .= '/';
         }
 

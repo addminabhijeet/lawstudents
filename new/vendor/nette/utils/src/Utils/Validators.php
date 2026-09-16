@@ -1,9 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 
 /**
  * This file is part of the Nette Framework (https://nette.org)
  * Copyright (c) 2004 David Grudl (https://davidgrudl.com)
  */
+
+declare(strict_types=1);
 
 namespace Nette\Utils;
 
@@ -112,7 +114,7 @@ class Validators
 
 
 	/**
-	 * Verifies that item $key in array exists and is of expected types separated by pipe.
+	 * Verifies that element $key in array is of expected types separated by pipe.
 	 * @param  mixed[]  $array
 	 * @throws AssertionException
 	 */
@@ -195,7 +197,7 @@ class Validators
 
 	/**
 	 * Finds whether all values are of expected types separated by pipe.
-	 * @param  iterable<mixed>  $values
+	 * @param  mixed[]  $values
 	 */
 	public static function everyIs(iterable $values, string $expected): bool
 	{
@@ -337,15 +339,14 @@ class Validators
 	public static function isUrl(string $value): bool
 	{
 		$alpha = "a-z\x80-\xFF";
-		$octet = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])'; // 0..255
 		return (bool) preg_match(<<<XX
 			(^(?n)
 				https?://(
 					(([-_0-9$alpha]+\\.)*                       # subdomain
 						[0-9$alpha]([-0-9$alpha]{0,61}[0-9$alpha])?\\.)?  # domain
 						[$alpha]([-0-9$alpha]{0,17}[$alpha])?   # top domain
-					|$octet(\\.$octet){3}                       # IPv4
-					|\\[[0-9a-f:]{3,39}]                        # IPv6
+					|\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}  # IPv4
+					|\\[[0-9a-f:]{3,39}\\]                      # IPv6
 				)(:\\d{1,5})?                                   # port
 				(/\\S*)?                                        # path
 				(\\?\\S*)?                                      # query
@@ -360,7 +361,7 @@ class Validators
 	 */
 	public static function isUri(string $value): bool
 	{
-		return (bool) preg_match('#^[a-z\d+.-]+:\S+$#Di', $value);
+		return (bool) preg_match('#^[a-z\d+\.-]+:\S+$#Di', $value);
 	}
 
 

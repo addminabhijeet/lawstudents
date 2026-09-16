@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Date;
 use Illuminate\Validation\Rules\Exists;
 use Illuminate\Validation\Rules\Numeric;
-use Illuminate\Validation\Rules\StringRule;
 use Illuminate\Validation\Rules\Unique;
 
 class ValidationRuleParser
@@ -95,7 +94,7 @@ class ValidationRuleParser
         }
 
         if (is_object($rule)) {
-            if ($rule instanceof Date || $rule instanceof Numeric || $rule instanceof StringRule) {
+            if ($rule instanceof Date || $rule instanceof Numeric) {
                 return explode('|', (string) $rule);
             }
 
@@ -105,7 +104,7 @@ class ValidationRuleParser
         $rules = [];
 
         foreach ($rule as $value) {
-            if ($value instanceof Date || $value instanceof Numeric || $value instanceof StringRule) {
+            if ($value instanceof Date || $value instanceof Numeric) {
                 $rules = array_merge($rules, explode('|', (string) $value));
             } else {
                 $rules[] = $this->prepareRule($value, $attribute);
@@ -176,13 +175,11 @@ class ValidationRuleParser
                             [$attribute => [$key]]
                         );
 
-                        foreach ($compiled->rules as $compiledAttribute => $compiledRules) {
-                            $this->mergeRulesForAttributeInto($results, $compiledAttribute, $compiledRules);
-                        }
+                        $results = $this->mergeRules($results, $compiled->rules);
                     } else {
                         $this->implicitAttributes[$attribute][] = $key;
 
-                        $this->mergeRulesForAttributeInto($results, $key, $rule);
+                        $results = $this->mergeRules($results, $key, $rule);
                     }
                 }
             }
@@ -224,26 +221,13 @@ class ValidationRuleParser
      */
     protected function mergeRulesForAttribute($results, $attribute, $rules)
     {
-        $this->mergeRulesForAttributeInto($results, $attribute, $rules);
-
-        return $results;
-    }
-
-    /**
-     * Merge additional rules into a given attribute by reference.
-     *
-     * @param  array  $results
-     * @param  string  $attribute
-     * @param  string|array  $rules
-     * @return void
-     */
-    private function mergeRulesForAttributeInto(&$results, $attribute, $rules)
-    {
         $merge = head($this->explodeRules([$rules]));
 
         $results[$attribute] = array_merge(
             isset($results[$attribute]) ? $this->explodeExplicitRule($results[$attribute], $attribute) : [], $merge
         );
+
+        return $results;
     }
 
     /**

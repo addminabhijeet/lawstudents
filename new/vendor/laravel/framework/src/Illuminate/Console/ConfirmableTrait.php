@@ -11,7 +11,7 @@ trait ConfirmableTrait
      *
      * This method only asks for confirmation in production.
      *
-     * @template TReturn of bool = bool
+     * @template TReturn of bool
      *
      * @param  string  $warning
      * @param  (\Closure(): TReturn)|TReturn|null  $callback

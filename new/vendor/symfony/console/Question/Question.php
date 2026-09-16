@@ -25,7 +25,7 @@ class Question
     private bool $hidden = false;
     private bool $hiddenFallback = true;
     /**
-     * @var (\Closure(string):list<string>)|null
+     * @var (\Closure(string):string[])|null
      */
     private ?\Closure $autocompleterCallback = null;
     /**
@@ -192,7 +192,7 @@ class Question
     /**
      * Gets the callback function used for the autocompleter.
      *
-     * @return (callable(string):list<string>)|null
+     * @return (callable(string):string[])|null
      */
     public function getAutocompleterCallback(): ?callable
     {
@@ -202,9 +202,9 @@ class Question
     /**
      * Sets the callback function used for the autocompleter.
      *
-     * The callback is passed the user input as argument and must return a list of corresponding suggestions.
+     * The callback is passed the user input as argument and should return an iterable of corresponding suggestions.
      *
-     * @param (callable(string):list<string>)|null $callback
+     * @param (callable(string):string[])|null $callback
      *
      * @return $this
      */
