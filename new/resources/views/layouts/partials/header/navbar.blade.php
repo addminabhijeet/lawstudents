@@ -1,0 +1,1761 @@
+<!--===== RESPONSIVE HEADER STYLES (IMPROVED) =======-->
+<style>
+    /* ===== HEADING STYLES FOR NAVBAR TO MATCH ABOUT PAGE ===== */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    h1 {
+        font-size: 60px !important;
+        line-height: 60px !important;
+    }
+
+    h2 {
+        font-size: 46px !important;
+        line-height: 1.3 !important;
+    }
+
+    h3 {
+        font-size: 40px !important;
+    }
+
+    h4 {
+        font-size: 32px !important;
+    }
+
+    h5 {
+        font-size: 24px !important;
+    }
+
+    h6 {
+        font-size: 20px !important;
+    }
+
+    /* ===== NAVBAR CONTAINER & CARD SIZE INCREASES ===== */
+    /* Increase navbar height for larger text */
+    .header-elements {
+        min-height: 85px !important;
+    }
+
+    /* Increase top header area */
+    .header-top-border {
+        padding: 20px 15px !important;
+    }
+
+    /* Increase logo size for navbar consistency */
+    .site-logo {
+        width: 180px !important;
+        height: 65px !important;
+    }
+
+    /* Increase menu item sizing */
+    .main-menu-ex.homepage6 ul li a {
+        font-size: 18px !important;
+        padding: 8px 10px !important;
+        font-weight: 900 !important;
+    }
+
+    /* Increase dropdown/submenu items - MATCH ABOUT PAGE */
+    .navbar-nav .nav-item .dropdown-menu {
+        min-width: 280px !important;
+    }
+
+    .navbar-nav .dropdown-menu .dropdown-item {
+        font-size: 18px !important;
+        font-family: 'Playfair Display', serif !important;
+        padding: 16px 24px !important;
+        font-weight: 500 !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Header brand text */
+    .navbar-brand {
+        font-size: 20px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    /* ===== HEADER TOP TEXT STYLING - MATCH ABOUT PAGE ===== */
+    .top-content-area .content p {
+        font-size: 22px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        color: #fff !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Header top email and phone links */
+    .social-area a {
+        font-size: 22px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+        color: #fff !important;
+    }
+
+    /* Increase container padding */
+    .navbar-container {
+        padding: 0 25px !important;
+    }
+
+    @media (max-width: 1399px) {
+        .header-elements {
+            min-height: 80px !important;
+        }
+
+        .site-logo {
+            width: 160px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 17px !important;
+            padding: 7px 9px !important;
+            font-weight: 900 !important;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .header-elements {
+            min-height: 78px !important;
+        }
+
+        .site-logo {
+            width: 150px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 16px !important;
+            font-weight: 900 !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .header-elements {
+            min-height: 76px !important;
+        }
+
+        .site-logo {
+            width: 140px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 15px !important;
+            font-weight: 900 !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-elements {
+            min-height: 70px !important;
+        }
+
+        .site-logo {
+            width: 130px !important;
+            height: 50px !important;
+        }
+
+        h1 {
+            font-size: 48px !important;
+        }
+
+        h2 {
+            font-size: 36px !important;
+        }
+
+        h3 {
+            font-size: 32px !important;
+        }
+
+        h4 {
+            font-size: 24px !important;
+        }
+
+        .header-top-border {
+            padding: 16px 20px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px !important;
+            padding: 6px 8px !important;
+            font-weight: 900 !important;
+        }
+
+        .navbar-nav .dropdown-menu .dropdown-item {
+            font-size: 13px !important;
+            padding: 10px 16px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header-elements {
+            min-height: 65px !important;
+        }
+
+        .site-logo {
+            width: 110px !important;
+            height: 45px !important;
+        }
+
+        h1 {
+            font-size: 36px !important;
+        }
+
+        h2 {
+            font-size: 28px !important;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+
+        h4 {
+            font-size: 20px !important;
+        }
+
+        .header-top-border {
+            padding: 14px 15px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 12px !important;
+            padding: 5px 6px !important;
+            font-weight: 900 !important;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .header-elements {
+            min-height: 90px !important;
+        }
+
+        .site-logo {
+            width: 200px !important;
+            height: 70px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 19px !important;
+            padding: 9px 11px !important;
+            font-weight: 900 !important;
+        }
+
+        .header-top-border {
+            padding: 22px 50px !important;
+        }
+    }
+
+    /* ===== IMPROVED LOGO SIZING (Single Responsive Scale) ===== */
+    .site-logo {
+        width: 150px !important;
+        height: 55px !important;
+        flex-shrink: 0;
+    }
+
+    @media (max-width: 1399px) {
+        .site-logo {
+            width: 140px !important;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .site-logo {
+            width: 130px !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .site-logo {
+            width: 120px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .site-logo {
+            width: 110px !important;
+            height: 45px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .site-logo {
+            width: 90px !important;
+            height: 40px !important;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .site-logo {
+            width: 160px !important;
+            height: 60px !important;
+        }
+    }
+
+    /* ===== IMPROVED HEADER ELEMENTS SPACING ===== */
+    .header-elements {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 65px;
+        padding: 10px 10px !important;
+        transition: all 0.3s ease;
+    }
+
+    @media (min-width: 576px) {
+        .header-elements {
+            gap: 8px;
+            min-height: 68px;
+            padding: 10px 15px !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .header-elements {
+            gap: 10px;
+            min-height: 70px;
+            padding: 10px 20px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .header-elements {
+            gap: 12px;
+            min-height: 72px;
+            padding: 10px 30px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .header-elements {
+            gap: 12px;
+            min-height: 72px;
+            padding: 10px 35px !important;
+        }
+    }
+
+    /* ===== IMPROVED HEADER TOP AREA SPACING ===== */
+    .header-top-border {
+        padding: 14px 15px !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        background-color: #ff5722 !important;
+        background-image: none !important;
+    }
+
+    @media (min-width: 576px) {
+        .header-top-border {
+            padding: 14px 20px !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .header-top-border {
+            padding: 14px 30px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .header-top-border {
+            padding: 14px 40px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .header-top-border {
+            padding: 14px 50px !important;
+        }
+    }
+
+    /* ===== IMPROVED MAIN MENU STYLING (Clean Gaps) ===== */
+    .main-menu-ex.homepage6 {
+        flex: 1;
+        min-width: 0;
+        overflow: visible !important;
+        order: 2 !important;
+        margin-left: auto !important;
+        flex-basis: auto !important;
+        max-width: fit-content !important;
+    }
+
+    .main-menu-ex.homepage6 ul {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 4px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        justify-content: flex-start;
+    }
+
+    /* Responsive gaps for menu items */
+    @media (max-width: 1399px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 6px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 15px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 5px 7px !important;
+            font-weight: 500 !important;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 5px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 14px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 5px 6px !important;
+            font-weight: 500 !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 4px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 13px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 4px 5px !important;
+            font-weight: 500 !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 3px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 12px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 4px 5px !important;
+            font-weight: 500 !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-menu-ex.homepage6 ul {
+            gap: 2px;
+        }
+
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 11px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 3px 4px !important;
+            font-weight: 500 !important;
+        }
+    }
+
+    /* ===== IMPROVED MENU ITEMS TYPOGRAPHY - INCREASED TO MATCH FOOTER/ABOUT PAGE ===== */
+    .main-menu-ex.homepage6 ul li a {
+        font-size: 16px !important;
+        font-family: 'Playfair Display', serif !important;
+        display: inline-block;
+        padding: 6px 8px !important;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+        letter-spacing: 0px;
+        line-height: 1.4 !important;
+        color: #333 !important;
+        font-weight: 500 !important;
+    }
+
+    /* Large desktop (1600px+) */
+    @media (min-width: 1600px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 18px !important;
+            font-family: 'Playfair Display', serif !important;
+            padding: 6px 10px !important;
+            letter-spacing: 0px;
+        }
+    }
+
+    /* Desktop (1200px - 1599px) */
+    @media (min-width: 1200px) and (max-width: 1599px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 11px;
+            padding: 3px 4px;
+            letter-spacing: 0px;
+        }
+    }
+
+    /* Tablet Large (1024px - 1199px) */
+    @media (max-width: 1199px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 10px;
+            padding: 3px 4px;
+            letter-spacing: 0px;
+        }
+    }
+
+    /* Tablet Small (768px - 1023px) */
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 10px;
+            padding: 2px 3px;
+            letter-spacing: 0px;
+        }
+    }
+
+    /* Mobile Large (480px - 767px) */
+    @media (max-width: 768px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 9px;
+            padding: 2px 3px;
+            letter-spacing: 0px;
+        }
+    }
+
+    /* Mobile Small (< 480px) */
+    @media (max-width: 480px) {
+        .main-menu-ex.homepage6 ul li a {
+            font-size: 8px;
+            padding: 2px 2px;
+            letter-spacing: 0px;
+        }
+    }
+
+    /* ===== IMPROVED HEADER TOP TEXT SCALING ===== */
+    .top-content-area .content p {
+        color: white !important;
+        font-weight: 500 !important;
+        font-size: 13px;
+        line-height: 1.5;
+        margin: 0;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    @media (max-width: 1199px) {
+        .top-content-area .content p {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .top-content-area .content p {
+            font-size: 11px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .top-content-area .content p {
+            font-size: 10px;
+        }
+    }
+
+    /* ===== IMPROVED SOCIAL AREA (Email & Phone) ===== */
+    .social-area {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        white-space: normal;
+    }
+
+    .social-area ul {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+        list-style: none;
+    }
+
+    .social-area a {
+        color: white !important;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .social-area a:hover {
+        opacity: 0.85;
+    }
+
+    .social-area a span {
+        color: white !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @media (max-width: 1199px) {
+        .social-area {
+            order: 3;
+            width: 100%;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .social-area ul {
+            width: 100%;
+        }
+
+        .social-area a {
+            font-size: 11px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .social-area a {
+            font-size: 10px;
+        }
+
+        .social-area a span {
+            max-width: 150px;
+            display: inline-block;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .social-area a {
+            font-size: 9px;
+        }
+
+        .social-area a span {
+            max-width: 120px;
+        }
+    }
+
+    /* ===== IMPROVED LOGIN/REGISTER BUTTON ===== */
+    .main-menu-ex.homepage6 ul li .btn {
+        background-color: #ff5722 !important;
+        color: white !important;
+        border-color: #ff5722 !important;
+        padding: 4px 8px !important;
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        border-radius: 4px !important;
+        transition: all 0.3s ease !important;
+        white-space: nowrap !important;
+        cursor: pointer !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0px !important;
+    }
+
+    .main-menu-ex.homepage6 ul li .btn:hover {
+        background-color: #d43b0a !important;
+        border-color: #d43b0a !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    @media (max-width: 1024px) {
+        .main-menu-ex.homepage6 ul li .btn {
+            padding: 3px 7px !important;
+            font-size: 9px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .main-menu-ex.homepage6 ul li .btn {
+            padding: 3px 6px !important;
+            font-size: 8px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-menu-ex.homepage6 ul li .btn {
+            padding: 2px 5px !important;
+            font-size: 7px !important;
+        }
+    }
+
+    /* ===== CONTACT AREA STYLING ===== */
+    .contact-3 {
+        flex-shrink: 0;
+        order: 3 !important;
+    }
+
+    .col-lg-4 {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        min-width: auto;
+    }
+
+    .header-top-area .row {
+        row-gap: 10px;
+    }
+
+    /* ===== PREVENT TEXT OVERFLOW ===== */
+    .top-content-area .content p,
+    .social-area a {
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* ===== RESPONSIVE MENU LAYOUT ===== */
+    @media (max-width: 768px) {
+        .header-top-area .row {
+            row-gap: 12px;
+        }
+    }
+
+    /* ===== MENU ITEMS OPTIMIZATION ===== */
+    .main-menu-ex.homepage6 ul li {
+        flex-shrink: 0;
+        list-style: none;
+    }
+
+    /* ===== LOGO STYLING ===== */
+    .site-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        object-fit: contain;
+    }
+
+    /* ===== HAMBURGER MENU STYLING ===== */
+    .header__bar-icon {
+        min-width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    /* ===== CONTACT INFO STYLING ===== */
+    .col-lg-4 {
+        display: flex;
+        align-items: center;
+    }
+
+    @media (max-width: 1199px) {
+        .col-lg-4 {
+            margin-top: 0;
+            width: 100%;
+        }
+    }
+
+    /* ===== HEADER CONTAINER STYLING ===== */
+    .container-fluid.px-0 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .header-top-area {
+        overflow: hidden;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom: 0;
+    }
+
+    /* ===== SCROLLBAR HIDING ===== */
+    .main-menu-ex.homepage6::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-menu-ex.homepage6 {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .main-menu-ex.homepage6::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .main-menu-ex.homepage6::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+
+    /* ===== DROPDOWN MENU STYLING FOR ACTS & RULES ===== */
+    .dropdown-menu-item {
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        flex-shrink: 0 !important;
+        height: auto !important;
+        z-index: 1000 !important;
+        /* Match the row height of the plain (non-dropdown) menu items.
+           Flex sizing ignores line-height, so without this the dropdown
+           item's box comes out shorter than its siblings and its label
+           ends up sitting visibly higher than the rest of the menu. */
+        align-self: stretch !important;
+    }
+
+    .dropdown-menu-item > a {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        white-space: nowrap !important;
+        cursor: pointer !important;
+        /* The plain menu links sit a few pixels below true vertical center
+           (theme's own line-height/baseline behaviour), while flex-centering
+           here lands on the exact geometric center. Nudge down to match. */
+        margin-top: 4.8px !important;
+    }
+
+    .dropdown-menu-item > a::after {
+        content: '▼';
+        font-size: 8px;
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu-item:hover > a::after {
+        transform: rotate(180deg);
+    }
+
+    /* Invisible hover-bridge covering the gap between the menu link and the
+       submenu (top: calc(100% + 8px) below) so moving the cursor down into
+       the dropdown doesn't momentarily leave .dropdown-menu-item and cause
+       the option to become unclickable / the menu to start closing. Purely
+       additive and absolutely positioned, so it does not affect layout. */
+    .dropdown-menu-item::before {
+        content: '';
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 8px !important;
+    }
+
+    /* Dropdown submenu styling */
+    .dropdown-submenu {
+        position: absolute !important;
+        top: calc(100% + 8px) !important;
+        left: 0 !important;
+        background-color: #fff !important;
+        min-width: 160px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 4px !important;
+        overflow: hidden !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transition: all 0.3s ease !important;
+        /* Delay hiding the dropdown so the cursor has time to move from the
+           menu item into the submenu without it closing first. */
+        transition-delay: 1.2s !important;
+        z-index: 9999 !important;
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+        max-height: 0 !important;
+        transform: translateY(-10px) !important;
+    }
+
+    .dropdown-menu-item:hover .dropdown-submenu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        max-height: 160px !important;
+        transform: translateY(0) !important;
+        /* Show immediately on hover; only hiding is delayed (see above). */
+        transition-delay: 0s !important;
+    }
+
+    .dropdown-submenu li {
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        width: 100% !important;
+    }
+
+    /* Some browsers still render the default bullet's ::marker (often shown
+       in the browser/OS accent colour) even with list-style:none on the <li>
+       itself. Killing the marker pseudo-element directly removes it for good,
+       without touching the list-style declaration above. */
+    .dropdown-submenu li::marker {
+        content: none !important;
+        display: none !important;
+    }
+
+    .dropdown-submenu li a {
+        display: block !important;
+        padding: 12px 20px 12px 28px !important;
+        color: #333 !important;
+        text-decoration: none !important;
+        font-size: 13px !important;
+        white-space: nowrap !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        line-height: 1.4 !important;
+    }
+
+    .dropdown-submenu li a:hover {
+        background-color: #f5f5f5 !important;
+        color: #ff5722 !important;
+        padding-left: 32px !important;
+    }
+
+    /* The compiled theme stylesheet (public/build/assets/master-*.css) draws its
+       own small underline bar via "...ul li ul li a:hover::after" (an absolutely
+       positioned 2px-tall, 10px-wide orange-red bar, left:10px) — sized and placed
+       so it lands mid-text and reads as a strikethrough across the submenu option's
+       label on hover, e.g. "Acts". That pseudo-element belongs to the theme's own
+       compiled CSS, not to any rule in this file, and loads after this block, so it
+       still draws even though nothing here creates it. Suppressing just that
+       pseudo-element (additive — nothing above is changed) removes the red
+       strike-through line while leaving the rest of the hover styling untouched. */
+    .header .header-area.homepage7 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover::after,
+    .header .header-area.homepage6 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover::after {
+        content: none !important;
+        display: none !important;
+        background: transparent !important;
+    }
+
+    /* Same compiled-theme specificity problem as the strike-through fix above:
+       the theme's own "...ul li ul.dropdown-submenu li a" rule sets its own
+       padding, which beats the plain ".dropdown-submenu li a" rule further up
+       this file. Matching that exact selector path is the only way to make
+       this option's left padding (breathing room from the dropdown's edge)
+       actually win. */
+    .header .header-area.homepage7 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a,
+    .header .header-area.homepage6 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a {
+        padding-left: 28px !important;
+    }
+
+    .header .header-area.homepage7 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover,
+    .header .header-area.homepage6 .main-menu-ex.homepage6 ul li ul.dropdown-submenu li a:hover {
+        padding-left: 32px !important;
+    }
+
+    .dropdown-submenu li:first-child a {
+        border-top: none;
+    }
+
+    @media (min-width: 768px) {
+        .dropdown-submenu li a {
+            font-size: 14px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .dropdown-submenu li a {
+            font-size: 15px !important;
+        }
+    }
+
+    /* Fix overflow clipping of dropdown menu */
+    body {
+        overflow-x: visible !important;
+    }
+
+    .header-area {
+        overflow: visible !important;
+        position: relative !important;
+        z-index: 999 !important;
+    }
+
+    .header {
+        overflow: visible !important;
+    }
+
+    .header-elements {
+        overflow: visible !important;
+    }
+
+    .header-top-area {
+        overflow: visible !important;
+    }
+
+    .container-fluid.px-0 {
+        overflow: visible !important;
+    }
+
+    .main-menu-ex.homepage6 {
+        overflow: visible !important;
+    }
+
+    /* ===== RESPONSIVE HEADER TOP TEXT ===== */
+    @media (max-width: 1399px) {
+        .top-content-area .content p {
+            font-size: 20px !important;
+        }
+
+        .social-area a {
+            font-size: 20px !important;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .top-content-area .content p {
+            font-size: 18px !important;
+        }
+
+        .social-area a {
+            font-size: 18px !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .top-content-area .content p {
+            font-size: 17px !important;
+        }
+
+        .social-area a {
+            font-size: 17px !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .top-content-area .content p {
+            font-size: 16px !important;
+        }
+
+        .social-area a {
+            font-size: 16px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .top-content-area .content p {
+            font-size: 14px !important;
+        }
+
+        .social-area a {
+            font-size: 14px !important;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .top-content-area .content p {
+            font-size: 24px !important;
+        }
+
+        .social-area a {
+            font-size: 24px !important;
+        }
+    }
+</style>
+
+<script>
+(function() {
+    // Simple font size management
+    function getFontSize() {
+        const windowWidth = window.innerWidth;
+        if (windowWidth >= 1200) {
+            return { menu: '16px', tagline: '17px' };
+        } else if (windowWidth >= 992) {
+            return { menu: '15px', tagline: '16px' };
+        } else if (windowWidth >= 768) {
+            return { menu: '14px', tagline: '15px' };
+        } else if (windowWidth >= 576) {
+            return { menu: '13px', tagline: '14px' };
+        }
+        return { menu: '13px', tagline: '14px' };
+    }
+
+    function applyFontSizes() {
+        const sizes = getFontSize();
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .main-menu-ex.homepage6 ul li a { font-size: ${sizes.menu} !important; line-height: 1.4 !important; }
+            .top-content-area .content p { font-size: ${sizes.tagline} !important; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Ensure dropdown containers have overflow visible
+    function ensureDropdownVisibility() {
+        const menuContainer = document.querySelector('.main-menu-ex.homepage6');
+        if (menuContainer) {
+            menuContainer.style.overflow = 'visible';
+            menuContainer.style.zIndex = '999';
+        }
+
+        const headerArea = document.querySelector('.header-area');
+        if (headerArea) {
+            headerArea.style.overflow = 'visible';
+        }
+
+        const header = document.querySelector('.header');
+        if (header) {
+            header.style.overflow = 'visible';
+        }
+
+        const headerTopArea = document.querySelector('.header-top-area');
+        if (headerTopArea) {
+            headerTopArea.style.overflow = 'visible';
+        }
+    }
+
+    // Initialize on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            applyFontSizes();
+            ensureDropdownVisibility();
+        });
+    } else {
+        applyFontSizes();
+        ensureDropdownVisibility();
+    }
+
+    // Reapply on load
+    window.addEventListener('load', function() {
+        applyFontSizes();
+        ensureDropdownVisibility();
+    });
+
+    // Reapply on resize
+    window.addEventListener('resize', function() {
+        applyFontSizes();
+    });
+})();
+</script>
+
+<!--===== HEADER STARTS =======-->
+<header class="header d-none d-lg-block" style="position:relative; z-index:999;">
+    <div class="header-area header homepage7 header-sticky" id="header" style="position:relative; top:auto;">
+        <div class="container-fluid px-0">
+            <div class="row g-0">
+                <div class="col-12">
+                    <div class="header-top-area">
+                        <div class="header-top-border"
+                            style="background-image: url(/img/bacground/header7-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
+                            <div class="row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+                                <div class="col-lg-6" style="flex: 0 1 auto; min-width: 0;">
+                                    <div class="top-content-area">
+                                        <div class="content">
+                                            <p style="margin: 0; word-break: break-word; overflow-wrap: break-word; font-size: 13px;">• Legal Education • Legal Knowledge • Legal Resources</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2" style="display: none;"></div>
+                                <div class="col-lg-4" style="flex: 1 1 auto; min-width: auto; display: flex; align-items: center; justify-content: flex-end;">
+                                    @php
+                                        $user = \App\Models\User::first();
+                                        $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
+                                        $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
+                                        $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
+                                        $pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
+                                        $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
+                                        $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
+                                        $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+                                        $description = !empty($user->description)
+                                            ? $user->description
+                                            : 'Learn Law.
+                                            Understand Law.
+                                            Build Your Future.';
+                                    @endphp
+
+                                    <div class="social-area"
+                                        style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; white-space:normal;">
+
+                                        <ul style="display:flex; align-items:center; margin:0; padding:0; white-space: nowrap;">
+                                            <li style="list-style:none;">
+                                                <a href="mailto:{{ $email }}"
+                                                    style="display:flex; align-items:center; gap:8px; font-size: 16px; font-weight: 500; white-space: nowrap;">
+                                                    <img src="/img/icons/email3.svg" alt="" style="min-width: 16px;">
+                                                    <span style="overflow: hidden; text-overflow: ellipsis;">{{ $email }}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <ul class="list"
+                                            style="display:flex; align-items:center; margin:0; padding:0; white-space: nowrap;">
+                                            <li style="list-style:none;">
+                                                <a href="tel:{{ $mobile }}"
+                                                    style="display:flex; align-items:center; gap:8px; font-size: 16px; font-weight: 500; white-space: nowrap;">
+                                                    <img src="/img/icons/phone3.svg" alt="" style="min-width: 16px;">
+                                                    {{ $mobile }}
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-elements" style="display: flex; align-items: center; justify-content: flex-start; width: 100%; gap: 15px; flex-wrap: nowrap;">
+                            <div class="site-logo"
+                                style="width:350px; height:90px; display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink: 0;">
+                                <a href="" style="display:block; width:100%; height:100%;">
+                                    <img src="assets/images/logo-full.png" alt=""
+                                        style="width:100%; height:100%; object-fit:contain;">
+                                </a>
+                            </div>
+                            <div class="main-menu-ex homepage6" style="flex: 0 0 auto; min-width: 0; overflow: visible !important; margin-left: auto !important;">
+                                <ul style="display: flex; flex-wrap: nowrap; align-items: center; gap: 0px; margin: 0; padding: 0; list-style: none;">
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.home') }}" class=" mainhome" style="white-space: nowrap;">Home</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.about') }}" style="white-space: nowrap;">About Us</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;" class="dropdown-menu-item">
+                                        <a href="#" style="white-space: nowrap;">Bare Acts & Rules</a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
+                                            <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
+                                        </ul>
+                                    </li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.legal-knowledge') }}" style="white-space: nowrap;">Legal Knowledge</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;" class="dropdown-menu-item">
+                                        <a href="#" style="white-space: nowrap;">Course & Notes</a>
+                                        <ul class="dropdown-submenu">
+                                            <li><a href="{{ route('frontend.course') }}">Course</a></li>
+                                            <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
+                                        </ul>
+                                    </li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.clientele') }}" style="white-space: nowrap;">Client</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.govtexams') }}" style="white-space: nowrap;">Centre & State Govt. Examination</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.gallery') }}" style="white-space: nowrap;">Gallery</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;"><a href="{{ route('frontend.contact') }}" style="white-space: nowrap;">Contact Us</a></li>
+                                    <li style="list-style: none; flex-shrink: 0;">
+                                        <a href="{{ route('login') }}" class="btn"
+                                            style="background-color:#ff5722; color:#fff; border-color:#ff5722; white-space: nowrap;">
+                                            Login / Register
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="contact-3 d-none" style="flex-shrink: 0;">
+                                <div class="consulting2 consulting3">
+                                    <div class="marginsp1"></div>
+                                    <a class="header__bar hamburger_menu header__bar-icon header_bar5"
+                                        href="javascript:void(0);">
+                                        <i class="fa-solid fa-bars"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--===== SIDEBAR STARTS =======-->
+                            <aside class="slide-bar slide-bar6">
+                                <div class="close-mobile-menu">
+                                    <a class="tx-close"></a>
+                                </div>
+                                <div class="sidebar-info sidebar-info6">
+                                    <div class="sidebar-logo mb-30">
+                                        <a href="">
+                                            <img src="/img/logo/logo11.png" alt="logo">
+                                        </a>
+                                    </div>
+                                    <div class="sidebar-content">
+                                        <p>{!! nl2br($description) !!}</p>
+                                    </div>
+
+                                    <div class="sidebar-contact-header">
+                                        <h3>Contact Info</h3>
+                                        <div class="sidebar-footer-area">
+                                            <div class="sidebar-author-area">
+                                                <div class="phone-side">
+                                                    <img src="/img/icons/phone1.svg" alt="">
+                                                </div>
+                                                <div class="phone-side">
+                                                    <a href="tel:{{ $mobile }}">{{ $mobile }}</a>
+                                                </div>
+                                            </div>
+                                            <div class="sidebar-author-area">
+                                                <div class="phone-side">
+                                                    <img src="/img/icons/email1.svg" alt="">
+                                                </div>
+                                                <div class="phone-side">
+                                                    <a href="mailto:{{ $email }}">{{ $email }}</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <h3 class="sidebar-heading">Social Links</h3>
+                                    <ul class="social-links">
+                                        <li><a href="{{ $linkedin }}"><i class="fa-brands fa-linkedin"></i></a>
+                                        </li>
+                                        <li><a href="{{ $facebook }}"><i class="fa-brands fa-facebook"></i></a>
+                                        </li>
+                                        <li><a href="{{ $twitter }}"><i class="fa-brands fa-x-twitter"></i></a>
+                                        </li>
+                                        <li><a href="{{ $instagram }}"><i class="fa-brands fa-instagram"></i></a>
+                                        </li>
+                                        <li><a href="{{ $pinterest }}"><i class="fa-brands fa-pinterest"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <nav class="side-mobile-menu">
+                                    <div class="header-mobile-search">
+                                        <form role="search" method="get" action="#">
+                                            <input type="text" placeholder="Search Keywords">
+                                            <button type="submit"><i class="ti-search"></i></button>
+                                        </form>
+                                    </div>
+                                    <ul id="mobile-menu-active">
+                                        <li class="dropdown"><a href="">Home</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="">Home Chatbot</a></li>
+                                                <li><a href="home-2">Home CRM</a></li>
+                                                <li class="active"><a href="home-3">Home Copy Writing</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="scrollspy-btn" href="#whatwedo">What we do</a></li>
+                                        <li><a class="scrollspy-btn" href="#process">Process</a></li>
+                                        <li class="dropdown">
+                                            <a href="#!">Blog</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="blog">Blog</a></li>
+                                                <li><a href="">Blog
+                                                        Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="scrollspy-btn" href="contact">Get in touch</a></li>
+                                    </ul>
+                                </nav>
+                            </aside>
+                            <div class="header-search-form-wrapper">
+                                <div class="tx-search-close tx-close"><i class="fa-solid fa-xmark"></i></div>
+                                <div class="header-search-container">
+                                    <form role="search" class="search-form">
+                                        <input type="search" class="search-field" placeholder="Search …"
+                                            value="" name="s">
+                                        <button type="submit" class="search-submit"><i
+                                                class="fa-solid fa-magnifying-glass"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="body-overlay"></div>
+                            <!--===== SIDEBAR ENDS =======-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--===== HEADER ENDS =======-->
+
+<!--===== MOBILE HEADER STARTS =======-->
+<style>
+.mobile-header.mobile-homepage6 {
+    position: relative !important;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+}
+
+.mobile-header.mobile-homepage6 .mobile-nav-icon {
+    color: #1a1a1a !important;
+}
+
+.mobile-header.mobile-homepage6 .mobile-header-elements {
+    justify-content: flex-end !important;
+}
+
+.mobile-hero-branding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 20px 0 20px;
+    text-align: center;
+}
+
+.mobile-hero-branding img {
+    height: 36px;
+    width: auto;
+}
+
+.mobile-hero-branding h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.mobile-hero-tagline {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    margin: 12px 20px 8px 20px;
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif;
+}
+
+.mobile-hero-supporting-text {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    text-align: center;
+    margin: 0 20px 20px 20px;
+}
+
+.mobile-sidebar.sidebar6 .logosicon-area .logos {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.mobile-sidebar.sidebar6 .menu-home-btn {
+    position: absolute;
+    right: 55px;
+    top: 20px;
+    font-size: 22px;
+    color: #0a141c;
+    cursor: pointer;
+}
+</style>
+<div class="mobile-header mobile-homepage6 d-block d-lg-none">
+    <div class="container-fluid">
+        <div class="col-12">
+            <div class="mobile-header-elements">
+                <div class="mobile-header-icons" style="display:flex;align-items:center;gap:10px;">
+                    <div class="mobile-nav-icon dots-menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @unless(request()->routeIs('frontend.home'))
+        <div class="mobile-hero-branding">
+            <img src="/img/logo/logo11.png" alt="Law Students Logo">
+            <h1>Law Students</h1>
+        </div>
+
+        <div class="mobile-hero-tagline">
+            Learn Law. Understand Law. Build Your Future.
+        </div>
+
+        <div class="mobile-hero-supporting-text">
+            A comprehensive platform for Legal Education, Examination Preparation, Legal Knowledge,
+            Bare Acts, Rules, Notifications and Study Materials.
+        </div>
+        @endunless
+    </div>
+</div>
+
+<div class="mobile-sidebar sidebar6">
+    <div class="logosicon-area">
+        <a href="{{ route('frontend.home') }}" class="menu-home-btn" title="Back to Home">
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+        <div class="logos">
+            <img src="/img/logo/logo11.png" alt="">
+        </div>
+        <div class="menu-close">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+
+    <div class="mobile-hero-branding">
+        <h1>Law Students</h1>
+    </div>
+
+    <div class="mobile-hero-tagline">
+        Learn Law. Understand Law. Build Your Future.
+    </div>
+
+    <div class="mobile-hero-supporting-text">
+        A comprehensive platform for Legal Education, Examination Preparation, Legal Knowledge,
+        Bare Acts, Rules, Notifications and Study Materials.
+    </div>
+
+    <div class="mobile-nav">
+
+        <ul class="mobile-nav-list">
+            <li><a href="{{ route('frontend.home') }}">Home</a></li>
+            <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+            <li><a href="#">Bare Acts & Rules</a>
+                <ul class="sub-menu">
+                    <li><a href="{{ route('frontend.acts') }}">Acts</a></li>
+                    <li><a href="{{ route('frontend.rules') }}">Rules</a></li>
+                </ul>
+            </li>
+            <li><a href="{{ route('frontend.legal-knowledge') }}">Legal Knowledge</a></li>
+            <li><a href="#">Course & Notes</a>
+                <ul class="sub-menu">
+                    <li><a href="{{ route('frontend.course') }}">Course</a></li>
+                    <li><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
+                </ul>
+            </li>
+            <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
+            <li><a href="{{ route('frontend.govtexams') }}">Centre & State Govt. Examination</a></li>
+            <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+            <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+            <li><a href="{{ route('login') }}">Login / Register</a></li>
+        </ul>
+
+        <div class="allmobilesection">
+            <a href="" class="welcome5-btn">Get Started</a>
+            <div class="single-footer">
+                <h3>Contact Info</h3>
+                <div class="footer4-contact-info">
+                    <div class="contact-info-single">
+                        <div class="contact-info-icon">
+                            <img src="/img/icons/footer-phn.svg" alt="">
+                        </div>
+                        <div class="contact-info-text">
+                            <a href="tel:{{ $mobile }}">{{ $mobile }}</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-single">
+                        <div class="contact-info-icon">
+                            <img src="/img/icons/footer-email2.svg" alt="">
+                        </div>
+                        <div class="contact-info-text">
+                            <a href="mailto:{{ $email }}">{{ $email }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== MOBILE HEADER ENDS =======-->
+
+<!-- DROPDOWN POSITIONING -->
+<style>
+/* Ensure dropdown appears below menu item with proper positioning */
+.main-menu-ex.homepage6 .dropdown-menu-item {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.main-menu-ex.homepage6 ul li.dropdown-menu-item .dropdown-submenu {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    z-index: 9999 !important;
+    right: auto !important;
+    bottom: auto !important;
+}
+</style>
+
+<!-- Font size overrides -->
+<style>
+.header .main-menu-ex.homepage6 ul li a {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+}
+
+/* Tagline font sizes */
+.header-top-border .top-content-area .content p {
+    font-size: 14px !important;
+}
+
+@media (min-width: 768px) {
+    .header-top-border .top-content-area .content p {
+        font-size: 15px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .header-top-border .top-content-area .content p {
+        font-size: 16px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 11px !important;
+    }
+
+    .header-top-border .top-content-area .content p {
+        font-size: 17px !important;
+    }
+}
+</style>
+
+<!-- Mobile sidebar light background override -->
+<style>
+.mobile-sidebar.sidebar6 {
+    background: #ffffff !important;
+}
+
+.mobile-sidebar.sidebar6 .mobile-nav li a,
+.mobile-sidebar.sidebar6 .allmobilesection h3,
+.mobile-sidebar.sidebar6 .allmobilesection a {
+    color: #0a141c !important;
+}
+
+.mobile-sidebar.sidebar6 .menu-close i {
+    color: #0a141c !important;
+}
+
+.mobile-sidebar.sidebar6 span.submenu-button:before,
+.mobile-sidebar.sidebar6 span.submenu-button:after {
+    background: #0a141c !important;
+}
+
+.mobile-sidebar.sidebar6 .allmobilesection .contact-info-single img {
+    filter: none !important;
+}
+
+.mobile-sidebar.sidebar6 .allmobilesection .welcome5-btn {
+    color: #ffffff !important;
+    background: #0a141c !important;
+}
+</style>
+
+<!-- ===== MATCH EMAIL/PHONE FONT SIZE TO TAGLINE TEXT ===== -->
+<style>
+    .social-area a {
+        font-size: 14px !important;
+    }
+
+    @media (min-width: 768px) {
+        .social-area a {
+            font-size: 15px !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .social-area a {
+            font-size: 16px !important;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .social-area a {
+            font-size: 17px !important;
+        }
+    }
+</style>
+
+<!-- ===== NAVBAR TEXT: LARGER + BOLD FOR VISIBILITY (matches homepage body-text scale) =====
+     Pure addition placed last in the cascade so it overrides the earlier, much smaller
+     (11px) navbar font-size rules above without editing any of them. Nothing here removes
+     or changes any previous declaration or script logic; it only re-declares the same
+     selectors afterwards with larger/bolder values. Desktop/tablet/mobile top nav links,
+     the dropdown trigger + its submenu options, the Login/Register button, and the mobile
+     sidebar's nav links are all covered so the whole navbar reads consistently, on every
+     device, at a size/weight comparable to the rest of the site's body text. -->
+<style>
+    /* Top-level nav links (desktop + the same rule's responsive breakpoints).
+       Padding is tightened slightly (was 3px 4px) to reclaim just enough
+       horizontal room for the bigger/bolder text to still fit one row at
+       common desktop widths (~1280px) without pushing "Login / Register"
+       off-screen. */
+    .header .main-menu-ex.homepage6 ul li a {
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        padding: 2px 1.5px !important;
+    }
+
+    /* The container's own side padding steps up from 30px to 35px exactly
+       at 1200px (pre-existing, untouched), independently of the font-size
+       breakpoints here. That leaves 1025px-1199px (still the 30px-padding
+       tier, but not yet the wider 1400px+ font tier) as its own tight
+       range that needs a smaller size to actually fit — verified against
+       its narrowest width (1025px). */
+    @media (max-width: 1199px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 9px !important;
+            font-weight: 700 !important;
+            padding: 1px 0px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a.btn {
+            margin-right: -21px !important;
+        }
+    }
+
+    /* Same reasoning as the 1199px block above, but for the 1200px-1399px
+       range: the container's padding just stepped up to 35px here while
+       this tier's font-size/padding otherwise stays at the base values,
+       leaving the right side visibly under-filled at the narrow end
+       (1200px) — checked and corrected against that exact width. */
+    @media (min-width: 1200px) and (max-width: 1399px) {
+        .main-menu-ex.homepage6 ul li a.btn {
+            margin-right: -28px !important;
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 13px !important;
+            font-weight: 700 !important;
+            padding: 3px 2px !important;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 16px !important;
+            font-weight: 700 !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            padding: 3px 2px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 10px !important;
+            font-weight: 700 !important;
+            padding: 2px 2px !important;
+        }
+    }
+
+    /* Dropdown trigger label ("Bare Acts & Rules", "Courses & Free Notes") */
+    .dropdown-menu-item > a {
+        font-weight: 700 !important;
+    }
+
+    /* Dropdown submenu options (Acts, Rules, Course, Free Notes) */
+    .dropdown-submenu li a {
+        font-weight: 700 !important;
+    }
+
+    /* Login / Register button: no separate font-size here — .btn is itself
+       an <a> matching ".header .main-menu-ex.homepage6 ul li a" above, so it
+       already inherits that same tiered size. Giving it its own fixed size
+       (previously 13px/14px regardless of tier) collided badly with the
+       narrower tiers, where 14px no longer fit. font-weight kept for clarity
+       even though the general rule already sets it too. */
+    .main-menu-ex.homepage6 ul li a.btn {
+        font-weight: 700 !important;
+    }
+
+    /* Mobile off-canvas sidebar nav links */
+    .mobile-sidebar.sidebar6 .mobile-nav li a {
+        font-weight: 700 !important;
+    }
+</style>
+
+<!-- ===== NAVBAR TEXT: 1024px-WIDE OVERFLOW FIX =====
+     At ~1024px (just above the lg breakpoint where the desktop nav is still
+     shown instead of the mobile hamburger) all 10 nav items + the button no
+     longer fit on one row once the text above is made bigger/bolder. This
+     block only tightens sizing further AT that narrow width specifically —
+     it does not touch the sizes used at 1200px+ (already verified to fit
+     with room to spare) and does not change any previous rule or script. -->
+<style>
+    @media (max-width: 1024px) {
+        .header .main-menu-ex.homepage6 ul li a {
+            font-size: 9px !important;
+            font-weight: 700 !important;
+            padding: 1px 0px !important;
+        }
+
+        .dropdown-menu-item > a {
+            gap: 2px !important;
+        }
+
+        .main-menu-ex.homepage6 ul li a.btn {
+            font-size: 9px !important;
+            font-weight: 700 !important;
+            padding: 2px 0px !important;
+            margin-right: -36px !important;
+        }
+    }
+</style>

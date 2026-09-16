@@ -1,0 +1,1435 @@
+<!--===== FOOTER STARTS =======-->
+
+<style>
+/* ===== HEADING STYLES FOR FOOTER TO MATCH ABOUT PAGE ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 500 !important;
+}
+
+h1 {
+    font-size: 60px !important;
+    line-height: 60px !important;
+}
+
+h2 {
+    font-size: 46px !important;
+    line-height: 1.3 !important;
+}
+
+h3 {
+    font-size: 40px !important;
+}
+
+h4 {
+    font-size: 32px !important;
+}
+
+h5 {
+    font-size: 24px !important;
+}
+
+h6 {
+    font-size: 20px !important;
+}
+
+/* Footer Improvements - Responsive Design & Orange Theme */
+
+/* Orange divider above footer */
+.footer3-section-area {
+    border-top: 4px solid #ff5722 !important;
+    margin-top: 40px !important;
+}
+
+/* Responsive padding for footer - INCREASED */
+.footer3-section-area {
+    padding: 50px 20px !important;
+}
+
+@media (min-width: 576px) {
+    .footer3-section-area {
+        padding: 60px 25px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer3-section-area {
+        padding: 70px 35px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer3-section-area {
+        padding: 80px 60px !important;
+    }
+}
+
+/* Footer alignment - all sections aligned to top */
+.footer-all-section-area .row {
+    display: flex !important;
+    align-items: flex-start !important;
+}
+
+.footer-all-section-area .row > div {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}
+
+/* Override Bootstrap column centering - highest specificity */
+.footer3-section-area .container .row .col-lg-2,
+.footer3-section-area .container .row .col-lg-3,
+.footer3-section-area .container .row .col-lg-4 {
+    align-items: flex-start !important;
+}
+
+/* Direct override for any col with flex */
+div[class*="col-lg-"] {
+    align-items: flex-start !important;
+}
+
+/* Override footer-contact-area centering and remove offset */
+.footer-contact-area {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Remove margin-top from footer-contact-area on all screen sizes */
+@media (max-width: 575px) {
+    .footer-contact-area {
+        margin-top: 0 !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .footer-contact-area {
+        margin-top: 0 !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-contact-area {
+        margin-top: 0 !important;
+    }
+}
+
+/* Footer section headers - responsive sizing - INCREASED */
+.footer-last-section h3,
+.about-links-area h3,
+.get-links-area h3,
+.footer-contact-area h3 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    color: #ff5722 !important;
+    margin-bottom: 20px !important;
+    text-transform: none !important;
+    letter-spacing: 0px !important;
+}
+
+@media (min-width: 576px) {
+    .footer-last-section h3,
+    .about-links-area h3,
+    .get-links-area h3,
+    .footer-contact-area h3 {
+        font-size: 26px !important;
+        margin-bottom: 22px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-last-section h3,
+    .about-links-area h3,
+    .get-links-area h3,
+    .footer-contact-area h3 {
+        font-size: 28px !important;
+        margin-bottom: 25px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer-last-section h3,
+    .about-links-area h3,
+    .get-links-area h3,
+    .footer-contact-area h3 {
+        font-size: 32px !important;
+        margin-bottom: 28px !important;
+    }
+}
+
+/* Footer text - responsive sizing (SIGNIFICANTLY INCREASED TO MATCH ABOUT PAGE) */
+.footer-text-area p,
+.footer3-section-area p,
+.footer-last-section p,
+.about-links-area p,
+.get-links-area p,
+.footer-contact-area p {
+    font-size: 22px !important;
+    font-family: 'Playfair Display', serif !important;
+    line-height: 1.9 !important;
+    color: #666 !important;
+    margin-bottom: 32px !important;
+    font-weight: 500 !important;
+}
+
+/* Increase footer links spacing and sizing - MATCH ABOUT PAGE */
+.footer-last-section ul li,
+.about-links-area ul li,
+.get-links-area ul li,
+.footer-contact-area ul li {
+    margin-bottom: 20px !important;
+}
+
+.footer-last-section ul li a,
+.about-links-area ul li a,
+.get-links-area ul li a,
+.footer-contact-area ul li a {
+    font-size: 20px !important;
+    font-family: 'Playfair Display', serif !important;
+    line-height: 1.8 !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+}
+
+/* Footer copyright and bottom text - INCREASED */
+.footer-bottom-area,
+.footer3-section-area .footer-bottom-area,
+footer p,
+.copyright-text {
+    font-size: 18px !important;
+    font-family: 'Playfair Display', serif !important;
+    line-height: 1.8 !important;
+    font-weight: 500 !important;
+}
+
+/* ENHANCEMENT: Logo & Description Professional Styling - INCREASED */
+.about-links-area > div:first-child {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 35px !important;
+}
+
+.about-links-area > div:first-child img {
+    max-width: 150px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+.about-links-area > div:nth-child(2) p {
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    color: #2c3e50 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    word-spacing: 2px !important;
+    margin-top: 20px !important;
+}
+
+@media (min-width: 576px) {
+    .about-links-area > div:first-child img {
+        max-width: 170px !important;
+    }
+
+    .about-links-area > div:nth-child(2) p {
+        font-size: 18px !important;
+        line-height: 1.6 !important;
+        margin-top: 22px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-links-area > div:first-child img {
+        max-width: 180px !important;
+    }
+
+    .about-links-area > div:nth-child(2) p {
+        font-size: 18px !important;
+        line-height: 1.6 !important;
+        margin-top: 25px !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .footer-text-area p,
+    .footer3-section-area p,
+    .footer-last-section p,
+    .about-links-area p,
+    .get-links-area p,
+    .footer-contact-area p {
+        font-size: 23px !important;
+        font-family: 'Playfair Display', serif !important;
+        line-height: 1.9 !important;
+        margin-bottom: 35px !important;
+        font-weight: 500 !important;
+    }
+
+    .footer-last-section ul li a,
+    .about-links-area ul li a,
+    .get-links-area ul li a,
+    .footer-contact-area ul li a {
+        font-size: 21px !important;
+        font-family: 'Playfair Display', serif !important;
+        font-weight: 500 !important;
+    }
+
+    .footer-last-section ul li,
+    .about-links-area ul li,
+    .get-links-area ul li,
+    .footer-contact-area ul li {
+        margin-bottom: 22px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-text-area p,
+    .footer3-section-area p,
+    .footer-last-section p,
+    .about-links-area p,
+    .get-links-area p,
+    .footer-contact-area p {
+        font-size: 24px !important;
+        font-family: 'Playfair Display', serif !important;
+        line-height: 1.9 !important;
+        margin-bottom: 36px !important;
+        font-weight: 500 !important;
+    }
+
+    .footer-last-section ul li a,
+    .about-links-area ul li a,
+    .get-links-area ul li a,
+    .footer-contact-area ul li a {
+        font-size: 22px !important;
+        font-family: 'Playfair Display', serif !important;
+        line-height: 1.9 !important;
+        font-weight: 500 !important;
+    }
+
+    .footer-last-section ul li,
+    .about-links-area ul li,
+    .get-links-area ul li,
+    .footer-contact-area ul li {
+        margin-bottom: 24px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer-text-area p,
+    .footer3-section-area p,
+    .footer-last-section p,
+    .about-links-area p,
+    .get-links-area p,
+    .footer-contact-area p {
+        font-size: 26px !important;
+        font-family: 'Playfair Display', serif !important;
+        line-height: 1.9 !important;
+        margin-bottom: 40px !important;
+        font-weight: 500 !important;
+    }
+}
+
+/* Footer links - responsive sizing (IMPROVED) */
+.about-links-area ul li a,
+.get-links-area ul li a {
+    font-size: 14px !important;
+    color: #333 !important;
+    transition: all 0.3s ease !important;
+    line-height: 1.6 !important;
+}
+
+@media (min-width: 576px) {
+    .about-links-area ul li a,
+    .get-links-area ul li a {
+        font-size: 14px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .about-links-area ul li a,
+    .get-links-area ul li a {
+        font-size: 14px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .about-links-area ul li a,
+    .get-links-area ul li a {
+        font-size: 15px !important;
+    }
+}
+
+/* Footer links hover effect */
+.about-links-area ul li a:hover,
+.get-links-area ul li a:hover {
+    color: #ff5722 !important;
+    margin-left: 5px !important;
+}
+
+/* Social icons styling */
+.social-list-area ul li a {
+    width: 40px !important;
+    height: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background-color: #ff5722 !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+    margin: 0 8px !important;
+}
+
+@media (min-width: 768px) {
+    .social-list-area ul li a {
+        width: 45px !important;
+        height: 45px !important;
+        margin: 0 10px !important;
+    }
+}
+
+.social-list-area ul li a:hover {
+    background-color: #ff5722 !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Newsletter form - responsive */
+.footer-form-area form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-form-area form {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 0 !important;
+    }
+}
+
+.footer-form-area input {
+    font-size: 14px !important;
+    padding: 12px 15px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px 0 0 4px !important;
+    flex: 1 !important;
+}
+
+@media (min-width: 576px) {
+    .footer-form-area input {
+        font-size: 14px !important;
+        padding: 13px 16px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-form-area input {
+        font-size: 15px !important;
+        padding: 13px 18px !important;
+    }
+}
+
+.footer-btn button {
+    font-size: 14px !important;
+    padding: 12px 20px !important;
+    background-color: #ff5722 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0 4px 4px 0 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-weight: 600 !important;
+}
+
+@media (min-width: 576px) {
+    .footer-btn button {
+        font-size: 14px !important;
+        padding: 13px 25px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-btn button {
+        font-size: 15px !important;
+        padding: 13px 28px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-form-area input {
+        border-radius: 4px 0 0 4px !important;
+    }
+
+    .footer-btn button {
+        border-radius: 0 4px 4px 0 !important;
+    }
+}
+
+.footer-btn button:hover {
+    background-color: #ff5722 !important;
+}
+
+/* Copyright section - responsive */
+.copyright-pera {
+    margin-top: 30px !important;
+    padding-top: 20px !important;
+    border-top: 1px solid #eee !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+}
+
+.copyright-pera p {
+    font-size: 12px !important;
+    color: #999 !important;
+    margin: 0 !important;
+    line-height: 1.5 !important;
+}
+
+@media (min-width: 576px) {
+    .copyright-pera p {
+        font-size: 13px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .copyright-pera p {
+        font-size: 13px !important;
+    }
+}
+
+.copyright-pera a {
+    font-size: 12px !important;
+    color: #ff5722 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+@media (min-width: 576px) {
+    .copyright-pera a {
+        font-size: 13px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .copyright-pera a {
+        font-size: 13px !important;
+    }
+}
+
+.copyright-pera a:hover {
+    text-decoration: underline !important;
+    color: #ff5722 !important;
+}
+
+/* Footer section spacing */
+.footer-all-section-area .row > div {
+    margin-bottom: 30px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area .row > div {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Get in touch list styling */
+.get-links-area ul li {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+    gap: 10px !important;
+}
+
+.get-links-area ul li img {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+}
+
+/* Hide Contact section labels (Email, Address, Phone) to reduce space */
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li div > span {
+    display: none !important;
+}
+
+/* Remove bullets from Contact section */
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* About links list styling */
+.about-links-area ul li {
+    margin-bottom: 12px !important;
+    list-style: none !important;
+}
+
+.about-links-area ul {
+    padding-left: 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+}
+
+/* Two-Column Layout for QUICK LINKS and COURSES sections (First Row Only) */
+.footer-all-section-area > .row:first-of-type .about-links-area:nth-child(1) ul,
+.footer-all-section-area > .row:first-of-type .about-links-area:nth-child(2) ul {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 20px !important;
+    padding: 0 !important;
+    flex-direction: unset !important;
+    align-items: unset !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area > .row:first-of-type .about-links-area ul {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0 20px !important;
+    }
+}
+
+/* Text centering for mobile */
+@media (max-width: 767px) {
+    .about-links-area,
+    .get-links-area {
+        text-align: center !important;
+    }
+
+    .about-links-area ul,
+    .get-links-area ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .get-links-area ul li {
+        justify-content: center !important;
+    }
+}
+
+/* ===== DESIGN IMPROVEMENTS: Visual Hierarchy & Professional Polish ===== */
+
+/* IMPROVEMENT 1: Enhanced Header Styling - Make Headers More Distinctive */
+.footer-last-section h3,
+.about-links-area h3,
+.get-links-area h3,
+.footer-contact-area h3 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.2px !important;
+    color: #ff5722 !important;
+    margin-bottom: 22px !important;
+    position: relative !important;
+    padding-bottom: 15px !important;
+    text-align: center !important;
+}
+
+@media (min-width: 576px) {
+    .footer-last-section h3,
+    .about-links-area h3,
+    .get-links-area h3,
+    .footer-contact-area h3 {
+        font-size: 19px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer-last-section h3,
+    .about-links-area h3,
+    .get-links-area h3,
+    .footer-contact-area h3 {
+        font-size: 20px !important;
+    }
+}
+
+/* Header divider line using ::after pseudo-element - DISABLED */
+.footer-last-section h3::after,
+.about-links-area h3::after,
+.get-links-area h3::after,
+.footer-contact-area h3::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* IMPROVEMENT 2: Enhanced Whitespace & Section Padding */
+.footer-all-section-area {
+    padding: 40px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area {
+        padding: 50px 40px !important;
+    }
+}
+
+/* IMPROVEMENT 3: Visual Section Separation - Borders & Backgrounds */
+@media (min-width: 768px) {
+    .about-links-area {
+        border-left: 4px solid #ff5722 !important;
+        padding-left: 20px !important;
+        background: #fff !important;
+        padding: 20px 20px 20px 20px !important;
+        border-radius: 6px !important;
+    }
+
+    .get-links-area {
+        border-left: 4px solid #ff5722 !important;
+        padding-left: 20px !important;
+        background: rgba(255, 87, 34, 0.03) !important;
+        padding: 20px 20px 20px 20px !important;
+        border-radius: 6px !important;
+    }
+
+    .footer-contact-area {
+        border-left: 4px solid #ff5722 !important;
+        padding-left: 20px !important;
+        background: linear-gradient(135deg, rgba(255, 87, 34, 0.08) 0%, rgba(255, 87, 34, 0.03) 100%) !important;
+        padding: 20px !important;
+        border-radius: 6px !important;
+    }
+}
+
+/* IMPROVEMENT 4: Link Styling with Orange Bullet Points - DISABLED */
+.about-links-area ul li a::before,
+.get-links-area ul li a::before {
+    content: none !important;
+    display: none !important;
+}
+
+/* IMPROVEMENT 5: Enhanced Link Hover Effects */
+.about-links-area ul li a,
+.get-links-area ul li a {
+    position: relative !important;
+    transition: all 0.3s ease !important;
+}
+
+.about-links-area ul li a:hover::before,
+.get-links-area ul li a:hover::before {
+    background: #ff5722 !important;
+    transform: scale(1.3) !important;
+}
+
+.about-links-area ul li a:hover,
+.get-links-area ul li a:hover {
+    color: #ff5722 !important;
+    padding-left: 8px !important;
+}
+
+/* IMPROVEMENT 6: Enhanced Button Styling with Gradient & Shadow */
+.footer-btn button {
+    background: linear-gradient(135deg, #ff5722 0%, #ff7043 100%) !important;
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.25) !important;
+    transition: all 0.3s ease !important;
+    font-weight: 700 !important;
+}
+
+.footer-btn button:hover {
+    background: linear-gradient(135deg, #ff5722 0%, #ff5722 100%) !important;
+    box-shadow: 0 6px 20px rgba(255, 87, 34, 0.35) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* IMPROVEMENT 7: Enhanced Input Field Styling */
+.footer-form-area input {
+    border: 2px solid #ff5722 !important;
+    transition: all 0.3s ease !important;
+    background: #fafafa !important;
+}
+
+.footer-form-area input:focus {
+    border-color: #ff5722 !important;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.2) !important;
+    background: white !important;
+    outline: none !important;
+}
+
+.footer-form-area input::placeholder {
+    color: #bbb !important;
+}
+
+/* IMPROVEMENT 8: Increased List Item Spacing */
+.about-links-area ul li,
+.get-links-area ul li {
+    margin-bottom: 14px !important;
+}
+
+/* IMPROVEMENT 9: Newsletter Section Enhancement */
+.footer-contact-area h3 {
+    font-size: 19px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-contact-area h3 {
+        font-size: 21px !important;
+    }
+}
+
+/* IMPROVEMENT 10: Social Icons Hover Enhancement */
+.social-list-area ul li a {
+    transition: all 0.3s ease !important;
+}
+
+.social-list-area ul li a:hover {
+    background-color: #ff5722 !important;
+    transform: translateY(-4px) scale(1.05) !important;
+    box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3) !important;
+}
+
+/* IMPROVEMENT 11: Footer All Section Area Spacing Optimization */
+@media (min-width: 768px) {
+    .footer-all-section-area .row > div {
+        margin-bottom: 0 !important;
+        padding-right: 20px !important;
+    }
+
+    .footer-all-section-area .row > div:last-child {
+        padding-right: 0 !important;
+    }
+}
+
+/* IMPROVEMENT 12: Text Area Padding Optimization */
+.footer-text-area {
+    margin-bottom: 25px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-text-area {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ENHANCEMENT: Social Media Icons in Social Media Section */
+.about-links-area ul li a[href*="facebook"],
+.about-links-area ul li a[href*="twitter"],
+.about-links-area ul li a[href*="instagram"],
+.about-links-area ul li a[href*="linkedin"] {
+    transition: all 0.3s ease !important;
+    position: relative !important;
+}
+
+.about-links-area ul li a[href*="facebook"]:hover,
+.about-links-area ul li a[href*="twitter"]:hover,
+.about-links-area ul li a[href*="instagram"]:hover,
+.about-links-area ul li a[href*="linkedin"]:hover {
+    background-color: #ff5722 !important;
+    transform: translateY(-4px) scale(1.05) !important;
+    box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3) !important;
+}
+
+/* ENHANCEMENT: Professional Styling for All Footer Sections */
+
+/* Section Container Alignment & Spacing */
+.footer-all-section-area > .row > div {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+/* Professional List Item Styling for QUICK LINKS, COURSES, RESOURCES */
+.footer-all-section-area > .row:first-of-type .about-links-area ul li,
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 12px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Professional Section Text Alignment */
+@media (max-width: 767px) {
+    .footer-all-section-area > .row:first-of-type .about-links-area,
+    .footer-all-section-area > .row:nth-of-type(2) .about-links-area {
+        text-align: center !important;
+    }
+
+    .footer-all-section-area > .row:first-of-type .about-links-area ul,
+    .footer-all-section-area > .row:nth-of-type(2) .about-links-area ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}
+
+/* Professional Link Styling for All Footer Sections */
+.footer-all-section-area .about-links-area a {
+    color: #333 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    line-height: 1.8 !important;
+}
+
+.footer-all-section-area .about-links-area a:hover {
+    color: #ff5722 !important;
+    transform: translateX(4px) !important;
+}
+
+/* Remove All Bullets from Footer Lists */
+.footer-all-section-area ul {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.footer-all-section-area ul li {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+.footer-all-section-area ul li::before,
+.footer-all-section-area ul li::marker {
+    display: none !important;
+    content: none !important;
+}
+
+/* ENHANCEMENT: Footer Bottom - Full Width Containers */
+.copyright-pera {
+    margin-left: -9999px !important;
+    margin-right: -9999px !important;
+    padding-left: calc(9999px + 15px) !important;
+    padding-right: calc(9999px + 15px) !important;
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+}
+
+/* Orange Container - White Text */
+.copyright-pera[style*="background-color: #ff5722"] {
+    color: white !important;
+}
+
+.copyright-pera[style*="background-color: #ff5722"] a {
+    color: white !important;
+    transition: all 0.3s ease !important;
+}
+
+.copyright-pera[style*="background-color: #ff5722"] span {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* White Container - Dark Text */
+.copyright-pera[style*="background-color: white"] {
+    color: #333 !important;
+}
+
+.copyright-pera[style*="background-color: white"] p {
+    color: #333 !important;
+}
+
+.copyright-pera a {
+    transition: all 0.3s ease !important;
+}
+
+.footer3-section-area .copyright-pera {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* Orange links container styling - already in inline styles, just ensure full width */
+/* White copyright container styling - already in inline styles, just ensure full width */
+
+/* FIX: .copyright-pera's full-bleed technique above uses -9999px margins with
+   matching 9999px+ padding to stretch it edge-to-edge inside a contained
+   layout. Without an ancestor to clip that at, the huge box (~20,000px wide)
+   extends the whole page's horizo
+   tal scroll area, which can shift/cut off
+   content elsewhere on the page (e.g. the navbar's right side) on any
+   screen. Clipping it here, right at its own container, contains the
+   full-bleed effect to just this section without touching the technique
+   itself or anything above it on the page. */
+.footer3-section-area {
+    overflow-x: hidden !important;
+}
+
+/* ===== END DESIGN IMPROVEMENTS ===== */
+
+/* ===== COMPACT & SYMMETRICAL LAYOUT + ORANGE THEME BACKGROUND =====
+   Three things were off, purely visually — nothing below changes any markup,
+   PHP data/logic, or existing rule above; every declaration here just wins
+   the cascade with matching specificity (!important, same as the rest of
+   this file) or adds a new one.
+
+   1) ASYMMETRY: the three columns in each row (e.g. Logo/Quick Links/Courses)
+      hold very different amounts of content, so with the existing top-aligned
+      columns their card backgrounds/borders (added above, "Visual Section
+      Separation") end at very different heights — a ragged, unbalanced look.
+      Stretching the row and each card to the tallest sibling's height lines
+      their bottoms up again without touching what's inside them.
+   2) BLANK SPACE: section padding, the gap between the two rows, heading
+      margins and list-item spacing were all generously sized (some doubled
+      up across the two style passes above) — trimmed down for a tighter,
+      less airy footer.
+   3) ORANGE THEME BACKGROUND: the footer itself was plain white apart from
+      thin accent borders and the bottom bar — a soft warm-orange wash behind
+      the whole section (fading back to white) ties it to the site's orange
+      brand instead of reading as a mostly-white block under an orange divider. */
+
+.footer3-section-area {
+    background: linear-gradient(180deg, #fff4ee 0%, #ffffff 55%) !important;
+}
+
+/* The section headings (QUICK LINKS, COURSES, ...) are the same brand orange
+   (#ff5722) used against plain white further up this file — on white that
+   already sits right at ~4:1, and the new peach wash right behind it at the
+   top of the section (above) pulls that down under the 3:1 AA minimum for
+   this bold/uppercase "large text". A darker shade of the same orange
+   (matching the one already used to fix this identical problem elsewhere on
+   the site) restores it to ~5:1 against the wash without touching the color
+   used anywhere else in this file. */
+.footer3-section-area .footer-last-section h3,
+.footer3-section-area .about-links-area h3,
+.footer3-section-area .get-links-area h3,
+.footer3-section-area .footer-contact-area h3 {
+    color: #b8410f !important;
+}
+
+.footer3-section-area .footer-last-section h3::after,
+.footer3-section-area .about-links-area h3::after,
+.footer3-section-area .get-links-area h3::after,
+.footer3-section-area .footer-contact-area h3::after {
+    background: #b8410f !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area .row {
+        align-items: stretch !important;
+    }
+
+    .footer-all-section-area .row > div {
+        display: flex !important;
+    }
+
+    .footer-all-section-area .about-links-area,
+    .footer-all-section-area .footer-contact-area {
+        height: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* Compact section padding (was 30-60px, then 24-36px depending on
+   breakpoint). Top/bottom trimmed further than left/right so the section
+   stays comfortably readable sideways while losing more of the vertical
+   air specifically asked for. */
+.footer3-section-area {
+    padding: 14px 15px !important;
+}
+
+@media (min-width: 576px) {
+    .footer3-section-area {
+        padding: 16px 20px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer3-section-area {
+        padding: 18px 30px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer3-section-area {
+        padding: 20px 40px !important;
+    }
+}
+
+.footer-all-section-area {
+    padding: 14px 24px !important;
+}
+
+@media (min-width: 768px) {
+    .footer-all-section-area {
+        padding: 16px 24px !important;
+    }
+}
+
+/* Compact gap between the two footer rows (was 30px, then 16px) */
+.footer-all-section-area > .row + .row {
+    margin-top: 8px !important;
+}
+
+/* Compact heading spacing (was 22px margin / 15px padding, then 14px/10px) */
+.footer-last-section h3,
+.about-links-area h3,
+.get-links-area h3,
+.footer-contact-area h3 {
+    margin-bottom: 8px !important;
+    padding-bottom: 6px !important;
+}
+
+/* Compact list-item spacing (was 12-14px, then 8px). A more specific rule
+   further up this file — ".footer-all-section-area > .row:first-of-type
+   .about-links-area ul li" / "...nth-of-type(2)..." — outranks the plain
+   ".about-links-area ul li" selector below it and was still landing at
+   12px regardless, so it's matched here (same selector, later in the
+   cascade) to actually take effect everywhere, not just in the one row
+   the plainer selector reached. */
+.about-links-area ul li,
+.get-links-area ul li,
+.footer-all-section-area > .row:first-of-type .about-links-area ul li,
+.footer-all-section-area > .row:nth-of-type(2) .about-links-area ul li {
+    margin-bottom: 4px !important;
+}
+
+/* The Contact column's Email/Address/Phone <li> rows set their own inline
+   "margin-bottom: 25px" (no !important) — the ".about-links-area ul li" rule
+   above already reaches them too (Contact is markup-wise just another
+   ".about-links-area" column) and, being a stylesheet rule with !important,
+   overrides that inline value down to the same 4px without editing that
+   markup. */
+
+/* THE actual biggest source of the footer's excess height: the compiled
+   theme stylesheet gives every link in ".about-links-area ul li a" (Quick
+   Links, Courses, Resources, and — since Contact's <a> tags match the same
+   selector — the Contact column too) its own "margin-top: 20px". Combined
+   with normal line-height that's ~49px per row instead of ~29px, and since
+   every column in a row is stretched to match the tallest one (further up
+   this file, to fix the earlier ragged/asymmetric look), that inflation
+   multiplies into every column, not just the long ones — the single biggest
+   contributor to the footer's overall height. Zeroing it out (matching the
+   theme's own selector so this actually wins) is what gets the footer back
+   to roughly half its height, exactly as asked. */
+.footer3-section-area .about-links-area ul li a {
+    margin-top: 0 !important;
+}
+
+/* Compact card padding on desktop (was 20px all round, then 14px/16px) */
+@media (min-width: 768px) {
+    .about-links-area,
+    .get-links-area,
+    .footer-contact-area {
+        padding: 8px 12px 8px 12px !important;
+    }
+}
+
+/* The "About Us" logo block's own margin-bottom (25px, set further up this
+   file) and the paragraph's margin-top (15px) add extra air above/below the
+   description text on top of the card padding above. */
+.about-links-area > div:first-child {
+    margin-bottom: 10px !important;
+}
+
+.about-links-area > div:nth-child(2) p {
+    margin-top: 6px !important;
+}
+
+/* Compact copyright bar spacing (was 30px margin / 20px top+bottom padding,
+   then 18px/14px+14px, then 8px/8px+8px). This is the footer's bottom-most
+   element, so its own bottom padding is effectively the last bit of space
+   before the page ends — trimmed to the smallest amount that still keeps
+   the copyright text from touching the very edge. */
+.copyright-pera {
+    margin-top: 4px !important;
+}
+
+.footer3-section-area .copyright-pera {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+/* Link line-height (was 1.8, i.e. 25.2px tall for 14px text) is the other
+   big per-row contributor alongside the margin-top fixed above — tightened
+   to a still-readable 1.3 (18.2px) so each link row takes noticeably less
+   vertical space, most visible in the longer Courses/Contact lists that
+   otherwise set the height every column in their row gets stretched to. */
+.footer-all-section-area .about-links-area a {
+    line-height: 1.3 !important;
+}
+
+/* The Contact column's icon boxes are set inline to a fixed 40x40 with a
+   15px gap to the text — harmless at the old, roomier row height, but now
+   oversized next to the tightened text next to them. A stylesheet rule
+   with !important overrides those inline values without editing that
+   markup, matching the more compact scale used everywhere else above. */
+.about-links-area ul li > div[style*="border-radius: 8px"] {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.about-links-area ul li[style*="gap: 15px"] {
+    gap: 10px !important;
+}
+
+/* ===== END COMPACT & SYMMETRICAL LAYOUT ===== */
+</style>
+
+<div class="footer3-section-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer-all-section-area sp5">
+                    @php
+                        $user = \App\Models\User::first();
+                        $address = !empty($user->webaddress) ? $user->webaddress : 'email@gmail.com';
+                        $email = !empty($user->webemail) ? $user->webemail : 'email@gmail.com';
+                        $mobile = !empty($user->mobile) ? $user->mobile : '9876543210';
+                        $twitter = !empty($user->twitter) ? $user->twitter : '9876543210';
+                        $pinterest = !empty($user->pinterest) ? $user->pinterest : '9876543210';
+                        $instagram = !empty($user->instagram) ? $user->instagram : '9876543210';
+                        $facebook = !empty($user->facebook) ? $user->facebook : '9876543210';
+                        $linkedin = !empty($user->linkedin) ? $user->linkedin : '9876543210';
+                        $youtube = !empty($user->youtube) ? $user->youtube : '#';
+                        $description = !empty($user->description)
+                            ? $user->description
+                            : 'Learn Law.
+                                Understand Law.
+                                Build Your Future.';
+                    @endphp
+
+                    <!-- First Row: Logo, Quick Links, Courses -->
+                    <div class="row">
+                        <!-- Column 1: Logo and Description -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <!-- Logo Image -->
+                                <div style="margin-bottom: 20px;">
+                                    <img src="assets/images/logo-full.png" alt="Law Students Logo" style="width: 250px; height: auto; max-width: 100%;">
+                                </div>
+
+                                <div style="margin-top: 15px;">
+                                    <p style="font-size: 16px; font-weight: 600; font-family: 'Poppins', sans-serif; line-height: 1.4; color: #333; margin: 0; margin-bottom: 20px;">Learn Law. Understand Law. Build Your Future.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Quick Links -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>QUICK LINKS</h3>
+                                <ul>
+                                    <li><a href="{{ route('frontend.home') }}">Home</a></li>
+                                    <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+                                    <li><a href="{{ route('frontend.acts') }}">Acts & Rules</a></li>
+                                    <li><a href="{{ route('frontend.legal-knowledge') }}">Legal Knowledge</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">All Courses</a></li>
+                                    <li><a href="{{ route('frontend.copys') }}">Study Materials</a></li>
+                                    <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Column 3: Courses -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>PROGRAMS</h3>
+                                <ul>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. Entrance Prep</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. (3-Year)</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.B. (5-Year)</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">LL.M. Specialization</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">Judiciary Exams</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CSEET Preparation</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CA Studies</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CS Studies</a></li>
+                                    <li><a href="{{ route('frontend.course') }}">CMA Studies</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Row: Contact, Resources, Social Media -->
+                    <div class="row" style="margin-top: 30px;">
+                        <!-- Column 1: Contact -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>CONTACT</h3>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <!-- Email -->
+                                    <li style="margin-bottom: 25px; display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 18px;">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Email</span>
+                                            <a href="mailto:{{ $email }}" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $email }}</a>
+                                        </div>
+                                    </li>
+
+                                    <!-- Address -->
+                                    <li style="margin-bottom: 25px; display: flex; align-items: flex-start; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; color: #ff5722; font-size: 18px;">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Address</span>
+                                            <a href="#" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; line-height: 1.5; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $address }}</a>
+                                        </div>
+                                    </li>
+
+                                    <!-- Phone -->
+                                    <li style="display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 18px;">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Phone</span>
+                                            <a href="tel:{{ $mobile }}" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $mobile }}</a>
+                                        </div>
+                                    </li>
+
+                                    <!-- WhatsApp -->
+                                    <li style="display: flex; align-items: center; gap: 15px; transition: all 0.3s ease;">
+                                        <div style="width: 40px; height: 40px; background-color: #fff3e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #ff5722; font-size: 14px;">
+                                            <i class="fa-brands fa-whatsapp footer-whatsapp-icon"></i>
+                                        </div>
+
+                                        <style>
+                                            /* FontAwesome replaces this <i> with an <svg> (its "i2svg" conversion),
+                                               and font-weight has no effect on an SVG's vector path — it only
+                                               works on real font glyphs. Adding a stroke on top of the existing
+                                               fill is the correct way to make an SVG icon visually bolder;
+                                               additive only, nothing else about the icon (size, color, position)
+                                               is touched. */
+                                            .footer-whatsapp-icon,
+                                            svg.footer-whatsapp-icon {
+                                                stroke: currentColor !important;
+                                                stroke-width: 24px !important;
+                                                paint-order: stroke fill !important;
+                                            }
+                                        </style>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <span style="font-size: 12px; font-weight: 600; color: #ff5722; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">WhatsApp</span>
+                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $mobile) }}" target="_blank" rel="noopener" style="color: #333; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease;" onmouseover="this.style.color='#ff5722'" onmouseout="this.style.color='#333'">{{ $mobile }}</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Column 2: Resources -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>RESOURCES</h3>
+                                <ul>
+                                    <li><a href="{{ route('frontend.acts') }}">Bare Acts</a></li>
+                                    <li><a href="{{ route('frontend.rules') }}">Rules & Regulations</a></li>
+                                    <li><a href="#">Announcements</a></li>
+                                    <li><a href="{{ route('frontend.govtexams') }}">Competitive Exams</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Column 3: Social Media -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="about-links-area">
+                                <h3>SOCIAL MEDIA</h3>
+                                <ul style="list-style: none; padding: 0; display: flex; gap: 15px; flex-wrap: wrap;">
+                                    <li>
+                                        <a href="{{ $youtube }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
+                                            <i class="fa-brands fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ $facebook }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ $twitter }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
+                                            <i class="fa-brands fa-x-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ $instagram }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ $linkedin }}" class="footer-social-icon" style="width: 44px; height: 44px; background: linear-gradient(135deg, #ff5722 0%, #b8410f 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; text-decoration: none;">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    /* The compiled theme stylesheet applies its own higher-specificity
+                       color/centering rules to icons inside footer links, which beat the
+                       plain inline styles above (same issue documented for the navbar
+                       dropdown elsewhere in this project). Targeting the icons via this
+                       dedicated class, with !important, is what actually wins — additive
+                       only, doesn't touch the inline styles or any other rule. */
+                    .footer3-section-area a.footer-social-icon,
+                    .footer3-section-area a.footer-social-icon:hover {
+                        color: #fff !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                    }
+
+                    .footer3-section-area a.footer-social-icon i,
+                    .footer3-section-area a.footer-social-icon svg {
+                        color: #fff !important;
+                        fill: #fff !important;
+                        margin: 0 !important;
+                    }
+
+                    /* The theme adds an empty ::before to this <a> (content:"", display:block,
+                       width:6px) for an unrelated decoration — as a real flex item inside the
+                       centered flex box, it silently crowds the icon off-centre. Removing just
+                       the pseudo-element (additive, nothing else here is touched) lets the icon
+                       sit truly centred. */
+                    .footer3-section-area a.footer-social-icon::before {
+                        content: none !important;
+                        display: none !important;
+                        width: 0 !important;
+                    }
+                </style>
+
+                <!-- Footer Bottom Links -->
+                <div class="copyright-pera" style="margin-top: 30px; background-color: #ff5722; color: white;">
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Privacy Policy</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Terms & Conditions</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Disclaimer</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Refund Policy</a>
+                    <span style="color: rgba(255, 255, 255, 0.6);">|</span>
+                    <a href="#" style="color: white; text-decoration: none; font-weight: 600;">Sitemap</a>
+                </div>
+
+                <!-- Copyright -->
+                <div class="copyright-pera" style="background-color: white; text-align: center;">
+                    <p style="color: #666; margin: 0; font-size: 14px;">© 2026 Law Student. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== FOOTER ENDS =======-->
