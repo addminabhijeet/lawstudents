@@ -1819,14 +1819,9 @@
             $legalKnowledgeCategories = \App\Models\LegalKnowledgeCategory::where('delete', 1)->get();
             @endphp
             @forelse($legalKnowledgeCategories as $lkCategory)
-            <a href="{{ route('frontend.legalknowledgelibrary') }}" style="margin-bottom:12px; padding:12px 14px; border:2px solid #ffe8dd; border-left:4px solid #ff5722; border-radius:8px; background:linear-gradient(135deg, #fff9f5 0%, #ffffff 100%); box-shadow: 0 2px 8px rgba(255,87,34,0.08); transition: all 0.3s ease; text-decoration:none; display:flex; align-items:center; gap:10px;" data-aos="fade-up">
-                <div style="font-size:22px; width:40px; height:40px; background:rgba(255,87,34,0.15); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#ff5722;">
-                    <i class="fa-solid {{ $legalKnowledgeIcons[$lkCategory->name] ?? 'fa-scale-balanced' }}"></i>
-                </div>
-                <div style="flex:1; min-width:0;">
-                    <h3 style="font-size:12px; font-weight:700; color:#1f2937; margin:0 0 2px 0; font-family:'Poppins',sans-serif; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; line-height:1.3;">{{ $lkCategory->name }}</h3>
-                    <span style="font-size:10px; font-weight:600; color:#ff5722; font-family:'Poppins',sans-serif; display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Explore <i class="fa-solid fa-arrow-right" style="margin-left:2px;"></i></span>
-                </div>
+            <a href="{{ route('frontend.legalknowledgelibrary') }}" style="margin-bottom:6px; padding:6px 8px; border:2px solid #ffe8dd; border-left:4px solid #ff5722; border-radius:8px; background:linear-gradient(135deg, #fff9f5 0%, #ffffff 100%); box-shadow: 0 2px 8px rgba(255,87,34,0.08); transition: all 0.3s ease; text-decoration:none; display:block; overflow:hidden;" data-aos="fade-up">
+                <h3 style="font-size:6px; font-weight:700; color:#1f2937; margin:0 0 2px 0; font-family:'Poppins',sans-serif; line-height:1.15; word-break:break-word; overflow:hidden;">{{ $lkCategory->name }}</h3>
+                <span style="font-size:10px; font-weight:600; color:#ff5722; font-family:'Poppins',sans-serif; display:block; white-space:nowrap;">Explore <i class="fa-solid fa-arrow-right" style="margin-left:1px; font-size:8px;"></i></span>
             </a>
             @empty
             <div class="no-content-message" style="grid-column: 1 / -1;">
