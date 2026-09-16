@@ -1318,7 +1318,7 @@
 <style>
     .acts-rules-section {
         padding: 60px 20px;
-        background-color: #f9f9f9;
+        background: linear-gradient(180deg, #e3f2fd 0%, #f1f5f9 100%);
     }
 
     .acts-rules-container {
