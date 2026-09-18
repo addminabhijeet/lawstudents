@@ -1759,3 +1759,221 @@
         }
     }
 </style>
+
+<!-- ===== NAVBAR: RESPONSIVE FIX FOR THE BROKEN WIDTH BAND (PURELY ADDITIVE) =====
+     Appended last so it wins on document order alone. Every selector below
+     already exists earlier in this file; nothing above is edited, removed or
+     reordered, and the desktop design at 1200px and up is left exactly as it
+     is — no size, colour, font or spacing of the existing bar is changed.
+
+     What is actually broken: the desktop bar carries ten labels, one of them
+     "Centre & State Govt. Examination", plus the Login / Register button. It
+     fits from 1200px up. Below that it only fitted by dropping the labels to
+     9px with negative right margins dragging the button past its own
+     container — measured at 1024px: the menu needs 789px inside a 763px box
+     and the button ends 26px outside the header. 9px type is unreadable.
+
+     This file already ships the theme's mobile header and off-canvas drawer
+     with the same ten links and the same routes, and already hands over to
+     them below 992px. The handover simply starts at 1200px instead, which is
+     the width the desktop bar genuinely stops fitting at. Same design, same
+     markup, same scripts — only the width at which each one is shown. -->
+<style>
+    /* ---------------------------------------------------------------
+       1. HANDOVER POINT — below 1200px use the mobile header that this
+          file already defines, instead of the 9px desktop bar.
+       --------------------------------------------------------------- */
+    @media (max-width: 1199.98px) {
+        header.header.d-none.d-lg-block {
+            display: none !important;
+        }
+
+        .mobile-header.mobile-homepage6.d-block.d-lg-none {
+            display: block !important;
+        }
+    }
+
+    /* ---------------------------------------------------------------
+       2. MOBILE / TABLET BAR — same bar, sized for touch.
+          Only spacing and hit area; the colours and the icon are the
+          theme's own.
+       --------------------------------------------------------------- */
+    @media (max-width: 1199.98px) {
+        .mobile-header.mobile-homepage6 .container-fluid {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+        }
+
+        .mobile-header.mobile-homepage6 .mobile-header-elements {
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* A 44px target around the existing glyph rather than the glyph
+           alone, which is the minimum comfortable tap size. */
+        .mobile-header.mobile-homepage6 .mobile-nav-icon {
+            width: 44px;
+            height: 44px;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* The branding block under the bar keeps its existing look and
+           simply scales between its current mobile and desktop sizes
+           instead of stepping. */
+        .mobile-hero-branding {
+            flex-wrap: wrap;
+            padding: 16px 16px 0 16px !important;
+        }
+
+        .mobile-hero-branding h1 {
+            font-size: clamp(20px, 6.5vw, 26px) !important;
+            line-height: 1.25 !important;
+        }
+
+        .mobile-hero-branding img {
+            height: clamp(28px, 8vw, 36px) !important;
+            width: auto !important;
+        }
+
+        .mobile-hero-tagline {
+            font-size: clamp(14px, 4vw, 16px) !important;
+            margin: 10px 16px 6px 16px !important;
+        }
+
+        .mobile-hero-supporting-text {
+            font-size: clamp(12px, 3.4vw, 13px) !important;
+            margin: 0 16px 18px 16px !important;
+        }
+    }
+
+    /* Tablets now land here too, so the centred branding text gets a
+       readable measure instead of running the full width of the screen. */
+    @media (min-width: 768px) and (max-width: 1199.98px) {
+        .mobile-hero-tagline,
+        .mobile-hero-supporting-text {
+            max-width: 680px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+
+    /* ---------------------------------------------------------------
+       3. OFF-CANVAS DRAWER — same drawer, made usable on every size.
+          Full width on phones exactly as now; a panel on tablets, where
+          a full-screen sheet reads as a broken page rather than a menu.
+          `left: -100%` resolves against the viewport, not the panel, so
+          a narrower panel still parks fully off-screen and the theme's
+          `.mobile-menu-active { left: 0 }` still lands it unchanged.
+       --------------------------------------------------------------- */
+    .mobile-sidebar.sidebar6 {
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        padding: 32px 20px calc(32px + env(safe-area-inset-bottom, 0px)) 20px !important;
+    }
+
+    @media (min-width: 576px) {
+        .mobile-sidebar.sidebar6 {
+            width: 400px !important;
+            max-width: 88vw !important;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.18);
+            padding: 36px 26px calc(36px + env(safe-area-inset-bottom, 0px)) 26px !important;
+        }
+    }
+
+    .mobile-sidebar.sidebar6 .logosicon-area {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: nowrap;
+    }
+
+    .mobile-sidebar.sidebar6 .logosicon-area .logos img {
+        max-height: 44px;
+        width: auto;
+    }
+
+    .mobile-sidebar.sidebar6 .menu-close,
+    .mobile-sidebar.sidebar6 .menu-home-btn {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Each drawer link becomes a full-width, thumb-sized row. Font size
+       and colour stay the theme's. */
+    .mobile-sidebar.sidebar6 .mobile-nav li a {
+        display: block;
+        padding: 12px 0 !important;
+        line-height: 1.4 !important;
+    }
+
+    .mobile-sidebar.sidebar6 .mobile-nav .sub-menu li a {
+        padding: 10px 0 10px 16px !important;
+    }
+
+    .mobile-sidebar.sidebar6 .mobile-nav span.submenu-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .mobile-sidebar.sidebar6 .mobile-hero-branding {
+        padding: 18px 0 0 0 !important;
+        justify-content: flex-start;
+    }
+
+    .mobile-sidebar.sidebar6 .mobile-hero-tagline,
+    .mobile-sidebar.sidebar6 .mobile-hero-supporting-text {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: left;
+    }
+
+    .mobile-sidebar.sidebar6 .allmobilesection .welcome5-btn {
+        min-height: 48px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-sidebar.sidebar6 .allmobilesection .contact-info-single {
+        flex-wrap: wrap;
+    }
+
+    /* The address and email are long single tokens; they wrap instead of
+       widening the drawer. */
+    .mobile-sidebar.sidebar6 .allmobilesection .contact-info-text a {
+        overflow-wrap: anywhere;
+    }
+
+    /* Short landscape phones: the drawer keeps scrolling instead of
+       trapping the lower half of the menu below the fold. */
+    @media (max-height: 520px) {
+        .mobile-sidebar.sidebar6 {
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+        }
+
+        .mobile-sidebar.sidebar6 .mobile-hero-supporting-text {
+            display: none;
+        }
+
+        .mobile-sidebar.sidebar6 .mobile-nav li a {
+            padding: 9px 0 !important;
+        }
+    }
+
+    /* The page behind an open drawer stops scrolling. Progressive: a
+       browser without :has() simply keeps today's behaviour. */
+    body:has(.mobile-sidebar.mobile-menu-active) {
+        overflow: hidden;
+    }
+</style>
