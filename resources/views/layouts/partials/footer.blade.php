@@ -9,6 +9,15 @@
     $footerInstagram = !empty($footerUser->instagram) ? $footerUser->instagram : '#';
     $footerLinkedin = !empty($footerUser->linkedin) ? $footerUser->linkedin : '#';
     $footerPinterest = !empty($footerUser->pinterest) ? $footerUser->pinterest : '#';
+
+    // Programs column: the course page filters on ?cat=<category id>, so read the
+    // ids and labels straight from the categories table rather than hard-coding
+    // them. Listed in the order the design shows them; any category that no
+    // longer exists simply drops out instead of leaving a dead filter link.
+    $footerProgramIds = [44, 45, 46, 47, 48, 49, 50, 51, 52];
+    $footerPrograms = \App\Models\Category::whereIn('id', $footerProgramIds)
+        ->pluck('name', 'id')
+        ->sortBy(fn($name, $id) => array_search($id, $footerProgramIds));
 @endphp
 
 <!--===== FOOTER STARTS =======-->
@@ -36,15 +45,11 @@
             <div class="footer-col">
                 <h4>Programs</h4>
                 <ul>
-                    <li><a href="{{ route('frontend.course') }}?cat=44">LL.B. Entrance Prep</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=45">LL.B. (3-Year)</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=46">LL.B. (5-Year)</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=47">LL.M. Specialization</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=48">Judiciary Exams</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=49">CSEET Preparation</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=50">CA Studies</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=51">CS Studies</a></li>
-                    <li><a href="{{ route('frontend.course') }}?cat=52">CMA Studies</a></li>
+                    @foreach ($footerPrograms as $programId => $programName)
+                        <li><a
+                                href="{{ route('frontend.course') }}?cat={{ $programId }}">{{ $programName }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

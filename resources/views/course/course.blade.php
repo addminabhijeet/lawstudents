@@ -47,15 +47,33 @@
                         aria-labelledby="lbl-cat" data-all-label="All Categories">
                         <span class="dd-label">All Categories</span><span class="chev" aria-hidden="true">▾</span>
                     </button>
+                    @php
+                        // The controller returns parents and children in one flat collection, so a
+                        // child that also matched on its own (e.g. Civil Procedure Code, parent 41)
+                        // would otherwise be listed twice. Build the option list once, nesting each
+                        // child under its parent and skipping any id already emitted.
+                        $emitted = [];
+                        $options = [];
+                        foreach ($categories as $category) {
+                            if (in_array($category->id, $emitted, true)) {
+                                continue;
+                            }
+                            $emitted[] = $category->id;
+                            $options[] = ['id' => $category->id, 'name' => $category->name, 'depth' => 0];
+                            foreach ($category->children as $child) {
+                                if (in_array($child->id, $emitted, true)) {
+                                    continue;
+                                }
+                                $emitted[] = $child->id;
+                                $options[] = ['id' => $child->id, 'name' => $child->name, 'depth' => 1];
+                            }
+                        }
+                    @endphp
                     <ul class="dd-menu" role="listbox" aria-labelledby="lbl-cat">
                         <li role="option" data-value="all" aria-selected="true">All Courses</li>
-                        @foreach ($categories as $category)
-                            <li role="option" data-value="{{ $category->id }}" data-depth="0" aria-selected="false">
-                                {{ $category->name }}</li>
-                            @foreach ($category->children as $child)
-                                <li role="option" data-value="{{ $child->id }}" data-depth="1" aria-selected="false">
-                                    {{ $child->name }}</li>
-                            @endforeach
+                        @foreach ($options as $option)
+                            <li role="option" data-value="{{ $option['id'] }}" data-depth="{{ $option['depth'] }}"
+                                aria-selected="false">{{ $option['name'] }}</li>
                         @endforeach
                     </ul>
                 </div>

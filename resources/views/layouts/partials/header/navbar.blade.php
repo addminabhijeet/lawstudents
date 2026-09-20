@@ -29,15 +29,8 @@
                 <ul class="nav-menu">
                     <li><a href="{{ route('frontend.home') }}"
                             @if (request()->routeIs('frontend.home')) aria-current="page" @endif>Home</a></li>
-                    <li class="has-drop">
-                        <a href="{{ route('frontend.about') }}"
-                            @if (request()->routeIs('frontend.about', 'frontend.clientele')) aria-current="page" @endif>About
-                            Us</a>
-                        <div class="dropdown">
-                            <a href="{{ route('frontend.about') }}">About Us</a>
-                            <a href="{{ route('frontend.clientele') }}">Client</a>
-                        </div>
-                    </li>
+                    <li><a href="{{ route('frontend.about') }}"
+                            @if (request()->routeIs('frontend.about')) aria-current="page" @endif>About Us</a></li>
                     <li class="has-drop">
                         <a href="{{ route('frontend.acts') }}"
                             @if (request()->routeIs('frontend.acts', 'frontend.rules')) aria-current="page" @endif>Bare
@@ -59,6 +52,8 @@
                             <a href="{{ route('frontend.copys') }}">Free Notes</a>
                         </div>
                     </li>
+                    <li><a href="{{ route('frontend.clientele') }}"
+                            @if (request()->routeIs('frontend.clientele')) aria-current="page" @endif>Client</a></li>
                     <li><a href="{{ route('frontend.govtexams') }}"
                             @if (request()->routeIs('frontend.govtexams')) aria-current="page" @endif>Centre &amp;
                             State Govt. Examination</a></li>
@@ -78,7 +73,6 @@
         <ul>
             <li><a href="{{ route('frontend.home') }}">Home</a></li>
             <li><a href="{{ route('frontend.about') }}">About Us</a></li>
-            <li class="sub"><a href="{{ route('frontend.clientele') }}">Client</a></li>
             <li><a href="{{ route('frontend.acts') }}">Bare Acts &amp; Rules</a></li>
             <li class="sub"><a href="{{ route('frontend.acts') }}">Acts</a></li>
             <li class="sub"><a href="{{ route('frontend.rules') }}">Rules</a></li>
@@ -86,6 +80,7 @@
             <li><a href="{{ route('frontend.course') }}">Course &amp; Notes</a></li>
             <li class="sub"><a href="{{ route('frontend.course') }}">Course</a></li>
             <li class="sub"><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
+            <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
             <li><a href="{{ route('frontend.govtexams') }}">Centre &amp; State Govt. Examination</a></li>
             <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
             <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
