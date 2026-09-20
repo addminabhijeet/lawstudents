@@ -1,340 +1,70 @@
-@extends('layouts.landing', ['title' => 'Legal Knowledge - Law Students'])
+@extends('layouts.landing', ['title' => 'Legal Knowledge — Law Students'])
+
+@section('meta_description', 'Submit a legal knowledge inquiry to the Law Students team.')
 
 @section('content')
-    <!-- ===== HEADING STYLES FOR LEGAL KNOWLEDGE PAGE ======= -->
-    <style>
-        /* Heading styles to match about page EXACTLY */
-        h1 {
-            font-size: 60px !important;
-            font-family: 'Playfair Display', serif !important;
-            font-weight: 500 !important;
-            line-height: 60px !important;
-        }
-
-        h2 {
-            font-size: 46px !important;
-            font-family: 'Playfair Display', serif !important;
-            font-weight: 500 !important;
-            line-height: 1.3 !important;
-        }
-
-        h3 {
-            font-size: 40px !important;
-            font-family: 'Playfair Display', serif !important;
-            font-weight: 500 !important;
-        }
-
-        /* Override legal-inquiry-heading class */
-        .legal-inquiry-heading {
-            font-size: 46px !important;
-            font-family: 'Playfair Display', serif !important;
-            font-weight: 500 !important;
-            line-height: 1.3 !important;
-        }
-
-        /* Protect form labels and buttons */
-        label {
-            font-size: revert !important;
-            font-family: revert !important;
-            font-weight: revert !important;
-        }
-
-        button, input, textarea, select {
-            font-size: revert !important;
-            font-family: revert !important;
-            font-weight: revert !important;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px !important;
-            }
-
-            h2 {
-                font-size: 36px !important;
-            }
-
-            h3 {
-                font-size: 32px !important;
-            }
-
-            .legal-inquiry-heading {
-                font-size: 36px !important;
-            }
-        }
-
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 36px !important;
-            }
-
-            h2 {
-                font-size: 28px !important;
-            }
-
-            h3 {
-                font-size: 24px !important;
-            }
-
-            .legal-inquiry-heading {
-                font-size: 28px !important;
-            }
-        }
-    </style>
-    <!-- ===== WELCOME STARTS======= -->
-    <div class="welcome-inner-section-area"
-        style="background-image: url(/img/bacground/inner-bg.png); background-position: center; background-repeat: no-repeat; background-size: cover;">
-        <img src="/img/elements/elementor40.png" alt="" class="elementor40 keyframe3 d-lg-block d-none" />
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 m-auto">
-                    <div class="welcome-inner-header text-center">
-                        <h1>Legal Knowledge</h1>
-                        <a href="{{ route('frontend.home') }}">Home <span><i class="fa-light fa-angle-right"></i></span> Legal Knowledge</a>
-                        <img src="/img/elements/elementor20.png" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="page-hero">
+    <div class="wrap">
+        <h1>Legal Knowledge</h1>
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+                aria-current="page">Legal Knowledge</span>
+        </nav>
     </div>
-    <!-- ===== WELCOME ENDS======= -->
+</section>
 
-    <!-- ===== LEGAL KNOWLEDGE INQUIRY SECTION STARTS ======= -->
-    <style>
-        .legal-inquiry-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
-            padding: 80px 20px;
-        }
-
-        .legal-inquiry-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .legal-inquiry-content {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .legal-inquiry-heading {
-            font-size: 36px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .legal-inquiry-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #ff5722 0%, #ff7a50 100%);
-            border-radius: 2px;
-        }
-
-        .inquiry-form {
-            margin-top: 40px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 15px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .form-group label .required {
-            color: #ff5722;
-            margin-left: 3px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            font-family: inherit;
-            color: #333;
-            background-color: #fafbfc;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #ff5722;
-            background-color: white;
-            box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .submit-btn {
-            background-color: #ff5722;
-            color: white;
-            padding: 14px 36px;
-            border: none;
-            border-radius: 5px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            width: 100%;
-            max-width: 250px;
-            display: block;
-            margin: 35px auto 0;
-        }
-
-        .submit-btn:hover {
-            background-color: #ff5722;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
-        }
-
-        .disclaimer-section {
-            background-color: #f5f5f5;
-            border-left: 4px solid #ff5722;
-            padding: 20px;
-            border-radius: 4px;
-            margin-top: 40px;
-        }
-
-        .disclaimer-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-
-        .disclaimer-text {
-            font-size: 13px;
-            line-height: 1.8;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .legal-inquiry-section {
-                padding: 60px 15px;
-            }
-
-            .legal-inquiry-content {
-                padding: 35px 25px;
-            }
-
-            .legal-inquiry-heading {
-                font-size: 28px;
-                margin-bottom: 25px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .submit-btn {
-                max-width: 100%;
-            }
-        }
-    </style>
-
-    <div class="legal-inquiry-section">
-        <div class="legal-inquiry-container">
-            <div class="legal-inquiry-content">
-                <h2 class="legal-inquiry-heading">Legal Knowledge Inquiry</h2>
-
-                <form class="inquiry-form" method="POST" enctype="multipart/form-data" action="{{ route('frontend.legal-knowledge-store') }}">
-                    @csrf
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" required placeholder="Your Full Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="mobile">Mobile Number <span class="required">*</span></label>
-                            <input type="tel" id="mobile" name="mobile" required placeholder="Your Mobile Number">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject / Area of Law <span class="required">*</span></label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Select Category</option>
-                                <option value="Cheque Bounce">Cheque Bounce</option>
-                                <option value="Civil Law">Civil Law</option>
-                                <option value="Criminal Law">Criminal Law</option>
-                                <option value="Company Law">Company Law</option>
-                                <option value="Hindu Law">Hindu Law</option>
-                                <option value="Muslim Law">Muslim Law</option>
-                                <option value="Labour Law">Labour Law</option>
-                                <option value="Cyber Crime">Cyber Crime</option>
-                                <option value="Cyber Security">Cyber Security</option>
-                                <option value="Legal Compliance">Legal Compliance</option>
-                                <option value="Other Laws">Other Laws</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="question">Your Question <span class="required">*</span></label>
-                        <textarea id="question" name="question" required placeholder="Please describe your legal inquiry in detail..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="document">Upload Document <span style="color: #767676;">(Optional)</span></label>
-                        <input type="file" id="document" name="document" accept=".pdf,.doc,.docx,.txt">
-                    </div>
-
-                    <button type="submit" class="submit-btn">Submit Inquiry</button>
-                </form>
-
-                <div class="disclaimer-section">
-                    <div class="disclaimer-title"><i class="fa-solid fa-triangle-exclamation"></i> Important Disclaimer</div>
-                    <div class="disclaimer-text">
-                        This inquiry facility is intended for preliminary communication and legal/educational
-                        information. Submission of an inquiry does not by itself create an advocate-client relationship.
-                        Formal legal advice, representation or engagement shall be subject to separate communication and
-                        acceptance.
-                    </div>
-                </div>
-            </div>
+<section class="section form-section" id="inquiry">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <span class="eyebrow">Knowledge Inquiry</span>
+            <h2 class="section-title">Legal Knowledge <span class="accent">Inquiry</span></h2>
+            <div class="title-rule"></div>
         </div>
+
+        <form class="form-card reveal" action="{{ route('frontend.legal-knowledge-store') }}" method="post"
+            enctype="multipart/form-data">
+            @csrf
+
+            @if (session('success'))
+                <p class="form-status" role="status">{{ session('success') }}</p>
+            @elseif ($errors->any())
+                <p class="form-status" role="alert">{{ $errors->first() }}</p>
+            @endif
+
+            <div class="form-row">
+                <div class="field"><label for="lk-name">Name <span class="req"
+                            aria-hidden="true">*</span></label><input type="text" id="lk-name" name="name"
+                        value="{{ old('name') }}" placeholder="Your Full Name" autocomplete="name" required></div>
+                <div class="field"><label for="lk-email">Email <span class="req"
+                            aria-hidden="true">*</span></label><input type="email" id="lk-email" name="email"
+                        value="{{ old('email') }}" placeholder="your.email@example.com" autocomplete="email" required>
+                </div>
+                <div class="field"><label for="lk-mobile">Mobile Number <span class="req"
+                            aria-hidden="true">*</span></label><input type="tel" id="lk-mobile" name="mobile"
+                        value="{{ old('mobile') }}" placeholder="Your Mobile Number" autocomplete="tel" required></div>
+                <div class="field">
+                    <label for="lk-subject">Subject / Area of Law <span class="req" aria-hidden="true">*</span></label>
+                    <select id="lk-subject" name="subject" required>
+                        <option value="">Select Category</option>
+                        @foreach (['Cheque Bounce', 'Civil Law', 'Criminal Law', 'Company Law', 'Hindu Law', 'Muslim Law', 'Labour Law', 'Cyber Crime', 'Cyber Security', 'Legal Compliance', 'Other Laws'] as $subject)
+                            <option value="{{ $subject }}" @selected(old('subject') === $subject)>{{ $subject }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="field full"><label for="lk-question">Your Question <span class="req"
+                            aria-hidden="true">*</span></label><textarea id="lk-question" name="question"
+                        placeholder="Please describe your legal inquiry in detail..." required>{{ old('question') }}</textarea>
+                </div>
+                <div class="field full"><label for="lk-doc">Upload Document <span>(Optional)</span></label><input
+                        type="file" id="lk-doc" name="document" accept=".pdf,.doc,.docx,.txt"></div>
+            </div>
+            <div class="form-actions"><button type="submit" class="btn btn-gold">Submit Inquiry</button></div>
+            <div class="form-note"><strong class="disc-title"><span aria-hidden="true">⚠️</span> Important
+                    Disclaimer</strong>This inquiry facility is intended for preliminary communication and
+                legal/educational information. Submission of an inquiry does not by itself create an advocate-client
+                relationship. Formal legal advice, representation or engagement shall be subject to separate
+                communication and acceptance.</div>
+        </form>
     </div>
-
-    <!-- ===== LEGAL KNOWLEDGE INQUIRY SECTION ENDS ======= -->
-
+</section>
 @endsection
