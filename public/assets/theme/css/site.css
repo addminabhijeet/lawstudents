@@ -633,11 +633,13 @@ ul{list-style:none}
 .social-row{display:flex;gap:6px;flex-wrap:wrap}
 .social-row a{
   width:42px;height:42px;border-radius:50%;font-size:18px;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,rgba(212,175,55,.28),rgba(212,175,55,.15));border:2px solid rgba(212,175,55,.52);color:#d4af37 !important;font-weight:700 !important;
-  transition:all .38s cubic-bezier(.22,1,.36,1);will-change:transform;opacity:1 !important;visibility:visible !important;text-decoration:none;line-height:1;letter-spacing:0;overflow:visible !important;font-size:18px !important;
+  display:inline-flex !important;align-items:center !important;justify-content:center !important;
+  background:#3a3a3a !important;border:2px solid #f0d97d !important;color:#f0d97d !important;font-weight:900 !important;
+  transition:all .38s cubic-bezier(.22,1,.36,1);opacity:1 !important;visibility:visible !important;text-decoration:none;line-height:1 !important;letter-spacing:0;overflow:visible !important;
+  font-family:'Outfit', sans-serif !important;white-space:nowrap !important;padding:0 !important;margin:0 3px !important;
+  text-shadow:0 0 8px rgba(240,217,125,0.8) !important;position:relative;
 }
-.social-row a:hover{background:var(--grad-gold);color:var(--black);transform:translateY(-4px) scale(1.08);box-shadow:0 10px 22px rgba(212,175,55,.4)}
+.social-row a:hover{background:#f0d97d !important;color:#2a2a2a !important;transform:translateY(-4px) scale(1.08) !important;box-shadow:0 10px 22px rgba(212,175,55,.6) !important;border-color:#f0d97d !important;}
 .footer-bottom{
   border-top:1px solid rgba(212,175,55,.2);padding:13px 0;
   display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
@@ -958,9 +960,11 @@ ul{list-style:none}
 
 @keyframes socialFlip{0%{transform:rotateY(-90deg) scale(.8);opacity:0}100%{transform:rotateY(0) scale(1);opacity:1}}
 .social-row a{
-  animation:socialFlip .6s cubic-bezier(.22,1,.36,1) both;
+  animation:none !important;
   perspective:1000px;transition:all .35s cubic-bezier(.22,1,.36,1);
   will-change:transform;
+  opacity:1 !important;
+  transform:rotateY(0) scale(1) !important;
 }
 .social-row a:hover{
   transform:translateY(-6px) scale(1.15) rotateZ(10deg);
