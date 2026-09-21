@@ -632,10 +632,10 @@ ul{list-style:none}
 .footer-contact-item p{font-size:12.5px;color:#c9c1a9;line-height:1.55}
 .social-row{display:flex;gap:6px;flex-wrap:wrap}
 .social-row a{
-  width:42px;height:42px;border-radius:50%;font-size:16px;
+  width:42px;height:42px;border-radius:50%;font-size:18px;
   display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,rgba(212,175,55,.28),rgba(212,175,55,.15));border:2px solid rgba(212,175,55,.52);color:var(--gold);font-weight:600;
-  transition:all .38s cubic-bezier(.22,1,.36,1);will-change:transform;opacity:1;visibility:visible;text-decoration:none;line-height:1;letter-spacing:0;
+  background:linear-gradient(135deg,rgba(212,175,55,.28),rgba(212,175,55,.15));border:2px solid rgba(212,175,55,.52);color:#d4af37 !important;font-weight:700 !important;
+  transition:all .38s cubic-bezier(.22,1,.36,1);will-change:transform;opacity:1 !important;visibility:visible !important;text-decoration:none;line-height:1;letter-spacing:0;overflow:visible !important;font-size:18px !important;
 }
 .social-row a:hover{background:var(--grad-gold);color:var(--black);transform:translateY(-4px) scale(1.08);box-shadow:0 10px 22px rgba(212,175,55,.4)}
 .footer-bottom{
