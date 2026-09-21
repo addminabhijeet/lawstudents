@@ -45,20 +45,6 @@ window.addEventListener('scroll', function(){
 });
 wrapEl.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 
-// Mobile menu
-var burger = document.getElementById('burger');
-var mobileMenu = document.getElementById('mobileMenu');
-burger.addEventListener('click', function(){
-  burger.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(function(a){
-  a.addEventListener('click', function(){
-    burger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  });
-});
-
 // ===== ENHANCED ANIMATIONS =====
 
 // Navbar magnetic hover effect
