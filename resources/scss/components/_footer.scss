@@ -1640,6 +1640,37 @@
      }
  }
 
+.social-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    a {
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 16px;
+        background: rgba($bg6, 0.15);
+        border: 2px solid rgba($bg6, 0.52);
+        color: $bg6;
+        transition: all 0.4s ease-in-out;
+        z-index: 2;
+        text-decoration: none;
+
+        &:hover {
+            background: $bg6;
+            color: $white;
+            transition: all 0.4s ease-in-out;
+            transform: translateY(-2px);
+        }
+    }
+}
+
 /* ============= FOOTER CSS AREA ENDS =============== */
 
 

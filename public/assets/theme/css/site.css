@@ -1448,9 +1448,9 @@ body.enroll-bar-on .counsel-pop{bottom:156px}
 /* --- Social: circular, gradient fill on hover, real icons --- */
 .social-row a{
   width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(212,175,55,.05));
-  border:1px solid rgba(212,175,55,.38);
-  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(212,175,55,.28),rgba(212,175,55,.15));
+  border:1px solid rgba(212,175,55,.52);
+  position:relative;overflow:hidden;color:var(--gold);font-size:16px;display:flex;align-items:center;justify-content:center;z-index:2;
 }
 .social-row a::before{
   content:'';position:absolute;inset:0;border-radius:50%;
