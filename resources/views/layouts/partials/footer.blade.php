@@ -8,7 +8,7 @@
     $footerTwitter = !empty($footerUser->twitter) ? $footerUser->twitter : '#';
     $footerInstagram = !empty($footerUser->instagram) ? $footerUser->instagram : '#';
     $footerLinkedin = !empty($footerUser->linkedin) ? $footerUser->linkedin : '#';
-    $footerPinterest = !empty($footerUser->pinterest) ? $footerUser->pinterest : '#';
+    $footerYoutube = !empty($footerUser->youtube) ? $footerUser->youtube : '#';
 
     // Programs column: the course page filters on ?cat=<category id>, so read the
     // ids and labels straight from the categories table rather than hard-coding
@@ -94,10 +94,10 @@
                 <h4>Social Media</h4>
                 <div class="social-row">
                     <a href="{{ $footerFacebook }}" title="Facebook">f</a>
-                    <a href="{{ $footerTwitter }}" title="Twitter">𝕏</a>
+                    <a href="{{ $footerTwitter }}" title="X">𝕏</a>
                     <a href="{{ $footerInstagram }}" title="Instagram">◎</a>
                     <a href="{{ $footerLinkedin }}" title="LinkedIn">in</a>
-                    <a href="{{ $footerPinterest }}" title="Pinterest">▶</a>
+                    <a href="{{ $footerYoutube }}" title="YouTube">▶</a>
                     <a href="https://wa.me/{{ $footerWhatsapp }}" title="WhatsApp">✆</a>
                 </div>
             </div>
