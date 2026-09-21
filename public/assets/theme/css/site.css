@@ -632,10 +632,10 @@ ul{list-style:none}
 .footer-contact-item p{font-size:12.5px;color:#c9c1a9;line-height:1.55}
 .social-row{display:flex;gap:6px;flex-wrap:wrap}
 .social-row a{
-  width:40px;height:40px;border-radius:9px;font-size:16px;
+  width:42px;height:42px;border-radius:50%;font-size:16px;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(212,175,55,.22);border:1px solid rgba(212,175,55,.42);color:var(--gold);
-  transition:all .38s cubic-bezier(.22,1,.36,1);will-change:transform;opacity:1;visibility:visible;
+  background:linear-gradient(135deg,rgba(212,175,55,.28),rgba(212,175,55,.15));border:2px solid rgba(212,175,55,.52);color:var(--gold);font-weight:600;
+  transition:all .38s cubic-bezier(.22,1,.36,1);will-change:transform;opacity:1;visibility:visible;text-decoration:none;line-height:1;letter-spacing:0;
 }
 .social-row a:hover{background:var(--grad-gold);color:var(--black);transform:translateY(-4px) scale(1.08);box-shadow:0 10px 22px rgba(212,175,55,.4)}
 .footer-bottom{
@@ -1446,17 +1446,6 @@ body.enroll-bar-on .counsel-pop{bottom:156px}
 }
 
 /* --- Social: circular, gradient fill on hover, real icons --- */
-.social-row a{
-  width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,rgba(212,175,55,.28),rgba(212,175,55,.15));
-  border:1px solid rgba(212,175,55,.52);
-  position:relative;overflow:hidden;color:var(--gold);font-size:16px;display:flex;align-items:center;justify-content:center;z-index:2;
-}
-.social-row a::before{
-  content:'';position:absolute;inset:0;border-radius:50%;
-  background:var(--grad-gold);opacity:0;transition:opacity .35s ease;z-index:1;
-}
-.social-row a:hover::before{opacity:1}
 .social-row a svg{
   width:17px;height:17px;position:relative;z-index:2;
   fill:currentColor;transition:transform .35s cubic-bezier(.22,1,.36,1);
