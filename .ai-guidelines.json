@@ -1,0 +1,119 @@
+{
+  "project": "Law Students - Legal Education Platform",
+  "version": "1.0",
+  "description": "AI Guidelines for modifications to this project",
+  "lastUpdated": "2026-09-22",
+
+  "rules": {
+    "fileOrganization": {
+      "rule": "Documentation & Report Files",
+      "description": "All markdown (.md) documentation and report files must be stored in storage/docs/ folder",
+      "exceptions": [
+        "README.md - Standard project readme (stays in root)"
+      ],
+      "implementation": "Move any .md files to storage/docs/ before committing",
+      "reasoning": "Keeps project root clean, separates generated reports from source code, maintains clean git history"
+    },
+
+    "codeQuality": {
+      "rule": "Minimal, Focused Changes",
+      "description": "Do not add extra features, refactoring, or abstractions beyond what the task requires",
+      "examples": [
+        "Bug fix does not need surrounding cleanup",
+        "One-shot operation doesn't need helper functions",
+        "Don't design for hypothetical future requirements",
+        "Three similar lines are better than premature abstraction"
+      ]
+    },
+
+    "comments": {
+      "rule": "Write No Comments by Default",
+      "description": "Only add comments when the WHY is non-obvious",
+      "when_to_add": [
+        "Hidden constraint or subtle invariant",
+        "Workaround for a specific bug",
+        "Behavior that would surprise a reader"
+      ],
+      "avoid": [
+        "Multi-paragraph docstrings",
+        "Explaining WHAT code does (well-named identifiers handle this)",
+        "Referencing current task or PR (belongs in commit message)"
+      ]
+    },
+
+    "errorHandling": {
+      "rule": "Validate at Boundaries Only",
+      "description": "Don't add error handling for scenarios that can't happen",
+      "implementation": "Trust internal code and framework guarantees; validate only at system boundaries (user input, external APIs)"
+    },
+
+    "heroSection": {
+      "rule": "Hero Section Frame Implementation",
+      "status": "COMPLETED",
+      "pages": [
+        "About Us (/about-us)",
+        "Acts (/acts)",
+        "Rules (/rules)",
+        "Legal Knowledge (/legal-knowledge)",
+        "Courses (/course)",
+        "Free Notes (/copys)",
+        "Clientele (/clientele)",
+        "Government Exams (/govt-exams)",
+        "Gallery (/gallery)",
+        "Contact Us (/contact-us)"
+      ],
+      "assets": {
+        "location": "public/assets/theme/images/hero-frame/",
+        "frame": "hero-frame.svg",
+        "motifs": "motif-[pagename].svg (10 files, one per page)"
+      },
+      "css": {
+        "location": "public/assets/theme/css/inner.css",
+        "lines": "94-123",
+        "classes": ".hero-frame, .hero-frame::before"
+      },
+      "markup": {
+        "element": "<div class=\"hero-frame\" aria-hidden=\"true\"></div>",
+        "location": "First child of <section class=\"page-hero\">",
+        "pages_modified": "10 Blade template files"
+      }
+    },
+
+    "knownIssues": {
+      "databaseError": {
+        "error": "Table 'u792878158_aa.banners' doesn't exist",
+        "location": "storage/logs/laravel.log",
+        "severity": "Non-critical - logged but handled gracefully",
+        "action": "Do NOT fix - pre-existing DB/env mismatch, not related to project changes"
+      }
+    }
+  },
+
+  "gitCommit": {
+    "rule": "NEVER AUTO-COMMIT - USER APPROVAL REQUIRED",
+    "severity": "CRITICAL",
+    "description": "AI models must NEVER automatically commit changes to git",
+    "requirements": [
+      "ALWAYS stage changes and show diff to user",
+      "ALWAYS wait for explicit user approval before committing",
+      "ALWAYS display commit message for review",
+      "ALWAYS ask: 'Ready to commit? [y/n]' before running git commit"
+    ],
+    "violationRisk": "Loss of work, unintended commits, overwriting user changes, breaking production"
+  },
+
+  "beforeModifying": [
+    "Read this entire file",
+    "Check storage/docs/ for any existing project documentation",
+    "Review .git status to understand current state",
+    "If creating documentation/reports, use storage/docs/ directory",
+    "Keep changes minimal and focused on the stated task",
+    "Run tests before committing"
+  ],
+
+  "gitCommitFormat": {
+    "convention": "Include attribution line",
+    "template": "Brief description of change\n\nCo-Authored-By: [AI Model Name] <noreply@[model-provider].com>",
+    "example": "Add hero section frames to 10 inner pages\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>"
+  }
+}

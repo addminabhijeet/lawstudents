@@ -11,6 +11,7 @@
 @endphp
 
 <section class="page-hero">
+    <div class="hero-frame" aria-hidden="true"></div>
     <div class="wrap">
         <h1>Contact Us</h1>
         <nav class="crumbs" aria-label="Breadcrumb">

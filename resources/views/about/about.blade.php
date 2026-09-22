@@ -1,7 +1,7 @@
 @extends('layouts.landing', ['title' => 'About Us — Law Students'])
 
 @section('content')
-<section class="page-hero"><div class="wrap"><h1>About Us</h1><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span aria-current="page">About Us</span></nav></div></section>
+<section class="page-hero"><div class="hero-frame" aria-hidden="true"></div><div class="wrap"><h1>About Us</h1><nav class="crumbs" aria-label="Breadcrumb"><a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span aria-current="page">About Us</span></nav></div></section>
 <section class="section about-section" id="about"><div class="wrap"><div class="split">
   <div class="copy reveal">
     <span class="eyebrow">About Us</span>

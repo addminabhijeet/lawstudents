@@ -91,6 +91,37 @@ main{display:block}
 .page-hero:has(+ #gallery){--hero-accent:url(../images/hero/accent-frame.svg)}
 .page-hero:has(+ #contact){--hero-accent:url(../images/hero/accent-pin.svg)}
 
+/* ---------- engraved stamp-paper frame: one decorative border around the whole banner ---------- */
+/* Purely decorative, static, behind .wrap (z-index:2); border-image 9-slices the SVG so corners
+   stay square at every width and the edges tile instead of stretching. Page is identified the same
+   way as the hero art above, via the section that follows the banner. */
+.hero-frame{
+  --frame-w:32px;--motif-size:26px;--motif-img:none;
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  border-style:solid;border-color:transparent;border-width:var(--frame-w);
+  border-image-source:url(../images/hero-frame/hero-frame.svg);
+  border-image-slice:100;border-image-width:var(--frame-w);border-image-outset:0;border-image-repeat:round;
+}
+.hero-frame::before{
+  content:'';position:absolute;z-index:1;pointer-events:none;
+  top:calc((var(--frame-w) + var(--motif-size)) / -2);left:50%;transform:translateX(-50%);
+  width:var(--motif-size);height:var(--motif-size);
+  background:var(--motif-img) center/contain no-repeat;
+}
+@media(min-width:641px){
+  .hero-frame{--frame-w:clamp(56px,7vw,86px);--motif-size:clamp(34px,3.4vw,44px)}
+}
+.page-hero:has(+ #about) .hero-frame{--motif-img:url(../images/hero-frame/motif-about.svg)}
+.page-hero:has(+ #acts) .hero-frame{--motif-img:url(../images/hero-frame/motif-acts.svg)}
+.page-hero:has(+ #rules) .hero-frame{--motif-img:url(../images/hero-frame/motif-rules.svg)}
+.page-hero:has(+ #inquiry) .hero-frame{--motif-img:url(../images/hero-frame/motif-legal-knowledge.svg)}
+.page-hero:has(+ #courses) .hero-frame{--motif-img:url(../images/hero-frame/motif-courses.svg)}
+.page-hero:has(+ #notes) .hero-frame{--motif-img:url(../images/hero-frame/motif-notes.svg)}
+.page-hero:has(+ #client) .hero-frame{--motif-img:url(../images/hero-frame/motif-clientele.svg)}
+.page-hero:has(+ #exams) .hero-frame{--motif-img:url(../images/hero-frame/motif-exams.svg)}
+.page-hero:has(+ #gallery) .hero-frame{--motif-img:url(../images/hero-frame/motif-gallery.svg)}
+.page-hero:has(+ #contact) .hero-frame{--motif-img:url(../images/hero-frame/motif-contact.svg)}
+
 /* ---------- shared two-column block ---------- */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,60px);align-items:center;position:relative;z-index:1}
 .split .section-title{text-align:left}
