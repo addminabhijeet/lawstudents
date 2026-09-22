@@ -1883,6 +1883,7 @@ body.enroll-bar-on .site-footer{padding-bottom:166px}
 
 /* ---- contact section: symmetric balanced layout ---- */
 .contact-layout{align-items:center;grid-template-columns:1fr 1.4fr;gap:44px}
+.contact-layout .form-card{width:100%;max-width:100%}
 .contact-items{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .contact-item{margin:0;flex-direction:column;align-items:flex-start;gap:10px;padding:18px 16px;min-height:110px;justify-content:flex-start}
 .contact-ico{flex-shrink:0}
