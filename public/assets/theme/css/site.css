@@ -317,7 +317,7 @@ ul{list-style:none}
   background:linear-gradient(180deg,var(--white) 0%,var(--gold-pale) 100%);pointer-events:none;
 }
 .about-card{
-  max-width:920px;margin:0 auto;text-align:center;
+  margin:0;text-align:center;
   background:var(--white);border:1px solid var(--line);
   border-radius:14px;padding:42px 38px;
   box-shadow:var(--shadow-soft);position:relative;overflow:hidden;
