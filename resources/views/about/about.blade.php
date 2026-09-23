@@ -11,7 +11,7 @@
     <p>We provide interactive courses, case studies, and mentorship programs so that students can apply legal knowledge practically and confidently in real-world scenarios.</p>
     <a class="btn btn-gold" href="{{ route('frontend.course') }}">Enroll Now</a>
   </div>
-  <div class="media-frame reveal" data-d="1"><img src="{{ asset('assets/theme/images/about/about-img3.png') }}" alt="" width="551" height="570" loading="eager" decoding="async"></div>
+  <div class="media-frame reveal" data-d="1"><picture><source type="image/webp" srcset="{{ asset('assets/theme/images/about/about-img3.webp') }}"><img src="{{ asset('assets/theme/images/about/about-img3.png') }}" alt="" width="551" height="570" loading="eager" decoding="async"></picture></div>
 </div></div></section>
 
 <section class="section notes-section"><div class="wrap"><div class="split">

@@ -6,8 +6,8 @@
    - Every page is set at the largest reading size: the root is 125%,
      so 1rem = 20px. Type is in rem, which also honours the reader's
      own browser font setting (the theme's px sizes ignored it).
-   - Body copy is 22.5px and nothing a visitor reads is under ~19px (it
-     was 11–13px); small card headings use Poppins instead of the
+   - Body copy is 22.5px and nothing a visitor reads is under 16px, on
+     any screen (it was 8–13px); small card headings use Poppins instead of the
      hairline Playfair serif, which breaks up at small sizes.
    - The top bar and navbar keep the theme's design, enlarged as one
      piece (section 4).
@@ -28,6 +28,14 @@
   --read-label:.9375rem;     /* 18.75px — only uppercase labels and badges */
 }
 html{font-size:125%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Very large monitors: text that is right at 1920px looks small from the same
+   distance on a 2560px+ screen, so the whole page steps up with it. */
+@media(min-width:2400px){ html{font-size:137.5%} }
+@media(min-width:3200px){
+  html{font-size:162.5%}
+  :root{--cap:2912px}
+  .wrap,.enroll-bar-inner{max-width:min(calc(100% - 136px),var(--cap))}
+}
 body{font-size:var(--read-body);line-height:1.75}
 ::placeholder{color:#6b6455;opacity:1}              /* 5.9:1, was the browser's pale grey */
 mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
@@ -54,24 +62,27 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
    spacing, buttons — by the same A++ step as the page (--hz = 125%).
    Its rules below are the theme's original values; they only stop the header
    inheriting the page's enlarged body text, so it scales as one piece. */
-.topbar,.site-header{zoom:var(--hz);line-height:1.7}
+.topbar,.site-header{zoom:var(--z);line-height:1.7}
+/* the thin top strip has room for the full step at every width; the menu row uses --hz below */
+.topbar{--z:var(--tz)}
+.site-header{--z:var(--hz)}
+:root{--tz:1.25}
 .site-header{font-size:16px}
 .topbar :focus-visible,.site-header :focus-visible{outline:2px solid var(--gold);outline-offset:3px;box-shadow:none}
-/* One row of nine links needs ~1178px at its original size (~1473px at 125%),
-   so on narrower desktops the step is smaller — only as large as still leaves
-   ~75px of breathing room between the links, and never below the original. */
+/* The header is at the full A++ step at every width. One row of nine links at
+   that size (16px links) needs ~1545px plus room between the links, which a
+   screen has from 1840px up; below that the
+   header is the theme's own compact ☰ layout (see the end of this section), so
+   no screen gets a shrunken menu. Very large monitors step up with the page. */
 :root{--hz:1.25}
-@media(min-width:1240px){ :root{--hz:1} }
-@media(min-width:1500px){ :root{--hz:1.05} }
-@media(min-width:1600px){ :root{--hz:1.13} }
-@media(min-width:1680px){ :root{--hz:1.19} }
-@media(min-width:1760px){ :root{--hz:1.25} }
+@media(min-width:2400px){ :root{--hz:1.375;--tz:1.375} }
+@media(min-width:3200px){ :root{--hz:1.625;--tz:1.625} }
 /* the logo in its own colours: the theme's brightness(1.5) turned its gold neon */
 .nav-logo img{filter:none}
 /* Menu spacing: the links were packed together in the middle of the bar with
    the free space left over on both sides of them; spread that space evenly
    between the links instead. */
-@media(min-width:1240px){
+@media(min-width:1840px){
   .nav-wrap > nav{flex:1 1 auto;min-width:0}
   .nav-menu{justify-content:space-evenly}
 }
@@ -81,22 +92,32 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
    reached. An invisible strip on top of the dropdown bridges the gap. */
 .nav-menu .has-drop .dropdown::before{content:'';position:absolute;left:0;right:0;top:-16px;height:16px}
 /* keep the header's edges on the same line as the page content below it
-   (sizes inside a zoomed box are multiplied by --hz, so divide them back) */
-.topbar .wrap,.site-header .wrap{max-width:calc(1220px / var(--hz))}
-.site-header .wrap{padding:0 calc(18px / var(--hz))}
+   (sizes inside a zoomed box are multiplied by its --z, so divide them back) */
+.topbar .wrap,.site-header .wrap{max-width:calc(1220px / var(--z))}
+.site-header .wrap{padding:0 calc(18px / var(--z))}
 @media(min-width:1360px){
-  .topbar .wrap,.site-header .wrap{max-width:min(max(calc(1220px / var(--hz)),calc(100% - 136px / var(--hz))),calc(2240px / var(--hz)))}
+  .topbar .wrap,.site-header .wrap{max-width:min(max(calc(1220px / var(--z)),calc(100% - 136px / var(--z))),calc(var(--cap,2240px) / var(--z)))}
 }
-@media(max-width:600px){ .site-header .wrap{padding:0 calc(14px / var(--hz))} }
-@media(max-width:480px){ .site-header .wrap{padding:0 calc(12px / var(--hz))} }
-/* 1025–1239px: even the original single row did not fit here (it pushed the
-   Login button off-screen), so use the theme's own compact ☰ header, the one
-   it already shows on tablets. */
-@media(min-width:1025px) and (max-width:1239px){
+@media(max-width:600px){ .site-header .wrap{padding:0 calc(14px / var(--z))} }
+@media(max-width:480px){ .site-header .wrap{padding:0 calc(12px / var(--z))} }
+/* 1025–1839px: the full-size single row does not fit (below ~1240px even the
+   original row pushed the Login button off-screen), so use the theme's own
+   compact ☰ header, the one it already shows on phones and tablets. */
+@media(min-width:1025px) and (max-width:1839px){
   .burger{display:flex}
   .nav-menu,.btn-login{display:none}
   .mobile-menu{display:block}
 }
+/* Readable header text on every screen (these sizes are inside the zoomed
+   header, so they show 25% larger): the top strip was 8–12px, the ☰ menu
+   links shrank to 12px on phones. */
+.topbar-tags,.topbar-contact a{font-size:12.8px}   /* 16px on screen */
+.topbar-contact img{width:13px;height:13px}
+@media(max-width:1024px){ .topbar .wrap{flex-wrap:wrap;justify-content:center;row-gap:4px} }
+@media(max-width:1024px){ .topbar{max-height:230px} }
+.mobile-menu a{font-size:14px}
+.mobile-menu .sub a{font-size:13px}
+.nav-menu > li > a,.btn-login{font-size:12.8px}   /* one-row menu and Login: 16px on screen (were 12 / 11.5px) */
 
 /* ---------- 6. HEADINGS + RUNNING TEXT ---------- */
 .page-hero h1{font-size:clamp(2.125rem,1.35rem + 3.4vw,3.5rem)}
@@ -109,6 +130,10 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 .eyebrow{font-size:var(--read-label);font-weight:800;letter-spacing:.14em;color:var(--gold-text)}
 .copy p,.contact-intro p,.about-card p{font-size:var(--read-body);line-height:1.8}
 .copy p,.contact-intro p{max-width:75ch}             /* long lines are hard to track back across */
+/* the two centred paragraphs on the home page ran ~135 and ~165 characters a line on a wide screen */
+.about-card p,.testimonial-quote{max-width:72ch;margin-inline:auto}
+.testimonial-quote{font-size:clamp(1.0625rem,.95rem + .45vw,1.1875rem)}   /* was a fixed 15–18.5px */
+.hero-btns .btn{font-size:1rem}                        /* the theme set 12px on phones */
 .check-list li{font-size:1.0625rem}
 .hero-desc{font-size:1.1875rem}
 .hero-tag{font-size:clamp(1.125rem,.9rem + 1vw,1.5rem)}
@@ -247,6 +272,15 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 .how-card h3{font:700 1.3125rem/1.35 'Poppins',sans-serif}
 .how-card p{font-size:1.0625rem}
 /* about */
+/* About Us page: the "ABOUT US" label sat at the left edge of the text column;
+   centre it at the top of its section, above both columns, like every other
+   section label on the site. The column's fade-in keeps its opacity but drops
+   its 30px slide (a transform there would pin the label to the text column),
+   and the label is centred with auto margins because its own scale-in
+   animation owns `transform`. */
+#about .split{margin-top:3.75rem}
+#about .copy.reveal,#about .copy.reveal.in{transform:none}
+#about .copy .eyebrow{position:absolute;top:-3.75rem;left:0;right:0;width:max-content;margin:0 auto}
 .exp-badge span{font-size:.9375rem}
 .tabs-nav button{font-size:var(--read-small);min-height:3rem}
 .tab-panel p{font-size:1.0625rem}
@@ -289,14 +323,27 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 .footer-col li{margin-bottom:.2rem}
 .footer-col li a{font-size:.9375rem;line-height:1.6}
 .footer-contact-item{margin-bottom:.5rem;gap:.15rem}
-.footer-contact-item h6{font-size:.75rem;margin-bottom:0}
+.footer-contact-item h6{font-size:.8125rem;margin-bottom:0}
 .footer-contact-item p{font-size:.9375rem;line-height:1.5}
 .footer-links{font-size:.875rem}
 .copyright{font-size:.875rem}
 @media(min-width:1025px){
   .footer-grid:first-of-type .footer-col:nth-child(3) ul{columns:auto}
 }.site-footer .footer-logo img{filter:drop-shadow(0 6px 18px rgba(212,175,55,.22)) !important}
-.footer-logo picture{display:block}
+/* Social icons: real icons on every page (readable.js), drawn crisp in gold on the
+   footer's own warm dark — the theme had them on a cool grey (#3a3a3a) that clashed
+   with the brown footer, blurred by a gold text-glow — and big enough to tap. */
+.site-footer .social-row{gap:.625rem}
+.site-footer .social-row a{
+  width:2.75rem;height:2.75rem;margin:0 !important;
+  background:#2a251b !important;border:2px solid #d4af37 !important;color:#f0d97d !important;
+  text-shadow:none !important;box-shadow:none !important;
+}
+.site-footer .social-row a svg{width:1.3rem;height:1.3rem}
+.site-footer .social-row a:hover,.site-footer .social-row a:focus-visible{
+  background:#f0d97d !important;color:#1c1913 !important;box-shadow:0 8px 20px rgba(212,175,55,.35) !important;
+}
+.footer-logo picture,.media-frame picture{display:block}
 .skip-link{font-size:1rem}
 
 /* ---------- 12. LEGAL KNOWLEDGE: link from the inquiry form to the PDF library ---------- */
@@ -388,4 +435,15 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
   .filter-bar{padding:1.125rem}
   .cat-chips{gap:.5rem}
   .cat-chip{font-size:.9375rem;padding:.4rem .85rem}
+}
+
+/* ---------- 15. VISITORS WHO ASKED THEIR DEVICE FOR MORE CONTRAST ----------
+   Browsers report `prefers-contrast: more` when the visitor has switched on
+   "Increase contrast" in their operating system (macOS, iOS and others). For
+   them only, text goes to the stricter AAA level (7:1); everyone else keeps
+   the softer AA colours above. */
+@media(prefers-contrast:more){
+  :root{--muted:#4a4337;--gold-text:#634a0e}
+  .section-title .accent{background:linear-gradient(135deg,#6e5210 0%,#8a6a1a 50%,#6e5210 100%);-webkit-background-clip:text;background-clip:text}
+  .field input,.field select,.field textarea,.dd-btn,.filter-bar .field input[type="search"]{border-width:2px}
 }
