@@ -92,7 +92,7 @@
                     <li><a href="{{ route('frontend.acts') }}">Bare Acts</a></li>
                     <li><a href="{{ route('frontend.rules') }}">Rules &amp; Regulations</a></li>
                     <li><a href="{{ route('frontend.legalknowledgelibrary') }}">Legal Knowledge PDFs</a></li>
-                    <li><a href="#">Announcements</a></li>
+                    <li><a href="{{ route('frontend.announcements') }}">Announcements</a></li>
                     <li><a href="{{ route('frontend.govtexams') }}">Competitive Exams</a></li>
                 </ul>
             </div>
@@ -111,11 +111,11 @@
         </div>
         <div class="footer-bottom">
             <div class="footer-links">
-                <a href="#">Privacy Policy</a><span class="sep">|</span>
-                <a href="#">Terms &amp; Conditions</a><span class="sep">|</span>
-                <a href="#">Disclaimer</a><span class="sep">|</span>
-                <a href="#">Refund Policy</a><span class="sep">|</span>
-                <a href="#">Sitemap</a>
+                <a href="{{ route('frontend.privacy') }}">Privacy Policy</a><span class="sep">|</span>
+                <a href="{{ route('frontend.terms') }}">Terms &amp; Conditions</a><span class="sep">|</span>
+                <a href="{{ route('frontend.disclaimer') }}">Disclaimer</a><span class="sep">|</span>
+                <a href="{{ route('frontend.refund') }}">Refund Policy</a><span class="sep">|</span>
+                <a href="{{ route('frontend.sitemap') }}">Sitemap</a>
             </div>
             <div class="copyright">© {{ date('Y') }} Law Students. All Rights Reserved.</div>
         </div>

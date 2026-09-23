@@ -41,8 +41,16 @@ Route::middleware(['web'])
         Route::get('legal-knowledge-library-search-notes', [LegalKnowledgeLibraryController::class, 'legalknowledgelibrarysearch'])->name('legalknowledgelibrarysearch');
         Route::get('acts-search-notes', [ActController::class, 'actssearch'])->name('actssearch');
         Route::get('copys-search-notes', [FreeNotesController::class, 'copyssearch'])->name('copyssearch');
-        Route::get('course-search-notes', [FreeNotesController::class, 'coursesearch'])->name('coursesearch');
+        Route::get('course-search-notes', [CourseController::class, 'coursesearch'])->name('coursesearch');
         Route::post('contact-store', [ContactController::class, 'contactstore'])->name('contactstore');
+
+        // Footer information pages.
+        Route::view('privacy-policy', 'pages.privacy-policy', ['pageTitle' => 'Privacy Policy'])->name('privacy');
+        Route::view('terms-and-conditions', 'pages.terms', ['pageTitle' => 'Terms & Conditions'])->name('terms');
+        Route::view('disclaimer', 'pages.disclaimer', ['pageTitle' => 'Disclaimer'])->name('disclaimer');
+        Route::view('refund-policy', 'pages.refund-policy', ['pageTitle' => 'Refund Policy'])->name('refund');
+        Route::view('sitemap', 'pages.sitemap', ['pageTitle' => 'Sitemap'])->name('sitemap');
+        Route::view('announcements', 'pages.announcements', ['pageTitle' => 'Announcements'])->name('announcements');
     });
 
 Route::get('auth/google', function () {

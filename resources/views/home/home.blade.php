@@ -414,7 +414,7 @@
       // After a failed submit the page reloads at the top; bring the form with the error back into view.
       var failed = document.querySelector('form.form-card .form-status[role="alert"]');
       if (failed) window.addEventListener('load', function () {
-        window.scrollTo(0, failed.closest('form').getBoundingClientRect().top + window.scrollY - 160);
+        window.scrollTo({ top: failed.closest('form').getBoundingClientRect().top + window.scrollY - 160, behavior: 'instant' });
       });
     })();
     </script>

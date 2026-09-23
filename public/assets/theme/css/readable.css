@@ -499,6 +499,33 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 /* ---------- 23. TESTIMONIAL RATING: solid stars (the outline icon read as an empty, zero-star rating) ---------- */
 .testimonial-stars .icon-star{--site-icon:url('../images/icons/tabler/star-filled.svg')}
 
-/* ---------- 24. FOOTER + HOME CONTACT DETAILS ARE LINKS NOW: keep their text colour ---------- */
+/* ---------- 24. INFORMATION PAGES (privacy, terms, disclaimer, refund, sitemap, announcements) ---------- */
+.page-hero:has(+ #site-info){--hero-main:url(../images/hero/about-us.svg);--hero-accent:url(../images/hero/accent-laurel.svg)}
+.page-hero:has(+ #site-info) .hero-frame{--motif-img:url(../images/hero-frame/motif-about.svg)}
+.doc-card{
+  max-width:880px;margin:0 auto;padding:clamp(22px,4vw,44px);
+  background:var(--white,#fff);border:1px solid var(--line,#eee3c4);border-radius:14px;box-shadow:var(--shadow-soft,0 10px 30px rgba(0,0,0,.06));
+  color:var(--ink);line-height:1.75;
+}
+.doc-card h2{font-family:'Playfair Display',serif;font-size:clamp(1.25rem,1rem + .8vw,1.5rem);color:var(--black,#111);margin:1.6em 0 .5em;line-height:1.3}
+.doc-card h2:first-child{margin-top:0}
+.doc-card p{margin:0 0 1em}
+.doc-card ul{margin:0 0 1em;padding-left:1.25em;list-style:disc}
+.doc-card li{margin:.35em 0}
+.doc-card li::marker{color:var(--gold)}
+.doc-card a{color:var(--gold-text);text-decoration:underline;text-underline-offset:3px}
+.doc-card a:hover{color:var(--ink)}
+.doc-note{margin:0 0 1.2em;padding:12px 16px;border-radius:8px;background:var(--gold-pale);border-left:4px solid var(--gold);font-size:.95em}
+.doc-meta{font-size:.9em;color:var(--muted)}
+.sitemap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px;max-width:1100px;margin:0 auto}
+.sitemap-grid .doc-card{max-width:none;margin:0;padding:clamp(20px,3vw,30px)}
+.sitemap-grid .sitemap-wide{grid-column:1/-1}
+.sitemap-wide ul{columns:3 200px;column-gap:28px}
+.sitemap-col ul{list-style:none;padding:0}
+.sitemap-col li{break-inside:avoid}
+.sitemap-col a{display:inline-flex;align-items:center;min-height:36px;text-decoration:none}
+.sitemap-col a:hover,.sitemap-col a:focus-visible{text-decoration:underline}
+
+/* ---------- 25. FOOTER + HOME CONTACT DETAILS ARE LINKS NOW: keep their text colour ---------- */
 .footer-contact-item p a,.contact-item p a{color:inherit;text-decoration:none;overflow-wrap:anywhere}
 .footer-contact-item p a:hover,.footer-contact-item p a:focus-visible,.contact-item p a:hover,.contact-item p a:focus-visible{text-decoration:underline;text-underline-offset:3px}
