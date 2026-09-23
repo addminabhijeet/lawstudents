@@ -170,6 +170,14 @@ $setting = $admin ? $admin->first() : null;
                                         value="{{ $admin->twitter ?? '' }}" placeholder="Twitter">
                                 </div>
 
+
+                                <div class="mb-3">
+                                    <label class="form-label">YouTube Link</label>
+
+                                    <input type="text" name="youtube" class="form-control"
+                                        value="{{ $admin->youtube ?? '' }}" placeholder="YouTube">
+                                </div>
+
                                 <div class="mb-3">
                                     <label class="form-label">Default Password</label>
                                     <input type="text" name="defaultpass" class="form-control"

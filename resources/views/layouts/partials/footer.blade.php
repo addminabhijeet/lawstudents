@@ -9,6 +9,7 @@
     $footerInstagram = !empty($footerUser->instagram) ? $footerUser->instagram : '#';
     $footerLinkedin = !empty($footerUser->linkedin) ? $footerUser->linkedin : '#';
     $footerYoutube = !empty($footerUser->youtube) ? $footerUser->youtube : '#';
+    $footerPinterest = !empty($footerUser->pinterest) ? $footerUser->pinterest : '#';
 
     // Programs column: the course page filters on ?cat=<category id>, so read the
     // ids and labels straight from the categories table rather than hard-coding
@@ -103,6 +104,7 @@
                     <a href="{{ $footerInstagram }}" title="Instagram" aria-label="Instagram"><span class="site-icon icon-brand-instagram" aria-hidden="true"></span></a>
                     <a href="{{ $footerLinkedin }}" title="LinkedIn" aria-label="LinkedIn"><span class="site-icon icon-brand-linkedin" aria-hidden="true"></span></a>
                     <a href="{{ $footerYoutube }}" title="YouTube" aria-label="YouTube"><span class="site-icon icon-brand-youtube" aria-hidden="true"></span></a>
+                    <a href="{{ $footerPinterest }}" title="Pinterest" aria-label="Pinterest"><span class="site-icon icon-brand-pinterest" aria-hidden="true"></span></a>
                     <a href="https://wa.me/{{ $footerWhatsapp }}" title="WhatsApp" aria-label="WhatsApp"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></a>
                 </div>
             </div>

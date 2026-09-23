@@ -38,6 +38,7 @@
 .icon-brand-instagram { --site-icon:url('../images/icons/tabler/brand-instagram.svg'); }
 .icon-brand-linkedin { --site-icon:url('../images/icons/tabler/brand-linkedin.svg'); }
 .icon-brand-youtube { --site-icon:url('../images/icons/tabler/brand-youtube.svg'); }
+.icon-brand-pinterest { --site-icon:url('../images/icons/tabler/brand-pinterest.svg'); }
 .icon-arrow-up { --site-icon:url('../images/icons/tabler/arrow-up.svg'); }
 .icon-check { --site-icon:url('../images/icons/tabler/check.svg'); }
 .social-row .site-icon { width:20px; height:20px; }

@@ -820,6 +820,7 @@ class CourseController extends Controller
             'instagram' => $request->instagram,
             'pinterest' => $request->pinterest,
             'twitter' => $request->twitter,
+            'youtube' => $request->youtube,
             'defaultpass' => $request->defaultpass,
             'centerone' => $request->centerone,
             'centertwo' => $request->centertwo,
