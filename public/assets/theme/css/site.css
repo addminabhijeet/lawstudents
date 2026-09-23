@@ -82,7 +82,7 @@ ul{list-style:none}
 }
 .progress-wrap.active{opacity:1;visibility:visible;transform:translateY(0)}
 .progress-wrap::after{
-  content:'↑';position:absolute;inset:0;text-align:center;line-height:46px;
+  content:'';position:absolute;inset:0;text-align:center;line-height:46px;
   font-size:18px;color:var(--gold);
 }
 .progress-wrap svg path{fill:none;stroke:var(--gold);stroke-width:4;transition:all .2s linear}
@@ -133,7 +133,7 @@ ul{list-style:none}
 .nav-menu > li > a:hover{color:var(--gold-dark)}
 .nav-menu > li > a:hover::after{width:100%}
 .has-drop > a::before{
-  content:'▾';position:relative;margin-left:4px;font-size:10px;
+  content:'';position:relative;margin-left:4px;font-size:10px;
   color:var(--gold-dark);top:0;right:0;
 }
 .has-drop{padding-right:0;position:relative}
@@ -1259,7 +1259,7 @@ body.enroll-bar-on .counsel-pop{bottom:156px}
 }
 .progress-wrap.cta-mode svg{display:none}
 .progress-wrap.cta-mode::after{
-  content:'Enroll Now →';position:static;display:block;
+  content:'Enroll Now';position:static;display:block;
   font-size:12.5px;font-weight:700;color:var(--black);
   line-height:46px;white-space:nowrap;text-align:center;
 }
@@ -1427,7 +1427,7 @@ body.enroll-bar-on .counsel-pop{bottom:156px}
 
 /* --- Links: chevron that grows in on hover --- */
 .footer-col li a::before{
-  content:'\203A';display:inline-block;width:0;overflow:hidden;
+  content:'';display:inline-block;width:0;overflow:hidden;
   opacity:0;color:var(--gold);vertical-align:baseline;
   transition:width .3s ease,opacity .3s ease,margin-right .3s ease;
 }

@@ -8,7 +8,7 @@
     <div class="wrap">
         <h1>Legal Knowledge</h1>
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></span><span
                 aria-current="page">Legal Knowledge</span>
         </nav>
     </div>
@@ -24,10 +24,10 @@
 
         {{-- Visitors who come here for the PDFs rather than to ask a question. --}}
         <a class="library-cta reveal" href="{{ route('frontend.legalknowledgelibrary') }}">
-            <span class="library-cta-ico" aria-hidden="true">📚</span>
+            <span class="library-cta-ico" aria-hidden="true"><span class="site-icon icon-books" aria-hidden="true"></span></span>
             <span class="library-cta-text"><strong>Looking for Legal Knowledge PDFs?</strong>
                 <span>Open the Legal Knowledge Library to read or download notes by category.</span></span>
-            <span class="library-cta-go">Open Library <span aria-hidden="true">→</span></span>
+            <span class="library-cta-go">Open Library <span aria-hidden="true"><span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></span>
         </a>
 
         <form class="form-card reveal" action="{{ route('frontend.legal-knowledge-store') }}" method="post"
@@ -68,7 +68,7 @@
                         type="file" id="lk-doc" name="document" accept=".pdf,.doc,.docx,.txt"></div>
             </div>
             <div class="form-actions"><button type="submit" class="btn btn-gold">Submit Inquiry</button></div>
-            <div class="form-note"><strong class="disc-title"><span aria-hidden="true">⚠️</span> Important
+            <div class="form-note"><strong class="disc-title"><span aria-hidden="true"><span class="site-icon icon-alert-triangle" aria-hidden="true"></span></span> Important
                     Disclaimer</strong>This inquiry facility is intended for preliminary communication and
                 legal/educational information. Submission of an inquiry does not by itself create an advocate-client
                 relationship. Formal legal advice, representation or engagement shall be subject to separate

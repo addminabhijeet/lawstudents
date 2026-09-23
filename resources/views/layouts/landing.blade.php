@@ -54,6 +54,8 @@
         </style>
     </noscript>
 
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/icons.css') }}">
+
     @yield('css')
 </head>
 

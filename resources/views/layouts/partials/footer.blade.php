@@ -98,12 +98,12 @@
             <div class="footer-col">
                 <h4>Social Media</h4>
                 <div class="social-row">
-                    <a href="{{ $footerFacebook }}" title="Facebook">f</a>
-                    <a href="{{ $footerTwitter }}" title="X">𝕏</a>
-                    <a href="{{ $footerInstagram }}" title="Instagram">◎</a>
-                    <a href="{{ $footerLinkedin }}" title="LinkedIn">in</a>
-                    <a href="{{ $footerYoutube }}" title="YouTube">▶</a>
-                    <a href="https://wa.me/{{ $footerWhatsapp }}" title="WhatsApp">✆</a>
+                    <a href="{{ $footerFacebook }}" title="Facebook" aria-label="Facebook"><span class="site-icon icon-brand-facebook" aria-hidden="true"></span></a>
+                    <a href="{{ $footerTwitter }}" title="X" aria-label="X"><span class="site-icon icon-brand-x" aria-hidden="true"></span></a>
+                    <a href="{{ $footerInstagram }}" title="Instagram" aria-label="Instagram"><span class="site-icon icon-brand-instagram" aria-hidden="true"></span></a>
+                    <a href="{{ $footerLinkedin }}" title="LinkedIn" aria-label="LinkedIn"><span class="site-icon icon-brand-linkedin" aria-hidden="true"></span></a>
+                    <a href="{{ $footerYoutube }}" title="YouTube" aria-label="YouTube"><span class="site-icon icon-brand-youtube" aria-hidden="true"></span></a>
+                    <a href="https://wa.me/{{ $footerWhatsapp }}" title="WhatsApp" aria-label="WhatsApp"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>
@@ -129,4 +129,4 @@
 </div>
 
 <a href="https://wa.me/{{ $footerWhatsapp }}" class="wa-float" title="WhatsApp Us" aria-label="WhatsApp"
-    target="_blank" rel="noopener">✆</a>
+    target="_blank" rel="noopener"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></a>

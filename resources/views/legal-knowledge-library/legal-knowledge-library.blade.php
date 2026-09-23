@@ -8,7 +8,7 @@
     <div class="wrap">
         <h1>Legal Knowledge Library</h1>
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></span><span
                 aria-current="page">Legal Knowledge Library</span>
         </nav>
     </div>
@@ -31,7 +31,7 @@
                 <div class="dd">
                     <button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false"
                         aria-labelledby="lbl-cat" data-all-label="All Categories">
-                        <span class="dd-label">All Categories</span><span class="chev" aria-hidden="true">▾</span>
+                        <span class="dd-label">All Categories</span><span class="chev" aria-hidden="true"><span class="site-icon icon-chevron-down" aria-hidden="true"></span></span>
                     </button>
                     <ul class="dd-menu" role="listbox" aria-labelledby="lbl-cat">
                         <li role="option" data-value="all" aria-selected="true">All Legal Knowledge</li>
@@ -58,7 +58,7 @@
                         aria-controls="cat-library-{{ $category->id }}">
                         <span>{{ $category->name }}</span>
                         <span class="count">{{ $catCount }} {{ Str::plural('item', $catCount) }}</span>
-                        <span class="chev" aria-hidden="true">▾</span>
+                        <span class="chev" aria-hidden="true"><span class="site-icon icon-chevron-down" aria-hidden="true"></span></span>
                     </button>
                     <div class="res-cat-body" id="cat-library-{{ $category->id }}">
                         @foreach ($category->subcategories as $sub)
@@ -69,7 +69,7 @@
                                     @foreach ($sub->notes as $note)
                                         <div class="list-card"
                                             data-search="{{ Str::lower($note->description . ' ' . $category->name . ' ' . $sub->name) }}">
-                                            <div class="list-icon" aria-hidden="true">📚</div>
+                                            <div class="list-icon" aria-hidden="true"><span class="site-icon icon-books" aria-hidden="true"></span></div>
                                             <div class="list-body">
                                                 <h4>{{ $note->description }}</h4>
                                                 @forelse ($note->pdfs ?? [] as $index => $pdf)

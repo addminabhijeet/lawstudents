@@ -19,20 +19,20 @@
 
     // Icon mapping for legal knowledge categories
     $iconMap = [
-        'constitutional' => '📜',
-        'cyber law' => '🔐',
-        'consumer' => '👤',
-        'cheque' => '💳',
-        'civil' => '⚖️',
-        'criminal' => '🚨',
-        'writs' => '📋',
-        'company' => '🏢',
-        'hindu' => '🕉️',
-        'muslim' => '☪️',
-        'labour' => '👷',
-        'cyber security' => '🛡️',
-        'cyber crime' => '💻',
-        'compliance' => '✅',
+        'constitutional' => 'script',
+        'cyber law' => 'lock',
+        'consumer' => 'user',
+        'cheque' => 'credit-card',
+        'civil' => 'scale',
+        'criminal' => 'urgent',
+        'writs' => 'clipboard',
+        'company' => 'building',
+        'hindu' => 'om',
+        'muslim' => 'moon-stars',
+        'labour' => 'helmet',
+        'cyber security' => 'shield',
+        'cyber crime' => 'device-laptop',
+        'compliance' => 'circle-check',
     ];
 
     $getCategoryIcon = function($categoryName) use ($iconMap) {
@@ -42,7 +42,7 @@
                 return $icon;
             }
         }
-        return '⚖️'; // Default icon
+        return 'scale'; // Default icon
     };
 @endphp
 
@@ -93,7 +93,7 @@
           <div class="course-body">
             <h3>{{ $homeCourse->title }}</h3>
             <p>{{ Str::limit(strip_tags($homeCourse->short_description ?? $homeCourse->description ?? ''), 70) }}</p>
-            <div class="course-foot"><span class="course-price">₹{{ number_format((float) $homeCourse->price, 2) }}</span><a class="course-link" href="{{ route('frontend.course') }}">Explore Course →</a></div>
+            <div class="course-foot"><span class="course-price">₹{{ number_format((float) $homeCourse->price, 2) }}</span><a class="course-link" href="{{ route('frontend.course') }}">Explore Course <span class="site-icon icon-arrow-right cl-arrow" aria-hidden="true"></span></a></div>
           </div>
         </article>
       @endforeach
@@ -115,7 +115,7 @@
     <div class="list-grid">
 @foreach ($homeKnowledgeNotes as $homeKnowledgeNote)
         @php $pdfCount = is_array($homeKnowledgeNote->pdfs) ? count($homeKnowledgeNote->pdfs) : (is_string($homeKnowledgeNote->pdfs) && $homeKnowledgeNote->pdfs !== '' ? count(json_decode($homeKnowledgeNote->pdfs, true) ?: [$homeKnowledgeNote->pdfs]) : 0); @endphp
-        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon">📚</div><div class="list-body"><h4>{{ Str::limit($homeKnowledgeNote->description, 60) }}</h4><div class="list-meta"><span class="pdf">{{ $pdfCount }} PDF available</span><span class="go">View All →</span></div></div></a>
+        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>{{ Str::limit($homeKnowledgeNote->description, 60) }}</h4><div class="list-meta"><span class="pdf">{{ $pdfCount }} PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
       @endforeach
     </div>
     <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Notes</a></div>
@@ -133,13 +133,13 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📜</div><div class="list-body"><h4>The Indian Contract Act, 1872 - essentials of a valid contra...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">📜</div><div class="list-body"><h4>The Transfer of Property Act, 1882 - sale, mortgage, lease a...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📜</div><div class="list-body"><h4>The Hindu Marriage Act, 1955 - conditions for a valid marria...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">📜</div><div class="list-body"><h4>The Consumer Protection Act, 2019 - Consumer Commissions, e-...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📜</div><div class="list-body"><h4>The Industrial Disputes Act, 1947 - dispute resolution machi...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">📜</div><div class="list-body"><h4>The Companies Act, 2013 - incorporation, corporate governanc...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📜</div><div class="list-body"><h4>The Bharatiya Sakshya Adhiniyam, 2023</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Indian Contract Act, 1872 - essentials of a valid contra...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Transfer of Property Act, 1882 - sale, mortgage, lease a...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Hindu Marriage Act, 1955 - conditions for a valid marria...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Consumer Protection Act, 2019 - Consumer Commissions, e-...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Industrial Disputes Act, 1947 - dispute resolution machi...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Companies Act, 2013 - incorporation, corporate governanc...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Bharatiya Sakshya Adhiniyam, 2023</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
     </div>
     <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Acts</a></div>
   </div>
@@ -156,11 +156,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">⚖️</div><div class="list-body"><h4>Civil Procedure Rules: Order XXXIX - Temporary Injunctions,...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">⚖️</div><div class="list-body"><h4>Code of Criminal Procedure, 1973 - Rules on Bail &amp; Anticipat...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">⚖️</div><div class="list-body"><h4>Companies (Incorporation) Rules, 2014 - SPICe+ procedure and...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">⚖️</div><div class="list-body"><h4>The Indian Evidence Act, 1872 - Rules on Admissibility, burd...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">⚖️</div><div class="list-body"><h4>Landmark Judgment: Mohori Bibee v. Dharmodas Ghosh (1903) -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Civil Procedure Rules: Order XXXIX - Temporary Injunctions,...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Code of Criminal Procedure, 1973 - Rules on Bail &amp; Anticipat...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Companies (Incorporation) Rules, 2014 - SPICe+ procedure and...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>The Indian Evidence Act, 1872 - Rules on Admissibility, burd...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Landmark Judgment: Mohori Bibee v. Dharmodas Ghosh (1903) -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
     </div>
     <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Rules</a></div>
   </div>
@@ -178,7 +178,7 @@
     </div>
     <div class="kn-grid">
 @foreach ($homeKnowledgeCategories as $homeKnCat)
-        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico">{{ $getCategoryIcon($homeKnCat->name) }}</span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
+        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico"><span class="site-icon icon-{{ $getCategoryIcon($homeKnCat->name) }}" aria-hidden="true"></span></span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
       @endforeach
     </div>
   </div>
@@ -220,11 +220,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📋</div><div class="list-body"><h4>State Judicial Services Examination: Becoming a Civil Judge...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">📋</div><div class="list-body"><h4>All India Bar Examination (AIBE): What Every Law Graduate Sh...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📋</div><div class="list-body"><h4>SSC CGL: Legal-Sector Posts for Law Graduates - exam stages,...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">📋</div><div class="list-body"><h4>RBI Grade B (Legal Officer): Exam Guide for Law Graduates -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📋</div><div class="list-body"><h4>UPSC Civil Services Examination: A Guide for Law Graduates -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>State Judicial Services Examination: Becoming a Civil Judge...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>All India Bar Examination (AIBE): What Every Law Graduate Sh...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>SSC CGL: Legal-Sector Posts for Law Graduates - exam stages,...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>RBI Grade B (Legal Officer): Exam Guide for Law Graduates -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>UPSC Civil Services Examination: A Guide for Law Graduates -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
     </div>
     <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Govt. Examinations</a></div>
   </div>
@@ -266,12 +266,12 @@
       <div class="title-rule"></div>
     </div>
     <div class="why-grid">
-      <div class="why-card reveal" data-d="1"><div class="why-icon">⚖️</div><h3>Expert Instructors</h3><p>Learn from experienced legal professionals with decades of practice and teaching experience</p></div>
-      <div class="why-card reveal" data-d="2"><div class="why-icon">📚</div><h3>Comprehensive Content</h3><p>Access complete study materials covering all major areas of law and legal practice</p></div>
-      <div class="why-card reveal" data-d="3"><div class="why-icon">⏱️</div><h3>Flexible Learning</h3><p>Study at your own pace with lifetime access to course materials and updates</p></div>
-      <div class="why-card reveal" data-d="1"><div class="why-icon">💰</div><h3>Affordable Pricing</h3><p>Quality legal education at competitive rates with various payment options available</p></div>
-      <div class="why-card reveal" data-d="2"><div class="why-icon">🎯</div><h3>Exam Preparation</h3><p>Dedicated exam coaching for CLAT, AIBE, UGC NET, and other legal entrance exams</p></div>
-      <div class="why-card reveal" data-d="3"><div class="why-icon">🛟</div><h3>24/7 Support</h3><p>Round-the-clock support from our dedicated counselors and academic team</p></div>
+      <div class="why-card reveal" data-d="1"><div class="why-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><h3>Expert Instructors</h3><p>Learn from experienced legal professionals with decades of practice and teaching experience</p></div>
+      <div class="why-card reveal" data-d="2"><div class="why-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><h3>Comprehensive Content</h3><p>Access complete study materials covering all major areas of law and legal practice</p></div>
+      <div class="why-card reveal" data-d="3"><div class="why-icon"><span class="site-icon icon-stopwatch" aria-hidden="true"></span></div><h3>Flexible Learning</h3><p>Study at your own pace with lifetime access to course materials and updates</p></div>
+      <div class="why-card reveal" data-d="1"><div class="why-icon"><span class="site-icon icon-cash" aria-hidden="true"></span></div><h3>Affordable Pricing</h3><p>Quality legal education at competitive rates with various payment options available</p></div>
+      <div class="why-card reveal" data-d="2"><div class="why-icon"><span class="site-icon icon-target" aria-hidden="true"></span></div><h3>Exam Preparation</h3><p>Dedicated exam coaching for CLAT, AIBE, UGC NET, and other legal entrance exams</p></div>
+      <div class="why-card reveal" data-d="3"><div class="why-icon"><span class="site-icon icon-lifebuoy" aria-hidden="true"></span></div><h3>24/7 Support</h3><p>Round-the-clock support from our dedicated counselors and academic team</p></div>
     </div>
   </div>
 </section>
@@ -306,11 +306,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📚</div><div class="list-body"><h4>The Right to Information Act, 2005: Empowering Citizens - ho...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">📚</div><div class="list-body"><h4>Understanding Cyber Crimes and the Information Technology Ac...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📚</div><div class="list-body"><h4>Know Your Rights: Consumer Protection in the Digital Age - e...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon">📚</div><div class="list-body"><h4>Legal Aid in India: Article 39A and Access to Justice - elig...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon">📚</div><div class="list-body"><h4>Article 21: Right to Life and Personal Liberty - from A.K. G...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All →</span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>The Right to Information Act, 2005: Empowering Citizens - ho...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Understanding Cyber Crimes and the Information Technology Ac...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Know Your Rights: Consumer Protection in the Digital Age - e...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Legal Aid in India: Article 39A and Access to Justice - elig...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Article 21: Right to Life and Personal Liberty - from A.K. G...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
     </div>
     <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Legal Knowledge</a></div>
   </div>
@@ -353,10 +353,10 @@
       <div class="contact-intro reveal">
         <p>Have questions about our courses, Bare Acts, or study materials? Our team is ready to help you every step of the way in your legal education journey.</p>
         <div class="contact-items">
-          <div class="contact-item"><div class="contact-ico">📍</div><div><h5>Address</h5><p>224 Legal District, Delhi High Court Marg, New Delhi 110001</p></div></div>
-          <div class="contact-item"><div class="contact-ico">📞</div><div><h5>Phone</h5><p>+916624536320</p></div></div>
-          <div class="contact-item"><div class="contact-ico">💬</div><div><h5>WhatsApp</h5><p>+916624536320</p></div></div>
-          <div class="contact-item"><div class="contact-ico">✉️</div><div><h5>Email</h5><p>lawstudents.edu@gmail.com</p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-map-pin" aria-hidden="true"></span></div><div><h5>Address</h5><p>224 Legal District, Delhi High Court Marg, New Delhi 110001</p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-phone" aria-hidden="true"></span></div><div><h5>Phone</h5><p>+916624536320</p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></div><div><h5>WhatsApp</h5><p>+916624536320</p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-mail" aria-hidden="true"></span></div><div><h5>Email</h5><p>lawstudents.edu@gmail.com</p></div></div>
         </div>
       </div>
       <form class="form-card reveal" data-d="1" onsubmit="return false;">
@@ -379,5 +379,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/theme/js/home.js') }}"></script>
+    <script src="{{ asset('assets/theme/js/home.js') }}?v={{ filemtime(public_path('assets/theme/js/home.js')) }}"></script>
 @endsection

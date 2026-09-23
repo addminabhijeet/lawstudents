@@ -25,7 +25,7 @@
     <div class="wrap">
         <h1>Courses</h1>
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></span><span
                 aria-current="page">Courses</span>
         </nav>
     </div>
@@ -46,7 +46,7 @@
                 <div class="dd">
                     <button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false"
                         aria-labelledby="lbl-cat" data-all-label="All Categories">
-                        <span class="dd-label">All Categories</span><span class="chev" aria-hidden="true">▾</span>
+                        <span class="dd-label">All Categories</span><span class="chev" aria-hidden="true"><span class="site-icon icon-chevron-down" aria-hidden="true"></span></span>
                     </button>
                     @php
                         // The controller returns parents and children in one flat collection, so a
@@ -102,7 +102,7 @@
                     </div>
                     <div class="course-body">
                         <h3>{{ $course->title }}</h3>
-                        <p class="course-note">📄 Notes: {{ $noteCount }}</p>
+                        <p class="course-note"><span class="site-icon icon-file-text" aria-hidden="true"></span> Notes: {{ $noteCount }}</p>
                         <div class="course-foot">
                             <span class="course-price"><small>Price</small>₹{{ number_format((float) $course->price, 2) }}</span>
                             @if ((float) $course->discount > 0)

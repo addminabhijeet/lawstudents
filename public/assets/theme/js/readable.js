@@ -239,7 +239,7 @@
   function initSocial(){
     $$('.social-row a').forEach(function(a){
       var key = a.getAttribute('title');
-      if($('svg', a) || !SOCIAL[key]) return;
+      if($('svg, .site-icon', a) || !SOCIAL[key]) return;
       a.setAttribute('aria-label', key);
       a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + SOCIAL[key] + '</svg>';
     });

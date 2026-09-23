@@ -15,7 +15,7 @@
     <div class="wrap">
         <h1>Contact Us</h1>
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></span><span
                 aria-current="page">Contact Us</span>
         </nav>
     </div>
@@ -36,28 +36,28 @@
                 <a class="btn btn-gold" href="{{ route('frontend.about') }}#team">Meet Our Mentors</a>
                 <div class="contact-items">
                     <div class="contact-item">
-                        <div class="contact-ico" aria-hidden="true">📍</div>
+                        <div class="contact-ico" aria-hidden="true"><span class="site-icon icon-map-pin" aria-hidden="true"></span></div>
                         <div>
                             <h5>Address</h5>
                             <p>224 Legal District, Delhi High Court Marg, New Delhi 110001</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-ico" aria-hidden="true">📞</div>
+                        <div class="contact-ico" aria-hidden="true"><span class="site-icon icon-phone" aria-hidden="true"></span></div>
                         <div>
                             <h5>Call or text</h5>
                             <p><a href="tel:{{ $contactMobile }}">{{ $contactMobile }}</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-ico" aria-hidden="true">✉️</div>
+                        <div class="contact-ico" aria-hidden="true"><span class="site-icon icon-mail" aria-hidden="true"></span></div>
                         <div>
                             <h5>Email us today</h5>
                             <p><a href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-ico" aria-hidden="true">💬</div>
+                        <div class="contact-ico" aria-hidden="true"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></div>
                         <div>
                             <h5>WhatsApp Us</h5>
                             <p><a href="https://wa.me/{{ $contactWhatsapp }}" target="_blank"
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-ico" aria-hidden="true">🌐</div>
+                        <div class="contact-ico" aria-hidden="true"><span class="site-icon icon-world" aria-hidden="true"></span></div>
                         <div>
                             <h5>Website</h5>
                             <p><a href="{{ url('/') }}">{{ parse_url(url('/'), PHP_URL_HOST) }}</a></p>
@@ -109,7 +109,7 @@
                                 aria-hidden="true">*</span></label><textarea id="ct-msg" name="message"
                             placeholder="Message" required>{{ old('message') }}</textarea></div>
                 </div>
-                <div class="form-actions"><button type="submit" class="btn btn-gold">Send Inquiry →</button></div>
+                <div class="form-actions"><button type="submit" class="btn btn-gold">Send Inquiry <span class="site-icon icon-arrow-right" aria-hidden="true"></span></button></div>
             </form>
         </div>
 

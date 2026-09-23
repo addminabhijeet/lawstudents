@@ -431,7 +431,7 @@ if(prefersReducedMotion){
       car.innerHTML =
         QUOTES.map(function(o,i){
           return '<div class="testimonial-item'+(i===0?' active':'')+'">'+
-                 '<div class="testimonial-stars">★ ★ ★ ★ ★</div>'+
+                 '<div class="testimonial-stars" role="img" aria-label="5 out of 5 stars"><span class="site-icon icon-star" aria-hidden="true"></span> <span class="site-icon icon-star" aria-hidden="true"></span> <span class="site-icon icon-star" aria-hidden="true"></span> <span class="site-icon icon-star" aria-hidden="true"></span> <span class="site-icon icon-star" aria-hidden="true"></span></div>'+
                  '<p class="testimonial-quote">“'+o.q+'”</p>'+
                  '<div class="testimonial-who">'+o.w+'<span>'+o.r+'</span></div></div>';
         }).join('') +
@@ -464,11 +464,11 @@ if(prefersReducedMotion){
   bar.className = 'enroll-bar';
   bar.innerHTML =
     '<div class="enroll-bar-inner">'+
-      '<div class="enroll-bar-text">🎓 <b>Admissions Open</b> — start your legal career with a structured programme</div>'+
+      '<div class="enroll-bar-text"><span class="site-icon icon-school" aria-hidden="true"></span> <b>Admissions Open</b> — start your legal career with a structured programme</div>'+
       '<div class="enroll-bar-actions">'+
         '<a href="#courses" class="btn btn-gold">Enroll Now</a>'+
         '<a href="#contact" class="btn btn-ghost">Talk to a Counsellor</a>'+
-        '<button class="enroll-bar-close" type="button" aria-label="Dismiss enrolment bar">&times;</button>'+
+        '<button class="enroll-bar-close" type="button" aria-label="Dismiss enrolment bar"><span class="site-icon icon-x" aria-hidden="true"></span></button>'+
       '</div>'+
     '</div>';
   document.body.appendChild(bar);
@@ -484,10 +484,10 @@ if(prefersReducedMotion){
   var pop = document.createElement('div');
   pop.className = 'counsel-pop';
   pop.innerHTML =
-    '<button class="counsel-close" type="button" aria-label="Close">&times;</button>'+
+    '<button class="counsel-close" type="button" aria-label="Close"><span class="site-icon icon-x" aria-hidden="true"></span></button>'+
     '<h5>Not sure which course fits you?</h5>'+
     '<p>Talk to a counsellor for free guidance on choosing the right programme for your goals.</p>'+
-    '<a href="#contact" class="btn btn-gold">Get Free Counselling →</a>';
+    '<a href="#contact" class="btn btn-gold">Get Free Counselling <span class="site-icon icon-arrow-right" aria-hidden="true"></span></a>';
   document.body.appendChild(pop);
 
   var popShown = false, popHideTimer = null;
@@ -630,7 +630,7 @@ if(prefersReducedMotion){
 
     var badge = document.createElement('span');
     badge.className = 'hot-badge';
-    badge.textContent = '🔥 Most Enrolled';
+    badge.innerHTML = '<span class="site-icon icon-flame" aria-hidden="true"></span> Most Enrolled';
     st.appendChild(badge);
 
     var ptr = document.createElement('i');
@@ -663,7 +663,7 @@ if(prefersReducedMotion){
   cards.forEach(function(c){
     var l = c.querySelector('.course-link');
     if(l && l.textContent.indexOf('→') > -1){
-      l.innerHTML = esc(l.textContent.replace(/\s*→\s*$/,'')) + ' <span class="cl-arrow">→</span>';
+      l.innerHTML = esc(l.textContent.replace(/\s*→\s*$/,'')) + ' <span class="cl-arrow"><span class="site-icon icon-arrow-right" aria-hidden="true"></span></span>';
     }
   });
 
@@ -863,7 +863,7 @@ if(prefersReducedMotion){
 
   /* ---------- 6. Infinite course ticker ---------- */
   var row = tickData.map(function(o){
-    return '<span class="tick-item"><b>' + esc(o.t) + '</b><i>' + esc(o.p) + '</i><u>Enroll →</u></span>';
+    return '<span class="tick-item"><b>' + esc(o.t) + '</b><i>' + esc(o.p) + '</i><u>Enroll <span class="site-icon icon-arrow-right" aria-hidden="true"></span></u></span>';
   }).join('');
   var tick = document.createElement('div');
   tick.className = 'course-ticker';
@@ -894,7 +894,7 @@ if(prefersReducedMotion){
   };
   document.querySelectorAll('.social-row a').forEach(function(a){
     var key = a.getAttribute('title');
-    if(!key || !P[key]) return;              // unknown network keeps its glyph
+    if(a.querySelector('.site-icon') || !key || !P[key]) return;              // unknown network keeps its glyph
     a.setAttribute('aria-label', key);
     a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + P[key] + '</svg>';
   });

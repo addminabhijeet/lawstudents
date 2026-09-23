@@ -8,7 +8,7 @@
     <div class="wrap">
         <h1>Gallery</h1>
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></span><span
                 aria-current="page">Gallery</span>
         </nav>
     </div>
@@ -56,10 +56,10 @@
 </section>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
-    <button type="button" class="lb-btn lb-close" aria-label="Close">×</button>
-    <button type="button" class="lb-btn lb-prev" aria-label="Previous photo">‹</button>
+    <button type="button" class="lb-btn lb-close" aria-label="Close"><span class="site-icon icon-x" aria-hidden="true"></span></button>
+    <button type="button" class="lb-btn lb-prev" aria-label="Previous photo"><span class="site-icon icon-chevron-left" aria-hidden="true"></span></button>
     <img alt="">
-    <button type="button" class="lb-btn lb-next" aria-label="Next photo">›</button>
+    <button type="button" class="lb-btn lb-next" aria-label="Next photo"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></button>
     <p class="lb-cap"></p>
 </div>
 @endsection

@@ -8,7 +8,7 @@
     <div class="wrap">
         <h1>Client</h1>
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></span><span
                 aria-current="page">Client</span>
         </nav>
     </div>
@@ -43,10 +43,10 @@
                         @foreach ($clientelePdfs as $pdf)
                             <a class="list-card" href="{{ asset('storage/app/public/' . $pdf) }}" target="_blank"
                                 rel="noopener">
-                                <div class="list-icon" aria-hidden="true">📄</div>
+                                <div class="list-icon" aria-hidden="true"><span class="site-icon icon-file-text" aria-hidden="true"></span></div>
                                 <div class="list-body">
                                     <h4>{{ $clientele->description }}</h4>
-                                    <div class="list-meta"><span class="go">View PDF →</span></div>
+                                    <div class="list-meta"><span class="go">View PDF <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div>
                                 </div>
                             </a>
                         @endforeach
@@ -78,7 +78,7 @@
                                 aria-hidden="true">*</span></label><textarea id="cl-msg" name="message"
                             placeholder="Tell us about your learning goals or queries" required></textarea></div>
                 </div>
-                <div class="form-actions"><button type="submit" class="btn btn-gold">Join Our Client →</button></div>
+                <div class="form-actions"><button type="submit" class="btn btn-gold">Join Our Client <span class="site-icon icon-arrow-right" aria-hidden="true"></span></button></div>
                 <p class="form-status" role="status" hidden></p>
             </form>
         </div>

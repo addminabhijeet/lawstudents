@@ -8,7 +8,7 @@
     <div class="wrap">
         <h1>Acts</h1>
         <nav class="crumbs" aria-label="Breadcrumb">
-            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true">›</span><span
+            <a href="{{ route('frontend.home') }}">Home</a><span aria-hidden="true"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></span><span
                 aria-current="page">Acts</span>
         </nav>
     </div>
@@ -29,7 +29,7 @@
                 <div class="dd">
                     <button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false"
                         aria-labelledby="lbl-cat" data-all-label="All Categories">
-                        <span class="dd-label">All Categories</span><span class="chev" aria-hidden="true">▾</span>
+                        <span class="dd-label">All Categories</span><span class="chev" aria-hidden="true"><span class="site-icon icon-chevron-down" aria-hidden="true"></span></span>
                     </button>
                     <ul class="dd-menu" role="listbox" aria-labelledby="lbl-cat">
                         <li role="option" data-value="all" aria-selected="true">All Acts</li>
@@ -56,7 +56,7 @@
                         aria-controls="cat-acts-{{ $category->id }}">
                         <span>{{ $category->name }}</span>
                         <span class="count">{{ $catCount }} {{ Str::plural('item', $catCount) }}</span>
-                        <span class="chev" aria-hidden="true">▾</span>
+                        <span class="chev" aria-hidden="true"><span class="site-icon icon-chevron-down" aria-hidden="true"></span></span>
                     </button>
                     <div class="res-cat-body" id="cat-acts-{{ $category->id }}">
                         @forelse ($category->subcategories as $sub)
@@ -67,7 +67,7 @@
                                     @foreach ($sub->acts as $act)
                                         <div class="list-card"
                                             data-search="{{ Str::lower($act->description . ' ' . $category->name . ' ' . $sub->name) }}">
-                                            <div class="list-icon" aria-hidden="true">📜</div>
+                                            <div class="list-icon" aria-hidden="true"><span class="site-icon icon-script" aria-hidden="true"></span></div>
                                             <div class="list-body">
                                                 <h4>{{ $act->description }}</h4>
                                                 @forelse ($act->pdfs ?? [] as $index => $pdf)

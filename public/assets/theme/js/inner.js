@@ -206,17 +206,23 @@
           pager.innerHTML = '';
           if(pages <= 1){ pager.hidden = true; return; }
           pager.hidden = false;
-          var add = function(text, aria, target, disabled, current){
+          var add = function(text, aria, target, disabled, current, icon){
             var li = document.createElement('li'), el = document.createElement('button');
             el.type = 'button'; el.textContent = text; el.setAttribute('aria-label', aria);
+            if(icon){
+              var mark = document.createElement('span');
+              mark.className = 'site-icon icon-' + icon;
+              mark.setAttribute('aria-hidden', 'true');
+              el.appendChild(mark);
+            }
             if(disabled) el.disabled = true;
             if(current) el.setAttribute('aria-current', 'page');
             el.addEventListener('click', function(){ page = target; apply(); $('.course-grid', root).scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }); });
             li.appendChild(el); pager.appendChild(li);
           };
-          add('‹', 'Previous page', page - 1, page === 1, false);
+          add('', 'Previous page', page - 1, page === 1, false, 'chevron-left');
           for(var i = 1; i <= pages; i++) add(String(i), 'Page ' + i, i, false, i === page);
-          add('›', 'Next page', page + 1, page === pages, false);
+          add('', 'Next page', page + 1, page === pages, false, 'chevron-right');
         };
         apply = function(){
           var hit = cards.filter(function(c){

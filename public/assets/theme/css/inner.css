@@ -131,7 +131,7 @@ main{display:block}
 .check-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;list-style:none;margin:18px 0 20px}
 .check-list li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;color:var(--ink);line-height:1.4}
 .check-list li::before{
-  content:"✓";flex-shrink:0;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  content:"";flex-shrink:0;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
   background:var(--grad-gold);color:var(--black);font-size:12px;font-weight:800;
 }
 .media-frame img{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow-soft)}

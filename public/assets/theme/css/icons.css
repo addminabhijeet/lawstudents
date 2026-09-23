@@ -1,0 +1,50 @@
+.site-icon { display:inline-block; width:1em; height:1em; flex-shrink:0; vertical-align:-0.125em; background-color:currentColor; -webkit-mask:var(--site-icon) center / contain no-repeat; mask:var(--site-icon) center / contain no-repeat; }
+.icon-script { --site-icon:url('../images/icons/tabler/script.svg'); }
+.icon-lock { --site-icon:url('../images/icons/tabler/lock.svg'); }
+.icon-user { --site-icon:url('../images/icons/tabler/user.svg'); }
+.icon-credit-card { --site-icon:url('../images/icons/tabler/credit-card.svg'); }
+.icon-scale { --site-icon:url('../images/icons/tabler/scale.svg'); }
+.icon-urgent { --site-icon:url('../images/icons/tabler/urgent.svg'); }
+.icon-clipboard { --site-icon:url('../images/icons/tabler/clipboard.svg'); }
+.icon-building { --site-icon:url('../images/icons/tabler/building.svg'); }
+.icon-om { --site-icon:url('../images/icons/tabler/om.svg'); }
+.icon-moon-stars { --site-icon:url('../images/icons/tabler/moon-stars.svg'); }
+.icon-helmet { --site-icon:url('../images/icons/tabler/helmet.svg'); }
+.icon-shield { --site-icon:url('../images/icons/tabler/shield.svg'); }
+.icon-device-laptop { --site-icon:url('../images/icons/tabler/device-laptop.svg'); }
+.icon-circle-check { --site-icon:url('../images/icons/tabler/circle-check.svg'); }
+.icon-books { --site-icon:url('../images/icons/tabler/books.svg'); }
+.icon-alert-triangle { --site-icon:url('../images/icons/tabler/alert-triangle.svg'); }
+.icon-cash { --site-icon:url('../images/icons/tabler/cash.svg'); }
+.icon-target { --site-icon:url('../images/icons/tabler/target.svg'); }
+.icon-lifebuoy { --site-icon:url('../images/icons/tabler/lifebuoy.svg'); }
+.icon-stopwatch { --site-icon:url('../images/icons/tabler/stopwatch.svg'); }
+.icon-map-pin { --site-icon:url('../images/icons/tabler/map-pin.svg'); }
+.icon-phone { --site-icon:url('../images/icons/tabler/phone.svg'); }
+.icon-brand-whatsapp { --site-icon:url('../images/icons/tabler/brand-whatsapp.svg'); }
+.icon-mail { --site-icon:url('../images/icons/tabler/mail.svg'); }
+.icon-file-text { --site-icon:url('../images/icons/tabler/file-text.svg'); }
+.icon-world { --site-icon:url('../images/icons/tabler/world.svg'); }
+.icon-school { --site-icon:url('../images/icons/tabler/school.svg'); }
+.icon-flame { --site-icon:url('../images/icons/tabler/flame.svg'); }
+.icon-chevron-down { --site-icon:url('../images/icons/tabler/chevron-down.svg'); }
+.icon-arrow-right { --site-icon:url('../images/icons/tabler/arrow-right.svg'); }
+.icon-chevron-right { --site-icon:url('../images/icons/tabler/chevron-right.svg'); }
+.icon-chevron-left { --site-icon:url('../images/icons/tabler/chevron-left.svg'); }
+.icon-x { --site-icon:url('../images/icons/tabler/x.svg'); }
+.icon-star { --site-icon:url('../images/icons/tabler/star.svg'); }
+.icon-brand-facebook { --site-icon:url('../images/icons/tabler/brand-facebook.svg'); }
+.icon-brand-x { --site-icon:url('../images/icons/tabler/brand-x.svg'); }
+.icon-brand-instagram { --site-icon:url('../images/icons/tabler/brand-instagram.svg'); }
+.icon-brand-linkedin { --site-icon:url('../images/icons/tabler/brand-linkedin.svg'); }
+.icon-brand-youtube { --site-icon:url('../images/icons/tabler/brand-youtube.svg'); }
+.icon-arrow-up { --site-icon:url('../images/icons/tabler/arrow-up.svg'); }
+.icon-check { --site-icon:url('../images/icons/tabler/check.svg'); }
+.social-row .site-icon { width:20px; height:20px; }
+.kn-card .kn-ico .site-icon { font-size:inherit; color:var(--gold-dark); }
+.progress-wrap:not(.cta-mode)::after { content:''; inset:13px; background:var(--gold); -webkit-mask:url('../images/icons/tabler/arrow-up.svg') center / contain no-repeat; mask:url('../images/icons/tabler/arrow-up.svg') center / contain no-repeat; }
+.progress-wrap.cta-mode::after { content:'Enroll Now'; padding-right:1.4em; background:url('../images/icons/tabler/arrow-right.svg') right center / 1em no-repeat; }
+.footer-col li a::before { content:''; height:1em; background:currentColor; -webkit-mask:url('../images/icons/tabler/chevron-right.svg') center / contain no-repeat; mask:url('../images/icons/tabler/chevron-right.svg') center / contain no-repeat; }
+.footer-col li a::before, .footer-col li a:hover::before { width:0.65em; }
+.has-drop > a::before { content:''; display:inline-block; width:1em; height:1em; background:currentColor; -webkit-mask:url('../images/icons/tabler/chevron-down.svg') center / contain no-repeat; mask:url('../images/icons/tabler/chevron-down.svg') center / contain no-repeat; }
+.check-list li::before { content:''; background:var(--gold-dark); -webkit-mask:url('../images/icons/tabler/check.svg') center / contain no-repeat; mask:url('../images/icons/tabler/check.svg') center / contain no-repeat; }
