@@ -24,7 +24,7 @@
     <div class="container">
         <div class="row">
 
-            <div style="width:100%; max-width:1100px; margin:auto;">
+            <div class="wrap" style="padding-left: 18px; padding-right: 18px;">
 
                 <!-- FILTER AND SEARCH CONTAINER -->
                 <div style="background:linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); padding:30px 25px; border-radius:12px;
