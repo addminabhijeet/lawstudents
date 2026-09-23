@@ -16,6 +16,34 @@
     $homeExams = \App\Models\GovtExam::where('delete', 1)->latest()->limit(9)->get();
     $homeKnowledgeNotes = \App\Models\LegalKnowledgeNote::where('delete', 1)->latest()->limit(9)->get();
     $homeGallery = \App\Models\Gallery::active()->get()->groupBy('group_name');
+
+    // Icon mapping for legal knowledge categories
+    $iconMap = [
+        'constitutional' => '📜',
+        'cyber law' => '🔐',
+        'consumer' => '👤',
+        'cheque' => '💳',
+        'civil' => '⚖️',
+        'criminal' => '🚨',
+        'writs' => '📋',
+        'company' => '🏢',
+        'hindu' => '🕉️',
+        'muslim' => '☪️',
+        'labour' => '👷',
+        'cyber security' => '🛡️',
+        'cyber crime' => '💻',
+        'compliance' => '✅',
+    ];
+
+    $getCategoryIcon = function($categoryName) use ($iconMap) {
+        $lowerName = strtolower($categoryName);
+        foreach ($iconMap as $key => $icon) {
+            if (strpos($lowerName, $key) !== false) {
+                return $icon;
+            }
+        }
+        return '⚖️'; // Default icon
+    };
 @endphp
 
 <!--===== HERO SECTION STARTS =======-->
@@ -150,7 +178,7 @@
     </div>
     <div class="kn-grid">
 @foreach ($homeKnowledgeCategories as $homeKnCat)
-        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico">⚖️</span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
+        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico">{{ $getCategoryIcon($homeKnCat->name) }}</span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
       @endforeach
     </div>
   </div>

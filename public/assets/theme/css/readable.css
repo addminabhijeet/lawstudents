@@ -447,3 +447,7 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
   .section-title .accent{background:linear-gradient(135deg,#6e5210 0%,#8a6a1a 50%,#6e5210 100%);-webkit-background-clip:text;background-clip:text}
   .field input,.field select,.field textarea,.dd-btn,.filter-bar .field input[type="search"]{border-width:2px}
 }
+
+/* ---------- 16. LEGAL KNOWLEDGE TILE TITLES: wrap between words, never inside one ---------- */
+.kn-card h5{word-break:normal;overflow-wrap:break-word;hyphens:none}
+@media(min-width:1201px){.kn-card h5{font-size:clamp(.9375rem,1.25vw,1.5625rem)}}

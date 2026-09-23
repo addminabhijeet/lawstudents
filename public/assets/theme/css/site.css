@@ -1912,7 +1912,15 @@ body.enroll-bar-on .site-footer{padding-bottom:166px}
 /* ---- kn-card: larger text + icon ---- */
 .kn-card h5{font-size:clamp(15px,1.8vw,19px)}
 .kn-card span:not(.kn-ico){font-size:clamp(11px,1.2vw,13px)}
-.kn-card span.kn-ico{font-size:clamp(24px,2.8vw,32px);display:block;margin-bottom:8px;line-height:1;filter:drop-shadow(0 0 6px rgba(212,175,55,.5));color:initial;letter-spacing:0;text-transform:none;font-weight:normal}
+.kn-card span.kn-ico{font-size:clamp(24px,2.8vw,32px);display:block;margin-bottom:8px;line-height:1;filter:drop-shadow(0 0 3px rgba(212,175,55,.25));color:initial;letter-spacing:0;text-transform:none;font-weight:normal}
 @media(max-width:768px){.kn-card h5{font-size:17px}.kn-card span:not(.kn-ico){font-size:11px}.kn-card span.kn-ico{font-size:28px}}
 @media(max-width:600px){.kn-card h5{font-size:18px}.kn-card span:not(.kn-ico){font-size:11.5px}.kn-card span.kn-ico{font-size:30px}}
 @media(max-width:480px){.kn-card h5{font-size:17px}.kn-card span:not(.kn-ico){font-size:11px}.kn-card span.kn-ico{font-size:28px}}
+
+/* ---- dark-section card titles: soften the gold halo that washed out the text ---- */
+.kn-card h5,
+.how-card h3{text-shadow:0 1px 2px rgba(0,0,0,.45),0 0 6px rgba(212,175,55,.18) !important}
+.kn-card:hover h5,
+.how-card:hover h3{text-shadow:0 1px 2px rgba(0,0,0,.45),0 0 10px rgba(212,175,55,.3) !important}
+.kn-card:hover,
+.how-card:hover{box-shadow:0 10px 24px rgba(0,0,0,.35),0 0 16px rgba(212,175,55,.2) !important}
