@@ -74,19 +74,19 @@
     </div>
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="{{ route('frontend.home') }}">Home</a></li>
-            <li><a href="{{ route('frontend.about') }}">About Us</a></li>
+            <li><a href="{{ route('frontend.home') }}" @if (request()->routeIs('frontend.home')) aria-current="page" @endif>Home</a></li>
+            <li><a href="{{ route('frontend.about') }}" @if (request()->routeIs('frontend.about')) aria-current="page" @endif>About Us</a></li>
             <li><a href="{{ route('frontend.acts') }}">Bare Acts &amp; Rules</a></li>
-            <li class="sub"><a href="{{ route('frontend.acts') }}">Acts</a></li>
-            <li class="sub"><a href="{{ route('frontend.rules') }}">Rules</a></li>
-            <li><a href="{{ route('frontend.legal-knowledge') }}">Legal Knowledge</a></li>
+            <li class="sub"><a href="{{ route('frontend.acts') }}" @if (request()->routeIs('frontend.acts')) aria-current="page" @endif>Acts</a></li>
+            <li class="sub"><a href="{{ route('frontend.rules') }}" @if (request()->routeIs('frontend.rules')) aria-current="page" @endif>Rules</a></li>
+            <li><a href="{{ route('frontend.legal-knowledge') }}" @if (request()->routeIs('frontend.legal-knowledge')) aria-current="page" @endif>Legal Knowledge</a></li>
             <li><a href="{{ route('frontend.course') }}">Course &amp; Notes</a></li>
-            <li class="sub"><a href="{{ route('frontend.course') }}">Course</a></li>
-            <li class="sub"><a href="{{ route('frontend.copys') }}">Free Notes</a></li>
-            <li><a href="{{ route('frontend.clientele') }}">Client</a></li>
-            <li><a href="{{ route('frontend.govtexams') }}">Centre &amp; State Govt. Examination</a></li>
-            <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
-            <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
+            <li class="sub"><a href="{{ route('frontend.course') }}" @if (request()->routeIs('frontend.course')) aria-current="page" @endif>Course</a></li>
+            <li class="sub"><a href="{{ route('frontend.copys') }}" @if (request()->routeIs('frontend.copys')) aria-current="page" @endif>Free Notes</a></li>
+            <li><a href="{{ route('frontend.clientele') }}" @if (request()->routeIs('frontend.clientele')) aria-current="page" @endif>Client</a></li>
+            <li><a href="{{ route('frontend.govtexams') }}" @if (request()->routeIs('frontend.govtexams')) aria-current="page" @endif>Centre &amp; State Govt. Examination</a></li>
+            <li><a href="{{ route('frontend.gallery') }}" @if (request()->routeIs('frontend.gallery')) aria-current="page" @endif>Gallery</a></li>
+            <li><a href="{{ route('frontend.contact') }}" @if (request()->routeIs('frontend.contact')) aria-current="page" @endif>Contact Us</a></li>
             <li><a href="{{ route('login') }}">Login / Register</a></li>
         </ul>
     </div>

@@ -200,6 +200,9 @@
           });
           if(none) none.hidden = shown > 0;
         };
+        // deep link: legal-knowledge-library?cat=<id> (used by the home page's category tiles)
+        var wantCat = new URLSearchParams(location.search).get('cat');
+        if(wantCat){ var wantLi = opts.filter(function(o){ return o.getAttribute('data-value') === wantCat; })[0]; if(wantLi) select(wantLi); }
       } else {
         var cards = $$('.course-card', root), pager = $('.pager', root);
         var renderPager = function(pages){

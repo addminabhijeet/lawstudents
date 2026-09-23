@@ -450,7 +450,7 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 
 /* ---------- 16. LEGAL KNOWLEDGE TILE TITLES: wrap between words, never inside one ---------- */
 .kn-card h5{word-break:normal;overflow-wrap:break-word;hyphens:none}
-@media(min-width:1201px){.kn-card h5{font-size:clamp(.9375rem,1.25vw,1.5625rem)}}
+@media(min-width:1201px){.kn-card h5{font-size:clamp(.84375rem,1.25vw,1.5625rem)}}
 
 /* ---------- 17. HEADER ON LAPTOP SCREENS ----------
    1200–1839px: the one-row menu does not fit beside the logo, so give it its own
@@ -469,3 +469,36 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 
 /* ---------- 18. CLIENT PAGE CARDS: two columns only when each card has room ---------- */
 .testi-list{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
+
+/* ---------- 19. HOME FORMS: validation message, sent confirmation, WhatsApp button ---------- */
+.form-card .form-status{margin:0 0 16px;padding:12px 14px;border-radius:8px;background:var(--gold-pale);border-left:3px solid var(--gold);color:var(--ink);line-height:1.6}
+.form-card .form-status[role="alert"]{background:#fdecea;border-left-color:#b42318}
+.form-toast{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:10000;
+  width:max-content;max-width:calc(100% - 32px);margin:0;padding:14px 20px;border-radius:10px;
+  background:var(--ink);color:#fff;border-left:4px solid var(--gold);box-shadow:0 12px 30px rgba(0,0,0,.25);
+  font-size:1rem;line-height:1.5;animation:formToast 7s ease forwards;pointer-events:none;
+}
+@keyframes formToast{0%{opacity:0;transform:translate(-50%,-12px)}6%,88%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-12px);visibility:hidden}}
+@media(prefers-reduced-motion:reduce){.form-toast{animation:none}}
+.btn-ghost.btn-wa-light{color:var(--gold-text);border-color:var(--gold-text)}
+
+/* ---------- 20. GALLERY ALBUM TITLES ON PHONES: whole words, sized to the two-column tiles ---------- */
+.album-body h4{overflow-wrap:break-word;word-break:normal;hyphens:none}
+@media(max-width:479px){.album-body h4{font-size:clamp(.8125rem,4.4vw,1.1875rem)}}
+@media(max-width:359px){.gallery-grid{grid-template-columns:1fr}.album-body h4{font-size:1.1875rem}}
+
+/* ---------- 21. PHONES: 44px-tall tap targets for the top-strip contacts and footer links ---------- */
+@media(max-width:600px){
+  .topbar-contact a,.footer-col li a,.footer-links a{display:inline-flex;align-items:center;min-height:44px}
+}
+
+/* ---------- 22. ☰ MENU: mark the page you are on (inner.css had this, the home page does not load it) ---------- */
+.mobile-menu a[aria-current="page"]{font-weight:700;background:var(--gold-pale);color:var(--gold-text);box-shadow:inset 3px 0 0 var(--gold)}
+
+/* ---------- 23. TESTIMONIAL RATING: solid stars (the outline icon read as an empty, zero-star rating) ---------- */
+.testimonial-stars .icon-star{--site-icon:url('../images/icons/tabler/star-filled.svg')}
+
+/* ---------- 24. FOOTER + HOME CONTACT DETAILS ARE LINKS NOW: keep their text colour ---------- */
+.footer-contact-item p a,.contact-item p a{color:inherit;text-decoration:none;overflow-wrap:anywhere}
+.footer-contact-item p a:hover,.footer-contact-item p a:focus-visible,.contact-item p a:hover,.contact-item p a:focus-visible{text-decoration:underline;text-underline-offset:3px}

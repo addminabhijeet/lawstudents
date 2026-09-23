@@ -18,11 +18,11 @@
     <div class="wrap">
         <div class="contact-layout">
             <div class="contact-intro reveal">
-                <h2>Our Esteemed Client &amp; Learners</h2>
-                <p>At Law Students, we take pride in serving a diverse client including aspiring lawyers, law
+                <h2>Our Esteemed Clients &amp; Learners</h2>
+                <p>At Law Students, we take pride in serving a diverse clientele including aspiring lawyers, law
                     students, working professionals, and legal enthusiasts. Our courses are trusted by individuals who
                     aim to build a strong foundation in legal studies and advance their careers in law.</p>
-                <p>Our client includes students preparing for judiciary exams, professionals enhancing their legal
+                <p>Our clientele includes students preparing for judiciary exams, professionals enhancing their legal
                     expertise, and individuals seeking practical knowledge in criminal, corporate, and traffic law. We
                     are committed to delivering high-quality education and real-world insights to every learner.</p>
 
@@ -54,32 +54,38 @@
                 </div>
             </div>
 
-            <form class="form-card reveal" data-d="1" data-static action="#" method="post">
+            <form class="form-card reveal" data-d="1" action="{{ route('frontend.contactstore') }}" method="post">
+                @csrf
                 <h3 class="form-title">Join Our Client Network</h3>
                 <p class="form-lead">We respond within 30 minutes during business hours to guide you better</p>
+                @if (session('success'))
+                    <p class="form-status" role="status">{{ session('success') }}</p>
+                @elseif ($errors->any())
+                    <p class="form-status" role="alert">{{ $errors->first() }}</p>
+                @endif
                 <div class="form-row">
                     <div class="field"><label for="cl-first">First Name <span class="req"
                                 aria-hidden="true">*</span></label><input type="text" id="cl-first" name="first_name"
-                            placeholder="First Name" autocomplete="given-name" required></div>
+                            value="{{ old('first_name') }}" placeholder="First Name" autocomplete="given-name" required></div>
                     <div class="field"><label for="cl-last">Last Name <span class="req"
                                 aria-hidden="true">*</span></label><input type="text" id="cl-last" name="last_name"
-                            placeholder="Last Name" autocomplete="family-name" required></div>
+                            value="{{ old('last_name') }}" placeholder="Last Name" autocomplete="family-name" required></div>
                     <div class="field"><label for="cl-phone">Phone Number <span class="req"
                                 aria-hidden="true">*</span></label><input type="tel" id="cl-phone" name="phone"
-                            placeholder="Phone Number" autocomplete="tel" required></div>
+                            value="{{ old('phone') }}" placeholder="Phone Number" autocomplete="tel" inputmode="numeric"
+                            pattern="[0-9]{10}" maxlength="10" title="Enter a 10-digit mobile number" required></div>
                     <div class="field"><label for="cl-email">Email Address <span class="req"
                                 aria-hidden="true">*</span></label><input type="email" id="cl-email" name="email"
-                            placeholder="Email Address" autocomplete="email" required></div>
+                            value="{{ old('email') }}" placeholder="Email Address" autocomplete="email" required></div>
                     <div class="field full"><label for="cl-service">Interested Course / Service Type <span class="req"
                                 aria-hidden="true">*</span></label><input type="text" id="cl-service"
-                            name="service_type" placeholder="Interested Course (Criminal / Corporate / Traffic Law)"
+                            name="service_type" value="{{ old('service_type') }}" placeholder="e.g. Criminal Law"
                             required></div>
                     <div class="field full"><label for="cl-msg">Message <span class="req"
                                 aria-hidden="true">*</span></label><textarea id="cl-msg" name="message"
-                            placeholder="Tell us about your learning goals or queries" required></textarea></div>
+                            placeholder="Tell us about your learning goals or queries" required>{{ old('message') }}</textarea></div>
                 </div>
-                <div class="form-actions"><button type="submit" class="btn btn-gold">Join Our Client <span class="site-icon icon-arrow-right" aria-hidden="true"></span></button></div>
-                <p class="form-status" role="status" hidden></p>
+                <div class="form-actions"><button type="submit" class="btn btn-gold">Join Our Client Network <span class="site-icon icon-arrow-right" aria-hidden="true"></span></button></div>
             </form>
         </div>
     </div>

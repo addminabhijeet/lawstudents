@@ -5,7 +5,7 @@
 <section class="section about-section" id="about"><div class="wrap"><div class="split">
   <div class="copy reveal">
     <span class="eyebrow">About Us</span>
-    <h2 class="section-title">Law Students was created to empower aspiring legal professionals:</h2>
+    <h2 class="section-title">Law Students was created to empower aspiring legal professionals</h2>
     <p>Our platform helps students gain practical legal knowledge, build expertise in various law domains, and prepare for successful careers.</p>
     <ul class="check-list"><li>Expert Instructors &amp; Knowledge</li><li>Comprehensive Curriculum</li><li>Hands-on Learning</li><li>Career Advancement</li></ul>
     <p>We provide interactive courses, case studies, and mentorship programs so that students can apply legal knowledge practically and confidently in real-world scenarios.</p>
@@ -24,7 +24,7 @@
     <h2 class="section-title">Learn From Expert Legal Educators & Advance Your Career</h2>
     <p>Welcome to Law Students, where aspiring lawyers gain practical knowledge, career-ready skills, and in-depth understanding of diverse legal domains. Our platform is designed to empower students to excel in law exams, internships, and professional practice.</p>
     <p>Our courses combine theoretical insights with practical case studies, mentorship programs, and interactive sessions, ensuring you’re confident and well-prepared for the real-world legal environment.</p>
-    <ul class="check-list"><li>Expert Instructors &amp; Knowledge</li><li>Comprehensive Curriculum</li><li>Practical Learning</li><li>Career Advancement</li></ul>
+    <ul class="check-list"><li>Practical Case Studies</li><li>Mentorship Programs</li><li>Interactive Sessions</li><li>Exam &amp; Internship Preparation</li></ul>
     <a class="btn btn-gold" href="{{ route('frontend.course') }}">Enroll in Courses</a>
   </div>
 </div></div></section>

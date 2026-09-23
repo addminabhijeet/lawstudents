@@ -31,7 +31,7 @@
                     insights. Whether you're exploring Criminal Law, Corporate Law, Constitutional Law, or Traffic Law
                     courses, our commitment is to help you succeed in your legal career.</p>
                 <p>When learning law, having a dedicated and knowledgeable team by your side can make all the
-                    difference. At Law School Name, we prioritize your growth and provide exceptional mentorship
+                    difference. At Law Students, we prioritize your growth and provide exceptional mentorship
                     tailored to your goals.</p>
                 <a class="btn btn-gold" href="{{ route('frontend.about') }}#team">Meet Our Mentors</a>
                 <div class="contact-items">
@@ -53,7 +53,7 @@
                         <div class="contact-ico" aria-hidden="true"><span class="site-icon icon-mail" aria-hidden="true"></span></div>
                         <div>
                             <h5>Email us today</h5>
-                            <p><a href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a></p>
+                            <p><a href="mailto:{{ $contactEmail }}">{!! str_replace('@', '@<wbr>', e($contactEmail)) !!}</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -115,7 +115,7 @@
 
         <div class="map-frame reveal">
             <iframe title="Law Students location map"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4506257.120552435!2d88.67021924228865!3d21.954385721237916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1704088968016!5m2!1sen!2sbd"
+                src="https://maps.google.com/maps?q={{ urlencode('New Delhi 110001') }}&amp;z=13&amp;output=embed"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
     </div>

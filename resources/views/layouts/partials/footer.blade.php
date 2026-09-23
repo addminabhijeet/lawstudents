@@ -63,7 +63,7 @@
                 <div class="footer-contact-item">
                     <div>
                         <h6>Email</h6>
-                        <p>{{ $footerEmail }}</p>
+                        <p><a href="mailto:{{ $footerEmail }}">{!! str_replace('@', '@<wbr>', e($footerEmail)) !!}</a></p>
                     </div>
                 </div>
                 <div class="footer-contact-item">
@@ -75,13 +75,13 @@
                 <div class="footer-contact-item">
                     <div>
                         <h6>Phone</h6>
-                        <p>{{ $footerMobile }}</p>
+                        <p><a href="tel:{{ $footerMobile }}">{{ $footerMobile }}</a></p>
                     </div>
                 </div>
                 <div class="footer-contact-item">
                     <div>
                         <h6>WhatsApp</h6>
-                        <p>{{ $footerMobile }}</p>
+                        <p><a href="https://wa.me/{{ $footerWhatsapp }}" target="_blank" rel="noopener">{{ $footerMobile }}</a></p>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                 <a href="#">Refund Policy</a><span class="sep">|</span>
                 <a href="#">Sitemap</a>
             </div>
-            <div class="copyright">© {{ date('Y') }} Law Student. All Rights Reserved.</div>
+            <div class="copyright">© {{ date('Y') }} Law Students. All Rights Reserved.</div>
         </div>
     </div>
 </footer>

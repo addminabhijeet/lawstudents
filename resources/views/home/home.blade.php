@@ -17,6 +17,15 @@
     $homeKnowledgeNotes = \App\Models\LegalKnowledgeNote::where('delete', 1)->latest()->limit(9)->get();
     $homeGallery = \App\Models\Gallery::active()->get()->groupBy('group_name');
 
+    // Contact details from the same record (and fallbacks) as the header and footer.
+    $homeContactUser = \App\Models\User::first();
+    $homeEmail = !empty($homeContactUser->webemail) ? $homeContactUser->webemail : 'lawstudents.edu@gmail.com';
+    $homeMobile = !empty($homeContactUser->mobile) ? $homeContactUser->mobile : '+916624536320';
+    $homeWhatsapp = preg_replace('/[^0-9]/', '', $homeMobile);
+
+    // pdfs is cast to an array on these models; also accept a legacy plain-string path.
+    $homePdfCount = fn($item) => is_array($item->pdfs) ? count($item->pdfs) : (is_string($item->pdfs) && $item->pdfs !== '' ? count(json_decode($item->pdfs, true) ?: [$item->pdfs]) : 0);
+
     // Icon mapping for legal knowledge categories
     $iconMap = [
         'constitutional' => 'script',
@@ -46,6 +55,10 @@
     };
 @endphp
 
+@if (session('success'))
+  <p class="form-toast" role="status">{{ session('success') }}</p>
+@endif
+
 <!--===== HERO SECTION STARTS =======-->
 <section class="hero" id="home">
   <div class="wrap hero-inner">
@@ -67,11 +80,11 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">About Platform</span>
-      <h2 class="section-title">Welcome to <span class="accent">Law Student</span></h2>
+      <h2 class="section-title">Welcome to <span class="accent">Law Students</span></h2>
       <div class="title-rule"></div>
     </div>
     <div class="about-card reveal">
-      <p>Law Student is an educational and knowledge platform dedicated to students, aspirants and professionals pursuing legal and professional education. The platform provides structured courses, study materials, Bare Acts, Rules, Notifications, legal knowledge resources and examination-oriented preparation.</p>
+      <p>Law Students is an educational and knowledge platform dedicated to students, aspirants and professionals pursuing legal and professional education. The platform provides structured courses, study materials, Bare Acts, Rules, Notifications, legal knowledge resources and examination-oriented preparation.</p>
     </div>
   </div>
 </section>
@@ -98,7 +111,7 @@
         </article>
       @endforeach
     </div>
-    <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Courses</a></div>
+    <div class="section-cta reveal"><a href="{{ route('frontend.course') }}" class="btn btn-gold">View All Courses</a></div>
   </div>
 </section>
 <!--===== COURSES SECTION ENDS =======-->
@@ -113,12 +126,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-@foreach ($homeKnowledgeNotes as $homeKnowledgeNote)
-        @php $pdfCount = is_array($homeKnowledgeNote->pdfs) ? count($homeKnowledgeNote->pdfs) : (is_string($homeKnowledgeNote->pdfs) && $homeKnowledgeNote->pdfs !== '' ? count(json_decode($homeKnowledgeNote->pdfs, true) ?: [$homeKnowledgeNote->pdfs]) : 0); @endphp
-        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>{{ Str::limit($homeKnowledgeNote->description, 60) }}</h4><div class="list-meta"><span class="pdf">{{ $pdfCount }} PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+@foreach ($homeNotes->where('delete', 1) as $homeNote)
+        <a href="{{ route('frontend.copys') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>{{ Str::limit($homeNote->description, 70, '…', true) }}</h4><div class="list-meta"><span class="pdf">{{ $homePdfCount($homeNote) }} PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
       @endforeach
     </div>
-    <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Notes</a></div>
+    <div class="section-cta reveal"><a href="{{ route('frontend.copys') }}" class="btn btn-gold">View All Notes</a></div>
   </div>
 </section>
 <!--===== FREE NOTES SECTION ENDS =======-->
@@ -133,15 +145,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Indian Contract Act, 1872 - essentials of a valid contra...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Transfer of Property Act, 1882 - sale, mortgage, lease a...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Hindu Marriage Act, 1955 - conditions for a valid marria...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Consumer Protection Act, 2019 - Consumer Commissions, e-...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Industrial Disputes Act, 1947 - dispute resolution machi...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Companies Act, 2013 - incorporation, corporate governanc...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>The Bharatiya Sakshya Adhiniyam, 2023</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+@foreach ($homeActs->where('delete', 1) as $homeAct)
+        <a href="{{ route('frontend.acts') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon"><span class="site-icon icon-script" aria-hidden="true"></span></div><div class="list-body"><h4>{{ Str::limit($homeAct->description, 70, '…', true) }}</h4><div class="list-meta"><span class="pdf">{{ $homePdfCount($homeAct) }} PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      @endforeach
     </div>
-    <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Acts</a></div>
+    <div class="section-cta reveal"><a href="{{ route('frontend.acts') }}" class="btn btn-gold">View All Acts</a></div>
   </div>
 </section>
 <!--===== ACTS SECTION ENDS =======-->
@@ -156,13 +164,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Civil Procedure Rules: Order XXXIX - Temporary Injunctions,...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Code of Criminal Procedure, 1973 - Rules on Bail &amp; Anticipat...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Companies (Incorporation) Rules, 2014 - SPICe+ procedure and...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>The Indian Evidence Act, 1872 - Rules on Admissibility, burd...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>Landmark Judgment: Mohori Bibee v. Dharmodas Ghosh (1903) -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+@foreach ($homeRules->where('delete', 1) as $homeRule)
+        <a href="{{ route('frontend.rules') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon"><span class="site-icon icon-scale" aria-hidden="true"></span></div><div class="list-body"><h4>{{ Str::limit($homeRule->description, 70, '…', true) }}</h4><div class="list-meta"><span class="pdf">{{ $homePdfCount($homeRule) }} PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      @endforeach
     </div>
-    <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Rules</a></div>
+    <div class="section-cta reveal"><a href="{{ route('frontend.rules') }}" class="btn btn-gold">View All Rules</a></div>
   </div>
 </section>
 <!--===== RULES SECTION ENDS =======-->
@@ -178,7 +184,7 @@
     </div>
     <div class="kn-grid">
 @foreach ($homeKnowledgeCategories as $homeKnCat)
-        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico"><span class="site-icon icon-{{ $getCategoryIcon($homeKnCat->name) }}" aria-hidden="true"></span></span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
+        <a href="{{ route('frontend.legalknowledgelibrary') }}?cat={{ $homeKnCat->id }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico"><span class="site-icon icon-{{ $getCategoryIcon($homeKnCat->name) }}" aria-hidden="true"></span></span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
       @endforeach
     </div>
   </div>
@@ -225,13 +231,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>State Judicial Services Examination: Becoming a Civil Judge...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>All India Bar Examination (AIBE): What Every Law Graduate Sh...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>SSC CGL: Legal-Sector Posts for Law Graduates - exam stages,...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>RBI Grade B (Legal Officer): Exam Guide for Law Graduates -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>UPSC Civil Services Examination: A Guide for Law Graduates -...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+@foreach ($homeExams as $homeExam)
+        <a href="{{ route('frontend.govtexams') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div><div class="list-body"><h4>{{ Str::limit($homeExam->description, 70, '…', true) }}</h4><div class="list-meta"><span class="pdf">{{ $homePdfCount($homeExam) }} PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      @endforeach
     </div>
-    <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Govt. Examinations</a></div>
+    <div class="section-cta reveal"><a href="{{ route('frontend.govtexams') }}" class="btn btn-gold">View All Govt. Examinations</a></div>
   </div>
 </section>
 <!--===== CENTRE & STATE GOVT EXAMS SECTION ENDS =======-->
@@ -245,15 +249,23 @@
       <p class="section-sub">Get in touch with our counselors to learn more about our comprehensive law courses and personalized learning programs. We're here to help you achieve your legal education goals.</p>
       <div class="title-rule"></div>
     </div>
-    <form class="form-card reveal" onsubmit="return false;">
+    <form class="form-card reveal" id="home-enquiry" action="{{ route('frontend.contactstore') }}" method="post">
+      @csrf
+      <input type="hidden" name="form_id" value="home-enquiry">
+      <input type="hidden" name="message" value="">
+      @if ($errors->any() && old('form_id') === 'home-enquiry')
+        <p class="form-status" role="alert">{{ $errors->first() }}</p>
+      @endif
+      @php $homeEnqOld = fn($k) => old('form_id') === 'home-enquiry' ? old($k) : ''; @endphp
       <div class="form-row">
-        <div class="field"><label>Full Name</label><input type="text" placeholder="Enter your full name"></div>
-        <div class="field"><label>Email Address</label><input type="email" placeholder="Enter your email"></div>
-        <div class="field"><label>Phone Number</label><input type="tel" placeholder="Enter your phone number"></div>
-        <div class="field"><label>Course Interested In</label><select><option value="">Course Interested In</option><option>LL.B. Entrance Examination</option><option>LL.B. – 3 Years</option><option>LL.B. – 5 Years</option><option>LL.M.</option><option>Judiciary Examination</option><option>CSEET</option><option>CA</option><option>CS</option><option>CMA</option><option>English Grammar</option><option>Spoken English</option></select></div>
-        <div class="field"><label>Preferred Mode</label><select><option value="">Preferred Mode</option><option>Online</option><option>Offline</option><option>Both</option></select></div>
-        <div class="field"><label>City</label><input type="text" placeholder="Enter your city"></div>
-        <div class="field full"><label>Message</label><textarea placeholder="Tell us what you would like to know"></textarea></div>
+        <div class="field"><label for="he-first">First Name <span class="req" aria-hidden="true">*</span></label><input type="text" id="he-first" name="first_name" value="{{ $homeEnqOld('first_name') }}" placeholder="Enter your first name" autocomplete="given-name" maxlength="100" required></div>
+        <div class="field"><label for="he-last">Last Name <span class="req" aria-hidden="true">*</span></label><input type="text" id="he-last" name="last_name" value="{{ $homeEnqOld('last_name') }}" placeholder="Enter your last name" autocomplete="family-name" maxlength="100" required></div>
+        <div class="field"><label for="he-email">Email Address <span class="req" aria-hidden="true">*</span></label><input type="email" id="he-email" name="email" value="{{ $homeEnqOld('email') }}" placeholder="Enter your email" autocomplete="email" required></div>
+        <div class="field"><label for="he-phone">Phone Number <span class="req" aria-hidden="true">*</span></label><input type="tel" id="he-phone" name="phone" value="{{ $homeEnqOld('phone') }}" placeholder="10-digit mobile number" autocomplete="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" title="Enter a 10-digit mobile number" required></div>
+        <div class="field"><label for="he-course">Course Interested In <span class="req" aria-hidden="true">*</span></label><select id="he-course" name="service_type" required><option value="">Course Interested In</option>@foreach (['LL.B. Entrance Examination', 'LL.B. – 3 Years', 'LL.B. – 5 Years', 'LL.M.', 'Judiciary Examination', 'CSEET', 'CA', 'CS', 'CMA', 'English Grammar', 'Spoken English'] as $homeCourseOpt)<option @selected($homeEnqOld('service_type') === $homeCourseOpt)>{{ $homeCourseOpt }}</option>@endforeach</select></div>
+        <div class="field"><label for="he-mode">Preferred Mode</label><select id="he-mode" name="mode"><option value="">Preferred Mode</option>@foreach (['Online', 'Offline', 'Both'] as $homeModeOpt)<option @selected($homeEnqOld('mode') === $homeModeOpt)>{{ $homeModeOpt }}</option>@endforeach</select></div>
+        <div class="field full"><label for="he-city">City</label><input type="text" id="he-city" name="city" value="{{ $homeEnqOld('city') }}" placeholder="Enter your city" autocomplete="address-level2"></div>
+        <div class="field full"><label for="he-msg">Message <span class="req" aria-hidden="true">*</span></label><textarea id="he-msg" name="enquiry_message" placeholder="Tell us what you would like to know" required>{{ $homeEnqOld('enquiry_message') }}</textarea></div>
       </div>
       <div class="form-actions"><button type="submit" class="btn btn-gold">Send Enquiry</button></div>
     </form>
@@ -311,13 +323,11 @@
       <div class="title-rule"></div>
     </div>
     <div class="list-grid">
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>The Right to Information Act, 2005: Empowering Citizens - ho...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Understanding Cyber Crimes and the Information Technology Ac...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Know Your Rights: Consumer Protection in the Digital Age - e...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="2"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Legal Aid in India: Article 39A and Access to Justice - elig...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
-      <a href="#" class="list-card reveal" data-d="1"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>Article 21: Right to Life and Personal Liberty - from A.K. G...</h4><div class="list-meta"><span class="pdf">1 PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+@foreach ($homeKnowledgeNotes as $homeKnowledgeNote)
+        <a href="{{ route('frontend.legalknowledgelibrary') }}" class="list-card reveal" data-d="{{ $loop->index % 2 + 1 }}"><div class="list-icon"><span class="site-icon icon-books" aria-hidden="true"></span></div><div class="list-body"><h4>{{ Str::limit($homeKnowledgeNote->description, 70, '…', true) }}</h4><div class="list-meta"><span class="pdf">{{ $homePdfCount($homeKnowledgeNote) }} PDF available</span><span class="go">View All <span class="site-icon icon-arrow-right" aria-hidden="true"></span></span></div></div></a>
+      @endforeach
     </div>
-    <div class="section-cta reveal"><a href="#" class="btn btn-gold">View All Legal Knowledge</a></div>
+    <div class="section-cta reveal"><a href="{{ route('frontend.legalknowledgelibrary') }}" class="btn btn-gold">View All Legal Knowledge</a></div>
   </div>
 </section>
 <!--===== LATEST LEGAL KNOWLEDGE SECTION ENDS =======-->
@@ -341,7 +351,7 @@
         </a>
       @endforeach
     </div>
-    <div class="section-cta reveal"><a href="#" class="btn btn-gold">View Full Gallery</a></div>
+    <div class="section-cta reveal"><a href="{{ route('frontend.gallery') }}" class="btn btn-gold">View Full Gallery</a></div>
   </div>
 </section>
 <!--===== GALLERY PREVIEW SECTION ENDS =======-->
@@ -351,7 +361,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Contact</span>
-      <h2 class="section-title">Get in Touch with <span class="accent">Law Student</span></h2>
+      <h2 class="section-title">Get in Touch with <span class="accent">Law Students</span></h2>
       <div class="title-rule"></div>
     </div>
     <div class="contact-layout">
@@ -359,22 +369,29 @@
         <p>Have questions about our courses, Bare Acts, or study materials? Our team is ready to help you every step of the way in your legal education journey.</p>
         <div class="contact-items">
           <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-map-pin" aria-hidden="true"></span></div><div><h5>Address</h5><p>224 Legal District, Delhi High Court Marg, New Delhi 110001</p></div></div>
-          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-phone" aria-hidden="true"></span></div><div><h5>Phone</h5><p>+916624536320</p></div></div>
-          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></div><div><h5>WhatsApp</h5><p>+916624536320</p></div></div>
-          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-mail" aria-hidden="true"></span></div><div><h5>Email</h5><p>lawstudents.edu@gmail.com</p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-phone" aria-hidden="true"></span></div><div><h5>Phone</h5><p><a href="tel:{{ $homeMobile }}">{{ $homeMobile }}</a></p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></div><div><h5>WhatsApp</h5><p><a href="https://wa.me/{{ $homeWhatsapp }}" target="_blank" rel="noopener">{{ $homeMobile }}</a></p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-mail" aria-hidden="true"></span></div><div><h5>Email</h5><p><a href="mailto:{{ $homeEmail }}">{!! str_replace('@', '@<wbr>', e($homeEmail)) !!}</a></p></div></div>
         </div>
       </div>
-      <form class="form-card reveal" data-d="1" onsubmit="return false;">
+      <form class="form-card reveal" data-d="1" id="home-contact" action="{{ route('frontend.contactstore') }}" method="post">
+        @csrf
+        <input type="hidden" name="form_id" value="home-contact">
+        @if ($errors->any() && old('form_id') === 'home-contact')
+          <p class="form-status" role="alert">{{ $errors->first() }}</p>
+        @endif
+        @php $homeCtOld = fn($k) => old('form_id') === 'home-contact' ? old($k) : ''; @endphp
         <div class="form-row">
-          <div class="field"><label>Full Name</label><input type="text" placeholder="Enter your full name"></div>
-          <div class="field"><label>Email Address</label><input type="email" placeholder="Enter your email"></div>
-          <div class="field"><label>Phone Number</label><input type="tel" placeholder="Enter your phone number"></div>
-          <div class="field"><label>Subject</label><input type="text" placeholder="Subject of your message"></div>
-          <div class="field full"><label>Message</label><textarea placeholder="Write your message here"></textarea></div>
+          <div class="field"><label for="hc-first">First Name <span class="req" aria-hidden="true">*</span></label><input type="text" id="hc-first" name="first_name" value="{{ $homeCtOld('first_name') }}" placeholder="Enter your first name" autocomplete="given-name" maxlength="100" required></div>
+          <div class="field"><label for="hc-last">Last Name <span class="req" aria-hidden="true">*</span></label><input type="text" id="hc-last" name="last_name" value="{{ $homeCtOld('last_name') }}" placeholder="Enter your last name" autocomplete="family-name" maxlength="100" required></div>
+          <div class="field"><label for="hc-email">Email Address <span class="req" aria-hidden="true">*</span></label><input type="email" id="hc-email" name="email" value="{{ $homeCtOld('email') }}" placeholder="Enter your email" autocomplete="email" required></div>
+          <div class="field"><label for="hc-phone">Phone Number <span class="req" aria-hidden="true">*</span></label><input type="tel" id="hc-phone" name="phone" value="{{ $homeCtOld('phone') }}" placeholder="10-digit mobile number" autocomplete="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" title="Enter a 10-digit mobile number" required></div>
+          <div class="field full"><label for="hc-subject">Subject <span class="req" aria-hidden="true">*</span></label><input type="text" id="hc-subject" name="service_type" value="{{ $homeCtOld('service_type') }}" placeholder="Subject of your message" maxlength="150" required></div>
+          <div class="field full"><label for="hc-msg">Message <span class="req" aria-hidden="true">*</span></label><textarea id="hc-msg" name="message" placeholder="Write your message here" required>{{ $homeCtOld('message') }}</textarea></div>
         </div>
         <div class="form-actions">
           <button type="submit" class="btn btn-gold">Send Message</button>
-          <a href="#" class="btn btn-ghost" style="color:#a8842a">WhatsApp Us</a>
+          <a href="https://wa.me/{{ $homeWhatsapp }}" class="btn btn-ghost btn-wa-light" target="_blank" rel="noopener">WhatsApp Us</a>
         </div>
       </form>
     </div>
@@ -385,4 +402,20 @@
 
 @section('scripts')
     <script src="{{ asset('assets/theme/js/home.js') }}?v={{ filemtime(public_path('assets/theme/js/home.js')) }}"></script>
+    <script>
+    (function () {
+      // contact-store keeps one message field, so fold the enquiry's mode and city into it.
+      var enquiry = document.getElementById('home-enquiry');
+      if (enquiry) enquiry.addEventListener('submit', function () {
+        var mode = enquiry.elements.mode.value, city = enquiry.elements.city.value.trim();
+        var extra = [mode ? 'Preferred mode: ' + mode : '', city ? 'City: ' + city : ''].filter(Boolean).join(' | ');
+        enquiry.elements.message.value = (extra ? extra + '\n\n' : '') + enquiry.elements.enquiry_message.value.trim();
+      });
+      // After a failed submit the page reloads at the top; bring the form with the error back into view.
+      var failed = document.querySelector('form.form-card .form-status[role="alert"]');
+      if (failed) window.addEventListener('load', function () {
+        window.scrollTo(0, failed.closest('form').getBoundingClientRect().top + window.scrollY - 160);
+      });
+    })();
+    </script>
 @endsection
