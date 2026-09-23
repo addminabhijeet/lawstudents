@@ -4,6 +4,12 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function $(s, c){ return (c || document).querySelector(s); }
   function $$(s, c){ return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+  /* every typed word must appear, in any order: "act companies" finds "The Companies Act, 2013" */
+  function matches(hay, q){
+    if(q === '') return true;
+    hay = hay || '';
+    return q.split(/\s+/).every(function(w){ return hay.indexOf(w) > -1; });
+  }
 
   /* ---------- shared navbar.html / footer.html includes ---------- */
   function loadIncludes(){
@@ -181,7 +187,7 @@
             var catOk = cat === 'all' || c.getAttribute('data-cat') === cat;
             var items = $$('.list-card', c), vis = 0;
             items.forEach(function(it){
-              var ok = catOk && (q === '' || (it.getAttribute('data-search') || '').indexOf(q) > -1);
+              var ok = catOk && matches(it.getAttribute('data-search'), q);
               it.hidden = !ok; if(ok) vis++;
             });
             $$('.res-sub', c).forEach(function(s){ s.hidden = !!s.querySelector('.list-card') && !s.querySelector('.list-card:not([hidden])'); });
@@ -214,7 +220,7 @@
         };
         apply = function(){
           var hit = cards.filter(function(c){
-            return (cat === 'all' || c.getAttribute('data-cat') === cat) && (q === '' || (c.getAttribute('data-search') || '').indexOf(q) > -1);
+            return (cat === 'all' || c.getAttribute('data-cat') === cat) && matches(c.getAttribute('data-search'), q);
           });
           var pages = Math.max(1, Math.ceil(hit.length / PER));
           if(page > pages) page = pages;

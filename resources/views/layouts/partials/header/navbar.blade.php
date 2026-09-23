@@ -23,8 +23,11 @@
 <header class="site-header" id="siteHeader">
     <div class="wrap">
         <div class="nav-wrap">
-            <a href="{{ route('frontend.home') }}" class="nav-logo"><img
-                    src="{{ asset('assets/theme/images/logo-full.png') }}" alt="Law Students" loading="eager"></a>
+            <a href="{{ route('frontend.home') }}" class="nav-logo"><picture>
+                    <source type="image/webp" srcset="{{ asset('assets/theme/images/logo-full-720.webp') }}">
+                    <img src="{{ asset('assets/theme/images/logo-full-720.png') }}" alt="Law Students" width="720"
+                        height="241" loading="eager" fetchpriority="high">
+                </picture></a>
             <nav aria-label="Main">
                 <ul class="nav-menu">
                     <li><a href="{{ route('frontend.home') }}"

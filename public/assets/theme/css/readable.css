@@ -1,0 +1,391 @@
+/* ================================================================
+   SENIOR-READABILITY LAYER — loaded last on every frontend page.
+   Additive only: no existing rule in site.css / inner.css is edited.
+
+   Most visitors are 60+ and read with spectacles, so:
+   - Every page is set at the largest reading size: the root is 125%,
+     so 1rem = 20px. Type is in rem, which also honours the reader's
+     own browser font setting (the theme's px sizes ignored it).
+   - Body copy is 22.5px and nothing a visitor reads is under ~19px (it
+     was 11–13px); small card headings use Poppins instead of the
+     hairline Playfair serif, which breaks up at small sizes.
+   - The top bar and navbar keep the theme's design, enlarged as one
+     piece (section 4).
+   - Text colours meet WCAG AA without going harsh: the theme's own grey
+     (5.9:1) stays, gold text moves from 3.5:1 to a warm 5.3:1, and the
+     gold accent words in headings to at least 3.1:1. Input borders reach
+     3:1 (they were 1.3:1 — practically invisible).
+   - Buttons and links are at least 44–48px tall, and keyboard focus
+     shows a thick ring that is visible on light and dark sections.
+   ================================================================ */
+
+/* ---------- 1. TOKENS ---------- */
+:root{
+  --gold-text:#866719;       /* gold used as TEXT on light backgrounds: 5.3:1 on white, 4.8:1 on pale gold (was #a8842a, 3.5:1) */
+  --field-border:#a8842a;    /* input outlines: 3.5:1, the brand's own dark gold */
+  --read-body:1.125rem;      /* 22.5px running text */
+  --read-small:1rem;         /* 20px — smallest running text */
+  --read-label:.9375rem;     /* 18.75px — only uppercase labels and badges */
+}
+html{font-size:125%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-size:var(--read-body);line-height:1.75}
+::placeholder{color:#6b6455;opacity:1}              /* 5.9:1, was the browser's pale grey */
+mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
+
+/* ---------- 2. KEYBOARD FOCUS ---------- */
+:focus-visible{outline:3px solid #12100c;outline-offset:3px;box-shadow:0 0 0 7px rgba(212,175,55,.55)}
+.site-footer :focus-visible,.page-hero :focus-visible,.hero :focus-visible,
+.kn-section :focus-visible,.how-section :focus-visible,.enroll-bar :focus-visible,.lightbox :focus-visible{outline-color:#f0d97d}
+
+/* ---------- 3. FASTER, CALMER MOTION ---------- */
+/* Sections faded in over 0.8s after scrolling into view; readers waited for the words. */
+.reveal{transition-duration:.45s}
+.reveal[data-d="1"]{transition-delay:.04s}
+.reveal[data-d="2"]{transition-delay:.08s}
+.reveal[data-d="3"]{transition-delay:.12s}
+.reveal[data-d="4"]{transition-delay:.16s}
+/* Legal-knowledge tiles bounced non-stop under the cursor, which makes them hard to hit. */
+.kn-card:hover{animation:none;transform:translateY(-6px)}
+/* After the first page of a visit the preloader is skipped (flag set in the <head> script). */
+.ls-return .se-pre-con{display:none}
+
+/* ---------- 4. TOP BAR + NAVBAR: THE THEME'S OWN DESIGN, ENLARGED ----------
+   The header keeps its exact design; `zoom` enlarges all of it — text, logo,
+   spacing, buttons — by the same A++ step as the page (--hz = 125%).
+   Its rules below are the theme's original values; they only stop the header
+   inheriting the page's enlarged body text, so it scales as one piece. */
+.topbar,.site-header{zoom:var(--hz);line-height:1.7}
+.site-header{font-size:16px}
+.topbar :focus-visible,.site-header :focus-visible{outline:2px solid var(--gold);outline-offset:3px;box-shadow:none}
+/* One row of nine links needs ~1178px at its original size (~1473px at 125%),
+   so on narrower desktops the step is smaller — only as large as still leaves
+   ~75px of breathing room between the links, and never below the original. */
+:root{--hz:1.25}
+@media(min-width:1240px){ :root{--hz:1} }
+@media(min-width:1500px){ :root{--hz:1.05} }
+@media(min-width:1600px){ :root{--hz:1.13} }
+@media(min-width:1680px){ :root{--hz:1.19} }
+@media(min-width:1760px){ :root{--hz:1.25} }
+/* the logo in its own colours: the theme's brightness(1.5) turned its gold neon */
+.nav-logo img{filter:none}
+/* Menu spacing: the links were packed together in the middle of the bar with
+   the free space left over on both sides of them; spread that space evenly
+   between the links instead. */
+@media(min-width:1240px){
+  .nav-wrap > nav{flex:1 1 auto;min-width:0}
+  .nav-menu{justify-content:space-evenly}
+}
+/* Menu hover: each dropdown opens 10px below its menu item and ignored the
+   pointer the moment it left the item, so it closed while the pointer crossed
+   that gap and its links (Acts, Rules, Course, Free Notes) could not be
+   reached. An invisible strip on top of the dropdown bridges the gap. */
+.nav-menu .has-drop .dropdown::before{content:'';position:absolute;left:0;right:0;top:-16px;height:16px}
+/* keep the header's edges on the same line as the page content below it
+   (sizes inside a zoomed box are multiplied by --hz, so divide them back) */
+.topbar .wrap,.site-header .wrap{max-width:calc(1220px / var(--hz))}
+.site-header .wrap{padding:0 calc(18px / var(--hz))}
+@media(min-width:1360px){
+  .topbar .wrap,.site-header .wrap{max-width:min(max(calc(1220px / var(--hz)),calc(100% - 136px / var(--hz))),calc(2240px / var(--hz)))}
+}
+@media(max-width:600px){ .site-header .wrap{padding:0 calc(14px / var(--hz))} }
+@media(max-width:480px){ .site-header .wrap{padding:0 calc(12px / var(--hz))} }
+/* 1025–1239px: even the original single row did not fit here (it pushed the
+   Login button off-screen), so use the theme's own compact ☰ header, the one
+   it already shows on tablets. */
+@media(min-width:1025px) and (max-width:1239px){
+  .burger{display:flex}
+  .nav-menu,.btn-login{display:none}
+  .mobile-menu{display:block}
+}
+
+/* ---------- 6. HEADINGS + RUNNING TEXT ---------- */
+.page-hero h1{font-size:clamp(2.125rem,1.35rem + 3.4vw,3.5rem)}
+.crumbs{font-size:1rem}
+.section-title{font-size:clamp(1.875rem,1.15rem + 2.3vw,2.875rem)}
+/* the accent word was a pale gold gradient (2.1:1 at its lightest); keep it gold, just deep enough (≥3.1:1) */
+.section-title .accent{background:linear-gradient(135deg,#a8842a 0%,#b08a2c 50%,#a8842a 100%);-webkit-background-clip:text;background-clip:text}
+.kn-section .section-title .accent,.how-section .section-title .accent{background:linear-gradient(135deg,#f0d97d,#d4af37,#f0d97d);-webkit-background-clip:text;background-clip:text}
+.section-sub{font-size:1.1875rem}
+.eyebrow{font-size:var(--read-label);font-weight:800;letter-spacing:.14em;color:var(--gold-text)}
+.copy p,.contact-intro p,.about-card p{font-size:var(--read-body);line-height:1.8}
+.copy p,.contact-intro p{max-width:75ch}             /* long lines are hard to track back across */
+.check-list li{font-size:1.0625rem}
+.hero-desc{font-size:1.1875rem}
+.hero-tag{font-size:clamp(1.125rem,.9rem + 1vw,1.5rem)}
+.form-note,.form-note p{font-size:var(--read-small)}
+.form-note .disc-title{font-size:1.0625rem}
+
+/* ---------- 7. BUTTONS ---------- */
+.btn{font-size:1.0625rem;min-height:3rem;padding:.8rem 1.6rem}
+.btn-line::before{
+  content:'';width:1.15em;height:1.15em;margin-right:.45em;flex-shrink:0;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l6 6v14H6zm7 1.5V9h5.5zM8 12h8v2H8zm0 4h8v2H8z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l6 6v14H6zm7 1.5V9h5.5zM8 12h8v2H8zm0 4h8v2H8z'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* ---------- 8. FORMS ---------- */
+.field label,.inner-page .form-card .field label{font-size:var(--read-small);font-weight:600}
+.field input,.field select,.field textarea{
+  font-size:var(--read-body);min-height:3.25rem;padding:.75rem 1rem;
+  border:1.5px solid var(--field-border);background:var(--white);
+}
+.field textarea{min-height:8.5rem}
+.field input[type=file]::file-selector-button{font-size:var(--read-small)}
+.form-card h3.form-title{font-size:clamp(1.5rem,1.2rem + 1vw,1.875rem)}
+.form-card p.form-lead{font-size:1.0625rem}
+.form-status{font-size:1.0625rem}
+.req{color:#b42318}
+
+/* ---------- 9. PDF FINDER (acts, rules, free notes, exams, legal knowledge, courses) ---------- */
+.filter-bar{padding:1.5rem 1.5rem 1.375rem;gap:1.25rem}
+.filter-field{position:relative}
+.filter-field>label{font-size:var(--read-small);letter-spacing:.06em;color:var(--ink)}
+.dd-btn{font-size:1.0625rem;min-height:3.25rem;padding:.75rem 1rem;border:1.5px solid var(--field-border);background:var(--white)}
+.dd-btn .chev{font-size:1rem}
+.dd-menu{max-height:24rem}
+.dd-menu li{font-size:1.0625rem;padding:.8rem 1rem}
+.dd-menu li[data-depth="1"]{font-size:1rem;padding-left:2rem}
+.dd-menu li[data-depth="2"]{font-size:1rem;padding-left:3rem}
+.filter-bar .field input[type="search"]{
+  font-size:var(--read-body);min-height:3.25rem;padding:.75rem 5.75rem .75rem 3rem;
+  border:1.5px solid var(--field-border);background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23866719' d='M10 3a7 7 0 0 1 5.6 11.2l5.1 5.1-1.4 1.4-5.1-5.1A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z'/%3E%3C/svg%3E") no-repeat 1rem center/1.375rem;
+}
+.filter-bar input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+/* big "Clear" button inside the search box (added by readable.js) */
+.search-clear{
+  position:absolute;right:.4rem;bottom:.4rem;height:2.45rem;padding:0 .8rem;border-radius:7px;cursor:pointer;
+  border:0;background:var(--gold-pale);color:var(--ink);font:700 .9375rem 'Poppins',sans-serif;
+}
+.search-clear:hover{background:#f3e5b3}
+/* one-tap category buttons mirroring the dropdown (added by readable.js) */
+.cat-chips{display:flex;flex-wrap:wrap;gap:.625rem;margin:0 0 1.25rem;position:relative;z-index:1}
+.cat-chip{
+  display:inline-flex;align-items:center;gap:.5rem;min-height:2.875rem;padding:.45rem 1.05rem;cursor:pointer;
+  border-radius:999px;border:2px solid rgba(168,132,42,.55);background:var(--white);color:var(--ink);
+  font:600 1rem 'Poppins',sans-serif;box-shadow:0 2px 8px rgba(30,26,16,.05);transition:background .2s,border-color .2s,transform .2s;
+}
+.cat-chip:hover{border-color:var(--gold-dark);background:var(--gold-pale);transform:translateY(-2px)}
+.cat-chip .n{min-width:1.75rem;padding:0 .45rem;border-radius:999px;background:var(--gold-pale);font-size:.9375rem;font-weight:700;text-align:center}
+.cat-chip[aria-pressed="true"]{background:var(--grad-gold);border-color:transparent;color:#12100c}
+.cat-chip[aria-pressed="true"] .n{background:rgba(255,255,255,.6)}
+/* live result count (added by readable.js) */
+.finder-status{
+  display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1rem;margin:0 0 1rem;position:relative;z-index:1;
+  font-size:1.0625rem;font-weight:600;color:var(--ink);
+}
+.finder-status b{color:var(--gold-text)}
+.finder-reset{
+  min-height:2.75rem;padding:.4rem 1rem;border-radius:8px;cursor:pointer;border:2px solid var(--gold);
+  background:var(--white);color:var(--ink);font:700 1rem 'Poppins',sans-serif;
+}
+.finder-reset:hover{background:var(--gold-pale)}
+.finder-reset[hidden]{display:none}
+
+/* accordion + PDF rows */
+.res-cat-head{font:700 1.3125rem/1.3 'Poppins',sans-serif;min-height:4rem;padding:1rem 1.25rem}
+.res-cat-head .count{font-size:var(--read-small);font-weight:600;color:var(--muted)}
+.res-cat-head .chev{font-size:1rem}
+.res-cat-body{padding:.25rem 1.25rem 1.25rem}
+.res-cat-empty{box-shadow:none}
+.res-cat-empty .res-cat-head{min-height:3.25rem;padding:.625rem 1.25rem;font-size:1.0625rem;color:var(--muted);background:var(--white)}
+.res-sub h3{font-size:var(--read-small);letter-spacing:.06em;color:var(--muted)}
+.list-card{gap:1rem;padding:1.125rem 1.25rem}
+.list-icon{width:3.25rem;height:3.25rem;font-size:1.75rem}
+.list-body h4{font-size:1.1875rem;line-height:1.45}
+.list-meta{gap:.75rem;margin-top:.5rem}
+.list-meta .pdf{font-size:var(--read-small);font-weight:600;color:var(--muted)}
+.list-meta .go{font-size:var(--read-small);color:var(--gold-text)}
+.res-actions{gap:.625rem}
+.res-actions a{
+  gap:.5rem;min-height:2.875rem;padding:.55rem 1.15rem;border-radius:9px;border-width:2px;
+  font-size:1.0625rem;font-weight:700;
+}
+.res-actions a::before{
+  content:'';width:1.2em;height:1.2em;flex-shrink:0;background:currentColor;
+  -webkit-mask:var(--ico) center/contain no-repeat;mask:var(--ico) center/contain no-repeat;
+}
+.res-actions a.primary{--ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5C7 5 2.7 8.1 1 12c1.7 3.9 6 7 11 7s9.3-3.1 11-7c-1.7-3.9-6-7-11-7zm0 11.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z'/%3E%3C/svg%3E")}
+.res-actions a:not(.primary){--ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 3h2v9.2l3.3-3.3 1.4 1.4L12 16l-5.7-5.7 1.4-1.4 3.3 3.3zM4 18h16v2H4z'/%3E%3C/svg%3E")}
+.list-card.lc-openable .list-body h4{cursor:pointer}
+.list-card.lc-openable .list-body h4:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:4px}
+.res-empty,.res-none{font-size:1.0625rem;color:var(--muted)}
+@media(max-width:600px){
+  /* phones: at this text size the nested paddings left the Download button no room */
+  .res-cat-body{padding:.25rem .75rem .75rem}
+  .list-card{padding:.875rem;gap:.75rem}
+  .list-icon{width:2.25rem;height:2.25rem;font-size:1.25rem}
+  .res-actions{width:100%}
+  .res-actions a{flex:1;justify-content:center;padding:.5rem .75rem;font-size:1rem}
+}
+
+/* ---------- 10. CARDS ---------- */
+/* courses */
+.course-body h3{font:700 1.25rem/1.35 'Poppins',sans-serif}
+/* at this size a narrow card's price + "Explore Course →" no longer fit on one line */
+.course-foot{flex-wrap:wrap;row-gap:.5rem}
+/* a single very long word may break rather than push a card past the screen edge */
+.list-body h4,.course-body h3,.album-body h4,.team-card h3,.why-card h3,.how-card h3,.kn-card h5{overflow-wrap:anywhere}
+.course-body p,.course-body p.course-note{font-size:var(--read-small);color:var(--muted)}
+.course-price{font-size:1.25rem;color:var(--gold-text)}
+.course-price small{font-size:.9375rem}
+.course-disc{font-size:var(--read-small)}
+.course-disc strong{font-size:1.125rem}
+.course-link{font-size:var(--read-small)}
+.course-actions .btn{font-size:1.0625rem;min-height:3rem}
+.pager button{font-size:1.0625rem;min-width:3rem;min-height:3rem}
+.hot-badge{font-size:.9375rem}
+.tick-item{font-size:var(--read-small)}
+.tick-item b{font-size:1.0625rem}
+.tick-item i{color:var(--gold-text)}                  /* ticker prices were 3.2:1 */
+.tick-item u{font-size:.9375rem}
+/* legal knowledge tiles (home) */
+.kn-card h5{font-size:clamp(1.0625rem,.85rem + .45vw,1.25rem)}
+.kn-card span:not(.kn-ico){font-size:.9375rem}
+/* why / how */
+.why-card h3{font:700 1.3125rem/1.35 'Poppins',sans-serif}
+.why-card p{font-size:1.0625rem}
+.how-card h3{font:700 1.3125rem/1.35 'Poppins',sans-serif}
+.how-card p{font-size:1.0625rem}
+/* about */
+.exp-badge span{font-size:.9375rem}
+.tabs-nav button{font-size:var(--read-small);min-height:3rem}
+.tab-panel p{font-size:1.0625rem}
+.tab-panel p strong{font-size:.9375rem}
+.team-card h3{font:700 1.3125rem/1.3 'Poppins',sans-serif}
+.team-card p{font-size:var(--read-small);color:var(--muted)}
+/* gallery */
+.album-body h4{font:700 1.1875rem/1.35 'Poppins',sans-serif}
+.album-body span{font-size:var(--read-small);color:var(--gold-text)}
+.lb-cap{font-size:1.125rem}
+.lb-btn{min-width:3.5rem;min-height:3.5rem;font-size:1.75rem}
+/* contact + clientele */
+.contact-intro h2{font-size:clamp(1.75rem,1.2rem + 1.8vw,2.375rem)}
+.contact-item h5{font-size:var(--read-label);letter-spacing:.08em;color:var(--gold-text)}
+.contact-item p{font-size:1.0625rem}
+/* the e-mail address is one long word; at this size it must be allowed to wrap on phones */
+.contact-item p,.contact-item a,.footer-contact-item p{overflow-wrap:anywhere}
+/* home stats + testimonials + conversion widgets */
+.stat-label{font-size:.9375rem}
+.testimonial-stars{font-size:1.125rem;color:var(--gold-dark)}   /* 3.5:1, enough for a graphic (was 2.1:1) */
+.testimonial-who{font-size:var(--read-small);color:var(--gold-text)}
+.testimonial-who span{font-size:.9375rem}
+/* home contact form: its WhatsApp button carries an inline #a8842a (3.5:1) */
+.form-actions .btn-ghost{color:var(--gold-text)!important;border-color:var(--gold-dark)}
+.enroll-bar-text{font-size:var(--read-small)}
+.enroll-bar-text b{font-size:1.1875rem}
+.enroll-bar .btn{font-size:var(--read-small)}
+.counsel-pop p,.counsel-pop .btn{font-size:var(--read-small)}
+
+/* ---------- 11. FOOTER ----------
+   At the page's full A++ size the footer grew to ~1210px, taller than the
+   screen. It now reads one step below the page body (links 18.75px, headings
+   21.25px) with tighter spacing; Programs runs as one column beside Quick
+   Links, because its two narrow tracks broke "LL.B. Entrance Examination"
+   over two lines; and the logo is the light version made for dark
+   backgrounds, without the brightness(3) that turned its gold to glare
+   and left the black "Law" invisible. */
+.site-footer{font-size:.9375rem;line-height:1.6}   /* so list rows do not inherit the body's 22.5px line box */
+.footer-col h4{font-size:1.0625rem;margin-bottom:.75rem}
+.footer-col li{margin-bottom:.2rem}
+.footer-col li a{font-size:.9375rem;line-height:1.6}
+.footer-contact-item{margin-bottom:.5rem;gap:.15rem}
+.footer-contact-item h6{font-size:.75rem;margin-bottom:0}
+.footer-contact-item p{font-size:.9375rem;line-height:1.5}
+.footer-links{font-size:.875rem}
+.copyright{font-size:.875rem}
+@media(min-width:1025px){
+  .footer-grid:first-of-type .footer-col:nth-child(3) ul{columns:auto}
+}.site-footer .footer-logo img{filter:drop-shadow(0 6px 18px rgba(212,175,55,.22)) !important}
+.footer-logo picture{display:block}
+.skip-link{font-size:1rem}
+
+/* ---------- 12. LEGAL KNOWLEDGE: link from the inquiry form to the PDF library ---------- */
+.library-cta{
+  display:flex;align-items:center;gap:1rem;max-width:840px;margin:0 auto 1.5rem;padding:1.125rem 1.375rem;
+  position:relative;z-index:1;border-radius:14px;color:var(--ink);
+  background:linear-gradient(135deg,var(--white) 0%,var(--gold-pale) 100%);
+  border:2px solid rgba(168,132,42,.55);box-shadow:var(--shadow-soft);transition:transform .3s,box-shadow .3s;
+}
+.library-cta:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(212,175,55,.22)}
+.library-cta-ico{font-size:2rem;flex-shrink:0}
+.library-cta-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:.15rem}
+.library-cta-text strong{font-size:1.1875rem}
+.library-cta-text span{font-size:var(--read-small);color:var(--muted)}
+.library-cta-go{
+  flex-shrink:0;display:inline-flex;align-items:center;gap:.4rem;min-height:3rem;padding:.6rem 1.2rem;border-radius:9px;
+  background:var(--grad-gold);color:#12100c;font-weight:700;font-size:1.0625rem;white-space:nowrap;
+}
+@media(min-width:1360px){ .library-cta{max-width:clamp(840px,58vw,1240px)} }
+@media(max-width:600px){
+  .library-cta{flex-wrap:wrap}
+  .library-cta-go{width:100%;justify-content:center}
+}
+.page-hero:has(+ #library) .hero-frame{--motif-img:url(../images/hero-frame/motif-legal-knowledge.svg)}
+
+/* ---------- 13. ATTENTION MOTION ON PDF + COURSE CARDS ----------
+   The home page's course cards pull the eye with a travelling gold ring and a
+   bouncing pointer. The same cues now run on every PDF list and on the course
+   page — but cards never move or reshuffle under the pointer (hard for shaky
+   hands), and everything pauses while the visitor hovers, touches or types. */
+/* each card rises in when first shown, and again when a filter brings it back */
+[data-filter] .res-grid .list-card{animation:lcRise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i,0) * 45ms)}
+[data-filter] .course-card.show{animation:lcRise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i,0) * 45ms)}
+@keyframes lcRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* travelling spotlight — on list cards it lives in the pseudo-elements, so the
+   cards' own entrance animations (which differ per section) are never restarted */
+.list-card{position:relative}
+.list-card.pdf-spot::before{
+  content:'';position:absolute;inset:-6px;z-index:2;pointer-events:none;border-radius:14px;
+  border:3px solid var(--gold);box-shadow:0 0 0 5px rgba(212,175,55,.16),0 0 28px rgba(212,175,55,.45);
+  animation:spotPulse 1.6s ease-in-out infinite;
+}
+@keyframes spotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.01)}}
+/* course cards clip their overflow, so they take an outline instead; lcRise stays
+   first in the list so adding / removing the pulse does not replay the entrance */
+[data-filter] .course-card.show.pdf-spot{
+  outline:3px solid var(--gold);outline-offset:4px;
+  animation:lcRise .45s cubic-bezier(.22,1,.36,1) backwards,spotOutline 1.6s ease-in-out infinite;
+  animation-delay:calc(var(--i,0) * 45ms),0s;
+}
+@keyframes spotOutline{0%,100%{outline-color:rgba(212,175,55,.95)}50%{outline-color:rgba(212,175,55,.35)}}
+.list-card.pdf-spot::after{
+  content:'Free to read';position:absolute;top:-.85rem;right:1rem;z-index:3;pointer-events:none;
+  padding:.15rem .75rem;border-radius:999px;background:var(--grad-gold);color:#12100c;
+  font:800 .9375rem/1.5 'Poppins',sans-serif;box-shadow:0 6px 16px rgba(212,175,55,.4);
+  animation:badgePop .45s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes badgePop{from{opacity:0;transform:translateY(6px) scale(.9)}to{opacity:1;transform:none}}
+/* the spotlighted card's View button shines and a gold pointer bounces above it */
+.res-actions a.primary{position:relative}
+.res-actions a.primary.pdf-nudge{
+  background-image:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%),var(--grad-gold);
+  background-size:250% 100%,100% 100%;background-repeat:no-repeat;animation:pdfSheen 1.6s ease-in-out infinite;
+}
+@keyframes pdfSheen{0%{background-position:160% 0,0 0}100%{background-position:-60% 0,0 0}}
+.res-actions a.primary.pdf-nudge::after{
+  content:'';position:absolute;left:50%;top:-18px;width:0;height:0;pointer-events:none;
+  border-left:8px solid transparent;border-right:8px solid transparent;border-top:12px solid var(--gold-dark);
+  filter:drop-shadow(0 2px 4px rgba(212,175,55,.6));animation:pdfPtr .7s cubic-bezier(.22,1,.36,1) 4 both;
+}
+/* home page list cards: their "View All →" link underlines while spotlighted */
+.list-meta .go.pdf-nudge-go{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+@keyframes pdfPtr{
+  0%{opacity:0;transform:translate(-50%,-10px)}
+  40%{opacity:1;transform:translate(-50%,3px)}
+  70%{opacity:1;transform:translate(-50%,-5px)}
+  100%{opacity:1;transform:translate(-50%,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  [data-filter] .res-grid .list-card,[data-filter] .course-card.show,[data-filter] .course-card.show.pdf-spot,
+  .list-card.pdf-spot::before,.list-card.pdf-spot::after,
+  .res-actions a.primary.pdf-nudge,.res-actions a.primary.pdf-nudge::after{animation:none}
+}
+
+/* ---------- 14. SMALL SCREENS ---------- */
+@media(max-width:600px){
+  body{font-size:1.0625rem}
+  .section-title{font-size:clamp(1.75rem,1.2rem + 2.4vw,2.25rem)}
+  .filter-bar{padding:1.125rem}
+  .cat-chips{gap:.5rem}
+  .cat-chip{font-size:.9375rem;padding:.4rem .85rem}
+}

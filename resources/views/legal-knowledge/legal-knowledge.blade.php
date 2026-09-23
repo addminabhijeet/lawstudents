@@ -22,6 +22,14 @@
             <div class="title-rule"></div>
         </div>
 
+        {{-- Visitors who come here for the PDFs rather than to ask a question. --}}
+        <a class="library-cta reveal" href="{{ route('frontend.legalknowledgelibrary') }}">
+            <span class="library-cta-ico" aria-hidden="true">📚</span>
+            <span class="library-cta-text"><strong>Looking for Legal Knowledge PDFs?</strong>
+                <span>Open the Legal Knowledge Library to read or download notes by category.</span></span>
+            <span class="library-cta-go">Open Library <span aria-hidden="true">→</span></span>
+        </a>
+
         <form class="form-card reveal" action="{{ route('frontend.legal-knowledge-store') }}" method="post"
             enctype="multipart/form-data">
             @csrf

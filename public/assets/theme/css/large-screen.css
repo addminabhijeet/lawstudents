@@ -1,0 +1,53 @@
+/* ================================================================
+   LARGE-SCREEN LAYER — loaded after site.css and inner.css on every
+   frontend page. Additive only: no existing rule is modified.
+   Every rule sits in a min-width query and is clamped so that it equals
+   the original value where the query begins, so phones, tablets and
+   laptops up to ~1360px render exactly as before.
+   ================================================================ */
+
+/* ---- 1. CONTAINER ----
+   The theme was drawn for a fixed 1220px .wrap. On a 1920px monitor that
+   leaves ~340px of empty cream either side of every section while the
+   page banner and its engraved frame run edge to edge, so each page read
+   as a narrow column under a full-width banner.
+   From 1360px the container keeps a fixed 68px side margin instead of a
+   fixed width. With .wrap's own 18px padding the content starts 86px in —
+   the width .hero-frame's border settles at on desktop — so the top bar,
+   header, sections, footer and sticky enroll bar all line up with the
+   inner edge of the banner frame. max() holds the original 1220px until
+   the viewport outgrows it (no jump at the breakpoint); min() stops
+   ultra-wide screens stretching lines past 2240px. */
+@media(min-width:1360px){
+  .wrap,.enroll-bar-inner{max-width:min(max(1220px,calc(100% - 136px)),2240px)}
+}
+
+/* ---- 2. SINGLE-CARD FORMS ----
+   The Legal Knowledge inquiry and the home page's two enquiry forms are
+   centred cards capped at 840px, which left them stranded in the middle
+   of the wider page. Let the card keep the share of the screen it has at
+   ~1450px (58vw = 840px there). The Contact / Client forms sit in a grid
+   track and already fill it. Same selectors as inner.css:279, and this
+   file loads last, so it wins without raising specificity. */
+@media(min-width:1360px){
+  .form-section .form-card,.enquiry-section .form-card{max-width:clamp(840px,58vw,1240px)}
+}
+
+/* ---- 3. GALLERY ALBUMS ----
+   The album preview strip has a fixed 160px height, so wider cards turned
+   into thin letterboxes. Grow the height with the viewport (11vw = 160px
+   at ~1455px); the 520px source photos are still being scaled down. */
+@media(min-width:1360px){
+  .album-imgs{height:clamp(160px,11vw,240px)}
+}
+
+/* ---- 4. ABOUT US — PHOTO BESIDE COPY ----
+   With equal 1fr tracks the photo column would reach ~840px on a 1920px
+   screen: the 551px source blown up 1.5x and standing ~870px tall, far
+   taller than its copy. Hold the media track at 600px and hand the extra
+   width to the text instead. Equal tracks are exactly 600px at ~1450px,
+   so nothing jumps; below 900px inner.css still stacks the columns. */
+@media(min-width:1450px){
+  .split:has(> :is(.media-frame,.media-stack):last-child){grid-template-columns:minmax(0,1fr) minmax(0,600px)}
+  .split:has(> :is(.media-frame,.media-stack):first-child){grid-template-columns:minmax(0,600px) minmax(0,1fr)}
+}

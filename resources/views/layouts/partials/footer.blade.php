@@ -25,8 +25,12 @@
     <div class="wrap">
         <div class="footer-grid">
             <div class="footer-col footer-logo">
-                <img src="{{ asset('assets/theme/images/logo-full.png') }}" alt="Law Students" loading="lazy"
-                    decoding="async">
+                {{-- Light version of the logo (cream "Law" and emblem, gold "Students") for the dark footer. --}}
+                <picture>
+                    <source type="image/webp" srcset="{{ asset('assets/theme/images/logo-full-720-light.webp') }}">
+                    <img src="{{ asset('assets/theme/images/logo-full-720-light.png') }}" alt="Law Students"
+                        width="720" height="241" loading="lazy" decoding="async">
+                </picture>
                 <p class="footer-tag">Learn Law.<br>Understand Law.<br>Build Your Future.</p>
             </div>
             <div class="footer-col">
@@ -86,6 +90,7 @@
                 <ul>
                     <li><a href="{{ route('frontend.acts') }}">Bare Acts</a></li>
                     <li><a href="{{ route('frontend.rules') }}">Rules &amp; Regulations</a></li>
+                    <li><a href="{{ route('frontend.legalknowledgelibrary') }}">Legal Knowledge PDFs</a></li>
                     <li><a href="#">Announcements</a></li>
                     <li><a href="{{ route('frontend.govtexams') }}">Competitive Exams</a></li>
                 </ul>

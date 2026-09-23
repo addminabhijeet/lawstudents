@@ -21,12 +21,31 @@
         // The home page is built from the theme's index.html, which is styled by
         // site.css alone; every inner page adds inner.css on top.
         $usesInnerCss = !trim($__env->yieldContent('skip_inner_css'));
+
+        // Version each theme file by its modification time, so browsers fetch a
+        // changed file at once instead of running a stale cached copy.
+        $themeAsset = fn($path) => asset($path) . '?v=' . @filemtime(public_path($path));
     @endphp
 
-    <link rel="stylesheet" href="{{ asset('assets/theme/css/site.css') }}">
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/site.css') }}">
     @if ($usesInnerCss)
-        <link rel="stylesheet" href="{{ asset('assets/theme/css/inner.css') }}">
+        <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/inner.css') }}">
     @endif
+    {{-- Wide-monitor layer (min-width queries only); loads last so it can extend both sheets above. --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/large-screen.css') }}">
+    {{-- Senior-readability layer: larger rem-based type, AAA-contrast text, big targets, PDF finder. --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/readable.css') }}">
+
+    {{-- Runs before first paint: skip the preloader after the first page of a visit
+         so moving between pages feels instant. --}}
+    <script>
+        (function (d) {
+            try {
+                if (sessionStorage.getItem('ls-visited')) d.classList.add('ls-return');
+                sessionStorage.setItem('ls-visited', '1');
+            } catch (e) {}
+        })(document.documentElement);
+    </script>
 
     <noscript>
         <style>
@@ -64,7 +83,8 @@
 
     @include('layouts.partials.footer')
 
-    <script src="{{ asset('assets/theme/js/inner.js') }}"></script>
+    <script src="{{ $themeAsset('assets/theme/js/inner.js') }}"></script>
+    <script src="{{ $themeAsset('assets/theme/js/readable.js') }}" defer></script>
 
     @yield('scripts')
 </body>
