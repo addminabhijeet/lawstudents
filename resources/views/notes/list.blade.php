@@ -527,7 +527,7 @@
             <div class="text-white mb-0 mr-auto">Downloading...</div>
             <a href="javascript:void(0)" class="ms-2 mb-1 close fw-normal" data-bs-dismiss="toast"
                 aria-label="Close">
-                <span class="text-white">&times;</span>
+                <span class="text-white"><x-local-icon name="x" /></span>
             </a>
         </div>
         <div class="toast-body p-3 text-white">

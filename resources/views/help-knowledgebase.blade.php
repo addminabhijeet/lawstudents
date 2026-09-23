@@ -759,7 +759,7 @@
                                             </div>
                                             <h6 class="fw-bolder">Law Students - Admin Dashboard UiKit</h6>
                                             <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started Law Students with Law Students up and running. Law Students bootstrap template docs helps you to get started with simple html codes.</p>
-                                            <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started &rarr;</a>
+                                            <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started <x-local-icon name="arrow-right" /></a>
                                         </div>
                                         <!--! [End] v-pills-general !-->
                                         <!--! [Start] v-pills-applications !-->
@@ -805,7 +805,7 @@
                                                     <p class="fs-12 text-muted mb-0 text-truncate-3-line">We are ready to build custom applications.</p>
                                                 </div>
                                                 <div class="mt-2 mt-lg-0">
-                                                    <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold text-primary">Contact Us &rarr;</a>
+                                                    <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold text-primary">Contact Us <x-local-icon name="arrow-right" /></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -819,7 +819,7 @@
                                                         <p class="fs-12 text-muted mb-0">Connect amazing apps on your bucket.</p>
                                                     </div>
                                                     <div class="mt-2 mt-lg-0">
-                                                        <a href="javascript:void(0);" class="fs-13 text-primary">Add New &rarr;</a>
+                                                        <a href="javascript:void(0);" class="fs-13 text-primary">Add New <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -1007,7 +1007,7 @@
                                                         <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                     </div>
                                                     <div class="mt-4">
-                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students &rarr;</a>
+                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1401,7 +1401,7 @@
                                                                             <span>View all services on Law Students.</span>
                                                                         </div>
                                                                         <div class="mt-2 mt-lg-0">
-                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
+                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More <x-local-icon name="arrow-right" /></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1574,7 +1574,7 @@
                                                                 <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                             </div>
                                                             <div class="mt-4">
-                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students &rarr;</a>
+                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students <x-local-icon name="arrow-right" /></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1684,7 +1684,7 @@
                                                                             <span>Learn more about our news and schedule reporting.</span>
                                                                         </div>
                                                                         <div class="wd-100 text-end">
-                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
+                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More <x-local-icon name="arrow-right" /></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2310,7 +2310,7 @@
                                 </div>
                                 <h2 class="fs-16 fw-bold mb-3">Knowledge Base</h2>
                                 <p class="fs-12 fw-medium text-muted text-truncate-3-line">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, veniam. Modi quas vero odit asperiores alias libero quae in quam dicta autem et repudiandae ex, molestiae doloremque, explicabo reiciendis minus?</p>
-                                <a href="javascript:void(0);" class="fs-12">Learn More &rarr;</a>
+                                <a href="javascript:void(0);" class="fs-12">Learn More <x-local-icon name="arrow-right" /></a>
                             </div>
                         </div>
                     </div>
@@ -2322,7 +2322,7 @@
                                 </div>
                                 <h2 class="fs-16 fw-bold mb-3">Contact Agent</h2>
                                 <p class="fs-12 fw-medium text-muted text-truncate-3-line">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, veniam. Modi quas vero odit asperiores alias libero quae in quam dicta autem et repudiandae ex, molestiae doloremque, explicabo reiciendis minus?</p>
-                                <a href="javascript:void(0);" class="fs-12">Learn More &rarr;</a>
+                                <a href="javascript:void(0);" class="fs-12">Learn More <x-local-icon name="arrow-right" /></a>
                             </div>
                         </div>
                     </div>
@@ -2334,7 +2334,7 @@
                                 </div>
                                 <h2 class="fs-16 fw-bold mb-3">Community Forum</h2>
                                 <p class="fs-12 fw-medium text-muted text-truncate-3-line">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, veniam. Modi quas vero odit asperiores alias libero quae in quam dicta autem et repudiandae ex, molestiae doloremque, explicabo reiciendis minus?</p>
-                                <a href="javascript:void(0);" class="fs-12">Learn More &rarr;</a>
+                                <a href="javascript:void(0);" class="fs-12">Learn More <x-local-icon name="arrow-right" /></a>
                             </div>
                         </div>
                     </div>
@@ -2380,7 +2380,7 @@
                                     </li>
                                 </ul>
                                 <div class="mt-4 ms-5 ps-3">
-                                    <a href="javascript:void(0);" class="fs-12">More Topics &rarr;</a>
+                                    <a href="javascript:void(0);" class="fs-12">More Topics <x-local-icon name="arrow-right" /></a>
                                 </div>
                             </div>
                         </div>
@@ -2418,7 +2418,7 @@
                                     </li>
                                 </ul>
                                 <div class="mt-4 ms-5 ps-3">
-                                    <a href="javascript:void(0);" class="fs-12">More Topics &rarr;</a>
+                                    <a href="javascript:void(0);" class="fs-12">More Topics <x-local-icon name="arrow-right" /></a>
                                 </div>
                             </div>
                         </div>
@@ -2456,7 +2456,7 @@
                                     </li>
                                 </ul>
                                 <div class="mt-4 ms-5 ps-3">
-                                    <a href="javascript:void(0);" class="fs-12">More Topics &rarr;</a>
+                                    <a href="javascript:void(0);" class="fs-12">More Topics <x-local-icon name="arrow-right" /></a>
                                 </div>
                             </div>
                         </div>
@@ -2494,7 +2494,7 @@
                                     </li>
                                 </ul>
                                 <div class="mt-4 ms-5 ps-3">
-                                    <a href="javascript:void(0);" class="fs-12">More Topics &rarr;</a>
+                                    <a href="javascript:void(0);" class="fs-12">More Topics <x-local-icon name="arrow-right" /></a>
                                 </div>
                             </div>
                         </div>
@@ -2532,7 +2532,7 @@
                                     </li>
                                 </ul>
                                 <div class="mt-4 ms-5 ps-3">
-                                    <a href="javascript:void(0);" class="fs-12">More Topics &rarr;</a>
+                                    <a href="javascript:void(0);" class="fs-12">More Topics <x-local-icon name="arrow-right" /></a>
                                 </div>
                             </div>
                         </div>
@@ -2570,7 +2570,7 @@
                                     </li>
                                 </ul>
                                 <div class="mt-4 ms-5 ps-3">
-                                    <a href="javascript:void(0);" class="fs-12">More Topics &rarr;</a>
+                                    <a href="javascript:void(0);" class="fs-12">More Topics <x-local-icon name="arrow-right" /></a>
                                 </div>
                             </div>
                         </div>

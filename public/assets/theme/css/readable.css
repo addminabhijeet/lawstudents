@@ -451,3 +451,21 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 /* ---------- 16. LEGAL KNOWLEDGE TILE TITLES: wrap between words, never inside one ---------- */
 .kn-card h5{word-break:normal;overflow-wrap:break-word;hyphens:none}
 @media(min-width:1201px){.kn-card h5{font-size:clamp(.9375rem,1.25vw,1.5625rem)}}
+
+/* ---------- 17. HEADER ON LAPTOP SCREENS ----------
+   1200–1839px: the one-row menu does not fit beside the logo, so give it its own
+   row under the logo + Login row instead of hiding it behind the ☰ button.
+   1025–1199px: even the second row would wrap, so the ☰ stays, but Login shows. */
+@media(min-width:1200px) and (max-width:1839px){
+  .site-header .burger,.site-header .mobile-menu{display:none}
+  .site-header .nav-wrap{flex-wrap:wrap;row-gap:0;padding-bottom:0}
+  .site-header .btn-login{display:flex;margin-left:auto}
+  .site-header .nav-wrap > nav{order:3;flex:1 0 100%;border-top:1px solid rgba(212,175,55,.22)}
+  .site-header .nav-menu{display:flex;flex-wrap:wrap;justify-content:space-evenly;column-gap:4px;row-gap:0}
+}
+@media(min-width:1025px) and (max-width:1199px){
+  .site-header .btn-login{display:flex;margin-left:auto}
+}
+
+/* ---------- 18. CLIENT PAGE CARDS: two columns only when each card has room ---------- */
+.testi-list{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}

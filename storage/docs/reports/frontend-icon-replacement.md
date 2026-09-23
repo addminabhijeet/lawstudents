@@ -32,3 +32,9 @@ Fixed two presentation issues found in the recheck:
 
 - The shared readability script now preserves `.site-icon` elements instead of overwriting the local footer icons with older inline SVGs.
 - Footer hover chevrons now have an explicit width, preventing the empty masked pseudo-element from collapsing under the existing `width:auto` rule.
+
+## Full-project icon pass
+
+Expanded the scan to admin, student and standalone dashboard templates. Replaced 376 remaining `&rarr;` and `&times;` symbols in 51 templates with the local arrow-right and close SVG assets through `components/local-icon.blade.php`. The component inherits the surrounding text color and size without requiring the public frontend stylesheet. Existing click handlers, links, labels and icon libraries are unchanged.
+
+All 208 Blade templates (including the new component) were scanned. No missing assets were found in static icon references using Laravel's `asset()` helper. All templates compiled successfully, and the source diff passed whitespace checks. Authenticated screens were checked at source/template level, not through a logged-in browser session. The file-by-file inventory is in `project-icon-check.json` beside this report.

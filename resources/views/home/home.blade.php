@@ -194,14 +194,19 @@
       <p class="section-sub">Submit your inquiry about any legal topic you'd like to explore deeper. Our legal experts will provide guidance and resources tailored to your learning needs.</p>
       <div class="title-rule"></div>
     </div>
-    <form class="form-card reveal" onsubmit="return false;">
+    <form class="form-card reveal" id="home-inquiry" action="{{ route('frontend.legal-knowledge-store') }}" method="post" enctype="multipart/form-data">
+      @csrf
+      <input type="hidden" name="form_id" value="home-inquiry">
+      @if ($errors->any() && old('form_id') === 'home-inquiry')
+        <p class="form-status" role="alert">{{ $errors->first() }}</p>
+      @endif
       <div class="form-row">
-        <div class="field"><label>Full Name</label><input type="text" placeholder="Enter your full name"></div>
-        <div class="field"><label>Email Address</label><input type="email" placeholder="Enter your email"></div>
-        <div class="field"><label>Phone Number</label><input type="tel" placeholder="Enter your phone number"></div>
-        <div class="field"><label>Select Legal Knowledge Category</label><select><option value="">Select Legal Knowledge Category</option><option>Constitutional Law</option><option>Criminal Law</option><option>Family Law</option><option>Corporate Law</option><option>Labor Law</option><option>Tax Law</option><option>Environmental Law</option><option>Intellectual Property</option><option>Administrative Law</option><option>International Law</option></select></div>
-        <div class="field full"><label>Your Inquiry</label><textarea placeholder="Describe the legal topic you would like to explore"></textarea></div>
-        <div class="field full"><label>Upload Document (Optional)</label><input type="file"></div>
+        <div class="field"><label for="hk-name">Full Name <span class="req" aria-hidden="true">*</span></label><input type="text" id="hk-name" name="name" value="{{ old('form_id') === 'home-inquiry' ? old('name') : '' }}" placeholder="Enter your full name" autocomplete="name" required></div>
+        <div class="field"><label for="hk-email">Email Address <span class="req" aria-hidden="true">*</span></label><input type="email" id="hk-email" name="email" value="{{ old('form_id') === 'home-inquiry' ? old('email') : '' }}" placeholder="Enter your email" autocomplete="email" required></div>
+        <div class="field"><label for="hk-mobile">Phone Number <span class="req" aria-hidden="true">*</span></label><input type="tel" id="hk-mobile" name="mobile" value="{{ old('form_id') === 'home-inquiry' ? old('mobile') : '' }}" placeholder="Enter your phone number" autocomplete="tel" maxlength="20" required></div>
+        <div class="field"><label for="hk-subject">Select Legal Knowledge Category <span class="req" aria-hidden="true">*</span></label><select id="hk-subject" name="subject" required><option value="">Select Legal Knowledge Category</option>@foreach ($homeKnowledgeCategories as $homeKnOpt)<option value="{{ $homeKnOpt->name }}" @selected(old('form_id') === 'home-inquiry' && old('subject') === $homeKnOpt->name)>{{ $homeKnOpt->name }}</option>@endforeach<option value="Other" @selected(old('form_id') === 'home-inquiry' && old('subject') === 'Other')>Other</option></select></div>
+        <div class="field full"><label for="hk-question">Your Inquiry <span class="req" aria-hidden="true">*</span></label><textarea id="hk-question" name="question" placeholder="Describe the legal topic you would like to explore" required>{{ old('form_id') === 'home-inquiry' ? old('question') : '' }}</textarea></div>
+        <div class="field full"><label for="hk-doc">Upload Document (Optional)</label><input type="file" id="hk-doc" name="document" accept=".pdf,.doc,.docx,.txt"></div>
       </div>
       <div class="form-actions"><button type="submit" class="btn btn-gold">Send Inquiry</button></div>
       <div class="form-note"><strong>Disclaimer:</strong> This inquiry facility is intended for preliminary communication and legal/educational information. Submission of an inquiry does not by itself create an advocate-client relationship. Formal legal advice, representation or engagement shall be subject to separate communication and acceptance.</div>

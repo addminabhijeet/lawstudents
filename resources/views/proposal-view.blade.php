@@ -762,7 +762,7 @@
                                             </div>
                                             <h6 class="fw-bolder">Law Students - Admin Dashboard UiKit</h6>
                                             <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started Law Students with Law Students up and running. Law Students bootstrap template docs helps you to get started with simple html codes.</p>
-                                            <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started &rarr;</a>
+                                            <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started <x-local-icon name="arrow-right" /></a>
                                         </div>
                                         <!--! [End] v-pills-general !-->
                                         <!--! [Start] v-pills-applications !-->
@@ -808,7 +808,7 @@
                                                     <p class="fs-12 text-muted mb-0 text-truncate-3-line">We are ready to build custom applications.</p>
                                                 </div>
                                                 <div class="mt-2 mt-lg-0">
-                                                    <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold text-primary">Contact Us &rarr;</a>
+                                                    <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold text-primary">Contact Us <x-local-icon name="arrow-right" /></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -822,7 +822,7 @@
                                                         <p class="fs-12 text-muted mb-0">Connect amazing apps on your bucket.</p>
                                                     </div>
                                                     <div class="mt-2 mt-lg-0">
-                                                        <a href="javascript:void(0);" class="fs-13 text-primary">Add New &rarr;</a>
+                                                        <a href="javascript:void(0);" class="fs-13 text-primary">Add New <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -1010,7 +1010,7 @@
                                                         <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                     </div>
                                                     <div class="mt-4">
-                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students &rarr;</a>
+                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1404,7 +1404,7 @@
                                                                             <span>View all services on Law Students.</span>
                                                                         </div>
                                                                         <div class="mt-2 mt-lg-0">
-                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
+                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More <x-local-icon name="arrow-right" /></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1577,7 +1577,7 @@
                                                                 <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                             </div>
                                                             <div class="mt-4">
-                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students &rarr;</a>
+                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students <x-local-icon name="arrow-right" /></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1687,7 +1687,7 @@
                                                                             <span>Learn more about our news and schedule reporting.</span>
                                                                         </div>
                                                                         <div class="wd-100 text-end">
-                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
+                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More <x-local-icon name="arrow-right" /></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2551,7 +2551,7 @@
                                                         </div>
                                                         <h6 class="fw-bold mb-3 text-truncate-1-line">Website design and development</h6>
                                                         <p class="text-muted mb-4 text-truncate-3-line">Website design and development - designing and building a website to meet specific requirements, such as the look and feel, functionality, and content.</p>
-                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More &rarr;</a>
+                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2563,7 +2563,7 @@
                                                         </div>
                                                         <h6 class="fw-bold mb-3 text-truncate-1-line">User experience (UX) and user interface (UI) design</h6>
                                                         <p class="text-muted mb-4 text-truncate-3-line">User experience (UX) and user interface (UI) design - designing the look and feel of a website, including the placement of elements, the color scheme, and how users interact with the website.</p>
-                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More &rarr;</a>
+                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2575,7 +2575,7 @@
                                                         </div>
                                                         <h6 class="fw-bold mb-3 text-truncate-1-line">Responsive and mobile design</h6>
                                                         <p class="text-muted mb-4 text-truncate-3-line">Responsive and mobile design - ensuring that a website looks and functions well on all devices, including desktops, tablets, and mobile phones.</p>
-                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More &rarr;</a>
+                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2587,7 +2587,7 @@
                                                         </div>
                                                         <h6 class="fw-bold mb-3 text-truncate-1-line">Search engine optimization (SEO) optimization</h6>
                                                         <p class="text-muted mb-4 text-truncate-3-line">Search engine optimization (SEO) optimization - improving a website's visibility on search engines like Google by optimizing its content, keywords, and structure.</p>
-                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More &rarr;</a>
+                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2599,7 +2599,7 @@
                                                         </div>
                                                         <h6 class="fw-bold mb-3 text-truncate-1-line">Website security and SSL certificate installation</h6>
                                                         <p class="text-muted mb-4 text-truncate-3-line">Website security and SSL certificate installation - securing a website with SSL certificates and other security measures to protect against hacking and cyber attacks.</p>
-                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More &rarr;</a>
+                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2611,7 +2611,7 @@
                                                         </div>
                                                         <h6 class="fw-bold mb-3 text-truncate-1-line">Website maintenance and updates</h6>
                                                         <p class="text-muted mb-4 text-truncate-3-line">Website maintenance and updates - keeping a website up-to-date with the latest security patches, content updates, and bug fixes.</p>
-                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More &rarr;</a>
+                                                        <a href="javascript:void(0);" class="d-block fs-10 fw-bold text-dark text-uppercase text-spacing-1">Learn More <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -4054,7 +4054,7 @@
             <div class="toast-header px-3 bg-transparent d-flex align-items-center justify-content-between border-bottom border-light border-opacity-10">
                 <div class="text-white mb-0 mr-auto">Downloading...</div>
                 <a href="javascript:void(0)" class="ms-2 mb-1 close fw-normal" data-bs-dismiss="toast" aria-label="Close">
-                    <span class="text-white">&times;</span>
+                    <span class="text-white"><x-local-icon name="x" /></span>
                 </a>
             </div>
             <div class="toast-body p-3 text-white">

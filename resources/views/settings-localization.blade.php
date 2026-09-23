@@ -759,7 +759,7 @@
                                             </div>
                                             <h6 class="fw-bolder">Law Students - Admin Dashboard UiKit</h6>
                                             <p class="fs-12 fw-normal text-muted text-truncate-3-line">Get started Law Students with Law Students up and running. Law Students bootstrap template docs helps you to get started with simple html codes.</p>
-                                            <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started &rarr;</a>
+                                            <a href="javascript:void(0);" class="fs-13 fw-bold text-primary">Get Started <x-local-icon name="arrow-right" /></a>
                                         </div>
                                         <!--! [End] v-pills-general !-->
                                         <!--! [Start] v-pills-applications !-->
@@ -805,7 +805,7 @@
                                                     <p class="fs-12 text-muted mb-0 text-truncate-3-line">We are ready to build custom applications.</p>
                                                 </div>
                                                 <div class="mt-2 mt-lg-0">
-                                                    <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold text-primary">Contact Us &rarr;</a>
+                                                    <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold text-primary">Contact Us <x-local-icon name="arrow-right" /></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -819,7 +819,7 @@
                                                         <p class="fs-12 text-muted mb-0">Connect amazing apps on your bucket.</p>
                                                     </div>
                                                     <div class="mt-2 mt-lg-0">
-                                                        <a href="javascript:void(0);" class="fs-13 text-primary">Add New &rarr;</a>
+                                                        <a href="javascript:void(0);" class="fs-13 text-primary">Add New <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -1007,7 +1007,7 @@
                                                         <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                     </div>
                                                     <div class="mt-4">
-                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students &rarr;</a>
+                                                        <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all resources on Law Students <x-local-icon name="arrow-right" /></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1401,7 +1401,7 @@
                                                                             <span>View all services on Law Students.</span>
                                                                         </div>
                                                                         <div class="mt-2 mt-lg-0">
-                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
+                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More <x-local-icon name="arrow-right" /></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1574,7 +1574,7 @@
                                                                 <img src="assets/images/banner/1.jpg" alt="" class="img-fluid">
                                                             </div>
                                                             <div class="mt-4">
-                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students &rarr;</a>
+                                                                <a href="mailto:theme_ocean@gmail.com" class="fs-13 fw-bold">View all features on Law Students <x-local-icon name="arrow-right" /></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1684,7 +1684,7 @@
                                                                             <span>Learn more about our news and schedule reporting.</span>
                                                                         </div>
                                                                         <div class="wd-100 text-end">
-                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More &rarr;</a>
+                                                                            <a href="javascript:void(0);" class="fs-13 text-primary">Learn More <x-local-icon name="arrow-right" /></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -3394,7 +3394,7 @@
             <div class="toast-header px-3 bg-transparent d-flex align-items-center justify-content-between border-bottom border-light border-opacity-10">
                 <div class="text-white mb-0 mr-auto">Downloading...</div>
                 <a href="javascript:void(0)" class="ms-2 mb-1 close fw-normal" data-bs-dismiss="toast" aria-label="Close">
-                    <span class="text-white">&times;</span>
+                    <span class="text-white"><x-local-icon name="x" /></span>
                 </a>
             </div>
             <div class="toast-body p-3 text-white">
