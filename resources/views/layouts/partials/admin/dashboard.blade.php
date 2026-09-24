@@ -28,6 +28,9 @@
     <!-- Responsive (phone / tablet) fixes -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=4">
 
+    <!-- Page loader (shown only when a page is slow to load) -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/panel-loader.css') }}?v=1">
+
     <!-- IE Support -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -37,6 +40,17 @@
 
 
 <body>
+    <!-- Page loader: panel-loader.js shows it only when loading takes more than a moment. -->
+    <div class="panel-loader" id="panelLoader" role="status" aria-live="polite" aria-hidden="true">
+        <div class="panel-loader__icon">
+            <div class="panel-loader__ring"></div>
+            <div class="panel-loader__ring panel-loader__ring--outer"></div>
+            <img src="{{ asset('assets/theme/images/preloader.svg') }}" alt="">
+        </div>
+        <div class="panel-loader__text">Law Students</div>
+        <span class="visually-hidden">Loading, please wait…</span>
+    </div>
+    <script src="{{ asset('assets/js/panel-loader.js') }}?v=1"></script>
     <!--! ================================================================ !-->
     <!--! [Start] Navigation Manu !-->
     <!--! ================================================================ !-->

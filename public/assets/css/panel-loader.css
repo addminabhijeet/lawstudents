@@ -1,0 +1,113 @@
+/*
+ * Page loader for the admin and student panels, styled like the public website's
+ * preloader (gold rings around the spinning logo). Hidden by default: panel-loader.js
+ * shows it only when a page takes longer than a moment to load.
+ */
+.panel-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(18, 16, 12, 0.8);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.panel-loader.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.panel-loader__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+}
+
+.panel-loader__icon img {
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.7));
+    animation: panelLoaderSpin 2.4s linear infinite;
+}
+
+.panel-loader__ring {
+    position: absolute;
+    inset: 16px;
+    border: 2px solid transparent;
+    border-top-color: #d4af37;
+    border-right-color: #f0d97d;
+    border-radius: 50%;
+    animation: panelLoaderSpin 1.1s linear infinite;
+}
+
+.panel-loader__ring--outer {
+    inset: 0;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #a8842a;
+    animation-duration: 1.7s;
+    animation-direction: reverse;
+}
+
+.panel-loader__text {
+    margin-top: 18px;
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #d4af37;
+    animation: panelLoaderPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes panelLoaderSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes panelLoaderPulse {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .panel-loader__icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .panel-loader__icon img {
+        width: 52px;
+        height: 52px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .panel-loader__icon img,
+    .panel-loader__ring,
+    .panel-loader__text {
+        animation: none;
+    }
+
+    .panel-loader__text {
+        opacity: 1;
+    }
+}
