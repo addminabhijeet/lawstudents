@@ -311,6 +311,28 @@
         }
       });
     });
+
+    $$('form:not([data-static])').forEach(function(form){
+      form.addEventListener('submit', function(e){
+        if(form.dataset.submitting === '1'){
+          e.preventDefault();
+          return;
+        }
+        if(typeof form.checkValidity === 'function' && !form.checkValidity()){
+          if(typeof form.reportValidity === 'function') form.reportValidity();
+          return;
+        }
+
+        form.dataset.submitting = '1';
+        $$('button[type="submit"], input[type="submit"]', form).forEach(function(button){
+          button.dataset.originalText = button.tagName === 'INPUT' ? button.value : button.innerHTML;
+          if(button.tagName === 'INPUT') button.value = button.dataset.loadingText || 'Submitting...';
+          else button.innerHTML = button.dataset.loadingText || 'Submitting...';
+          button.disabled = true;
+          button.setAttribute('aria-busy', 'true');
+        });
+      });
+    });
   }
 
   /* ---------- boot ---------- */

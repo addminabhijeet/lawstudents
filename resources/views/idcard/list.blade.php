@@ -144,6 +144,11 @@
                                                                 class="feather {{ $firstPayment->viewid ? 'feather-eye-off' : 'feather-eye' }}"></i>
                                                         </button>
 
+                                                        {{-- Visible state: touch screens never show the button's hover title. --}}
+                                                        <span class="small fw-semibold text-muted viewid-state">
+                                                            {{ $firstPayment->viewid ? 'Visible' : 'Hidden' }}
+                                                        </span>
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -206,8 +211,10 @@
             // type: 'success' or 'error'
             const container = document.querySelector('.main-content');
             const alertDiv = document.createElement('div');
+            // rt-toast (responsive-fixes.css) pins the message to the bottom of the screen so it is
+            // seen even when the row that was tapped is far down the page.
             alertDiv.className =
-                `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show`;
+                `alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show rt-toast`;
             alertDiv.innerHTML = `
             ${message}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -244,6 +251,10 @@
                                 'Click to make Visible';
                             this.querySelector('i').className =
                                 `feather ${data.new_status == 1 ? 'feather-eye-off' : 'feather-eye'}`;
+                            const stateLabel = this.parentElement.querySelector('.viewid-state');
+                            if (stateLabel) {
+                                stateLabel.textContent = data.new_status == 1 ? 'Visible' : 'Hidden';
+                            }
 
                             // Show success alert
                             showAlert('success',

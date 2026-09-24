@@ -25,7 +25,18 @@
     <div class="title-rule"></div>
 </div>
 @if ($newsItems->isEmpty())
-    <p class="doc-card">No announcements yet. Please check back soon.</p>
+    <div class="doc-card reveal">
+        <div class="list-card" style="box-shadow:none;margin:0">
+            <div class="list-icon"><span class="site-icon icon-clipboard" aria-hidden="true"></span></div>
+            <div class="list-body">
+                <h4>No announcements are published yet</h4>
+                <div class="list-meta">
+                    <span class="pdf">New acts, rules, notes and examination updates will appear here once added by the team.</span>
+                    <span class="go"><a href="{{ route('frontend.course') }}">Explore Courses <span class="site-icon icon-arrow-right" aria-hidden="true"></span></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
 @else
     <div class="list-grid">
         @foreach ($newsItems as $newsItem)

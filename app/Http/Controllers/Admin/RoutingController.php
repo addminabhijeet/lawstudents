@@ -39,16 +39,6 @@ class RoutingController extends Controller
         return view('auth.student-verify-otp');
     }
 
-    public function register()
-    {
-        return view('auth.auth-register-minimal');
-    }
-
-    public function registerstu()
-    {
-        return view('auth.auth-registerstu-minimal');
-    }
-
     public function listpayment()
     {
         $payments = Payment::with('student')

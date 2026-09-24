@@ -243,6 +243,7 @@ $user = \App\Models\User::first();
                                         <div class="avatar-text avatar-md" data-bs-toggle="tooltip" title="Print Invoice">
                                             <i class="feather feather-printer"></i>
                                         </div>
+                                        <span class="ms-2 align-self-center fw-semibold">Print</span>
                                     </a>
 
                                     <!-- Download button -->

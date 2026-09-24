@@ -3,6 +3,10 @@
 @section('meta_description', 'Our esteemed clients and learners at Law Students.')
 
 @section('content')
+@php
+    $clientProgramOptions = ['LL.B. Entrance Examination', 'LL.B. - 3 Years', 'LL.B. - 5 Years', 'LL.M.', 'Judiciary Examination', 'CSEET', 'CA', 'CS', 'CMA', 'English Grammar', 'Spoken English', 'Bare Acts / Rules', 'Legal Knowledge', 'Other'];
+@endphp
+
 <section class="page-hero">
     <div class="hero-frame" aria-hidden="true"></div>
     <div class="wrap">
@@ -78,14 +82,17 @@
                                 aria-hidden="true">*</span></label><input type="email" id="cl-email" name="email"
                             value="{{ old('email') }}" placeholder="Email Address" autocomplete="email" required></div>
                     <div class="field full"><label for="cl-service">Interested Course / Service Type <span class="req"
-                                aria-hidden="true">*</span></label><input type="text" id="cl-service"
-                            name="service_type" value="{{ old('service_type') }}" placeholder="e.g. Criminal Law"
-                            required></div>
+                                aria-hidden="true">*</span></label><select id="cl-service" name="service_type" required>
+                            <option value="">Select Course / Service Type</option>
+                            @foreach ($clientProgramOptions as $clientProgram)
+                                <option value="{{ $clientProgram }}" @selected(old('service_type') === $clientProgram)>{{ $clientProgram }}</option>
+                            @endforeach
+                        </select></div>
                     <div class="field full"><label for="cl-msg">Message <span class="req"
                                 aria-hidden="true">*</span></label><textarea id="cl-msg" name="message"
-                            placeholder="Tell us about your learning goals or queries" required>{{ old('message') }}</textarea></div>
+                            placeholder="Tell us about your learning goals or queries" minlength="10" required>{{ old('message') }}</textarea></div>
                 </div>
-                <div class="form-actions"><button type="submit" class="btn btn-gold">Join Our Client Network <span class="site-icon icon-arrow-right" aria-hidden="true"></span></button></div>
+                <div class="form-actions"><button type="submit" class="btn btn-gold" data-loading-text="Sending...">Join Our Client Network <span class="site-icon icon-arrow-right" aria-hidden="true"></span></button></div>
             </form>
         </div>
     </div>

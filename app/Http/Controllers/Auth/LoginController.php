@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Admin;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -46,25 +45,6 @@ class LoginController extends Controller
         return back()->with('error', 'Invalid login credentials');
     }
 
-
-    public function registersubmit(Request $request): RedirectResponse
-    {
-        $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'username' => 'required|string|max:100|unique:admins',
-            'email' => 'required|email|max:150|unique:admins',
-            'password' => 'required|confirmed|min:6',
-        ]);
-
-        $admin = Admin::create($data);
-
-        Auth::guard('admin')->login($admin);
-
-        return redirect()->route('login')
-            ->with('success', 'Registration successful. Please login.');
-    }
-
-    
 
     public function logout(Request $request): RedirectResponse
     {

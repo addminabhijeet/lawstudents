@@ -21,6 +21,7 @@
     $homeContactUser = \App\Models\User::first();
     $homeEmail = !empty($homeContactUser->webemail) ? $homeContactUser->webemail : 'lawstudents.edu@gmail.com';
     $homeMobile = !empty($homeContactUser->mobile) ? $homeContactUser->mobile : '+916624536320';
+    $homeAddress = !empty($homeContactUser->webaddress) ? $homeContactUser->webaddress : '224 Legal District, Delhi High Court Marg, New Delhi 110001';
     $homeWhatsapp = preg_replace('/[^0-9]/', '', $homeMobile);
 
     // pdfs is cast to an array on these models; also accept a legacy plain-string path.
@@ -368,10 +369,10 @@
       <div class="contact-intro reveal">
         <p>Have questions about our courses, Bare Acts, or study materials? Our team is ready to help you every step of the way in your legal education journey.</p>
         <div class="contact-items">
-          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-map-pin" aria-hidden="true"></span></div><div><h5>Address</h5><p>224 Legal District, Delhi High Court Marg, New Delhi 110001</p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-map-pin" aria-hidden="true"></span></div><div><h5>Address</h5><p>{{ $homeAddress }}</p></div></div>
           <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-phone" aria-hidden="true"></span></div><div><h5>Phone</h5><p><a href="tel:{{ $homeMobile }}">{{ $homeMobile }}</a></p></div></div>
           <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></div><div><h5>WhatsApp</h5><p><a href="https://wa.me/{{ $homeWhatsapp }}" target="_blank" rel="noopener">{{ $homeMobile }}</a></p></div></div>
-          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-mail" aria-hidden="true"></span></div><div><h5>Email</h5><p><a href="mailto:{{ $homeEmail }}">{!! str_replace('@', '@<wbr>', e($homeEmail)) !!}</a></p></div></div>
+          <div class="contact-item"><div class="contact-ico"><span class="site-icon icon-mail" aria-hidden="true"></span></div><div><h5>Email</h5><p><a href="mailto:{{ $homeEmail }}">{{ $homeEmail }}</a></p></div></div>
         </div>
       </div>
       <form class="form-card reveal" data-d="1" id="home-contact" action="{{ route('frontend.contactstore') }}" method="post">

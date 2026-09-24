@@ -85,77 +85,77 @@
 
                                 <!-- BASIC INFO -->
                                 <div class="px-4 row g-3">
-                                    <div class="col-md-3">
+                                    <div class="col-md-6 col-xl-3">
                                         <label>To Name</label>
                                         <input type="text" class="form-control"
                                             name="payments[{{ $pIndex }}][to_name]"
                                             value="{{ $payment->to_name }}" readonly>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-6 col-xl-3">
                                         <label>To Email</label>
                                         <input type="email" class="form-control"
                                             name="payments[{{ $pIndex }}][to_email]"
                                             value="{{ $payment->to_email }}" readonly>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-6 col-xl-3">
                                         <label>To Phone</label>
                                         <input type="text" class="form-control"
                                             name="payments[{{ $pIndex }}][to_phone]"
                                             value="{{ $payment->to_phone }}" readonly>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-6 col-xl-3">
                                         <label>To Address</label>
                                         <input type="text" class="form-control"
                                             name="payments[{{ $pIndex }}][to_address]"
                                             value="{{ $payment->to_address }}" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Sub Total</label>
                                         <input type="number" step="0.01" class="form-control"
                                             name="payments[{{ $pIndex }}][sub_total]"
                                             value="{{ $payment->sub_total }}" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Tax %</label>
                                         <input type="number" step="0.01" class="form-control"
                                             name="payments[{{ $pIndex }}][tax_percentage]"
                                             value="{{ $payment->tax_percentage }}" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Tax Amount</label>
                                         <input type="number" step="0.01" class="form-control"
                                             name="payments[{{ $pIndex }}][tax_amount]"
                                             value="{{ $payment->tax_amount }}" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Discount</label>
                                         <input type="number" step="0.01" class="form-control"
                                             name="payments[{{ $pIndex }}][discount]"
                                             value="{{ $payment->discount }}" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Discount %</label>
                                         <input type="number" step="0.01" class="form-control"
                                             name="payments[{{ $pIndex }}][discount_percent]"
                                             value="{{ $payment->discount_percent }}" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Grand Total</label>
                                         <input type="number" step="0.01" class="form-control"
                                             name="payments[{{ $pIndex }}][grand_total]"
                                             value="{{ $payment->grand_total }}" readonly>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Payment Status</label>
 
                                         <!-- Disabled Select (UI Readonly) -->
@@ -186,7 +186,7 @@
                                     <input type="hidden" name="payments[{{ $pIndex }}][id]"
                                         value="{{ $payment->id }}">
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Paid Amount</label>
 
                                         <input type="number" step="0.01"
@@ -203,21 +203,22 @@
                                         </small>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-4 col-xl-2">
                                         <label>Remaining Amount</label>
                                         <input type="number" step="0.01" class="form-control"
                                             name="payments[{{ $pIndex }}][remaining_amount]"
                                             value="{{ $payment->remaining_amount }}" readonly>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-8 col-xl-4">
                                         <label>Invoice Note</label>
                                         <textarea class="form-control" name="payments[{{ $pIndex }}][invoice_note]">{{ $payment->invoice_note }}</textarea>
                                     </div>
 
-                                    <div class="col-md-2 d-flex align-items-end">
+                                    <div class="col-md-4 col-xl-2 d-flex align-items-end">
                                         <a href="{{ route('admin.sendpaymentmail', $payment->id) }}"
-                                            class="btn btn-success w-100">
+                                            class="btn btn-success w-100"
+                                            onclick="return confirm('Send the payment email to this student now?')">
                                             Send Mail
                                         </a>
                                     </div>

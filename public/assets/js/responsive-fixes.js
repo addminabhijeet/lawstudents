@@ -127,6 +127,44 @@
         });
     }
 
+    // Pop-ups placed inside the page area are covered by their own dark backdrop: the theme
+    // blurs .nxl-container while a pop-up is open, which traps the pop-up underneath it.
+    // Bootstrap expects pop-ups to be direct children of <body>, so move them there.
+    function moveModalsToBody() {
+        var modals = document.querySelectorAll('.nxl-container .modal');
+        Array.prototype.forEach.call(modals, function (modal) {
+            document.body.appendChild(modal);
+        });
+    }
+
+    // Icon-only row buttons: give them a name for screen readers and, in the phone card
+    // layout, a visible text label (touch screens never show hover tooltips).
+    var ICON_LABELS = [
+        ['feather-eye', 'View'],
+        ['feather-edit', 'Edit'],
+        ['feather-trash-2', 'Delete'],
+        ['fa-id-card', 'ID card']
+    ];
+
+    function labelIconButtons() {
+        var buttons = document.querySelectorAll('.table.rt-stack td.rt-actions .avatar-text');
+
+        Array.prototype.forEach.call(buttons, function (button) {
+            if (button.classList.contains('toggle-viewid-btn') || button.textContent.trim() !== '') {
+                return;
+            }
+            for (var i = 0; i < ICON_LABELS.length; i++) {
+                if (button.querySelector('.' + ICON_LABELS[i][0])) {
+                    button.setAttribute('data-rt-label', ICON_LABELS[i][1]);
+                    if (!button.getAttribute('aria-label')) {
+                        button.setAttribute('aria-label', ICON_LABELS[i][1]);
+                    }
+                    return;
+                }
+            }
+        });
+    }
+
     var resizeTimer = null;
     function onResize() {
         clearTimeout(resizeTimer);
@@ -134,7 +172,9 @@
     }
 
     function init() {
+        moveModalsToBody();
         prepareTables();
+        labelIconButtons();
         layoutTables();
         condensePagers();
         window.addEventListener('resize', onResize);

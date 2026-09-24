@@ -78252,3 +78252,61 @@ Stack trace:
 #56 C:/Users/NS.NS009/AppData/Local/Temp/claude/C--xampp-htdocs-lawstudents/82f92946-74e3-4f96-8224-67456927f846/scratchpad/router.php(80): Illuminate/Foundation/Http/Kernel->handle(Object(Illuminate/Http/Request))
 #57 {main}
 "} 
+[2026-09-24 21:10:20] local.ERROR: The "intl" PHP extension is required to use the [format] method. {"exception":"[object] (RuntimeException(code: 0): The \"intl\" PHP extension is required to use the [format] method. at C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Support/Number.php:443)
+[stacktrace]
+#0 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Support/Number.php(38): Illuminate/Support/Number::ensureIntlExtensionIsInstalled()
+#1 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Support/Number.php(216): Illuminate/Support/Number::format(16, 2, NULL)
+#2 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Database/Console/TableCommand.php(231): Illuminate/Support/Number::fileSize(16, 2)
+#3 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Database/Console/TableCommand.php(199): Illuminate/Database/Console/TableCommand->displayForCli(Array)
+#4 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Database/Console/TableCommand.php(100): Illuminate/Database/Console/TableCommand->display(Array)
+#5 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate/Database/Console/TableCommand->handle(Object(Illuminate/Database/DatabaseManager))
+#6 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::Illuminate/Container/{closure}()
+#7 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#8 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#9 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Container.php(799): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#10 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate/Container/Container->call(Array)
+#11 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Command/Command.php(341): Illuminate/Console/Command->execute(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#12 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony/Component/Console/Command/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#13 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(1102): Illuminate/Console/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#14 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(356): Symfony/Component/Console/Application->doRunCommand(Object(Illuminate/Database/Console/TableCommand), Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#15 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#16 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#17 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#18 C:/xampp/htdocs/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#19 {main}
+"} 
+[2026-09-24 21:10:22] local.ERROR: The "intl" PHP extension is required to use the [format] method. {"exception":"[object] (RuntimeException(code: 0): The \"intl\" PHP extension is required to use the [format] method. at C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Support/Number.php:443)
+[stacktrace]
+#0 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Support/Number.php(38): Illuminate/Support/Number::ensureIntlExtensionIsInstalled()
+#1 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Support/Number.php(216): Illuminate/Support/Number::format(48, 2, NULL)
+#2 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Database/Console/TableCommand.php(231): Illuminate/Support/Number::fileSize(48, 2)
+#3 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Database/Console/TableCommand.php(199): Illuminate/Database/Console/TableCommand->displayForCli(Array)
+#4 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Database/Console/TableCommand.php(100): Illuminate/Database/Console/TableCommand->display(Array)
+#5 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate/Database/Console/TableCommand->handle(Object(Illuminate/Database/DatabaseManager))
+#6 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::Illuminate/Container/{closure}()
+#7 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#8 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#9 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Container.php(799): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#10 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate/Container/Container->call(Array)
+#11 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Command/Command.php(341): Illuminate/Console/Command->execute(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#12 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony/Component/Console/Command/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#13 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(1102): Illuminate/Console/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#14 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(356): Symfony/Component/Console/Application->doRunCommand(Object(Illuminate/Database/Console/TableCommand), Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#15 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#16 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#17 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#18 C:/xampp/htdocs/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#19 {main}
+"} 
+[2026-09-24 21:17:28] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:28] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:28] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:28] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:28] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:28] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:50] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:50] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:50] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:50] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:50] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  
+[2026-09-24 21:17:50] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 324  

@@ -54,8 +54,8 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 .reveal[data-d="4"]{transition-delay:.16s}
 /* Legal-knowledge tiles bounced non-stop under the cursor, which makes them hard to hit. */
 .kn-card:hover{animation:none;transform:translateY(-6px)}
-/* After the first page of a visit the preloader is skipped (flag set in the <head> script). */
-.ls-return .se-pre-con{display:none}
+/* Return visits skip the preloader unless the page is still loading after the short threshold in the head script. */
+.ls-return:not(.ls-slow-load) .se-pre-con{display:none}
 
 /* ---------- 4. TOP BAR + NAVBAR: THE THEME'S OWN DESIGN, ENLARGED ----------
    The header keeps its exact design; `zoom` enlarges all of it — text, logo,

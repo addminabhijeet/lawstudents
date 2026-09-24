@@ -36,12 +36,20 @@
     {{-- Senior-readability layer: larger rem-based type, AAA-contrast text, big targets, PDF finder. --}}
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/readable.css') }}">
 
-    {{-- Runs before first paint: skip the preloader after the first page of a visit
-         so moving between pages feels instant. --}}
+    {{-- Runs before first paint: return visits start without the preloader, but
+         slow page loads can reveal it again after a short delay. --}}
     <script>
         (function (d) {
             try {
-                if (sessionStorage.getItem('ls-visited')) d.classList.add('ls-return');
+                if (sessionStorage.getItem('ls-visited')) {
+                    d.classList.add('ls-return');
+                    setTimeout(function () {
+                        if (document.readyState !== 'complete') {
+                            d.classList.remove('ls-return');
+                            d.classList.add('ls-slow-load');
+                        }
+                    }, 700);
+                }
                 sessionStorage.setItem('ls-visited', '1');
             } catch (e) {}
         })(document.documentElement);

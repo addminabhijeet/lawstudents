@@ -3,13 +3,43 @@
     $footerUser = \App\Models\User::first();
     $footerEmail = !empty($footerUser->webemail) ? $footerUser->webemail : 'lawstudents.edu@gmail.com';
     $footerMobile = !empty($footerUser->mobile) ? $footerUser->mobile : '+916624536320';
+    $footerAddress = !empty($footerUser->webaddress) ? $footerUser->webaddress : '224 Legal District, Delhi High Court Marg, New Delhi 110001';
     $footerWhatsapp = preg_replace('/[^0-9]/', '', $footerMobile);
-    $footerFacebook = !empty($footerUser->facebook) ? $footerUser->facebook : '#';
-    $footerTwitter = !empty($footerUser->twitter) ? $footerUser->twitter : '#';
-    $footerInstagram = !empty($footerUser->instagram) ? $footerUser->instagram : '#';
-    $footerLinkedin = !empty($footerUser->linkedin) ? $footerUser->linkedin : '#';
-    $footerYoutube = !empty($footerUser->youtube) ? $footerUser->youtube : '#';
-    $footerPinterest = !empty($footerUser->pinterest) ? $footerUser->pinterest : '#';
+    $footerSocialUrl = function ($url) {
+        $url = trim((string) $url);
+        if ($url === '' || $url === '#') {
+            return null;
+        }
+
+        $normalizedUrl = preg_match('/^https?:\/\//i', $url) ? $url : 'https://' . ltrim($url, '/');
+        $parts = parse_url($normalizedUrl);
+        $host = strtolower($parts['host'] ?? '');
+        $path = trim($parts['path'] ?? '', '/');
+        $genericSocialHosts = [
+            'facebook.com', 'www.facebook.com',
+            'x.com', 'www.x.com',
+            'twitter.com', 'www.twitter.com',
+            'instagram.com', 'www.instagram.com',
+            'linkedin.com', 'www.linkedin.com',
+            'youtube.com', 'www.youtube.com',
+            'pinterest.com', 'www.pinterest.com',
+        ];
+
+        if (in_array($host, $genericSocialHosts, true) && $path === '') {
+            return null;
+        }
+
+        return $normalizedUrl;
+    };
+
+    $footerSocialLinks = array_filter([
+        'Facebook' => ['url' => $footerSocialUrl($footerUser->facebook ?? null), 'icon' => 'icon-brand-facebook'],
+        'X' => ['url' => $footerSocialUrl($footerUser->twitter ?? null), 'icon' => 'icon-brand-x'],
+        'Instagram' => ['url' => $footerSocialUrl($footerUser->instagram ?? null), 'icon' => 'icon-brand-instagram'],
+        'LinkedIn' => ['url' => $footerSocialUrl($footerUser->linkedin ?? null), 'icon' => 'icon-brand-linkedin'],
+        'YouTube' => ['url' => $footerSocialUrl($footerUser->youtube ?? null), 'icon' => 'icon-brand-youtube'],
+        'Pinterest' => ['url' => $footerSocialUrl($footerUser->pinterest ?? null), 'icon' => 'icon-brand-pinterest'],
+    ], fn($item) => !empty($item['url']));
 
     // Programs column: the course page filters on ?cat=<category id>, so read the
     // ids and labels straight from the categories table rather than hard-coding
@@ -64,13 +94,13 @@
                 <div class="footer-contact-item">
                     <div>
                         <h6>Email</h6>
-                        <p><a href="mailto:{{ $footerEmail }}">{!! str_replace('@', '@<wbr>', e($footerEmail)) !!}</a></p>
+                        <p><a href="mailto:{{ $footerEmail }}">{{ $footerEmail }}</a></p>
                     </div>
                 </div>
                 <div class="footer-contact-item">
                     <div>
                         <h6>Address</h6>
-                        <p>224 Legal District, Delhi High Court Marg, New Delhi 110001</p>
+                        <p>{{ $footerAddress }}</p>
                     </div>
                 </div>
                 <div class="footer-contact-item">
@@ -99,12 +129,9 @@
             <div class="footer-col">
                 <h4>Social Media</h4>
                 <div class="social-row">
-                    <a href="{{ $footerFacebook }}" title="Facebook" aria-label="Facebook"><span class="site-icon icon-brand-facebook" aria-hidden="true"></span></a>
-                    <a href="{{ $footerTwitter }}" title="X" aria-label="X"><span class="site-icon icon-brand-x" aria-hidden="true"></span></a>
-                    <a href="{{ $footerInstagram }}" title="Instagram" aria-label="Instagram"><span class="site-icon icon-brand-instagram" aria-hidden="true"></span></a>
-                    <a href="{{ $footerLinkedin }}" title="LinkedIn" aria-label="LinkedIn"><span class="site-icon icon-brand-linkedin" aria-hidden="true"></span></a>
-                    <a href="{{ $footerYoutube }}" title="YouTube" aria-label="YouTube"><span class="site-icon icon-brand-youtube" aria-hidden="true"></span></a>
-                    <a href="{{ $footerPinterest }}" title="Pinterest" aria-label="Pinterest"><span class="site-icon icon-brand-pinterest" aria-hidden="true"></span></a>
+                    @foreach ($footerSocialLinks as $footerSocialName => $footerSocial)
+                        <a href="{{ $footerSocial['url'] }}" title="{{ $footerSocialName }}" aria-label="{{ $footerSocialName }}" target="_blank" rel="noopener"><span class="site-icon {{ $footerSocial['icon'] }}" aria-hidden="true"></span></a>
+                    @endforeach
                     <a href="https://wa.me/{{ $footerWhatsapp }}" title="WhatsApp" aria-label="WhatsApp"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></a>
                 </div>
             </div>

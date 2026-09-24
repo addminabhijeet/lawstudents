@@ -163,6 +163,21 @@ html.app-skin-dark .table-responsive .table.rt-cards tbody tr td {
     flex-wrap: wrap;
 }
 
+/* Icon-only row buttons get a visible text label in the card layout (set by responsive-fixes.js). */
+.table-responsive .table.rt-cards td.rt-actions .avatar-text[data-rt-label] {
+    width: auto;
+    max-width: none;
+    padding: 0 12px;
+    gap: 6px;
+    border-radius: 20px;
+}
+
+.table-responsive .table.rt-cards td.rt-actions .avatar-text[data-rt-label]::after {
+    content: attr(data-rt-label);
+    font-size: 12px;
+    font-weight: 600;
+}
+
 /* ---------- Tap targets on touch-size screens ---------- */
 @media (max-width: 1024px) {
     .nxl-container .table .avatar-text.avatar-md {
@@ -370,6 +385,43 @@ html.app-skin-dark .table-responsive .table.rt-cards tbody tr td {
 
 .nxl-container .list-group-item.d-flex > .btn {
     flex-shrink: 0;
+}
+
+/* ---------- Result messages ----------
+ * Shown at the bottom of the screen so they are seen wherever the page is scrolled. */
+.alert.rt-toast {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1080;
+    margin: 0;
+    box-shadow: 0 10px 25px rgba(40, 60, 80, 0.2);
+}
+
+@media (min-width: 768px) {
+    .alert.rt-toast {
+        left: auto;
+        width: 380px;
+    }
+}
+
+/* ---------- One-time-code boxes (student password reset) ----------
+ * Six boxes with the theme's padding left no room for the digit on phones. */
+#otp .otp-digit {
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 52px;
+    height: 52px;
+    font-size: 20px !important;
+    font-weight: 600;
+}
+
+@media (max-width: 400px) {
+    #otp .otp-digit {
+        margin: 4px !important;
+    }
 }
 
 /* ---------- Note / course cards ----------

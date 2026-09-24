@@ -50,7 +50,9 @@
                 </div>
                 <div class="field"><label for="lk-mobile">Mobile Number <span class="req"
                             aria-hidden="true">*</span></label><input type="tel" id="lk-mobile" name="mobile"
-                        value="{{ old('mobile') }}" placeholder="Your Mobile Number" autocomplete="tel" required></div>
+                        value="{{ old('mobile') }}" placeholder="Your Mobile Number" autocomplete="tel"
+                        inputmode="numeric" pattern="[0-9]{10}" maxlength="10"
+                        title="Enter a 10-digit mobile number" required></div>
                 <div class="field">
                     <label for="lk-subject">Subject / Area of Law <span class="req" aria-hidden="true">*</span></label>
                     <select id="lk-subject" name="subject" required>
@@ -62,12 +64,12 @@
                 </div>
                 <div class="field full"><label for="lk-question">Your Question <span class="req"
                             aria-hidden="true">*</span></label><textarea id="lk-question" name="question"
-                        placeholder="Please describe your legal inquiry in detail..." required>{{ old('question') }}</textarea>
+                        placeholder="Please describe your legal inquiry in detail..." minlength="10" required>{{ old('question') }}</textarea>
                 </div>
                 <div class="field full"><label for="lk-doc">Upload Document <span>(Optional)</span></label><input
                         type="file" id="lk-doc" name="document" accept=".pdf,.doc,.docx,.txt"></div>
             </div>
-            <div class="form-actions"><button type="submit" class="btn btn-gold">Submit Inquiry</button></div>
+            <div class="form-actions"><button type="submit" class="btn btn-gold" data-loading-text="Submitting...">Submit Inquiry</button></div>
             <div class="form-note"><strong class="disc-title"><span aria-hidden="true"><span class="site-icon icon-alert-triangle" aria-hidden="true"></span></span> Important
                     Disclaimer</strong>This inquiry facility is intended for preliminary communication and
                 legal/educational information. Submission of an inquiry does not by itself create an advocate-client

@@ -110,7 +110,7 @@
                             @endif
                         </div>
                         <div class="course-actions">
-                            <a class="btn btn-gold" href="{{ route('frontend.contact') }}">Enroll Now</a>
+                            <a class="btn btn-gold" href="{{ route('frontend.contact', ['course' => $course->title]) }}#contact-form">Send Enquiry</a>
                             @if ($course->brochure)
                                 <a class="btn btn-line" href="{{ asset('storage/app/public/' . $course->brochure) }}"
                                     target="_blank" rel="noopener">Brochure</a>
