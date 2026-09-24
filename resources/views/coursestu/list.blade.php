@@ -10,6 +10,10 @@
                     @if ($notFound)
                         <div class="alert alert-warning text-center">
                             <strong>Please Complete Your Payment to get Course</strong>
+                            <div class="small mt-1">
+                                Courses are unlocked month by month. Your courses will appear here once your
+                                payment for {{ now()->format('F Y') }} is marked as paid.
+                            </div>
                         </div>
                     @endif
 

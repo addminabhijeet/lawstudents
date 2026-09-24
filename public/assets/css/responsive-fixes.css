@@ -210,6 +210,40 @@ html.app-skin-dark .table-responsive .table.rt-cards tbody tr td {
         display: inline-block;
         padding: 10px 0;
     }
+
+    /* Menu button: grow the tap area around the 20px icon without moving it. */
+    .nxl-header .nxl-head-mobile-toggler {
+        padding: 12px;
+        margin: -12px;
+    }
+
+    /* Header profile picture (opens the Profile / Logout menu). */
+    .nxl-header .nxl-h-item > a[data-bs-toggle="dropdown"] {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+    }
+
+    /* Small buttons in list rows, note rows, forms and headers. */
+    .nxl-container .btn-sm {
+        min-height: 36px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .course-picker .form-check-input {
+        width: 22px;
+        height: 22px;
+    }
+
+    .nxl-container .ql-toolbar.ql-snow .ql-picker {
+        height: 36px;
+    }
+
+    .nxl-container .ql-toolbar.ql-snow .ql-picker-label {
+        display: flex;
+        align-items: center;
+    }
 }
 
 /* ---------- Document and PDF viewers ---------- */
@@ -244,6 +278,15 @@ html.app-skin-dark .table-responsive .table.rt-cards tbody tr td {
     .pdf-protected-viewer #watermark {
         font-size: 20px;
     }
+}
+
+/* PDF viewer: the theme makes every .btn a block-level flex box, which stacked
+ * Prev / "Page x / y" / Next on separate lines at every screen size. */
+.pdf-protected-viewer > .text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
 
 /* Bootstrap keeps large dialogs at 500px wide below 992px (and .modal-xl at 800px up to

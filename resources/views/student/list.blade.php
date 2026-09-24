@@ -76,10 +76,10 @@
                                                 <td>
                                                     {{ $loop->iteration }}
                                                 </td>
-                                                <td><a href="javascript:void(0)"
+                                                <td><a href="{{ route('admin.viewstudent', $student->id) }}"
                                                         class="fw-bold">{{ $student->username }}</a></td>
                                                 <td>
-                                                    <a href="javascript:void(0)" class="hstack gap-3">
+                                                    <a href="mailto:{{ $student->email }}" class="hstack gap-3">
                                                         <div>
                                                             <small
                                                                 class="fs-12 fw-normal text-muted">{{ $student->email }}</small>

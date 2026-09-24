@@ -181,6 +181,15 @@
     }
 
     function renderPage(num) {
+        // A cached PDF can load before the dialog has finished opening (0px wide), which
+        // drew a 0x0 page and left the viewer blank; wait until the viewer has a width.
+        if (!document.getElementById('pdfContainer').clientWidth) {
+            setTimeout(function() {
+                renderPage(num);
+            }, 100);
+            return;
+        }
+
         pdfDoc.getPage(num).then(function(page) {
 
             let canvas = document.getElementById('pdfCanvas');
@@ -284,6 +293,13 @@
         }
 
     });
+    // Size gap between the browser window and the page, measured when the page loads.
+    // Browser toolbars, side panels, zoom and pages shown inside another window already make
+    // this gap large, so only a later jump (e.g. docked developer tools opening) counts.
+    let devtoolsGapW = window.outerWidth - window.innerWidth;
+    let devtoolsGapH = window.outerHeight - window.innerHeight;
+    let devtoolsRatio = window.devicePixelRatio;
+
     setInterval(function() {
 
         // Phones and tablets: browser toolbars and pinch-zoom change these sizes (and developer
@@ -292,11 +308,19 @@
             return;
         }
 
+        // Page zoom (Ctrl + / -) changes the page's size too: measure again instead of blocking.
+        if (window.devicePixelRatio !== devtoolsRatio) {
+            devtoolsRatio = window.devicePixelRatio;
+            devtoolsGapW = window.outerWidth - window.innerWidth;
+            devtoolsGapH = window.outerHeight - window.innerHeight;
+            return;
+        }
+
         const threshold = 160;
 
         if (
-            window.outerWidth - window.innerWidth > threshold ||
-            window.outerHeight - window.innerHeight > threshold
+            window.outerWidth - window.innerWidth - devtoolsGapW > threshold ||
+            window.outerHeight - window.innerHeight - devtoolsGapH > threshold
         ) {
 
             document.body.innerHTML =
