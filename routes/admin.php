@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CourseNoteController;
 use App\Http\Controllers\Admin\CourseSubjectController;
 use App\Http\Controllers\Admin\GovtExamController;
 use App\Http\Controllers\Admin\LegalKnowledgeLibraryController;
+use App\Http\Controllers\Admin\SitePageController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -450,6 +451,17 @@ Route::middleware(['admin.auth'])->group(function () {
 
             Route::get('contact-view/{id}', [CourseController::class, 'viewcontactform'])
                 ->name('viewcontactform');
+
+            // ===== Site Pages (Privacy Policy, Terms, Disclaimer, Refund Policy) =====
+
+            Route::get('site-pages', [SitePageController::class, 'index'])
+                ->name('listsitepages');
+            Route::get('site-pages-edit/{id}', [SitePageController::class, 'edit'])
+                ->name('editsitepage');
+            Route::post('site-pages-update/{id}', [SitePageController::class, 'update'])
+                ->name('updatesitepage');
+            Route::post('site-pages-reset/{id}', [SitePageController::class, 'reset'])
+                ->name('resetsitepage');
         });
 
     Route::get('/legacy-admin', [RoutingController::class, 'admin'])

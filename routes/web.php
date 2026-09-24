@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\ClienteleController;
 use App\Http\Controllers\Frontend\LegalKnowledgeController;
 use App\Http\Controllers\Frontend\LegalKnowledgeLibraryController;
+use App\Http\Controllers\Frontend\SitePageController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -44,11 +45,11 @@ Route::middleware(['web'])
         Route::get('course-search-notes', [CourseController::class, 'coursesearch'])->name('coursesearch');
         Route::post('contact-store', [ContactController::class, 'contactstore'])->name('contactstore');
 
-        // Footer information pages.
-        Route::view('privacy-policy', 'pages.privacy-policy', ['pageTitle' => 'Privacy Policy'])->name('privacy');
-        Route::view('terms-and-conditions', 'pages.terms', ['pageTitle' => 'Terms & Conditions'])->name('terms');
-        Route::view('disclaimer', 'pages.disclaimer', ['pageTitle' => 'Disclaimer'])->name('disclaimer');
-        Route::view('refund-policy', 'pages.refund-policy', ['pageTitle' => 'Refund Policy'])->name('refund');
+        // Footer information pages — Dynamic from database
+        Route::get('privacy-policy', [SitePageController::class, 'show'])->defaults('slug', 'privacy-policy')->name('privacy');
+        Route::get('terms-and-conditions', [SitePageController::class, 'show'])->defaults('slug', 'terms-and-conditions')->name('terms');
+        Route::get('disclaimer', [SitePageController::class, 'show'])->defaults('slug', 'disclaimer')->name('disclaimer');
+        Route::get('refund-policy', [SitePageController::class, 'show'])->defaults('slug', 'refund-policy')->name('refund');
         Route::view('sitemap', 'pages.sitemap', ['pageTitle' => 'Sitemap'])->name('sitemap');
         Route::view('announcements', 'pages.announcements', ['pageTitle' => 'Announcements'])->name('announcements');
     });

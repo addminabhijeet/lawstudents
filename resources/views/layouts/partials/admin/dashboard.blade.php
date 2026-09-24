@@ -299,6 +299,11 @@
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('admin.whatsapp') }}">Whatsapp</a></li>
                         </ul>
+
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link"
+                                    href="{{ route('admin.listsitepages') }}">Site Pages</a></li>
+                        </ul>
                     </li>
 
                     <!-- Setting -->
