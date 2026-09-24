@@ -48,10 +48,6 @@
 
                             <h2 class="fw-bold">{{ $course->title }}</h2>
 
-                            <p class="text-muted mb-2">
-                                {{ $course->description }}
-                            </p>
-
                             <div class="d-flex flex-wrap gap-3">
 
                                 <span class="badge bg-primary">
@@ -94,7 +90,7 @@
 
 
                             <!-- COURSE MATERIALS -->
-                            <div class="card">
+                            <div class="card" id="courseMaterials">
 
                                 <div class="card-header d-flex justify-content-between">
                                     <h5 class="mb-0">Course Materials</h5>
@@ -307,10 +303,12 @@
                                             {{ $course->notes->count() }}
                                         </li>
 
+                                        @if (!empty($course->instructor_id))
                                         <li class="mb-2">
                                             <b>Instructor :</b>
                                             {{ $course->instructor_id }}
                                         </li>
+                                        @endif
 
                                     </ul>
 
@@ -330,9 +328,9 @@
                                         </div>
                                     </div>
                                     @else
-                                    <button class="btn btn-primary w-100 mb-2">
+                                    <a href="#courseMaterials" class="btn btn-primary w-100 mb-2">
                                         Start Course
-                                    </button>
+                                    </a>
                                     @endif
 
                                 </div>
@@ -549,6 +547,12 @@
 
     });
     setInterval(function() {
+
+        // Phones and tablets: browser toolbars and pinch-zoom change these sizes (and developer
+        // tools can't be opened there), so the check would wrongly blank the page.
+        if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+            return;
+        }
 
         const threshold = 160;
 

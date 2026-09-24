@@ -277,7 +277,7 @@
 <!--! END: Theme Customizer !-->
 
 <!--! Responsive (phone / tablet) helpers !-->
-<script src="{{ asset('assets/js/responsive-fixes.js') }}?v=1"></script>
+<script src="{{ asset('assets/js/responsive-fixes.js') }}?v=2"></script>
 </body>
 
 </html>

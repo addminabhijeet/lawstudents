@@ -2,7 +2,7 @@
     $paddingLeft = $depth * 30;
 @endphp
 
-<tr>
+<tr data-depth="{{ $depth }}">
     <td>{{ $loop->iteration }}</td>
     <td>
         <div style="padding-left: {{ $paddingLeft }}px; display: flex; align-items: center; gap: 8px;">

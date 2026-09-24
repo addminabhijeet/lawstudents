@@ -258,6 +258,12 @@
     });
     setInterval(function() {
 
+        // Phones and tablets: browser toolbars and pinch-zoom change these sizes (and developer
+        // tools can't be opened there), so the check would wrongly blank the page.
+        if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+            return;
+        }
+
         const threshold = 160;
 
         if (

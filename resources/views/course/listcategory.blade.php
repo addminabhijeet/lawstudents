@@ -629,10 +629,9 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
-<script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+{{-- vendors.min.js, common-init.min.js and theme-customizer-init.min.js are already loaded by the
+     layout footer above; loading them twice made the menu and dropdown taps fire twice. --}}
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
-<script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
 <script>
     function removeNote() {
         $(".remove-note")

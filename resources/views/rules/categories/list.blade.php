@@ -76,10 +76,7 @@
                                     </tbody>
                                 </table>
 
-                                {{-- Pagination links --}}
-                                <div class="mt-3">
-                                    {{ $categories->links() }}
-                                </div>
+                                {{-- Page links: shown once by the Bootstrap bar below. --}}
                                 <div class="d-flex justify-content-center mt-3">
                                     <nav>
                                         <ul class="pagination pagination-sm mb-0">

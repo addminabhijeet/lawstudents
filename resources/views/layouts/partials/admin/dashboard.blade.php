@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
 
     <!-- Responsive (phone / tablet) fixes -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=1">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=2">
 
     <!-- IE Support -->
     <!--[if lt IE 9]>

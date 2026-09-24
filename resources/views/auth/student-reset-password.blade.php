@@ -10,14 +10,17 @@
     <meta name="author" content="theme_ocean">
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Law Students || Register Minimal</title>
+    <title>Law Students || Reset Password</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive-fixes.css') }}?v=1">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive-fixes.css') }}?v=2">
+    <style>
+        .theme-customizer { display: none !important; }
+    </style>
 
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
@@ -372,7 +375,6 @@
     <script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/lslstrength.min.js') }}"></script>
     <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
-    <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 

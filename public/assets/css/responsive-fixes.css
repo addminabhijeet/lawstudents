@@ -231,10 +231,25 @@ html.app-skin-dark .table-responsive .table.rt-cards tbody tr td {
     }
 }
 
-/* Bootstrap keeps .modal-xl at 500px wide below 992px; use the tablet width instead. */
-@media (max-width: 1199.98px) {
-    #pdfModal .modal-dialog {
+/* Bootstrap keeps large dialogs at 500px wide below 992px (and .modal-xl at 800px up to
+ * 1199px); on portrait tablets use the screen width so two-column forms and PDFs fit. */
+@media (max-width: 991.98px) {
+    .modal-dialog.modal-lg,
+    .modal-dialog.modal-xl {
         max-width: calc(100% - 24px);
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .modal-dialog.modal-xl {
+        max-width: calc(100% - 48px);
+    }
+}
+
+/* Admin Notes preview: keep the 600px PDF frame within the screen. */
+@media (max-width: 1024px) {
+    iframe#viewNotePdf {
+        max-height: 70vh;
     }
 }
 
@@ -255,4 +270,113 @@ html.app-skin-dark .table-responsive .table.rt-cards tbody tr td {
 
 .note-row .note-row-actions {
     margin-left: auto;
+}
+
+/* ---------- Page-number bars ----------
+ * Lists print every page number; let the bar wrap instead of overflowing (a centred
+ * bar that overflows cuts the first pages off on the left). On phones
+ * responsive-fixes.js also hides far-away page numbers behind "…". */
+.nxl-container .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 4px;
+}
+
+.pagination .rt-page-gap {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .pagination .rt-page-hidden {
+        display: none;
+    }
+
+    .pagination .rt-page-gap {
+        display: list-item;
+        list-style: none;
+    }
+}
+
+/* ---------- Edit Admission course picker ----------
+ * On touch screens let the list flow with the page instead of scrolling inside a 250px box. */
+@media (max-width: 1024px) {
+    .course-picker {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
+
+/* The checkbox hung over each course box's left border (p-2 removed the space Bootstrap reserves for it). */
+.course-picker .form-check.p-2 {
+    padding-left: 2.25rem !important;
+}
+
+/* ---------- Course category tree in the card layout ----------
+ * Indent sub-category cards by level instead of the name inside the card. */
+.table-responsive .table.rt-cards tbody tr[data-depth="1"] { margin-left: 32px; }
+.table-responsive .table.rt-cards tbody tr[data-depth="2"] { margin-left: 52px; }
+.table-responsive .table.rt-cards tbody tr[data-depth="3"] { margin-left: 72px; }
+.table-responsive .table.rt-cards tbody tr[data-depth="4"] { margin-left: 92px; }
+
+.table-responsive .table.rt-cards tbody tr[data-depth]:not([data-depth="0"]) {
+    border-left: 3px solid #3454d1;
+}
+
+.table-responsive .table.rt-cards tbody tr[data-depth] td > div[style*="padding-left"] {
+    padding-left: 0 !important;
+}
+
+/* ---------- Site Pages editor ----------
+ * Keep the formatting toolbar visible while typing and fit the editor to the screen. */
+@media (max-width: 1024px) {
+    .ql-toolbar.ql-snow {
+        position: sticky;
+        top: 80px;
+        z-index: 5;
+        background-color: #fff;
+    }
+
+    .ql-toolbar.ql-snow + #editor {
+        height: 60vh !important;
+    }
+
+    /* quill.min.css loads after this file, so this needs the extra .nxl-container. */
+    .nxl-container .ql-toolbar.ql-snow button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* ---------- Gallery ----------
+ * Bigger edit / delete buttons on touch-size screens. */
+@media (max-width: 1024px) {
+    .gallery-item .btn-sm {
+        min-width: 40px;
+        min-height: 40px;
+    }
+}
+
+/* ---------- File name lists in add / edit forms ----------
+ * Long PDF names wrap instead of pushing the Remove button off-screen. */
+.nxl-container .list-group-item.d-flex {
+    gap: 0.5rem;
+}
+
+.nxl-container .list-group-item.d-flex > span,
+.nxl-container .list-group-item.d-flex > a {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.nxl-container .list-group-item.d-flex > .btn {
+    flex-shrink: 0;
+}
+
+/* ---------- Note / course cards ----------
+ * Show full titles on phones and tablets instead of cutting them off with "…". */
+@media (max-width: 1024px) {
+    .single-note-item .note-title.text-truncate {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
 }

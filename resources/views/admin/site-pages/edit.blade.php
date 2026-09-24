@@ -119,8 +119,9 @@
         placeholder: 'Start editing...'
     });
 
-    // Sync Quill content to hidden input before form submission
-    document.querySelector('form').addEventListener('submit', function(e) {
+    // Sync Quill content to hidden input before form submission.
+    // (The first <form> on the page is the header's logout form, so target the editor's own form.)
+    document.getElementById('content').closest('form').addEventListener('submit', function(e) {
         document.getElementById('content').value = quill.root.innerHTML;
     });
 </script>

@@ -286,6 +286,12 @@
     });
     setInterval(function() {
 
+        // Phones and tablets: browser toolbars and pinch-zoom change these sizes (and developer
+        // tools can't be opened there), so the check would wrongly blank the page.
+        if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+            return;
+        }
+
         const threshold = 160;
 
         if (
@@ -323,10 +329,9 @@
 </script>
 @include('layouts.partials.student.theme')
 
-<script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
-<script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+{{-- vendors.min.js, common-init.min.js and theme-customizer-init.min.js are already loaded by the
+     layout footer above; loading them twice made the menu and dropdown taps fire twice. --}}
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
-<script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
 <script>
     function removeNote() {
         $(".remove-note")

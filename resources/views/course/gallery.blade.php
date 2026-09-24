@@ -120,7 +120,7 @@ $groups = $groups ?? collect();
                         <div class="row g-3">
 
                             @foreach ($images as $img)
-                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 gallery-item">
 
                                 <div class="card h-100 border-0 shadow-sm">
 

@@ -36,7 +36,7 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-lg-4 mb-3">
                                         <label class="form-label">Banner Image 1 (1920 X 1080)</label>
                                         <input type="file" name="image_1" class="form-control">
 
@@ -52,7 +52,7 @@
                                         @endif
                                     </div>
 
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-lg-4 mb-3">
                                         <label class="form-label">Banner Image 2 (1920 X 1080)</label>
                                         <input type="file" name="image_2" class="form-control">
 
@@ -68,7 +68,7 @@
                                         @endif
                                     </div>
 
-                                    <div class="col-md-4 mb-3">
+                                    <div class="col-lg-4 mb-3">
                                         <label class="form-label">Banner Image 3 (1920 X 1080)</label>
                                         <input type="file" name="image_3" class="form-control">
 

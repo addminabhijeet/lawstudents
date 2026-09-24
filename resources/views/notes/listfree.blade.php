@@ -539,6 +539,12 @@
                     <p id="viewNoteDescription"></p>
                 </div>
 
+                {{-- Phone browsers often can't show a PDF inside a frame. --}}
+                <a id="viewNotePdfLink" href="#" target="_blank" rel="noopener"
+                    class="btn btn-outline-primary btn-sm mb-3">
+                    <i class="feather-external-link me-2"></i>Open PDF
+                </a>
+
                 <iframe id="viewNotePdf" width="100%" height="600px" style="border:1px solid #ddd;">
                 </iframe>
             </div>
@@ -850,10 +856,9 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('assets/vendors/js/vendors.min.js') }}"></script>
-<script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+{{-- vendors.min.js, common-init.min.js and theme-customizer-init.min.js are already loaded by the
+     layout footer above; loading them twice made the menu and dropdown taps fire twice. --}}
 <script src="{{ asset('assets/js/apps-notes-init.min.js') }}"></script>
-<script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
 <script>
     let updateNoteUrl = "{{ url('admin/course-notes') }}";
 </script>
@@ -988,6 +993,7 @@
         $("#viewNoteTitle").text(title);
         $("#viewNoteDescription").text(description);
         $("#viewNotePdf").attr("src", pdf);
+        $("#viewNotePdfLink").attr("href", pdf);
 
         $("#viewNoteModal").modal("show");
     });

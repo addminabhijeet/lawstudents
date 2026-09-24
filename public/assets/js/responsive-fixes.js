@@ -82,17 +82,61 @@
         });
     }
 
-    var resizeFrame = null;
+    // Long page-number bars: mark far-away page numbers so phones show only the first,
+    // last and nearby pages with "…" between them (see .rt-page-hidden in the CSS).
+    function condensePagers() {
+        var pagers = document.querySelectorAll('.nxl-container ul.pagination');
+
+        Array.prototype.forEach.call(pagers, function (ul) {
+            if (ul.getAttribute('data-rt-condensed')) {
+                return;
+            }
+
+            var numbered = Array.prototype.filter.call(ul.children, function (li) {
+                return /^\d+$/.test((li.textContent || '').trim());
+            });
+            if (numbered.length <= 7) {
+                return;
+            }
+
+            var active = 0;
+            numbered.forEach(function (li, i) {
+                if (li.classList.contains('active') || li.querySelector('[aria-current]')) {
+                    active = i;
+                }
+            });
+
+            var keep = [0, numbered.length - 1, active - 1, active, active + 1];
+            var lastKept = -1;
+            numbered.forEach(function (li, i) {
+                if (keep.indexOf(i) === -1) {
+                    li.classList.add('rt-page-hidden');
+                    return;
+                }
+                if (lastKept !== -1 && i - lastKept > 1) {
+                    var gap = document.createElement('li');
+                    gap.className = 'page-item disabled rt-page-gap';
+                    gap.setAttribute('aria-hidden', 'true');
+                    gap.innerHTML = '<span class="page-link">&hellip;</span>';
+                    ul.insertBefore(gap, li);
+                }
+                lastKept = i;
+            });
+
+            ul.setAttribute('data-rt-condensed', '1');
+        });
+    }
+
+    var resizeTimer = null;
     function onResize() {
-        if (resizeFrame) {
-            cancelAnimationFrame(resizeFrame);
-        }
-        resizeFrame = requestAnimationFrame(layoutTables);
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(layoutTables, 100);
     }
 
     function init() {
         prepareTables();
         layoutTables();
+        condensePagers();
         window.addEventListener('resize', onResize);
         window.addEventListener('orientationchange', onResize);
         window.addEventListener('load', layoutTables);

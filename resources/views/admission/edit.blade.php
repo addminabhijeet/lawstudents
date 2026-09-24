@@ -232,7 +232,7 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Choose from below Course</label>
 
-                                    <div class="border rounded p-3" style="max-height:250px; overflow-y:auto;">
+                                    <div class="border rounded p-3 course-picker" style="max-height:250px; overflow-y:auto;">
                                         <div class="row">
                                             @foreach ($courses as $course)
                                             <div class="col-md-6">

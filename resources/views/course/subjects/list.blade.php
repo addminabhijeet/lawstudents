@@ -87,7 +87,7 @@
                                 </table>
 
                                 <div class="d-flex justify-content-center mt-3">
-                                    {{ $subjects->links() }}
+                                    {{ $subjects->links('pagination::bootstrap-5') }}
                                 </div>
                             </div>
                         </div>
