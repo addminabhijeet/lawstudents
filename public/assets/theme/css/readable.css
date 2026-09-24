@@ -820,3 +820,22 @@ body.enroll-bar-on .counsel-pop{
   .pager{gap:6px}
   .pager button{min-width:2.6rem;padding:0 8px}
 }
+
+/* l) PDF lists on phones (acts, rules, free notes, exams, library). The icon kept its own
+   column down the whole row, squeezing the full-length title into ~220px (5–9 lines, rows
+   400–540px tall) and leaving View / Download too narrow to sit side by side. The title now
+   spans the row, the icon sits beside the "PDF 1" label, and the two buttons share one line
+   wherever they fit (they still stack on the narrowest phones). The list also starts a
+   little lower so the travelling "Free to read" badge clears the sub-heading above it.
+   (.list-body / .list-meta become display:contents so their parts join the row's grid.) */
+@media(max-width:600px){
+  .res-grid .list-card{display:grid;grid-template-columns:2.25rem minmax(0,1fr);column-gap:.75rem;row-gap:.6rem;align-items:center}
+  .res-grid .list-body,.res-grid .list-meta{display:contents}
+  .res-grid .list-body h4{grid-column:1 / -1;grid-row:1}
+  .res-grid .list-icon{grid-column:1;grid-row:2}
+  .res-grid .list-meta .pdf{grid-column:2}
+  .res-grid .list-meta .res-actions{grid-column:1 / -1}
+  .res-grid .res-actions{gap:.5rem}
+  .res-grid .res-actions a{padding:.5rem;gap:.4rem;font-size:.9375rem}
+  .res-sub .res-grid{padding-top:.6rem}
+}
