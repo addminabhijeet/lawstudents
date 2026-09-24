@@ -672,3 +672,151 @@ body.enroll-bar-on .counsel-pop{
   .topbar-contact a{min-height:calc(44px / var(--z))}
 }
 @media(max-width:480px){ .topbar .wrap{padding:0 calc(12px / var(--z))} }
+
+/* ---------- 30. OVERLAP / OVERFLOW FIXES FOUND IN THE ALL-PAGE AUDIT ---------- */
+
+/* a) Gallery albums (gallery page + home preview): the photo row is an auto-height grid row,
+   so a one-photo album's photo took its natural height (~256px) inside the 160px frame and
+   ran down over the album title and "1 Photo". Pin the row to the frame and clip it. */
+.album-imgs{grid-template-rows:minmax(0,1fr);overflow:hidden}
+.album-imgs img{min-height:0}
+
+/* b) PDF-list category headers (acts, notes, exams, library): title + "N items" + chevron sat
+   on one row that could not wrap, so on narrow phones the count and chevron were pushed past
+   the screen edge. The row may now wrap: headers that fit are unchanged, the others drop
+   "N items ▾" onto a second line, still right-aligned. */
+.res-cat-head{flex-wrap:wrap;row-gap:.25rem}
+.res-cat-head > span:first-child{flex:1 1 auto;min-width:0;overflow-wrap:break-word;hyphens:auto}
+
+/* c) Information pages (privacy, refund, terms): the e-mail address is one long word and
+   pushed the page 25–30px sideways on small phones. readable.js adds a break point after
+   the "@"; this lets it wrap at all as a last resort. */
+.doc-card a[href^="mailto:"]{overflow-wrap:anywhere}
+
+/* d) Page banner titles: the 42.5px minimum left no room for a long single word, so
+   "Announcements" ran 16px off a 320px screen. Below 375px the title scales with the screen;
+   hyphenation only steps in if a word still does not fit. */
+@media(max-width:374.98px){ .page-hero h1{font-size:min(2.125rem,11.5vw)} }
+.page-hero h1{overflow-wrap:break-word;hyphens:auto}
+
+/* e) Course cards whose thumbnail file is missing (readable.js marks them): show the gold
+   panel with the site emblem instead of a broken-image icon and alt text. */
+.course-thumb.thumb-missing img{visibility:hidden}
+.course-thumb.thumb-missing{background:var(--gold-pale) url(../images/logo11.png) center/72px no-repeat}
+
+/* f) About Us photo collage on small phones: the "10+ Years" badge kept its full 186px width
+   while the photos shrank, so below 414px it ran up to 40px into the small photo. Cap it to
+   the space left of that photo (which starts at 54% of the stack; 14px inset + 8px gap) and
+   trim it a little; the label stays at 16px. */
+@media(max-width:413.98px){
+  .media-stack .exp-badge{max-width:calc(54% - 22px);padding:.6rem .7rem}
+  .media-stack .exp-badge b{font-size:1.3rem}
+  .media-stack .exp-badge span{font-size:.8rem;max-width:none}
+}
+
+/* g) About Us team cards.
+   - The photos are 270px files (white background) that were stretched up to ~2.9x their
+     size; show them no larger than the file itself, centred on the white card.
+   - Phones (up to 560px): one tall card per row made the four instructors ~2,000px long,
+     and the two narrow columns from 421px wrapped some names but not others, so the roles
+     in a row started at different heights. Each instructor is now a compact row card:
+     photo on the left, name and role beside it (~150px tall; photo ~1:1 on a 2x screen).
+   - Four columns (901px+): the cards get narrow before the name size eases off, so
+     "Richard Stones" wrapped at ~1024px; the name now scales with the screen there. */
+.team-card img{max-width:270px;margin-inline:auto}
+@media(min-width:901px){ .team-card h3{font-size:clamp(1.0625rem,2.1vw,1.3125rem)} }
+@media(max-width:560px){
+  .team-grid{grid-template-columns:1fr;gap:.75rem}
+  .team-card{
+    display:grid;grid-template-columns:clamp(96px,32vw,140px) minmax(0,1fr);grid-template-rows:auto auto;
+    column-gap:1rem;align-items:center;padding:.75rem;text-align:left;
+  }
+  .team-card img{grid-row:1 / span 2;align-self:center;width:100%;max-width:none;margin:0;border-radius:10px}
+  .team-card h3{grid-column:2;align-self:end;padding:0;font-size:1.1875rem}
+  .team-card p{grid-column:2;align-self:start;padding:.25rem 0 0;line-height:1.4}
+}
+
+/* h) Contact detail cards (home page + Contact Us). On every screen the value inherited the
+   intro paragraphs' 26px bottom margin (the cards live inside .contact-intro), leaving empty
+   space under the text; drop it. On phones the icon also sat on its own line above the
+   label, so each card was 177–254px tall: put it beside the text there. */
+.contact-item p{margin-bottom:0}
+@media(max-width:600px){
+  .contact-item{flex-direction:row;align-items:center;gap:.875rem;padding:.8rem 1rem;min-height:0}
+  .contact-item > div:last-child{flex:1 1 auto;min-width:0}
+  .contact-item h5{margin-bottom:.1rem}
+  .contact-item p{line-height:1.5}
+}
+
+/* i) Contact Us page on phones and tablets: the form came first, so the tap-to-call /
+   WhatsApp / e-mail details sat ~2,000px down the page. When the layout stacks, the page now
+   reads: heading → contact details → form → the two intro paragraphs + "Meet Our Mentors".
+   The intro box is dissolved (display:contents) so its parts can be ordered around the
+   form. The home page's contact section (no .inner-page) keeps its own order. */
+@media(max-width:768px){
+  .inner-page .contact-layout{row-gap:0}
+  .inner-page .contact-intro{display:contents}
+  .inner-page .contact-intro > h2{order:1}
+  .inner-page .contact-intro > .contact-items{order:2;margin-bottom:1.75rem}
+  .inner-page .contact-layout > .form-card{order:3;margin-bottom:1.75rem}
+  .inner-page .contact-intro > p{order:4}
+  .inner-page .contact-intro > .btn{order:5}
+}
+
+/* j) Gallery page.
+   - Photo viewer on phones: the 70px prev/next circles sat 18px from the screen edges, right
+     on top of a photo that fills the width (~40% of it covered), and the caption ran to 4px
+     from the edges. The arrows now sit in a bar at the bottom, the caption just above them
+     with side margins, and the photo is kept to the space between the close button and them.
+   - Tablets / desktop keep the side arrows; the photo is only kept from reaching under them.
+   - Album tiles on small phones: the title shrinks to fit two columns (section 20) but the
+     "N Photos" count stayed 20px, bigger than the title; it now steps down to 16px. */
+@media(max-width:768px){
+  .lightbox{padding:4.5rem 1rem 8.5rem}
+  .lightbox img{max-width:100%;max-height:calc(100vh - 13rem);max-height:calc(100dvh - 13rem)}
+  .lightbox .lb-btn{min-width:3.25rem;min-height:3.25rem;font-size:1.5rem}
+  .lightbox .lb-close{top:16px;right:16px}
+  .lightbox .lb-prev,.lightbox .lb-next{top:auto;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:none}
+  .lightbox .lb-prev{left:16px}
+  .lightbox .lb-next{right:16px}
+  .lightbox .lb-cap{left:16px;right:16px;bottom:calc(16px + 3.25rem + .75rem + env(safe-area-inset-bottom,0px));font-size:1.0625rem;line-height:1.35}
+}
+@media(min-width:768.02px){
+  .lightbox img{max-width:min(calc(100vw - 2 * (18px + 3.5rem + 12px)),1100px)}
+}
+@media(max-width:479px){ .album-body span{font-size:.8rem} }
+
+/* k) Course page + the other PDF finders (the finder parts are shared).
+   - Category buttons: 17 large pills wrapped into 7–14 rows (480–975px) before the first
+     course on phones and small tablets; there they now sit in one row you swipe sideways
+     (the dropdown above lists the same categories). A soft fade at the right edge shows
+     that the row continues.
+   - Search box: 115px was always kept free for the Clear button, even while it is hidden,
+     so on phones the placeholder read "Search Cou…"; the space is now kept only once
+     something has been typed (i.e. when the Clear button can appear).
+   - Result line: 3–4 lines (112px) on phones; slightly smaller and tighter there.
+   - Course card buttons in the two-column tablet range: "Enroll Now" broke onto two lines
+     (both buttons 94px tall). Labels stay on one line; if the two do not fit side by side
+     they stack, each full width.
+   - Pagination: five 60px buttons wrapped onto two rows at 320px; slightly narrower there. */
+@media(max-width:900px){
+  .cat-chips{
+    flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;
+    padding:.35rem 2rem .6rem 0;scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 2.5rem),transparent);
+    mask-image:linear-gradient(90deg,#000 calc(100% - 2.5rem),transparent);
+  }
+  .cat-chips::-webkit-scrollbar{display:none}
+  .cat-chip{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap}
+}
+.filter-bar .field input[type="search"]:placeholder-shown{padding-right:1rem}
+@media(max-width:359.98px){ .filter-bar .field input[type="search"]::placeholder{font-size:.9375rem} }
+@media(max-width:600px){ .finder-status{font-size:.875rem;line-height:1.4;gap:.4rem .75rem} }
+@media(min-width:560.02px) and (max-width:1024px){
+  .course-actions{flex-wrap:wrap}
+  .course-actions .btn{flex:1 1 auto;white-space:nowrap;font-size:1rem}
+}
+@media(max-width:360px){
+  .pager{gap:6px}
+  .pager button{min-width:2.6rem;padding:0 8px}
+}

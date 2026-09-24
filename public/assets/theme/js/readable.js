@@ -288,3 +288,29 @@
   }
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watchEnrollBar); else watchEnrollBar();
 })();
+
+/* 6. Information pages: e-mail links wrap after the "@" (as section 4 does for the footer and
+   contact cards). 7. Course cards whose thumbnail file is missing get a styled placeholder
+   (readable.css section 30e) instead of a broken-image icon. */
+(function(){
+  'use strict';
+  function run(){
+    document.querySelectorAll('.doc-card a[href^="mailto:"]').forEach(function(a){
+      if(a.querySelector('wbr')) return;
+      Array.prototype.slice.call(a.childNodes).forEach(function(n){
+        if(n.nodeType !== 3 || n.nodeValue.indexOf('@') < 0) return;
+        var at = n.nodeValue.indexOf('@') + 1, frag = document.createDocumentFragment();
+        frag.appendChild(document.createTextNode(n.nodeValue.slice(0, at)));
+        frag.appendChild(document.createElement('wbr'));
+        frag.appendChild(document.createTextNode(n.nodeValue.slice(at)));
+        a.replaceChild(frag, n);
+      });
+    });
+    document.querySelectorAll('.course-thumb img').forEach(function(img){
+      function missing(){ img.closest('.course-thumb').classList.add('thumb-missing'); }
+      if(img.complete && img.getAttribute('src') && img.naturalWidth === 0) missing();
+      else img.addEventListener('error', missing, { once:true });
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
