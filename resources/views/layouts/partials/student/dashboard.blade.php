@@ -25,6 +25,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
 
+    <!-- Responsive (phone / tablet) fixes -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=1">
+
     <!-- IE Support -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -40,7 +43,7 @@
     <nav class="nxl-navigation">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a href="index.html" class="b-brand" style="display:flex; align-items:center; height:60px;">
+                <a href="{{ route('student.dashboard') }}" class="b-brand" style="display:flex; align-items:center; height:60px;">
 
                     <!-- Large Logo -->
                     <img src="{{ asset('assets/images/logo-full.png') }}" alt="" class="logo logo-lg"
@@ -58,6 +61,14 @@
                         <label>Navigation</label>
                     </li>
 
+                    <!-- Dashboard -->
+                    <li class="nxl-item">
+                        <a href="{{ route('student.dashboard') }}" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-home"></i></span>
+                            <span class="nxl-mtext">Dashboard</span>
+                        </a>
+                    </li>
+
                     <!-- Applications -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
@@ -69,60 +80,40 @@
                             <li class="nxl-item"><a class="nxl-link"
                                     href="{{ route('student.viewstudent') }}">Registration</a></li>
                             <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('student.viewadmission') }}">Addmission</a></li>
+                                    href="{{ route('student.viewadmission') }}">Admission</a></li>
                         </ul>
                     </li>
 
                     <!-- Payment -->
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
+                    <li class="nxl-item">
+                        <a href="{{ route('student.viewpayment') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-credit-card"></i></span>
                             <span class="nxl-mtext">Payment</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('student.viewpayment') }}">Payment</a></li>
-                        </ul>
                     </li>
 
                     <!-- ID Card -->
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
+                    <li class="nxl-item">
+                        <a href="{{ route('student.viewidcard') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-user"></i></span>
                             <span class="nxl-mtext">ID Card</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.viewidcard') }}">View</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <!-- Course -->
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
+                    <li class="nxl-item">
+                        <a href="{{ route('student.listcourse') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-book-open"></i></span>
-                            <span class="nxl-mtext">Course</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                            <span class="nxl-mtext">Courses</span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('student.listcourse') }}">List</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <!-- Notes -->
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
+                    <li class="nxl-item">
+                        <a href="{{ route('student.listnotes') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-bookmark"></i></span>
-                            <span class="nxl-mtext">Notes</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                            <span class="nxl-mtext">Favourite Notes</span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('student.listnotes') }}">Favorite</a></li>
-                        </ul>
                     </li>
 
                 </ul>
@@ -154,6 +145,7 @@
             <!--! [Start] Header Right !-->
             <div class="header-right ms-auto">
                 <div class="d-flex align-items-center">
+                    {{-- Theme demo search (sample data only, not connected to the app) - hidden.
                     <div class="dropdown nxl-h-item nxl-header-search">
                         <a href="javascript:void(0);" class="nxl-head-link me-0" data-bs-toggle="dropdown"
                             data-bs-auto-close="outside">
@@ -405,6 +397,7 @@
                             </div>
                         </div>
                     </div>
+                    --}}
 
                     <div class="nxl-h-item d-none d-sm-flex">
                         <div class="full-screen-switcher">

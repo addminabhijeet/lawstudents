@@ -28,7 +28,7 @@
                     <div class="col-auto">
 
                         <!-- PVC CARD -->
-                        <div class="card shadow border-0" style="width:260px; min-height:430px; overflow:hidden;">
+                        <div id="studentIdCard" class="card shadow border-0" style="width:260px; min-height:430px; overflow:hidden;">
 
                             <!-- TOP STRIPE -->
                             <div style="background:#4e342e; color:#fff;" class="text-center py-2">
@@ -125,6 +125,12 @@
 
                         </div>
 
+                        <div class="text-center mt-3 d-print-none">
+                            <button type="button" class="btn btn-primary" onclick="window.print()">
+                                <i class="feather-printer me-2"></i>Print / Save as PDF
+                            </button>
+                        </div>
+
                     </div>
 
                 </div>
@@ -134,4 +140,28 @@
 
     </div>
 </main>
+<style>
+    /* Print only the ID card. */
+    @media print {
+        .nxl-navigation,
+        .nxl-header,
+        .page-header,
+        .theme-customizer {
+            display: none !important;
+        }
+
+        .nxl-container,
+        .nxl-content,
+        .main-content {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        #studentIdCard {
+            box-shadow: none !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+    }
+</style>
 @include('layouts.partials.student.theme')

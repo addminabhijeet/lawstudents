@@ -41,6 +41,13 @@
             <div class="content-area">
                 <div class="content-area-body pb-0">
 
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+                        <h5 class="fw-bold mb-0">Student Course Activity</h5>
+                        <a href="{{ route('admin.liststudentactivity') }}" class="btn btn-light">
+                            <i class="feather-arrow-left me-2"></i>Back to list
+                        </a>
+                    </div>
+
                     <div class="row">
 
                         @if($courses->isEmpty())
@@ -121,9 +128,9 @@
 
                                     @if (!isset($progressData[$course->id]))
                                     <!-- NOT PURCHASED -->
-                                    <button class="btn btn-danger w-100">
+                                    <div class="alert alert-danger text-center mb-0 py-2">
                                         Course Still not purchased by student
-                                    </button>
+                                    </div>
 
                                     @elseif ($progressValue > 0)
                                     <!-- IN PROGRESS -->
@@ -136,9 +143,9 @@
 
                                     @else
                                     <!-- PURCHASED BUT NOT STARTED -->
-                                    <button class="btn btn-primary w-100">
+                                    <div class="alert alert-primary text-center mb-0 py-2">
                                         Course Still Not Started by Student
-                                    </button>
+                                    </div>
                                     @endif
 
                                 </div>

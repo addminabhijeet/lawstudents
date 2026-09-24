@@ -27,18 +27,6 @@
                                     </div>
                                 </form>
                             </div>
-                            <a href="javascript:void(0)" class="d-none d-sm-flex">
-                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    title="Newest">
-                                    <i class="feather feather-chevron-left"></i>
-                                </div>
-                            </a>
-                            <a href="javascript:void(0)" class="d-none d-sm-flex">
-                                <div class="avatar-text avatar-md" data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                    title="Oldest">
-                                    <i class="feather feather-chevron-right"></i>
-                                </div>
-                            </a>
                             <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-notes"
                                 style="display:block; margin-right: 30px;">
                                 <i class="feather-plus me-2"></i>

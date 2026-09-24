@@ -275,6 +275,9 @@
 <!--! BEGIN: Theme Customizer  !-->
 <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
 <!--! END: Theme Customizer !-->
+
+<!--! Responsive (phone / tablet) helpers !-->
+<script src="{{ asset('assets/js/responsive-fixes.js') }}?v=1"></script>
 </body>
 
 </html>

@@ -5,6 +5,8 @@
 
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
                 <div class="content-area-body pb-0">
+                    <h5 class="fw-bold mb-4">My Courses</h5>
+
                     @if ($notFound)
                         <div class="alert alert-warning text-center">
                             <strong>Please Complete Your Payment to get Course</strong>

@@ -542,6 +542,11 @@ $user = \App\Models\User::first();
                             <iframe id="idProofPreviewCard"
                                 src="{{ asset('storage/app/public/' . $admission->id_proof) }}"
                                 style="display:block; width:100%; height:1122px; border:1px solid #ccc;"></iframe>
+                            {{-- Phone browsers often can't show a PDF inside a frame. --}}
+                            <a href="{{ asset('storage/app/public/' . $admission->id_proof) }}" target="_blank"
+                                rel="noopener" class="btn btn-outline-primary btn-sm mt-2 d-print-none">
+                                <i class="feather-external-link me-2"></i>Open document
+                            </a>
                             @else
                             <a id="idProofButtonCard" class="btn btn-outline-secondary w-100 mb-2">
                                 No file selected

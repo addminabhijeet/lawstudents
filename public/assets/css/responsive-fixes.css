@@ -1,0 +1,258 @@
+/*
+ * Responsive (portrait phone & tablet) fixes for the admin and student panels.
+ * Loaded after theme.min.css. It only adds overrides; theme.min.css is untouched.
+ * Table helpers (.rt-stack, data-label) are added by assets/js/responsive-fixes.js.
+ */
+
+/* ---------- Sidebar menu button ----------
+ * theme.min.css keeps the sidebar off-canvas up to 1024px, but the header button
+ * uses .d-lg-none (hidden from 992px), which left no way to open the menu on
+ * 992-1024px screens such as an iPad Pro 12.9" in portrait. */
+@media (max-width: 1024px) {
+    .nxl-header .nxl-head-mobile-toggler.d-lg-none {
+        display: inline-flex !important;
+    }
+}
+
+/* ---------- Theme settings gear ----------
+ * The floating handle covers page content on phones and tablets. */
+@media (max-width: 1024px) {
+    .theme-customizer .customizer-handle {
+        display: none !important;
+    }
+}
+
+/* ---------- Form fields ----------
+ * iPhone Safari zooms into any field whose text is smaller than 16px. */
+@media (max-width: 767.98px), (hover: none) and (pointer: coarse) {
+    .form-control,
+    .form-select,
+    .select2-container .select2-selection__rendered,
+    .select2-container .select2-search__field {
+        font-size: 16px !important;
+    }
+}
+
+/* ---------- Page header on phones ----------
+ * The theme hides the header action buttons (Add ..., etc.) in an off-canvas panel
+ * below 768px; show them inline instead and let the header wrap. */
+@media (max-width: 767.98px) {
+    .nxl-container .nxl-content .page-header {
+        flex-wrap: wrap;
+        row-gap: 10px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .nxl-container .nxl-content .page-header .page-header-left {
+        flex-wrap: wrap;
+        row-gap: 4px;
+        min-width: 0;
+    }
+
+    .nxl-container .nxl-content .page-header .page-header-right .page-header-right-items {
+        position: static;
+        top: auto;
+        width: auto;
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        flex-direction: row;
+        background-color: transparent;
+        border: 0;
+        box-shadow: none;
+    }
+
+    html.app-skin-dark .nxl-container .nxl-content .page-header .page-header-right .page-header-right-items {
+        background-color: transparent !important;
+    }
+
+    .nxl-container .nxl-content .page-header .page-header-right .page-header-right-items .page-header-right-items-wrapper {
+        padding: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .nxl-container .nxl-content .page-header .page-header-right-open-toggle,
+    .nxl-container .nxl-content .page-header .page-header-right-close-toggle {
+        display: none !important;
+    }
+}
+
+/* ---------- List tables ----------
+ * Up to 1024px cell text wraps so a table can fit the screen width.
+ * responsive-fixes.js adds .rt-cards on phones, and on tablets when a table still
+ * doesn't fit; each row is then shown as a card with "Column: value" lines. */
+@media (max-width: 1024px) {
+    .table-responsive .table.rt-stack tr td,
+    .table-responsive .table.rt-stack tr th {
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+}
+
+.table-responsive .table.rt-cards thead {
+    display: none;
+}
+
+.table-responsive .table.rt-cards,
+.table-responsive .table.rt-cards tbody,
+.table-responsive .table.rt-cards tbody tr,
+.table-responsive .table.rt-cards tbody tr td {
+    display: block;
+    width: 100%;
+}
+
+.table-responsive .table.rt-cards tbody tr {
+    width: auto;
+    margin: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+html.app-skin-dark .table-responsive .table.rt-cards tbody tr {
+    border-color: #1b2436;
+}
+
+.table-responsive .table.rt-cards tbody tr td {
+    position: relative;
+    min-height: 42px;
+    padding: 10px 14px 10px calc(min(38%, 200px) + 14px);
+    text-align: left !important;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    border: 0;
+    border-bottom: 1px dashed #e5e7eb;
+}
+
+html.app-skin-dark .table-responsive .table.rt-cards tbody tr td {
+    border-bottom-color: #1b2436;
+}
+
+.table-responsive .table.rt-cards tbody tr td:last-child {
+    border-bottom: 0;
+}
+
+.table-responsive .table.rt-cards tbody tr td::before {
+    content: attr(data-label);
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: calc(min(38%, 200px) - 14px);
+    font-weight: 600;
+    color: #7587a7;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.table-responsive .table.rt-cards tbody tr td.rt-full,
+.table-responsive .table.rt-cards tbody tr td.rt-nolabel {
+    padding-left: 14px;
+}
+
+.table-responsive .table.rt-cards tbody tr td.rt-full::before,
+.table-responsive .table.rt-cards tbody tr td.rt-nolabel::before {
+    content: none;
+}
+
+.table-responsive .table.rt-cards tbody tr td.rt-actions .hstack {
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+}
+
+/* ---------- Tap targets on touch-size screens ---------- */
+@media (max-width: 1024px) {
+    .nxl-container .table .avatar-text.avatar-md {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        max-width: 40px;
+        max-height: 40px;
+    }
+
+    .nxl-container .table .hstack.gap-2 {
+        gap: 10px !important;
+    }
+
+    .nxl-container .form-check-input {
+        width: 1.25em;
+        height: 1.25em;
+    }
+
+    .nxl-container .pagination .page-link {
+        min-width: 40px;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .auth-minimal-wrapper a.fs-11 {
+        display: inline-block;
+        padding: 10px 0;
+    }
+}
+
+/* ---------- Document and PDF viewers ---------- */
+@media (max-width: 1024px) {
+    /* Aadhaar preview frames are 1122px tall; keep them within the screen. */
+    iframe#idProofPreviewCard {
+        max-height: 75vh;
+    }
+
+    /* Protected PDF viewer: show the whole page (the dialog scrolls) and keep
+     * Prev / Next pinned to the bottom of the screen. */
+    .pdf-protected-viewer {
+        height: auto !important;
+        overflow-x: hidden;
+    }
+
+    .pdf-protected-viewer > .text-center {
+        position: sticky;
+        bottom: 0;
+        z-index: 3;
+        margin-top: 0 !important;
+        padding: 10px 0;
+        background-color: #fff;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    html.app-skin-dark .pdf-protected-viewer > .text-center {
+        background-color: #0f172a;
+        border-top-color: #1b2436;
+    }
+
+    .pdf-protected-viewer #watermark {
+        font-size: 20px;
+    }
+}
+
+/* Bootstrap keeps .modal-xl at 500px wide below 992px; use the tablet width instead. */
+@media (max-width: 1199.98px) {
+    #pdfModal .modal-dialog {
+        max-width: calc(100% - 24px);
+    }
+}
+
+/* ---------- Course page note rows ---------- */
+.note-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.note-row .note-row-info {
+    flex: 1 1 220px;
+    min-width: 0;
+}
+
+.note-row .note-row-info h6 {
+    overflow-wrap: anywhere;
+}
+
+.note-row .note-row-actions {
+    margin-left: auto;
+}

@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Admin</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item">Count View</li>
                 </ul>
             </div>
@@ -35,8 +35,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Students</h3>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);">
-                                    <i class="feather-more-vertical"></i>
+                                <a href="{{ route('admin.liststudent') }}" class="stretched-link" aria-label="Open students list">
+                                    <i class="feather-arrow-up-right"></i>
                                 </a>
                             </div>
 
@@ -71,8 +71,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Admissions</h3>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);">
-                                    <i class="feather-more-vertical"></i>
+                                <a href="{{ route('admin.listadmission') }}" class="stretched-link" aria-label="Open admissions list">
+                                    <i class="feather-arrow-up-right"></i>
                                 </a>
                             </div>
 
@@ -107,8 +107,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Payments</h3>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);">
-                                    <i class="feather-more-vertical"></i>
+                                <a href="{{ route('admin.listpayment') }}" class="stretched-link" aria-label="Open payments list">
+                                    <i class="feather-arrow-up-right"></i>
                                 </a>
                             </div>
 
@@ -143,8 +143,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total ID Cards</h3>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);">
-                                    <i class="feather-more-vertical"></i>
+                                <a href="{{ route('admin.listidcard') }}" class="stretched-link" aria-label="Open ID cards list">
+                                    <i class="feather-arrow-up-right"></i>
                                 </a>
                             </div>
 
@@ -179,8 +179,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Courses</h3>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);">
-                                    <i class="feather-more-vertical"></i>
+                                <a href="{{ route('admin.listcourse') }}" class="stretched-link" aria-label="Open courses list">
+                                    <i class="feather-arrow-up-right"></i>
                                 </a>
                             </div>
 
@@ -216,8 +216,8 @@
                                         <h3 class="fs-13 fw-semibold text-truncate-1-line">Total Notes</h3>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);">
-                                    <i class="feather-more-vertical"></i>
+                                <a href="{{ route('admin.listnotes') }}" class="stretched-link" aria-label="Open notes list">
+                                    <i class="feather-arrow-up-right"></i>
                                 </a>
                             </div>
 

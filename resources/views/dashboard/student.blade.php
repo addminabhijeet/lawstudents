@@ -9,7 +9,7 @@
                     <h5 class="m-b-10">Student</h5>
                 </div>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('student.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item">Details</li>
                 </ul>
             </div>
@@ -19,7 +19,7 @@
         <div class="main-content">
             <div class="row">
                 <!-- Registration -->
-                <div class="col-xxl-3 col-md-6">
+                <div class="col-xxl col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -32,6 +32,7 @@
                                             {{ $registration }}
                                         </div>
                                         <h3 class="fs-13 fw-semibold">Registration</h3>
+                                        <a href="{{ route('student.viewstudent') }}" class="stretched-link" aria-label="Open registration"></a>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +41,7 @@
                 </div>
 
                 <!-- Admission -->
-                <div class="col-xxl-3 col-md-6">
+                <div class="col-xxl col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -53,6 +54,7 @@
                                             {{ $admission }}
                                         </div>
                                         <h3 class="fs-13 fw-semibold">Admission</h3>
+                                        <a href="{{ route('student.viewadmission') }}" class="stretched-link" aria-label="Open admission"></a>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +63,7 @@
                 </div>
 
                 <!-- Payment -->
-                <div class="col-xxl-3 col-md-6">
+                <div class="col-xxl col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -74,6 +76,7 @@
                                             {{ $payment }}
                                         </div>
                                         <h3 class="fs-13 fw-semibold">Payment</h3>
+                                        <a href="{{ route('student.viewpayment') }}" class="stretched-link" aria-label="Open payment"></a>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +85,7 @@
                 </div>
 
                 <!-- Invoice -->
-                <div class="col-xxl-3 col-md-6">
+                <div class="col-xxl col-md-6">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -95,6 +98,7 @@
                                             {{ $invoice }}
                                         </div>
                                         <h3 class="fs-13 fw-semibold">Invoice</h3>
+                                        <a href="{{ route('student.viewpayment') }}" class="stretched-link" aria-label="Open invoice"></a>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +107,7 @@
                 </div>
 
                 <!-- ID Card -->
-                <div class="col-xxl-3 col-md-6">
+                <div class="col-xxl col-md-12">
                     <div class="card stretch stretch-full">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between">
@@ -116,6 +120,7 @@
                                             {{ $idcard }}
                                         </div>
                                         <h3 class="fs-13 fw-semibold">ID Card</h3>
+                                        <a href="{{ route('student.viewidcard') }}" class="stretched-link" aria-label="Open ID card"></a>
                                     </div>
                                 </div>
                             </div>

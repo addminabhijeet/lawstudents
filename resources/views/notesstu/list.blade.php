@@ -5,6 +5,12 @@
 
             <!-- [ Sidebar ] -->
             <div class="content-sidebar content-sidebar-md" data-scrollbar-target="#psScrollbarInit">
+                <div class="content-sidebar-header bg-white sticky-top hstack justify-content-between">
+                    <h4 class="fw-bolder mb-0">Categories</h4>
+                    <a href="javascript:void(0);" class="app-sidebar-close-trigger d-flex" aria-label="Close categories">
+                        <i class="feather-x"></i>
+                    </a>
+                </div>
                 <div class="content-sidebar-body">
                     <ul class="nav d-flex flex-column nxl-content-sidebar-item">
                         <li class="nav-item">
@@ -28,6 +34,14 @@
 
             <!-- [ Main Area ] -->
             <div class="content-area" data-scrollbar-target="#psScrollbarInit">
+                <div class="content-area-header sticky-top">
+                    <div class="page-header-left d-flex align-items-center gap-2">
+                        <a href="javascript:void(0);" class="app-sidebar-open-trigger btn btn-light-brand btn-sm">
+                            <i class="feather-align-left me-2"></i>Categories
+                        </a>
+                        <h5 class="fw-bold mb-0">Favourite Notes</h5>
+                    </div>
+                </div>
                 <div class="content-area-body pb-0">
 
                     <div class="row note-has-grid" id="note-full-container">
@@ -182,12 +196,17 @@
             // calculate scale to fit container width
             let scale = container.clientWidth / viewport.width;
 
+            // Draw at the screen's pixel density so text stays sharp on phones and tablets.
+            let outputScale = Math.min(window.devicePixelRatio || 1, 3);
+
             let scaledViewport = page.getViewport({
-                scale: scale
+                scale: scale * outputScale
             });
 
             canvas.height = scaledViewport.height;
             canvas.width = scaledViewport.width;
+            canvas.style.width = Math.floor(scaledViewport.width / outputScale) + "px";
+            canvas.style.height = Math.floor(scaledViewport.height / outputScale) + "px";
 
             let renderContext = {
                 canvasContext: ctx,
@@ -199,7 +218,7 @@
                 let watermarkText =
                     "{{ auth()->guard('student')->user()->name }} - {{ auth()->guard('student')->user()->email }}";
 
-                ctx.font = "28px Arial";
+                ctx.font = (28 * outputScale) + "px Arial";
                 ctx.fillStyle = "rgba(150,150,150,0.20)";
                 ctx.textAlign = "center";
 
@@ -207,7 +226,7 @@
                 ctx.translate(canvas.width / 2, canvas.height / 2);
                 ctx.rotate(-Math.PI / 6);
 
-                for (let y = -canvas.height; y < canvas.height; y += 200) {
+                for (let y = -canvas.height; y < canvas.height; y += 200 * outputScale) {
                     ctx.fillText(watermarkText, 0, y);
                 }
 

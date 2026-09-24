@@ -8,7 +8,40 @@ $user = \App\Models\User::first();
 <html>
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment Slip</title>
+    <!-- Icons for the Print / Download buttons -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/css/fontawesome.min.css') }}">
+    <style>
+        .invoice-toolbar .invoice-back {
+            margin-right: auto;
+            padding: 0 16px;
+            height: 44px;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            background: #fff;
+            color: #222;
+            font: 600 14px/1 Arial, sans-serif;
+        }
+
+        .slip-notice {
+            max-width: 520px;
+            margin: 24px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff3cd;
+            color: #664d03;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .slip-notice a {
+            display: inline-block;
+            margin-top: 12px;
+            color: #0066cc;
+            font-weight: 600;
+        }
+    </style>
     <style>
         body {
             background-color: #444;
@@ -193,14 +226,16 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 .s6{font-size:24px;font-family:BookAntiqua-Bold_n;color:#000;}
 .s7{font-size:16px;font-family:TimesNewRoman-Bold_k;color:#000;}
 </style>
-<script id="metadata" type="application/json">{"pagecount":1,"title":"Microsoft Word - Sayantani Roy-Payment Slip-March, 2026","author":"Rizwana Begum","subject":"","keywords":"","creator":"Bullzip PDF Printer (14.5.0.2974) / www.bullzip.com / FG / Freeware Edition (max 10 users)","producer":"GPL Ghostscript 10.03.1","creationdate":"D:20260412232608+05'30'","moddate":"D:20260412232608+05'30'","trapped":"","fileName":"Sayantani Roy-Payment Slip-April, 2026.pdf","bounds":[[909,1286]],"bookmarks":[],"thumbnailType":"","pageType":"html","pageLabels":[]}</script>
+<script id="metadata" type="application/json">{"pagecount":1,"title":"Payment Slip","author":"Rizwana Begum","subject":"","keywords":"","creator":"Bullzip PDF Printer (14.5.0.2974) / www.bullzip.com / FG / Freeware Edition (max 10 users)","producer":"GPL Ghostscript 10.03.1","creationdate":"D:20260412232608+05'30'","moddate":"D:20260412232608+05'30'","trapped":"","fileName":"Sayantani Roy-Payment Slip-April, 2026.pdf","bounds":[[909,1286]],"bookmarks":[],"thumbnailType":"","pageType":"html","pageLabels":[]}</script>
 <script id="annotations" type="application/json">{"pages":[]}</script>
 
 </head>
 <body>
 @if ($notFound)
-<div class="alert alert-warning text-center">
+<div class="alert alert-warning text-center slip-notice">
     <strong>Please Complete Your Payment</strong>
+    <br>
+    <a href="{{ route('student.dashboard') }}">&larr; Back to Dashboard</a>
 </div>
 @endif
 
@@ -209,6 +244,8 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <div class="invoice-container">
 
     <div class="invoice-toolbar">
+        <a href="{{ route('student.dashboard') }}" class="invoice-back">&larr; Back</a>
+
         <!-- Print button -->
         <a href="javascript:void(0);"
            id="print-btn-{{ $payment->id }}"
@@ -710,6 +747,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('Print and Download buttons are now visible and functional');
 });
+</script>
+<script>
+    // Fit the fixed-size (909px) slip to phone and tablet screens. Only the on-screen copy is
+    // scaled; Print and Download clone the .page element, so they still use the full-size page.
+    (function () {
+        function fitSlips() {
+            var scale = Math.min(1, (document.documentElement.clientWidth - 20) / 909);
+            document.querySelectorAll('.page-container').forEach(function (container) {
+                container.style.zoom = scale < 1 ? scale : '';
+            });
+        }
+
+        fitSlips();
+        window.addEventListener('resize', fitSlips);
+    })();
 </script>
 </body>
 </html>

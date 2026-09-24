@@ -25,6 +25,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
 
+    <!-- Responsive (phone / tablet) fixes -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=1">
+
     <!-- IE Support -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -40,7 +43,7 @@
     <nav class="nxl-navigation">
         <div class="navbar-wrapper">
             <div class="m-header">
-                <a class="b-brand" style="display:flex; align-items:center; height:60px;">
+                <a href="{{ route('admin.dashboard') }}" class="b-brand" style="display:flex; align-items:center; height:60px;">
 
                     <!-- Large Logo -->
                     <img src="{{ asset('assets/images/logo-full.png') }}" alt="" class="logo logo-lg"
@@ -58,6 +61,14 @@
                         <label>Navigation</label>
                     </li>
 
+                    <!-- Dashboard -->
+                    <li class="nxl-item">
+                        <a href="{{ route('admin.dashboard') }}" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-home"></i></span>
+                            <span class="nxl-mtext">Dashboard</span>
+                        </a>
+                    </li>
+
                     <!-- Applications -->
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
@@ -69,35 +80,24 @@
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.liststudent') }}">List
                                     Students</a></li>
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listadmission') }}">List
-                                    Addmissions</a></li>
+                                    Admissions</a></li>
                         </ul>
                     </li>
 
                     <!-- Payment -->
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
+                    <li class="nxl-item">
+                        <a href="{{ route('admin.listpayment') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-credit-card"></i></span>
                             <span class="nxl-mtext">Payments</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listpayment') }}">List</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <!-- ID Card -->
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
+                    <li class="nxl-item">
+                        <a href="{{ route('admin.listidcard') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-user"></i></span>
-                            <span class="nxl-mtext">ID Card</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                            <span class="nxl-mtext">ID Cards</span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item">
-                                <a class="nxl-link" href="{{ route('admin.listidcard') }}">List</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <!-- Course -->
@@ -110,20 +110,12 @@
                         <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcoursecategory') }}">List Categories</a>
                             </li>
-                        </ul>
-                        <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcoursesubcategory') }}">List Sub Categories</a>
                             </li>
-                        </ul>
-                        <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listcourse') }}">List Courses</a>
                             </li>
-                        </ul>
-                        <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listnotes') }}">Notes</a>
                             </li>
-                        </ul>
-                        <ul class="nxl-submenu">
                             <li class="nxl-item"><a class="nxl-link" href="{{ route('admin.listsubjects') }}">Course Subjects</a>
                             </li>
                         </ul>
@@ -131,17 +123,11 @@
 
                     <!-- Client -->
 
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
+                    <li class="nxl-item">
+                        <a href="{{ route('admin.listclientele') }}" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-briefcase"></i></span>
-                            <span class="nxl-mtext">Client</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
+                            <span class="nxl-mtext">Clients</span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listclientele') }}">List</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <!-- Acts -->
@@ -250,30 +236,18 @@
                         </ul>
                     </li>
 
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-users"></i></i></span>
+                    <li class="nxl-item">
+                        <a href="{{ route('admin.listcontactform') }}" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-users"></i></span>
                             <span class="nxl-mtext">Contact list</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.listcontactform') }}">List</a>
-                            </li>
-                        </ul>
                     </li>
 
-                    <li class="nxl-item nxl-hasmenu">
-                        <a href="javascript:void(0);" class="nxl-link">
-                            <span class="nxl-micon"><i class="feather-activity"></i></i></span>
+                    <li class="nxl-item">
+                        <a href="{{ route('admin.liststudentactivity') }}" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-activity"></i></span>
                             <span class="nxl-mtext">Student Activity</span>
-                            <span class="nxl-arrow"><i class="feather-chevron-right"></i></span>
                         </a>
-                        <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link"
-                                    href="{{ route('admin.liststudentactivity') }}">List</a>
-                            </li>
-                        </ul>
                     </li>
 
 

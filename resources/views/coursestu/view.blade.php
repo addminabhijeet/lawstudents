@@ -126,8 +126,8 @@
                                                 data-bs-parent="#courseSubjectsAccordion">
                                                 <div class="accordion-body">
                                                     @forelse($subject->chapters as $note)
-                                                    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
-                                                        <div class="d-flex align-items-center gap-3">
+                                                    <div class="d-flex justify-content-between align-items-center border-bottom py-3 note-row">
+                                                        <div class="d-flex align-items-center gap-3 note-row-info">
                                                             <div class="icon-md bg-light rounded d-flex align-items-center justify-content-center">
                                                                 <i class="fa-solid fa-file-pdf"></i>
                                                             </div>
@@ -144,7 +144,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="d-flex gap-2">
+                                                        <div class="d-flex gap-2 note-row-actions">
                                                             @php
                                                             $token = Crypt::encrypt(
                                                             json_encode([
@@ -195,9 +195,9 @@
 
                                     @forelse($course->notes as $note)
                                     <div
-                                        class="d-flex justify-content-between align-items-center border-bottom py-3">
+                                        class="d-flex justify-content-between align-items-center border-bottom py-3 note-row">
 
-                                        <div class="d-flex align-items-center gap-3">
+                                        <div class="d-flex align-items-center gap-3 note-row-info">
 
                                             <div
                                                 class="icon-md bg-light rounded d-flex align-items-center justify-content-center">
@@ -218,7 +218,7 @@
 
                                         </div>
 
-                                        <div class="d-flex gap-2">
+                                        <div class="d-flex gap-2 note-row-actions">
 
                                             @php
                                             $token = Crypt::encrypt(
@@ -426,12 +426,17 @@
             // calculate scale to fit container width
             let scale = container.clientWidth / viewport.width;
 
+            // Draw at the screen's pixel density so text stays sharp on phones and tablets.
+            let outputScale = Math.min(window.devicePixelRatio || 1, 3);
+
             let scaledViewport = page.getViewport({
-                scale: scale
+                scale: scale * outputScale
             });
 
             canvas.height = scaledViewport.height;
             canvas.width = scaledViewport.width;
+            canvas.style.width = Math.floor(scaledViewport.width / outputScale) + "px";
+            canvas.style.height = Math.floor(scaledViewport.height / outputScale) + "px";
 
             let renderContext = {
                 canvasContext: ctx,
@@ -443,7 +448,7 @@
                 let watermarkText =
                     "{{ auth()->guard('student')->user()->name }} - {{ auth()->guard('student')->user()->email }}";
 
-                ctx.font = "28px Arial";
+                ctx.font = (28 * outputScale) + "px Arial";
                 ctx.fillStyle = "rgba(150,150,150,0.20)";
                 ctx.textAlign = "center";
 
@@ -451,7 +456,7 @@
                 ctx.translate(canvas.width / 2, canvas.height / 2);
                 ctx.rotate(-Math.PI / 6);
 
-                for (let y = -canvas.height; y < canvas.height; y += 200) {
+                for (let y = -canvas.height; y < canvas.height; y += 200 * outputScale) {
                     ctx.fillText(watermarkText, 0, y);
                 }
 
