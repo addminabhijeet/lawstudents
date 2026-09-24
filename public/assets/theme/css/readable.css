@@ -529,3 +529,64 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
 /* ---------- 25. FOOTER + HOME CONTACT DETAILS ARE LINKS NOW: keep their text colour ---------- */
 .footer-contact-item p a,.contact-item p a{color:inherit;text-decoration:none;overflow-wrap:anywhere}
 .footer-contact-item p a:hover,.footer-contact-item p a:focus-visible,.contact-item p a:hover,.contact-item p a:focus-visible{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 26. LAPTOP HEADER WHILE SCROLLING: only the menu row stays pinned ----------
+   In the two-row header (section 17) the logo + Login row scrolls up out of view with
+   the page and only the menu row sticks; the full header is back at the top of the page.
+   A negative sticky offset keeps the header's height, so nothing below it jumps.
+   71px = 10px row padding + 60px logo + the menu's 1px top rule (the zoom scales it too). */
+@media(min-width:1200px) and (max-width:1839px){
+  .site-header{top:-71px}
+  /* home.js shrinks the logo to 46px after 80px of scroll (inline style); hold it at the
+     60px the offset above is measured for — the row is scrolled out of view by then anyway */
+  .site-header .nav-logo img{height:60px !important}
+  /* keyboard users tabbing to the logo or Login still see them */
+  .site-header:has(.nav-logo:focus-visible,.btn-login:focus-visible){top:0}
+}
+
+/* ---------- 27. HOME ENROLMENT BAR ON DESKTOP: one slim, asymmetric line ----------
+   From 1200px the bar is one line exactly as tall as the pinned menu row (menu + gold
+   rule, section 26), so the page sits between two equal bands. The weight is off-centre
+   on purpose: a gold wedge bleeds in from the left edge and ends in a slanted cut, the
+   tagline runs straight on from it, and the buttons sit hard right. */
+@media(min-width:1200px){
+  .enroll-bar{height:calc(var(--hz) * 37.35px);padding:0;border-top:0}
+  /* the top rule carries the same asymmetry: full gold over the wedge, fading out to the right */
+  .enroll-bar::before{
+    content:'';position:absolute;left:0;right:0;top:0;height:2px;z-index:2;pointer-events:none;
+    background:linear-gradient(90deg,#f0d97d 0%,#d4af37 28%,rgba(212,175,55,.45) 62%,rgba(212,175,55,.1) 100%);
+  }
+  .enroll-bar-inner{height:100%;flex-wrap:nowrap;gap:1.25rem}
+  .enroll-bar-text{align-self:stretch;flex:1 1 auto;min-width:0;flex-wrap:nowrap;gap:0;white-space:nowrap;font-size:.8125rem;color:#d9d0b5;letter-spacing:.01em}
+  .enroll-bar-text .site-icon{position:relative;z-index:1;font-size:1.125rem;color:#12100c;margin-right:.6rem}
+  /* the wedge: its box-shadow paints the gold out to the left edge of the screen, and the
+     clip-path keeps it to the bar's height and cuts the slant on the right */
+  .enroll-bar-text b{
+    align-self:stretch;display:flex;align-items:center;margin-right:1.1rem;padding-right:1.9rem;
+    font-size:1.0625rem;letter-spacing:.015em;color:#12100c;-webkit-text-fill-color:#12100c;
+    background:linear-gradient(90deg,#d4af37 0%,#e2c257 55%,#f0d97d 100%);
+    -webkit-background-clip:border-box;background-clip:border-box;background-size:100% 100%;animation:none;
+    box-shadow:0 0 0 100vmax #d4af37;
+    clip-path:polygon(-100vmax 0,100% 0,calc(100% - 1.15rem) 100%,-100vmax 100%);
+  }
+  .enroll-bar-actions{flex:0 0 auto;flex-wrap:nowrap;gap:.6rem;margin-left:auto}
+  .enroll-bar .btn{min-height:0;height:1.6rem;padding:0 1.05rem;font-size:.8125rem;white-space:nowrap;border-radius:12px 4px 12px 4px}
+  .enroll-bar-close{width:1.5rem;height:1.5rem;min-width:1.5rem;font-size:.875rem}
+  /* safety net for very large browser font settings: a tagline too long for the line is
+     cut at the buttons instead of running under them (the wedge still bleeds left) */
+  .enroll-bar-text{clip-path:inset(-2px 0 -2px -100vmax)}
+}
+
+/* ---------- 28. WHATSAPP + ENROLL NOW FLOATS NEVER GO BEHIND THE ENROLMENT BAR ----------
+   The bar's height changes with the screen width and the reader's font size (46px on a
+   laptop, up to ~300px where it wraps on a phone), but site.css lifted the floats by fixed
+   amounts, so on most screens they sat under it. readable.js publishes the bar's real
+   height as --enroll-bar-h; the WhatsApp button, the progress ring / "Enroll Now" pill
+   and the counsellor card now always clear it. */
+body.enroll-bar-on .wa-float,
+body.enroll-bar-on .progress-wrap{bottom:calc(var(--enroll-bar-h,92px) + 16px)}
+body.enroll-bar-on .counsel-pop{
+  bottom:calc(var(--enroll-bar-h,92px) + 80px);overflow-y:auto;
+  max-height:calc(100vh - var(--enroll-bar-h,92px) - 92px);
+  max-height:calc(100dvh - var(--enroll-bar-h,92px) - 92px);   /* small phones: stays on screen, scrolls inside */
+}

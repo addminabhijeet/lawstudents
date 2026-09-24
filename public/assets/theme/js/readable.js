@@ -271,3 +271,20 @@
      that event — so wait for it, and this listener runs after inner.js's own */
   if(doc.readyState === 'complete') boot(); else doc.addEventListener('DOMContentLoaded', boot);
 })();
+
+/* 5. The home page's enrolment bar (built by home.js) changes height with the screen width
+   and font size; publish its real height so readable.css can keep the floating WhatsApp
+   and Enroll Now buttons above it on every screen. */
+(function(){
+  'use strict';
+  function watchEnrollBar(){
+    var bar = document.querySelector('.enroll-bar');
+    if(!bar) return;
+    var root = document.documentElement;
+    function publish(){ root.style.setProperty('--enroll-bar-h', Math.ceil(bar.getBoundingClientRect().height) + 'px'); }
+    publish();
+    if('ResizeObserver' in window) new ResizeObserver(publish).observe(bar);
+    else window.addEventListener('resize', publish, { passive:true });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watchEnrollBar); else watchEnrollBar();
+})();
