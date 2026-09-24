@@ -651,3 +651,24 @@ body.enroll-bar-on .counsel-pop{
   max-height:calc(100vh - var(--enroll-bar-h,92px) - 92px);
   max-height:calc(100dvh - var(--enroll-bar-h,92px) - 92px);   /* small phones: stays on screen, scrolls inside */
 }
+
+/* ---------- 29. TOP STRIP ON PHONES + TABLETS: the three tags wrap whole, centred ----------
+   Below 1025px the strip wraps and centres (section 4), but its tags line stayed left-aligned,
+   ran into the screen edge and broke inside an item ("… • Legal" / "Resources"). The line may
+   now break only just before a bullet (a zero-width space inside each bullet span is the one
+   wrap point), so every "• Legal …" stays whole; and the strip gets the header's side padding
+   (lengths inside the zoomed strip are divided by its --z). */
+@media(max-width:1024px){
+  .topbar .wrap{padding:0 calc(18px / var(--z))}
+  .topbar-tags{text-align:center;white-space:nowrap}
+  .topbar-tags span::before{content:'\200B';white-space:normal}
+}
+/* phones: the 44px tap targets (section 21) sit inside the zoomed strip, so they showed 55px
+   tall, and stacked e-mail / phone rows had a 41px empty gap between them. Size them to 44px
+   on screen and let the two rows touch — still a full 44px target each. */
+@media(max-width:600px){
+  .topbar .wrap{padding:0 calc(14px / var(--z))}
+  .topbar-contact{row-gap:0}
+  .topbar-contact a{min-height:calc(44px / var(--z))}
+}
+@media(max-width:480px){ .topbar .wrap{padding:0 calc(12px / var(--z))} }
