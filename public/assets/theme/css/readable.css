@@ -544,37 +544,98 @@ mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 .08em}
   .site-header:has(.nav-logo:focus-visible,.btn-login:focus-visible){top:0}
 }
 
-/* ---------- 27. HOME ENROLMENT BAR ON DESKTOP: one slim, asymmetric line ----------
-   From 1200px the bar is one line exactly as tall as the pinned menu row (menu + gold
-   rule, section 26), so the page sits between two equal bands. The weight is off-centre
-   on purpose: a gold wedge bleeds in from the left edge and ends in a slanted cut, the
-   tagline runs straight on from it, and the buttons sit hard right. */
-@media(min-width:1200px){
-  .enroll-bar{height:calc(var(--hz) * 37.35px);padding:0;border-top:0}
-  /* the top rule carries the same asymmetry: full gold over the wedge, fading out to the right */
-  .enroll-bar::before{
-    content:'';position:absolute;left:0;right:0;top:0;height:2px;z-index:2;pointer-events:none;
-    background:linear-gradient(90deg,#f0d97d 0%,#d4af37 28%,rgba(212,175,55,.45) 62%,rgba(212,175,55,.1) 100%);
-  }
-  .enroll-bar-inner{height:100%;flex-wrap:nowrap;gap:1.25rem}
-  .enroll-bar-text{align-self:stretch;flex:1 1 auto;min-width:0;flex-wrap:nowrap;gap:0;white-space:nowrap;font-size:.8125rem;color:#d9d0b5;letter-spacing:.01em}
-  .enroll-bar-text .site-icon{position:relative;z-index:1;font-size:1.125rem;color:#12100c;margin-right:.6rem}
-  /* the wedge: its box-shadow paints the gold out to the left edge of the screen, and the
-     clip-path keeps it to the bar's height and cuts the slant on the right */
-  .enroll-bar-text b{
-    align-self:stretch;display:flex;align-items:center;margin-right:1.1rem;padding-right:1.9rem;
-    font-size:1.0625rem;letter-spacing:.015em;color:#12100c;-webkit-text-fill-color:#12100c;
-    background:linear-gradient(90deg,#d4af37 0%,#e2c257 55%,#f0d97d 100%);
-    -webkit-background-clip:border-box;background-clip:border-box;background-size:100% 100%;animation:none;
-    box-shadow:0 0 0 100vmax #d4af37;
-    clip-path:polygon(-100vmax 0,100% 0,calc(100% - 1.15rem) 100%,-100vmax 100%);
-  }
+/* ---------- 27. HOME ENROLMENT BAR: compact and asymmetric on every screen ----------
+   The weight is off-centre on purpose: a gold wedge bleeds in from the left edge and ends
+   in a slanted cut, and the buttons sit hard right (on phones, below it at unequal widths).
+   Desktop (1200px+): one line exactly as tall as the pinned menu row (section 26).
+   1000–1199px: one 60px line, tagline on two short lines. Portrait tablets: wedge +
+   tagline over the buttons. Phones: wedge, tagline under it, then the buttons (~134–155px,
+   was 214–299px). Below 1200px buttons stay 44px tall for touch. */
+.enroll-bar{padding:0;border-top:0}
+/* the top rule carries the same asymmetry: full gold over the wedge, fading out to the right */
+.enroll-bar::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:2px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,#f0d97d 0%,#d4af37 28%,rgba(212,175,55,.45) 62%,rgba(212,175,55,.1) 100%);
+}
+.enroll-bar-text{align-self:stretch;min-width:0;flex-wrap:nowrap;gap:0;white-space:nowrap;color:#d9d0b5;letter-spacing:.01em}
+.enroll-bar-text .site-icon{position:relative;z-index:1;font-size:1.125rem;color:#12100c;margin-right:.6rem}
+/* the wedge: ::before paints the gold out to the left edge of the screen (overlapping the
+   wedge by 2px, so no hairline shows at a fractional edge), and the clip-path keeps it to
+   the bar's height and cuts the slant on the right */
+.enroll-bar-text b{
+  position:relative;align-self:stretch;display:flex;align-items:center;margin-right:1.1rem;padding-right:1.9rem;
+  flex-shrink:0;white-space:nowrap;
+  font-size:1.0625rem;letter-spacing:.015em;color:#12100c;-webkit-text-fill-color:#12100c;
+  background:linear-gradient(90deg,#d4af37 0%,#e2c257 55%,#f0d97d 100%);
+  -webkit-background-clip:border-box;background-clip:border-box;background-size:100% 100%;animation:none;
+  clip-path:polygon(-100vmax 0,100% 0,calc(100% - 1.15rem) 100%,-100vmax 100%);
+}
+.enroll-bar-text b::before{content:'';position:absolute;top:0;bottom:0;right:calc(100% - 2px);width:100vmax;background:#d4af37;z-index:-1}
+.enroll-bar .btn{min-height:0;padding:0 1.05rem;font-size:.8125rem;white-space:nowrap;border-radius:12px 4px 12px 4px}
+.enroll-bar-close{font-size:.875rem}
+
+/* one line: desktop, tablets and small laptops
+   (768.02 / 1199.98 leave no gap at the fractional widths display scaling produces) */
+@media(min-width:768.02px){
+  .enroll-bar-inner{height:100%;flex-wrap:nowrap;justify-content:space-between}
+  .enroll-bar-text{flex:1 1 auto}
   .enroll-bar-actions{flex:0 0 auto;flex-wrap:nowrap;gap:.6rem;margin-left:auto}
-  .enroll-bar .btn{min-height:0;height:1.6rem;padding:0 1.05rem;font-size:.8125rem;white-space:nowrap;border-radius:12px 4px 12px 4px}
-  .enroll-bar-close{width:1.5rem;height:1.5rem;min-width:1.5rem;font-size:.875rem}
+}
+@media(min-width:1200px){
+  .enroll-bar{height:calc(var(--hz) * 37.35px)}   /* = the pinned menu row + its gold rule */
+  .enroll-bar-inner{gap:1.25rem}
+  .enroll-bar-text{font-size:.8125rem}
+  .enroll-bar .btn{height:1.6rem}
+  .enroll-bar-close{width:1.5rem;height:1.5rem;min-width:1.5rem}
   /* safety net for very large browser font settings: a tagline too long for the line is
      cut at the buttons instead of running under them (the wedge still bleeds left) */
   .enroll-bar-text{clip-path:inset(-2px 0 -2px -100vmax)}
+}
+/* tablets / small laptops: the tagline wraps onto two short lines beside the wedge */
+@media(min-width:768.02px) and (max-width:1199.98px){
+  .enroll-bar{height:3rem}
+  .enroll-bar-inner{gap:1rem}
+  .enroll-bar-text{font-size:.8125rem;line-height:1.25;white-space:normal;clip-path:inset(-2px 0 -2px -100vmax)}
+  .enroll-bar .btn{height:2.2rem}
+  .enroll-bar-close{width:2rem;height:2rem;min-width:2rem}
+}
+/* portrait tablets: the buttons leave no room beside the wedge, so wedge + tagline + close
+   take the first row and the buttons sit under them, flush right */
+@media(min-width:768.02px) and (max-width:999.98px){
+  .enroll-bar{height:auto;padding-bottom:.5rem}
+  .enroll-bar-inner{height:auto;flex-wrap:wrap;justify-content:flex-end;gap:.5rem 1rem}
+  .enroll-bar-actions{display:contents}
+  .enroll-bar-text{order:1;flex:1 1 calc(100% - 3.5rem);min-height:2.4rem}
+  .enroll-bar-close{order:2}
+  .enroll-bar .btn-gold{order:3}
+  .enroll-bar .btn-ghost{order:4}
+}
+
+/* phones: wedge + close on the first row with the tagline on its own line under the wedge
+   (left-aligned with the icon), then the two buttons — Enroll Now at its own width, Talk
+   to a Counsellor taking the rest (its label may wrap on the narrowest) */
+@media(max-width:768px){
+  .enroll-bar{height:auto;padding:0 0 calc(.5rem + env(safe-area-inset-bottom,0px))}
+  .enroll-bar-inner{position:relative;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:.5rem}
+  .enroll-bar-actions{display:contents}
+  .enroll-bar-text{
+    order:1;flex:1 1 100%;width:auto;height:auto;flex-wrap:wrap;row-gap:0;
+    justify-content:flex-start;text-align:left;font-size:.8125rem;line-height:1.25;white-space:normal;
+  }
+  .enroll-bar-text b{height:2.2rem;margin-right:0;order:-1}
+  /* a full-width spacer after the wedge starts the tagline on a line of its own */
+  .enroll-bar-text .site-icon{order:-2}
+  .enroll-bar-text::after{content:'';order:-1;flex-basis:100%;height:.3rem}
+  /* the close sits in the wedge row's free right end, so the tagline gets the full width */
+  .enroll-bar-close{position:absolute;top:.1rem;right:18px;width:2rem;height:2rem;min-width:2rem}
+  .enroll-bar .btn{height:2.2rem}
+  .enroll-bar .btn-gold{order:3;flex:0 0 auto}
+  .enroll-bar .btn-ghost{order:4;flex:1 1 0;min-width:0;padding:0 .6rem;white-space:normal;line-height:1.15}
+}
+/* the narrowest phones: a slightly smaller wedge so icon + "Admissions Open" stay on one line beside the close */
+@media(max-width:359.98px){
+  .enroll-bar-text .site-icon{margin-right:.45rem}
+  .enroll-bar-text b{font-size:.9375rem;padding-right:1.5rem}
 }
 
 /* ---------- 28. WHATSAPP + ENROLL NOW FLOATS NEVER GO BEHIND THE ENROLMENT BAR ----------
