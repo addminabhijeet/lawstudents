@@ -5,10 +5,10 @@
     $footerMobile = !empty($footerUser->mobile) ? $footerUser->mobile : '+916624536320';
     $footerAddress = !empty($footerUser->webaddress) ? $footerUser->webaddress : '224 Legal District, Delhi High Court Marg, New Delhi 110001';
     $footerWhatsapp = preg_replace('/[^0-9]/', '', $footerMobile);
-    $footerSocialUrl = function ($url) {
+    $footerSocialUrl = function ($url, $platformHomepage) {
         $url = trim((string) $url);
         if ($url === '' || $url === '#') {
-            return null;
+            return $platformHomepage;
         }
 
         $normalizedUrl = preg_match('/^https?:\/\//i', $url) ? $url : 'https://' . ltrim($url, '/');
@@ -26,20 +26,20 @@
         ];
 
         if (in_array($host, $genericSocialHosts, true) && $path === '') {
-            return null;
+            return $platformHomepage;
         }
 
         return $normalizedUrl;
     };
 
-    $footerSocialLinks = array_filter([
-        'Facebook' => ['url' => $footerSocialUrl($footerUser->facebook ?? null), 'icon' => 'icon-brand-facebook'],
-        'X' => ['url' => $footerSocialUrl($footerUser->twitter ?? null), 'icon' => 'icon-brand-x'],
-        'Instagram' => ['url' => $footerSocialUrl($footerUser->instagram ?? null), 'icon' => 'icon-brand-instagram'],
-        'LinkedIn' => ['url' => $footerSocialUrl($footerUser->linkedin ?? null), 'icon' => 'icon-brand-linkedin'],
-        'YouTube' => ['url' => $footerSocialUrl($footerUser->youtube ?? null), 'icon' => 'icon-brand-youtube'],
-        'Pinterest' => ['url' => $footerSocialUrl($footerUser->pinterest ?? null), 'icon' => 'icon-brand-pinterest'],
-    ], fn($item) => !empty($item['url']));
+    $footerSocialLinks = [
+        'Facebook' => ['url' => $footerSocialUrl($footerUser->facebook ?? null, 'https://www.facebook.com'), 'icon' => 'icon-brand-facebook'],
+        'X' => ['url' => $footerSocialUrl($footerUser->twitter ?? null, 'https://www.x.com'), 'icon' => 'icon-brand-x'],
+        'Instagram' => ['url' => $footerSocialUrl($footerUser->instagram ?? null, 'https://www.instagram.com'), 'icon' => 'icon-brand-instagram'],
+        'LinkedIn' => ['url' => $footerSocialUrl($footerUser->linkedin ?? null, 'https://www.linkedin.com'), 'icon' => 'icon-brand-linkedin'],
+        'YouTube' => ['url' => $footerSocialUrl($footerUser->youtube ?? null, 'https://www.youtube.com'), 'icon' => 'icon-brand-youtube'],
+        'Pinterest' => ['url' => $footerSocialUrl($footerUser->pinterest ?? null, 'https://www.pinterest.com'), 'icon' => 'icon-brand-pinterest'],
+    ];
 
     // Programs column: the course page filters on ?cat=<category id>, so read the
     // ids and labels straight from the categories table rather than hard-coding
