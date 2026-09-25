@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Student extends Authenticatable
 {
+    use HasFactory;
     // Table name (optional if following Laravel convention)
     protected $table = 'students';
 

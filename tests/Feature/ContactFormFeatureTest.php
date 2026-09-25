@@ -13,12 +13,14 @@ class ContactFormFeatureTest extends TestCase
     public function test_contact_form_can_be_created(): void
     {
         ContactForm::factory()->create([
-            'name' => 'John Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'john@example.com',
         ]);
 
         $this->assertDatabaseHas('contact_forms', [
-            'name' => 'John Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => 'john@example.com',
         ]);
     }

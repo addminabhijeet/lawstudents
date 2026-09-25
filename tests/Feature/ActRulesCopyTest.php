@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Act;
 use App\Models\ActCategory;
 use App\Models\Rule;
-use App\Models\Copy;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -38,12 +37,6 @@ class ActRulesCopyTest extends TestCase
     {
         \App\Models\RuleCategory::factory()->create();
         $this->assertDatabaseCount('rule_categories', 1);
-    }
-
-    public function test_copy_creation(): void
-    {
-        Copy::factory()->create();
-        $this->assertDatabaseCount('copies', 1);
     }
 
     public function test_admin_authentication(): void

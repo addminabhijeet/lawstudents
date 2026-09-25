@@ -13,8 +13,7 @@ class PaymentFactory extends Factory
     {
         return [
             'student_id' => 1,
-            'course_id' => '1',
-            'amount' => $this->faker->numberBetween(500, 5000),
+            'invoice_number' => $this->faker->unique()->numerify('INV-######'),
             'payment_status' => $this->faker->randomElement(['paid', 'pending']),
             'issue_date' => $this->faker->dateTime(),
         ];
