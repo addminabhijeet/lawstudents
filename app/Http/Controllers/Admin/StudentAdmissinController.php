@@ -397,11 +397,16 @@ class StudentAdmissinController extends Controller
 
     public function updateWhatsapp(Request $request)
     {
+        $data = $request->validate([
+            'whatsapp_number' => 'required|string|max:20',
+            'pre_message' => 'nullable|string|max:1000',
+        ]);
+
         WhatsappSetting::updateOrCreate(
             ['id' => 1],
             [
-                'whatsapp_number' => $request->whatsapp_number,
-                'pre_message' => $request->pre_message
+                'whatsapp_number' => $data['whatsapp_number'],
+                'pre_message' => $data['pre_message'] ?? null,
             ]
         );
 

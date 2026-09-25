@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\UploadName;
 use App\Http\Controllers\Controller;
 use App\Models\GovtExamCategory;
 use App\Models\GovtExamSubcategory;
@@ -171,7 +172,7 @@ class GovtExamController extends Controller
 
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('govt-exams', $filename, 'public');
                 $pdfPaths[] = $path;
             }
@@ -216,7 +217,7 @@ class GovtExamController extends Controller
         // Add new PDFs if uploaded
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('govt-exams', $filename, 'public');
                 $pdfPaths[] = $path;
             }

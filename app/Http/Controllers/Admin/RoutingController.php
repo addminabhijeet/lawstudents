@@ -58,6 +58,8 @@ class RoutingController extends Controller
 
     public function toggleViewId(Request $request)
     {
+        $request->validate(['id' => 'required|integer']);
+
         $payment = Payment::findOrFail($request->id);
 
         $payment->viewid = !$payment->viewid;
@@ -550,11 +552,18 @@ class RoutingController extends Controller
             'password' => 'nullable|confirmed|min:6',
         ]);
 
-        $student->update([
+        $student->fill([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'] ?? $student->password,
         ]);
+
+        // Only touch the password when a new one was given; passing the
+        // stored hash back through the mutator would re-hash it.
+        if (!empty($data['password'])) {
+            $student->password = $data['password'];
+        }
+
+        $student->save();
 
         $admission = StudentAdmission::where('student_id', $student->id)->first();
 

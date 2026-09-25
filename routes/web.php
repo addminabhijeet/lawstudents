@@ -14,9 +14,7 @@ use App\Http\Controllers\Frontend\ClienteleController;
 use App\Http\Controllers\Frontend\LegalKnowledgeController;
 use App\Http\Controllers\Frontend\LegalKnowledgeLibraryController;
 use App\Http\Controllers\Frontend\SitePageController;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\GoogleLoginController;
 
 Route::middleware(['web'])
     ->as('frontend.')
@@ -54,24 +52,5 @@ Route::middleware(['web'])
         Route::view('announcements', 'pages.announcements', ['pageTitle' => 'Announcements'])->name('announcements');
     });
 
-Route::get('auth/google', function () {
-    return Socialite::driver('google')->redirect();
-})->name('google.login');
-
-Route::get('auth/google/callback', function () {
-
-    try {
-        $googleUser = Socialite::driver('google')->user();
-    } catch (\Exception $e) {
-        return redirect('/')->with('error', 'Google login failed.');
-    }
-
-    $user = User::updateOrCreate(
-        ['email' => $googleUser->getEmail()],
-        ['name' => $googleUser->getName()]
-    );
-
-    Auth::login($user);
-
-    return redirect()->intended('/');
-});
+Route::get('auth/google', [GoogleLoginController::class, 'redirect'])->name('google.login');
+Route::get('auth/google/callback', [GoogleLoginController::class, 'callback']);

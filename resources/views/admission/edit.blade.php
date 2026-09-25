@@ -426,7 +426,7 @@
                                         id="declarationCheck" required>
 
                                     <label class="form-check-label" for="declarationCheck">
-                                        {!! $declaration->declaration !!}
+                                        {!! \App\Helpers\RichTextSanitizer::clean($declaration->declaration) !!}
                                     </label>
                                 </div>
                                 @endif

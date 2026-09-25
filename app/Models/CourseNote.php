@@ -3,9 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class CourseNote extends Model
 {
+    /**
+     * Paid note PDFs live on the private disk so they can only be reached
+     * through the access-checked controllers, never by a direct URL.
+     */
+    public const DISK = 'local';
+
+    /**
+     * Uploads made before the move to the private disk may still sit on the
+     * public disk until `php artisan notes:move-to-private` has been run.
+     */
+    private const LEGACY_DISK = 'public';
 
     protected $fillable = [
         'course_id',
@@ -55,5 +67,34 @@ class CourseNote extends Model
     public function wishlists()
     {
         return $this->hasMany(NoteWishlist::class, 'note_id');
+    }
+
+    /**
+     * Absolute path of the note's PDF, or null when the file is missing.
+     */
+    public function absolutePath(): ?string
+    {
+        if (!$this->file_path) {
+            return null;
+        }
+
+        foreach ([self::DISK, self::LEGACY_DISK] as $disk) {
+            if (Storage::disk($disk)->exists($this->file_path)) {
+                return Storage::disk($disk)->path($this->file_path);
+            }
+        }
+
+        return null;
+    }
+
+    public function deleteFile(): void
+    {
+        if (!$this->file_path) {
+            return;
+        }
+
+        foreach ([self::DISK, self::LEGACY_DISK] as $disk) {
+            Storage::disk($disk)->delete($this->file_path);
+        }
     }
 }

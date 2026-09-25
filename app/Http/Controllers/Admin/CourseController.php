@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\UploadName;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ActCategory;
@@ -128,7 +129,7 @@ class CourseController extends Controller
         if ($request->hasFile('pdf')) {
             foreach ($request->file('pdf') as $file) {
                 // Keep the original file name
-                $originalName = $file->getClientOriginalName();
+                $originalName = UploadName::safe($file, unique: false);
                 $path = $file->storeAs('clientele', $originalName, 'public');
 
                 Clientele::create([
@@ -162,7 +163,7 @@ class CourseController extends Controller
             $pdfPaths = [];
 
             foreach ($request->file('pdfs') as $file) {
-                $originalName = $file->getClientOriginalName();
+                $originalName = UploadName::safe($file, unique: false);
                 $path = $file->storeAs('clientele', $originalName, 'public');
                 $pdfPaths[] = $path;
             }
@@ -221,7 +222,7 @@ class CourseController extends Controller
 
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('acts', $filename, 'public');
                 $pdfPaths[] = $path;
             }
@@ -266,7 +267,7 @@ class CourseController extends Controller
         // ✅ SAME LOGIC AS STORE (only addition)
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('acts', $filename, 'public');
                 $pdfPaths[] = $path; // append like store
             }
@@ -590,7 +591,7 @@ class CourseController extends Controller
 
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('rules', $filename, 'public');
                 $pdfPaths[] = $path;
             }
@@ -635,7 +636,7 @@ class CourseController extends Controller
         // Add new PDFs if uploaded
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('rules', $filename, 'public');
                 $pdfPaths[] = $path;
             }
@@ -793,6 +794,27 @@ class CourseController extends Controller
     public function updatedetails(Request $request, $id)
     {
         $gallery = User::findOrFail($id);
+
+        $request->validate([
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:4096',
+            'accsign'     => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:4096',
+            'diraccsign'  => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:4096',
+            'name'        => 'nullable|string|max:255',
+            'mobile'      => 'nullable|string|max:30',
+            'webemail'    => 'nullable|email|max:255',
+            'webaddress'  => 'nullable|string|max:500',
+            'linkedin'    => 'nullable|string|max:500',
+            'facebook'    => 'nullable|string|max:500',
+            'instagram'   => 'nullable|string|max:500',
+            'pinterest'   => 'nullable|string|max:500',
+            'twitter'     => 'nullable|string|max:500',
+            'youtube'     => 'nullable|string|max:500',
+            'defaultpass' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'centerone'   => 'nullable|string',
+            'centertwo'   => 'nullable|string',
+            'terms'       => 'nullable|string',
+        ]);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('gallery', 'public');
@@ -1073,7 +1095,7 @@ class CourseController extends Controller
 
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('copys', $filename, 'public');
                 $pdfPaths[] = $path;
             }
@@ -1118,7 +1140,7 @@ class CourseController extends Controller
         // ✅ SAME LOGIC AS STORE (only addition)
         if ($request->hasFile('pdfs')) {
             foreach ($request->file('pdfs') as $file) {
-                $filename = uniqid() . '_' . $file->getClientOriginalName();
+                $filename = UploadName::safe($file);
                 $path = $file->storeAs('copys', $filename, 'public');
                 $pdfPaths[] = $path; // append like store
             }

@@ -5,6 +5,23 @@
 
     RewriteEngine On
 
+    # The project root is the web root, so keep everything that is not a
+    # public asset unreachable over HTTP (404 so existence isn't revealed).
+
+    # Dotfiles and dot-directories (.env, .git, .phpunit.result.cache, ...)
+    RewriteRule (^|/)\.(?!well-known/) - [R=404,L]
+
+    # Application source, dependencies and tooling
+    RewriteRule ^(app|bootstrap|config|database|lang|node_modules|resources|routes|tests|vendor)(/|$) - [R=404,L]
+    RewriteRule ^(artisan|composer\.(json|lock)|package(-lock)?\.json|bun\.lock|yarn\.lock|phpunit\.xml|vite\.config\.js|[^/]+\.md)$ - [R=404,L]
+
+    # storage/: only storage/app/public is web-readable, minus private uploads
+    RewriteRule ^storage/app/public/(course_notes|legal-inquiries)(/|$) - [R=404,L]
+    RewriteRule ^storage(/(?!app/public/).*)?$ - [R=404,L]
+
+    # Never execute PHP other than the front controller (e.g. uploaded files)
+    RewriteRule ^(?!index\.php$).+\.php$ - [R=404,L]
+
     RewriteRule ^build/(.*)$ public/build/$1 [L]
     RewriteRule ^assets/(.*)$ public/assets/$1 [L]
     RewriteRule ^img/(.*)$ public/img/$1 [L]
@@ -26,3 +43,8 @@
     RewriteRule ^ index.php [L]
 
 </IfModule>
+
+# Fallback if mod_rewrite is unavailable: at least never serve dotfiles.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

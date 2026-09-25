@@ -41,7 +41,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('whatsapp', [StudentAdmissinController::class, 'whatsapp'])
                 ->name('whatsapp');
 
-            Route::post('update-whatsapp/{id}', [RoutingController::class, 'updateWhatsapp'])
+            Route::post('update-whatsapp/{id}', [StudentAdmissinController::class, 'updateWhatsapp'])
                 ->name('updateWhatsapp');
 
             Route::get('show-admission/{id}', [StudentAdmissinController::class, 'showadmission'])
@@ -62,7 +62,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('edit-payment/{id}', [RoutingController::class, 'editpayment'])
                 ->name('editpayment');
 
-            Route::get('payment-mail/{id}', [RoutingController::class, 'sendpaymentmail'])
+            Route::post('payment-mail/{id}', [RoutingController::class, 'sendpaymentmail'])
                 ->name('sendpaymentmail');
 
             Route::get('list-payment', [RoutingController::class, 'listpayment'])
@@ -275,7 +275,7 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('course-update/{id}', [CourseController::class, 'updatecourse'])
                 ->name('updatecourse');
 
-            Route::get('course-delete/{id}', [CourseController::class, 'coursedelete'])
+            Route::delete('course-delete/{id}', [CourseController::class, 'coursedelete'])
                 ->name('coursedelete');
 
             Route::get('category-edit/{id}', [CourseController::class, 'editCategory'])
@@ -444,7 +444,7 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('liststudentactivity');
             Route::get('list-contactform', [CourseController::class, 'listcontactform'])
                 ->name('listcontactform');
-            Route::get('send-contactmail/{id}', [CourseController::class, 'sendcontactmail'])
+            Route::post('send-contactmail/{id}', [CourseController::class, 'sendcontactmail'])
                 ->name('sendcontactmail');
             Route::post('delete-contact/{id}', [CourseController::class, 'deletecontact'])
                 ->name('deletecontact');

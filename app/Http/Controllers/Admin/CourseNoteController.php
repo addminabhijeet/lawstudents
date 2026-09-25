@@ -101,7 +101,7 @@ class CourseNoteController extends Controller
         $course = Course::findOrFail($request->course_id);
 
         $file = $request->file('pdf');
-        $path = $file->store('course_notes', 'public');
+        $path = $file->store('course_notes', CourseNote::DISK);
 
         CourseNote::create([
             'course_id'       => $course->id,
@@ -138,12 +138,10 @@ class CourseNoteController extends Controller
         if ($request->hasFile('pdf')) {
 
             // Delete old file
-            if ($note->file_path && Storage::disk('public')->exists($note->file_path)) {
-                Storage::disk('public')->delete($note->file_path);
-            }
+            $note->deleteFile();
 
             $file = $request->file('pdf');
-            $path = $file->store('course_notes', 'public');
+            $path = $file->store('course_notes', CourseNote::DISK);
 
             $note->file_path  = $path;
             $note->file_size  = $file->getSize();
@@ -166,9 +164,9 @@ class CourseNoteController extends Controller
         // Increase download count
         $note->increment('download_count');
 
-        $filePath = storage_path('app/public/' . $note->file_path);
+        $filePath = $note->absolutePath();
 
-        if (!file_exists($filePath)) {
+        if (!$filePath) {
             abort(404, 'File not found.');
         }
 
@@ -180,11 +178,11 @@ class CourseNoteController extends Controller
     {
         $note = CourseNote::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($note->file_path)) {
+        $path = $note->absolutePath();
+
+        if (!$path) {
             abort(404);
         }
-
-        $path = Storage::disk('public')->path($note->file_path);
 
         return response()->file($path);
     }

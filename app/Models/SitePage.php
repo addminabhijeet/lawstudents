@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\RichTextSanitizer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,14 @@ class SitePage extends Model
     protected $casts = [
         'last_updated' => 'datetime',
     ];
+
+    /**
+     * Content is rendered unescaped on the public page, so clean it on save.
+     */
+    public function setContentAttribute($value): void
+    {
+        $this->attributes['content'] = RichTextSanitizer::clean($value);
+    }
 
     /**
      * Get page by slug

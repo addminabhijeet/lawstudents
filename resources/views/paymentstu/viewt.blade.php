@@ -68,7 +68,7 @@ $user = \App\Models\User::first();
                                                 @if (!empty($user?->centerone))
                                                 {!! collect(explode(' ', trim($user->centerone)))
                                                 ->chunk(3)
-                                                ->map(fn($chunk) => implode(' ', $chunk->toArray()))
+                                                ->map(fn($chunk) => e(implode(' ', $chunk->toArray())))
                                                 ->implode('<br>') !!}
                                                 <br>
                                                 @else
@@ -99,7 +99,7 @@ $user = \App\Models\User::first();
                                                 @if (!empty($user?->centertwo))
                                                 {!! collect(explode(' ', trim($user->centertwo)))
                                                 ->chunk(3)
-                                                ->map(fn($chunk) => implode(' ', $chunk->toArray()))
+                                                ->map(fn($chunk) => e(implode(' ', $chunk->toArray())))
                                                 ->implode('<br>') !!}
                                                 <br>
                                                 @else

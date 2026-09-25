@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use setasign\Fpdi\Fpdi;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 
 class FreeNotesController extends Controller
@@ -89,7 +90,7 @@ class FreeNotesController extends Controller
             File::makeDirectory($tempDir, 0775, true);
         }
 
-        $tempFile = $tempDir . '/watermarked_' . time() . '.pdf';
+        $tempFile = $tempDir . '/watermarked_' . Str::uuid() . '.pdf';
 
         $pdf = new Fpdi();
         $pageCount = $pdf->setSourceFile($path);
@@ -168,7 +169,7 @@ class FreeNotesController extends Controller
             File::makeDirectory($tempDir, 0775, true);
         }
 
-        $tempFile = $tempDir . '/view_watermarked_' . time() . '.pdf';
+        $tempFile = $tempDir . '/view_watermarked_' . Str::uuid() . '.pdf';
 
         $pdf = new Fpdi();
         $pageCount = $pdf->setSourceFile($path);
@@ -192,6 +193,6 @@ class FreeNotesController extends Controller
         $pdf->Output($tempFile, 'F');
 
         // Stream to browser for inline viewing
-        return response()->file($tempFile);
+        return response()->file($tempFile)->deleteFileAfterSend(true);
     }
 }

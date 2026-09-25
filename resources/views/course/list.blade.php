@@ -84,12 +84,15 @@
                                         <span>Edit Course</span>
                                     </a>
 
-                                    <a href="{{ route('admin.coursedelete', $course->id) }}"
-                                        class="btn btn-danger w-100"
-                                        onclick="return confirm('Are you sure you want to delete?')">
-                                        <i class="feather-trash-2 me-2"></i>
-                                        <span>Delete Course</span>
-                                    </a>
+                                    <form method="POST" action="{{ route('admin.coursedelete', $course->id) }}"
+                                        onsubmit="return confirm('Are you sure you want to delete?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger w-100">
+                                            <i class="feather-trash-2 me-2"></i>
+                                            <span>Delete Course</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
 

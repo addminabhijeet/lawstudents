@@ -65,7 +65,7 @@
                                     <p class="text-muted small">Use the editor below to add formatted text, headings, links, and lists.</p>
 
                                     <div id="editor" style="height: 500px; background-color: white;">
-                                        {!! old('content', $page->content) !!}
+                                        {!! \App\Helpers\RichTextSanitizer::clean(old('content', $page->content)) !!}
                                     </div>
 
                                     <!-- Hidden input to store Quill content -->

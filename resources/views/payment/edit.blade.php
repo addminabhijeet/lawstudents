@@ -216,11 +216,12 @@
                                     </div>
 
                                     <div class="col-md-4 col-xl-2 d-flex align-items-end">
-                                        <a href="{{ route('admin.sendpaymentmail', $payment->id) }}"
+                                        {{-- Submits the standalone form below (forms can't be nested) --}}
+                                        <button type="submit" form="send-payment-mail-{{ $payment->id }}"
                                             class="btn btn-success w-100"
                                             onclick="return confirm('Send the payment email to this student now?')">
                                             Send Mail
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -232,6 +233,13 @@
                         <button type="submit" class="btn btn-primary">Update All Payments</button>
                     </div>
                 </form>
+
+                @foreach ($allPayments as $mailPayment)
+                <form id="send-payment-mail-{{ $mailPayment->id }}" method="POST"
+                    action="{{ route('admin.sendpaymentmail', $mailPayment->id) }}" class="d-none">
+                    @csrf
+                </form>
+                @endforeach
             </div>
         </div>
     </div>
@@ -285,7 +293,7 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         // Convert allPayments JSON to JS array with numeric IDs
-        const allPayments = JSON.parse('{!! json_encode($allPayments) !!}');
+        const allPayments = @json($allPayments);
 
         // Group payments by student_id
         const grouped = {};

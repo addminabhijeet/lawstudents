@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use App\Models\NoteWishlist;
 use App\Models\NoteProgress;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use setasign\Fpdi\Fpdi;
 
 class CourseControllerStu extends Controller
@@ -139,9 +140,9 @@ class CourseControllerStu extends Controller
             abort(403, 'You do not have access to this note.');
         }
 
-        $filePath = storage_path('app/public/' . $note->file_path);
+        $filePath = $note->absolutePath();
 
-        if (!file_exists($filePath)) {
+        if (!$filePath) {
             abort(404, 'File not found.');
         }
 
@@ -195,17 +196,23 @@ class CourseControllerStu extends Controller
                 'student_id' => $studentId
             ]);
         } catch (\Exception $e) {
+            report($e);
+
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-                'student_id' => $studentId
+                'message' => 'Could not update your wishlist.',
             ], 500);
         }
     }
 
     public function saveProgress(Request $request)
     {
+        $request->validate([
+            'note_id'     => 'required|integer',
+            'page'        => 'required|integer|min:1',
+            'total_pages' => 'required|integer|min:1',
+        ]);
+
         $student = Auth::guard('student')->user();
 
         $note = CourseNote::findOrFail($request->note_id);
@@ -250,9 +257,9 @@ class CourseControllerStu extends Controller
 
         $note->increment('download_count');
 
-        $filePath = storage_path('app/public/' . $note->file_path);
+        $filePath = $note->absolutePath();
 
-        if (!file_exists($filePath)) {
+        if (!$filePath) {
             abort(404, 'File not found.');
         }
 
@@ -269,7 +276,7 @@ class CourseControllerStu extends Controller
             File::makeDirectory($tempDir, 0775, true);
         }
 
-        $tempFile = $tempDir . '/watermarked_' . time() . '.pdf';
+        $tempFile = $tempDir . '/watermarked_' . Str::uuid() . '.pdf';
 
         $pdf = new Fpdi();
         $pageCount = $pdf->setSourceFile($filePath);

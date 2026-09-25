@@ -25,12 +25,10 @@ class LegalKnowledgeController extends Controller
             'document' => 'nullable|file|mimes:pdf,doc,docx,txt|max:5120',
         ]);
 
-        // Handle document upload if provided
+        // Handle document upload if provided. Visitor uploads go to the
+        // private disk under a generated name; they are never served directly.
         if ($request->hasFile('document')) {
-            $file = $request->file('document');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('legal-inquiries', $fileName, 'public');
-            $validated['document'] = $fileName;
+            $validated['document'] = $request->file('document')->store('legal-inquiries', 'local');
         }
 
         // Store inquiry to database or send email notification
