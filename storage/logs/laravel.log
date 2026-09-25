@@ -79659,3 +79659,4 @@ Stack trace:
 #5 C:/xampp/htdocs/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
 #6 {main}
 "} 
+[2026-09-25 22:42:40] testing.INFO: OTP sent to email {"email":"test@example.com"} 
