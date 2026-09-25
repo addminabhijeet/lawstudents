@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\SitePageController;
 use App\Http\Controllers\Admin\ActController;
 use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\Admin\CopyController;
+use App\Http\Controllers\Admin\ContactFormController;
+use App\Http\Controllers\Admin\StudentActivityController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -441,18 +443,18 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('updatecopyscategory');
             Route::post('copyscategories-filedelete/{id}', [CopyController::class, 'deletecopyscategoryfile'])
                 ->name('deletecopyscategoryfile');
-            Route::get('view-student-activity/{id}', [CourseController::class, 'viewstudentactivity'])
+            Route::get('view-student-activity/{id}', [StudentActivityController::class, 'viewstudentactivity'])
                 ->name('viewstudentactivity');
-            Route::get('list-student-activity', [CourseController::class, 'liststudentactivity'])
+            Route::get('list-student-activity', [StudentActivityController::class, 'liststudentactivity'])
                 ->name('liststudentactivity');
-            Route::get('list-contactform', [CourseController::class, 'listcontactform'])
+            Route::get('list-contactform', [ContactFormController::class, 'listcontactform'])
                 ->name('listcontactform');
-            Route::post('send-contactmail/{id}', [CourseController::class, 'sendcontactmail'])
+            Route::post('send-contactmail/{id}', [ContactFormController::class, 'sendcontactmail'])
                 ->name('sendcontactmail');
-            Route::post('delete-contact/{id}', [CourseController::class, 'deletecontact'])
+            Route::post('delete-contact/{id}', [ContactFormController::class, 'deletecontact'])
                 ->name('deletecontact');
 
-            Route::get('contact-view/{id}', [CourseController::class, 'viewcontactform'])
+            Route::get('contact-view/{id}', [ContactFormController::class, 'viewcontactform'])
                 ->name('viewcontactform');
 
             // ===== Site Pages (Privacy Policy, Terms, Disclaimer, Refund Policy) =====
