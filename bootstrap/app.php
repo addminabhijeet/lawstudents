@@ -15,6 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->web(append: [
             \App\Http\Middleware\FixAssetPaths::class,
+            \App\Http\Middleware\SecurityHeaders::class,
+        ]);
+
+        $middleware->api(append: [
+            \App\Http\Middleware\ApiRateLimiting::class,
+            \App\Http\Middleware\SecurityHeaders::class,
         ]);
 
         $middleware->alias([
@@ -22,6 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'student.auth' => \App\Http\Middleware\RedirectIfNotStudent::class,
             'throttle.otp' => \App\Http\Middleware\ThrottleOtpRequests::class,
             'validate.otp' => \App\Http\Middleware\ValidateOtpSecurely::class,
+            'admin.audit' => \App\Http\Middleware\AdminAuditLogging::class,
         ]);
 
     })
