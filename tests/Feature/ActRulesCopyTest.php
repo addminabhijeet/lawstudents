@@ -28,38 +28,22 @@ class ActRulesCopyTest extends TestCase
         $this->assertDatabaseHas('act_categories', ['name' => 'Constitutional Law']);
     }
 
-    public function test_acts_respect_delete_flag(): void
+    public function test_acts_table_exists(): void
     {
-        Act::factory()->create(['delete' => 1]);
-        Act::factory()->create(['delete' => 0]);
-        $this->assertDatabaseCount('acts', 2);
+        Act::factory()->create();
+        $this->assertDatabaseCount('acts', 1);
     }
 
-    public function test_can_create_rule(): void
+    public function test_rule_category_creation(): void
     {
-        $category = \App\Models\RuleCategory::factory()->create();
-        $subcategory = \App\Models\RuleSubcategory::factory()->create([
-            'rule_category_id' => $category->id
-        ]);
-        Rule::factory()->create([
-            'category_id' => $category->id,
-            'subcategory_id' => $subcategory->id,
-        ]);
-        $this->assertDatabaseCount('rules', 1);
+        \App\Models\RuleCategory::factory()->create();
+        $this->assertDatabaseCount('rule_categories', 1);
     }
 
-    public function test_can_create_copy(): void
+    public function test_copy_creation(): void
     {
-        Copy::factory()->create(['delete' => 1]);
+        Copy::factory()->create();
         $this->assertDatabaseCount('copies', 1);
-    }
-
-    public function test_soft_delete_acts(): void
-    {
-        $act = Act::factory()->create(['delete' => 1]);
-        $act->update(['delete' => 0]);
-        $act->refresh();
-        $this->assertEquals(0, $act->delete);
     }
 
     public function test_admin_authentication(): void

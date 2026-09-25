@@ -11,10 +11,6 @@ class CopyFactory extends Factory
 
     public function definition(): array
     {
-        return [
-            'title' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(),
-            'delete' => 1,
-        ];
+        return [];
     }
 }

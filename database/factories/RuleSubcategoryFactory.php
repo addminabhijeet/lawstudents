@@ -14,8 +14,6 @@ class RuleSubcategoryFactory extends Factory
     {
         return [
             'rule_category_id' => RuleCategory::factory(),
-            'name' => $this->faker->word(),
-            'delete' => 1,
         ];
     }
 }

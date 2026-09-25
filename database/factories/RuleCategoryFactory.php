@@ -11,9 +11,6 @@ class RuleCategoryFactory extends Factory
 
     public function definition(): array
     {
-        return [
-            'name' => $this->faker->word(),
-            'delete' => 1,
-        ];
+        return [];
     }
 }

@@ -12,9 +12,8 @@ class ClienteleFactory extends Factory
     public function definition(): array
     {
         return [
-            'pdf' => 'clientele/' . $this->faker->uuid() . '.pdf',
-            'description' => $this->faker->sentence(),
-            'delete' => 1,
+            'description' => $this->faker->paragraph(),
+            'pdfs' => json_encode(['pdf' => 'clientele/' . $this->faker->uuid() . '.pdf']),
         ];
     }
 }

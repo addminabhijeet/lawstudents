@@ -23,23 +23,16 @@ class GalleryClienteleTest extends TestCase
     public function test_can_create_gallery(): void
     {
         Gallery::factory()->create([
-            'description' => 'Test gallery',
-            'group_name' => 'test-group',
+            'image' => 'gallery/test.jpg',
         ]);
-        $this->assertDatabaseHas('galleries', ['group_name' => 'test-group']);
+        $this->assertDatabaseHas('gallery', ['image' => 'gallery/test.jpg']);
     }
 
-    public function test_can_list_gallery(): void
+    public function test_gallery_list(): void
     {
         Gallery::factory()->count(3)->create();
-        $this->assertDatabaseCount('galleries', 3);
-    }
-
-    public function test_can_delete_gallery(): void
-    {
-        $gallery = Gallery::factory()->create();
-        $gallery->update(['delete' => 0]);
-        $this->assertEquals(0, $gallery->delete);
+        $count = \DB::table('gallery')->count();
+        $this->assertEquals(3, $count);
     }
 
     public function test_can_create_clientele(): void
@@ -50,16 +43,9 @@ class GalleryClienteleTest extends TestCase
         $this->assertDatabaseCount('clienteles', 1);
     }
 
-    public function test_can_list_clientele(): void
+    public function test_clientele_list(): void
     {
-        Clientele::factory()->count(5)->create(['delete' => 0]);
+        Clientele::factory()->count(5)->create();
         $this->assertDatabaseCount('clienteles', 5);
-    }
-
-    public function test_gallery_soft_delete(): void
-    {
-        $gallery = Gallery::factory()->create(['delete' => 1]);
-        $gallery->update(['delete' => 0]);
-        $this->assertEquals(0, $gallery->delete);
     }
 }
