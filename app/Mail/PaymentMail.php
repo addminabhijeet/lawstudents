@@ -3,9 +3,10 @@
 namespace App\Mail;
 
 use Illuminate\Mail\Mailable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 
-class PaymentMail extends Mailable
+class PaymentMail extends Mailable implements ShouldQueue
 {
     use SerializesModels;
 
