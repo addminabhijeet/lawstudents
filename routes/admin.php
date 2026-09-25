@@ -14,6 +14,9 @@ use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\Admin\CopyController;
 use App\Http\Controllers\Admin\ContactFormController;
 use App\Http\Controllers\Admin\StudentActivityController;
+use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\ClienteleController;
+use App\Http\Controllers\Admin\AdminSettingsController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -112,22 +115,22 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::get('courses', [CourseController::class, 'listcourse'])
                 ->name('listcourse');
 
-            Route::get('list-clientele', [CourseController::class, 'listclientele'])
+            Route::get('list-clientele', [ClienteleController::class, 'listclientele'])
                 ->name('listclientele');
 
-            Route::get('add-clientele', [CourseController::class, 'addclientele'])
+            Route::get('add-clientele', [ClienteleController::class, 'addclientele'])
                 ->name('addclientele');
 
-            Route::post('store-clientele', [CourseController::class, 'storeclientele'])
+            Route::post('store-clientele', [ClienteleController::class, 'storeclientele'])
                 ->name('storeclientele');
 
-            Route::get('edit-clientele/{id}', [CourseController::class, 'editclientele'])
+            Route::get('edit-clientele/{id}', [ClienteleController::class, 'editclientele'])
                 ->name('editclientele');
 
-            Route::post('update-clientele/{id}', [CourseController::class, 'updateclientele'])
+            Route::post('update-clientele/{id}', [ClienteleController::class, 'updateclientele'])
                 ->name('updateclientele');
 
-            Route::delete('delete-clientele/{id}', [CourseController::class, 'clientelefiledelete'])
+            Route::delete('delete-clientele/{id}', [ClienteleController::class, 'clientelefiledelete'])
                 ->name('clientelefiledelete');
 
             Route::get('list-acts', [ActController::class, 'listacts'])
@@ -262,16 +265,16 @@ Route::middleware(['admin.auth'])->group(function () {
 
             // ===== end Legal Knowledge =====
 
-            Route::get('banner', [CourseController::class, 'listbanner'])
+            Route::get('banner', [AdminSettingsController::class, 'listbanner'])
                 ->name('listbanner');
 
-            Route::get('mailsetting', [CourseController::class, 'mailsetting'])
+            Route::get('mailsetting', [AdminSettingsController::class, 'mailsetting'])
                 ->name('mailsetting');
 
-            Route::post('updatemailsetting/{id}', [CourseController::class, 'updatemailsetting'])
+            Route::post('updatemailsetting/{id}', [AdminSettingsController::class, 'updatemailsetting'])
                 ->name('updatemailsetting');
 
-            Route::post('store-banner', [CourseController::class, 'storebanner'])
+            Route::post('store-banner', [AdminSettingsController::class, 'storebanner'])
                 ->name('storebanner');
 
             Route::get('course-edit/{id}', [CourseController::class, 'editcourse'])
@@ -292,23 +295,23 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('category-update/{id}', [CourseController::class, 'updateCategory'])
                 ->name('updateCategory');
 
-            Route::get('gallery', [CourseController::class, 'listgallery'])
+            Route::get('gallery', [GalleryController::class, 'listgallery'])
                 ->name('listgallery');
 
-            Route::get('admin-details', [CourseController::class, 'admindetails'])
+            Route::get('admin-details', [AdminSettingsController::class, 'admindetails'])
                 ->name('admindetails');
 
-            Route::post('update-details/{id}', [CourseController::class, 'updatedetails'])
+            Route::post('update-details/{id}', [AdminSettingsController::class, 'updatedetails'])
                 ->name('updatedetails');
 
-            Route::post('store-gallery', [CourseController::class, 'storegallery'])
+            Route::post('store-gallery', [GalleryController::class, 'storegallery'])
                 ->name('storegallery');
 
-            Route::get('gallery-edit/{id}', [CourseController::class, 'editgallery'])
+            Route::get('gallery-edit/{id}', [GalleryController::class, 'editgallery'])
                 ->name('editgallery');
-            Route::post('gallery-update/{id}', [CourseController::class, 'updategallery'])
+            Route::post('gallery-update/{id}', [GalleryController::class, 'updategallery'])
                 ->name('updategallery');
-            Route::delete('gallery-delete/{id}', [CourseController::class, 'deletegallery'])
+            Route::delete('gallery-delete/{id}', [GalleryController::class, 'deletegallery'])
                 ->name('deletegallery');
             Route::post('category-store', [CourseController::class, 'storecategory'])
                 ->name('storecategory');
