@@ -33,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // ===== PREVENT LAZY LOADING IN NON-PRODUCTION =====
+        if (!app()->isProduction()) {
+            \Illuminate\Database\Eloquent\Model::preventLazyLoading();
+        }
+
         // ===== REGISTER BLADE DIRECTIVES FOR ASSET URLS =====
         Blade::directive('asset', function ($expression) {
             return "<?php echo \\App\\Helpers\\AssetHelper::assetUrl({$expression}); ?>";
