@@ -1924,3 +1924,6 @@ body.enroll-bar-on .site-footer{padding-bottom:166px}
 .how-card:hover h3{text-shadow:0 1px 2px rgba(0,0,0,.45),0 0 10px rgba(212,175,55,.3) !important}
 .kn-card:hover,
 .how-card:hover{box-shadow:0 10px 24px rgba(0,0,0,.35),0 0 16px rgba(212,175,55,.2) !important}
+
+/* ---- inner-page hero frame: faded to the .46 opacity the section SVG patterns use ---- */
+.page-hero .hero-frame{opacity:.46}
