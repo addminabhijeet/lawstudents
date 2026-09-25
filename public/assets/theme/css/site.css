@@ -1927,3 +1927,6 @@ body.enroll-bar-on .site-footer{padding-bottom:166px}
 
 /* ---- inner-page hero frame: faded to the .46 opacity the section SVG patterns use ---- */
 .page-hero .hero-frame{opacity:.46}
+
+/* ---- inner-page hero frame: a further 10% fade ---- */
+.page-hero .hero-frame{opacity:.36}
