@@ -79649,3 +79649,13 @@ Stack trace:
 [2026-09-25 22:37:23] testing.INFO: OTP sent to email {"email":"test@example.com"} 
 [2026-09-25 22:37:50] testing.INFO: OTP sent to email {"email":"test@example.com"} 
 [2026-09-25 22:38:51] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:39:20] local.ERROR: There are no commands defined in the "code" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"code\" namespace. at C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php:694)
+[stacktrace]
+#0 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(743): Symfony/Component/Console/Application->findNamespace('code')
+#1 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(298): Symfony/Component/Console/Application->find('code:analyse')
+#2 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#3 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#4 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#5 C:/xampp/htdocs/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#6 {main}
+"} 

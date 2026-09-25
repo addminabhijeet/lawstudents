@@ -6,16 +6,8 @@ parameters:
     paths:
         - app
         - routes
-    stubFiles:
-        - stubs/Illuminate/Contracts/Auth/Guard.stub
     excludePaths:
         - app/Providers/AppServiceProvider.php
     ignoreErrors:
         - "#Call to an undefined method#"
         - "#Property .* has no type specified#"
-
-services:
-    -
-        class: NunoMaduro\Larastan\Rules\NoUnnecessaryCollectionCallRule
-    -
-        class: NunoMaduro\Larastan\Rules\NoParallelCollectionCallRule
