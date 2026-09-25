@@ -79610,3 +79610,31 @@ Stack trace:
 #32 C:/xampp/htdocs/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
 #33 {main}
 "} 
+[2026-09-25 22:09:39] local.ERROR: Running Collision 8.x artisan test command in parallel requires at least ParaTest (brianium/paratest) 7.x. {"exception":"[object] (NunoMaduro\\Collision\\Adapters\\Laravel\\Exceptions\\RequirementsException(code: 0): Running Collision 8.x artisan test command in parallel requires at least ParaTest (brianium/paratest) 7.x. at C:/xampp/htdocs/lawstudents/vendor/nunomaduro/collision/src/Adapters/Laravel/Commands/TestCommand.php:92)
+[stacktrace]
+#0 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): NunoMaduro/Collision/Adapters/Laravel/Commands/TestCommand->handle()
+#1 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::Illuminate/Container/{closure}()
+#2 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(96): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#3 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#4 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Container/Container.php(799): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#5 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Console/Command.php(211): Illuminate/Container/Container->call(Array)
+#6 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Command/Command.php(341): Illuminate/Console/Command->execute(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#7 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Console/Command.php(180): Symfony/Component/Console/Command/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#8 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(1117): Illuminate/Console/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#9 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(356): Symfony/Component/Console/Application->doRunCommand(Object(NunoMaduro/Collision/Adapters/Laravel/Commands/TestCommand), Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#10 C:/xampp/htdocs/lawstudents/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#11 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#12 C:/xampp/htdocs/lawstudents/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#13 C:/xampp/htdocs/lawstudents/artisan(16): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#14 {main}
+"} 
+[2026-09-25 22:10:35] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:13:45] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:14:13] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:14:33] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:14:51] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:15:39] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:16:14] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:18:32] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:20:54] testing.INFO: OTP sent to email {"email":"test@example.com"} 
+[2026-09-25 22:22:04] testing.INFO: OTP sent to email {"email":"test@example.com"} 

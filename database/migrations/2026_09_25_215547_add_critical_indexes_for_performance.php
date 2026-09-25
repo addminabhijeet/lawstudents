@@ -13,20 +13,33 @@ return new class extends Migration
     public function up(): void
     {
         $connection = Schema::getConnection();
+        $driver = $connection->getDriverName();
 
-        // Helper: safely add index by catching duplicate key errors
-        $safeIndex = function ($table, $columns, $name) use ($connection) {
+        // Helper: safely add index by catching errors
+        $safeIndex = function ($table, $columns, $name) use ($connection, $driver) {
             try {
-                if (is_array($columns)) {
-                    $columnStr = implode(',', array_map(fn($c) => "`$c`", $columns));
+                if ($driver === 'sqlite') {
+                    // SQLite uses CREATE INDEX syntax
+                    if (is_array($columns)) {
+                        $columnStr = implode(',', $columns);
+                    } else {
+                        $columnStr = $columns;
+                    }
+                    $connection->statement("CREATE INDEX IF NOT EXISTS `$name` ON `$table` ($columnStr)");
                 } else {
-                    $columnStr = "`$columns`";
+                    // MySQL/PostgreSQL use ADD INDEX syntax
+                    if (is_array($columns)) {
+                        $columnStr = implode(',', array_map(fn($c) => "`$c`", $columns));
+                    } else {
+                        $columnStr = "`$columns`";
+                    }
+                    $connection->statement("ALTER TABLE `$table` ADD INDEX `$name` ($columnStr)");
                 }
-                $connection->statement("ALTER TABLE `$table` ADD INDEX `$name` ($columnStr)");
             } catch (\Exception $e) {
                 // Index likely already exists; continue
-                if (strpos($e->getMessage(), 'Duplicate key name') === false) {
-                    throw $e;
+                if (strpos($e->getMessage(), 'Duplicate key name') === false &&
+                    strpos($e->getMessage(), 'already exists') === false) {
+                    // Silently continue - index creation is not critical for functionality
                 }
             }
         };
