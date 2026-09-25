@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\StudentActivityController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ClienteleController;
 use App\Http\Controllers\Admin\AdminSettingsController;
+use App\Http\Controllers\Admin\CourseManagementController;
 
 Route::middleware(['admin.auth'])->group(function () {
 
@@ -106,13 +107,13 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('toggle-viewid', [RoutingController::class, 'toggleViewId'])
                 ->name('toggleviewid');
 
-            Route::get('listcoursesubcategory', [CourseController::class, 'listcoursesubcategory'])
+            Route::get('listcoursesubcategory', [CourseManagementController::class, 'listcoursesubcategory'])
                 ->name('listcoursesubcategory');
 
-            Route::get('listcoursecategory', [CourseController::class, 'listcoursecategory'])
+            Route::get('listcoursecategory', [CourseManagementController::class, 'listcoursecategory'])
                 ->name('listcoursecategory');
 
-            Route::get('courses', [CourseController::class, 'listcourse'])
+            Route::get('courses', [CourseManagementController::class, 'listcourse'])
                 ->name('listcourse');
 
             Route::get('list-clientele', [ClienteleController::class, 'listclientele'])
@@ -277,22 +278,22 @@ Route::middleware(['admin.auth'])->group(function () {
             Route::post('store-banner', [AdminSettingsController::class, 'storebanner'])
                 ->name('storebanner');
 
-            Route::get('course-edit/{id}', [CourseController::class, 'editcourse'])
+            Route::get('course-edit/{id}', [CourseManagementController::class, 'editcourse'])
                 ->name('editcourse');
 
-            Route::post('course-update/{id}', [CourseController::class, 'updatecourse'])
+            Route::post('course-update/{id}', [CourseManagementController::class, 'updatecourse'])
                 ->name('updatecourse');
 
-            Route::delete('course-delete/{id}', [CourseController::class, 'coursedelete'])
+            Route::delete('course-delete/{id}', [CourseManagementController::class, 'coursedelete'])
                 ->name('coursedelete');
 
-            Route::get('category-edit/{id}', [CourseController::class, 'editCategory'])
+            Route::get('category-edit/{id}', [CourseManagementController::class, 'editCategory'])
                 ->name('editCategory');
 
-            Route::delete('category-delete/{id}', [CourseController::class, 'deleteCategory'])
+            Route::delete('category-delete/{id}', [CourseManagementController::class, 'deleteCategory'])
                 ->name('deleteCategory');
 
-            Route::post('category-update/{id}', [CourseController::class, 'updateCategory'])
+            Route::post('category-update/{id}', [CourseManagementController::class, 'updateCategory'])
                 ->name('updateCategory');
 
             Route::get('gallery', [GalleryController::class, 'listgallery'])
@@ -313,9 +314,9 @@ Route::middleware(['admin.auth'])->group(function () {
                 ->name('updategallery');
             Route::delete('gallery-delete/{id}', [GalleryController::class, 'deletegallery'])
                 ->name('deletegallery');
-            Route::post('category-store', [CourseController::class, 'storecategory'])
+            Route::post('category-store', [CourseManagementController::class, 'storecategory'])
                 ->name('storecategory');
-            Route::post('course-store', [CourseController::class, 'storecourse'])
+            Route::post('course-store', [CourseManagementController::class, 'storecourse'])
                 ->name('storecourse');
             Route::get('course-notes', [CourseNoteController::class, 'listnotes'])
                 ->name('listnotes');
