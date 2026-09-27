@@ -146,3 +146,24 @@
   /* card titles skipped from h2 to h4 / h5 */
   $$('.list-card h4, .album-body h4, .kn-card h5, .contact-item h5').forEach(function(h){ h.setAttribute('aria-level', '3'); });
 })(window, document);
+
+/* ---------- 9. blocks added to the page later keep their place ----------
+   Section 2 moves the sections it knows to the end of <main>, so anything it does
+   not know was left above the hero: the page intro that follows the hero and the
+   academic block the layout adds at the end of <main>. The intro goes back under
+   the hero; everything else goes back to the end. (The success message printed
+   before the hero stays where it is.) */
+(function(d){
+  'use strict';
+  var main = d.querySelector('main'), hero = d.getElementById('home');
+  if(!main || !hero || hero.parentNode !== main) return;
+  var above = [];
+  for(var el = main.firstElementChild; el && el !== hero; el = el.nextElementSibling){
+    if(!el.classList.contains('form-toast')) above.push(el);
+  }
+  var after = hero;
+  above.forEach(function(el){
+    if(el.classList.contains('page-intro')){ main.insertBefore(el, after.nextSibling); after = el; }
+    else main.appendChild(el);
+  });
+})(document);

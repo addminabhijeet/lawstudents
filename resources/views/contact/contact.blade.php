@@ -1,6 +1,10 @@
 @extends('layouts.landing', ['title' => 'Contact Us — Law Students'])
 
 @section('meta_description', 'Connect with our expert instructors and mentors at Law Students.')
+{{-- Contact page layer, loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/contact.css') }}?v={{ filemtime(public_path('assets/theme/css/contact.css')) }}">
+@endsection
 
 @section('content')
 @php
@@ -90,11 +94,16 @@
                 @csrf
                 <h3 class="form-title">Send Us Your Inquiry</h3>
                 <p class="form-lead">Our response time is within 30 minutes during business hours</p>
+                <p class="ct-required">All fields are required.</p>
 
                 @if (session('success'))
                     <p class="form-status" role="status">{{ session('success') }}</p>
                 @elseif ($errors->any())
                     <p class="form-status" role="alert">{{ $errors->first() }}</p>
+                @endif
+                {{-- Every field's error, for contact.js to show beside the field. --}}
+                @if ($errors->any())
+                    <script type="application/json" id="ct-errors">@json($errors->getMessages())</script>
                 @endif
 
                 <div class="form-row">
@@ -135,4 +144,6 @@
         </div>
     </div>
 </section>
+{{-- Contact page fixes: right after the section, before the map starts loading. --}}
+<script src="{{ asset('assets/theme/js/contact.js') }}?v={{ filemtime(public_path('assets/theme/js/contact.js')) }}"></script>
 @endsection

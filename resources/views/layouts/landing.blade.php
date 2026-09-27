@@ -71,6 +71,8 @@
     @yield('css')
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/page-intros.css') }}">
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/academic-pages.css') }}">
+    {{-- Line-drawing patterns on the academic sections that had none. --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/section-patterns.css') }}">
 </head>
 
 <body class="@yield('body_class', 'inner-page')">

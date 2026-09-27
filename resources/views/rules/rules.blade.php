@@ -1,8 +1,16 @@
 @extends('layouts.landing', ['title' => 'Rules — Law Students'])
 
 @section('meta_description', 'Browse Rules by category and search by keyword.')
+{{-- Rules page layer, loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/rules.css') }}?v={{ filemtime(public_path('assets/theme/css/rules.css')) }}">
+@endsection
 
 @section('content')
+{{-- Only what the admin panel lists as active (delete = 1), as the site's own search does. --}}
+@php $categories = $categories->where('delete', 1)->each(fn($cat) => $cat->setRelation('subcategories', $cat->subcategories->where('delete', 1)->each(fn($sub) => $sub->setRelation('rules', $sub->rules->where('delete', 1)->values()))->values()))->values(); @endphp
+{{-- Page count and size of every file listed (App\Support\PdfInfo); rules.js labels them. --}}
+@php $rulePdfInfo = []; foreach ($categories as $pdfCat) { foreach ($pdfCat->subcategories as $pdfSub) { foreach ($pdfSub->rules as $pdfRule) { foreach (($pdfRule->pdfs ?? []) as $pdfPath) { $rulePdfInfo[$pdfPath] = \App\Support\PdfInfo::describe($pdfPath); } } } } $ruleHasSummaries = collect($rulePdfInfo)->contains(fn($i) => $i && $i['pages'] !== null && $i['pages'] <= 2); @endphp
 <section class="page-hero">
     <div class="hero-frame" aria-hidden="true"></div>
     <div class="wrap">
@@ -47,6 +55,9 @@
                 <input type="search" id="quick-search" placeholder="Search Rules..." autocomplete="off">
             </div>
         </div>
+        @if ($ruleHasSummaries)
+            <p class="rules-note">Files marked “Summary” are 1–2 page study notes, not official texts. Official Acts and rules: <a href="https://www.indiacode.nic.in/" target="_blank" rel="noopener">India Code</a>.</p>
+        @endif
 
         <div class="res-list">
             @foreach ($categories as $category)
@@ -109,4 +120,6 @@
         <p class="res-none" hidden>No rules match your search. Try another keyword or category.</p>
     </div>
 </section>
+<script type="application/json" id="rule-pdf-info">@json($rulePdfInfo)</script>
+<script src="{{ asset('assets/theme/js/rules.js') }}?v={{ filemtime(public_path('assets/theme/js/rules.js')) }}"></script>
 @endsection

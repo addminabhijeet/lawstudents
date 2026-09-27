@@ -1,0 +1,39 @@
+/* ================================================================
+   PAGE NOT FOUND (resources/views/errors/404.blade.php) only.
+   A new page: no existing rule is edited.
+   ================================================================ */
+
+#not-found .wrap{max-width:760px}
+#not-found .nf-card{
+  position:relative;z-index:1;text-align:center;padding:40px 28px;border-radius:14px;
+  background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-soft);
+}
+#not-found .nf-code{
+  margin:0 0 6px;font:800 clamp(3.5rem,12vw,5.5rem)/1 'Playfair Display',serif;letter-spacing:.02em;
+  background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+#not-found .nf-card h2{margin:0 0 10px;font-family:'Playfair Display',serif;color:var(--ink)}
+#not-found .nf-text{margin:0 auto 24px;max-width:46ch;color:var(--muted)}
+#not-found .nf-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+
+#not-found .nf-more{
+  position:relative;z-index:1;margin:36px 0 14px;text-align:center;
+  font:700 var(--read-small,1rem) 'Poppins',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+}
+#not-found .nf-links{
+  position:relative;z-index:1;list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
+}
+#not-found .nf-links a{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:3.25rem;padding:10px 16px;
+  border-radius:10px;background:var(--white);border:1px solid var(--line);color:var(--ink);font-weight:600;text-decoration:none;
+  transition:border-color .2s,background .2s;
+}
+#not-found .nf-links a:hover,#not-found .nf-links a:focus-visible{border-color:var(--gold);background:var(--gold-pale)}
+#not-found .nf-links .site-icon{flex:none;color:var(--gold-dark)}
+
+@media(max-width:600px){
+  #not-found .nf-card{padding:28px 18px}
+  #not-found .nf-links{grid-template-columns:1fr}
+  #not-found .nf-actions .btn{flex:1 1 100%;justify-content:center}
+}

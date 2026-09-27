@@ -1,0 +1,63 @@
+/* ================================================================
+   CONTACT PAGE LAYER: loaded last, Contact Us only (@section('css')).
+   Additive only: no rule in site.css / inner.css / readable.css is
+   edited. contact.js adds the behaviour.
+   ================================================================ */
+
+/* ---------- 1. NO PROMISES THE SITE CANNOT KEEP ----------
+   The intro heading and paragraphs promised "Expert Instructors and Mentors" and
+   "Traffic Law" courses, and "Meet Our Mentors" led to the About page's team,
+   which is hidden (its instructors were placeholders). The page intro above
+   already says what this section is for, so the section starts with the details
+   and the form. The unverified "response within 30 minutes" line is replaced by a
+   note on the required fields (in the markup). */
+.contact-section .contact-intro > h2,
+.contact-section .contact-intro > p,
+.contact-section .contact-intro > .btn,
+#contact-form .form-lead{display:none}
+#contact-form .ct-required{margin:0 0 18px;font-size:var(--read-small,1rem);color:var(--muted)}
+
+/* ---------- 2. DETAILS BESIDE THE FORM, LINED UP ----------
+   The form sat vertically centred beside a long column; the five tiles were
+   squeezed two to a row (the address ran to four lines), and one of them showed
+   the site's own address ("Website: localhost"). */
+.contact-section .contact-layout{align-items:start}
+.contact-section .contact-item:has(.icon-world){display:none}
+@media(min-width:769px){
+  .contact-section .contact-items{grid-template-columns:1fr}
+  .contact-section .contact-item{flex-direction:row;align-items:center;gap:14px;min-height:0}
+  .contact-section .contact-item > div:last-child{flex:1 1 auto;min-width:0}
+}
+/* tiles are not links as a whole: no sideways jump on hover; icons no longer pulse */
+.contact-section .contact-item:hover{transform:none}
+.contact-section .contact-ico{animation:none}
+
+/* ---------- 3. FORM: HINTS AND FIELD ERRORS (contact.js) ---------- */
+#contact-form .field-hint{margin:6px 0 0;font-size:.9375rem;line-height:1.45;color:var(--muted)}
+#contact-form .field-error{margin:6px 0 0;font-size:.9375rem;line-height:1.45;color:#b42318;font-weight:600}
+#contact-form [aria-invalid="true"]{border-color:#b42318;box-shadow:0 0 0 3px rgba(180,35,24,.14)}
+#contact-form .form-status:focus{outline:none}
+
+/* ---------- 4. MAP ON REQUEST ----------
+   The Google Maps frame loaded third-party content (and cookies) for every
+   visitor; contact.js holds it back until asked. */
+.map-frame .map-consent{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;padding:24px;text-align:center;color:var(--ink);
+  background:linear-gradient(180deg,var(--gold-pale) 0%,var(--white) 100%);
+}
+.map-frame .map-consent::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.45;
+  background:url('../images/page-intros/patterns/contact.svg') 0 0 / 150px 150px;
+}
+.map-frame .map-consent > *{position:relative;z-index:1}
+.map-frame .map-consent p{margin:0;max-width:46ch;font-size:var(--read-small,1rem);color:var(--muted)}
+.map-frame .map-consent a{color:var(--gold-text);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 5. "SEND ENQUIRY" FROM A COURSE LANDS ON THE FORM, NOT UNDER THE HEADER ----------
+   The Courses page links to #contact-form; the jump put the form's heading behind the
+   sticky header. Each value is the header's height at that width plus a little air. */
+#contact-form{scroll-margin-top:98px}
+@media(min-width:601px) and (max-width:1024px){ #contact-form{scroll-margin-top:108px} }
+@media(min-width:1025px) and (max-width:1679px){ #contact-form{scroll-margin-top:62px} }
+@media(min-width:1680px){ #contact-form{scroll-margin-top:118px} }

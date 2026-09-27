@@ -1,6 +1,10 @@
 @extends('layouts.landing', ['title' => 'Gallery — Law Students'])
 
 @section('meta_description', 'Glimpses of our campus, events, and learning environment.')
+{{-- Gallery page layer, loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/gallery.css') }}?v={{ filemtime(public_path('assets/theme/css/gallery.css')) }}">
+@endsection
 
 @section('content')
 <section class="page-hero">
@@ -24,6 +28,8 @@
             <p class="section-sub">Glimpses of our campus, events, and learning environment</p>
             <div class="title-rule"></div>
         </div>
+        {{-- The albums hold illustrative pictures, not photographs from the events. --}}
+        <p class="gallery-note">These albums use illustrative pictures, not photographs taken at the events.</p>
 
         @php
             // One album per group_name, in the order the controller returned them.
@@ -64,4 +70,8 @@
     <button type="button" class="lb-btn lb-next" aria-label="Next photo"><span class="site-icon icon-chevron-right" aria-hidden="true"></span></button>
     <p class="lb-cap"></p>
 </div>
+{{-- Gallery photos that have a light WebP copy (php artisan images:webp gallery); gallery.js uses them. --}}
+@php $galleryWebp = $gallery->pluck('image')->filter(fn($img) => $img && is_file(storage_path('app/public/' . preg_replace('/\.(png|jpe?g)$/i', '.webp', $img))))->values(); @endphp
+<script type="application/json" id="gallery-webp">@json($galleryWebp)</script>
+<script src="{{ asset('assets/theme/js/gallery.js') }}?v={{ filemtime(public_path('assets/theme/js/gallery.js')) }}"></script>
 @endsection

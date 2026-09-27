@@ -1,6 +1,10 @@
 @extends('layouts.landing', ['title' => 'Client — Law Students'])
 
 @section('meta_description', 'Our esteemed clients and learners at Law Students.')
+{{-- Clientele page layer, loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/clientele.css') }}?v={{ filemtime(public_path('assets/theme/css/clientele.css')) }}">
+@endsection
 
 @section('content')
 @php
@@ -32,6 +36,9 @@
                     expertise, and individuals seeking practical knowledge in criminal, corporate, and traffic law. We
                     are committed to delivering high-quality education and real-world insights to every learner.</p>
 
+                {{-- Entries deleted in the admin panel (delete = 1) stay off the page, as they do in the admin list. --}}
+                @php $clienteles = $clienteles->where('delete', 0); @endphp
+                <h2 class="testi-heading">What Our Learners Say</h2>
                 <div class="testi-list">
                     @foreach ($clienteles as $clientele)
                         @php
@@ -64,10 +71,16 @@
                 @csrf
                 <h3 class="form-title">Join Our Client Network</h3>
                 <p class="form-lead">We respond within 30 minutes during business hours to guide you better</p>
+                <h3 class="form-title cl-form-title">Tell Us About Your Goals</h3>
+                <p class="cl-required">All fields are required.</p>
                 @if (session('success'))
                     <p class="form-status" role="status">{{ session('success') }}</p>
                 @elseif ($errors->any())
                     <p class="form-status" role="alert">{{ $errors->first() }}</p>
+                @endif
+                {{-- Every field's error, for clientele.js to show beside the field. --}}
+                @if ($errors->any())
+                    <script type="application/json" id="cl-errors">@json($errors->getMessages())</script>
                 @endif
                 <div class="form-row">
                     <div class="field"><label for="cl-first">First Name <span class="req"
@@ -99,4 +112,8 @@
         </div>
     </div>
 </section>
+{{-- The courses listed on the Courses page (same rule), for the form's list. --}}
+@php $clCourses = \App\Models\Course::where('status', 1)->whereHas('notes', fn($q) => $q->where('status', 1))->orderBy('title')->pluck('title'); @endphp
+<script type="application/json" id="cl-courses">@json($clCourses)</script>
+<script src="{{ asset('assets/theme/js/clientele.js') }}?v={{ filemtime(public_path('assets/theme/js/clientele.js')) }}"></script>
 @endsection

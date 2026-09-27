@@ -73,3 +73,22 @@
 .about-cta p{max-width:60ch;margin:0 auto 22px;color:#d9d0b5}
 .about-cta .cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
 .about-cta :focus-visible{outline-color:var(--gold-light)}
+
+/* ---------- 10. THE VIEW'S SVG BACKGROUNDS ON EVERY SECTION ----------
+   Every section carries one of the site's line-drawing patterns (the page intros
+   and academic sections reuse the same drawings). Section 4 above had taken the
+   About page's two away; they are back, and the two sections added to this page
+   get theirs. The drawings are the files in images/page-intros/patterns, taken
+   from the original section backgrounds. */
+.about-section::before,.notes-section::before{display:block}
+#offer,.about-cta{position:relative;overflow:hidden;isolation:isolate}
+#offer > .wrap,.about-cta > .wrap{position:relative;z-index:1}
+#offer::before,.about-cta::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none}
+/* "What You'll Find": the Bare Acts drawing, between the laurels above and the document sheets below */
+#offer{background:var(--cream)}
+#offer::before{background:url('../images/page-intros/patterns/acts.svg') 0 0 / 150px 150px}
+/* the dark closing band: the laurels, faint, as on the academic "Your Next Step" band */
+.about-cta::before{background:url('../images/page-intros/patterns/about.svg') center / 180px 180px;opacity:.2}
+/* the academic block added to this page ends with its own "Your Next Step" band, so
+   this one would repeat it mid-page; it shows only where that block is absent */
+main:has(> .academic-page) > .about-cta{display:none}

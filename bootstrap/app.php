@@ -18,6 +18,12 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\SecurityHeaders::class,
         ]);
 
+        // In front of the web group, so it runs after SecurityHeaders has set the
+        // policy: adds a frame-src for the Contact page's Google map.
+        $middleware->web(prepend: [
+            \App\Http\Middleware\AllowMapEmbeds::class,
+        ]);
+
         $middleware->api(append: [
             \App\Http\Middleware\ApiRateLimiting::class,
             \App\Http\Middleware\SecurityHeaders::class,

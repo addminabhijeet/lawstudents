@@ -14,6 +14,11 @@ Route::controller(RoutingController::class)->group(function () {
 
 });
 
+// "verify" rendered the OTP form without the email it needs and failed (500). Nothing
+// links to it; it now goes to the working OTP page, which sends visitors without a
+// password reset in progress to "forgot". Defined later, so it takes the address over.
+Route::get('verify', fn () => redirect()->route('student.verify-otp'))->name('verify');
+
 
 // login actions
 Route::controller(LoginController::class)->group(function () {

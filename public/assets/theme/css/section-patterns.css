@@ -1,0 +1,35 @@
+/* ================================================================
+   SECTION PATTERNS: loaded after academic-pages.css on every frontend page.
+   Additive only: no existing rule is edited.
+
+   Every section of a view carries one of the site's line-drawing patterns
+   (images/page-intros/patterns, taken from the original section backgrounds).
+   In the academic block only "Explore your options" and "Your next step" had
+   one; the learning guide, the steps and the common questions were plain.
+   They now use the same drawing as the page's own "Explore your options"
+   section, so each page keeps one pattern family.
+   ================================================================ */
+.academic-page{--academic-pattern:url('../images/page-intros/patterns/about.svg');--academic-pattern-size:150px 150px}
+.academic-page--acts{--academic-pattern:url('../images/page-intros/patterns/acts.svg')}
+.academic-page--rules{--academic-pattern:url('../images/page-intros/patterns/rules.svg')}
+.academic-page--copys,.academic-page--legalknowledgelibrary{--academic-pattern:url('../images/page-intros/patterns/notes.svg')}
+.academic-page--govtexams{--academic-pattern:url('../images/page-intros/patterns/exams.svg')}
+.academic-page--gallery{--academic-pattern:url('../images/page-intros/patterns/gallery.svg')}
+.academic-page--contact,.academic-page--clientele{--academic-pattern:url('../images/page-intros/patterns/contact.svg')}
+.academic-page--legal-knowledge{--academic-pattern:url('../images/page-intros/patterns/form.svg')}
+.academic-page--course{--academic-pattern:url('../images/page-intros/patterns/courses.svg');--academic-pattern-size:100% 100%}
+
+.academic-story::before,.academic-process::before,.academic-faq::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:var(--academic-pattern) 0 0 / var(--academic-pattern-size) repeat;
+  opacity:.32;   /* the same strength as "Explore your options" */
+}
+
+/* the information pages' text section (privacy, terms, disclaimer, refund, sitemap,
+   announcements) had none; it takes the laurels their page intro uses */
+#site-info{position:relative;isolation:isolate}
+#site-info > .wrap{position:relative;z-index:1}
+#site-info::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url('../images/page-intros/patterns/about.svg') 0 0 / 150px 150px;opacity:.32;
+}

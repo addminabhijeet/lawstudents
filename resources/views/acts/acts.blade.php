@@ -1,8 +1,16 @@
 @extends('layouts.landing', ['title' => 'Acts — Law Students'])
 
 @section('meta_description', 'Browse Bare Acts by category and search by keyword.')
+{{-- Acts page layer, loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/acts.css') }}?v={{ filemtime(public_path('assets/theme/css/acts.css')) }}">
+@endsection
 
 @section('content')
+{{-- Only what the admin panel lists as active (delete = 1), as the site's own search does. --}}
+@php $categories = $categories->where('delete', 1)->each(fn($cat) => $cat->setRelation('subcategories', $cat->subcategories->where('delete', 1)->each(fn($sub) => $sub->setRelation('acts', $sub->acts->where('delete', 1)->values()))->values()))->values(); @endphp
+{{-- Page count and size of every file listed (App\Support\PdfInfo); acts.js labels them. --}}
+@php $actPdfInfo = []; foreach ($categories as $pdfCat) { foreach ($pdfCat->subcategories as $pdfSub) { foreach ($pdfSub->acts as $pdfAct) { foreach (($pdfAct->pdfs ?? []) as $pdfPath) { $actPdfInfo[$pdfPath] = \App\Support\PdfInfo::describe($pdfPath); } } } } $actHasSummaries = collect($actPdfInfo)->contains(fn($i) => $i && $i['pages'] !== null && $i['pages'] <= 2); @endphp
 <section class="page-hero">
     <div class="hero-frame" aria-hidden="true"></div>
     <div class="wrap">
@@ -47,6 +55,9 @@
                 <input type="search" id="quick-search" placeholder="Search Acts..." autocomplete="off">
             </div>
         </div>
+        @if ($actHasSummaries)
+            <p class="acts-note">Files marked “Summary” are one- or two-page overviews, not the full Act. The full, official text of every central Act is on <a href="https://www.indiacode.nic.in/" target="_blank" rel="noopener">India Code (indiacode.nic.in)</a>, the Government of India’s legislation site.</p>
+        @endif
 
         <div class="res-list">
             @foreach ($categories as $category)
@@ -110,4 +121,6 @@
         <p class="res-none" hidden>No acts match your search. Try another keyword or category.</p>
     </div>
 </section>
+<script type="application/json" id="act-pdf-info">@json($actPdfInfo)</script>
+<script src="{{ asset('assets/theme/js/acts.js') }}?v={{ filemtime(public_path('assets/theme/js/acts.js')) }}"></script>
 @endsection

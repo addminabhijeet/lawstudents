@@ -1,6 +1,10 @@
 @extends('layouts.landing', ['title' => 'Courses — Law Students'])
 
 @section('meta_description', 'Browse law courses by category and search by keyword.')
+{{-- Courses page layer, loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/course.css') }}?v={{ filemtime(public_path('assets/theme/css/course.css')) }}">
+@endsection
 
 @section('content')
 @php
@@ -128,4 +132,8 @@
         <p class="res-none" hidden>No courses match your search. Try another keyword or category.</p>
     </div>
 </section>
+{{-- Course photos that have a light WebP copy (php artisan images:webp); course.js uses them. --}}
+@php $courseWebp = $courseRows->map(fn($row) => $row['course']->thumbnail)->filter(fn($thumb) => $thumb && is_file(storage_path('app/public/' . preg_replace('/\.(png|jpe?g)$/i', '.webp', $thumb))))->values(); @endphp
+<script type="application/json" id="course-webp">@json($courseWebp)</script>
+<script src="{{ asset('assets/theme/js/course.js') }}?v={{ filemtime(public_path('assets/theme/js/course.js')) }}"></script>
 @endsection

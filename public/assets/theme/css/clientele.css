@@ -1,0 +1,48 @@
+/* ================================================================
+   CLIENTELE PAGE LAYER: loaded last, Clientele page only (@section('css')).
+   Additive only: no rule in site.css / inner.css / readable.css is
+   edited. clientele.js adds the behaviour.
+   ================================================================ */
+
+/* ---------- 1. TESTIMONIALS HIDDEN UNTIL THEY ARE CONFIRMED ----------
+   The six entries are only a name and a PDF each (testimonial-<name>.pdf, printed
+   from generated HTML pages; the first names match home.js's placeholder quotes).
+   Until they are confirmed as real, consented testimonials the section shows the
+   form alone, centred. DELETE THIS BLOCK to show them again: they come back under a
+   "What Our Learners Say" heading (added in the markup), each labelled as a PDF. */
+#client .contact-intro{display:none}
+#client .contact-layout{grid-template-columns:minmax(0,760px);justify-content:center}
+
+/* ---------- 2. NO PROMISES THE SITE CANNOT KEEP ----------
+   The intro copy offered "traffic law" courses and a clientele that "trusts" them,
+   and the form promised a reply "within 30 minutes during business hours" under a
+   "Join Our Client Network" title, although it is the ordinary enquiry form. The
+   page intro above already introduces the section; the form gets a plain title and
+   a note on required fields (both in the markup). */
+#client .contact-intro > h2,
+#client .contact-intro > p,
+#client .form-card > .form-title:not(.cl-form-title),
+#client .form-card > .form-lead{display:none}
+#client .cl-required{margin:0 0 18px;font-size:var(--read-small,1rem);color:var(--muted)}
+
+/* ---------- 3. LAYOUT ---------- */
+/* the form sat vertically centred beside the long column */
+#client .contact-layout{align-items:start}
+/* phones: readable.css orders this section as if it were the Contact page, which put
+   the name cards first with no heading; heading, then the cards, then the form */
+@media(max-width:768px){
+  #client .testi-heading{order:1}
+  #client .testi-list{order:2;margin-bottom:1.75rem}
+}
+#client .testi-heading{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,1.2rem + 1vw,2rem);color:var(--black);line-height:1.25;margin:0 0 16px}
+
+/* ---------- 4. FORM: HINTS AND FIELD ERRORS (clientele.js) ---------- */
+#client .field-hint{margin:6px 0 0;font-size:.9375rem;line-height:1.45;color:var(--muted)}
+#client .field-error{margin:6px 0 0;font-size:.9375rem;line-height:1.45;color:#b42318;font-weight:600}
+#client [aria-invalid="true"]{border-color:#b42318;box-shadow:0 0 0 3px rgba(180,35,24,.14)}
+#client .form-status:focus{outline:none}
+/* "Send Enquiry" style jumps and the post-send scroll land below the sticky header */
+#client-form{scroll-margin-top:98px}
+@media(min-width:601px) and (max-width:1024px){ #client-form{scroll-margin-top:108px} }
+@media(min-width:1025px) and (max-width:1679px){ #client-form{scroll-margin-top:62px} }
+@media(min-width:1680px){ #client-form{scroll-margin-top:118px} }

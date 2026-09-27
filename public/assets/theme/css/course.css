@@ -1,0 +1,35 @@
+/* ================================================================
+   COURSES PAGE LAYER: loaded last, Courses page only (@section('css')).
+   Additive only: no rule in site.css / inner.css / readable.css is
+   edited. course.js adds the behaviour.
+   ================================================================ */
+
+/* ---------- 1. ONE WAY TO PICK A CATEGORY, ONE HEADING ----------
+   The "Course Category" dropdown and the one-tap category buttons under it did the
+   same job; the buttons stay (big targets, and they drive the dropdown's own logic).
+   "Courses" / "Find a course that fits your learning goals" / "Find Your Course"
+   said the same thing three times: this section's heading stays for screen readers. */
+#courses:has(.cat-chips) .filter-bar .filter-field:has(.dd){display:none}
+#courses:has(.cat-chips) .filter-bar{grid-template-columns:1fr}
+#courses > .wrap > .section-head .eyebrow,
+#courses > .wrap > .section-head .section-sub,
+#courses > .wrap > .section-head .title-rule{display:none}
+#courses > .wrap > .section-head{margin:0}
+#courses > .wrap > .section-head .section-title{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* ---------- 2. SHORTER, CALMER CARDS ----------
+   Cards were ~790px tall: the two buttons stacked their labels on two lines, and a
+   "Discount ₹10.00" line sat under every price. */
+#courses .course-actions .btn{white-space:nowrap;padding-inline:10px}
+#courses .course-thumb{height:160px}
+#courses .course-price small{display:inline;margin-right:.45em}
+#courses .academic-course-overview{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+/* every one of the 25 courses showed the same "Discount ₹10.00" (placeholder data, and
+   it did not say whether it was the amount off or the new price); shown again once the
+   figures are real by deleting this rule */
+#courses .course-disc{display:none}
+/* the card itself is not a link, so it no longer lifts or zooms its photo on hover */
+#courses .course-card:hover{transform:none}
+#courses .course-card:hover .course-thumb img{transform:none}
