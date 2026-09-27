@@ -1,0 +1,120 @@
+/* ================================================================
+   HOME PAGE LAYER: loaded last, home page only (@section('css')).
+   Additive only: no rule in site.css / readable.css / icons.css is edited;
+   this sheet loads after them and wins at equal specificity (with
+   !important where they used it). home-calm.js and home-after.js add the
+   behaviour.
+   ================================================================ */
+
+/* ---------- 1. ANCHOR JUMPS LAND BELOW THE STICKY HEADER ----------
+   The hero buttons and the enrolment bar jump to #courses, #notes, #knowledge
+   and #contact; on phones the section label ended up under the header.
+   Each value is the header's height at that width (the pinned menu row on laptops). */
+main > section[id]{scroll-margin-top:86px}
+@media(min-width:601px) and (max-width:1024px){ main > section[id]{scroll-margin-top:96px} }
+@media(min-width:1025px) and (max-width:1679px){ main > section[id]{scroll-margin-top:50px} }
+@media(min-width:1680px){ main > section[id]{scroll-margin-top:106px} }
+
+/* ---------- 2. STILL HEADINGS AND BACKGROUNDS ----------
+   The hero title, the dark sections' titles and their background patterns
+   shimmered or drifted non-stop. The hero title keeps its one-time entrance. */
+.hero h1{animation:fadeInScale .9s cubic-bezier(.22,1,.36,1) .2s both;background-position:0% center}
+.kn-section .section-title,.how-section .section-title{animation:none !important}
+.kn-section::before,.how-section::before{animation:none !important}
+/* cards that are not links no longer lift and point as if they were */
+.why-card,.how-card{cursor:default}
+.why-card:hover,.how-card:hover{transform:none}
+.why-card:hover .why-icon{transform:none}
+
+/* ---------- 3. COURSES: A STILL GRID ----------
+   home.js reshuffled the grid every 4.6s (one card doubled in width, and the
+   "Most Enrolled" badge moved with it), skewed and tilted the cards and ran a
+   ticker under them. home-calm.js switches all of that off; these rules make sure. */
+.course-grid .cc-stage{transform:none !important;opacity:1 !important;filter:none !important}
+.course-grid .cc-stage.featured{grid-column:auto !important}
+.course-grid .hot-badge,.course-grid .hint-ptr,.course-ticker{display:none !important}
+/* the ~50 rotated words ("ENROLL", "BARRISTER", "LAW"…) printed behind the cards */
+.courses-section::after{display:none}
+/* the whole card is its "Explore Course" link (home-after.js points it at that course) */
+.course-card .course-link::after{content:'';position:absolute;inset:0;border-radius:inherit}
+.course-card:hover{transform:none}
+.course-card:hover .course-thumb img{transform:none}
+
+/* ---------- 4. A SHORTER PAGE ----------
+   The page ran ~19 screens on a computer and ~35 on a phone. The home page shows a
+   preview of each library (6 courses and 4 cards per list; 3 each on phones);
+   every section keeps its "View All" button for the rest. Two of the three forms
+   open from a button (home-after.js). */
+.course-grid > :nth-child(n+7){display:none}
+.list-grid > .list-card:nth-child(n+5){display:none}
+/* tighter spacing between the 15 sections (~400px of padding and heading each) */
+main > .section{padding-top:clamp(32px,4.6vw,56px);padding-bottom:clamp(32px,4.6vw,56px)}
+main .section-head{margin-bottom:clamp(22px,2.6vw,34px)}
+.form-card[hidden],.form-open-wrap[hidden]{display:none !important}
+.form-open-wrap{display:flex;justify-content:center}
+.form-open .site-icon{width:1em;height:1em}
+@media(max-width:600px){
+  .course-grid > :nth-child(n+4){display:none}
+  .list-grid > .list-card:nth-child(n+4){display:none}
+}
+/* two columns of lists: an odd card out spans the row instead of sitting alone */
+@media(min-width:1025px){ .list-grid > .list-card:last-child:nth-child(odd){grid-column:1 / -1} }
+/* phones: the 14 Legal Knowledge tiles in two columns (they ran ~2400px in one) */
+@media(max-width:600px){ .kn-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px} }
+/* phones: Why / How cards as compact rows, icon or number beside the text */
+@media(max-width:600px){
+  .why-card,.how-card{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;align-items:start;text-align:left;padding:18px 16px}
+  .why-card .why-icon,.how-card .how-num{grid-row:1 / span 2;margin:0}
+  .why-card h3,.how-card h3{margin:0 0 4px}
+}
+
+/* ---------- 5. LIST CARDS ---------- */
+/* the text after the first " - " is a detail line under the title (home-after.js splits it) */
+.list-card .lc-sub{display:block;margin:-2px 0 8px;font-size:.9em;line-height:1.45;color:var(--muted);overflow-wrap:anywhere}
+/* home.js fixed each Rules card's height after a hover, measured before the fonts had loaded */
+.rules-section .list-card{height:auto !important}
+
+/* ---------- 6. ABOUT: left-aligned paragraph, less empty space ---------- */
+.about-card p{text-align:left}
+.about-section.section{padding-bottom:clamp(20px,4vw,40px)}
+
+/* ---------- 7. FEWER THINGS FLOATING OVER THE PAGE ---------- */
+/* the counsellor pop-up opened on leaving the window or at 60% depth, over the content */
+.counsel-pop{display:none !important}
+/* the progress ring stays a back-to-top ring; its "Enroll Now" pill repeated the enrolment bar */
+.progress-wrap.cta-mode{width:46px;height:46px;padding:0;border-radius:50%;background:rgba(18,16,12,.9);box-shadow:inset 0 0 0 2px rgba(212,175,55,.25);animation:none}
+.progress-wrap.cta-mode svg{display:block}
+.progress-wrap.cta-mode::after{
+  content:'';position:absolute;inset:13px;display:block;padding:0;font-size:0;line-height:normal;
+  background:var(--gold);
+  -webkit-mask:url('../images/icons/tabler/arrow-up.svg') center / contain no-repeat;
+  mask:url('../images/icons/tabler/arrow-up.svg') center / contain no-repeat;
+}
+.progress-wrap.cta-mode .pw-cta-hit{display:none}
+/* phones: the enrolment bar was 155px tall (a fifth of the screen) for most of the page;
+   it is now one row: Enroll Now, Talk to a Counsellor, close */
+@media(max-width:768px){
+  .enroll-bar-text{display:none}
+  .enroll-bar-inner{flex-wrap:nowrap;align-items:center;gap:.5rem;padding-top:.5rem}
+  .enroll-bar .btn-gold,.enroll-bar .btn-ghost{
+    flex:1 1 0;min-width:0;height:auto;min-height:44px;padding:.35rem .6rem;white-space:normal;line-height:1.15;
+  }
+  .enroll-bar-close{position:static;order:5;flex:0 0 auto;width:2.2rem;height:2.2rem;min-width:2.2rem}
+}
+
+/* ---------- 8. HERO: straight to the libraries ----------
+   The three hero buttons only jump down this page; these go to the pages themselves. */
+.hero-quick{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px}
+.hero-quick a{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;
+  border:1px solid rgba(212,175,55,.38);background:rgba(255,255,255,.04);
+  color:#f0e6c8;font-size:var(--read-small,1rem);font-weight:500;line-height:1.3;
+  transition:background-color .2s ease,border-color .2s ease,color .2s ease;
+}
+.hero-quick a:hover,.hero-quick a:focus-visible{background:rgba(212,175,55,.16);border-color:var(--gold);color:#fff}
+.hero-quick .site-icon{width:18px;height:18px;color:var(--gold)}
+@media(max-width:600px){
+  .hero-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:22px}
+  .hero-quick a{justify-content:flex-start;border-radius:12px;padding:8px 12px}
+  .hero-quick a:last-child{grid-column:1 / -1}
+}

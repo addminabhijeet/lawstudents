@@ -4,6 +4,10 @@
 @section('skip_inner_css', '1')
 
 @section('meta_description', 'A comprehensive platform for Legal Education, Examination Preparation, Legal Knowledge, Bare Acts, Rules, Notifications and Study Materials.')
+{{-- Home page layer, loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/home.css') }}?v={{ filemtime(public_path('assets/theme/css/home.css')) }}">
+@endsection
 
 @section('content')
 @php
@@ -72,6 +76,14 @@
       <a href="#notes" class="btn btn-ghost">Free Notes</a>
       <a href="#knowledge" class="btn btn-ghost">Legal Knowledge</a>
     </div>
+    {{-- Straight to the libraries themselves (the buttons above jump down this page). --}}
+    <nav class="hero-quick" aria-label="Go straight to">
+      <a href="{{ route('frontend.acts') }}"><span class="site-icon icon-script" aria-hidden="true"></span>Bare Acts</a>
+      <a href="{{ route('frontend.rules') }}"><span class="site-icon icon-scale" aria-hidden="true"></span>Rules</a>
+      <a href="{{ route('frontend.copys') }}"><span class="site-icon icon-books" aria-hidden="true"></span>Free Notes</a>
+      <a href="{{ route('frontend.govtexams') }}"><span class="site-icon icon-clipboard" aria-hidden="true"></span>Govt. Exams</a>
+      <a href="{{ route('frontend.legalknowledgelibrary') }}"><span class="site-icon icon-file-text" aria-hidden="true"></span>Legal Knowledge PDFs</a>
+    </nav>
   </div>
 </section>
 <!--===== HERO SECTION ENDS =======-->
@@ -402,6 +414,8 @@
 @endsection
 
 @section('scripts')
+    {{-- Calm mode: must run before home.js (see the file). --}}
+    <script src="{{ asset('assets/theme/js/home-calm.js') }}?v={{ filemtime(public_path('assets/theme/js/home-calm.js')) }}"></script>
     <script src="{{ asset('assets/theme/js/home.js') }}?v={{ filemtime(public_path('assets/theme/js/home.js')) }}"></script>
     <script>
     (function () {
@@ -419,4 +433,6 @@
       });
     })();
     </script>
+    {{-- Home page fixes: must run after home.js (see the file). --}}
+    <script src="{{ asset('assets/theme/js/home-after.js') }}?v={{ filemtime(public_path('assets/theme/js/home-after.js')) }}"></script>
 @endsection

@@ -101,6 +101,8 @@
 
     <script src="{{ $themeAsset('assets/theme/js/inner.js') }}"></script>
     <script src="{{ $themeAsset('assets/theme/js/readable.js') }}" defer></script>
+    {{-- Listing pages: ?q= opens them already searched (the home page's cards link that way). --}}
+    <script src="{{ $themeAsset('assets/theme/js/deeplink.js') }}"></script>
 
     @yield('scripts')
 </body>
