@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro page="govtexams" />
+
 <section class="section exams-section" id="exams">
     <div class="wrap" data-filter="list">
         <div class="section-head reveal">

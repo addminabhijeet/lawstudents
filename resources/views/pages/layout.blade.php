@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro :page="str_replace('frontend.', '', request()->route()->getName())" />
+
 <section class="section" id="site-info">
     <div class="wrap">
         @yield('doc')

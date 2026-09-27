@@ -1,0 +1,118 @@
+/* About-inspired image and copy sections. All rules are scoped to the new block. */
+.page-intro {
+    position: relative;
+    isolation: isolate;
+    --intro-pattern: url('../images/page-intros/patterns/about.svg');
+    --intro-pattern-size: 150px 150px;
+    background: linear-gradient(180deg, #fff 0%, #faf7ef 100%);
+    border-bottom: 1px solid #e9e1ce;
+    padding-block: clamp(36px, 5vw, 72px);
+}
+.page-intro .page-intro__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(28px, 4vw, 64px);
+}
+.page-intro__copy { min-width: 0; }
+.page-intro .eyebrow {
+    position: static; display: block; width: auto;
+    margin: 0 0 14px; color: #76601e; text-align: left;
+}
+.page-intro h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 1.15rem + 1.5vw, 2.65rem);
+    font-weight: 700; line-height: 1.22; letter-spacing: -.02em;
+    color: #211e18; margin: 0 0 20px; text-wrap: balance;
+}
+.page-intro p {
+    font-size: 1.0625rem; line-height: 1.8;
+    color: #514b40; margin: 0 0 14px; max-width: 62ch;
+}
+.page-intro__points {
+    display: flex; flex-wrap: wrap; gap: 10px 20px;
+    list-style: none; padding: 0; margin: 22px 0;
+}
+.page-intro__points li {
+    display: flex; align-items: baseline; gap: 9px;
+    font-size: .9375rem; line-height: 1.6; color: #514b40;
+}
+.page-intro__points li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    flex: 0 0 6px; background: #997526; align-self: center;
+}
+.page-intro .btn { margin-top: 10px; gap: 12px; white-space: normal; text-align: center; }
+.page-intro .btn:focus-visible { outline: 3px solid #76601e; outline-offset: 5px; }
+.page-intro__media { min-width: 0; margin: 0; }
+.page-intro__media picture {
+    display: block; border-radius: 18px; overflow: hidden;
+    border: 1px solid #dfd2b5; box-shadow: 0 16px 40px rgba(42, 32, 14, .12);
+    background: #e7ddcc;
+}
+.page-intro__media img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.page-intro__media figcaption { margin-top: 10px; font-size: .8125rem; color: #655e50; text-align: right; }
+@media (max-width: 900px) {
+    .page-intro .page-intro__grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .page-intro__media { width: 100%; max-width: 680px; justify-self: center; }
+    .page-intro p { max-width: none; }
+}
+@media (max-width: 480px) {
+    .page-intro h2 { font-size: 1.875rem; }
+    .page-intro__points { gap: 8px 16px; }
+    .page-intro__media picture { border-radius: 12px; }
+}
+
+/* Reuse the exact SVG drawings embedded in the existing section backgrounds. */
+.page-intro::before {
+    content: ''; position: absolute; inset: 0; z-index: 0;
+    pointer-events: none;
+    background-image: var(--intro-pattern);
+    background-size: var(--intro-pattern-size);
+    background-repeat: repeat;
+    opacity: .45;
+}
+.page-intro--acts { --intro-pattern: url('../images/page-intros/patterns/acts.svg'); }
+.page-intro--rules { --intro-pattern: url('../images/page-intros/patterns/rules.svg'); }
+.page-intro--copys, .page-intro--legalknowledgelibrary { --intro-pattern: url('../images/page-intros/patterns/notes.svg'); }
+.page-intro--govtexams { --intro-pattern: url('../images/page-intros/patterns/exams.svg'); }
+.page-intro--course { --intro-pattern: url('../images/page-intros/patterns/courses.svg'); --intro-pattern-size: 100% 100%; }
+.page-intro--legal-knowledge { --intro-pattern: url('../images/page-intros/patterns/form.svg'); }
+.page-intro--contact, .page-intro--clientele { --intro-pattern: url('../images/page-intros/patterns/contact.svg'); }
+.page-intro--gallery { --intro-pattern: url('../images/page-intros/patterns/gallery.svg'); }
+
+/* Keep the existing banner motifs when the new intro separates the hero and content. */
+.page-hero:has(+ .page-intro + #about){--hero-main:url(../images/hero/about-us.svg);--hero-accent:url(../images/hero/accent-laurel.svg)}
+.page-hero:has(+ .page-intro + #acts){--hero-main:url(../images/hero/acts.svg);--hero-accent:url(../images/hero/accent-sparkles.svg)}
+.page-hero:has(+ .page-intro + #rules){--hero-main:url(../images/hero/rules.svg);--hero-accent:url(../images/hero/accent-rings.svg)}
+.page-hero:has(+ .page-intro + #inquiry){--hero-main:url(../images/hero/legal-knowledge.svg);--hero-accent:url(../images/hero/accent-sparkles.svg)}
+.page-hero:has(+ .page-intro + #courses){--hero-main:url(../images/hero/course.svg);--hero-accent:url(../images/hero/accent-laurel.svg)}
+.page-hero:has(+ .page-intro + #notes){--hero-main:url(../images/hero/copys.svg);--hero-accent:url(../images/hero/accent-sparkles.svg)}
+.page-hero:has(+ .page-intro + #client){--hero-main:url(../images/hero/clientele.svg);--hero-accent:url(../images/hero/accent-laurel.svg)}
+.page-hero:has(+ .page-intro + #exams){--hero-main:url(../images/hero/govt-exams.svg);--hero-accent:url(../images/hero/accent-rings.svg)}
+.page-hero:has(+ .page-intro + #gallery){--hero-main:url(../images/hero/gallery.svg);--hero-accent:url(../images/hero/accent-sparkles.svg)}
+.page-hero:has(+ .page-intro + #contact){--hero-main:url(../images/hero/contact-us.svg);--hero-accent:url(../images/hero/accent-rings.svg)}
+.page-hero:has(+ .page-intro + #about){--hero-accent:url(../images/hero/accent-graduate.svg)}
+.page-hero:has(+ .page-intro + #acts){--hero-accent:url(../images/hero/accent-scroll.svg)}
+.page-hero:has(+ .page-intro + #rules){--hero-accent:url(../images/hero/accent-checklist.svg)}
+.page-hero:has(+ .page-intro + #inquiry){--hero-accent:url(../images/hero/accent-question.svg)}
+.page-hero:has(+ .page-intro + #courses){--hero-accent:url(../images/hero/accent-books.svg)}
+.page-hero:has(+ .page-intro + #notes){--hero-accent:url(../images/hero/accent-download.svg)}
+.page-hero:has(+ .page-intro + #client){--hero-accent:url(../images/hero/accent-quote.svg)}
+.page-hero:has(+ .page-intro + #exams){--hero-main:url(../images/hero/govt-building.svg);--hero-accent:url(../images/hero/accent-medal.svg)}
+.page-hero:has(+ .page-intro + #gallery){--hero-accent:url(../images/hero/accent-frame.svg)}
+.page-hero:has(+ .page-intro + #contact){--hero-accent:url(../images/hero/accent-pin.svg)}
+.page-hero:has(+ .page-intro + #about) .hero-frame{--motif-img:url(../images/hero-frame/motif-about.svg)}
+.page-hero:has(+ .page-intro + #acts) .hero-frame{--motif-img:url(../images/hero-frame/motif-acts.svg)}
+.page-hero:has(+ .page-intro + #rules) .hero-frame{--motif-img:url(../images/hero-frame/motif-rules.svg)}
+.page-hero:has(+ .page-intro + #inquiry) .hero-frame{--motif-img:url(../images/hero-frame/motif-legal-knowledge.svg)}
+.page-hero:has(+ .page-intro + #courses) .hero-frame{--motif-img:url(../images/hero-frame/motif-courses.svg)}
+.page-hero:has(+ .page-intro + #notes) .hero-frame{--motif-img:url(../images/hero-frame/motif-notes.svg)}
+.page-hero:has(+ .page-intro + #client) .hero-frame{--motif-img:url(../images/hero-frame/motif-clientele.svg)}
+.page-hero:has(+ .page-intro + #exams) .hero-frame{--motif-img:url(../images/hero-frame/motif-exams.svg)}
+.page-hero:has(+ .page-intro + #gallery) .hero-frame{--motif-img:url(../images/hero-frame/motif-gallery.svg)}
+.page-hero:has(+ .page-intro + #contact) .hero-frame{--motif-img:url(../images/hero-frame/motif-contact.svg)}
+.page-hero:has(+ .page-intro + #library) .hero-frame{--motif-img:url(../images/hero-frame/motif-legal-knowledge.svg)}
+.page-hero:has(+ .page-intro + #site-info){--hero-main:url(../images/hero/about-us.svg);--hero-accent:url(../images/hero/accent-laurel.svg)}
+.page-hero:has(+ .page-intro + #site-info) .hero-frame{--motif-img:url(../images/hero-frame/motif-about.svg)}

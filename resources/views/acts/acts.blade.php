@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro page="acts" />
+
 <section class="section acts-section" id="acts">
     <div class="wrap" data-filter="list">
         <div class="section-head reveal">

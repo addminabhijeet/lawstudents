@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro page="copys" />
+
 <section class="section notes-section" id="notes">
     <div class="wrap" data-filter="list">
         <div class="section-head reveal">

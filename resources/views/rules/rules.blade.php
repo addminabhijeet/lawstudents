@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro page="rules" />
+
 <section class="section rules-section" id="rules">
     <div class="wrap" data-filter="list">
         <div class="section-head reveal">

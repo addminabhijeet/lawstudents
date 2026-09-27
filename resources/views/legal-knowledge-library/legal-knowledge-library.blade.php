@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro page="legalknowledgelibrary" />
+
 {{-- Same markup as the Acts / Rules / Free Notes pages, so inner.js's shared
      category filter, quick search and accordion drive this list too. --}}
 <section class="section notes-section" id="library">

@@ -69,6 +69,8 @@
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/icons.css') }}">
 
     @yield('css')
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/page-intros.css') }}">
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/academic-pages.css') }}">
 </head>
 
 <body class="@yield('body_class', 'inner-page')">
@@ -93,6 +95,7 @@
 
     <main id="main">
         @yield('content')
+        <x-academic-page :page="str_replace('frontend.', '', request()->route()?->getName() ?? '')" />
     </main>
 
     @include('layouts.partials.footer')

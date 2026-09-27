@@ -88,6 +88,8 @@
 </section>
 <!--===== HERO SECTION ENDS =======-->
 
+<x-page-intro page="home" />
+
 <!--===== ABOUT SECTION STARTS =======-->
 <section class="section about-section" id="about">
   <div class="wrap">

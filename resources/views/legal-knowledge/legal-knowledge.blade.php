@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro page="legal-knowledge" />
+
 <section class="section form-section" id="inquiry">
     <div class="wrap">
         <div class="section-head reveal">

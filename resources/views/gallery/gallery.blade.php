@@ -14,6 +14,8 @@
     </div>
 </section>
 
+<x-page-intro page="gallery" />
+
 <section class="section gallery-section" id="gallery">
     <div class="wrap">
         <div class="section-head reveal">

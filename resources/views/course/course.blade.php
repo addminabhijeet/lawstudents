@@ -31,6 +31,8 @@
     </div>
 </section>
 
+<x-page-intro page="course" />
+
 <section class="section courses-section" id="courses">
     <div class="wrap" data-filter="cards">
         <div class="section-head reveal">
@@ -102,6 +104,7 @@
                     </div>
                     <div class="course-body">
                         <h3>{{ $course->title }}</h3>
+                        <x-course-overview :course="$course" />
                         <p class="course-note"><span class="site-icon icon-file-text" aria-hidden="true"></span> Notes: {{ $noteCount }}</p>
                         <div class="course-foot">
                             <span class="course-price"><small>Price</small>₹{{ number_format((float) $course->price, 2) }}</span>

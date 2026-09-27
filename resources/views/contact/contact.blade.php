@@ -31,6 +31,8 @@
     </div>
 </section>
 
+<x-page-intro page="contact" />
+
 <section class="section contact-section" id="contact">
     <div class="wrap">
         <div class="contact-layout">

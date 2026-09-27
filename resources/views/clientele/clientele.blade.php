@@ -18,6 +18,8 @@
     </div>
 </section>
 
+<x-page-intro page="clientele" />
+
 <section class="section contact-section" id="client">
     <div class="wrap">
         <div class="contact-layout">
