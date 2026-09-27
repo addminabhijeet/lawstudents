@@ -35,6 +35,10 @@
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/large-screen.css') }}">
     {{-- Senior-readability layer: larger rem-based type, AAA-contrast text, big targets, PDF finder. --}}
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/readable.css') }}">
+    {{-- Navbar layer: the header's rules are spread over the sheets above, so it loads last. --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/navbar.css') }}">
+    {{-- Footer layer: same reason, the footer is styled across site.css and readable.css. --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/footer.css') }}">
 
     {{-- Runs before first paint: return visits start without the preloader, but
          slow page loads can reveal it again after a short delay. --}}
@@ -92,6 +96,8 @@
     </main>
 
     @include('layouts.partials.footer')
+    {{-- Right after the footer markup and before inner.js / home.js, which it has to run ahead of. --}}
+    <script src="{{ $themeAsset('assets/theme/js/footer.js') }}"></script>
 
     <script src="{{ $themeAsset('assets/theme/js/inner.js') }}"></script>
     <script src="{{ $themeAsset('assets/theme/js/readable.js') }}" defer></script>

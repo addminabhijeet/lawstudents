@@ -1,0 +1,195 @@
+/* ================================================================
+   FOOTER LAYER: loaded last on every frontend page (after navbar.css).
+   Additive only: no rule in site.css / readable.css is edited. The footer
+   is styled across ~15 layers there, several with !important, so this
+   sheet loads last and wins at equal specificity (with !important where
+   they used it). footer.js adds the behaviour.
+   ================================================================ */
+
+/* ---------- 1. ONE GRID FOR THE WHOLE FOOTER ----------
+   The markup is two stacked 3-column grids (logo | Quick Links | Programs, then
+   Contact | Resources | Social), so column heights never matched and big gaps
+   opened under the logo, Resources and Social. `display:contents` lifts all six
+   columns into one grid on .wrap, arranged per screen size:
+     phones      one column: logo, contact, social, then the link lists
+     601–860px   two columns
+     861–1199px  logo band on top, three columns under it
+     1200px+     logo column + three link columns; Social under Resources
+   and the contact details as one band of tiles under the columns. */
+.site-footer{padding-top:48px}
+.site-footer .footer-grid{display:contents}
+.site-footer .wrap{
+  display:grid;align-items:start;column-gap:clamp(28px,3.2vw,52px);row-gap:0;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"brand" "contact" "social" "quick" "programs" "resources" "bottom";
+}
+.site-footer .footer-logo{grid-area:brand}
+.site-footer .footer-grid:first-of-type > .footer-col:nth-child(2){grid-area:quick}
+.site-footer .footer-grid:first-of-type > .footer-col:nth-child(3){grid-area:programs}
+.site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(1){grid-area:contact}
+.site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(2){grid-area:resources}
+.site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(3){grid-area:social}
+.site-footer .footer-bottom{grid-area:bottom}
+.site-footer .footer-col{margin:0 0 32px;min-width:0}
+/* the old grid's column rules and entrance animation (footer.js reveals the
+   columns on scroll instead; the old one played at page load, off-screen) */
+.site-footer .footer-col + .footer-col::before{display:none}
+.site-footer .footer-col{animation:none}
+
+@media(min-width:601px) and (max-width:860px){
+  .site-footer .wrap{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-areas:"brand brand" "quick programs" "resources social" "contact contact" "bottom bottom";
+  }
+}
+@media(min-width:861px) and (max-width:1199px){
+  .site-footer .wrap{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-areas:"brand brand brand" "quick programs resources" "quick programs social" "contact contact contact" "bottom bottom bottom";
+  }
+}
+@media(min-width:1200px){
+  .site-footer .wrap{
+    grid-template-columns:minmax(0,1.2fr) repeat(3,minmax(0,1fr));
+    grid-template-areas:"brand quick programs resources" "brand quick programs social" "contact contact contact contact" "bottom bottom bottom bottom";
+  }
+}
+/* Social sits under Resources in the column layouts */
+@media(min-width:861px){ .site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(2){margin-bottom:28px} }
+/* the logo band on tablets: logo and tagline side by side */
+@media(min-width:601px) and (max-width:1199px){
+  .site-footer .footer-logo{display:flex;align-items:center;flex-wrap:wrap;gap:12px 36px;margin-bottom:36px}
+  .site-footer .footer-logo img{margin-bottom:0}
+}
+/* the contact band gets a rule of its own above it wherever it follows the columns */
+@media(min-width:601px){
+  .site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(1){padding-top:28px;border-top:1px solid rgba(212,175,55,.14)}
+}
+
+/* ---------- 2. LEFT-ALIGNED, so the lists scan down one straight edge ----------
+   (site.css section 17 centred everything, which gave every list a ragged left side) */
+.site-footer,.site-footer .footer-logo,.site-footer .footer-tag{text-align:left}
+.site-footer .footer-logo img{margin-left:0;margin-right:0;max-height:100px}
+@media(max-width:600px){ .site-footer .footer-logo img{max-height:88px} }
+.site-footer .footer-col h4::after,.site-footer .footer-tag::after{left:0;transform:none}
+.site-footer .footer-grid:first-of-type .footer-col:nth-child(3) ul{width:auto;margin-left:0;margin-right:0;columns:auto}
+
+/* ---------- 3. STILL, SOLID-GOLD HEADINGS ----------
+   The column titles and the tagline were gold gradients sliding through the
+   letters non-stop (CSS and JS), hard to read for older eyes. */
+.site-footer .footer-col h4,.site-footer .footer-tag{
+  background:none !important;-webkit-background-clip:border-box !important;background-clip:border-box !important;
+  color:var(--gold-light) !important;-webkit-text-fill-color:currentColor !important;animation:none !important;
+}
+/* the logo: one plain halo (site.css brightness(3) and readable.css fought over it) */
+.site-footer .footer-logo img{animation:none;filter:drop-shadow(0 6px 18px rgba(212,175,55,.22)) !important}
+
+/* ---------- 4. ONE BACKGROUND ANIMATION ----------
+   site.css section 16's slow wash is the only one left (footer.js ignores the two
+   50ms JS timers), and it runs only while the footer is on screen. A later
+   320% size made it paint as a partial strip; it stops for reduced motion (site.css). */
+.site-footer{background-size:auto !important;animation-play-state:paused}
+.site-footer.fc-live{animation-play-state:running}
+
+/* ---------- 5. LINK LISTS: a gold chevron marks every row ----------
+   It only appeared on hover, hanging outside the centred text; now it is a
+   steady bullet in the row, brighter on hover. */
+.site-footer .footer-col li a{display:inline-flex;align-items:baseline}
+.site-footer .footer-col li a::before,
+.site-footer .footer-col li a:hover::before{
+  position:static;flex-shrink:0;width:.55em;height:.9em;margin-right:.55em;
+  background:var(--gold);opacity:.6;transition:opacity .25s ease,transform .25s ease;
+}
+.site-footer .footer-col li a:hover::before{opacity:1;transform:translateX(2px)}
+/* phones: rows are 44px tall one-liners (readable.css), so centre the bullet on the text */
+@media(max-width:600px){ .site-footer .footer-col li a{align-items:center} }
+
+/* ---------- 6. CONTACT: a band of tiles, an icon each ----------
+   The details were bare labels (the icon styles in site.css target markup that is
+   gone). Each tile is one big link; the address (linked to a map by footer.js)
+   is the only row that lifted on hover although it was not a link. */
+.site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(1){
+  display:grid;grid-template-columns:minmax(0,1fr);gap:12px 16px;
+}
+.site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(1) > h4{grid-column:1 / -1;margin-bottom:4px}
+@media(min-width:601px){
+  .site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(1){grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* one row of four once the address has room for two lines (below this: 2 × 2) */
+@media(min-width:1360px){
+  .site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(1){grid-template-columns:auto minmax(260px,1fr) auto auto}
+}
+.site-footer .footer-contact-item{
+  position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);align-items:center;column-gap:14px;
+  margin:0;padding:12px 16px;border:1px solid rgba(212,175,55,.18);border-radius:12px;
+  background:rgba(255,255,255,.025);text-align:left;
+  transition:background-color .25s ease,border-color .25s ease;
+}
+.site-footer .footer-contact-item > div{min-width:0}
+.site-footer .footer-contact-item::before{
+  content:'';box-sizing:border-box;width:44px;height:44px;border-radius:50%;
+  background:rgba(212,175,55,.14);border:1px solid rgba(212,175,55,.35);
+}
+.site-footer .footer-contact-item::after{
+  content:'';position:absolute;left:28px;top:50%;width:20px;height:20px;margin-top:-10px;pointer-events:none;
+  background:var(--gold-light);
+  -webkit-mask:var(--fc-icon) center / contain no-repeat;mask:var(--fc-icon) center / contain no-repeat;
+}
+.site-footer .footer-contact-item:nth-of-type(1){--fc-icon:url('../images/icons/tabler/mail.svg')}
+.site-footer .footer-contact-item:nth-of-type(2){--fc-icon:url('../images/icons/tabler/map-pin.svg')}
+.site-footer .footer-contact-item:nth-of-type(3){--fc-icon:url('../images/icons/tabler/phone.svg')}
+.site-footer .footer-contact-item:nth-of-type(4){--fc-icon:url('../images/icons/tabler/brand-whatsapp.svg')}
+.site-footer .footer-contact-item:hover{transform:none;background:rgba(255,255,255,.025);border-color:rgba(212,175,55,.18)}
+.site-footer .footer-contact-item:has(a):hover{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.45)}
+.site-footer .footer-contact-item:has(a):hover p a{text-decoration:underline;text-underline-offset:3px}
+/* the whole tile is the link */
+.site-footer .footer-contact-item p a::after{content:'';position:absolute;inset:0;border-radius:12px}
+.site-footer .footer-contact-item p a:focus-visible{outline:none;box-shadow:none}
+.site-footer .footer-contact-item:has(a:focus-visible){outline:3px solid var(--gold-light);outline-offset:2px}
+
+/* ---------- 7. SOCIAL: 4 + 3, never one icon alone on a line ----------
+   Seven icons wrapped 6+1, 3+3+1 or 5+2. Phones wide enough fit all seven in one row. */
+.site-footer .social-row{display:grid;grid-template-columns:repeat(4,48px);gap:10px;justify-content:start}
+.site-footer .social-row a{width:48px;height:48px}
+@media(min-width:380px) and (max-width:600px){
+  .site-footer .social-row{grid-template-columns:repeat(7,44px);gap:6px}
+  .site-footer .social-row a{width:44px;height:44px}
+}
+
+/* ---------- 8. BOTTOM BAR ---------- */
+.site-footer .footer-bottom{margin-top:0;padding:20px 0 4px;gap:8px}
+.site-footer .footer-links{justify-content:center;column-gap:10px;row-gap:4px}
+/* where the legal links wrap, a separator dot was left hanging at a line end */
+@media(max-width:860px){
+  .site-footer .footer-links .sep{display:none}
+  .site-footer .footer-links{column-gap:22px}
+}
+/* the copyright was 4.2:1 where the lighter band of the wash passed behind it; 5.3:1 now */
+.site-footer .copyright{color:#aea690}
+/* the 92px reserve keeps the floating WhatsApp / Enroll buttons off the bottom
+   links; from 1360px the page has side margins wider than those buttons and the
+   bar is centred, so they cannot meet (the enrolment bar keeps its own reserve) */
+@media(min-width:1360px){ body:not(.enroll-bar-on) .site-footer{padding-bottom:32px} }
+
+/* ---------- 9. PHONES: the link lists fold into tap-to-open rows (footer.js) ---------- */
+@media(max-width:600px){
+  .site-footer .footer-col.fc-fold{margin-bottom:0}
+  .site-footer .footer-col.fc-fold > h4{margin:0;padding:0;border-bottom:1px solid rgba(212,175,55,.22)}
+  .site-footer .footer-grid:first-of-type > .footer-col.fc-fold:nth-child(2) > h4{border-top:1px solid rgba(212,175,55,.22)}
+  .site-footer .footer-col.fc-fold > h4::after{display:none}
+  .site-footer .footer-toggle{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:56px;
+    margin:0;padding:0;border:0;background:none;cursor:pointer;
+    color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;text-align:left;
+  }
+  .site-footer .footer-toggle::after{
+    content:'';flex-shrink:0;width:20px;height:20px;background:var(--gold);transition:transform .25s ease;
+    -webkit-mask:url('../images/icons/tabler/chevron-down.svg') center / contain no-repeat;
+    mask:url('../images/icons/tabler/chevron-down.svg') center / contain no-repeat;
+  }
+  .site-footer .footer-toggle[aria-expanded="true"]::after{transform:rotate(180deg)}
+  .site-footer .footer-col.fc-fold > ul{padding:10px 0 14px}
+  .site-footer .footer-col.is-collapsed > ul{display:none}
+  /* the last folded group closes the stack before the bottom bar */
+  .site-footer .footer-grid:nth-of-type(2) > .footer-col:nth-child(2){margin-bottom:28px}
+}

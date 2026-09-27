@@ -75,6 +75,7 @@
                     <li><a href="{{ route('frontend.course') }}">All Courses</a></li>
                     <li><a href="{{ route('frontend.copys') }}">Study Materials</a></li>
                     <li><a href="{{ route('frontend.gallery') }}">Gallery</a></li>
+                    <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-col">

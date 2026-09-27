@@ -1,0 +1,204 @@
+/* ================================================================
+   NAVBAR LAYER: loaded last on every frontend page (after readable.css).
+   Additive only: no rule in site.css / inner.css / readable.css is edited.
+   The header's rules are spread over all three, so this sheet loads last
+   and wins at equal specificity.
+
+   Lengths inside .topbar / .site-header are the theme's px: both boxes are
+   zoomed by --z (readable.css section 4), so 12.8px shows as 16px.
+   ================================================================ */
+
+/* ---------- 1. LAYOUT: one row from 1680px, two rows 1025–1679px, ☰ below ----------
+   The shorter "Govt. Exams" label frees ~180px, so the single row now fits from
+   1680px with ~20px between links (it needed 1840px), and the two-row header from
+   1025px (1025–1199px showed the ☰ menu). readable.css sections 4, 17 and 26 set
+   the old ranges. */
+@media(min-width:1680px){
+  .site-header .burger,.site-header .mobile-menu{display:none}
+  .site-header .btn-login{display:flex;margin-left:0}
+  .site-header .nav-wrap{flex-wrap:nowrap;padding-bottom:10px}
+  .site-header .nav-wrap > nav{order:0;flex:1 1 auto;min-width:0;border-top:0}
+  .site-header .nav-menu{display:flex;flex-wrap:nowrap;justify-content:space-evenly;gap:8px}
+  .site-header{top:0}
+}
+@media(min-width:1025px) and (max-width:1679px){
+  .site-header .burger,.site-header .mobile-menu{display:none}
+  .site-header .btn-login{display:flex;margin-left:auto}
+  .site-header .nav-wrap{flex-wrap:wrap;row-gap:0;padding-bottom:0}
+  .site-header .nav-wrap > nav{order:3;flex:1 0 100%;border-top:1px solid rgba(212,175,55,.22)}
+  .site-header .nav-menu{display:flex;flex-wrap:wrap;justify-content:space-evenly;column-gap:4px;row-gap:0}
+  /* only the menu row stays pinned while scrolling: 71px = 10px padding + 60px logo + 1px rule */
+  .site-header{top:-71px}
+  .site-header .nav-logo img{height:60px}
+  .site-header:has(.nav-logo:focus-visible,.btn-login:focus-visible){top:0}
+}
+
+/* ---------- 2. MENU LINKS: readable hover colour and a clear "you are here" mark ----------
+   Hover text was --gold-dark (3.4:1 on the cream bar); --gold-text is 5.2:1. The
+   current page had no mark at all on the home page (inner.css is not loaded there)
+   and only a 2px line elsewhere; it now gets the gold text and a full gold bar. */
+.site-header .nav-menu > li > a{transition:color .25s ease}
+.site-header .nav-menu > li > a::after{
+  left:0;right:0;width:auto;bottom:1px;height:3px;border-radius:3px;
+  transform:scaleX(0);transform-origin:center;transition:transform .3s ease;
+}
+.site-header .nav-menu > li > a:hover,
+.site-header .nav-menu > li.open > a,
+.site-header .nav-menu > li > a[aria-current="page"]{color:var(--gold-text)}
+.site-header .nav-menu > li > a:hover::after,
+.site-header .nav-menu > li.open > a::after,
+.site-header .nav-menu > li > a[aria-current="page"]::after{transform:scaleX(1)}
+.site-header .nav-menu > li > a[aria-current="page"]{box-shadow:none}
+/* the gold focus ring was 2.1:1 on the cream bar */
+.site-header :focus-visible{outline-color:var(--gold-dark)}
+
+/* ---------- 3. DROPDOWNS ----------
+   inner.js adds .js-drops and opens a menu with .open (hover, keyboard focus, first
+   tap on touch screens); Escape closes it even while the pointer is still over it.
+   Without JS the theme's :hover rules still work. */
+.nav-menu.js-drops .has-drop:not(.open) .dropdown{opacity:0;visibility:hidden;transform:translateY(8px);pointer-events:none}
+.nav-menu .has-drop.open .dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.nav-menu .has-drop .dropdown{transition:opacity .2s ease,visibility .2s ease,transform .25s ease}
+/* visible the moment it opens, so the next Tab lands on its first link */
+.nav-menu .has-drop.open .dropdown{transition:opacity .2s ease,visibility 0s,transform .25s ease}
+/* closed with Escape: gone at once, so the next Tab moves on to the next menu item */
+.nav-menu .has-drop.held .dropdown{transition:none}
+/* the caret turns over while its menu is open */
+.site-header .has-drop > a::before{transition:transform .25s ease}
+.site-header .nav-menu:not(.js-drops) .has-drop:hover > a::before,
+.site-header .has-drop.open > a::before{transform:rotate(180deg)}
+.site-header .dropdown{
+  min-width:230px;padding:11px 8px 8px;
+  border:1px solid var(--line);border-radius:12px;
+  background:linear-gradient(90deg,#b8952e 0%,#f0d97d 50%,#b8952e 100%) top / 100% 3px no-repeat,var(--white);
+  box-shadow:0 24px 48px -16px rgba(30,26,16,.3),0 4px 12px rgba(30,26,16,.06);
+}
+/* items: an icon each, and no sideways jump on hover (the padding grew 12 → 16px) */
+.site-header .dropdown a{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;
+  color:var(--ink);font-weight:500;
+  transition:background-color .2s ease,color .2s ease;
+}
+.site-header .dropdown a + a{margin-top:2px}
+.site-header .dropdown a:hover,
+.site-header .dropdown a:focus-visible{padding-left:12px;background:var(--gold-pale);color:var(--gold-text)}
+.site-header .dropdown a[aria-current="page"]{background:var(--gold-pale);color:var(--gold-text);font-weight:600;box-shadow:inset 3px 0 0 var(--gold)}
+.site-header .dropdown .site-icon{width:20px;height:20px;color:var(--gold-dark)}
+.site-header .dropdown a:hover .site-icon,
+.site-header .dropdown a[aria-current="page"] .site-icon{color:var(--gold-text)}
+
+/* ---------- 4. LOGIN BUTTON: a person icon and a light sweep on hover ---------- */
+.site-header .btn-login{gap:8px;position:relative;overflow:hidden;isolation:isolate}
+.site-header .btn-login .site-icon{width:17px;height:17px}
+.site-header .btn-login::after{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);
+  transform:translateX(-110%);transition:transform .7s ease;
+}
+.site-header .btn-login:hover::after{transform:translateX(110%)}
+
+/* ---------- 5. PINNED MENU ROW (1025–1679px): its own Login once the logo row scrolls away ----------
+   inner.js sets .login-off on the header when the Login button above is out of view.
+   Icon only below 1360px, where the row has no room for the word. The negative
+   margin keeps the row exactly as tall as before, so the page does not shift. */
+.nav-menu > li.nav-login{display:none}
+@media(min-width:1025px) and (max-width:1679px){
+  .site-header.login-off .nav-menu > li.nav-login{display:block}
+}
+.site-header .nav-menu > li.nav-login > a{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-width:36px;min-height:36px;margin:-2px 0;padding:0 14px;border-radius:999px;
+  background:var(--grad-gold);color:var(--black);font-weight:700;
+  border:1px solid rgba(212,175,55,.6);box-shadow:0 4px 12px rgba(212,175,55,.28);
+}
+.site-header .nav-menu > li.nav-login > a::after{display:none}
+.site-header .nav-menu > li.nav-login .site-icon{width:17px;height:17px}
+@media(max-width:1359px){
+  .site-header .nav-login-text{display:none}
+  .site-header .nav-menu > li.nav-login > a{padding:0}
+}
+
+/* ---------- 6. ☰ BUTTON: a button shape with the word "Menu" / "Close" ----------
+   site.css forces display:flex !important below 600px, so this needs !important too. */
+@media(max-width:1024px){
+  .site-header .burger{
+    display:grid !important;grid-template-columns:auto 22px;grid-template-rows:repeat(3,2px);
+    align-content:center;column-gap:9px;row-gap:5px;
+    min-width:44px;min-height:40px;padding:0 12px 0 14px;
+    border:1px solid rgba(168,132,42,.45);border-radius:10px;background:var(--white);
+    transition:background-color .25s ease,border-color .25s ease;
+  }
+  .site-header .burger::before{
+    content:'Menu';grid-column:1;grid-row:1 / 4;align-self:center;
+    font-size:12.8px;font-weight:600;line-height:1;color:var(--ink);
+  }
+  .site-header .burger span{grid-column:2;width:22px;height:2px}
+  .site-header .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .site-header .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .site-header .burger:hover{background:var(--gold-pale);border-color:var(--gold-dark)}
+  .site-header .burger.open{background:var(--ink);border-color:var(--ink)}
+  .site-header .burger.open::before{content:'Close';color:var(--gold-light)}
+  .site-header .burger.open span{background:var(--gold-light)}
+}
+/* the narrowest phones have no room for the word beside the logo */
+@media(max-width:359px){
+  .site-header .burger{grid-template-columns:22px;column-gap:0;padding:0 11px}
+  .site-header .burger::before{display:none}
+  .site-header .burger span{grid-column:1}
+}
+
+/* ---------- 7. ☰ MENU ---------- */
+/* closed, its links were still reachable with Tab although nothing showed */
+.site-header .mobile-menu{visibility:hidden;transition:max-height .45s ease,visibility 0s linear .45s}
+/* open, it never runs past the bottom of the screen: inner.js measures the room
+   below it (--mm-room, screen px; divided by the header's zoom) */
+.site-header .mobile-menu.open{
+  visibility:visible;transition:max-height .45s ease,visibility 0s;
+  max-height:min(820px,calc(var(--mm-room,100vh) / var(--z)));overflow-y:auto;
+}
+.site-header .mobile-menu > ul{padding:6px 0 16px}
+.site-header .mobile-menu.open > ul{animation:mmIn .35s ease both}
+@keyframes mmIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.site-header .mobile-menu a{gap:12px;transition:background-color .2s ease,color .2s ease}
+.site-header .mobile-menu a:hover{color:var(--gold-text)}
+/* top-level pages end in a chevron */
+.site-header .mobile-menu > ul > li:not(.mm-login) > a::after{
+  content:'';width:16px;height:16px;margin-left:auto;flex-shrink:0;background:currentColor;opacity:.4;
+  -webkit-mask:url('../images/icons/tabler/chevron-right.svg') center / contain no-repeat;
+  mask:url('../images/icons/tabler/chevron-right.svg') center / contain no-repeat;
+}
+/* groups: a gold heading over its pages, joined by a tree line */
+.site-header .mobile-menu .group{border-bottom:1px solid #f3eeda}
+.site-header .mobile-menu .group-label{
+  display:block;padding:16px 20px 6px;
+  font-size:12.8px;font-weight:700;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);
+}
+.site-header .mobile-menu .group > ul{margin:0 0 8px 22px;padding:0;border-left:2px solid var(--line)}
+.site-header .mobile-menu .sub a{padding-left:16px;border-bottom:0;color:var(--ink)}
+.site-header .mobile-menu .sub .site-icon{width:18px;height:18px;color:var(--gold-dark)}
+.site-header .mobile-menu .sub a[aria-current="page"]{margin-left:-2px;padding-left:18px}
+.site-header .mobile-menu a[aria-current="page"]{color:var(--gold-text)}
+/* Login / Register: the gold button it is on larger screens, not a plain last row */
+.site-header .mobile-menu .mm-login{padding:16px 16px 4px}
+.site-header .mobile-menu .mm-login a{
+  justify-content:center;gap:10px;border:1px solid rgba(212,175,55,.6);border-radius:10px;
+  background:var(--grad-gold);color:var(--black);font-weight:700;box-shadow:var(--shadow-gold);
+}
+.site-header .mobile-menu .mm-login a:hover{background:var(--grad-gold);color:var(--black);filter:brightness(1.05)}
+.site-header .mobile-menu .mm-login .site-icon{width:18px;height:18px}
+
+/* the floating WhatsApp, back-to-top and counsellor buttons and the enrolment bar
+   sit above the header, so they covered the open menu's bottom links */
+body:has(#mobileMenu.open) :is(.wa-float,.progress-wrap,.counsel-pop,.enroll-bar){opacity:0;visibility:hidden;pointer-events:none}
+
+/* ---------- 8. TOP STRIP ---------- */
+/* a hairline between the e-mail and the phone number where they share a line */
+@media(min-width:601px){
+  .topbar-contact{gap:18px}
+  .topbar-contact a + a{padding-left:18px;border-left:1px solid rgba(212,175,55,.3)}
+}
+/* phones: the three decorative tags made the strip 166px tall, a fifth of the screen */
+@media(max-width:600px){ .topbar-tags{display:none} }
+
+/* ---------- 9. GOLD RULE UNDER THE HEADER: still, not an endless shimmer ---------- */
+.site-header::after{animation:none;background-size:100% 100%}

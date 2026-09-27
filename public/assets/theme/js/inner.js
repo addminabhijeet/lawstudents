@@ -55,12 +55,20 @@
 
     /* mobile menu: the burger is a real control (keyboard + aria-expanded) */
     var burger = $('#burger'), mobileMenu = $('#mobileMenu');
+    /* the open menu is never taller than the screen below its top edge, so its last
+       links (Contact Us, Login) scroll inside it instead of hanging off the screen */
+    function fitMenu(){
+      if(!mobileMenu.classList.contains('open')) return;
+      var top = Math.max(mobileMenu.getBoundingClientRect().top, 0);
+      mobileMenu.style.setProperty('--mm-room', Math.max(window.innerHeight - top, 200) + 'px');
+    }
     function setMenu(open){
       burger.classList.toggle('open', open);
       mobileMenu.classList.toggle('open', open);
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      fitMenu();
     }
-    if(burger && mobileMenu){
+    if(burger && mobileMenu && header){
       burger.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
       burger.addEventListener('keydown', function(e){
         if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); setMenu(!mobileMenu.classList.contains('open')); }
@@ -69,6 +77,52 @@
       document.addEventListener('keydown', function(e){
         if(e.key === 'Escape' && mobileMenu.classList.contains('open')){ setMenu(false); burger.focus(); }
       });
+      window.addEventListener('scroll', fitMenu, { passive: true });
+      window.addEventListener('resize', fitMenu);
+      /* a tap outside the header closes the menu, and so does tabbing out of it */
+      document.addEventListener('click', function(e){
+        if(mobileMenu.classList.contains('open') && !header.contains(e.target)) setMenu(false);
+      });
+      header.addEventListener('focusout', function(e){
+        if(mobileMenu.classList.contains('open') && e.relatedTarget && !header.contains(e.relatedTarget)) setMenu(false);
+      });
+    }
+
+    /* desktop dropdowns: they opened on mouse hover only. Now they also open on keyboard
+       focus and on a first tap (touch screens have no hover), report their state to
+       screen readers, and Escape closes them until the pointer or focus moves away. */
+    var navMenu = $('.nav-menu');
+    function byKeyboard(el){ try { return el.matches(':focus-visible'); } catch(err){ return true; } }
+    if(navMenu){
+      navMenu.classList.add('js-drops');
+      $$('.has-drop', navMenu).forEach(function(li){
+        var link = li.firstElementChild, hold = false, touched = false, wasOpen = false;
+        function setDrop(open){
+          if(open && hold) return;
+          li.classList.toggle('open', open);
+          link.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        /* .held hides it at once (no fade), so the next Tab cannot land inside it */
+        function setHold(on){ hold = on; li.classList.toggle('held', on); }
+        setDrop(false);
+        li.addEventListener('mouseenter', function(){ setDrop(true); });
+        li.addEventListener('mouseleave', function(){ setHold(false); setDrop(false); });
+        li.addEventListener('focusin', function(e){ if(byKeyboard(e.target)) setDrop(true); });
+        li.addEventListener('focusout', function(e){ if(!li.contains(e.relatedTarget)){ setHold(false); setDrop(false); } });
+        li.addEventListener('keydown', function(e){
+          if(e.key === 'Escape' && li.classList.contains('open')){ setHold(true); setDrop(false); link.focus(); }
+        });
+        link.addEventListener('pointerdown', function(e){ touched = e.pointerType === 'touch'; wasOpen = li.classList.contains('open'); });
+        link.addEventListener('click', function(e){ if(touched && !wasOpen){ e.preventDefault(); setDrop(true); } });
+        document.addEventListener('pointerdown', function(e){ if(!li.contains(e.target)) setDrop(false); });
+      });
+    }
+
+    /* laptop two-row header: once the Login button scrolls away with the logo row,
+       the pinned menu row shows its own compact Login (styled in navbar.css) */
+    var loginBtn = header && $('.btn-login', header);
+    if(loginBtn && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ header.classList.toggle('login-off', !es[0].isIntersecting); }).observe(loginBtn);
     }
 
     /* mark the current page in the navbar */

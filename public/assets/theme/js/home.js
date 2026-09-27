@@ -47,21 +47,6 @@ wrapEl.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'s
 
 // ===== ENHANCED ANIMATIONS =====
 
-// Navbar magnetic hover effect
-if(!prefersReducedMotion){
-  document.querySelectorAll('.nav-menu > li > a').forEach(function(link){
-    link.addEventListener('mousemove', function(e){
-      var rect = link.getBoundingClientRect();
-      var dx = (e.clientX - rect.left - rect.width / 2) * 0.15;
-      var dy = (e.clientY - rect.top - rect.height / 2) * 0.15;
-      link.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
-    });
-    link.addEventListener('mouseleave', function(){
-      link.style.transform = 'translate(0, 0)';
-    });
-  });
-}
-
 // Course card 3D tilt effect
 if(!prefersReducedMotion){
   document.querySelectorAll('.course-card').forEach(function(card){
@@ -318,18 +303,6 @@ var howGridObserver = new IntersectionObserver(function(entries){
 
 var howGrid = document.querySelector('.how-grid');
 if(howGrid) howGridObserver.observe(howGrid);
-
-// Navbar logo shrink on scroll
-var navLogo = document.querySelector('.nav-logo img');
-if(navLogo){
-  window.addEventListener('scroll', function(){
-    if(window.scrollY > 80){
-      navLogo.style.height = '46px';
-    } else {
-      navLogo.style.height = '60px';
-    }
-  });
-}
 
 // Rules section - card expand on hover to show summary
 document.querySelectorAll('.rules-section .list-card').forEach(function(card){
