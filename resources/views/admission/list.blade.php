@@ -145,7 +145,7 @@
                                             </li>
 
                                             <!-- Page Numbers -->
-                                            @foreach ($admissions->getUrlRange(1, $admissions->lastPage()) as $page => $url)
+                                            @foreach ($admissions->getUrlRange(max(1, $admissions->currentPage() - 2), min($admissions->lastPage(), $admissions->currentPage() + 2)) as $page => $url)
                                                 <li
                                                     class="page-item {{ $admissions->currentPage() == $page ? 'active' : '' }}">
                                                     <a class="page-link"

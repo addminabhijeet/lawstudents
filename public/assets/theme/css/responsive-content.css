@@ -1,0 +1,89 @@
+/* ================================================================
+   RESPONSIVE CONTENT LAYER: loaded last on every frontend page.
+   Additive only: no rule in the sheets above and no markup or script is
+   edited; this sheet wins by loading after them.
+
+   An all-page check (320px to 3840px) of what the newer content does
+   with the rules each page already had. Everything a visitor reads now
+   stays inside its box at every width, and rows that changed shape
+   depending on their text line up again.
+   ================================================================ */
+
+/* ---------- 1. HOME: LEGAL KNOWLEDGE TILES ON PHONES ----------
+   The tile titles are 21.25px (readable.css) and may not break inside a word
+   (readable.css section 16), but the two tiles side by side (home.css) are only
+   140–187px wide below 414px: "Constitutional" (7.25em) was clipped by up to 20px,
+   "Compliances" and "Applications" by up to 15px. Below 414px the tile keeps
+   less side padding and the title scales with the screen so the longest word
+   fits; from 414px it is the full 21.25px again. */
+@media(max-width:413.98px){
+  .kn-card{padding-left:8px;padding-right:8px}
+  .kn-card h5{font-size:min(1.0625rem,calc((50vw - 40px) / 7.3))}
+}
+
+/* ---------- 2. HOME: COURSE CARDS, PRICE AND LINK ----------
+   The price and "Explore Course" share a row that may wrap (readable.css). Near
+   the width where they just fit (~768px, ~1150px, ~390px) some cards in a row
+   wrapped and their neighbours did not, depending on the price's digits. Each
+   card now stacks the two when its body is too narrow for any price, so a row
+   reads the same across. Browsers without container queries keep the old row. */
+body:not(.inner-page) .courses-section .course-body{container-type:inline-size}
+@container (max-width:345px){
+  body:not(.inner-page) .courses-section .course-foot{flex-direction:column;align-items:flex-start}
+}
+
+/* ---------- 3. "EXPLORE YOUR OPTIONS" CARDS ON TABLETS ----------
+   The academic block has three cards on most pages, in two columns from 601px
+   to 1100px (academic-pages.css), so the third sat alone under the first with
+   an empty cell beside it. It now sits centred under the pair at the same
+   width. Six-card pages (home, courses) fill their rows and are unchanged. */
+@media(min-width:600.02px) and (max-width:1100px){
+  .academic-card-grid > .academic-card:last-child:nth-child(odd){
+    grid-column:1 / -1;justify-self:center;width:calc(50% - 11px);
+  }
+}
+
+/* ---------- 4. CARD LINKS KEEP THEIR ARROW ----------
+   .academic-link is an inline flexbox, so a label that wrapped ("Explore
+   entrance courses") filled the line and pushed its → to the card's right edge,
+   a line above the last word. In the cards the arrow now follows the text; the
+   space before it plus .2em stands in for the 10px gap. Balanced lines keep the
+   last word with the arrow when only the arrow would have wrapped. */
+.academic-card .academic-link{display:inline-block;text-wrap:balance}
+.academic-card .academic-link > span[aria-hidden="true"]{margin-left:.2em;white-space:nowrap}
+
+/* ---------- 5. INFORMATION PAGES: CONTENT FROM THE ADMIN EDITOR ----------
+   Privacy, Terms, Disclaimer and Refund are written in the admin's editor
+   (Quill), which can add what readable.css section 24 has no rules for: a
+   pasted URL is one long word (it ran ~300px off a 360px phone), a table kept
+   its natural width, an image its file width, and a Heading 1 came out at
+   42.5px, wider than the card for a long word. Everything now stays inside the
+   card; an ordered list is numbered like the bulleted one. */
+.doc-card{overflow-wrap:break-word}
+.doc-card a{overflow-wrap:anywhere}
+.doc-card img,.doc-card video{max-width:100%;height:auto}
+.doc-card iframe{max-width:100%}
+.doc-card table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse;margin:0 0 1em}
+.doc-card td,.doc-card th{padding:.4em .75em;border:1px solid var(--line,#eee3c4);vertical-align:top}
+.doc-card pre{white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%}
+.doc-card :is(pre,blockquote){margin:0 0 1em}
+.doc-card ol{margin:0 0 1em;padding-left:1.5em;list-style:decimal}
+.doc-card ol li::marker{color:var(--gold-text)}
+.doc-card :is(h1,h3,h4,h5,h6){font-family:'Playfair Display',serif;color:var(--black,#111);line-height:1.3;margin:1.4em 0 .5em}
+.doc-card :is(h1,h3,h4,h5,h6):first-child{margin-top:0}
+.doc-card h1{font-size:clamp(1.5rem,1.15rem + 1vw,1.875rem)}
+.doc-card h3{font-size:clamp(1.125rem,1rem + .4vw,1.3125rem)}
+.doc-card :is(h4,h5,h6){font-size:1.0625rem}
+
+/* ---------- 6. SITEMAP ON VERY LARGE MONITORS ----------
+   From 2400px the root text grows to 137.5% / 162.5% (readable.css), but the
+   link grid kept its 1100px cap and 260px columns, so the four boxes narrowed
+   under the larger words: "Announcements" ran 7–44px out of its box and the
+   box titles broke onto two lines. The same sizes in rem are exactly 1100px /
+   260px / 200px below 2400px and grow with the text above it.
+   In the multi-column category list only the first column kept its first
+   item's top margin (a column break drops it), so that column started ~7px
+   lower than the others; all columns now start level. */
+.sitemap-grid{max-width:55rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr))}
+.sitemap-wide ul{columns:3 10rem}
+.sitemap-wide li:first-child{margin-top:0}

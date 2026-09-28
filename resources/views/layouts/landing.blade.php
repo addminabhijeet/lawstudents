@@ -77,6 +77,8 @@
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/page-flow.css') }}">
     {{-- Hero, page banners and footer without the periodic golden sweep. --}}
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/still-banners.css') }}">
+    {{-- Responsive layer: fits the newer content to every screen width (additive, loads last). --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/responsive-content.css') }}">
 </head>
 
 <body class="@yield('body_class', 'inner-page')">

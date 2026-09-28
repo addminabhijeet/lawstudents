@@ -32,7 +32,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('admin');
+            return redirect()->route('admin.dashboard');
         }
 
         if (Auth::guard('student')->attempt($authData, $remember)) {

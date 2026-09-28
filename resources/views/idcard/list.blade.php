@@ -174,7 +174,7 @@
                                             </li>
 
                                             <!-- Page Numbers -->
-                                            @foreach ($payments->getUrlRange(1, $payments->lastPage()) as $page => $url)
+                                            @foreach ($payments->getUrlRange(max(1, $payments->currentPage() - 2), min($payments->lastPage(), $payments->currentPage() + 2)) as $page => $url)
                                                 <li
                                                     class="page-item {{ $payments->currentPage() == $page ? 'active' : '' }}">
                                                     <a class="page-link"

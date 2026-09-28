@@ -140,7 +140,7 @@
                                             </li>
 
                                             <!-- Page Numbers -->
-                                            @foreach ($students->getUrlRange(1, $students->lastPage()) as $page => $url)
+                                            @foreach ($students->getUrlRange(max(1, $students->currentPage() - 2), min($students->lastPage(), $students->currentPage() + 2)) as $page => $url)
                                                 <li
                                                     class="page-item {{ $students->currentPage() == $page ? 'active' : '' }}">
                                                     <a class="page-link"
