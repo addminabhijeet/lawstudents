@@ -129,5 +129,5 @@ main .section-head{margin-bottom:clamp(22px,2.6vw,34px)}
    (.wrap is z-index 2); the glow stays on ::before. The SVGs are the ones from
    site.css, saved as images/page-intros/patterns/scales.svg and pillars.svg. */
 .kn-section::after,.how-section::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none}
-.kn-section::after{background:url('../images/page-intros/patterns/scales.svg') 0 0 / 1200px 600px;opacity:.29}
-.how-section::after{background:url('../images/page-intros/patterns/pillars.svg') 0 0 / 1000px 500px;opacity:.26}
+.kn-section::after{background:url('../images/page-intros/patterns/scales.svg') 0 0 / 150px 150px;opacity:.29}
+.how-section::after{background:url('../images/page-intros/patterns/pillars.svg') 0 0 / 200px 200px;opacity:.26}

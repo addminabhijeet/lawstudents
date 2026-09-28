@@ -20,6 +20,19 @@
     if(page && FIRST.indexOf(page) > -1 && target && target.parentNode === main){
       if(intro.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING) main.insertBefore(target, intro);
       intro.classList.add('page-intro--after');
+
+      /* the page title (h1) must not jump straight to the section's h3s: a moved
+         section without a level-2 heading of its own gets one for screen readers */
+      var levels = Array.prototype.filter.call(target.querySelectorAll('h2, h3, h4, [role="heading"]'), function(h){ return h.getClientRects().length > 0; })   // rendered (a display:none one is skipped by screen readers too)
+        .map(function(h){ return +(h.getAttribute('aria-level') || h.tagName.slice(1)) || 9; });
+      if(levels.length && levels.indexOf(2) === -1){
+        var NAMES = { contact: 'Contact details and enquiry form', clientele: 'Enquiry form' };
+        var h2 = d.createElement('h2'), h1 = d.querySelector('.page-hero h1');
+        h2.className = 'pf-sr-heading';
+        h2.textContent = NAMES[page] || (h1 ? h1.textContent.trim() : 'Main content');
+        var wrap = target.querySelector(':scope > .wrap') || target;
+        wrap.insertBefore(h2, wrap.firstChild);
+      }
     }
   }
 

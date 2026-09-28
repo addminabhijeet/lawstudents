@@ -9,7 +9,7 @@
 .academic-heading { max-width:780px; margin:0 0 38px; }
 .academic-kicker { display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--academic-gold); margin:0 0 16px; }
 .academic-pathways { background:#fbf8f0; border-top:1px solid #e5dcc7; }
-.academic-pathways::before { content:''; position:absolute; inset:0; z-index:0; background:url('../images/page-intros/patterns/about.svg') 0 0 / 1200px 600px; opacity:.32; pointer-events:none; }
+.academic-pathways::before { content:''; position:absolute; inset:0; z-index:0; background:url('../images/page-intros/patterns/about.svg') 0 0 / 150px 150px; opacity:1; pointer-events:none; }
 .academic-page--acts .academic-pathways::before { background-image:url('../images/page-intros/patterns/acts.svg'); }
 .academic-page--rules .academic-pathways::before { background-image:url('../images/page-intros/patterns/rules.svg'); }
 .academic-page--copys .academic-pathways::before,
@@ -50,7 +50,7 @@
 .academic-question[open] summary::after { content:'−'; }
 .academic-answer { padding:0 28px 8px 0; }
 .academic-page .academic-next { background:#211d15; }
-.academic-next::before { content:''; position:absolute; inset:0; pointer-events:none; background:url('../images/page-intros/patterns/about.svg') center / 180px 180px; opacity:.2; }
+.academic-next::before { content:''; position:absolute; inset:0; pointer-events:none; background:url('../images/page-intros/patterns/about.svg') 0 0 / 150px 150px; opacity:.29; }
 .academic-next-inner { display:flex; align-items:center; justify-content:space-between; gap:40px; }
 .academic-next-inner > div { max-width:760px; }
 .academic-next h2 { color:#fff5d9; }
@@ -82,4 +82,18 @@
     .academic-card { padding:24px; }
     .academic-next .btn { width:100%; }
     .academic-guide-nav { gap:6px 18px; }
+}
+
+/* Section labels as the site's gold pill. The home page's labels ("Courses", "Why Us") are
+   the rounded .eyebrow of site.css + readable.css; these were plain text. Same pill here,
+   sized to its text, with the dark-section variant on the "Your Next Step" band. */
+.academic-kicker { width:max-content; max-width:100%; font-size:var(--read-label,.9375rem); font-weight:800; background:linear-gradient(135deg,rgba(212,175,55,.14),rgba(240,217,125,.08)); border:1px solid rgba(212,175,55,.3); border-radius:30px; padding:6px 16px; }
+.academic-next .academic-kicker { background:rgba(212,175,55,.11); border-color:rgba(212,175,55,.32); }
+@media(max-width:600px) {
+    .academic-kicker { padding:5px 12px; }
+}
+/* the longer labels ("Revision That Makes Sense") would wrap into a two-line box on a phone:
+   tighter tracking keeps them on one line at the same readable size */
+@media(max-width:480px) {
+    .academic-kicker { letter-spacing:.06em; }
 }

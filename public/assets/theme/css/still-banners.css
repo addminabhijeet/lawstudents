@@ -1,0 +1,22 @@
+/* ================================================================
+   STILL HERO AND FOOTER: loaded last on every frontend page.
+   Additive only: no rule in site.css / inner.css / footer.css and no
+   script is edited; this sheet wins by loading after them.
+
+   The home hero, every inner page's banner and the footer each swept a
+   warm golden band across their dark background on a 22s loop (heroShift
+   in site.css and inner.css, footerHeroWash in site.css section 16), and
+   the inner-page banner titles ran a gold light through their letters
+   every 7s (shine). All of them now rest on one frame: the same colours,
+   without the periodic golden sweep.
+   ================================================================ */
+
+/* hero and inner-page banners: the first frame of heroShift */
+.hero,.page-hero{animation:none;background-position:0% 50%}
+
+/* inner-page banner titles: the resting gold the home hero title already
+   uses (home.css section 2) */
+.page-hero h1{animation:none;background-position:0% center}
+
+/* footer: the first frame of footerHeroWash (--fw keeps its -10%) */
+.site-footer{animation:none}

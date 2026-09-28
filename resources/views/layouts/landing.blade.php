@@ -75,6 +75,8 @@
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/section-patterns.css') }}">
     {{-- Page flow: content first on list and form pages, shorter pages on phones (page-flow.js). --}}
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/page-flow.css') }}">
+    {{-- Hero, page banners and footer without the periodic golden sweep. --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/still-banners.css') }}">
 </head>
 
 <body class="@yield('body_class', 'inner-page')">
@@ -112,6 +114,8 @@
     <script src="{{ $themeAsset('assets/theme/js/readable.js') }}" defer></script>
     {{-- Listing pages: ?q= opens them already searched (the home page's cards link that way). --}}
     <script src="{{ $themeAsset('assets/theme/js/deeplink.js') }}"></script>
+    {{-- Form fields: phone 10 digits, one @ in an email, letters in names (listeners only). --}}
+    <script src="{{ $themeAsset('assets/js/form-guard.js') }}"></script>
 
     @yield('scripts')
 </body>

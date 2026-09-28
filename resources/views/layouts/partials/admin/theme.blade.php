@@ -278,6 +278,9 @@
 
 <!--! Responsive (phone / tablet) helpers !-->
 <script src="{{ asset('assets/js/responsive-fixes.js') }}?v=3"></script>
+
+<!--! Form fields: phone 10 digits, one @ in an email, letters in names (listeners only) !-->
+<script src="{{ asset('assets/js/form-guard.js') }}?v={{ @filemtime(public_path('assets/js/form-guard.js')) }}"></script>
 </body>
 
 </html>

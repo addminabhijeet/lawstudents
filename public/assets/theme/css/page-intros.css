@@ -3,7 +3,7 @@
     position: relative;
     isolation: isolate;
     --intro-pattern: url('../images/page-intros/patterns/about.svg');
-    --intro-pattern-size: 1200px 600px;
+    --intro-pattern-size: 150px 150px;
     background: linear-gradient(180deg, #fff 0%, #faf7ef 100%);
     border-bottom: 1px solid #e9e1ce;
     padding-block: clamp(36px, 5vw, 72px);
@@ -71,7 +71,7 @@
     background-image: var(--intro-pattern);
     background-size: var(--intro-pattern-size);
     background-repeat: repeat;
-    opacity: .45;
+    opacity: 1;
 }
 .page-intro--acts { --intro-pattern: url('../images/page-intros/patterns/acts.svg'); }
 .page-intro--rules { --intro-pattern: url('../images/page-intros/patterns/rules.svg'); }
@@ -116,3 +116,11 @@
 .page-hero:has(+ .page-intro + #library) .hero-frame{--motif-img:url(../images/hero-frame/motif-legal-knowledge.svg)}
 .page-hero:has(+ .page-intro + #site-info){--hero-main:url(../images/hero/about-us.svg);--hero-accent:url(../images/hero/accent-laurel.svg)}
 .page-hero:has(+ .page-intro + #site-info) .hero-frame{--motif-img:url(../images/hero-frame/motif-about.svg)}
+
+/* The intro's label is the rounded .eyebrow pill, but display:block stretched it across
+   the whole text column; it now fits its text like the section labels do. */
+.page-intro .eyebrow { width: max-content; max-width: 100%; }
+/* its longer labels ("Examination Preparation") keep to one line on a phone, as in academic-pages.css */
+@media (max-width: 480px) {
+    .page-intro .eyebrow { letter-spacing: .06em; }
+}
