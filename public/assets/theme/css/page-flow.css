@@ -1,0 +1,35 @@
+/* ================================================================
+   PAGE FLOW LAYER: every page (layouts/landing). Additive only: no rule in
+   page-intros.css / academic-pages.css is edited. page-flow.js adds the
+   behaviour.
+   ================================================================ */
+
+/* ---------- 1. CONTENT FIRST ON LIST AND FORM PAGES ----------
+   page-flow.js puts the list or form straight under the page title and the
+   intro after it (the hero keeps its artwork: inner.css draws it for a section
+   right after the hero). The intro's button jumped down to that content, which
+   now sits above it. */
+.page-intro--after .page-intro__copy > a.btn[href^="#"]{display:none}
+
+/* ---------- 2. PHONES: SHORTER PAGES ----------
+   Pages ran 10–16 screens on a phone, 34 on the home page. */
+@media(max-width:600px){
+  /* the intro's and the learning guide's pictures are illustrations only
+     ("Illustrative learning scene"); on a phone each took a screen-third */
+  .page-intro__media,
+  .academic-story .academic-photo{display:none}
+
+  /* option cards and steps sit side by side in a row that swipes, instead of
+     one 400–500px card under another; the next card peeks in at the edge */
+  .academic-card-grid,
+  .academic-step-grid{
+    display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;scroll-padding:0 2px;padding:4px 2px 16px;margin-left:-2px;margin-right:-2px;
+  }
+  .academic-card-grid > .academic-card,
+  .academic-step-grid > li{flex:0 0 84%;scroll-snap-align:start}
+  .academic-card-grid:focus-visible,
+  .academic-step-grid:focus-visible{outline:3px solid var(--gold-dark);outline-offset:2px;border-radius:12px}
+  .pf-swipe-hint{margin:-4px 0 14px;font-size:var(--read-small,1rem);color:var(--muted)}
+}
+@media(min-width:601px){.pf-swipe-hint{display:none}}

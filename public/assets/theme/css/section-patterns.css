@@ -9,7 +9,7 @@
    They now use the same drawing as the page's own "Explore your options"
    section, so each page keeps one pattern family.
    ================================================================ */
-.academic-page{--academic-pattern:url('../images/page-intros/patterns/about.svg');--academic-pattern-size:150px 150px}
+.academic-page{--academic-pattern:url('../images/page-intros/patterns/about.svg');--academic-pattern-size:1200px 600px}
 .academic-page--acts{--academic-pattern:url('../images/page-intros/patterns/acts.svg')}
 .academic-page--rules{--academic-pattern:url('../images/page-intros/patterns/rules.svg')}
 .academic-page--copys,.academic-page--legalknowledgelibrary{--academic-pattern:url('../images/page-intros/patterns/notes.svg')}
@@ -31,5 +31,5 @@
 #site-info > .wrap{position:relative;z-index:1}
 #site-info::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:url('../images/page-intros/patterns/about.svg') 0 0 / 150px 150px;opacity:.32;
+  background:url('../images/page-intros/patterns/about.svg') 0 0 / 1200px 600px;opacity:.32;
 }

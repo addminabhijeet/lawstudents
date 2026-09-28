@@ -9,7 +9,7 @@
 .academic-heading { max-width:780px; margin:0 0 38px; }
 .academic-kicker { display:block; font-size:.8rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--academic-gold); margin:0 0 16px; }
 .academic-pathways { background:#fbf8f0; border-top:1px solid #e5dcc7; }
-.academic-pathways::before { content:''; position:absolute; inset:0; z-index:0; background:url('../images/page-intros/patterns/about.svg') 0 0 / 150px 150px; opacity:.32; pointer-events:none; }
+.academic-pathways::before { content:''; position:absolute; inset:0; z-index:0; background:url('../images/page-intros/patterns/about.svg') 0 0 / 1200px 600px; opacity:.32; pointer-events:none; }
 .academic-page--acts .academic-pathways::before { background-image:url('../images/page-intros/patterns/acts.svg'); }
 .academic-page--rules .academic-pathways::before { background-image:url('../images/page-intros/patterns/rules.svg'); }
 .academic-page--copys .academic-pathways::before,

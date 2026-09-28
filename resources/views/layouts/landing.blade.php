@@ -73,6 +73,8 @@
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/academic-pages.css') }}">
     {{-- Line-drawing patterns on the academic sections that had none. --}}
     <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/section-patterns.css') }}">
+    {{-- Page flow: content first on list and form pages, shorter pages on phones (page-flow.js). --}}
+    <link rel="stylesheet" href="{{ $themeAsset('assets/theme/css/page-flow.css') }}">
 </head>
 
 <body class="@yield('body_class', 'inner-page')">
@@ -103,6 +105,8 @@
     @include('layouts.partials.footer')
     {{-- Right after the footer markup and before inner.js / home.js, which it has to run ahead of. --}}
     <script src="{{ $themeAsset('assets/theme/js/footer.js') }}"></script>
+    {{-- Page flow: after the page markup, before inner.js sets the page up. --}}
+    <script src="{{ $themeAsset('assets/theme/js/page-flow.js') }}"></script>
 
     <script src="{{ $themeAsset('assets/theme/js/inner.js') }}"></script>
     <script src="{{ $themeAsset('assets/theme/js/readable.js') }}" defer></script>

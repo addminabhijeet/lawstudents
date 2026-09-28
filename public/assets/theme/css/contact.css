@@ -48,7 +48,7 @@
 }
 .map-frame .map-consent::before{
   content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.45;
-  background:url('../images/page-intros/patterns/contact.svg') 0 0 / 150px 150px;
+  background:url('../images/page-intros/patterns/contact.svg') 0 0 / 1200px 600px;
 }
 .map-frame .map-consent > *{position:relative;z-index:1}
 .map-frame .map-consent p{margin:0;max-width:46ch;font-size:var(--read-small,1rem);color:var(--muted)}

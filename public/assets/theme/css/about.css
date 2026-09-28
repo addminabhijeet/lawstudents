@@ -86,7 +86,7 @@
 #offer::before,.about-cta::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none}
 /* "What You'll Find": the Bare Acts drawing, between the laurels above and the document sheets below */
 #offer{background:var(--cream)}
-#offer::before{background:url('../images/page-intros/patterns/acts.svg') 0 0 / 150px 150px}
+#offer::before{background:url('../images/page-intros/patterns/acts.svg') 0 0 / 1200px 600px}
 /* the dark closing band: the laurels, faint, as on the academic "Your Next Step" band */
 .about-cta::before{background:url('../images/page-intros/patterns/about.svg') center / 180px 180px;opacity:.2}
 /* the academic block added to this page ends with its own "Your Next Step" band, so

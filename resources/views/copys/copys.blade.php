@@ -1,8 +1,16 @@
 @extends('layouts.landing', ['title' => 'Free Notes — Law Students'])
 
 @section('meta_description', 'Browse free study notes by category and search by keyword.')
+{{-- List pages layer (shared with Govt. Examination and the Library), loaded after every other sheet. --}}
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/theme/css/res-lists.css') }}?v={{ filemtime(public_path('assets/theme/css/res-lists.css')) }}">
+@endsection
 
 @section('content')
+{{-- Only what the admin panel lists as active (delete = 1), as the site's own search does. --}}
+@php $categories = $categories->where('delete', 1)->each(fn($cat) => $cat->setRelation('subcategories', $cat->subcategories->where('delete', 1)->each(fn($sub) => $sub->setRelation('copys', $sub->copys->where('delete', 1)->values()))->values()))->values(); @endphp
+{{-- Page count and size of every file listed (App\Support\PdfInfo); res-lists.js labels them. --}}
+@php $listPdfInfo = []; foreach ($categories as $pdfCat) { foreach ($pdfCat->subcategories as $pdfSub) { foreach ($pdfSub->copys as $pdfItem) { foreach (($pdfItem->pdfs ?? []) as $pdfPath) { $listPdfInfo[$pdfPath] = \App\Support\PdfInfo::describe($pdfPath); } } } } $listHasSummaries = collect($listPdfInfo)->contains(fn($i) => $i && $i['pages'] !== null && $i['pages'] <= 2); @endphp
 <section class="page-hero">
     <div class="hero-frame" aria-hidden="true"></div>
     <div class="wrap">
@@ -47,6 +55,9 @@
                 <input type="search" id="quick-search" placeholder="Search Free Notes..." autocomplete="off">
             </div>
         </div>
+        @if ($listHasSummaries)
+            <p class="rl-note">Files marked “Summary” are 1–2 page revision notes, not full notes or official texts. Official Acts and rules: <a href="https://www.indiacode.nic.in/" target="_blank" rel="noopener">India Code</a>.</p>
+        @endif
 
         <div class="res-list">
             @foreach ($categories as $category)
@@ -109,4 +120,6 @@
         <p class="res-none" hidden>No notes match your search. Try another keyword or category.</p>
     </div>
 </section>
+<script type="application/json" id="list-pdf-info">@json($listPdfInfo)</script>
+<script src="{{ asset('assets/theme/js/res-lists.js') }}?v={{ filemtime(public_path('assets/theme/js/res-lists.js')) }}" data-root="notes" data-noun="note"></script>
 @endsection

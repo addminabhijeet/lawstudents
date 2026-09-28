@@ -79244,3 +79244,5 @@ Stack trace:
 #61 C:/xampp/htdocs/lawstudents/index.php(20): Illuminate/Foundation/Application->handleRequest(Object(Illuminate/Http/Request))
 #62 {main}
 "} 
+[2026-09-28 00:04:56] local.INFO: Legal Knowledge Inquiry Submitted {"name":"Test Visitor","email":"visitor@example.test","mobile":"9876543210","subject":"Civil Law","question":"Line one of my question.
+Line two.","document":"legal-inquiries/gytdNRNaOCHoQXPHEOa1YS8R.pdf"} 

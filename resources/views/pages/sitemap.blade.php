@@ -34,6 +34,8 @@
         ],
     ];
 @endphp
+{{-- Only categories the Library can show (an active subcategory with an active note), so no link opens an empty list. --}}
+@php $mapCategories = $mapCategories->filter(fn($c) => $c->subcategories()->where('delete', 1)->whereHas('notes', fn($q) => $q->where('delete', 1))->exists())->values(); @endphp
 <div class="sitemap-grid">
     @foreach ($mapGroups as $mapHeading => $mapLinks)
         <section class="doc-card sitemap-col reveal" data-d="{{ $loop->index % 3 + 1 }}">

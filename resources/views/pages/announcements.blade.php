@@ -45,3 +45,7 @@
     </div>
 @endif
 @endsection
+{{-- Heading levels, and links that open each item's page already searched for it. --}}
+@section('scripts')
+    <script src="{{ asset('assets/theme/js/announcements.js') }}?v={{ filemtime(public_path('assets/theme/js/announcements.js')) }}"></script>
+@endsection

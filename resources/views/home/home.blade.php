@@ -59,6 +59,8 @@
         return 'scale'; // Default icon
     };
 @endphp
+{{-- Legal Knowledge tiles only for categories the Library can show (an active subcategory with an active note), so no tile opens an empty list. They return by themselves once a note is added. --}}
+@php $homeKnowledgeCategories = $homeKnowledgeCategories->filter(fn($c) => $c->subcategories()->where('delete', 1)->whereHas('notes', fn($q) => $q->where('delete', 1))->exists())->values(); @endphp
 
 @if (session('success'))
   <p class="form-toast" role="status">{{ session('success') }}</p>
@@ -202,6 +204,8 @@
         <a href="{{ route('frontend.legalknowledgelibrary') }}?cat={{ $homeKnCat->id }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico"><span class="site-icon icon-{{ $getCategoryIcon($homeKnCat->name) }}" aria-hidden="true"></span></span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
       @endforeach
     </div>
+    {{-- Every other section here ends with a link to its full page; this one had none. --}}
+    <div class="section-cta reveal"><a href="{{ route('frontend.legalknowledgelibrary') }}" class="btn btn-gold">Open the Library</a></div>
   </div>
 </section>
 <!--===== LEGAL KNOWLEDGE CATEGORIES SECTION ENDS =======-->
