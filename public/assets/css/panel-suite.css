@@ -2,7 +2,7 @@
  * Admin suite (loaded last by layouts/partials/admin/dashboard.blade.php, after
  * brand-panel.css and brand-panel-admin.css).
  *
- * Styles for the additions in assets/js/admin-suite.js and the new shell / dashboard
+ * Styles for the additions in assets/js/panel-suite.js and the new shell / dashboard
  * markup: menu groups and find box, header search / "+ New" / alerts, search palette,
  * page bar and related buttons, list tools, row menus, forms, dashboard widgets,
  * phone bottom bar, wide-screen scaling, print.
@@ -1542,7 +1542,7 @@ html[data-ls-calm="on"] *::after {
 
 @media (max-width: 480px) {
     /* the panel label shrinks to one word so the header keeps its icons */
-    html:root .nxl-header .header-wrapper .header-left::after { content: "Admin"; padding-right: 12px; }
+    html:root .nxl-header .header-wrapper .header-left::after { content: var(--pn-label-short, "Admin"); padding-right: 12px; }
 }
 @media (max-width: 340px) {
     .ls-stats { grid-template-columns: 1fr; }
@@ -1925,3 +1925,33 @@ html:root .table-responsive .btn-danger:hover {
 
 /* course prices are figures, not a status: no green */
 html:root .single-note-item .text-success { color: var(--ls-heading) !important; font-weight: 700; }
+
+/* =========================================================================
+   18. Student panel: cream menu and a flat five-item bottom bar
+   ========================================================================= */
+.ls-nav-search input { background: var(--pn-nav-hover); }
+.ls-nav-search input:focus { background: var(--pn-nav-hover); }
+.ls-bottomnav--flat { grid-template-columns: repeat(5, 1fr) !important; }
+.ls-bottomnav--flat .ls-bottomnav__item { align-self: center; }
+
+/* an app-style page with no toolbar: the title bar sits above its content */
+.ls-appbar--top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 16px; margin: 0 0 16px; }
+.ls-appbar--top .ls-actions { margin: 0; }
+.content-area-body > .ls-related { margin-bottom: 18px; }
+@media (max-width: 767.98px) {
+    .ls-appbar--top .ls-actions { width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .ls-appbar--top .ls-actions::-webkit-scrollbar { display: none; }
+    .ls-appbar--top .ls-actions .btn { flex: 0 0 auto; }
+}
+
+.ls-appbar--top { justify-content: flex-start; gap: 4px 22px; }
+.ls-appbar--top .ls-actions { margin-left: auto; }
+.ls-appbar--top .breadcrumb { margin: 0; }
+
+/* Documents (payment slip, ID card) must print exactly as before: nothing this suite added
+   is printed, and the text-size / screen zoom never scales a printout. */
+@media print {
+    .ls-related, .ls-actions, .ls-star, .ls-footer, .ls-top, .ls-jump, .ls-toasts, .ls-bottomnav,
+    .ls-skip, .ls-appbar--top, .ls-palette, .ls-dialog, .ls-sheet, .ls-pop, .ls-tools { display: none !important; }
+    html { zoom: 1 !important; }
+}

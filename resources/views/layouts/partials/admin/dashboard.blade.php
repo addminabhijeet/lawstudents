@@ -40,7 +40,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/brand-panel-admin.css') }}?v={{ @filemtime(public_path('assets/css/brand-panel-admin.css')) }}">
 
     <!-- Admin suite: menu groups, search, related-action bars, table tools, phone navigation, wide screens -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/admin-suite.css') }}?v={{ @filemtime(public_path('assets/css/admin-suite.css')) }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/panel-suite.css') }}?v={{ @filemtime(public_path('assets/css/panel-suite.css')) }}">
 
     <!-- IE Support -->
     <!--[if lt IE 9]>
@@ -382,7 +382,7 @@
     <!--! ================================================================ !-->
     <!--! Admin suite: search palette, shortcuts, create sheet, phone bottom bar !-->
     <!--! ================================================================ !-->
-    <script type="application/json" id="lsAdminData">{!! json_encode($lsPayload, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+    <script type="application/json" id="lsPanelData">{!! json_encode($lsPayload, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 
     <div class="ls-palette" id="lsPalette" role="dialog" aria-modal="true" aria-label="Search" hidden>
         <div class="ls-palette__backdrop" data-ls-close></div>

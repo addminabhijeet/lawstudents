@@ -18,6 +18,13 @@ Route::middleware(['auth:student', \App\Http\Middleware\StudentPanelGuard::class
         Route::get('/', [RoutingControllerStu::class, 'student'])
             ->name('dashboard');
 
+        // Read-only pages added with the panel layer: fee summary and help.
+        Route::get('fees', [\App\Http\Controllers\Student\PortalController::class, 'fees'])
+            ->name('fees');
+
+        Route::get('help', [\App\Http\Controllers\Student\PortalController::class, 'help'])
+            ->name('help');
+
         Route::get('add-student', [RoutingControllerStu::class, 'addstudent'])
             ->name('addstudent');
 

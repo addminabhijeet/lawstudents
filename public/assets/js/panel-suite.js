@@ -1,5 +1,6 @@
 /*
- * Admin suite: everyday helpers for the admin panel.
+ * Panel suite: everyday helpers for the admin and student panels (each shell describes
+ * its own pages, menu words and shortcuts in the #lsPanelData block).
  *   - search palette (Ctrl/Cmd K or /): pages, and students / payments / messages / courses
  *   - page bar: real page title, breadcrumb, related buttons, pin-to-menu star
  *   - list tools: filter, sort, column chooser, export / print / copy, row "more" menu
@@ -10,7 +11,7 @@
  * Presentation only. It reads what is already on the page (plus two read-only endpoints
  * for search and related links) and never changes what a form sends or what a page does
  * when it is saved. Everything is added on top of the page, so if this file fails to load
- * the page still works as before. Styles: assets/css/admin-suite.css.
+ * the page still works as before. Styles: assets/css/panel-suite.css.
  */
 (function (w, d) {
     'use strict';
@@ -21,7 +22,7 @@
     /*  Small helpers                                                      */
     /* ------------------------------------------------------------------ */
     var DATA = (function () {
-        try { return JSON.parse((d.getElementById('lsAdminData') || {}).textContent || '{}'); } catch (e) { return {}; }
+        try { return JSON.parse((d.getElementById('lsPanelData') || {}).textContent || '{}'); } catch (e) { return {}; }
     })();
     var PAGE = DATA.page || {};
     var ENDPOINTS = DATA.endpoints || {};
@@ -89,7 +90,7 @@
             setTimeout(function () { if (t.parentNode) { t.parentNode.removeChild(t); } }, 300);
         }, 3200);
     }
-    w.LSAdmin = { toast: toast };
+    w.LSPanel = { toast: toast };
 
     /* ------------------------------------------------------------------ */
     /*  Keyboard hints: "Ctrl K" reads "⌘ K" on a Mac                      */
@@ -264,7 +265,7 @@
         var fav = favourites().map(function (f) { return { title: f.title, sub: 'Pinned', url: f.url, icon: 'star' }; });
         var rec = recents().filter(function (r) { return r.url !== pathKey(); }).slice(0, 5)
             .map(function (r) { return { title: r.title, sub: 'Recently opened', url: r.url, icon: 'clock' }; });
-        var wanted = ['Dashboard', 'Students', 'Admissions', 'Payments', 'ID Cards', 'Contact Messages', 'Admission Enquiries', 'Courses'];
+        var wanted = (DATA.keys && DATA.keys.jump) || ['Dashboard', 'Students', 'Admissions', 'Payments', 'ID Cards', 'Contact Messages', 'Admission Enquiries', 'Courses'];
         var seen = {};
         var jump = [];
         wanted.forEach(function (label) {
@@ -319,9 +320,12 @@
         if (!q) { pSeq++; renderPalette(idleSections()); return; }
         var pages = pageMatches(q).map(asItem);
         var acts = actionMatches(q);
+        var live = !!ENDPOINTS.search;
+        var found = pages.length + acts.length;
         renderPalette((pages.length ? [{ title: 'Pages', items: pages }] : []).concat(acts.length ? [{ title: 'Actions', items: acts }] : []),
-            q.length >= 2 ? '<span class="ls-spinner" aria-hidden="true"></span> Searching records…' : 'Keep typing to search records…');
-        liveSearch(q);
+            !live ? (found ? '' : 'No page matches <strong>' + esc(q) + '</strong>.')
+                : (q.length >= 2 ? '<span class="ls-spinner" aria-hidden="true"></span> Searching records…' : 'Keep typing to search records…'));
+        if (live) { liveSearch(q); }
     }
 
     function openPalette(q) {
@@ -365,8 +369,9 @@
     /* ------------------------------------------------------------------ */
     var goPending = false;
     var goTimer = null;
-    var GO = { d: 'admin.dashboard', s: 'admin.liststudent', a: 'admin.listadmission', p: 'admin.listpayment' };
-    var GO_LABEL = { d: 'Dashboard', s: 'Students', a: 'Admissions', p: 'Payments' };
+    /* "g" then a letter jumps to a page; each panel names its own (label in the search index) */
+    var GO_LABEL = (DATA.keys && DATA.keys.go) || { d: 'Dashboard', s: 'Students', a: 'Admissions', p: 'Payments' };
+    var NEW_LABEL = (DATA.keys && DATA.keys.create) || 'Add student';
 
     function urlFor(label) {
         var found = null;
@@ -385,7 +390,7 @@
         if (goPending) {
             goPending = false;
             clearTimeout(goTimer);
-            if (GO[key]) {
+            if (GO_LABEL[key]) {
                 var u = urlFor(GO_LABEL[key]);
                 if (u) { e.preventDefault(); w.location.href = u; }
             }
@@ -395,7 +400,7 @@
         else if (key === '?') { e.preventDefault(); openLayer($('#lsShortcuts')); }
         else if (key === 'g') { goPending = true; goTimer = setTimeout(function () { goPending = false; }, 1200); }
         else if (key === 'n') {
-            var n = urlFor('Add student');
+            var n = NEW_LABEL ? urlFor(NEW_LABEL) : null;
             if (n) { e.preventDefault(); w.location.href = n; }
         }
     });
@@ -577,14 +582,22 @@
         if (!content) { return; }
         var header = $('.page-header', content);
         var kind = PAGE.kind;
-        if (kind === 'custom' || kind === 'dashboard') { return; }
+        if (kind === 'custom') { return; }
+        if (kind === 'dashboard') {
+            /* the dashboard keeps its own layout; only the word "Student" / "Admin" becomes the page name */
+            var dh = header && ($('.page-header-title h5', header) || $('h5', header));
+            var dcrumbs = header && $('.breadcrumb', header);
+            if (dh && /^(admin|student)$/i.test(normLabel(dh.textContent)) && PAGE.title) { dh.textContent = PAGE.title; }
+            if (dcrumbs && DATA.route && /^student\./.test(DATA.route)) { dcrumbs.innerHTML = '<li class="breadcrumb-item active" aria-current="page">Overview</li>'; }
+            return;
+        }
         if (!header) { appBar(content); return; }
 
         /* real title instead of the word "Admin" */
         var h = $('.page-header-title h5', header) || $('h5', header);
         if (h && PAGE.title) {
             var cur = normLabel(h.textContent);
-            if (!cur || cur === 'admin') { h.textContent = PAGE.title; }
+            if (!cur || cur === 'admin' || cur === 'student') { h.textContent = PAGE.title; }
             h.setAttribute('role', 'heading');
             h.setAttribute('aria-level', '1');
         }
@@ -620,9 +633,33 @@
         }
     }
 
+    /* app-style pages with no toolbar at all (a student's My Courses): put the title bar at the top of the page body */
+    function blockBar(content) {
+        var body = $('.content-area-body', content);
+        if (!body) { return; }
+        var bar = make('div', 'ls-appbar ls-appbar--top');
+        var row = make('div', 'ls-appbar__row');
+        var h = make('h1', 'ls-appbar__title');
+        h.textContent = PAGE.title;
+        row.appendChild(h);
+        row.appendChild(pinStar());
+        bar.appendChild(row);
+        if (PAGE.crumbs && PAGE.crumbs.length) { bar.appendChild(make('ul', 'breadcrumb ls-crumbs', crumbsHtml())); }
+        var group = actionsGroup(body);
+        if (group.children.length) { bar.appendChild(group); }
+        body.insertBefore(bar, body.firstChild);
+        var next = bar.nextSibling;
+        if (PAGE.related && PAGE.related.length) { body.insertBefore(relatedBar(PAGE.related, PAGE.summary), next); }
+        /* the page's own heading repeats the title */
+        $$('h5, h4, h3', body).slice(0, 3).forEach(function (n) {
+            if (!bar.contains(n) && normLabel(n.textContent) === normLabel(PAGE.title)) { n.hidden = true; }
+        });
+    }
+
     /* pages laid out as an app (courses, notes): they have a slim toolbar and no title */
     function appBar(content) {
         var head = $('.content-area-header', content);
+        if (!head && PAGE.title) { blockBar(content); return; }
         if (!head || !PAGE.title) { return; }
         var left = make('div', 'ls-appbar');
         var titleRow = make('div', 'ls-appbar__row');
@@ -636,6 +673,10 @@
         }
         head.classList.add('ls-has-appbar');
         head.insertBefore(left, head.firstChild);
+        /* the toolbar's own heading repeats the title */
+        $$('h1, h2, h3, h4, h5, h6', head).forEach(function (n) {
+            if (!left.contains(n) && normLabel(n.textContent) === normLabel(PAGE.title)) { n.hidden = true; }
+        });
 
         if (PAGE.actions && PAGE.actions.length) {
             var right = $('.page-header-right', head);
@@ -664,7 +705,7 @@
                     '<small>' + esc(summary.fee.label || 'Latest invoice') + ': ' + esc(summary.fee.paid) + ' of ' + esc(summary.fee.total) + (summary.fee.due ? ' · <b>' + esc(summary.fee.due) + ' due</b>' : ' · paid in full') + '</small></div>' : '') +
                 '</div>';
         }
-        html += '<span class="ls-related__label">Related</span><div class="ls-related__list">';
+        html += '<span class="ls-related__label">' + esc(PAGE.related_label || 'Related') + '</span><div class="ls-related__list">';
         main.forEach(function (i) { html += chip(i); });
         html += '</div>';
         if (side.length) {
@@ -1199,9 +1240,9 @@
 
     /* status words get the colour they mean (a "pending" admission was shown in the success green) */
     var TONES = {
-        success: /^(approved|paid|completed|complete|active|verified|published|visible|enrolled|open|yes)$/i,
-        warning: /^(pending|partial|part paid|waiting|awaiting|processing|draft|in progress|new)$/i,
-        danger: /^(rejected|failed|cancelled|canceled|unpaid|inactive|overdue|blocked|declined|no)$/i
+        success: /^(approved|paid|completed|complete|active|verified|published|visible|enrolled)$/i,
+        warning: /^(pending|partial|part paid|waiting|awaiting|processing|draft|in progress|under review)$/i,
+        danger: /^(rejected|failed|cancelled|canceled|unpaid|inactive|overdue|blocked|declined|not approved)$/i
     };
     function tuneBadges() {
         $$('.nxl-container .main-content .badge').forEach(function (b) {
@@ -1210,8 +1251,8 @@
             var tone = null;
             Object.keys(TONES).forEach(function (t) { if (TONES[t].test(text)) { tone = t; } });
             if (!tone) { return; }
-            ['success', 'warning', 'danger', 'info', 'primary', 'secondary'].forEach(function (t) {
-                b.classList.remove('bg-soft-' + t, 'text-' + t);
+            ['success', 'warning', 'danger', 'info', 'primary', 'secondary', 'light', 'dark'].forEach(function (t) {
+                b.classList.remove('bg-soft-' + t, 'text-' + t, 'bg-' + t);
             });
             b.classList.add('bg-soft-' + tone, 'text-' + tone, 'ls-status');
         });
@@ -1370,7 +1411,7 @@
             openLayer(askBox, '[data-ls-no]');
         });
     }
-    w.LSAdmin.confirm = ask;
+    w.LSPanel.confirm = ask;
 
     var ASK_RE = /^\s*return\s+confirm\(\s*(['"])([\s\S]*?)\1\s*\)\s*;?\s*$/;
 
@@ -1447,7 +1488,7 @@
 
         if (!$('.ls-footer', main) && PAGE.kind !== 'doc') {
             var f = make('footer', 'ls-footer',
-                '<span>© ' + new Date().getFullYear() + ' Law Students · Admin Console</span>' +
+                '<span>© ' + new Date().getFullYear() + ' Law Students · ' + esc(DATA.console || 'Admin Console') + '</span>' +
                 '<span class="ls-footer__links"><a href="' + esc(DATA.site || '/') + '" target="_blank" rel="noopener">View website</a>' +
                 '<button type="button" data-ls-open="shortcuts">Shortcuts &amp; help</button></span>');
             main.appendChild(f);
