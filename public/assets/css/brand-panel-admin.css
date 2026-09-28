@@ -34,3 +34,8 @@
 html.app-skin-dark {
     --ls-page-bg: #13110d;
 }
+
+/* The template demo drawer is not part of the admin workflow. */
+.theme-customizer {
+    display: none !important;
+}

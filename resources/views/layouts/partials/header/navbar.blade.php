@@ -59,6 +59,7 @@
                             <a href="{{ route('frontend.course') }}"
                                 @if (request()->routeIs('frontend.course')) aria-current="page" @endif><span
                                     class="site-icon icon-school" aria-hidden="true"></span>Course</a>
+                            <a href="{{ route('frontend.enquiry') }}" data-track="admission-enquiry"><span class="site-icon icon-user" aria-hidden="true"></span>Admission Enquiry</a>
                             <a href="{{ route('frontend.copys') }}"
                                 @if (request()->routeIs('frontend.copys')) aria-current="page" @endif><span
                                     class="site-icon icon-file-text" aria-hidden="true"></span>Free Notes</a>

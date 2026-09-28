@@ -13,9 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
 
+        $middleware->append(\App\Http\Middleware\TrackActivityRequests::class);
+
         $middleware->web(append: [
             \App\Http\Middleware\FixAssetPaths::class,
             \App\Http\Middleware\SecurityHeaders::class,
+            \App\Http\Middleware\ActivityBrowserContext::class,
         ]);
 
         // In front of the web group, so it runs after SecurityHeaders has set the

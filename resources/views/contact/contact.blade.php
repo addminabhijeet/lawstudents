@@ -36,6 +36,7 @@
 </section>
 
 <x-page-intro page="contact" />
+<div class="wrap"><a class="btn btn-gold" href="{{ route('frontend.enquiry') }}" data-track="admission-enquiry">Request admission help</a></div>
 
 <section class="section contact-section" id="contact">
     <div class="wrap">

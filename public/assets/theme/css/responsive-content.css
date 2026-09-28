@@ -55,6 +55,71 @@ body:not(.inner-page) .courses-section .course-body{container-type:inline-size}
   }
 }
 
+/* ---------- 3b. OPTION CARDS AND STEPS ON PHONES: ONE COLUMN ----------
+   page-flow.css set these in a row that scrolls sideways (cards 84% wide, the
+   next one peeking in). On a phone the peeking card read as cut-off text
+   ("St… LL… Ex… pr…"), and every card stretched to the tallest one, leaving a
+   tall gap above a short card's link. Up to 600px they now stack in one column
+   at the full width, like every other card list on the site. To keep the pages
+   short, the number sits beside the title instead of on a line of its own and
+   the spacing is tighter; the text keeps its reading size.
+   page-flow.js already shows its "Swipe sideways" hint and keyboard scrolling
+   only for a row that actually scrolls, so it drops both by itself. */
+@media(max-width:600px){
+  .academic-card-grid,
+  .academic-step-grid{
+    display:grid;grid-template-columns:minmax(0,1fr);gap:14px;
+    overflow:visible;scroll-snap-type:none;padding:0;margin-left:0;margin-right:0;
+  }
+  .pf-swipe-hint{display:none}
+
+  .academic-card{
+    display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.75rem;
+    align-items:baseline;padding:20px 20px 16px;
+  }
+  .academic-card > :not(.academic-card-number):not(h3){grid-column:1 / -1}
+  .academic-card-number{margin:0}
+  .academic-card h3{margin:0 0 10px}
+  .academic-card p{margin-bottom:10px}
+  .academic-card .academic-link{justify-self:start;margin-top:0}
+
+  .academic-step-grid > li{
+    display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.75rem;
+    align-items:baseline;padding-top:16px;
+  }
+  .academic-step-grid > li > :not(.academic-step-number):not(h3){grid-column:1 / -1}
+  .academic-step-number{margin:0;font-size:2rem}
+  .academic-step-grid h3{margin:0 0 8px}
+  .academic-step-grid p{margin-bottom:0}
+}
+/* below 375px a long title word ("communication") no longer fits beside the
+   number, so there the number keeps its own line above the title */
+@media(max-width:374.98px){
+  .academic-card > h3,
+  .academic-step-grid > li > h3{grid-column:1 / -1}
+  .academic-card-number,
+  .academic-step-number{margin-bottom:10px}
+}
+
+/* ---------- 3c. CATEGORY BUTTONS ON PHONES AND TABLETS: ALL IN VIEW ----------
+   The one-tap category buttons (readable.js) of Courses, Bare Acts, Rules,
+   Free Notes, Govt. Exams and the Legal Knowledge Library wrap onto lines on
+   a desktop, but up to 900px readable.css section 30 k) set them in one row
+   that scrolls sideways behind a fade: on a phone only the first one or two
+   showed and the next was cut off at the edge (up to 15 of 17 hidden on
+   Courses). Up to 900px they now wrap as they do on a desktop, and each line
+   is filled edge to edge (label left, count right) so the block reads as
+   one tidy panel; a label longer than the screen wraps inside its button.
+   Sizes and tap heights stay those of readable.css. */
+@media(max-width:900px){
+  .cat-chips{
+    flex-wrap:wrap;overflow:visible;scroll-snap-type:none;padding:0;gap:.5rem;
+    -webkit-mask-image:none;mask-image:none;
+  }
+  .cat-chip{flex:1 1 auto;max-width:100%;white-space:normal;justify-content:space-between;text-align:left;line-height:1.3}
+  .cat-chip .n{flex:0 0 auto}
+}
+
 /* ---------- 4. CARD LINKS KEEP THEIR ARROW ----------
    .academic-link is an inline flexbox, so a label that wrapped ("Explore
    entrance courses") filled the line and pushed its → to the card's right edge,

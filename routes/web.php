@@ -18,6 +18,12 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+Route::post('_activity/events', [\App\Http\Controllers\ActivityEventController::class, 'store'])
+    ->middleware('throttle:120,1')->name('activity.events');
+Route::get('admission-enquiry', [\App\Http\Controllers\Frontend\AdmissionEnquiryController::class, 'create'])->name('frontend.enquiry');
+Route::post('admission-enquiry', [\App\Http\Controllers\Frontend\AdmissionEnquiryController::class, 'store'])
+    ->middleware('throttle:5,10')->name('frontend.enquiry.store');
+
 Route::middleware(['web'])
     ->as('frontend.')
     ->group(function () {

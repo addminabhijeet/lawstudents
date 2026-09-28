@@ -281,6 +281,9 @@
 
 <!--! Form fields: phone 10 digits, one @ in an email, letters in names (listeners only) !-->
 <script src="{{ asset('assets/js/form-guard.js') }}?v={{ @filemtime(public_path('assets/js/form-guard.js')) }}"></script>
+
+<!--! Admin suite: search palette, page bar, table tools, favourites, display settings !-->
+<script src="{{ asset('assets/js/admin-suite.js') }}?v={{ @filemtime(public_path('assets/js/admin-suite.js')) }}"></script>
 </body>
 
 </html>

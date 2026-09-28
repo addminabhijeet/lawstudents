@@ -69,12 +69,17 @@
 
                             <form action="{{ route('admin.registerstusubmit') }}" method="POST" class="mt-4">
                                 @csrf
+                                @if ($admissionLead ?? null)
+                                    <input type="hidden" name="admission_lead_id" value="{{ $admissionLead->id }}">
+                                    <div class="alert alert-info">Enquiry #{{ $admissionLead->id }}: {{ $admissionLead->phone }}. Course: {{ $admissionLead->course_interest ?: 'Not selected' }}</div>
+                                @endif
 
                                 <div class="row">
 
                                     <div class="col-lg-6 mb-3">
                                         <label for="name" class="form-label">Full Name</label>
                                         <input type="text" name="name" id="name" class="form-control"
+                                            value="{{ old('name', $admissionLead?->name ?? '') }}"
                                             placeholder="Full Name"
                                             oninput="formatFullName(this)" required>
                                     </div>
@@ -102,6 +107,7 @@
                                     <div class="col-lg-6 mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" name="email" id="email" class="form-control"
+                                            value="{{ old('email', $admissionLead?->email ?? '') }}"
                                             placeholder="Email (e.g., user@gmail.com)"
                                             oninput="restrictEmail(this)"
                                             onblur="validateEmailFormat(this)"

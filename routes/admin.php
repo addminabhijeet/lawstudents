@@ -17,6 +17,31 @@ Route::middleware(['admin.auth'])->group(function () {
         ->name('admin.')
         ->group(function () {
 
+            Route::controller(\App\Http\Controllers\Admin\ActivityTrackingController::class)->prefix('activity')->name('activity.')->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('events', 'events')->name('events');
+                Route::get('leads', 'leads')->name('leads');
+                Route::get('leads/{lead}', 'lead')->name('lead');
+                Route::post('leads/{lead}/follow-up', 'followUp')->name('follow-up');
+                Route::get('renewals', 'renewals')->name('renewals');
+            });
+
+            // Read-only helpers for the top bar: global search and "related records" links.
+            Route::get('tools/search', [\App\Http\Controllers\Admin\AdminToolsController::class, 'search'])
+                ->name('tools.search');
+            Route::get('tools/related', [\App\Http\Controllers\Admin\AdminToolsController::class, 'related'])
+                ->name('tools.related');
+
+            // Reports and exports (read only): who owes fees, and full-data CSV downloads.
+            Route::get('reports', [\App\Http\Controllers\Admin\ReportController::class, 'index'])
+                ->name('reports');
+            Route::get('reports/dues', [\App\Http\Controllers\Admin\ReportController::class, 'dues'])
+                ->name('reports.dues');
+            Route::get('reports/export/{type}', [\App\Http\Controllers\Admin\ReportController::class, 'export'])
+                ->name('reports.export');
+
+            Route::view('help', 'admin.help')->name('help');
+
             Route::get('/', [RoutingController::class, 'admin'])
                 ->name('dashboard');
 
