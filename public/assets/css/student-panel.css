@@ -157,7 +157,7 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #d8d0ba; }
 }
 
 /* ---------- dashboard: the five cards ---------- */
-.sd-card .avatar-text { background: var(--sd-tint) !important; color: var(--sd-ink) !important; border-color: transparent; border-radius: 12px; }
+.sd-card .avatar-text { background: var(--sd-tint) !important; color: var(--sd-ink) !important; border-color: transparent !important; border-radius: 12px; }
 .sd-card .fs-4 { color: var(--sd-ink) !important; }
 .sd-card { border-top: 3px solid var(--sd-line) !important; }
 .sd-card-detail { margin: 2px 0 0; font-size: 12.5px; line-height: 1.45; color: var(--ls-muted, #6b6455); }

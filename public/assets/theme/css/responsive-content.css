@@ -32,6 +32,18 @@ body:not(.inner-page) .courses-section .course-body{container-type:inline-size}
   body:not(.inner-page) .courses-section .course-foot{flex-direction:column;align-items:flex-start}
 }
 
+/* ---------- 2b. COURSES PAGE: CARD BUTTONS ON SMALL LAPTOPS ----------
+   From 1025px the course cards go to three columns, and up to 1199px the two
+   buttons share ~270–330px. "Brochure" kept its width while "Send Enquiry"
+   (.btn-gold clips its overflow, so it may shrink below its label) was cut by
+   up to 30px. readable.css section 30 k) already handles this row from 561px
+   to 1024px: labels on one line, and the two stack full width when they do not
+   fit side by side. The same rule now covers 1025–1199px. */
+@media(min-width:1024.02px) and (max-width:1199.98px){
+  .course-actions{flex-wrap:wrap}
+  .course-actions .btn{flex:1 1 auto;white-space:nowrap;font-size:1rem}
+}
+
 /* ---------- 3. "EXPLORE YOUR OPTIONS" CARDS ON TABLETS ----------
    The academic block has three cards on most pages, in two columns from 601px
    to 1100px (academic-pages.css), so the third sat alone under the first with

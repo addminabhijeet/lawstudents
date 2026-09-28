@@ -559,6 +559,9 @@ html:root .avatar-text.bg-soft-primary {
 }
 html:root .card .avatar-text.avatar-lg.bg-gray-200 i { font-size: 20px; }
 
+/* dashboard count captions ("ID Cards") stay on one line */
+html:root .main-content .card .pt-4 > .d-flex > span.fs-12 { white-space: nowrap; }
+
 /* large numbers */
 html:root .main-content .card .fs-4.fw-bold { letter-spacing: -.01em; }
 
@@ -822,6 +825,16 @@ html:root .input-group-text {
     border-color: var(--ls-field-border) !important;
 }
 
+/* password show / hide: the page script only fills the icon after the first click */
+html:root .input-group.field > .show-pass { cursor: pointer; transition: background-color .15s ease; }
+html:root .input-group.field > .show-pass:hover { background-color: var(--ls-accent-tint) !important; }
+html:root .input-group.field > .show-pass > i:empty::before {
+    content: "\e95f";
+    font-family: feather !important;
+    font-style: normal;
+}
+html:root .generate-pass .input-group.field > .show-pass > i:empty::before { content: none; }  /* the theme draws this one */
+
 /* checkboxes, radios, switches */
 html:root .form-check-input {
     background-color: var(--ls-field-bg) !important;
@@ -1039,6 +1052,7 @@ html:root .badge.bg-success { background-color: #1f7a4d !important; color: #ffff
 html:root .badge.bg-danger { background-color: #b42318 !important; color: #ffffff; }
 html:root .badge.bg-warning { background-color: #f0b429 !important; color: var(--ls-black) !important; }
 html:root .badge.bg-secondary { background-color: #4a4538 !important; color: #ffffff; }
+html:root .badge.bg-info { background-color: #0e6f69 !important; color: #ffffff; }
 html:root .badge.bg-light { color: var(--ls-heading) !important; }
 
 html:root .alert {
