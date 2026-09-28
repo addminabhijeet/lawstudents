@@ -154,7 +154,7 @@ $user = \App\Models\User::first();
     visibility:visible !important;
     opacity:1 !important;
     z-index:99999 !important;
-    background:#0b2b22 !important;  /* brand: panel colour with gold icon */
+    background:linear-gradient(135deg,#d4af37 0%,#f0d97d 50%,#b8952e 100%) !important;  /* brand: student panel gold */
     border:2px solid #a8842a !important;
     border-radius:6px !important;
     cursor:pointer !important;
@@ -165,7 +165,7 @@ $user = \App\Models\User::first();
 
 .invoice-toolbar .printBTN:hover,
 .invoice-toolbar .file-download:hover{
-    background:linear-gradient(135deg,#d4af37 0%,#f0d97d 50%,#b8952e 100%) !important;
+    background:#16130e !important;
     border-color:#a8842a !important;
     transform:scale(1.05);
 }
@@ -174,7 +174,7 @@ $user = \App\Models\User::first();
 .invoice-toolbar .file-download i{
     display:inline-block !important;
     font-size:22px !important;
-    color:#f0d97d !important;
+    color:#12100c !important;
     width:auto !important;
     height:auto !important;
     line-height:1 !important;
@@ -183,7 +183,7 @@ $user = \App\Models\User::first();
 
 .invoice-toolbar .printBTN:hover i,
 .invoice-toolbar .file-download:hover i{
-    color:#12100c !important;
+    color:#f0d97d !important;
 }
 
 .invoice-toolbar .printBTN:focus-visible,

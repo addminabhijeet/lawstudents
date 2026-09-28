@@ -79831,3 +79831,9 @@ Line two.","document":"legal-inquiries/gytdNRNaOCHoQXPHEOa1YS8R.pdf"}
 #65 C:/xampp/htdocs/lawstudents/index.php(20): Illuminate/Foundation/Application->handleRequest(Object(Illuminate/Http/Request))
 #66 {main}
 "} 
+[2026-09-28 16:24:11] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 336  
+[2026-09-28 16:24:11] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 336  
+[2026-09-28 16:24:11] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 336  
+[2026-09-28 16:24:11] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 336  
+[2026-09-28 16:24:11] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 336  
+[2026-09-28 16:24:11] local.WARNING: number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\lawstudents\storage\framework\views\9fdf8a2ef2dcf48b69edafcec4652c34.php on line 336  

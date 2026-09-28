@@ -88,9 +88,16 @@
     --pn-nav-hover: rgba(240, 217, 125, .08);
     --pn-nav-active: rgba(212, 175, 55, .16);
     --pn-nav-active-text: #f0d97d;
+    --pn-nav-hover-text: #ffffff;
+    --pn-nav-hover-icon: #f0d97d;
+    --pn-nav-active-icon: #d4af37;
+    --pn-nav-focus: #f0d97d;
+    --pn-logo-plate: transparent;      /* behind the logo when Theme Settings → Navigation: Light */
+    --pn-logo-filter: none;
     --pn-chip-bg: #16130e;
     --pn-chip-text: #f0d97d;
     --pn-chip-line: rgba(212, 175, 55, .45);
+    --pn-chip-dot: #d4af37;
 
     /* Bootstrap variables the template still reads */
     --bs-primary: #d4af37;
@@ -220,8 +227,8 @@ html:root .nxl-navigation .m-header {
     border-bottom: 1px solid var(--pn-nav-line);
 }
 
-/* the menu logo is the website's light version; keep the template from inverting it */
-html:root .nxl-navigation .m-header .logo-lg { filter: none; }
+/* logo: each identity sheet picks the logo version, this keeps the template from inverting it */
+html:root .nxl-navigation .m-header .logo-lg { filter: var(--pn-logo-filter); }
 
 /* the emblem alone (folded menu) has black lines: give it a cream disc */
 html:root .nxl-navigation .m-header .logo-sm {
@@ -268,18 +275,18 @@ html:root .nxl-navigation .navbar-content .nxl-arrow { color: var(--pn-nav-muted
 html:root .nxl-navigation .navbar-content .nxl-link:hover,
 html:root .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link,
 html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item:hover > .nxl-link {
-    color: #ffffff;
+    color: var(--pn-nav-hover-text);
     background-color: var(--pn-nav-hover);
 }
 
 html:root .nxl-navigation .navbar-content .nxl-link:hover .nxl-micon i,
 html:root .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link .nxl-micon i {
-    color: var(--ls-gold-light);
+    color: var(--pn-nav-hover-icon);
 }
 
 /* open group (its sub-menu is showing) */
 html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.nxl-trigger > .nxl-link {
-    color: #ffffff;
+    color: var(--pn-nav-hover-text);
     background-color: var(--pn-nav-hover);
 }
 
@@ -293,7 +300,7 @@ html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.active > .nxl-
 
 html:root .nxl-navigation .navbar-content .nxl-item.active > .nxl-link .nxl-micon i,
 html:root .nxl-navigation .navbar-content .nxl-item.active > .nxl-link .nxl-arrow {
-    color: var(--ls-gold);
+    color: var(--pn-nav-active-icon);
 }
 
 html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.active > .nxl-link::before {
@@ -311,12 +318,12 @@ html:root.minimenu .nxl-navigation:not(:hover) .navbar-content .nxl-navbar > .nx
     left: -20px;
 }
 
-/* keyboard focus on the dark menu */
+/* keyboard focus in the menu */
 html:root .nxl-navigation .navbar-content .nxl-link:focus-visible,
 html:root .nxl-navigation .m-header .b-brand:focus-visible {
-    outline: 2px solid var(--ls-gold-light);
+    outline: 2px solid var(--pn-nav-focus);
     outline-offset: -2px;
-    color: #ffffff;
+    color: var(--pn-nav-hover-text);
 }
 
 /* sub-menus: a guide line and lighter links */
@@ -353,37 +360,27 @@ html:root.minimenu .nxl-navigation:hover .navbar-content {
 }
 
 /* scrollbar inside the menu */
-html:root .nxl-navigation ::-webkit-scrollbar-thumb { background-color: rgba(212, 175, 55, .28) !important; }
-html:root .nxl-navigation .ps__thumb-y { background-color: rgba(212, 175, 55, .4); }
+html:root .nxl-navigation ::-webkit-scrollbar-thumb { background-color: rgba(212, 175, 55, .35) !important; }
+html:root .nxl-navigation .ps__thumb-y { background-color: rgba(212, 175, 55, .45); }
 
-/* Theme Settings → Navigation: Light (admin only): cream menu, dark logo block */
+/* Theme Settings → Navigation: Light (admin drawer): cream menu; the logo keeps its
+   own backing (--pn-logo-plate) so the admin's light logo stays readable */
 html.app-navigation-light:not(.app-skin-dark) .nxl-navigation {
+    --pn-nav-bg: #fffdf8;
+    --pn-nav-bg-2: #f8f1dc;
+    --pn-nav-line: #e8dfc4;
     --pn-nav-text: #3d382e;
     --pn-nav-muted: #7a7262;
     --pn-nav-icon: #6b6455;
     --pn-nav-hover: #f3eddc;
-    --pn-nav-active: #faf3dd;
-    --pn-nav-active-text: #6e5412;
-    background: #fdfbf4;
-    background-image: none;
-    border-right-color: #e8dfc4;
+    --pn-nav-hover-text: #1f1c16;
+    --pn-nav-hover-icon: #866719;
+    --pn-nav-active: rgba(212, 175, 55, .2);
+    --pn-nav-active-text: #5e480f;
+    --pn-nav-active-icon: #866719;
+    --pn-nav-focus: #866719;
 }
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .m-header { background: var(--pn-nav-bg); }
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-link:hover,
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link,
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.nxl-trigger > .nxl-link {
-    color: #1f1c16;
-}
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-link:hover .nxl-micon i,
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link .nxl-micon i,
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-item.active > .nxl-link .nxl-micon i {
-    color: #866719;
-}
-html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-link:focus-visible {
-    outline-color: #866719;
-    color: #1f1c16;
-}
-html.app-navigation-light:not(.app-skin-dark).minimenu .nxl-navigation:hover .navbar-content { background: #fdfbf4; }
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .m-header { background: var(--pn-logo-plate); }
 
 /* =========================================================================
    4. Top header
@@ -416,7 +413,7 @@ html:root .nxl-header .header-wrapper .header-left::after {
     border: 1px solid var(--pn-chip-line);
     border-radius: 999px;
     background:
-        radial-gradient(circle at 14px 50%, var(--ls-gold) 0 3.5px, transparent 4px),
+        radial-gradient(circle at 14px 50%, var(--pn-chip-dot) 0 3.5px, transparent 4px),
         var(--pn-chip-bg);
     color: var(--pn-chip-text);
     font-size: 11px;
@@ -1270,7 +1267,7 @@ html.app-skin-dark ::-webkit-scrollbar-thumb { background-color: var(--ls-border
         font-size: 10px;
         letter-spacing: .1em;
         background:
-            radial-gradient(circle at 11px 50%, var(--ls-gold) 0 3px, transparent 3.5px),
+            radial-gradient(circle at 11px 50%, var(--pn-chip-dot) 0 3px, transparent 3.5px),
             var(--pn-chip-bg);
     }
 }

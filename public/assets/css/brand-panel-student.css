@@ -1,44 +1,53 @@
 /*
  * Student panel identity (loaded after brand-panel.css by
  * layouts/partials/student/dashboard.blade.php).
- * Deep legal-green menu (the website theme's second colour, #052A23) with the
- * same gold accents, sage-cream page and a "Student Panel" label, so it is easy
- * to tell apart from the ink-black admin panel (brand-panel-admin.css).
+ * The website header's colours: a cream menu with the dark-text logo, gold highlights
+ * and a gold "Student Panel" label, so it is easy to tell apart from the ink-black
+ * admin panel (brand-panel-admin.css). Both use only the website's palette.
  */
 :root {
     --pn-label: "Student Panel";
-    --pn-nav-bg: #0b2b22;
-    --pn-nav-bg-2: #0f3a2e;
-    --pn-nav-line: rgba(212, 175, 55, .2);
-    --pn-nav-text: #d8e6de;
-    --pn-nav-muted: #95b7a8;
-    --pn-nav-icon: #aacbbb;
-    --pn-nav-hover: rgba(240, 217, 125, .08);
-    --pn-nav-active: rgba(212, 175, 55, .17);
-    --pn-nav-active-text: #f0d97d;
-    --pn-chip-bg: #0b2b22;
-    --pn-chip-text: #f0d97d;
-    --pn-chip-line: rgba(212, 175, 55, .5);
+    --pn-nav-bg: #fffdf8;
+    --pn-nav-bg-2: #f8f1dc;
+    --pn-nav-line: #e8dfc4;
+    --pn-nav-text: #3d382e;
+    --pn-nav-muted: #7a7262;
+    --pn-nav-icon: #6b6455;
+    --pn-nav-hover: #f3eddc;
+    --pn-nav-hover-text: #1f1c16;
+    --pn-nav-hover-icon: #866719;
+    --pn-nav-active: rgba(212, 175, 55, .22);
+    --pn-nav-active-text: #5e480f;     /* 8:1 on the active fill */
+    --pn-nav-active-icon: #866719;
+    --pn-nav-focus: #866719;
+    --pn-logo-plate: transparent;      /* the menu logo is the dark-text version */
+    --pn-logo-filter: none;
 
-    /* sage-cream surfaces instead of the admin's warm cream */
-    --ls-page-bg: #f1f5f1;
-    --ls-surface-2: #f7faf6;
-    --ls-surface-3: #e8f0ea;
-    --ls-border: #dbe5dd;
-    --ls-border-strong: #bfd0c4;
-    --ls-row-hover: #f4f8f3;
-    --ls-header-icon-hover-bg: #e8f0ea;
+    --pn-chip-bg: linear-gradient(135deg, #d4af37 0%, #f0d97d 50%, #b8952e 100%);
+    --pn-chip-text: #12100c;
+    --pn-chip-line: #a8842a;
+    --pn-chip-dot: #12100c;
+
+    --ls-page-bg: #fbf8ef;             /* lighter cream than the admin page */
 }
 
+/* dark skin: a warm bronze menu (the website hero's browns); the dark-text logo is
+   lightened so it stays readable */
 html.app-skin-dark {
-    --ls-page-bg: #0c1714;
-    --ls-surface: #13211c;
-    --ls-surface-2: #172923;
-    --ls-surface-3: #1d322b;
-    --ls-border: #25403a;
-    --ls-border-strong: #33554b;
-    --ls-field-bg: #0f1c18;
-    --ls-row-hover: #182b25;
-    --ls-header-bg: #13211c;
-    --ls-header-icon-hover-bg: #1d322b;
+    --pn-nav-bg: #241e15;
+    --pn-nav-bg-2: #2e261a;
+    --pn-nav-line: rgba(212, 175, 55, .22);
+    --pn-nav-text: #e6dcc2;
+    --pn-nav-muted: #b0a488;
+    --pn-nav-icon: #cdbf99;
+    --pn-nav-hover: rgba(240, 217, 125, .1);
+    --pn-nav-hover-text: #ffffff;
+    --pn-nav-hover-icon: #f0d97d;
+    --pn-nav-active: rgba(212, 175, 55, .2);
+    --pn-nav-active-text: #f0d97d;
+    --pn-nav-active-icon: #d4af37;
+    --pn-nav-focus: #f0d97d;
+    --pn-logo-filter: invert(1) hue-rotate(180deg) brightness(1.15);
+
+    --ls-page-bg: #15120d;
 }
