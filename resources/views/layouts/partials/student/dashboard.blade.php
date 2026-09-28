@@ -31,6 +31,13 @@
     <!-- Page loader (shown only when a page is slow to load) -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/panel-loader.css') }}?v=1">
 
+    <!-- Law Students brand: the website's fonts and gold palette; deep-green student identity -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/brand-panel.css') }}?v={{ @filemtime(public_path('assets/css/brand-panel.css')) }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/brand-panel-student.css') }}?v={{ @filemtime(public_path('assets/css/brand-panel-student.css')) }}">
+
     <!-- IE Support -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -60,7 +67,7 @@
                 <a href="{{ route('student.dashboard') }}" class="b-brand" style="display:flex; align-items:center; height:60px;">
 
                     <!-- Large Logo -->
-                    <img src="{{ asset('assets/images/logo-full.png') }}" alt="" class="logo logo-lg"
+                    <img src="{{ asset('assets/theme/images/logo-full-720-light.png') }}" alt="Law Students" class="logo logo-lg"
                         style="height:50px; width:auto; max-width:180px; object-fit:contain;">
 
                     <!-- Small Logo -->

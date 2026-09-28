@@ -28,8 +28,6 @@
             <p class="section-sub">Glimpses of our campus, events, and learning environment</p>
             <div class="title-rule"></div>
         </div>
-        {{-- The albums hold illustrative pictures, not photographs from the events. --}}
-        <p class="gallery-note">These albums use illustrative pictures, not photographs taken at the events.</p>
 
         @php
             // One album per group_name, in the order the controller returned them.

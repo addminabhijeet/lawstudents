@@ -1,0 +1,44 @@
+/*
+ * Student panel identity (loaded after brand-panel.css by
+ * layouts/partials/student/dashboard.blade.php).
+ * Deep legal-green menu (the website theme's second colour, #052A23) with the
+ * same gold accents, sage-cream page and a "Student Panel" label, so it is easy
+ * to tell apart from the ink-black admin panel (brand-panel-admin.css).
+ */
+:root {
+    --pn-label: "Student Panel";
+    --pn-nav-bg: #0b2b22;
+    --pn-nav-bg-2: #0f3a2e;
+    --pn-nav-line: rgba(212, 175, 55, .2);
+    --pn-nav-text: #d8e6de;
+    --pn-nav-muted: #95b7a8;
+    --pn-nav-icon: #aacbbb;
+    --pn-nav-hover: rgba(240, 217, 125, .08);
+    --pn-nav-active: rgba(212, 175, 55, .17);
+    --pn-nav-active-text: #f0d97d;
+    --pn-chip-bg: #0b2b22;
+    --pn-chip-text: #f0d97d;
+    --pn-chip-line: rgba(212, 175, 55, .5);
+
+    /* sage-cream surfaces instead of the admin's warm cream */
+    --ls-page-bg: #f1f5f1;
+    --ls-surface-2: #f7faf6;
+    --ls-surface-3: #e8f0ea;
+    --ls-border: #dbe5dd;
+    --ls-border-strong: #bfd0c4;
+    --ls-row-hover: #f4f8f3;
+    --ls-header-icon-hover-bg: #e8f0ea;
+}
+
+html.app-skin-dark {
+    --ls-page-bg: #0c1714;
+    --ls-surface: #13211c;
+    --ls-surface-2: #172923;
+    --ls-surface-3: #1d322b;
+    --ls-border: #25403a;
+    --ls-border-strong: #33554b;
+    --ls-field-bg: #0f1c18;
+    --ls-row-hover: #182b25;
+    --ls-header-bg: #13211c;
+    --ls-header-icon-hover-bg: #1d322b;
+}

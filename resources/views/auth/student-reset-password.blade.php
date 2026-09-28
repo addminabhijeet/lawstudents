@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive-fixes.css') }}?v=4">
+    <!--! Law Students brand: the website's fonts, gold palette and hero backdrop !-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="{{ asset('assets/css/brand-auth.css') }}?v={{ @filemtime(public_path('assets/css/brand-auth.css')) }}">
 
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
@@ -81,21 +86,25 @@
 
                             @csrf
                             <div class="mb-4">
-                                <input type="text" name="name" class="form-control" value="{{ $student->name }}"
+                                <label for="resetName" class="form-label">Name</label>
+                                <input type="text" name="name" id="resetName" class="form-control" value="{{ $student->name }}"
                                     readonly>
                             </div>
 
                             <div class="mb-4">
-                                <input type="text" name="username" class="form-control"
+                                <label for="resetUsername" class="form-label">Username</label>
+                                <input type="text" name="username" id="resetUsername" class="form-control"
                                     value="{{ $student->username }}" readonly>
                             </div>
 
                             <div class="mb-4">
-                                <input type="email" name="email" class="form-control" value="{{ $student->email }}"
+                                <label for="resetEmail" class="form-label">Email</label>
+                                <input type="email" name="email" id="resetEmail" class="form-control" value="{{ $student->email }}"
                                     readonly>
                             </div>
 
                             <div class="mb-4 generate-pass">
+                                <label for="newPassword" class="form-label">New password</label>
                                 <div class="input-group field">
                                     <input type="password" name="password" class="form-control password"
                                         id="newPassword" placeholder="Password" required>
@@ -105,6 +114,7 @@
                             </div>
 
                             <div class="mb-4">
+                                <label for="confirmPassword" class="form-label">Confirm new password</label>
                                 <div class="input-group field">
                                     <input type="password" name="password_confirmation" class="form-control password"
                                         id="confirmPassword" placeholder="Confirm Password" required>

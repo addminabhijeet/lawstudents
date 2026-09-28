@@ -11,7 +11,7 @@
 
 /* Whole-card links show where the keyboard is. */
 .card:has(> .card-body .stretched-link:focus-visible) {
-  outline: 3px solid #3454d1;
+  outline: 3px solid var(--ls-focus, #866719);
   outline-offset: 2px;
 }
 
@@ -19,13 +19,13 @@
 .sd-state-done  { --sd-ink: #0b7a3e; --sd-tint: rgba(23, 198, 102, .13); --sd-line: rgba(23, 198, 102, .45); }
 .sd-state-wait  { --sd-ink: #8a5300; --sd-tint: rgba(255, 162, 29, .16); --sd-line: rgba(255, 162, 29, .55); }
 .sd-state-alert { --sd-ink: #b42318; --sd-tint: rgba(234, 77, 77, .12);  --sd-line: rgba(234, 77, 77, .45); }
-.sd-state-todo  { --sd-ink: #2c47b5; --sd-tint: rgba(52, 84, 209, .10);  --sd-line: rgba(52, 84, 209, .40); }
-.sd-state-info  { --sd-ink: #334155; --sd-tint: rgba(100, 116, 139, .12); --sd-line: rgba(100, 116, 139, .35); }
+.sd-state-todo  { --sd-ink: #866719; --sd-tint: rgba(212, 175, 55, .14); --sd-line: rgba(168, 132, 42, .5); }   /* brand gold */
+.sd-state-info  { --sd-ink: #4a4538; --sd-tint: rgba(107, 100, 85, .12); --sd-line: rgba(107, 100, 85, .35); }
 html.app-skin-dark .sd-state-done  { --sd-ink: #4ade80; }
 html.app-skin-dark .sd-state-wait  { --sd-ink: #fbbf24; }
 html.app-skin-dark .sd-state-alert { --sd-ink: #f87171; }
-html.app-skin-dark .sd-state-todo  { --sd-ink: #93a8ff; }
-html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
+html.app-skin-dark .sd-state-todo  { --sd-ink: #f0d97d; }
+html.app-skin-dark .sd-state-info  { --sd-ink: #d8d0ba; }
 
 /* ---------- dashboard: overview ---------- */
 .sd-overview { margin-bottom: 4px; }
@@ -36,14 +36,15 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
   font-weight: 600;
   letter-spacing: .05em;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--ls-muted, #6b6455);
 }
 .sd-hello {
   margin: 0 0 6px;
-  font-size: 26px;
+  font-family: var(--ls-font-display, 'Playfair Display', Georgia, serif);
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.25;
-  color: #1e293b;
+  color: var(--ls-heading, #1f1c16);
 }
 .sd-ids {
   display: flex;
@@ -51,9 +52,9 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
   gap: 4px 20px;
   margin: 0 0 22px;
   font-size: 13.5px;
-  color: #64748b;
+  color: var(--ls-muted, #6b6455);
 }
-.sd-ids b { color: #1e293b; font-weight: 600; letter-spacing: .02em; }
+.sd-ids b { color: var(--ls-heading, #1f1c16); font-weight: 600; letter-spacing: .02em; }
 
 .sd-next {
   display: grid;
@@ -72,10 +73,10 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: #fff;
+  background: var(--ls-surface, #fff);
   color: var(--sd-ink);
   font-size: 20px;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
+  box-shadow: 0 1px 2px rgba(30, 26, 16, .08);
 }
 .sd-next-label {
   margin: 0 0 2px;
@@ -90,19 +91,19 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
   font-size: 17px;
   font-weight: 700;
   line-height: 1.35;
-  color: #1e293b;
+  color: var(--ls-heading, #1f1c16);
 }
 .sd-next-text {
   max-width: 68ch;
   margin: 0;
   font-size: 14px;
   line-height: 1.55;
-  color: #475569;
+  color: var(--ls-text, #3d382e);
 }
 .sd-next-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
 .sd-next-actions .btn { white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-.sd-btn-quiet { background: #fff; border: 1px solid #d6dbe4; color: #1e293b; }
-.sd-btn-quiet:hover, .sd-btn-quiet:focus-visible { border-color: #3454d1; color: #3454d1; }
+.sd-btn-quiet { background: var(--ls-surface, #fff); border: 1px solid var(--ls-border-strong, #d8cba4); color: var(--ls-heading, #1f1c16); }
+.sd-btn-quiet:hover, .sd-btn-quiet:focus-visible { border-color: var(--ls-gold-dark, #a8842a); color: var(--ls-accent-ink, #866719); }
 
 /* shortcuts */
 .sd-shortcuts {
@@ -124,11 +125,11 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
   transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
 }
 .sd-shortcut:hover, .sd-shortcut:focus-visible {
-  border-color: rgba(52, 84, 209, .45);
-  box-shadow: 0 6px 18px rgba(15, 23, 42, .08);
+  border-color: var(--ls-gold, #d4af37) !important;
+  box-shadow: 0 8px 22px rgba(212, 175, 55, .16);
   transform: translateY(-1px);
 }
-.sd-shortcut:focus-visible { outline: 3px solid #3454d1; outline-offset: 2px; }
+.sd-shortcut:focus-visible { outline: 3px solid var(--ls-focus, #866719); outline-offset: 2px; }
 .sd-shortcut-icon {
   display: grid;
   flex: none;
@@ -136,14 +137,15 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background: rgba(52, 84, 209, .10);
-  color: #3454d1;
+  background: var(--ls-accent-tint, #faf3dd);
+  color: var(--ls-accent-ink, #866719);
   font-size: 18px;
 }
 .sd-shortcut-text { display: flex; flex-direction: column; min-width: 0; }
-.sd-shortcut-text b { font-size: 14.5px; font-weight: 600; color: #1e293b; }
-.sd-shortcut-text small { font-size: 12.5px; color: #64748b; line-height: 1.4; }
-.sd-shortcut-go { margin-left: auto; color: #94a3b8; font-size: 16px; }
+.sd-shortcut-text b { font-size: 14.5px; font-weight: 600; color: var(--ls-heading, #1f1c16); }
+.sd-shortcut-text small { font-size: 12.5px; color: var(--ls-muted, #6b6455); line-height: 1.4; }
+.sd-shortcut-go { margin-left: auto; color: var(--ls-muted, #6b6455); font-size: 16px; }
+.sd-shortcut:hover .sd-shortcut-go { color: var(--ls-accent-ink, #866719); }
 
 .sd-section-title {
   margin: 0 0 14px;
@@ -151,28 +153,23 @@ html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
   font-weight: 700;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--ls-muted, #6b6455);
 }
 
 /* ---------- dashboard: the five cards ---------- */
-.sd-card .avatar-text { background: var(--sd-tint) !important; color: var(--sd-ink); }
+.sd-card .avatar-text { background: var(--sd-tint) !important; color: var(--sd-ink) !important; border-color: transparent; border-radius: 12px; }
 .sd-card .fs-4 { color: var(--sd-ink) !important; }
-.sd-card { border-top: 3px solid var(--sd-line); }
-.sd-card-detail { margin: 2px 0 0; font-size: 12.5px; line-height: 1.45; color: #64748b; }
+.sd-card { border-top: 3px solid var(--sd-line) !important; }
+.sd-card-detail { margin: 2px 0 0; font-size: 12.5px; line-height: 1.45; color: var(--ls-muted, #6b6455); }
 
 /* ---------- dark skin ---------- */
+/* (the text colours above use the brand-panel.css tokens, which switch with the skin) */
 html.app-skin-dark .sd-hello,
 html.app-skin-dark .sd-next-title,
 html.app-skin-dark .sd-ids b,
-html.app-skin-dark .sd-shortcut-text b { color: #e2e8f0; }
-html.app-skin-dark .sd-date,
-html.app-skin-dark .sd-ids,
-html.app-skin-dark .sd-next-text,
-html.app-skin-dark .sd-shortcut-text small,
-html.app-skin-dark .sd-section-title,
-html.app-skin-dark .sd-card-detail { color: #94a3b8; }
-html.app-skin-dark .sd-next-icon { background: rgba(15, 23, 42, .6); }
-html.app-skin-dark .sd-btn-quiet { background: transparent; border-color: #334155; color: #e2e8f0; }
+html.app-skin-dark .sd-shortcut-text b { color: var(--ls-heading, #f4eedc); }
+html.app-skin-dark .sd-next-icon { background: rgba(0, 0, 0, .35); }
+html.app-skin-dark .sd-btn-quiet { background: transparent; border-color: var(--ls-border-strong, #33554b); color: var(--ls-heading, #f4eedc); }
 
 /* ---------- smaller screens ---------- */
 @media (max-width: 1399.98px) {

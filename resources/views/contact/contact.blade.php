@@ -140,7 +140,7 @@
         <div class="map-frame reveal">
             <iframe title="Law Students location map"
                 src="https://maps.google.com/maps?q={{ urlencode($contactAddress) }}&amp;z=13&amp;output=embed"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                loading="eager" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
     </div>
 </section>

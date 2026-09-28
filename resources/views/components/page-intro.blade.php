@@ -26,7 +26,7 @@
                     alt="{{ $intro['alt'] }}" width="1536" height="1024" loading="lazy" decoding="async">
             </picture>
             @if (in_array($page, ['home', 'course', 'clientele', 'legal-knowledge', 'gallery'], true))
-                <figcaption>Illustrative learning scene</figcaption>
+                <figcaption>Learning scene</figcaption>
             @endif
         </figure>
     </div>

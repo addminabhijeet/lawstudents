@@ -22,28 +22,7 @@
     p.textContent = ''; p.appendChild(a);
   });
 
-  /* ---------- 3. the map loads when asked (it is third-party content) ---------- */
-  var frame = d.querySelector('.contact-section .map-frame'), ifr = frame && frame.querySelector('iframe');
-  if(ifr && ifr.getAttribute('src')){
-    var src = ifr.getAttribute('src'), addr = '';
-    try { addr = new URL(src, location.href).searchParams.get('q') || ''; } catch(err){}
-    ifr.removeAttribute('src');
-    ifr.hidden = true;
-    var box = d.createElement('div'), note = d.createElement('p'), show = d.createElement('button'), open = d.createElement('a');
-    box.className = 'map-consent';
-    note.textContent = 'The map comes from Google Maps and loads only when you ask for it.';
-    show.type = 'button'; show.className = 'btn btn-gold'; show.textContent = 'Show the map';
-    open.href = mapSearch(addr); open.target = '_blank'; open.rel = 'noopener'; open.textContent = 'Or open it in Google Maps';
-    box.appendChild(note); box.appendChild(show); if(addr) box.appendChild(open);
-    frame.appendChild(box);
-    show.addEventListener('click', function(){
-      ifr.src = src; ifr.hidden = false;
-      frame.removeChild(box);
-      ifr.focus();
-    });
-  }
-
-  /* ---------- 4. screen readers: the detail labels skipped from h2 to h5 ---------- */
+  /* ---------- 3. screen readers: the detail labels skipped from h2 to h5 ---------- */
   $$('.contact-section .contact-item h5').forEach(function(h){ h.setAttribute('aria-level', '3'); });
 
   if(!form) return;

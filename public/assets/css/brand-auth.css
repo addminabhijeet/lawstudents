@@ -1,0 +1,429 @@
+/*
+ * Law Students brand layer for the sign-in pages: the shared admin / student login
+ * (auth-login-minimal) and the student password reset steps (forgot, verify code,
+ * new password). Loaded after theme.min.css and responsive-fixes.css; presentation
+ * only. Colours, type and buttons follow the public website (assets/theme/css/site.css):
+ * the dark gold hero behind a cream card, Playfair Display headings, Poppins text and
+ * the gold gradient button.
+ */
+
+:root {
+    --ls-gold: #d4af37;
+    --ls-gold-light: #f0d97d;
+    --ls-gold-pale: #faf3dd;
+    --ls-gold-dark: #a8842a;
+    --ls-gold-text: #866719;
+    --ls-black: #12100c;
+    --ls-ink: #1f1c16;
+    --ls-text: #3d382e;
+    --ls-muted: #6b6455;
+    --ls-line: #e8dfc4;
+    --ls-card: #fffdf8;
+    --ls-field-border: #8c8577;       /* 3.7:1 against the card */
+    --ls-field-border-hover: #5f594c;
+    --ls-focus-ring: rgba(212, 175, 55, .3);
+    --ls-grad-gold: linear-gradient(135deg, #d4af37 0%, #f0d97d 50%, #b8952e 100%);
+    --ls-grad-gold-hover: linear-gradient(135deg, #c9a42f 0%, #ecd06a 50%, #a8842a 100%);
+    --ls-danger: #b42318;
+    --ls-success: #1f7a4d;
+    --bs-primary: #d4af37;
+    --bs-primary-rgb: 212, 175, 55;
+    --bs-link-color: #866719;
+    --bs-link-hover-color: #5e480f;
+}
+
+html,
+body {
+    background-color: var(--ls-black);
+}
+
+body {
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: var(--ls-text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ---------- backdrop: the website hero ---------- */
+.auth-minimal-wrapper {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(125deg, #0d0b08 0%, #1c1913 32%, #3a3120 58%, #1c1913 80%, #0d0b08 100%);
+}
+
+.auth-minimal-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(212, 175, 55, .16) 0, transparent 42%),
+        radial-gradient(circle at 85% 80%, rgba(240, 217, 125, .10) 0, transparent 45%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><g stroke="%23d4af37" stroke-width="0.8" fill="none" opacity="0.09"><circle cx="75" cy="50" r="20"/><path d="M75,70 L60,90 M75,70 L90,90"/><line x1="60" y1="90" x2="90" y2="90"/></g></svg>') 0 0 / 150px 150px repeat;
+}
+
+.auth-minimal-wrapper .auth-minimal-inner {
+    padding: 40px 16px 28px;
+}
+
+/* the website's tagline under the card */
+.auth-minimal-wrapper .auth-minimal-inner::after {
+    content: "Legal Education  \2022  Legal Knowledge  \2022  Legal Resources";
+    display: block;
+    margin-top: 4px;
+    text-align: center;
+    white-space: pre-wrap;
+    text-wrap: balance;
+    color: rgba(233, 226, 205, .72);
+    font-size: 12px;
+    letter-spacing: .08em;
+}
+
+@media (max-width: 400px) {
+    .auth-minimal-wrapper .auth-minimal-inner::after {
+        white-space: normal;
+        font-size: 11px;
+        letter-spacing: .04em;
+    }
+}
+
+.auth-minimal-wrapper .auth-minimal-inner .minimal-card-wrapper {
+    max-width: 440px;
+}
+
+/* ---------- card ---------- */
+.auth-minimal-wrapper .minimal-card-wrapper .card {
+    margin-top: 64px !important;
+    background-color: var(--ls-card);
+    border: 1px solid rgba(212, 175, 55, .38);
+    border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .5), 0 0 0 6px rgba(212, 175, 55, .06);
+}
+
+/* gold rule along the top edge */
+.auth-minimal-wrapper .minimal-card-wrapper .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 22px;
+    right: 22px;
+    height: 4px;
+    border-radius: 0 0 4px 4px;
+    background: var(--ls-grad-gold);
+}
+
+/* emblem */
+.auth-minimal-wrapper .minimal-card-wrapper .card > .rounded-circle {
+    width: 88px !important;
+    min-width: 88px;
+    max-width: 88px;
+    height: 88px;
+    padding: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ls-card) !important;
+    border: 2px solid var(--ls-gold);
+    box-shadow: 0 0 0 6px rgba(212, 175, 55, .16), 0 14px 30px rgba(0, 0, 0, .35) !important;
+    z-index: 1;
+}
+
+.auth-minimal-wrapper .minimal-card-wrapper .card-body {
+    padding: 64px 40px 36px;
+}
+
+/* ---------- text ---------- */
+.auth-minimal-wrapper h2 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    line-height: 1.2;
+    color: var(--ls-ink);
+    margin-bottom: 10px !important;
+}
+
+.auth-minimal-wrapper h2 > a { font-family: 'Poppins', sans-serif; line-height: 38px; }
+
+.auth-minimal-wrapper h4 {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 1.5;
+    color: var(--ls-ink);
+}
+
+.auth-minimal-wrapper p,
+.auth-minimal-wrapper .text-muted {
+    color: var(--ls-muted) !important;
+}
+
+.auth-minimal-wrapper p.fs-12,
+.auth-minimal-wrapper .fs-12 { font-size: 13.5px !important; }
+
+.auth-minimal-wrapper .auth-subtitle {
+    margin: 0 0 6px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-minimal-wrapper strong { color: var(--ls-ink); }
+
+/* links */
+.auth-minimal-wrapper a,
+.auth-minimal-wrapper .text-primary {
+    color: var(--ls-gold-text) !important;
+    font-weight: 600;
+}
+
+.auth-minimal-wrapper a:hover {
+    color: #5e480f !important;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.auth-minimal-wrapper a.fs-11 { font-size: 13px !important; }
+
+/* keyboard focus */
+.auth-minimal-wrapper :focus-visible {
+    outline: 2px solid var(--ls-gold-text);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* ---------- fields ---------- */
+.auth-minimal-wrapper .form-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--ls-ink) !important;
+    font-size: 13px !important;
+    font-weight: 600;
+}
+
+.auth-minimal-wrapper .form-control {
+    min-height: 50px;
+    padding: 12px 16px;
+    color: var(--ls-ink);
+    font-size: 15px;
+    background-color: #ffffff;
+    border: 1.5px solid var(--ls-field-border) !important;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.auth-minimal-wrapper .form-control:hover:not([readonly]):not(:disabled) {
+    border-color: var(--ls-field-border-hover) !important;
+}
+
+.auth-minimal-wrapper .form-control:focus {
+    border-color: var(--ls-gold-dark) !important;
+    box-shadow: 0 0 0 4px var(--ls-focus-ring) !important;
+    outline: none;
+}
+
+.auth-minimal-wrapper .form-control::placeholder { color: #7a7262 !important; opacity: 1; }
+
+.auth-minimal-wrapper .form-control[readonly] {
+    color: #5f594c;
+    background-color: #f7f3e8;
+    border-style: dashed !important;
+    border-color: #b3a88c !important;
+    cursor: default;
+}
+
+.auth-minimal-wrapper .form-control:disabled { opacity: .6; cursor: not-allowed; }
+
+/* invalid fields (after a failed submit the browser marks empty required ones) */
+.auth-minimal-wrapper .form-control.is-invalid,
+.auth-minimal-wrapper form.was-validated .form-control:invalid {
+    border-color: var(--ls-danger) !important;
+}
+
+/* password field + show / hide button as one control */
+.auth-minimal-wrapper .input-group.field {
+    border-radius: 10px;
+    transition: box-shadow .15s ease;
+}
+
+.auth-minimal-wrapper .input-group.field > .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.auth-minimal-wrapper .input-group.field > .form-control:focus { box-shadow: none !important; }
+
+.auth-minimal-wrapper .input-group.field:focus-within {
+    box-shadow: 0 0 0 4px var(--ls-focus-ring);
+}
+
+.auth-minimal-wrapper .input-group.field > .show-pass {
+    min-width: 52px;
+    justify-content: center;
+    color: var(--ls-gold-text);
+    background-color: var(--ls-gold-pale) !important;
+    border: 1.5px solid var(--ls-field-border) !important;
+    border-left: 0 !important;
+    border-radius: 0 10px 10px 0;
+    transition: background-color .15s ease, color .15s ease;
+}
+
+.auth-minimal-wrapper .input-group.field:focus-within > .form-control,
+.auth-minimal-wrapper .input-group.field:focus-within > .show-pass {
+    border-color: var(--ls-gold-dark) !important;
+}
+
+.auth-minimal-wrapper .input-group.field > .show-pass:hover {
+    color: var(--ls-black);
+    background-color: var(--ls-gold-light) !important;
+}
+
+/* one-time-code boxes */
+.auth-minimal-wrapper #otp .otp-digit {
+    min-height: 56px;
+    height: 56px;
+    border-radius: 10px !important;
+    font-size: 22px !important;
+    font-weight: 600;
+    color: var(--ls-ink);
+}
+
+/* "Remember me" */
+.auth-minimal-wrapper .custom-checkbox .custom-control-label {
+    color: var(--ls-text);
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.auth-minimal-wrapper .custom-checkbox .custom-control-label::before {
+    background-color: #ffffff;
+    border: 1.5px solid var(--ls-field-border);
+    border-radius: 5px;
+}
+
+.auth-minimal-wrapper .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--ls-gold-dark);
+    border-color: var(--ls-gold-dark);
+}
+
+.auth-minimal-wrapper .custom-control-input:focus-visible ~ .custom-control-label::before {
+    outline: 2px solid var(--ls-gold-text);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--ls-focus-ring);
+}
+
+/* ---------- buttons ---------- */
+.auth-minimal-wrapper .btn {
+    font-family: 'Poppins', sans-serif;
+    text-transform: none;
+    letter-spacing: .02em;
+    transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.auth-minimal-wrapper .btn-primary,
+.auth-minimal-wrapper .btn-primary:hover,
+.auth-minimal-wrapper .btn-primary:focus,
+.auth-minimal-wrapper .btn-primary:active {
+    color: var(--ls-black) !important;
+    background-color: var(--ls-gold) !important;
+    border-color: var(--ls-gold-dark) !important;
+}
+
+.auth-minimal-wrapper .btn-primary {
+    min-height: 52px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 10px;
+    background-image: var(--ls-grad-gold);
+    box-shadow: 0 10px 24px rgba(212, 175, 55, .3);
+}
+
+.auth-minimal-wrapper .btn-primary:hover {
+    background-image: var(--ls-grad-gold-hover);
+    box-shadow: 0 14px 30px rgba(212, 175, 55, .42);
+    transform: translateY(-1px);
+}
+
+.auth-minimal-wrapper .btn-primary:active {
+    box-shadow: inset 0 2px 6px rgba(18, 16, 12, .25);
+    transform: none;
+}
+
+.auth-minimal-wrapper .btn-primary:focus-visible {
+    outline: 3px solid var(--ls-gold-text);
+    outline-offset: 3px;
+}
+
+.auth-minimal-wrapper .btn-primary:disabled,
+.auth-minimal-wrapper .btn-primary.disabled {
+    opacity: .55;
+    box-shadow: none;
+    transform: none;
+}
+
+.auth-minimal-wrapper .btn-link {
+    color: var(--ls-gold-text) !important;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.auth-minimal-wrapper .btn-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- messages ---------- */
+.auth-minimal-wrapper .alert {
+    border: 1px solid transparent;
+    border-left-width: 4px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.auth-minimal-wrapper .alert-danger {
+    color: #7a1a12;
+    background-color: #fdf0ee;
+    border-color: #f1c4be;
+    border-left-color: var(--ls-danger);
+}
+
+.auth-minimal-wrapper .alert-success {
+    color: #14532d;
+    background-color: #edf7f1;
+    border-color: #bfe0cc;
+    border-left-color: var(--ls-success);
+}
+
+.auth-minimal-wrapper .alert .btn-close:focus-visible {
+    outline: 2px solid var(--ls-gold-text);
+    box-shadow: none;
+}
+
+/* page-load bar at the top */
+.pace .pace-progress { background: var(--ls-gold) !important; }
+
+/* ---------- phones ---------- */
+@media (max-width: 575.98px) {
+    .auth-minimal-wrapper .minimal-card-wrapper .card {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-radius: 16px;
+    }
+
+    .auth-minimal-wrapper .minimal-card-wrapper .card-body {
+        padding: 60px 22px 28px;
+    }
+
+    .auth-minimal-wrapper .minimal-card-wrapper .card > .rounded-circle {
+        width: 80px !important;
+        min-width: 80px;
+        max-width: 80px;
+        height: 80px;
+    }
+
+    .auth-minimal-wrapper h2 { font-size: 26px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-minimal-wrapper .btn,
+    .auth-minimal-wrapper .form-control { transition: none; }
+    .auth-minimal-wrapper .btn-primary:hover { transform: none; }
+}

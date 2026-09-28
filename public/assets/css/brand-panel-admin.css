@@ -1,0 +1,27 @@
+/*
+ * Admin panel identity (loaded after brand-panel.css by
+ * layouts/partials/admin/dashboard.blade.php).
+ * Ink-black menu and an "Admin Panel" label, so the admin panel is never
+ * mistaken for the student panel (deep green, brand-panel-student.css).
+ */
+:root {
+    --pn-label: "Admin Panel";
+    --pn-nav-bg: #16130e;
+    --pn-nav-bg-2: #231e15;
+    --pn-nav-line: rgba(212, 175, 55, .18);
+    --pn-nav-text: #ddd5bf;
+    --pn-nav-muted: #a39a82;
+    --pn-nav-icon: #c7bb9b;
+    --pn-nav-hover: rgba(240, 217, 125, .08);
+    --pn-nav-active: rgba(212, 175, 55, .17);
+    --pn-nav-active-text: #f0d97d;
+    --pn-chip-bg: #16130e;
+    --pn-chip-text: #f0d97d;
+    --pn-chip-line: rgba(212, 175, 55, .5);
+
+    --ls-page-bg: #f6f3ea;             /* warm cream, like the website */
+}
+
+html.app-skin-dark {
+    --ls-page-bg: #13110d;
+}

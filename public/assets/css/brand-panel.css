@@ -1,0 +1,1274 @@
+/*
+ * Law Students brand layer for the admin and student panels.
+ *
+ * Loaded after theme.min.css, responsive-fixes.css and panel-loader.css by
+ * layouts/partials/{admin,student}/dashboard.blade.php. Presentation only: it
+ * restyles the NEXEL template with the public website's palette (gold on ink and
+ * cream, Playfair Display + Poppins) and changes no markup, script or behaviour.
+ *
+ * Which panel is which comes from a second, tiny sheet loaded right after this one:
+ *   brand-panel-admin.css   ink-black menu, "Admin Panel" label
+ *   brand-panel-student.css deep-green menu, "Student Panel" label
+ * Both panels share gold for primary actions and active states.
+ *
+ * Specificity: the template styles its light / dark variants with selectors such as
+ * `html.app-skin-dark .card {… !important}`. Rules here that must win in every
+ * variant start with `html:root`, which has the same weight as `html.app-skin-dark`,
+ * and read their colours from the tokens below, so the dark skin only swaps tokens.
+ */
+
+/* =========================================================================
+   1. Tokens
+   ========================================================================= */
+:root {
+    /* website palette (assets/theme/css/site.css, readable.css) */
+    --ls-gold: #d4af37;
+    --ls-gold-light: #f0d97d;
+    --ls-gold-pale: #faf3dd;
+    --ls-gold-dark: #a8842a;
+    --ls-gold-text: #866719;            /* gold as text on light surfaces: 5.3:1 on white */
+    --ls-black: #12100c;
+    --ls-grad-gold: linear-gradient(135deg, #d4af37 0%, #f0d97d 50%, #b8952e 100%);
+    --ls-grad-gold-hover: linear-gradient(135deg, #c9a42f 0%, #ecd06a 50%, #a8842a 100%);
+    --ls-font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --ls-font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+    /* surfaces and text (light skin) */
+    --ls-page-bg: #f6f3ea;
+    --ls-surface: #ffffff;
+    --ls-surface-2: #fbf8ef;           /* table heads, card headers, read-only fields */
+    --ls-surface-3: #f3eddc;           /* hover fills */
+    --ls-border: #e8dfc4;
+    --ls-border-strong: #d8cba4;
+    --ls-field-bg: #ffffff;
+    --ls-field-border: #8c8577;        /* 3.7:1 on white, so fields stay visible */
+    --ls-field-border-hover: #5f594c;
+    --ls-heading: #1f1c16;
+    --ls-text: #3d382e;
+    --ls-muted: #6b6455;               /* 5.9:1 on white */
+    --ls-placeholder: #7a7262;
+    --ls-link: #866719;
+    --ls-link-hover: #5e480f;
+    --ls-accent-tint: #faf3dd;         /* gold-pale fills: icon tiles, hovered items */
+    --ls-accent-ink: #866719;          /* gold text / icons that sit on those fills */
+    --ls-row-hover: #fcf8ec;
+    --ls-focus: #866719;
+    --ls-focus-ring: rgba(212, 175, 55, .32);
+    --ls-shadow: 0 1px 2px rgba(30, 26, 16, .05), 0 6px 20px rgba(30, 26, 16, .05);
+    --ls-shadow-lg: 0 18px 44px rgba(30, 26, 16, .16);
+
+    /* status colours, darkened so text passes 4.5:1 on white */
+    --ls-danger: #b42318;
+    --ls-danger-bg: #fdf0ee;
+    --ls-danger-line: #f1c4be;
+    --ls-success: #1f7a4d;
+    --ls-success-bg: #edf7f1;
+    --ls-success-line: #bfe0cc;
+    --ls-warning: #8a5300;
+    --ls-warning-bg: #fdf6e3;
+    --ls-warning-line: #f0d9a4;
+    --ls-info: #0e6f69;
+    --ls-info-bg: #ecf6f5;
+    --ls-info-line: #b9dedb;
+
+    /* header */
+    --ls-header-bg: #fffdf8;
+    --ls-header-icon: #5f594c;
+    --ls-header-icon-hover: #1f1c16;
+    --ls-header-icon-hover-bg: #f3eddc;
+
+    /* panel identity: overridden by brand-panel-admin.css / brand-panel-student.css */
+    --pn-label: "";
+    --pn-nav-bg: #16130e;
+    --pn-nav-bg-2: #221d15;
+    --pn-nav-line: rgba(212, 175, 55, .18);
+    --pn-nav-text: #ddd5bf;
+    --pn-nav-muted: #a39a82;
+    --pn-nav-icon: #c7bb9b;
+    --pn-nav-hover: rgba(240, 217, 125, .08);
+    --pn-nav-active: rgba(212, 175, 55, .16);
+    --pn-nav-active-text: #f0d97d;
+    --pn-chip-bg: #16130e;
+    --pn-chip-text: #f0d97d;
+    --pn-chip-line: rgba(212, 175, 55, .45);
+
+    /* Bootstrap variables the template still reads */
+    --bs-primary: #d4af37;
+    --bs-primary-rgb: 212, 175, 55;
+    --bs-link-color: #866719;
+    --bs-link-color-rgb: 134, 103, 25;
+    --bs-link-hover-color: #5e480f;
+    --bs-link-hover-color-rgb: 94, 72, 15;
+    --bs-border-color: #e8dfc4;
+    --bs-focus-ring-color: rgba(212, 175, 55, .32);
+}
+
+/* dark skin (the moon button in the header) */
+html.app-skin-dark {
+    --ls-page-bg: #13110d;
+    --ls-surface: #1b1813;
+    --ls-surface-2: #221e17;
+    --ls-surface-3: #2b261d;
+    --ls-border: #342d21;
+    --ls-border-strong: #4a4030;
+    --ls-field-bg: #15130f;
+    --ls-field-border: #71674f;
+    --ls-field-border-hover: #9a8e72;
+    --ls-heading: #f4eedc;
+    --ls-text: #d8d0ba;
+    --ls-muted: #aaa18a;
+    --ls-placeholder: #8a826d;
+    --ls-link: #f0d97d;
+    --ls-link-hover: #f7e9b4;
+    --ls-accent-tint: rgba(212, 175, 55, .14);
+    --ls-accent-ink: #f0d97d;
+    --ls-row-hover: #231f18;
+    --ls-focus: #f0d97d;
+    --ls-focus-ring: rgba(240, 217, 125, .28);
+    --ls-shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px rgba(0, 0, 0, .25);
+    --ls-shadow-lg: 0 18px 44px rgba(0, 0, 0, .55);
+
+    --ls-danger: #f59f96;
+    --ls-danger-bg: rgba(239, 98, 84, .12);
+    --ls-danger-line: rgba(239, 98, 84, .4);
+    --ls-success: #6fd69e;
+    --ls-success-bg: rgba(52, 199, 120, .11);
+    --ls-success-line: rgba(52, 199, 120, .38);
+    --ls-warning: #f6c55f;
+    --ls-warning-bg: rgba(246, 197, 95, .1);
+    --ls-warning-line: rgba(246, 197, 95, .38);
+    --ls-info: #6fd3cb;
+    --ls-info-bg: rgba(111, 211, 203, .1);
+    --ls-info-line: rgba(111, 211, 203, .36);
+
+    --ls-header-bg: #1b1813;
+    --ls-header-icon: #cfc6ad;
+    --ls-header-icon-hover: #f4eedc;
+    --ls-header-icon-hover-bg: #2b261d;
+
+    --bs-link-color: #f0d97d;
+    --bs-link-color-rgb: 240, 217, 125;
+    --bs-border-color: #342d21;
+}
+
+/* Theme Settings → Header: Dark uses the menu's colours */
+html.app-header-dark {
+    --ls-header-bg: var(--pn-nav-bg);
+    --ls-header-icon: var(--pn-nav-text);
+    --ls-header-icon-hover: #ffffff;
+    --ls-header-icon-hover-bg: var(--pn-nav-hover);
+}
+
+/* =========================================================================
+   2. Base: type, colour, links, focus
+   ========================================================================= */
+html:root body {
+    background-color: var(--ls-page-bg) !important;
+    color: var(--ls-text) !important;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* the website's body font, unless a font was picked in Theme Settings → Typography */
+html:not([class*="app-font-family-"]) body {
+    font-family: var(--ls-font-body);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    color: var(--ls-heading);
+}
+
+.text-dark { color: var(--ls-heading) !important; }
+html:root .text-muted,
+html:root .text-gray-600 { color: var(--ls-muted) !important; }
+html:root .text-primary { color: var(--ls-accent-ink) !important; }
+html:root .text-danger { color: var(--ls-danger) !important; }
+html:root .text-success { color: var(--ls-success) !important; }
+html:root .text-warning { color: var(--ls-warning) !important; }
+html:root .text-info { color: var(--ls-info) !important; }
+
+a { color: var(--ls-heading); }
+a:hover { color: var(--ls-link); }
+html:root .main-content a:not(.btn):not(.avatar-text):not(.dropdown-item):not(.page-link):not(.nav-link):not(.stretched-link):not(.card):hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+::selection { background: rgba(212, 175, 55, .35); color: inherit; }
+
+/* One visible keyboard focus style everywhere (mouse clicks do not show it). */
+html:root :focus-visible {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+}
+
+html:root .nxl-container { background: transparent; }
+
+/* =========================================================================
+   3. Sidebar menu
+   ========================================================================= */
+html:root .nxl-navigation {
+    background: var(--pn-nav-bg);
+    background-image: linear-gradient(180deg, var(--pn-nav-bg) 0%, var(--pn-nav-bg-2) 100%);
+    border-right: 1px solid var(--pn-nav-line);
+}
+
+html:root .nxl-navigation .m-header {
+    background: transparent;
+    border-right: 0;
+    border-bottom: 1px solid var(--pn-nav-line);
+}
+
+/* the menu logo is the website's light version; keep the template from inverting it */
+html:root .nxl-navigation .m-header .logo-lg { filter: none; }
+
+/* the emblem alone (folded menu) has black lines: give it a cream disc */
+html:root .nxl-navigation .m-header .logo-sm {
+    padding: 3px;
+    border-radius: 50%;
+    background: #fdfbf4;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, .55);
+}
+
+html:root .nxl-navigation .navbar-content {
+    border-right: 0;
+    padding-top: 6px;
+    padding-bottom: 24px;
+}
+
+html:root .nxl-navigation .navbar-content .nxl-caption {
+    color: var(--pn-nav-muted);
+    font-size: 10.5px;
+    letter-spacing: .16em;
+    padding: 18px 26px 8px;
+}
+
+html:root .nxl-navigation .navbar-content .nxl-link {
+    position: relative;
+    color: var(--pn-nav-text);
+    font-weight: 500;
+    font-size: 13.5px;
+    border-radius: 8px;
+}
+
+html:root:not(.minimenu) .nxl-navigation .navbar-content .nxl-navbar > .nxl-item > .nxl-link {
+    margin: 2px 12px;
+    padding: 11px 14px;
+}
+
+html:root .nxl-navigation .navbar-content .nxl-micon i {
+    color: var(--pn-nav-icon);
+    transition: color .2s ease;
+}
+
+html:root .nxl-navigation .navbar-content .nxl-arrow { color: var(--pn-nav-muted); }
+
+/* hover */
+html:root .nxl-navigation .navbar-content .nxl-link:hover,
+html:root .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link,
+html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item:hover > .nxl-link {
+    color: #ffffff;
+    background-color: var(--pn-nav-hover);
+}
+
+html:root .nxl-navigation .navbar-content .nxl-link:hover .nxl-micon i,
+html:root .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link .nxl-micon i {
+    color: var(--ls-gold-light);
+}
+
+/* open group (its sub-menu is showing) */
+html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.nxl-trigger > .nxl-link {
+    color: #ffffff;
+    background-color: var(--pn-nav-hover);
+}
+
+/* current page: gold text, gold bar, soft gold fill */
+html:root .nxl-navigation .navbar-content .nxl-item.active > .nxl-link,
+html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.active > .nxl-link {
+    color: var(--pn-nav-active-text);
+    background-color: var(--pn-nav-active);
+    font-weight: 600;
+}
+
+html:root .nxl-navigation .navbar-content .nxl-item.active > .nxl-link .nxl-micon i,
+html:root .nxl-navigation .navbar-content .nxl-item.active > .nxl-link .nxl-arrow {
+    color: var(--ls-gold);
+}
+
+html:root .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.active > .nxl-link::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    top: 8px;
+    bottom: 8px;
+    width: 4px;
+    border-radius: 0 4px 4px 0;
+    background: var(--ls-grad-gold);
+}
+
+html:root.minimenu .nxl-navigation:not(:hover) .navbar-content .nxl-navbar > .nxl-item.active > .nxl-link::before {
+    left: -20px;
+}
+
+/* keyboard focus on the dark menu */
+html:root .nxl-navigation .navbar-content .nxl-link:focus-visible,
+html:root .nxl-navigation .m-header .b-brand:focus-visible {
+    outline: 2px solid var(--ls-gold-light);
+    outline-offset: -2px;
+    color: #ffffff;
+}
+
+/* sub-menus: a guide line and lighter links */
+html:root .nxl-navigation .navbar-content .nxl-submenu { position: relative; }
+
+html:root:not(.minimenu) .nxl-navigation .navbar-content .nxl-submenu::before {
+    content: "";
+    position: absolute;
+    left: 34px;
+    top: 2px;
+    bottom: 2px;
+    width: 1px;
+    background: var(--pn-nav-line);
+}
+
+html:root:not(.minimenu) .nxl-navigation .navbar-content .nxl-submenu .nxl-link {
+    margin-left: 44px !important;
+    margin-right: 12px !important;
+    padding: 9px 14px;
+    font-size: 13px;
+}
+
+html:root .nxl-navigation .navbar-content .nxl-submenu .nxl-link { color: var(--pn-nav-text); opacity: .92; }
+html:root .nxl-navigation .navbar-content .nxl-submenu .nxl-item:hover > .nxl-link { opacity: 1; }
+html:root .nxl-navigation .navbar-content .nxl-submenu .nxl-item.active > .nxl-link {
+    opacity: 1;
+    background-color: var(--pn-nav-active);
+}
+
+/* folded menu (template's "minimenu", 1024–1600px): expanded panel on hover */
+html:root.minimenu .nxl-navigation:hover .navbar-content {
+    background: var(--pn-nav-bg-2);
+    border-right: 1px solid var(--pn-nav-line);
+}
+
+/* scrollbar inside the menu */
+html:root .nxl-navigation ::-webkit-scrollbar-thumb { background-color: rgba(212, 175, 55, .28) !important; }
+html:root .nxl-navigation .ps__thumb-y { background-color: rgba(212, 175, 55, .4); }
+
+/* Theme Settings → Navigation: Light (admin only): cream menu, dark logo block */
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation {
+    --pn-nav-text: #3d382e;
+    --pn-nav-muted: #7a7262;
+    --pn-nav-icon: #6b6455;
+    --pn-nav-hover: #f3eddc;
+    --pn-nav-active: #faf3dd;
+    --pn-nav-active-text: #6e5412;
+    background: #fdfbf4;
+    background-image: none;
+    border-right-color: #e8dfc4;
+}
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .m-header { background: var(--pn-nav-bg); }
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-link:hover,
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link,
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-navbar > .nxl-item.nxl-trigger > .nxl-link {
+    color: #1f1c16;
+}
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-link:hover .nxl-micon i,
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-item:hover > .nxl-link .nxl-micon i,
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-item.active > .nxl-link .nxl-micon i {
+    color: #866719;
+}
+html.app-navigation-light:not(.app-skin-dark) .nxl-navigation .navbar-content .nxl-link:focus-visible {
+    outline-color: #866719;
+    color: #1f1c16;
+}
+html.app-navigation-light:not(.app-skin-dark).minimenu .nxl-navigation:hover .navbar-content { background: #fdfbf4; }
+
+/* =========================================================================
+   4. Top header
+   ========================================================================= */
+html:root .nxl-header {
+    background: var(--ls-header-bg) !important;
+    border-bottom: 1px solid var(--ls-border);
+    box-shadow: 0 2px 16px rgba(30, 26, 16, .05);
+}
+
+/* the website header's gold rule */
+html:root .nxl-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    background: var(--ls-grad-gold);
+    pointer-events: none;
+}
+
+/* which panel this is: "Admin Panel" / "Student Panel" (text set by the identity sheet) */
+html:root .nxl-header .header-wrapper .header-left::after {
+    content: var(--pn-label);
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 14px 6px 26px;
+    border: 1px solid var(--pn-chip-line);
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 14px 50%, var(--ls-gold) 0 3.5px, transparent 4px),
+        var(--pn-chip-bg);
+    color: var(--pn-chip-text);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+html:root .nxl-header .header-wrapper .nxl-head-link {
+    color: var(--ls-header-icon);
+    border-radius: 10px;
+    transition: color .2s ease, background-color .2s ease;
+}
+
+html:root .nxl-header .header-wrapper .nxl-head-link:hover,
+html:root .nxl-header .header-wrapper .nxl-head-link:focus,
+html:root .nxl-header .header-wrapper .nxl-head-link:active,
+html:root .nxl-header .header-wrapper .nxl-head-link.active {
+    color: var(--ls-header-icon-hover);
+    background-color: var(--ls-header-icon-hover-bg) !important;
+}
+
+html:root .nxl-header .header-wrapper .nxl-head-link:focus:not(:focus-visible) { background-color: transparent !important; }
+
+html:root .nxl-header .hamburger-inner,
+html:root .nxl-header .hamburger-inner::before,
+html:root .nxl-header .hamburger-inner::after {
+    background-color: var(--ls-header-icon-hover);
+}
+
+html:root .nxl-header .nxl-head-mobile-toggler:focus-visible {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+/* profile picture: gold ring */
+html:root .nxl-header .header-wrapper .nxl-h-item > a[data-bs-toggle="dropdown"] .user-avtar {
+    box-shadow: 0 0 0 2px var(--ls-header-bg), 0 0 0 4px var(--ls-gold);
+    transition: box-shadow .2s ease;
+}
+html:root .nxl-header .header-wrapper .nxl-h-item > a[data-bs-toggle="dropdown"]:hover .user-avtar,
+html:root .nxl-header .header-wrapper .nxl-h-item > a[data-bs-toggle="dropdown"][aria-expanded="true"] .user-avtar {
+    box-shadow: 0 0 0 2px var(--ls-header-bg), 0 0 0 4px var(--ls-gold-dark);
+}
+html:root .nxl-header .header-wrapper .nxl-h-item > a[data-bs-toggle="dropdown"]:focus-visible {
+    outline-offset: 4px;
+    border-radius: 50%;
+}
+
+html:root .nxl-header .header-wrapper .nxl-user-dropdown .dropdown-header {
+    border-bottom-color: var(--ls-border);
+}
+html:root .nxl-header .header-wrapper .nxl-user-dropdown .dropdown-header h6 {
+    font-family: var(--ls-font-display);
+    font-size: 16px;
+}
+
+/* =========================================================================
+   5. Page title bar and breadcrumb
+   ========================================================================= */
+html:root .page-header {
+    background: var(--ls-surface) !important;
+    border-bottom: 1px solid var(--ls-border);
+    box-shadow: none;
+}
+
+html:root .page-header h5 {
+    font-family: var(--ls-font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ls-heading);
+    border-right-color: var(--ls-border-strong);
+    padding-right: 14px;
+    margin-right: 14px;
+}
+
+html:root .page-header .breadcrumb {
+    color: var(--ls-muted);
+    font-weight: 500;
+    font-size: 13px;
+}
+html:root .page-header .breadcrumb a { color: var(--ls-heading); font-weight: 600; }
+html:root .page-header .breadcrumb .breadcrumb-item a:hover { color: var(--ls-link); }
+html:root .page-header .breadcrumb .breadcrumb-item:last-child { opacity: 1; color: var(--ls-muted); }
+html:root .page-header .breadcrumb .breadcrumb-item + .breadcrumb-item::before { color: var(--ls-border-strong); }
+
+/* =========================================================================
+   6. Cards and dashboard widgets
+   ========================================================================= */
+html:root .card {
+    border-radius: 12px;
+    box-shadow: var(--ls-shadow);
+    color: var(--ls-text);
+}
+html:root .card:not([class*="bg-"]) { background-color: var(--ls-surface) !important; }
+html:root .card:not(.border-0):not(.sd-card) { border-color: var(--ls-border) !important; }
+html:root .card.sd-card { border-left-color: var(--ls-border); border-right-color: var(--ls-border); border-bottom-color: var(--ls-border); }
+
+html:root .card .card-header {
+    background-color: var(--ls-surface-2);
+    border-bottom-color: var(--ls-border);
+    border-radius: 12px 12px 0 0;
+}
+html:root .card .card-header .card-title,
+html:root .card .card-title {
+    font-family: var(--ls-font-display);
+    font-weight: 700;
+    color: var(--ls-heading);
+}
+html:root .card .card-footer { border-top-color: var(--ls-border); }
+html:root .card .card-footer.bg-white { background-color: var(--ls-surface) !important; }
+
+/* whole-card links (dashboard counts): lift, gold edge, visible keyboard focus */
+html:root .card:has(> .card-body .stretched-link) {
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+html:root .card:has(> .card-body .stretched-link):hover {
+    border-color: var(--ls-gold) !important;
+    box-shadow: 0 10px 28px rgba(212, 175, 55, .18);
+    transform: translateY(-2px);
+}
+html:root .card:has(> .card-body .stretched-link:focus-visible) {
+    outline: 3px solid var(--ls-focus);
+    outline-offset: 2px;
+}
+html:root .card .stretched-link:focus-visible { outline: none; }
+html:root .card .stretched-link > i { color: var(--ls-muted); transition: color .2s ease; }
+html:root .card:hover .stretched-link > i { color: var(--ls-accent-ink); }
+
+/* icon tiles */
+html:root .card:not(.sd-card) .avatar-text.avatar-lg.bg-gray-200,
+html:root .avatar-text.bg-soft-primary {
+    background-color: var(--ls-accent-tint) !important;
+    color: var(--ls-accent-ink) !important;
+    border-color: transparent;
+    border-radius: 12px;
+}
+html:root .card .avatar-text.avatar-lg.bg-gray-200 i { font-size: 20px; }
+
+/* large numbers */
+html:root .main-content .card .fs-4.fw-bold { letter-spacing: -.01em; }
+
+/* progress */
+html:root .progress { background-color: var(--ls-surface-3); border-radius: 99px; }
+html:root .progress-bar.bg-primary { background: var(--ls-grad-gold) !important; }
+
+/* generic surfaces the template hard-codes */
+html:root .bg-white { background-color: var(--ls-surface) !important; }
+html:root .bg-light { background-color: var(--ls-surface-2) !important; }
+html:root .bg-gray-100 { background-color: var(--ls-surface-2) !important; }
+html:root .bg-gray-200 { background-color: var(--ls-surface-3) !important; }
+html:root hr { border-color: var(--ls-border) !important; opacity: 1; }
+html:root .bg-primary { background-color: var(--ls-gold) !important; }
+html:root .bg-primary.text-white,
+html:root .badge.bg-primary { color: var(--ls-black) !important; }
+html:root .bg-soft-primary { background-color: var(--ls-accent-tint) !important; }
+html:root .border-primary { border-color: var(--ls-gold) !important; }
+
+/* app-style pages (student courses) */
+html:root .nxl-container .nxl-content .main-content .content-area .content-area-header,
+html:root .nxl-container .nxl-content .main-content .content-sidebar,
+html:root .nxl-container .nxl-content .main-content .content-sidebar .content-sidebar-header {
+    background-color: var(--ls-surface) !important;
+    border-color: var(--ls-border);
+}
+
+/* =========================================================================
+   7. Buttons
+   ========================================================================= */
+html:root .btn {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    text-transform: none;
+    border-radius: 8px;
+    transition: background .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+html:root .btn-sm { font-size: 12.5px; border-radius: 7px; }
+html:root .btn-lg { font-size: 15px; border-radius: 10px; }
+
+html:root .btn:focus-visible,
+html:root .btn-check:focus-visible + .btn {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--ls-focus-ring);
+}
+
+html:root .btn:disabled,
+html:root .btn.disabled,
+html:root fieldset:disabled .btn {
+    opacity: .5;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* primary: the website's gold button */
+html:root .btn-primary,
+html:root .btn-primary:hover,
+html:root .btn-primary:focus,
+html:root .btn-primary:active,
+html:root .btn-primary.active {
+    color: var(--ls-black) !important;
+    background-color: var(--ls-gold) !important;
+    border-color: var(--ls-gold-dark) !important;
+}
+html:root .btn-primary {
+    background-image: var(--ls-grad-gold);
+    box-shadow: 0 4px 14px rgba(212, 175, 55, .28);
+}
+html:root .btn-primary:hover {
+    background-image: var(--ls-grad-gold-hover);
+    box-shadow: 0 8px 22px rgba(212, 175, 55, .38);
+    transform: translateY(-1px);
+}
+html:root .btn-primary:active,
+html:root .btn-primary.active {
+    background-image: var(--ls-grad-gold-hover);
+    box-shadow: inset 0 2px 5px rgba(18, 16, 12, .22);
+    transform: none;
+}
+/* the template turns hovered button text white in the dark skin */
+html.app-skin-dark .btn.btn-primary:hover:hover,
+html.app-skin-dark .btn.btn-primary:hover:focus { color: var(--ls-black) !important; }
+
+/* secondary: quiet outlined buttons */
+html:root .btn-light-brand,
+html:root .btn-light {
+    color: var(--ls-heading) !important;
+    background-color: var(--ls-surface) !important;
+    border: 1px solid var(--ls-border-strong) !important;
+}
+html:root .btn-light-brand:hover,
+html:root .btn-light-brand.show,
+html:root .btn-light-brand:active,
+html:root .btn-light:hover,
+html:root .btn-light.show,
+html:root .btn-light:active {
+    color: var(--ls-accent-ink) !important;
+    background-color: var(--ls-accent-tint) !important;
+    border-color: var(--ls-gold-dark) !important;
+}
+html:root .btn-light-brand:focus:not(:focus-visible),
+html:root .btn-light:focus:not(:focus-visible) {
+    color: var(--ls-heading) !important;
+    background-color: var(--ls-surface) !important;
+    border-color: var(--ls-border-strong) !important;
+}
+
+html:root .btn-outline-primary {
+    color: var(--ls-accent-ink) !important;
+    border-color: var(--ls-gold-dark);
+    background-color: transparent;
+}
+html:root .btn-outline-primary:hover,
+html:root .btn-outline-primary:active,
+html:root .btn-outline-primary.active,
+html:root .btn-check:checked + .btn-outline-primary {
+    color: var(--ls-black) !important;
+    background-color: var(--ls-gold);
+    border-color: var(--ls-gold-dark);
+}
+
+/* (the template sets these with !important, so the shades below need it too) */
+html:root .btn-secondary,
+html:root .btn-outline-secondary:hover {
+    color: #ffffff !important;
+    background-color: #4a4538 !important;
+    border-color: #4a4538 !important;
+}
+html:root .btn-secondary:hover { background-color: #36322a !important; border-color: #36322a !important; }
+html:root .btn-outline-secondary { color: var(--ls-text) !important; border-color: var(--ls-border-strong) !important; }
+
+/* status buttons: darker shades so white text is readable */
+html:root .btn-success { color: #ffffff !important; background-color: #1f7a4d !important; border-color: #1f7a4d !important; }
+html:root .btn-success:hover,
+html:root .btn-success:active { background-color: #17603c !important; border-color: #17603c !important; }
+html:root .btn-danger { color: #ffffff !important; background-color: #b42318 !important; border-color: #b42318 !important; }
+html:root .btn-danger:hover,
+html:root .btn-danger:active { background-color: #911b12 !important; border-color: #911b12 !important; }
+html:root .btn-outline-danger { color: var(--ls-danger) !important; border-color: var(--ls-danger) !important; background-color: transparent; }
+html:root .btn-outline-danger:hover { color: #ffffff !important; background-color: #b42318 !important; border-color: #b42318 !important; }
+html:root .btn-warning { color: var(--ls-black) !important; background-color: #f0b429 !important; border-color: #d99c12 !important; }
+html:root .btn-warning:hover { background-color: #e3a515 !important; border-color: #c48a0c !important; }
+html:root .btn-info { color: #ffffff !important; background-color: #0e6f69 !important; border-color: #0e6f69 !important; }
+html:root .btn-info:hover { background-color: #0a5550 !important; border-color: #0a5550 !important; }
+
+html:root .btn-link { color: var(--ls-link) !important; font-weight: 600; text-decoration: none; }
+html:root .btn-link:hover { color: var(--ls-link-hover) !important; text-decoration: underline; text-underline-offset: 3px; }
+
+html:root .btn-close:focus { box-shadow: none; }
+html:root .btn-close:focus-visible {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--ls-focus-ring);
+    opacity: 1;
+}
+
+/* round icon buttons in list rows (view / edit / delete) */
+html:root .avatar-text {
+    color: var(--ls-text);
+    background-color: var(--ls-surface);
+    border-color: var(--ls-border-strong);
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+html:root .table .avatar-text:hover,
+html:root .hstack > .avatar-text:hover,
+html:root .hstack form > .avatar-text:hover {
+    color: var(--ls-accent-ink);
+    background-color: var(--ls-accent-tint) !important;
+    border-color: var(--ls-gold-dark) !important;
+}
+html:root .table .avatar-text:has(.text-danger):hover,
+html:root .hstack .avatar-text:has(.text-danger):hover {
+    background-color: var(--ls-danger-bg) !important;
+    border-color: var(--ls-danger) !important;
+}
+html:root .avatar-text:focus-visible {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+}
+
+/* =========================================================================
+   8. Form fields
+   ========================================================================= */
+html:root .form-label,
+html:root .col-form-label {
+    color: var(--ls-heading) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    margin-bottom: 6px;
+}
+
+html:root .form-control,
+html:root .form-select,
+html:root .custom-select {
+    color: var(--ls-heading);
+    background-color: var(--ls-field-bg) !important;
+    border-color: var(--ls-field-border) !important;
+    border-radius: 8px;
+    transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+
+html:root .form-control:hover:not(:disabled):not([readonly]),
+html:root .form-select:hover:not(:disabled) {
+    border-color: var(--ls-field-border-hover) !important;
+}
+
+html:root .form-control:focus,
+html:root .form-select:focus,
+html:root .custom-select:focus {
+    color: var(--ls-heading);
+    border-color: var(--ls-gold-dark) !important;
+    box-shadow: 0 0 0 3px var(--ls-focus-ring) !important;
+    outline: none;
+}
+
+html:root .form-control::placeholder,
+html:root .form-select::placeholder,
+html:root input::placeholder,
+html:root textarea::placeholder {
+    color: var(--ls-placeholder) !important;
+    opacity: 1;
+}
+
+html:root .form-control[readonly],
+html:root .form-control:disabled,
+html:root .form-select:disabled {
+    color: var(--ls-muted);
+    background-color: var(--ls-surface-2) !important;
+    border-style: dashed !important;
+}
+html:root .form-control:disabled,
+html:root .form-select:disabled { cursor: not-allowed; opacity: .8; }
+
+/* validation */
+html:root .form-control.is-invalid,
+html:root .form-select.is-invalid,
+html:root .was-validated .form-control:invalid {
+    border-color: var(--ls-danger) !important;
+}
+html:root .form-control.is-invalid:focus,
+html:root .form-select.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(180, 35, 24, .2) !important;
+}
+html:root .form-control.is-valid,
+html:root .form-select.is-valid { border-color: var(--ls-success) !important; }
+html:root .invalid-feedback,
+html:root .form-text.text-danger,
+html:root small.text-danger,
+html:root span.text-danger.small {
+    color: var(--ls-danger) !important;
+    font-weight: 500;
+}
+html:root .valid-feedback { color: var(--ls-success); }
+
+html:root .input-group-text {
+    color: var(--ls-accent-ink) !important;
+    background-color: var(--ls-surface-2) !important;
+    border-color: var(--ls-field-border) !important;
+}
+
+/* checkboxes, radios, switches */
+html:root .form-check-input {
+    background-color: var(--ls-field-bg) !important;
+    border: 1px solid var(--ls-field-border);
+}
+html:root .form-check-input:checked {
+    background-color: var(--ls-gold-dark) !important;
+    border-color: var(--ls-gold-dark);
+}
+html:root .form-check-input:focus {
+    border-color: var(--ls-gold-dark);
+    box-shadow: 0 0 0 3px var(--ls-focus-ring);
+}
+html:root .form-check-input:disabled { opacity: .5; }
+html:root .form-switch .form-check-input:checked {
+    background-color: var(--ls-gold-dark) !important;
+    border-color: var(--ls-gold-dark);
+}
+html:root .custom-checkbox .custom-control-label::before {
+    background-color: var(--ls-field-bg);
+    border-color: var(--ls-field-border);
+}
+html:root .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--ls-gold-dark);
+    border-color: var(--ls-gold-dark);
+}
+html:root .custom-control-input:focus-visible ~ .custom-control-label::before {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+}
+
+/* file pickers */
+html:root .form-control[type="file"]::file-selector-button {
+    color: var(--ls-heading);
+    background-color: var(--ls-accent-tint);
+    border-right: 1px solid var(--ls-border-strong);
+    font-weight: 600;
+}
+html:root .form-control[type="file"]:hover:not(:disabled)::file-selector-button {
+    background-color: var(--ls-surface-3);
+}
+
+/* select2 (searchable drop-downs) */
+html:root .select2-container--bootstrap-5 .select2-selection {
+    color: var(--ls-heading);
+    background-color: var(--ls-field-bg);
+    border: 1px solid var(--ls-field-border);
+    border-radius: 8px;
+}
+html:root .select2-container--bootstrap-5.select2-container--focus .select2-selection,
+html:root .select2-container--bootstrap-5.select2-container--open .select2-selection {
+    border-color: var(--ls-gold-dark);
+    box-shadow: 0 0 0 3px var(--ls-focus-ring);
+}
+html:root .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered { color: var(--ls-heading); }
+html:root .select2-container--bootstrap-5 .select2-dropdown {
+    color: var(--ls-text);
+    background-color: var(--ls-surface);
+    border-color: var(--ls-border-strong);
+    border-radius: 8px;
+    box-shadow: var(--ls-shadow-lg);
+}
+html:root .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option { color: var(--ls-text); }
+html:root .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--highlighted,
+html:root .select2-container .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--highlighted {
+    color: var(--ls-heading) !important;
+    background-color: var(--ls-accent-tint) !important;
+}
+html:root .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--selected {
+    color: var(--ls-black) !important;
+    background-color: var(--ls-gold-light) !important;
+}
+html:root .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+    color: var(--ls-heading);
+    background-color: var(--ls-accent-tint);
+    border-color: var(--ls-border-strong);
+}
+
+/* rich-text editor (Site Pages) */
+html:root .ql-snow.ql-toolbar { background-color: var(--ls-surface-2); border-color: var(--ls-field-border); border-radius: 8px 8px 0 0; }
+html:root .ql-snow.ql-container { border-color: var(--ls-field-border); border-radius: 0 0 8px 8px; }
+html:root .ql-snow.ql-toolbar button:hover .ql-stroke,
+html:root .ql-snow.ql-toolbar button.ql-active .ql-stroke { stroke: var(--ls-gold-dark); }
+html:root .ql-snow.ql-toolbar button:hover .ql-fill,
+html:root .ql-snow.ql-toolbar button.ql-active .ql-fill { fill: var(--ls-gold-dark); }
+html:root .ql-snow.ql-toolbar button.ql-active,
+html:root .ql-snow.ql-toolbar .ql-picker-label.ql-active { color: var(--ls-gold-dark); }
+
+/* =========================================================================
+   9. Tables and paging
+   ========================================================================= */
+html:root .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--ls-text);
+    --bs-table-border-color: var(--ls-border);
+    --bs-table-hover-bg: var(--ls-row-hover);
+    --bs-table-hover-color: var(--ls-heading);
+    --bs-table-striped-bg: var(--ls-surface-2);
+    color: var(--ls-text) !important;
+}
+
+html:root .table > :not(caption) > * > * {
+    border-color: var(--ls-border) !important;
+}
+
+html:root .table thead th,
+html:root .table-responsive .table thead th {
+    color: var(--ls-muted) !important;
+    background-color: var(--ls-surface-2);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--ls-border-strong) !important;
+    white-space: nowrap;
+}
+
+html:root .card > .card-body.p-0 > .table-responsive > .table thead th:first-child { border-top-left-radius: 12px; }
+html:root .card > .card-body.p-0 > .table-responsive > .table thead th:last-child { border-top-right-radius: 12px; }
+
+html:root .table.table-hover > tbody > tr:hover > *,
+html:root .table > tbody > tr:hover > * {
+    --bs-table-accent-bg: var(--ls-row-hover) !important;
+    --bs-table-bg-state: var(--ls-row-hover) !important;
+    color: var(--ls-heading) !important;
+}
+html:root .table.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: var(--ls-surface-2) !important;
+    color: var(--ls-text) !important;
+}
+
+html:root .table tbody td a.fw-bold { color: var(--ls-heading); }
+html:root .table tbody td a.fw-bold:hover { color: var(--ls-link); }
+html:root .table tfoot th,
+html:root .table tfoot td { color: var(--ls-heading) !important; background-color: var(--ls-surface-2); }
+
+/* card rows on phones (responsive-fixes.js) */
+html:root .table-responsive .table.rt-cards tbody tr {
+    border-color: var(--ls-border);
+    border-radius: 12px;
+    background-color: var(--ls-surface);
+    box-shadow: var(--ls-shadow);
+}
+html:root .table-responsive .table.rt-cards tbody tr td { border-bottom-color: var(--ls-border); }
+html:root .table-responsive .table.rt-cards tbody tr td::before { color: var(--ls-muted); }
+html:root .table-responsive .table.rt-cards tbody tr[data-depth]:not([data-depth="0"]) { border-left: 3px solid var(--ls-gold); }
+
+/* pagination */
+html:root .pagination {
+    --bs-pagination-color: var(--ls-heading);
+    --bs-pagination-bg: var(--ls-surface);
+    --bs-pagination-border-color: var(--ls-border-strong);
+    --bs-pagination-hover-color: var(--ls-heading);
+    --bs-pagination-hover-bg: var(--ls-accent-tint);
+    --bs-pagination-hover-border-color: var(--ls-gold-dark);
+    --bs-pagination-focus-color: var(--ls-heading);
+    --bs-pagination-focus-bg: var(--ls-accent-tint);
+    --bs-pagination-focus-box-shadow: 0 0 0 3px var(--ls-focus-ring);
+    --bs-pagination-active-color: var(--ls-black);
+    --bs-pagination-active-bg: var(--ls-gold);
+    --bs-pagination-active-border-color: var(--ls-gold-dark);
+    --bs-pagination-disabled-color: var(--ls-muted);
+    --bs-pagination-disabled-bg: var(--ls-surface-2);
+    --bs-pagination-disabled-border-color: var(--ls-border);
+    gap: 4px;
+}
+html:root .pagination .page-link {
+    color: var(--ls-heading);
+    background-color: var(--ls-surface);
+    border-color: var(--ls-border-strong);
+    border-radius: 8px !important;
+    font-weight: 600;
+}
+html:root .pagination .page-link:hover {
+    color: var(--ls-heading);
+    background-color: var(--ls-accent-tint);
+    border-color: var(--ls-gold-dark);
+}
+html:root .pagination .page-link:focus-visible {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+html:root .pagination .page-item.active .page-link,
+html:root .pagination .page-link.active {
+    color: var(--ls-black) !important;
+    background-color: var(--ls-gold) !important;
+    border-color: var(--ls-gold-dark) !important;
+}
+html:root .pagination .page-item.disabled .page-link,
+html:root .pagination .page-link.disabled {
+    color: var(--ls-muted);
+    background-color: var(--ls-surface-2);
+    border-color: var(--ls-border);
+    opacity: .7;
+}
+
+/* =========================================================================
+   10. Badges and messages
+   ========================================================================= */
+html:root .badge {
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: .02em;
+}
+html:root .badge.bg-soft-success,
+html:root .bg-soft-success { background-color: var(--ls-success-bg) !important; }
+html:root .badge.bg-soft-danger,
+html:root .bg-soft-danger { background-color: var(--ls-danger-bg) !important; }
+html:root .badge.bg-soft-warning,
+html:root .bg-soft-warning { background-color: var(--ls-warning-bg) !important; }
+html:root .badge.bg-success { background-color: #1f7a4d !important; color: #ffffff; }
+html:root .badge.bg-danger { background-color: #b42318 !important; color: #ffffff; }
+html:root .badge.bg-warning { background-color: #f0b429 !important; color: var(--ls-black) !important; }
+html:root .badge.bg-secondary { background-color: #4a4538 !important; color: #ffffff; }
+html:root .badge.bg-light { color: var(--ls-heading) !important; }
+
+html:root .alert {
+    border: 1px solid transparent;
+    border-left-width: 4px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+html:root .alert-danger { color: var(--ls-danger); background-color: var(--ls-danger-bg); border-color: var(--ls-danger-line); border-left-color: var(--ls-danger); }
+html:root .alert-success { color: var(--ls-success); background-color: var(--ls-success-bg); border-color: var(--ls-success-line); border-left-color: var(--ls-success); }
+html:root .alert-warning { color: var(--ls-warning); background-color: var(--ls-warning-bg); border-color: var(--ls-warning-line); border-left-color: #d99c12; }
+html:root .alert-info { color: var(--ls-info); background-color: var(--ls-info-bg); border-color: var(--ls-info-line); border-left-color: var(--ls-info); }
+html:root .alert-primary { color: var(--ls-accent-ink); background-color: var(--ls-accent-tint); border-color: var(--ls-border-strong); border-left-color: var(--ls-gold); }
+html:root .alert .alert-link { color: inherit; text-decoration: underline; }
+html:root .alert.rt-toast { box-shadow: var(--ls-shadow-lg); }
+
+/* =========================================================================
+   11. Menus, dialogs, tabs, lists
+   ========================================================================= */
+html:root .dropdown-menu {
+    color: var(--ls-text);
+    background-color: var(--ls-surface) !important;
+    border: 1px solid var(--ls-border) !important;
+    border-radius: 12px;
+    box-shadow: var(--ls-shadow-lg);
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+html:root .dropdown-menu[data-popper-placement] { border-radius: 12px; }
+
+html:root .dropdown-item,
+html:root .dropdown .dropdown-menu .dropdown-item {
+    color: var(--ls-text);
+    font-weight: 500;
+    border-radius: 8px;
+}
+html:root .dropdown-item i,
+html:root .dropdown .dropdown-menu .dropdown-item i { color: var(--ls-muted); transition: color .2s ease; }
+
+html:root .dropdown-item:hover,
+html:root .dropdown-item:focus,
+html:root .dropdown .dropdown-menu .dropdown-item:hover,
+html:root .dropdown .dropdown-menu .dropdown-item:focus {
+    color: var(--ls-heading) !important;
+    background-color: var(--ls-accent-tint);
+}
+html:root .dropdown-item:hover i,
+html:root .dropdown-item:focus i,
+html:root .dropdown .dropdown-menu .dropdown-item:hover i,
+html:root .dropdown .dropdown-menu .dropdown-item:focus i { color: var(--ls-accent-ink); }
+
+html:root .dropdown-item.active,
+html:root .dropdown-item:active,
+html:root .dropdown .dropdown-menu .dropdown-item.active,
+html:root .dropdown .dropdown-menu .dropdown-item:active {
+    color: var(--ls-black) !important;
+    background-color: var(--ls-gold-light);
+}
+html:root .dropdown-item:focus-visible {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: -2px;
+}
+html:root .dropdown-item.disabled,
+html:root .dropdown-item:disabled { color: var(--ls-muted); opacity: .6; }
+html:root .dropdown-divider { border-color: var(--ls-border); opacity: 1; }
+html:root .dropdown-header { color: var(--ls-muted); }
+
+/* dialogs */
+html:root .modal-content {
+    color: var(--ls-text);
+    background-color: var(--ls-surface) !important;
+    border: 1px solid var(--ls-border);
+    border-top: 3px solid var(--ls-gold);
+    border-radius: 14px;
+    box-shadow: 0 24px 64px rgba(18, 16, 12, .28);
+}
+html:root .modal-header {
+    background-color: var(--ls-surface-2);
+    border-bottom-color: var(--ls-border);
+    border-radius: 11px 11px 0 0;
+}
+html:root .modal-header.search-form { background-color: var(--ls-surface); }
+html:root .modal-title {
+    font-family: var(--ls-font-display);
+    font-weight: 700;
+    color: var(--ls-heading);
+}
+html:root .modal-footer { border-top-color: var(--ls-border); }
+html:root .modal-backdrop { background-color: #0d0b08; }
+html:root .modal-backdrop.show { opacity: .62; }
+
+/* tabs and pill navs */
+html:root .nav-tabs { border-bottom-color: var(--ls-border); }
+html:root .nav-tabs .nav-link,
+html:root .nav-tabs-wrapper .nav-tabs-custom-style .nav-item .nav-link { color: var(--ls-text); }
+html:root .nav-tabs .nav-link:hover { color: var(--ls-heading); border-color: transparent; background-color: var(--ls-accent-tint); }
+html:root .nav-tabs .nav-link.active,
+html:root .nav-tabs-wrapper .nav-tabs-custom-style .nav-item .nav-link.active,
+html:root .nav-tabs-wrapper .nav-tabs-custom-style .nav-item .nav-link.hover {
+    color: var(--ls-heading);
+    background-color: var(--ls-accent-tint);
+    border-color: transparent transparent var(--ls-gold);
+    border-bottom: 3px solid var(--ls-gold);
+}
+html:root .nav-pills .nav-link.active,
+html:root .nav-pills .show > .nav-link { color: var(--ls-black); background-color: var(--ls-gold); }
+html:root .nav-item .nav-link.note-link.active { color: var(--ls-heading); background-color: var(--ls-accent-tint) !important; }
+html:root .nav-item .nav-link.note-link:hover { color: var(--ls-heading); background-color: var(--ls-surface-3) !important; }
+
+html:root .list-group-item {
+    color: var(--ls-text);
+    background-color: var(--ls-surface);
+    border-color: var(--ls-border);
+}
+html:root .list-group-item.active { color: var(--ls-black); background-color: var(--ls-gold); border-color: var(--ls-gold-dark); }
+
+html:root .accordion .accordion-item { background-color: var(--ls-surface); border-color: var(--ls-border); }
+html:root .accordion .accordion-item .accordion-header .accordion-button { color: var(--ls-heading); background-color: var(--ls-surface); }
+html:root .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+    color: var(--ls-heading);
+    background-color: var(--ls-accent-tint);
+    box-shadow: inset 0 -1px 0 var(--ls-border);
+}
+html:root .accordion-button:focus { box-shadow: 0 0 0 3px var(--ls-focus-ring); border-color: var(--ls-gold-dark); }
+
+html:root .tooltip { --bs-tooltip-bg: #12100c; --bs-tooltip-color: #f5efdd; }
+html:root .popover { background-color: var(--ls-surface); border-color: var(--ls-border); }
+
+/* page loader line at the top (pace) */
+html:root .pace .pace-progress { background: var(--ls-gold); }
+
+/* =========================================================================
+   12. Theme Settings drawer (admin)
+   ========================================================================= */
+html:root .theme-customizer {
+    background-color: var(--ls-surface);
+    border-color: var(--ls-border);
+}
+html:root .theme-customizer .customizer-handle .cutomizer-open-trigger {
+    color: var(--ls-black);
+    background: var(--ls-grad-gold) !important;
+    border-color: var(--ls-gold-dark);
+}
+html:root .theme-customizer .customizer-sidebar-wrapper .customizer-sidebar-header,
+html:root .theme-customizer .customizer-sidebar-wrapper .customizer-sidebar-footer { border-color: var(--ls-border) !important; }
+html:root .theme-customizer .theme-options-set { border-color: var(--ls-border) !important; }
+html:root .theme-customizer .theme-options-set .options-label.bg-white { background-color: var(--ls-surface) !important; }
+html:root .theme-customizer .customizer-sidebar-wrapper .customizer-sidebar-body .theme-options-set .theme-options-items .single-option input:checked + .options-label {
+    color: var(--ls-heading) !important;
+    background-color: var(--ls-accent-tint);
+    border-color: var(--ls-gold-dark) !important;
+}
+html:root .theme-customizer .customizer-sidebar-wrapper .customizer-sidebar-body .theme-options-set .theme-options-items .single-option input:checked + .options-label::before,
+html:root .theme-customizer .customizer-sidebar-wrapper .customizer-sidebar-body .theme-options-set .theme-options-items .single-option.active::before {
+    color: var(--ls-gold-dark);
+}
+html:root .theme-customizer .btn-check:focus-visible + .options-label {
+    outline: 2px solid var(--ls-focus);
+    outline-offset: 2px;
+}
+
+/* =========================================================================
+   13. Dark skin extras (most colours already come from the tokens)
+   ========================================================================= */
+/* the template stripes every table's odd rows navy in the dark skin */
+html.app-skin-dark .table:not(.table-striped) > tbody > tr:nth-of-type(odd):not(:hover) > * {
+    --bs-table-accent-bg: transparent !important;
+    color: var(--ls-text) !important;
+}
+
+/* round row buttons: the template paints them navy with white icons */
+html.app-skin-dark .avatar-text:not([class*="bg-"]) {
+    background-color: var(--ls-surface) !important;
+    border-color: var(--ls-border-strong) !important;
+}
+html.app-skin-dark .avatar-text:not([class*="text-"]) { color: var(--ls-text) !important; }
+html.app-skin-dark .table .avatar-text:not([class*="text-"]):hover,
+html.app-skin-dark .hstack .avatar-text:not([class*="text-"]):hover { color: var(--ls-accent-ink) !important; }
+html.app-skin-dark .avatar-text.bg-transparent { background-color: transparent !important; border-color: transparent !important; }
+
+html.app-skin-dark .btn-close { filter: invert(1) grayscale(1) brightness(1.6); }
+html.app-skin-dark .btn-secondary { background-color: #5b5444; border-color: #5b5444; }
+html.app-skin-dark .ql-snow .ql-stroke { stroke: var(--ls-text); }
+html.app-skin-dark .ql-snow .ql-picker { color: var(--ls-text); }
+html.app-skin-dark .ql-snow .ql-picker-options,
+html.app-skin-dark .ql-snow .ql-picker-label { background-color: var(--ls-surface-2); border-color: var(--ls-border); }
+html.app-skin-dark .ql-snow .ql-editor { color: var(--ls-heading); }
+html.app-skin-dark .pdf-protected-viewer > .text-center { background-color: var(--ls-surface) !important; border-top-color: var(--ls-border) !important; }
+html.app-skin-dark ::-webkit-scrollbar-track { background-color: var(--ls-page-bg) !important; }
+html.app-skin-dark ::-webkit-scrollbar-thumb { background-color: var(--ls-border-strong) !important; }
+
+/* =========================================================================
+   14. Tablets and phones
+   ========================================================================= */
+@media (max-width: 1024px) {
+    /* the label sits beside the menu button */
+    html:root .nxl-header .header-wrapper .header-left { gap: 14px !important; }
+
+    /* open menu: shadow over the page */
+    html:root .nxl-navigation.mob-navigation-active { box-shadow: 12px 0 40px rgba(0, 0, 0, .35); }
+    html:root .nxl-navigation .nxl-menu-overlay { background: rgba(13, 11, 8, .55); }
+}
+
+@media (max-width: 767.98px) {
+    html:root .page-header h5 { font-size: 18px; }
+    html:root .nxl-container .nxl-content .main-content { padding-left: 16px; padding-right: 16px; }
+    html:root .nxl-container .nxl-content .page-header { padding-left: 16px; padding-right: 16px; }
+    html:root .card { border-radius: 10px; }
+}
+
+@media (max-width: 479.98px) {
+    html:root .nxl-header .header-wrapper { padding-left: 16px; padding-right: 12px; }
+    html:root .nxl-header .header-wrapper .header-left::after {
+        padding: 5px 10px 5px 22px;
+        font-size: 10px;
+        letter-spacing: .1em;
+        background:
+            radial-gradient(circle at 11px 50%, var(--ls-gold) 0 3px, transparent 3.5px),
+            var(--pn-chip-bg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:root .btn,
+    html:root .card,
+    html:root .nxl-navigation .navbar-content .nxl-link { transition: none; }
+    html:root .btn-primary:hover,
+    html:root .card:has(> .card-body .stretched-link):hover { transform: none; }
+}
+
+@media print {
+    html:root .nxl-header::after { display: none; }
+}

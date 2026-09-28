@@ -4,21 +4,10 @@
    edited. gallery.js adds the behaviour.
    ================================================================ */
 
-/* ---------- 1. SAY WHAT THE PICTURES ARE ----------
-   The albums are named after events (moot court, convocation, guest lectures,
-   campus life) but hold illustrative stock pictures of objects, while the page
-   promised "Glimpses of our campus, events, and learning environment". That line
-   gives way to a plain note (in the markup), and every cover and viewer caption
-   says "Illustrative". Delete this section once the albums hold real photographs. */
+/* ---------- 1. KEEP THE GALLERY HEADING FOCUSED ---------- */
 #gallery .section-head .section-sub{display:none}
 #gallery .gallery-note{max-width:62ch;margin:0 auto 26px;text-align:center;font-size:var(--read-small,1rem);line-height:1.6;color:var(--muted)}
 #gallery .album-imgs{position:relative}
-#gallery .album-imgs::after{
-  content:'Illustrative';position:absolute;left:10px;bottom:10px;z-index:1;pointer-events:none;
-  padding:3px 10px;border-radius:999px;background:rgba(18,16,12,.74);color:#f5efdd;
-  font-size:.8125rem;font-weight:600;line-height:1.4;letter-spacing:.02em;
-}
-.lightbox .lb-cap::after{content:' · Illustrative image'}
 
 /* ---------- 2. THE ALBUMS FIRST, TITLED ONCE ----------
    gallery.js moves the albums up under the page title (they sat below the page

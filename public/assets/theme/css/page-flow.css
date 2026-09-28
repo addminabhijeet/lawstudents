@@ -14,8 +14,7 @@
 /* ---------- 2. PHONES: SHORTER PAGES ----------
    Pages ran 10–16 screens on a phone, 34 on the home page. */
 @media(max-width:600px){
-  /* the intro's and the learning guide's pictures are illustrations only
-     ("Illustrative learning scene"); on a phone each took a screen-third */
+  /* the intro's and the learning guide's pictures took a screen-third on phones */
   .page-intro__media,
   .academic-story .academic-photo{display:none}
 

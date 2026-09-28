@@ -2,13 +2,13 @@
 @php
     $section = config('page_sections')[$page] ?? null;
     $imageDescriptions = [
-        'community' => 'Illustrative scene of students discussing law in a library.',
-        'inquiry' => 'Illustrative scene of a student speaking with an educator.',
+        'community' => 'Students discussing law in a library.',
+        'inquiry' => 'A student speaking with an educator.',
         'notes' => 'A revision notebook beside an open reference book.',
         'acts' => 'An open legal text and brass scales on a library desk.',
         'exams' => 'A study desk with a practice sheet, clock and reference books.',
         'library' => 'A sunlit library with legal reference books.',
-        'courses' => 'Illustrative scene of students reading a textbook together.',
+        'courses' => 'Students reading a textbook together.',
     ];
 @endphp
 @if ($section)
@@ -47,7 +47,7 @@
                             alt="{{ $imageDescriptions[$section['story']['image']] }}"
                             width="1536" height="1024" loading="lazy" decoding="async">
                     </picture>
-                    <figcaption>A thoughtful approach to legal learning · Illustrative image</figcaption>
+                    <figcaption>A thoughtful approach to legal learning</figcaption>
                 </figure>
                 <div>
                     <span class="academic-kicker">Your Learning, In Focus</span>

@@ -24,6 +24,11 @@
     <!--! BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/theme.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=4">
+    <!--! Law Students brand: the website's fonts, gold palette and hero backdrop !-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/brand-auth.css') }}?v={{ @filemtime(public_path('assets/css/brand-auth.css')) }}">
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
     <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
@@ -47,6 +52,7 @@
                     </div>
                     <div class="card-body p-sm-5">
                         <h2 class="fs-20 fw-bolder mb-4 text-center">Login</h2>
+                        <p class="auth-subtitle">Sign in to your admin or student panel</p>
                         <p class="text-center mb-4"><a href="{{ route('frontend.home') }}" class="fs-12 fw-bold text-primary">Back to Website</a></p>
 
                         @if ($errors->any())
@@ -81,14 +87,16 @@
                         <form action="{{ route('login.submit') }}" method="POST" class="w-100 mt-4 pt-2">
                             @csrf
                             <div class="mb-4">
-                                <input type="text" name="login" class="form-control"
-                                    placeholder="Email or Username" required>
+                                <label for="loginField" class="form-label">Email or Username</label>
+                                <input type="text" name="login" id="loginField" class="form-control"
+                                    placeholder="Email or Username" autocomplete="username" required>
                             </div>
 
                             <div class="mb-4 generate-pass">
+                                <label for="loginPassword" class="form-label">Password</label>
                                 <div class="input-group field">
-                                    <input type="password" name="password" class="form-control password"
-                                        placeholder="Password" required>
+                                    <input type="password" name="password" id="loginPassword" class="form-control password"
+                                        placeholder="Password" autocomplete="current-password" required>
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                         data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
