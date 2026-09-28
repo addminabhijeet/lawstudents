@@ -281,6 +281,9 @@
 
 <!--! Form fields: phone 10 digits, one @ in an email, letters in names (listeners only) !-->
 <script src="{{ asset('assets/js/form-guard.js') }}?v={{ @filemtime(public_path('assets/js/form-guard.js')) }}"></script>
+
+<!--! Student dashboard: overview, card states, menu labels, tab titles !-->
+@include('layouts.partials.student.dashboard-extras')
 </body>
 
 </html>

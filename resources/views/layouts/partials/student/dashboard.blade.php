@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
 
     <!-- Responsive (phone / tablet) fixes -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=4">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=6">
 
     <!-- Page loader (shown only when a page is slow to load) -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/panel-loader.css') }}?v=1">
@@ -540,7 +540,7 @@
                                     <div>
                                         <h6 class="text-dark mb-0">{{ auth('student')->user()?->name }}</h6>
                                         <span
-                                            class="fs-12 fw-medium text-muted">{{ auth('student')->user()?->email }}</span>
+                                            class="fs-12 fw-medium text-muted" title="{{ auth('student')->user()?->email }}">{{ auth('student')->user()?->email }}</span>
                                     </div>
                                 </div>
                             </div>

@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/theme.min.css') }}">
 
     <!-- Responsive (phone / tablet) fixes -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=4">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive-fixes.css') }}?v=6">
 
     <!-- Page loader (shown only when a page is slow to load) -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/panel-loader.css') }}?v=1">
@@ -378,12 +378,12 @@
                                     <img src="{{ !empty($admin->image) && file_exists(public_path('storage/app/public/' . $admin->image)) 
                                     ? asset('storage/app/public/' . $admin->image) 
                                     : asset('assets/images/avatar/1.png') }}"
-                                        alt="user-image" class="img-fluid user-avtar me-0">
+                                        alt="user-image" class="img-fluid user-avtar">
 
                                     <div>
                                         <h6 class="text-dark mb-0">{{ auth('admin')->user()?->name }}</h6>
                                         <span
-                                            class="fs-12 fw-medium text-muted">{{ auth('admin')->user()?->email }}</span>
+                                            class="fs-12 fw-medium text-muted" title="{{ auth('admin')->user()?->email }}">{{ auth('admin')->user()?->email }}</span>
                                     </div>
                                 </div>
                             </div>

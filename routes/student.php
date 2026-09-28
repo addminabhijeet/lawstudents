@@ -8,7 +8,9 @@ use App\Http\Controllers\Student\CourseControllerStu;
 use App\Http\Controllers\Student\StudentAdmissinControllerStu;
 
 
-Route::middleware(['auth:student'])
+// StudentPanelGuard: the admin copies below (other students' invoices, accounts and
+// admissions by id) answer 404 for students; see the class for the list.
+Route::middleware(['auth:student', \App\Http\Middleware\StudentPanelGuard::class])
     ->prefix('student')
     ->name('student.')
     ->group(function () {
@@ -106,5 +108,7 @@ Route::middleware(['auth:student'])
             ->name('storenotes');
     });
 
+// Sat outside the sign-in check: signed out, it failed with the full debug page.
 Route::get('/legacy-student', [RoutingControllerStu::class, 'student'])
+    ->middleware('auth:student')
     ->name('student');

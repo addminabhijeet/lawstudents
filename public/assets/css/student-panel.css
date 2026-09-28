@@ -1,0 +1,196 @@
+/* Student panel layer (dashboard-extras.blade.php, student-panel.js). Additions only:
+   the theme's own sheets are untouched. */
+
+/* ---------- panel frame ---------- */
+
+/* (The squeezed header photo is fixed in responsive-fixes.css.) */
+
+/* The template's demo "Theme Settings" drawer (skins, Cinzel/Ubuntu fonts) is not for
+   students; the light / dark switch in the header stays. */
+.theme-customizer { display: none !important; }
+
+/* Whole-card links show where the keyboard is. */
+.card:has(> .card-body .stretched-link:focus-visible) {
+  outline: 3px solid #3454d1;
+  outline-offset: 2px;
+}
+
+/* ---------- dashboard: states ---------- */
+.sd-state-done  { --sd-ink: #0b7a3e; --sd-tint: rgba(23, 198, 102, .13); --sd-line: rgba(23, 198, 102, .45); }
+.sd-state-wait  { --sd-ink: #8a5300; --sd-tint: rgba(255, 162, 29, .16); --sd-line: rgba(255, 162, 29, .55); }
+.sd-state-alert { --sd-ink: #b42318; --sd-tint: rgba(234, 77, 77, .12);  --sd-line: rgba(234, 77, 77, .45); }
+.sd-state-todo  { --sd-ink: #2c47b5; --sd-tint: rgba(52, 84, 209, .10);  --sd-line: rgba(52, 84, 209, .40); }
+.sd-state-info  { --sd-ink: #334155; --sd-tint: rgba(100, 116, 139, .12); --sd-line: rgba(100, 116, 139, .35); }
+html.app-skin-dark .sd-state-done  { --sd-ink: #4ade80; }
+html.app-skin-dark .sd-state-wait  { --sd-ink: #fbbf24; }
+html.app-skin-dark .sd-state-alert { --sd-ink: #f87171; }
+html.app-skin-dark .sd-state-todo  { --sd-ink: #93a8ff; }
+html.app-skin-dark .sd-state-info  { --sd-ink: #cbd5e1; }
+
+/* ---------- dashboard: overview ---------- */
+.sd-overview { margin-bottom: 4px; }
+.sd-hero .card-body { padding: 26px 28px; }
+.sd-date {
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+.sd-hello {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #1e293b;
+}
+.sd-ids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0 0 22px;
+  font-size: 13.5px;
+  color: #64748b;
+}
+.sd-ids b { color: #1e293b; font-weight: 600; letter-spacing: .02em; }
+
+.sd-next {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px 18px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 1px solid var(--sd-line);
+  border-left-width: 4px;
+  border-radius: 10px;
+  background: var(--sd-tint);
+}
+.sd-next-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--sd-ink);
+  font-size: 20px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .08);
+}
+.sd-next-label {
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--sd-ink);
+}
+.sd-next-title {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1e293b;
+}
+.sd-next-text {
+  max-width: 68ch;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #475569;
+}
+.sd-next-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.sd-next-actions .btn { white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.sd-btn-quiet { background: #fff; border: 1px solid #d6dbe4; color: #1e293b; }
+.sd-btn-quiet:hover, .sd-btn-quiet:focus-visible { border-color: #3454d1; color: #3454d1; }
+
+/* shortcuts */
+.sd-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 26px;
+}
+.sd-shortcut {
+  display: flex;
+  flex-direction: row;          /* .card is a column */
+  align-items: center;
+  gap: 12px;
+  margin: 0 !important;
+  padding: 16px;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.sd-shortcut:hover, .sd-shortcut:focus-visible {
+  border-color: rgba(52, 84, 209, .45);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, .08);
+  transform: translateY(-1px);
+}
+.sd-shortcut:focus-visible { outline: 3px solid #3454d1; outline-offset: 2px; }
+.sd-shortcut-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(52, 84, 209, .10);
+  color: #3454d1;
+  font-size: 18px;
+}
+.sd-shortcut-text { display: flex; flex-direction: column; min-width: 0; }
+.sd-shortcut-text b { font-size: 14.5px; font-weight: 600; color: #1e293b; }
+.sd-shortcut-text small { font-size: 12.5px; color: #64748b; line-height: 1.4; }
+.sd-shortcut-go { margin-left: auto; color: #94a3b8; font-size: 16px; }
+
+.sd-section-title {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+/* ---------- dashboard: the five cards ---------- */
+.sd-card .avatar-text { background: var(--sd-tint) !important; color: var(--sd-ink); }
+.sd-card .fs-4 { color: var(--sd-ink) !important; }
+.sd-card { border-top: 3px solid var(--sd-line); }
+.sd-card-detail { margin: 2px 0 0; font-size: 12.5px; line-height: 1.45; color: #64748b; }
+
+/* ---------- dark skin ---------- */
+html.app-skin-dark .sd-hello,
+html.app-skin-dark .sd-next-title,
+html.app-skin-dark .sd-ids b,
+html.app-skin-dark .sd-shortcut-text b { color: #e2e8f0; }
+html.app-skin-dark .sd-date,
+html.app-skin-dark .sd-ids,
+html.app-skin-dark .sd-next-text,
+html.app-skin-dark .sd-shortcut-text small,
+html.app-skin-dark .sd-section-title,
+html.app-skin-dark .sd-card-detail { color: #94a3b8; }
+html.app-skin-dark .sd-next-icon { background: rgba(15, 23, 42, .6); }
+html.app-skin-dark .sd-btn-quiet { background: transparent; border-color: #334155; color: #e2e8f0; }
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 1399.98px) {
+  .sd-shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); }   /* four in a row wrap their text beside the menu */
+}
+@media (max-width: 767.98px) {
+  .sd-hero .card-body { padding: 20px 18px; }
+  .sd-hello { font-size: 22px; }
+  .sd-next { grid-template-columns: auto minmax(0, 1fr); padding: 16px; }
+  .sd-next-actions { grid-column: 1 / -1; justify-content: stretch; }
+  .sd-next-actions .btn { flex: 1 1 auto; }
+  .sd-shortcuts { gap: 12px; }
+}
+@media (max-width: 575.98px) {
+  .sd-shortcuts { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-shortcut { transition: none; }
+  .sd-shortcut:hover, .sd-shortcut:focus-visible { transform: none; }
+}
