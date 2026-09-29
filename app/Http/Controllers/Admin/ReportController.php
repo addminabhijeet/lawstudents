@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Student;
 use App\Models\StudentAdmission;
 use App\Support\FeeDues;
+use App\Support\AdminListing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -65,8 +66,9 @@ class ReportController extends Controller
                 ->orWhere('to_phone', 'like', $term)->orWhere('invoice_number', 'like', $term));
         }
 
-        $rows = $query->orderByRaw('due_date IS NULL, due_date ASC')->orderBy('id')
-            ->paginate(25)->withQueryString();
+        $rows = AdminListing::paginate(
+            $query->orderByRaw('due_date IS NULL, due_date ASC')->orderBy('id'), $request
+        );
 
         return view('reports.dues', [
             'rows' => $rows,

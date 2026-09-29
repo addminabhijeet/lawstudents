@@ -7,6 +7,7 @@ use App\Models\LegalKnowledgeCategory;
 use App\Models\LegalKnowledgeSubcategory;
 use App\Models\LegalKnowledgeNote;
 use Illuminate\Http\Request;
+use App\Support\AdminListing;
 
 // Admin CRUD for the "Legal Knowledge" library feature.
 // Mirrors CourseController's rules* methods exactly, kept in its own
@@ -17,9 +18,8 @@ class LegalKnowledgeLibraryController extends Controller
 
     public function listcategories()
     {
-        $categories = LegalKnowledgeCategory::where('delete', 1) // filter visible categories
-            ->latest()
-            ->paginate(10);
+        $categories = AdminListing::paginate(LegalKnowledgeCategory::where('delete', 1) // filter visible categories
+            ->latest()->latest('id'), request(), 10);
 
         return view('legal-knowledge-library.categories.list', compact('categories'));
     }
@@ -79,10 +79,9 @@ class LegalKnowledgeLibraryController extends Controller
 
     public function listsubcategories()
     {
-        $subcategories = LegalKnowledgeSubcategory::with('category')
+        $subcategories = AdminListing::paginate(LegalKnowledgeSubcategory::with('category')
             ->where('delete', 1) // filter subcategories
-            ->latest()
-            ->paginate(10);
+            ->latest()->latest('id'), request(), 10);
 
         return view('legal-knowledge-library.subcategories.list', compact('subcategories'));
     }
@@ -146,7 +145,7 @@ class LegalKnowledgeLibraryController extends Controller
 
     public function listnotes()
     {
-        $notes = LegalKnowledgeNote::with('category', 'subcategory')->where('delete', 1)->latest()->paginate(10);
+        $notes = AdminListing::paginate(LegalKnowledgeNote::with('category', 'subcategory')->where('delete', 1)->latest()->latest('id'), request(), 10);
         return view('legal-knowledge-library.list', compact('notes'));
     }
 

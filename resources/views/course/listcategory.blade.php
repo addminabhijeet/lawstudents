@@ -69,10 +69,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($categories->whereNull('parent_id') as $category)
+                                        @forelse ($categories as $category)
                                             @include('course.partials.admin-category-row', [
                                                 'category' => $category,
-                                                'depth' => 0
+                                                'depth' => 0,
+                                                'rowNumber' => $categories->firstItem() + $loop->index
                                             ])
                                         @empty
                                         <tr>
@@ -81,35 +82,8 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $categories->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $categories->previousPageUrl() }}" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
-                                            <li class="page-item {{ $categories->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$categories->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $categories->nextPageUrl() }}" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $categories])
                         </div>
                     </div>
                 </div>
@@ -264,7 +238,7 @@
                         <select name="parent_id" id="edit_parent_id" class="form-control">
                             <option value="">-- Make This a Root Category --</option>
                             @include('course.partials.category-select-tree', [
-                                'categories' => $categories->whereNull('parent_id'),
+                                'categories' => $allCategories,
                                 'depth' => 0
                             ])
                         </select>
@@ -410,7 +384,7 @@
                         <select name="parent_id" class="form-control" id="parentCategorySelect">
                             <option value="">-- Make This a Root Category --</option>
                             @include('course.partials.category-select-tree', [
-                                'categories' => $categories->whereNull('parent_id'),
+                                'categories' => $allCategories,
                                 'depth' => 0
                             ])
                         </select>

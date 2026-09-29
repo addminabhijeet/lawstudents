@@ -54,7 +54,7 @@
                                     <tbody>
                                         @forelse ($subjects as $subject)
                                             <tr class="single-item">
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $subjects->firstItem() + $loop->index }}</td>
                                                 <td>{{ $subject->name }}</td>
                                                 <td>{{ $subject->course->title ?? '—' }}</td>
                                                 <td>{{ $subject->chapters()->where('delete', 1)->count() }}</td>
@@ -86,10 +86,8 @@
                                     </tbody>
                                 </table>
 
-                                <div class="d-flex justify-content-center mt-3">
-                                    {{ $subjects->links('pagination::bootstrap-5') }}
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $subjects])
                         </div>
                     </div>
                 </div>

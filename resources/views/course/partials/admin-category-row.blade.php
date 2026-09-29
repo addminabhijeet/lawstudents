@@ -3,10 +3,10 @@
 @endphp
 
 <tr data-depth="{{ $depth }}">
-    <td>{{ $loop->iteration }}</td>
+    <td>{{ $rowNumber }}</td>
     <td>
         <div style="padding-left: {{ $paddingLeft }}px; display: flex; align-items: center; gap: 8px;">
-            @if ($category->children->count() > 0)
+            @if (!$category->parent_id)
                 <i class="feather-folder" style="color: #128C7E; font-size: 16px;"></i>
             @else
                 <i class="feather-tag" style="color: #6b7280; font-size: 14px;"></i>
@@ -14,12 +14,12 @@
             <span style="font-weight: {{ $depth > 0 ? 'normal' : '600' }};">
                 {{ $category->name }}
             </span>
-            @if ($category->children->count() > 0)
-                <span class="badge bg-info">{{ $category->children->count() }} sub</span>
+            @if ($category->parent)
+                <small class="text-muted">Under {{ $category->parent->name }}</small>
             @endif
         </div>
     </td>
-    <td>{{ $category->courses->count() }}</td>
+    <td>{{ $category->courses_count }}</td>
     <td>
         <span class="badge {{ $category->status ? 'bg-success' : 'bg-warning' }}">
             {{ $category->status ? 'Active' : 'Inactive' }}
@@ -38,12 +38,3 @@
         </div>
     </td>
 </tr>
-
-{{-- Recursively display child categories --}}
-@foreach ($category->children as $child)
-    @include('course.partials.admin-category-row', [
-        'category' => $child,
-        'depth' => $depth + 1,
-        'loop' => $loop
-    ])
-@endforeach

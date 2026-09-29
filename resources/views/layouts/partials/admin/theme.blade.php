@@ -284,6 +284,7 @@
 
 <!--! Admin suite: search palette, page bar, table tools, favourites, display settings !-->
 <script src="{{ asset('assets/js/panel-suite.js') }}?v={{ @filemtime(public_path('assets/js/panel-suite.js')) }}"></script>
+<script src="{{ asset('assets/js/admin-document-preview.js') }}?v={{ @filemtime(public_path('assets/js/admin-document-preview.js')) }}"></script>
 </body>
 
 </html>

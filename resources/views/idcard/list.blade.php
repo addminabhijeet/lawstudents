@@ -59,18 +59,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $groupedPayments = $payments->groupBy('student_id');
-                                        @endphp
-
-                                        @forelse($groupedPayments as $studentId => $studentPayments)
-                                            @php
-                                                $firstPayment = $studentPayments->first();
-                                            @endphp
+                                        @forelse($payments as $firstPayment)
 
                                             <tr class="single-item">
                                                 <td>
-                                                    {{ $loop->iteration }}
+                                                    {{ $payments->firstItem() + $loop->index }}
                                                 </td>
 
                                                 <td>
@@ -161,39 +154,8 @@
                                     </tbody>
 
                                 </table>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $payments->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $payments->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($payments->getUrlRange(max(1, $payments->currentPage() - 2), min($payments->lastPage(), $payments->currentPage() + 2)) as $page => $url)
-                                                <li
-                                                    class="page-item {{ $payments->currentPage() == $page ? 'active' : '' }}">
-                                                    <a class="page-link"
-                                                        href="{{ $url }}">{{ $page }}</a>
-                                                </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$payments->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $payments->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
                             </div>
+                            @include('admin.partials.pagination', ['paginator' => $payments])
                         </div>
                     </div>
                 </div>

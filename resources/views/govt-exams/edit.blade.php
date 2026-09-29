@@ -58,7 +58,7 @@
                                     <ul class="list-group">
                                         @foreach ($exams->pdfs as $index => $pdf)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <a href="{{ asset('storage/' . $pdf) }}" target="_blank">
+                                            <a href="{{ asset('storage/' . $pdf) }}" data-document-preview data-preview-title="{{ basename($pdf) }}">
                                                 {{ pathinfo($pdf, PATHINFO_BASENAME) }}
                                             </a>
                                         </li>

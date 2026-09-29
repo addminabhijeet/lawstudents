@@ -78,39 +78,8 @@
 
                                 {{-- Page links: shown once by the Bootstrap bar below. --}}
 
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $subcategories->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $subcategories->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($subcategories->getUrlRange(1, $subcategories->lastPage()) as $page => $url)
-                                            <li
-                                                class="page-item {{ $subcategories->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link"
-                                                    href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$subcategories->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $subcategories->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $subcategories])
                         </div>
                     </div>
                 </div>

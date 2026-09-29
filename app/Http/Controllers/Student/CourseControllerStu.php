@@ -39,6 +39,20 @@ class CourseControllerStu extends Controller
             }
         }
 
+        // ISSUE-003 FIX: If no paid courses found this month, check if latest payment is paid
+        // This handles cases where payment was processed/confirmed but issue_date might differ
+        if (empty($paidCourseIds)) {
+            $latestPaidPayment = Payment::where('student_id', $student->id)
+                ->where('payment_status', 'paid')
+                ->latest('id')
+                ->first();
+
+            if ($latestPaidPayment && $latestPaidPayment->course_id) {
+                $ids = explode(',', $latestPaidPayment->course_id);
+                $paidCourseIds = array_merge($paidCourseIds, $ids);
+            }
+        }
+
         $paidCourseIds = array_map('intval', $paidCourseIds);
         $paidCourseIds = array_unique($paidCourseIds);
 
@@ -64,9 +78,11 @@ class CourseControllerStu extends Controller
         $student = Auth::guard('student')->user();
 
         // Check if the student has a payment containing this course
+        // ISSUE-003 FIX: Check any paid payment that contains this course ID
         $payment = Payment::where('student_id', $student->id)
             ->where('payment_status', 'paid')
             ->whereRaw("FIND_IN_SET(?, course_id)", [$id])
+            ->latest('id')
             ->first();
 
         if (!$payment) {

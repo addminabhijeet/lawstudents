@@ -67,9 +67,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($categories->whereNotNull('parent_id') as $category)
+                                        @forelse ($categories as $category)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $categories->firstItem() + $loop->index }}</td>
                                             <td>{{ $category->name }}</td>
                                             <td>
                                                 <div class="hstack gap-2 justify-content-end">
@@ -92,35 +92,8 @@
                                     </tbody>
                                 </table>
                                 <!-- Pagination -->
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $categories->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $categories->previousPageUrl() }}" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
-                                            <li class="page-item {{ $categories->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$categories->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $categories->nextPageUrl() }}" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $categories])
                         </div>
                     </div>
                 </div>
@@ -152,7 +125,7 @@
                                     <label class="form-label">Select Category</label>
                                     <select name="category_id" class="form-control" required>
                                         <option value="">-- Select Category --</option>
-                                        @foreach ($categories as $category)
+                                        @foreach ($allCategories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
@@ -275,7 +248,7 @@
                         <select name="parent_id" id="edit_parent_id" class="form-control">
                             <option value="">-- Main Category --</option>
 
-                            @foreach ($categories->whereNull('parent_id') as $category)
+                            @foreach ($allCategories->whereNull('parent_id') as $category)
                             <option value="{{ $category->id }}">
                                 {{ $category->name }}
                             </option>
@@ -321,7 +294,7 @@
                                     <label class="form-label">Select Category</label>
                                     <select name="category_id" class="form-control" required>
                                         <option value="">-- Select Category --</option>
-                                        @foreach ($categories as $category)
+                                        @foreach ($allCategories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
@@ -415,7 +388,7 @@
                         <select name="parent_id" id="edit_parent_id" class="form-control">
                             <option value="">-- Main Category --</option>
 
-                            @foreach ($categories->whereNull('parent_id') as $category)
+                            @foreach ($allCategories->whereNull('parent_id') as $category)
                             <option value="{{ $category->id }}">
                                 {{ $category->name }}
                             </option>

@@ -41,7 +41,7 @@
                 @foreach ($tabs as $key => [$label, $ico])
                     <a role="tab" aria-selected="{{ $filter === $key ? 'true' : 'false' }}"
                        class="ls-dues-tab {{ $filter === $key ? 'is-on' : '' }} {{ $key === 'overdue' && $totals[$key]['count'] ? 'is-alert' : '' }}"
-                       href="{{ route('admin.reports.dues', array_filter(['filter' => $key === 'all' ? null : $key, 'q' => $q ?: null])) }}">
+                       href="{{ route('admin.reports.dues', array_filter(['filter' => $key === 'all' ? null : $key, 'q' => $q ?: null, 'per_page' => $rows->perPage()])) }}">
                         <span class="ls-dues-tab__label"><i class="feather-{{ $ico }}" aria-hidden="true"></i>{{ $label }}</span>
                         <strong>{{ $totals[$key]['count'] }}</strong>
                         <small>{{ $inr($totals[$key]['amount']) }}</small>
@@ -53,13 +53,14 @@
                 <div class="card-body p-0">
                     <form method="GET" action="{{ route('admin.reports.dues') }}" class="ls-dues-search">
                         @if ($filter !== 'all')<input type="hidden" name="filter" value="{{ $filter }}">@endif
+                        <input type="hidden" name="per_page" value="{{ $rows->perPage() }}">
                         <label class="ls-find">
                             <span class="visually-hidden">Search students</span>
                             <i class="feather-search" aria-hidden="true"></i>
                             <input type="search" name="q" value="{{ $q }}" placeholder="Search name, email, phone or invoice" autocomplete="off">
                         </label>
                         <button class="btn btn-light-brand" type="submit">Search</button>
-                        @if ($q)<a class="ls-linkbtn" href="{{ route('admin.reports.dues', array_filter(['filter' => $filter === 'all' ? null : $filter])) }}">Clear</a>@endif
+                        @if ($q)<a class="ls-linkbtn" href="{{ route('admin.reports.dues', array_filter(['filter' => $filter === 'all' ? null : $filter, 'per_page' => $rows->perPage()])) }}">Clear</a>@endif
                     </form>
 
                     <div class="table-responsive">
@@ -141,23 +142,7 @@
                         </table>
                     </div>
 
-                    @if ($rows->hasPages())
-                        <div class="d-flex justify-content-center my-3">
-                            <nav>
-                                <ul class="pagination pagination-sm mb-0">
-                                    <li class="page-item {{ $rows->onFirstPage() ? 'disabled' : '' }}">
-                                        <a class="page-link" href="{{ $rows->previousPageUrl() }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="visually-hidden">Previous</span></a>
-                                    </li>
-                                    @foreach ($rows->getUrlRange(max(1, $rows->currentPage() - 2), min($rows->lastPage(), $rows->currentPage() + 2)) as $page => $url)
-                                        <li class="page-item {{ $rows->currentPage() == $page ? 'active' : '' }}"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                                    @endforeach
-                                    <li class="page-item {{ !$rows->hasMorePages() ? 'disabled' : '' }}">
-                                        <a class="page-link" href="{{ $rows->nextPageUrl() }}" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="visually-hidden">Next</span></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    @endif
+                    @include('admin.partials.pagination', ['paginator' => $rows])
                 </div>
             </div>
         </div>

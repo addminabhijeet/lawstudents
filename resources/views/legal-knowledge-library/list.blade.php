@@ -54,7 +54,7 @@
                                         @forelse ($notes as $note)
                                         <tr>
                                             <!-- Serial -->
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $notes->firstItem() + $loop->index }}</td>
 
                                             <!-- Category -->
                                             <td>{{ $note->category?->name }}</td>
@@ -63,7 +63,17 @@
                                             <td>{{ $note->subcategory?->name }}</td>
 
                                             <!-- Description -->
-                                            <td>{{ $note->description }}</td>
+                                            <td>
+                                                <div>{{ $note->description }}</div>
+                                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                                    @foreach ($note->pdfs ?? [] as $pdf)
+                                                        <a href="{{ asset('storage/' . $pdf) }}" class="btn btn-sm btn-outline-primary"
+                                                            data-document-preview data-preview-title="{{ basename($pdf) }}">
+                                                            <i class="feather-file-text me-1" aria-hidden="true"></i>PDF {{ $loop->iteration }}
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </td>
 
                                             <!-- Actions -->
                                             <td>
@@ -97,39 +107,8 @@
                                     </tbody>
                                 </table>
 
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $notes->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $notes->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($notes->getUrlRange(1, $notes->lastPage()) as $page => $url)
-                                            <li
-                                                class="page-item {{ $notes->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link"
-                                                    href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$notes->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $notes->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $notes])
                         </div>
                     </div>
                 </div>

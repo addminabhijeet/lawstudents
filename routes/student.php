@@ -6,6 +6,7 @@ use App\Http\Controllers\Student\RoutingControllerStu;
 use App\Http\Controllers\Auth\StudentPasswordController;
 use App\Http\Controllers\Student\CourseControllerStu;
 use App\Http\Controllers\Student\StudentAdmissinControllerStu;
+use App\Http\Controllers\Student\ChangePasswordController;
 
 
 // StudentPanelGuard: the admin copies below (other students' invoices, accounts and
@@ -24,6 +25,13 @@ Route::middleware(['auth:student', \App\Http\Middleware\StudentPanelGuard::class
 
         Route::get('help', [\App\Http\Controllers\Student\PortalController::class, 'help'])
             ->name('help');
+
+        // Password change for authenticated students
+        Route::get('change-password', [ChangePasswordController::class, 'showChangePasswordForm'])
+            ->name('showchangepassword');
+
+        Route::post('change-password', [ChangePasswordController::class, 'changePassword'])
+            ->name('changepassword');
 
         Route::get('add-student', [RoutingControllerStu::class, 'addstudent'])
             ->name('addstudent');

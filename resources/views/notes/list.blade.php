@@ -74,11 +74,10 @@
 
                                 <!-- ACTION BUTTONS -->
                                 <div class="mt-3 d-flex flex-column gap-2">
-                                    <a href="javascript:void(0);"
-                                        class="btn btn-info w-100 mb-2 view-note-btn"
-                                        data-id="{{ $note->id }}" data-title="{{ $note->title }}"
-                                        data-description="{{ $note->description }}"
-                                        data-pdf="{{ route('admin.viewnote', $note->id) }}">
+                                    <a href="{{ route('admin.viewnote', $note->id) }}"
+                                        class="btn btn-info w-100 mb-2" data-document-preview
+                                        data-preview-title="{{ $note->title }}"
+                                        data-preview-description="{{ $note->description }}">
                                         <i class="feather-eye me-2"></i>
                                         <span>View Note</span>
                                     </a>
@@ -210,35 +209,6 @@
                 </div>
 
             </form>
-
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="viewNoteModal" tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewNoteTitle"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body">
-                <div class="mb-3">
-                    <strong>Description:</strong>
-                    <p id="viewNoteDescription"></p>
-                </div>
-
-                {{-- Phone browsers often can't show a PDF inside a frame. --}}
-                <a id="viewNotePdfLink" href="#" target="_blank" rel="noopener"
-                    class="btn btn-outline-primary btn-sm mb-3">
-                    <i class="feather-external-link me-2"></i>Open PDF
-                </a>
-
-                <iframe id="viewNotePdf" width="100%" height="600px" style="border:1px solid #ddd;">
-                </iframe>
-            </div>
 
         </div>
     </div>
@@ -663,23 +633,7 @@
         $("#btn-n-add").show();
     });
 
-    // VIEW NOTE
-    $(document).on("click", ".view-note-btn", function() {
-
-        let title = $(this).data("title");
-        let description = $(this).data("description");
-        let pdf = $(this).data("pdf");
-
-        $("#viewNoteTitle").text(title);
-        $("#viewNoteDescription").text(description);
-        $("#viewNotePdf").attr("src", pdf);
-        $("#viewNotePdfLink").attr("href", pdf);
-
-        $("#viewNoteModal").modal("show");
-    });
-
-
-    // EDIT NOTE
+// EDIT NOTE
     $(document).on("click", ".edit-note-btn", function() {
 
         let id = $(this).data("id");

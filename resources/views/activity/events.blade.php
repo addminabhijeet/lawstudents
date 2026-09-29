@@ -2,6 +2,7 @@
 @section('title', 'Activity Timeline')
 @section('activity-content')
 <form method="GET" class="activity-filters">
+    <input type="hidden" name="per_page" value="{{ $events->perPage() }}">
     @include('activity.date-filter')
     <label>Panel<select name="panel" class="form-select"><option value="">All</option>@foreach(['website', 'student', 'admin', 'api'] as $panel)<option @selected(request('panel') === $panel)>{{ $panel }}</option>@endforeach</select></label>
     <label>Actor<select name="actor_type" class="form-select"><option value="">All</option>@foreach(['visitor', 'student', 'admin', 'user'] as $actor)<option @selected(request('actor_type') === $actor)>{{ $actor }}</option>@endforeach</select></label>

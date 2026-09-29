@@ -18,15 +18,16 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\StudentOtpMail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use App\Support\AdminListing;
 
 class StudentAdmissinController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $admissions = StudentAdmission::where('deleted', 0)
-            ->latest()
-            ->paginate(10);
+        $admissions = AdminListing::paginate(
+            StudentAdmission::where('deleted', 0)->latest('id'), $request
+        );
 
         return view('admission.list', compact('admissions'));
     }

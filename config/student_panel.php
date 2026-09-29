@@ -37,6 +37,7 @@ return [
         ['key' => 'notes', 'label' => 'Favourite Notes', 'icon' => 'bookmark', 'route' => 'student.listnotes'],
 
         ['caption' => 'Support'],
+        ['key' => 'changepassword', 'label' => 'Change Password', 'icon' => 'lock', 'route' => 'student.showchangepassword'],
         ['key' => 'help', 'label' => 'Help & Support', 'icon' => 'help-circle', 'route' => 'student.help'],
     ],
 
@@ -72,6 +73,7 @@ return [
             'links' => [['Favourite notes', 'bookmark', 'student.listnotes']]],
         'student.listnotes' => ['title' => 'Favourite Notes', 'kind' => 'list', 'group' => 'Learning',
             'links' => [['Courses', 'book-open', 'student.listcourse']]],
+        'student.showchangepassword' => ['title' => 'Change Password', 'kind' => 'view', 'group' => 'Support'],
         'student.help' => ['title' => 'Help & Support', 'kind' => 'other', 'group' => 'Support'],
     ],
 ];

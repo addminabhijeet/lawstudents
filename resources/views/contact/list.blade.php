@@ -36,7 +36,7 @@
                                     <tbody>
                                         @forelse ($contact as $item)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $contact->firstItem() + $loop->index }}</td>
 
                                             <!-- Full Name -->
                                             <td>{{ $item->first_name }} {{ $item->last_name }}</td>
@@ -76,38 +76,10 @@
                                             <td colspan="5" class="text-center">No Data Found</td>
                                         </tr>
                                         @endforelse
-                                    </tbody>>
+                                    </tbody>
                                 </table>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $contact->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $contact->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($contact->getUrlRange(1, $contact->lastPage()) as $page => $url)
-                                            <li class="page-item {{ $contact->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$contact->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $contact->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
                             </div>
+                            @include('admin.partials.pagination', ['paginator' => $contact])
                         </div>
                     </div>
                 </div>

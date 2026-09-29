@@ -7,6 +7,7 @@ use App\Models\GovtExamCategory;
 use App\Models\GovtExamSubcategory;
 use App\Models\GovtExam;
 use Illuminate\Http\Request;
+use App\Support\AdminListing;
 
 // Admin CRUD for the "Centre & State Govt. Examination" feature.
 // Mirrors CourseController's rules* methods exactly, kept in its own
@@ -17,9 +18,8 @@ class GovtExamController extends Controller
 
     public function listcategories()
     {
-        $categories = GovtExamCategory::where('delete', 1) // filter visible categories
-            ->latest()
-            ->paginate(10);
+        $categories = AdminListing::paginate(GovtExamCategory::where('delete', 1) // filter visible categories
+            ->latest()->latest('id'), request(), 10);
 
         return view('govt-exams.categories.list', compact('categories'));
     }
@@ -79,10 +79,9 @@ class GovtExamController extends Controller
 
     public function listsubcategories()
     {
-        $subcategories = GovtExamSubcategory::with('category')
+        $subcategories = AdminListing::paginate(GovtExamSubcategory::with('category')
             ->where('delete', 1) // filter subcategories
-            ->latest()
-            ->paginate(10);
+            ->latest()->latest('id'), request(), 10);
 
         return view('govt-exams.subcategories.list', compact('subcategories'));
     }
@@ -146,7 +145,7 @@ class GovtExamController extends Controller
 
     public function listexams()
     {
-        $exams = GovtExam::with('category', 'subcategory')->where('delete', 1)->latest()->paginate(10);
+        $exams = AdminListing::paginate(GovtExam::with('category', 'subcategory')->where('delete', 1)->latest()->latest('id'), request(), 10);
         return view('govt-exams.list', compact('exams'));
     }
 

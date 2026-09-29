@@ -15,6 +15,7 @@ use App\Models\StudentAdmission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PaymentMail;
+use App\Support\AdminListing;
 
 
 class RoutingController extends Controller
@@ -39,21 +40,29 @@ class RoutingController extends Controller
         return view('auth.student-verify-otp');
     }
 
-    public function listpayment()
+    public function listpayment(Request $request)
     {
-        $payments = Payment::with('student')
-            ->where('deleted', 0)
-            ->latest()
-            ->paginate(10);
+        $query = $this->latestStudentPayments();
+        $payments = AdminListing::paginate($query->latest('id'), $request);
 
         return view('payment.list', compact('payments'));
     }
 
-    public function listidcard()
+    public function listidcard(Request $request)
     {
-        $payments = Payment::with('student')->latest()->paginate(10);
+        $query = $this->latestStudentPayments();
+        $payments = AdminListing::paginate($query->latest('id'), $request);
 
         return view('idcard.list', compact('payments'));
+    }
+
+    /** Paginate student accounts, not individual invoices grouped after pagination. */
+    private function latestStudentPayments()
+    {
+        $latest = Payment::query()->where('deleted', 0)
+            ->selectRaw('MAX(id)')->groupBy('student_id');
+
+        return Payment::with('student')->whereIn('id', $latest);
     }
 
     public function toggleViewId(Request $request)
@@ -121,6 +130,11 @@ class RoutingController extends Controller
                 'payment_status'   => $paymentStatus,
                 'invoice_note'     => $validated['invoice_note'] ?? $currentPayment->invoice_note,
             ]);
+
+            // ISSUE-002 FIX: Automatically enable viewid for ID card when payment is marked as paid
+            if ($paymentStatus === 'paid' && !$currentPayment->viewid) {
+                $currentPayment->update(['viewid' => true]);
+            }
 
             // Existing logic to create remaining payment
             if (
@@ -267,9 +281,9 @@ class RoutingController extends Controller
         return view('dashboard.student');
     }
 
-    public function liststudent()
+    public function liststudent(Request $request)
     {
-        $students = Student::where('deleted', 0)->paginate(10);
+        $students = AdminListing::paginate(Student::where('deleted', 0)->orderBy('id'), $request);
         return view('student.list', compact('students'));
     }
 

@@ -73,7 +73,7 @@
                                         @forelse ($categories as $categorie)
 
                                             <tr class="single-item">
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $categories->firstItem() + $loop->index }}</td>
 
                                                 <!-- Category Name Styled -->
                                                 <td>
@@ -124,36 +124,8 @@
                                 </table>
 
                                 <!-- Pagination -->
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-
-                                            <!-- Previous -->
-                                            <li class="page-item {{ $categories->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $categories->previousPageUrl() }}">
-                                                    &laquo;
-                                                </a>
-                                            </li>
-
-                                            <!-- Pages -->
-                                            @foreach ($categories->getUrlRange(1, $categories->lastPage()) as $page => $url)
-                                                <li class="page-item {{ $categories->currentPage() == $page ? 'active' : '' }}">
-                                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                                                </li>
-                                            @endforeach
-
-                                            <!-- Next -->
-                                            <li class="page-item {{ !$categories->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $categories->nextPageUrl() }}">
-                                                    &raquo;
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </nav>
                                 </div>
-
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $categories])
                         </div>
                     </div>
                 </div>

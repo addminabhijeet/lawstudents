@@ -54,7 +54,7 @@
                                         @forelse ($ruless as $rules)
                                         <tr>
                                             <!-- Serial -->
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $ruless->firstItem() + $loop->index }}</td>
 
                                             <!-- Category -->
                                             <td>{{ $rules->category?->name }}</td>
@@ -63,7 +63,17 @@
                                             <td>{{ $rules->subcategory?->name }}</td>
 
                                             <!-- Description -->
-                                            <td>{{ $rules->description }}</td>
+                                            <td>
+                                                <div>{{ $rules->description }}</div>
+                                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                                    @foreach ($rules->pdfs ?? [] as $pdf)
+                                                        <a href="{{ asset('storage/' . $pdf) }}" class="btn btn-sm btn-outline-primary"
+                                                            data-document-preview data-preview-title="{{ basename($pdf) }}">
+                                                            <i class="feather-file-text me-1" aria-hidden="true"></i>PDF {{ $loop->iteration }}
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </td>
 
                                             <!-- Actions -->
                                             <td>
@@ -98,39 +108,8 @@
                                     </tbody>
                                 </table>
 
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $ruless->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $ruless->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($ruless->getUrlRange(1, $ruless->lastPage()) as $page => $url)
-                                            <li
-                                                class="page-item {{ $ruless->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link"
-                                                    href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$ruless->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $ruless->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $ruless])
                         </div>
                     </div>
                 </div>

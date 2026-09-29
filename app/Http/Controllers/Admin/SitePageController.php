@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SitePage;
 use Illuminate\Http\Request;
+use App\Support\AdminListing;
 
 class SitePageController extends Controller
 {
@@ -13,7 +14,7 @@ class SitePageController extends Controller
      */
     public function index()
     {
-        $pages = SitePage::latest('updated_at')->paginate(10);
+        $pages = AdminListing::paginate(SitePage::latest('updated_at'), request(), 10);
         return view('admin.site-pages.list', compact('pages'));
     }
 

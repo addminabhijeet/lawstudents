@@ -54,7 +54,7 @@
                                         @forelse ($actss as $acts)
                                         <tr>
                                             <!-- Serial -->
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $actss->firstItem() + $loop->index }}</td>
 
                                             <!-- Category -->
                                             <td>{{ $acts->category?->name }}</td>
@@ -63,7 +63,17 @@
                                             <td>{{ $acts->subcategory?->name }}</td>
 
                                             <!-- Description -->
-                                            <td>{{ $acts->description }}</td>
+                                            <td>
+                                                <div>{{ $acts->description }}</div>
+                                                <div class="d-flex flex-wrap gap-2 mt-2">
+                                                    @foreach ($acts->pdfs ?? [] as $pdf)
+                                                        <a href="{{ asset('storage/' . $pdf) }}" class="btn btn-sm btn-outline-primary"
+                                                            data-document-preview data-preview-title="{{ basename($pdf) }}">
+                                                            <i class="feather-file-text me-1" aria-hidden="true"></i>PDF {{ $loop->iteration }}
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </td>
 
                                             <!-- Actions -->
                                             <td>
@@ -100,39 +110,8 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $actss->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $actss->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($actss->getUrlRange(1, $actss->lastPage()) as $page => $url)
-                                            <li
-                                                class="page-item {{ $actss->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link"
-                                                    href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$actss->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $actss->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $actss])
                         </div>
                     </div>
                 </div>

@@ -41,6 +41,7 @@
 
     <!-- Admin suite: menu groups, search, related-action bars, table tools, phone navigation, wide screens -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/panel-suite.css') }}?v={{ @filemtime(public_path('assets/css/panel-suite.css')) }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/admin-workflows.css') }}?v={{ @filemtime(public_path('assets/css/admin-workflows.css')) }}">
 
     <!-- IE Support -->
     <!--[if lt IE 9]>

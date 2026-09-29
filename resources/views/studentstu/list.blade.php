@@ -199,6 +199,7 @@
                                 <table class="table table-hover" id="paymentList">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th class="wd-30">
                                                 <div class="btn-group mb-1">
                                                     <div class="custom-control custom-checkbox ms-1">
@@ -221,6 +222,7 @@
                                     <tbody>
                                         @foreach ($students as $student)
                                             <tr class="single-item">
+                                                <td>{{ $students->firstItem() + $loop->index }}</td>
                                                 <td>
                                                     <div class="item-checkbox ms-1">
                                                         <div class="custom-control custom-checkbox">
@@ -287,13 +289,14 @@
                                         @endforeach
                                         @if ($students->isEmpty())
                                             <tr>
-                                                <td colspan="8" class="text-center text-muted">No students found.
+                                                <td colspan="9" class="text-center text-muted">No students found.
                                                 </td>
                                             </tr>
                                         @endif
                                     </tbody>
                                 </table>
                             </div>
+                            @include('admin.partials.pagination', ['paginator' => $students])
                         </div>
                     </div>
                 </div>

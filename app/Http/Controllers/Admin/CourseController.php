@@ -15,6 +15,7 @@ use App\Models\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use App\Support\AdminListing;
 use App\Models\Banner;
 use App\Models\User;
 use App\Models\Gallery;
@@ -69,15 +70,18 @@ class CourseController extends Controller
             ->get();
 
         // Paginate for table display
-        $categories = Category::where('delete', 1)
-            ->paginate(10);
+        $categories = AdminListing::paginate(Category::with('parent')
+            ->withCount(['courses' => fn ($query) => $query->where('delete', 1)])
+            ->where('delete', 1)
+            ->orderBy('sort_order')->orderBy('id'), request(), 10);
 
         return view('course.listcategory', compact('categories', 'allCategories'));
     }
 
     public function listcoursesubcategory()
     {
-        $categories = Category::with([
+        $allCategories = Category::where('delete', 1)->orderBy('sort_order')->orderBy('id')->get();
+        $query = Category::with([
             'courses' => function ($query) {
                 $query->where('delete', 1);
             },
@@ -86,10 +90,12 @@ class CourseController extends Controller
             }
         ])
             ->where('delete', 1)
+            ->whereNotNull('parent_id')
             ->orderBy('sort_order')
-            ->paginate(10);
+            ->orderBy('id');
+        $categories = AdminListing::paginate($query, request(), 10);
 
-        return view('course.listsubcategory', compact('categories'));
+        return view('course.listsubcategory', compact('categories', 'allCategories'));
     }
 
     public function editcourse($id)
@@ -107,7 +113,7 @@ class CourseController extends Controller
 
     public function listclientele()
     {
-        $clienteles = Clientele::where('delete', 0)->paginate(10);
+        $clienteles = AdminListing::paginate(Clientele::where('delete', 0), request(), 10);
         return view('clientele.list', compact('clienteles'));
     }
 
@@ -193,10 +199,9 @@ class CourseController extends Controller
 
     public function listacts()
     {
-        $actss = Act::with(['category', 'subcategory'])
+        $actss = AdminListing::paginate(Act::with(['category', 'subcategory'])
             ->where('delete', 1) // filter acts
-            ->latest()
-            ->paginate(10);
+            ->latest()->latest('id'), request(), 10);
 
         return view('acts.list', compact('actss'));
     }
@@ -308,7 +313,7 @@ class CourseController extends Controller
 
     public function listactcategories()
     {
-        $categories = ActCategory::where('delete', 1)->latest()->paginate(10);
+        $categories = AdminListing::paginate(ActCategory::where('delete', 1)->latest()->latest('id'), request(), 10);
         return view('acts.categories.list', compact('categories'));
     }
 
@@ -368,9 +373,8 @@ class CourseController extends Controller
 
     public function listrulescategories()
     {
-        $categories = RuleCategory::where('delete', 1) // filter visible categories
-            ->latest()
-            ->paginate(10);
+        $categories = AdminListing::paginate(RuleCategory::where('delete', 1) // filter visible categories
+            ->latest()->latest('id'), request(), 10);
 
         return view('rules.categories.list', compact('categories'));
     }
@@ -429,10 +433,9 @@ class CourseController extends Controller
 
     public function listactsubcategories()
     {
-        $subcategories = ActSubcategory::with('category')
+        $subcategories = AdminListing::paginate(ActSubcategory::with('category')
             ->where('delete', 1)
-            ->latest()
-            ->paginate(10);
+            ->latest()->latest('id'), request(), 10);
 
         return view('acts.subcategories.list', compact('subcategories'));
     }
@@ -497,10 +500,9 @@ class CourseController extends Controller
 
     public function listrulessubcategories()
     {
-        $subcategories = RuleSubcategory::with('category')
+        $subcategories = AdminListing::paginate(RuleSubcategory::with('category')
             ->where('delete', 1) // filter subcategories
-            ->latest()
-            ->paginate(10);
+            ->latest()->latest('id'), request(), 10);
 
         return view('rules.subcategories.list', compact('subcategories'));
     }
@@ -564,7 +566,7 @@ class CourseController extends Controller
 
     public function listrules()
     {
-        $ruless = Rule::with('category', 'subcategory')->where('delete', 1)->latest()->paginate(10);
+        $ruless = AdminListing::paginate(Rule::with('category', 'subcategory')->where('delete', 1)->latest()->latest('id'), request(), 10);
         return view('rules.list', compact('ruless'));
     }
 
@@ -1045,10 +1047,9 @@ class CourseController extends Controller
 
     public function listcopys()
     {
-        $copyss = Copy::with(['category', 'subcategory'])
+        $copyss = AdminListing::paginate(Copy::with(['category', 'subcategory'])
             ->where('delete', 1) // filter copies
-            ->latest()
-            ->paginate(10);
+            ->latest()->latest('id'), request(), 10);
 
         return view('copys.list', compact('copyss'));
     }
@@ -1162,9 +1163,8 @@ class CourseController extends Controller
     // List all copy categories
     public function listcopyscategories()
     {
-        $categories = CopyCategory::where('delete', 1) // filter visible categories
-            ->latest()
-            ->paginate(10);
+        $categories = AdminListing::paginate(CopyCategory::where('delete', 1) // filter visible categories
+            ->latest()->latest('id'), request(), 10);
 
         return view('copys.categories.list', compact('categories'));
     }
@@ -1225,10 +1225,9 @@ class CourseController extends Controller
     // List all copy subcategories
     public function listcopyssubcategories()
     {
-        $subcategories = CopySubcategory::with('category')
+        $subcategories = AdminListing::paginate(CopySubcategory::with('category')
             ->where('delete', 1) // filter subcategories
-            ->latest()
-            ->paginate(10);
+            ->latest()->latest('id'), request(), 10);
 
         return view('copys.subcategories.list', compact('subcategories'));
     }
@@ -1295,7 +1294,7 @@ class CourseController extends Controller
 
     public function listcontactform()
     {
-        $contact = ContactForm::where('delete', 1)->latest()->paginate(10);
+        $contact = AdminListing::paginate(ContactForm::where('delete', 1)->latest()->latest('id'), request(), 10);
         return view('contact.list', compact('contact'));
     }
 
@@ -1323,9 +1322,8 @@ class CourseController extends Controller
 
     public function liststudentactivity()
     {
-        $admissions = StudentAdmission::where('deleted', 0)
-            ->latest()
-            ->paginate(10);
+        $admissions = AdminListing::paginate(StudentAdmission::where('deleted', 0)
+            ->latest()->latest('id'), request(), 10);
         return view('student.listactivity', compact('admissions'));
     }
 

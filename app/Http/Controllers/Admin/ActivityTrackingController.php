@@ -10,6 +10,7 @@ use App\Models\LeadFollowUp;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Models\StudentAdmission;
+use App\Support\AdminListing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -78,7 +79,7 @@ class ActivityTrackingController extends Controller
         foreach ($data as $key => $value) {
             if ($value !== null && $value !== '') $query->where($key, $value);
         }
-        return view('activity.events', ['events' => $query->orderByDesc('occurred_at')->orderByDesc('id')->paginate(50)->withQueryString()]);
+        return view('activity.events', ['events' => AdminListing::paginate($query->orderByDesc('occurred_at')->orderByDesc('id'), $request, 50)]);
     }
 
     public function leads(Request $request)
@@ -96,22 +97,25 @@ class ActivityTrackingController extends Controller
                     ->where('submitted_at', '<', now()->subHours(config('activity.response_target_hours'))));
             });
         }
-        return view('activity.leads', ['leads' => $query->orderBy('submitted_at')->paginate(30)->withQueryString()]);
+        return view('activity.leads', ['leads' => AdminListing::paginate($query->orderBy('submitted_at')->orderBy('id'), $request, 30)]);
     }
 
-    public function lead(AdmissionLead $lead)
+    public function lead(Request $request, AdmissionLead $lead)
     {
-        $lead->load(['student.admission', 'assignedAdmin', 'followUps.admin']);
+        $lead->load(['student.admission', 'assignedAdmin']);
+        $followUps = AdminListing::paginate($lead->followUps()->with('admin')->latest('created_at')->latest('id'), $request, 25, 'history_page');
         $events = ActivityEvent::where(function ($q) use ($lead) {
             $q->where(fn ($q) => $q->where('subject_type', 'AdmissionLead')->where('subject_id', $lead->id));
             if ($lead->visitor_id) {
                 $q->orWhere(fn ($q) => $q->where('visitor_id', $lead->visitor_id)->where('actor_type', 'visitor')->where('occurred_at', '<=', $lead->submitted_at));
             }
             if ($lead->student_id) $q->orWhere('student_id', $lead->student_id);
-            $q->orWhere(fn ($q) => $q->where('subject_type', 'LeadFollowUp')->whereIn('subject_id', $lead->followUps->pluck('id')));
-        })->latest('occurred_at')->paginate(40);
+            $q->orWhere(fn ($q) => $q->where('subject_type', 'LeadFollowUp')
+                ->whereIn('subject_id', LeadFollowUp::where('admission_lead_id', $lead->id)->select('id')));
+        })->latest('occurred_at')->latest('id');
+        $events = AdminListing::paginate($events, $request, 40);
         $matches = $lead->email && !$lead->student_id ? Student::where('email', $lead->email)->where('deleted', 0)->get(['id', 'name', 'email']) : collect();
-        return view('activity.lead', compact('lead', 'events', 'matches') + ['admins' => Admin::orderBy('name')->get(['id', 'name'])]);
+        return view('activity.lead', compact('lead', 'events', 'matches', 'followUps') + ['admins' => Admin::orderBy('name')->get(['id', 'name'])]);
     }
 
     public function followUp(Request $request, AdmissionLead $lead)
@@ -168,7 +172,8 @@ class ActivityTrackingController extends Controller
         $students = $eligible->with(['admission', 'payments' => fn ($q) => $q->whereBetween('issue_date', [$start, $end])])
             ->addSelect(['last_activity_at' => ActivityEvent::select('occurred_at')->whereColumn('actor_id', 'students.id')
                 ->where('actor_type', 'student')->orderByDesc('occurred_at')->limit(1)])
-            ->orderBy('name')->paginate(30)->withQueryString();
+            ->orderBy('name')->orderBy('id');
+        $students = AdminListing::paginate($students, $request, 30);
         return view('activity.renewals', compact('students', 'eligibleCount', 'paidCount', 'month'));
     }
 }

@@ -40,10 +40,11 @@
     </section>
 </div>
 <section class="activity-section"><h2>Contact History</h2>
-    @forelse($lead->followUps->sortByDesc('created_at') as $follow)
-        <article class="activity-follow-up"><strong>{{ $follow->admin?->name ?: 'Admin #'.$follow->admin_id }}</strong> &middot; {{ str_replace('_', ' ', $follow->outcome) }}
+    @forelse($followUps as $follow)
+        <article class="activity-follow-up"><span class="text-muted me-2">{{ $followUps->firstItem() + $loop->index }}.</span><strong>{{ $follow->admin?->name ?: 'Admin #'.$follow->admin_id }}</strong> &middot; {{ str_replace('_', ' ', $follow->outcome) }}
             <time>{{ $follow->created_at->timezone(config('activity.timezone'))->format('d M Y H:i') }}</time><p>{{ $follow->note }}</p></article>
     @empty<p>No contact recorded yet.</p>@endforelse
+    @include('admin.partials.pagination', ['paginator' => $followUps])
 </section>
 <section class="activity-section"><h2>Journey</h2>@include('activity.event-table')</section>
 @endsection

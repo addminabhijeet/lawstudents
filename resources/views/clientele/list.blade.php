@@ -60,7 +60,7 @@
                                         @foreach ($pdfs as $key => $item)
                                         <tr class="single-item">
                                             <td>
-                                                {{ $loop->iteration }}
+                                                {{ $clienteles->firstItem() + $loop->parent->index }}
                                             </td>
 
                                             <td>{{ pathinfo($item['file'], PATHINFO_FILENAME) }}</td>
@@ -76,7 +76,7 @@
                                                         class="btn btn-sm btn-primary">Edit</a>
 
                                                     <a href="{{ asset('storage/app/public/' . $item['file']) }}"
-                                                        class="btn btn-sm btn-primary">View</a>
+                                                        class="btn btn-sm btn-primary" data-document-preview data-preview-title="{{ basename($item['file']) }}">Preview PDF</a>
 
                                                     <form method="POST"
                                                         action="{{ route('admin.clientelefiledelete', [$clientele->id]) }}"
@@ -104,39 +104,8 @@
                                         @endforelse
                                     </tbody>
                                 </table>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $clienteles->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $clienteles->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($clienteles->getUrlRange(1, $clienteles->lastPage()) as $page => $url)
-                                            <li
-                                                class="page-item {{ $clienteles->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link"
-                                                    href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$clienteles->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $clienteles->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $clienteles])
                         </div>
                     </div>
                 </div>

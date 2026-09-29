@@ -1,7 +1,8 @@
 <div class="table-responsive"><table class="table table-hover activity-table">
-    <thead><tr><th>Time ({{ config('activity.timezone') }})</th><th>Who</th><th>Action</th><th>Page / record</th><th>Details</th></tr></thead>
+    <thead><tr><th scope="col">No.</th><th>Time ({{ config('activity.timezone') }})</th><th>Who</th><th>Action</th><th>Page / record</th><th>Details</th></tr></thead>
     <tbody>@forelse ($events as $event)
         <tr>
+            <td>{{ $events->firstItem() + $loop->index }}</td>
             <td>{{ $event->occurred_at->timezone(config('activity.timezone'))->format('d M Y H:i:s') }}</td>
             <td><a href="{{ route('admin.activity.events', $event->actor_id ? ['actor_type' => $event->actor_type, 'actor_id' => $event->actor_id] : ['visitor_id' => $event->visitor_id]) }}">{{ ucfirst($event->actor_type) }} {{ $event->actor_id ? '#'.$event->actor_id : substr($event->visitor_id ?? '', 0, 8) }}</a>
                 @if($event->student_id)<br><a href="{{ route('admin.activity.events', ['student_id' => $event->student_id]) }}">Student #{{ $event->student_id }}</a>@endif</td>
@@ -20,7 +21,7 @@
             </td>
         </tr>
     @empty
-        <tr><td colspan="5">No matching activity.</td></tr>
+        <tr><td colspan="6">No matching activity.</td></tr>
     @endforelse</tbody>
 </table></div>
-{{ $events->links('pagination::bootstrap-5') }}
+@include('admin.partials.pagination', ['paginator' => $events])

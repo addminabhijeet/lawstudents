@@ -109,10 +109,8 @@
                                 </table>
 
                                 {{-- Pagination links --}}
-                                <div class="mt-3 d-flex justify-content-center">
-                                    {{ $pages->links('pagination::bootstrap-5') }}
                                 </div>
-                            </div>
+                                @include('admin.partials.pagination', ['paginator' => $pages])
                         </div>
                     </div>
                 </div>

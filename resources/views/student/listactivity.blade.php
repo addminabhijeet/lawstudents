@@ -63,7 +63,7 @@
                                         @foreach ($admissions as $key => $admission)
                                         <tr class="single-item">
                                             <td>
-                                                {{ $loop->iteration }}
+                                                {{ $admissions->firstItem() + $loop->index }}
                                             </td>
 
                                             <td>
@@ -112,39 +112,8 @@
                                         @endif
                                     </tbody>
                                 </table>
-                                <div class="d-flex justify-content-center mt-3">
-                                    <nav>
-                                        <ul class="pagination pagination-sm mb-0">
-                                            <!-- Previous Page -->
-                                            <li class="page-item {{ $admissions->onFirstPage() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $admissions->previousPageUrl() }}"
-                                                    aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </a>
-                                            </li>
-
-                                            <!-- Page Numbers -->
-                                            @foreach ($admissions->getUrlRange(max(1, $admissions->currentPage() - 2), min($admissions->lastPage(), $admissions->currentPage() + 2)) as $page => $url)
-                                            <li
-                                                class="page-item {{ $admissions->currentPage() == $page ? 'active' : '' }}">
-                                                <a class="page-link"
-                                                    href="{{ $url }}">{{ $page }}</a>
-                                            </li>
-                                            @endforeach
-
-                                            <!-- Next Page -->
-                                            <li class="page-item {{ !$admissions->hasMorePages() ? 'disabled' : '' }}">
-                                                <a class="page-link" href="{{ $admissions->nextPageUrl() }}"
-                                                    aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
                             </div>
+                            @include('admin.partials.pagination', ['paginator' => $admissions])
                         </div>
                     </div>
                 </div>

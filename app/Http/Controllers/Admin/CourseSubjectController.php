@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseSubject;
 use Illuminate\Http\Request;
+use App\Support\AdminListing;
 
 // New, additive controller for the "Subject" grouping level added under
 // Course Page Structure (Course → Subject → Chapter/PDF Notes). Does not
@@ -14,10 +15,9 @@ class CourseSubjectController extends Controller
 {
     public function listsubjects()
     {
-        $subjects = CourseSubject::where('delete', 1)
+        $subjects = AdminListing::paginate(CourseSubject::where('delete', 1)
             ->with('course')
-            ->latest()
-            ->paginate(15);
+            ->latest()->latest('id'), request(), 15);
 
         return view('course.subjects.list', compact('subjects'));
     }
