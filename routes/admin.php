@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\GovtExamController;
 use App\Http\Controllers\Admin\LegalKnowledgeLibraryController;
 use App\Http\Controllers\Admin\SitePageController;
 
-Route::middleware(['admin.auth'])->group(function () {
+Route::middleware(['auth:admin', \App\Http\Middleware\RedirectIfNotAdmin::class])->group(function () {
 
     Route::middleware(['auth:admin'])
         ->prefix('admin')
