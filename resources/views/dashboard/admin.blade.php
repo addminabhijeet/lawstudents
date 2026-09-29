@@ -99,12 +99,12 @@
                     </span>
                     <i class="feather-arrow-up-right ls-stat__go" aria-hidden="true"></i>
                 </a>
-                <a class="ls-stat" href="{{ route('admin.listpayment') }}" aria-label="Open payments list">
+                <a class="ls-stat" href="{{ route('admin.listpayment') }}" aria-label="Open payments list" title="ISSUE-QA-001 FIX: Total payment records (students may have multiple payments)">
                     <span class="ls-stat__icon"><i class="feather-dollar-sign"></i></span>
                     <span class="ls-stat__body">
                         <span class="ls-stat__num"><span class="counter">{{ $paymentsCount }}</span></span>
                         <span class="ls-stat__label">Total Payments</span>
-                        <span class="ls-stat__sub">{{ $pay['paid'] }} paid · {{ $due }} still due</span>
+                        <span class="ls-stat__sub">{{ $pay['paid'] }} paid · {{ $due }} still due (may include multiple payments per student)</span>
                     </span>
                     <i class="feather-arrow-up-right ls-stat__go" aria-hidden="true"></i>
                 </a>

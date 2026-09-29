@@ -35,10 +35,17 @@ class StudentDashboard
         $lastPaid = $invoices->where('payment_status', 'paid')->first();
         $latest = $invoices->first();
 
-        /* My Courses: the courses of this month's paid invoices that sit in a category */
+        /* My Courses: the courses of this month's paid invoices that sit in a category
+           ISSUE-QA-004 FIX: If no paid courses found this month, include latest paid payment (ISSUE-003 fallback) */
         $courseIds = $paidThisMonth->pluck('course_id')->filter()
             ->flatMap(fn ($ids) => explode(',', $ids))
             ->map(fn ($id) => (int) $id)->unique()->values()->all();
+
+        // If no courses found this month, check latest paid payment (ISSUE-003 fallback logic)
+        if (empty($courseIds) && $lastPaid && $lastPaid->course_id) {
+            $courseIds = array_map('intval', array_filter(explode(',', $lastPaid->course_id)));
+        }
+
         $openCourses = $courseIds
             ? Category::whereHas('courses', fn ($q) => $q->whereIn('id', $courseIds))
                 ->with(['courses' => fn ($q) => $q->whereIn('id', $courseIds)])
@@ -83,7 +90,7 @@ class StudentDashboard
             ],
             'idcard' => $idCardReady
                 ? ['Ready', 'done', 'Open to print or save as PDF']
-                : ['Not yet', 'todo', 'Ready once your fee is confirmed'],
+                : ['Not yet', 'todo', 'Will be generated when the office marks your payment as confirmed'],
         ];
 
         return [
