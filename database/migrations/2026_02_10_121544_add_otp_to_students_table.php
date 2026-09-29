@@ -7,20 +7,32 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Add OTP columns to students table.
+     * Includes safety check for backward compatibility - these columns may already exist
+     * if the students table was created by 2025_09_29_000001_create_students_table.php
      */
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->string('otp')->nullable();
-            $table->timestamp('otp_expires_at')->nullable();
+            if (!Schema::hasColumn('students', 'otp')) {
+                $table->string('otp')->nullable();
+            }
+            if (!Schema::hasColumn('students', 'otp_expires_at')) {
+                $table->timestamp('otp_expires_at')->nullable();
+            }
         });
     }
 
     public function down()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->dropColumn(['otp', 'otp_expires_at']);
+            $columns = ['otp', 'otp_expires_at'];
+
+            foreach ($columns as $column) {
+                if (Schema::hasColumn('students', $column)) {
+                    $table->dropColumn($column);
+                }
+            }
         });
     }
 };

@@ -14,17 +14,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('course_notes', function (Blueprint $table) {
-            $table->foreignId('subject_id')->nullable()->after('course_id')
-                ->constrained('course_subjects')->nullOnDelete();
-            $table->text('description')->nullable()->after('title');
+            if (!Schema::hasColumn('course_notes', 'subject_id')) {
+                $table->foreignId('subject_id')->nullable()->after('course_id')
+                    ->constrained('course_subjects')->nullOnDelete();
+            }
+            if (!Schema::hasColumn('course_notes', 'description')) {
+                $table->text('description')->nullable()->after('title');
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('course_notes', function (Blueprint $table) {
-            $table->dropForeign(['subject_id']);
-            $table->dropColumn(['subject_id', 'description']);
+            if (Schema::hasColumn('course_notes', 'subject_id')) {
+                $table->dropForeign(['subject_id']);
+                $table->dropColumn('subject_id');
+            }
+            if (Schema::hasColumn('course_notes', 'description')) {
+                $table->dropColumn('description');
+            }
         });
     }
 };
