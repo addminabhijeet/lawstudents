@@ -328,7 +328,7 @@ Route::middleware(['auth:admin', \App\Http\Middleware\RedirectIfNotAdmin::class]
                 ->name('editgallery');
             Route::post('gallery-update/{id}', [CourseController::class, 'updategallery'])
                 ->name('updategallery');
-            Route::delete('gallery-delete/{id}', [CourseController::class, 'deletegallery'])
+            Route::get('gallery-delete/{id}', [CourseController::class, 'deletegallery'])
                 ->name('deletegallery');
             Route::post('category-store', [CourseController::class, 'storecategory'])
                 ->name('storecategory');

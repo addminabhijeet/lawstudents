@@ -155,15 +155,11 @@ $groups = $groups ?? collect();
                                                 <i class="fa fa-edit"></i>
                                             </a>
 
-                                            <form action="{{ route('admin.deletegallery', $img->id) }}" method="POST"
-                                                onsubmit="return confirm('Delete this image?')">
-                                                @csrf
-                                                @method('DELETE')
-
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <a href="{{ route('admin.deletegallery', $img->id) }}"
+                                                class="btn btn-sm btn-outline-danger"
+                                                onclick="return confirm('Delete this image?')">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
 
                                         </div>
 
