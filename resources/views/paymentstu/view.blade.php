@@ -256,8 +256,6 @@ src: url(data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAGEwAA0AAAA
 <div class="invoice-container">
 
     <div class="invoice-toolbar">
-        <a href="{{ route('student.dashboard') }}" class="invoice-back">&larr; Back</a>
-
         <!-- Print button -->
         <a href="javascript:void(0);"
            id="print-btn-{{ $payment->id }}"

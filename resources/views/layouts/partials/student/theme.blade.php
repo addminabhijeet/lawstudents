@@ -285,6 +285,9 @@
 <!--! Panel suite: page finder, page bar, pinned pages, display settings, confirmation dialog !-->
 <script src="{{ asset('assets/js/panel-suite.js') }}?v={{ @filemtime(public_path('assets/js/panel-suite.js')) }}"></script>
 
+<!--! Payment receipt opens in a popup over the current page !-->
+<script src="{{ asset('assets/js/student-receipt-preview.js') }}?v={{ @filemtime(public_path('assets/js/student-receipt-preview.js')) }}"></script>
+
 <!--! Student dashboard: overview, card states, menu labels, tab titles !-->
 @include('layouts.partials.student.dashboard-extras')
 </body>

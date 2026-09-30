@@ -42,6 +42,9 @@
     <!-- Panel suite: menu badges, search, page bar, phone navigation, display settings, wide screens -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/panel-suite.css') }}?v={{ @filemtime(public_path('assets/css/panel-suite.css')) }}">
 
+    <!-- Payment receipt popup -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/student-receipt-preview.css') }}?v={{ @filemtime(public_path('assets/css/student-receipt-preview.css')) }}">
+
     <!-- IE Support -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
