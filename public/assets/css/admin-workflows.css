@@ -46,6 +46,30 @@ html.app-skin-dark .admin-preview__heading p { color: var(--ls-muted, #aaa18a); 
 html.app-skin-dark .admin-preview__status { background: #2a2413; color: var(--ls-text, #d8d0ba); }
 html.app-skin-dark .admin-preview__description { color: var(--ls-text, #d8d0ba); }
 html.app-skin-dark .admin-preview__body iframe { background: #444; }
+/* Dark mode: the sticky footer of the Add/Update Note modals has an inline white background. */
+html.app-skin-dark .modal-footer[style*="background: #fff"] { background: var(--ls-surface, #1b1813) !important; border-top-color: var(--ls-border, #342d21); }
+/* Dark mode: Admission Analytics, Website Activity and Renewals (activity-analytics.css uses fixed light-theme colours). */
+html.app-skin-dark .activity-console { color: var(--ls-text, #d8d0ba); }
+html.app-skin-dark .activity-tabs { border-bottom-color: var(--ls-border, #342d21); }
+html.app-skin-dark .activity-tabs a { color: var(--ls-text, #d8d0ba) !important; }
+html.app-skin-dark .activity-tabs a[aria-current] { color: var(--ls-gold-light, #f0d97d) !important; border-color: var(--ls-gold, #d4af37); }
+html.app-skin-dark .activity-stats { border-block-color: var(--ls-border, #342d21); }
+html.app-skin-dark .activity-stats > div + div { border-left-color: var(--ls-border, #342d21); }
+html.app-skin-dark .activity-stats span { color: var(--ls-muted, #aaa18a); }
+html.app-skin-dark .activity-stats strong { color: var(--ls-gold-light, #f0d97d); }
+html.app-skin-dark .activity-stats > div:first-child strong { color: #f29ca4; }
+html.app-skin-dark .activity-section { border-bottom-color: var(--ls-border, #342d21); }
+html.app-skin-dark .activity-console .table th { color: var(--ls-muted, #aaa18a); }
+html.app-skin-dark .activity-console summary { color: var(--ls-gold-light, #f0d97d); }
+html.app-skin-dark .activity-console meter { accent-color: var(--ls-gold, #d4af37); -webkit-appearance: none; appearance: none; background: var(--ls-surface-2, #221e17); border: 1px solid var(--ls-border, #342d21); border-radius: 9px; }
+html.app-skin-dark .activity-console meter::-webkit-meter-bar { background: var(--ls-surface-2, #221e17); border: 0; border-radius: 9px; }
+html.app-skin-dark .activity-console meter::-webkit-meter-optimum-value,
+html.app-skin-dark .activity-console meter::-webkit-meter-suboptimum-value,
+html.app-skin-dark .activity-console meter::-webkit-meter-even-less-good-value { background: var(--ls-gold, #d4af37); border-radius: 9px; }
+html.app-skin-dark .activity-console meter::-moz-meter-bar { background: var(--ls-gold, #d4af37); border-radius: 9px; }
+html.app-skin-dark .activity-follow-up { border-bottom-color: var(--ls-border, #342d21); }
+html.app-skin-dark .activity-follow-up time { color: var(--ls-muted, #aaa18a); }
+@media (max-width: 800px) { html.app-skin-dark .activity-stats > div + div { border-top-color: var(--ls-border, #342d21); } }
 @media (max-width: 767px) {
     .ls-admin .admin-pagination { padding: 16px 12px; gap: 12px; }
     .admin-pagination nav { flex-basis: 100%; }
