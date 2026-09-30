@@ -37,8 +37,6 @@
         'X' => ['url' => $footerSocialUrl($footerUser->twitter ?? null, 'https://www.x.com'), 'icon' => 'icon-brand-x'],
         'Instagram' => ['url' => $footerSocialUrl($footerUser->instagram ?? null, 'https://www.instagram.com'), 'icon' => 'icon-brand-instagram'],
         'LinkedIn' => ['url' => $footerSocialUrl($footerUser->linkedin ?? null, 'https://www.linkedin.com'), 'icon' => 'icon-brand-linkedin'],
-        'YouTube' => ['url' => $footerSocialUrl($footerUser->youtube ?? null, 'https://www.youtube.com'), 'icon' => 'icon-brand-youtube'],
-        'Pinterest' => ['url' => $footerSocialUrl($footerUser->pinterest ?? null, 'https://www.pinterest.com'), 'icon' => 'icon-brand-pinterest'],
     ];
 
     // Programs column: the course page filters on ?cat=<category id>, so read the
@@ -134,7 +132,6 @@
                     @foreach ($footerSocialLinks as $footerSocialName => $footerSocial)
                         <a href="{{ $footerSocial['url'] }}" title="{{ $footerSocialName }}" aria-label="{{ $footerSocialName }}" target="_blank" rel="noopener"><span class="site-icon {{ $footerSocial['icon'] }}" aria-hidden="true"></span></a>
                     @endforeach
-                    <a href="https://wa.me/{{ $footerWhatsapp }}" title="WhatsApp" aria-label="WhatsApp"><span class="site-icon icon-brand-whatsapp" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>

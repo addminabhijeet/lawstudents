@@ -198,7 +198,7 @@
       <div class="title-rule"></div>
     </div>
     <div class="kn-grid">
-@foreach ($homeKnowledgeCategories as $homeKnCat)
+@foreach ($homeKnowledgeCategories->take(14) as $homeKnCat)
         <a href="{{ route('frontend.legalknowledgelibrary') }}?cat={{ $homeKnCat->id }}" class="kn-card reveal" data-d="{{ $loop->index % 4 + 1 }}"><span class="kn-ico"><span class="site-icon icon-{{ $getCategoryIcon($homeKnCat->name) }}" aria-hidden="true"></span></span><h5>{{ $homeKnCat->name }}</h5><span>Explore</span></a>
       @endforeach
     </div>
@@ -359,7 +359,7 @@
       <div class="title-rule"></div>
     </div>
     <div class="gallery-grid">
-@foreach ($homeGallery as $homeGroupName => $homeGroupItems)
+@foreach ($homeGallery->filter(fn($g) => $g->pluck('image')->filter()->isNotEmpty())->take(4) as $homeGroupName => $homeGroupItems)
         @php $homeUrls = $homeGroupItems->pluck('image')->filter()->map(fn($i) => asset('storage/app/public/' . $i))->values(); @endphp
         @continue($homeUrls->isEmpty())
         <a href="{{ route('frontend.gallery') }}" class="album reveal" data-d="{{ $loop->iteration }}">
