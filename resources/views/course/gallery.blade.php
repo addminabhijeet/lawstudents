@@ -121,7 +121,7 @@ $groups = $groups ?? collect();
                     @forelse ($gallery as $groupName => $images)
 
                     <!-- 🔥 EACH GROUP HAS ITS OWN ROW -->
-                    <div class="mb-4">
+                    <div style="margin-top: 0; margin-bottom: 1.5rem;">
 
                         <!-- TITLE -->
                         <h5 class="mb-3 text-primary">
