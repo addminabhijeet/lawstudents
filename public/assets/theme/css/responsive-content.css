@@ -165,14 +165,25 @@ body:not(.inner-page) .courses-section .course-body{container-type:inline-size}
 .sitemap-wide ul{columns:3 10rem}
 .sitemap-wide li:first-child{margin-top:0}
 
-/* ---------- 7. ADMIN GALLERY: REDUCE WHITESPACE BETWEEN FORM AND GALLERY ITEMS ----------
-   On the gallery admin page, excessive whitespace appears between the form card and
-   the gallery items grid. Reduces the visual gap significantly by collapsing margins
-   and adjusting spacing throughout the gallery layout. */
-.main-content > .row > .col-lg-12 > .card {
-  margin-bottom: 0.25rem !important;
+/* ---------- 7. ADMIN GALLERY: ELIMINATE WHITESPACE BETWEEN FORM AND GALLERY ITEMS ----------
+   Gallery items now appear immediately after the form with minimal scrolling by aggressively
+   collapsing all margins, padding and gaps in the gallery page layout. */
+.main-content {
+  padding: 0 !important;
 }
-.main-content > .row > .col-lg-12 > .mb-4 {
-  margin-top: 0.5rem !important;
-  margin-bottom: 1.5rem !important;
+.main-content > .row {
+  gap: 0 !important;
+  margin: 0 !important;
+}
+.main-content > .row > .col-lg-12 {
+  padding: 0 !important;
+}
+.main-content > .row > .col-lg-12 > .card {
+  margin: 0 !important;
+}
+.main-content > .row > .col-lg-12 > .card .card-body {
+  padding-bottom: 0 !important;
+}
+.main-content .mb-4 {
+  margin: 0.5rem 0 0 0 !important;
 }
