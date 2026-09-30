@@ -1,6 +1,9 @@
 @php
 $groups = $groups ?? collect();
 @endphp
+<style>
+.nxl-container .card.stretch.stretch-full { height: auto !important; min-height: auto !important; }
+</style>
 @include('layouts.partials.admin.dashboard')
 <main class="nxl-container">
     <div class="nxl-content">
@@ -121,7 +124,7 @@ $groups = $groups ?? collect();
                     @forelse ($gallery as $groupName => $images)
 
                     <!-- 🔥 EACH GROUP HAS ITS OWN ROW -->
-                    <div style="margin-top: 0; margin-bottom: 1.5rem;">
+                    <div class="mb-4">
 
                         <!-- TITLE -->
                         <h5 class="mb-3 text-primary">
