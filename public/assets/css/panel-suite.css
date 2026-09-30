@@ -733,6 +733,11 @@ html:root .page-header .page-header-right-items {
 .ls-chip.is-current i { color: var(--ls-gold); }
 html.app-skin-dark .ls-chip.is-current { background: var(--ls-gold); color: #1d1808; border-color: var(--ls-gold); }
 html.app-skin-dark .ls-chip.is-current i { color: #1d1808; }
+/* theme.min.css forces white link text in dark mode (!important); the current-page chip keeps dark text on its gold fill. */
+html.app-skin-dark .ls-chip.is-current,
+html.app-skin-dark .ls-chip.is-current span { color: #1d1808 !important; }
+/* Thumbnail frames: dark surface instead of a white border around the image. */
+html.app-skin-dark .img-thumbnail { background-color: var(--ls-surface-2); border-color: var(--ls-border); }
 
 @media (max-width: 767.98px) {
     .ls-related { flex-wrap: nowrap; overflow-x: auto; gap: 10px; padding: 8px 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }

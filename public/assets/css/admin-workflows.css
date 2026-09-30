@@ -38,6 +38,14 @@ body.admin-preview-open { overflow: hidden; }
 /* Payment receipt popup: no Download or Print in the popup header; the receipt keeps its own buttons (PDF and image previews keep the header ones). */
 .admin-preview:has([data-preview-download][href*="/admin/view-payment/"]) [data-preview-download],
 .admin-preview:has([data-preview-download][href*="/admin/view-payment/"]) [data-preview-print] { display: none !important; }
+/* Dark mode: the preview follows the panel's dark surfaces instead of staying bright. */
+html.app-skin-dark .admin-preview { background: var(--ls-page-bg, #13110d); color: var(--ls-text, #d8d0ba); border-color: var(--ls-border-strong, #4a4030); }
+html.app-skin-dark .admin-preview__header { background: var(--ls-surface, #1b1813); border-bottom-color: var(--ls-border, #342d21); }
+html.app-skin-dark .admin-preview__heading h2 { color: var(--ls-heading, #f4eedc); }
+html.app-skin-dark .admin-preview__heading p { color: var(--ls-muted, #aaa18a); }
+html.app-skin-dark .admin-preview__status { background: #2a2413; color: var(--ls-text, #d8d0ba); }
+html.app-skin-dark .admin-preview__description { color: var(--ls-text, #d8d0ba); }
+html.app-skin-dark .admin-preview__body iframe { background: #444; }
 @media (max-width: 767px) {
     .ls-admin .admin-pagination { padding: 16px 12px; gap: 12px; }
     .admin-pagination nav { flex-basis: 100%; }
