@@ -89,6 +89,18 @@ $groups = $groups ?? collect();
                                     <textarea name="description" class="form-control" rows="3">{{ $editItem->description ?? '' }}</textarea>
                                 </div>
 
+                                <!-- Status (for edit only) -->
+                                @if (isset($editItem))
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Visibility Status</label>
+                                    <select name="delete" class="form-control">
+                                        <option value="1" {{ (isset($editItem) && $editItem->delete == 1) ? 'selected' : '' }}>Visible</option>
+                                        <option value="0" {{ (isset($editItem) && $editItem->delete == 0) ? 'selected' : '' }}>Hidden / Soft Deleted</option>
+                                    </select>
+                                    <small class="text-muted d-block mt-1">Change from Visible to Hidden to soft delete this gallery item</small>
+                                </div>
+                                @endif
+
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary">
                                         {{ isset($editItem) ? 'Update' : 'Save' }}

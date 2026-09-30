@@ -757,6 +757,7 @@ class CourseController extends Controller
             'description' => ['nullable', 'string'],
             'group_name' => ['nullable', 'string'],
             'new_group' => ['nullable', 'string'], // ✅ FIXED
+            'delete' => ['nullable', 'in:0,1'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -768,6 +769,9 @@ class CourseController extends Controller
 
         $item->group_name = $group;
         $item->description = $request->description;
+        if ($request->has('delete')) {
+            $item->delete = $request->delete;
+        }
         $item->save();
 
         return redirect()->back()->with('success', 'Gallery updated successfully.');
