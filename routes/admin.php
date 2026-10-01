@@ -93,6 +93,11 @@ Route::middleware(['auth:admin', \App\Http\Middleware\RedirectIfNotAdmin::class]
             Route::get('list-payment', [RoutingController::class, 'listpayment'])
                 ->name('listpayment');
 
+            Route::get('monthly-receipts', [\App\Http\Controllers\MonthlyReceiptController::class, 'adminIndex'])
+                ->name('monthlyreceipt.index');
+            Route::get('monthly-receipts/{receipt}', [\App\Http\Controllers\MonthlyReceiptController::class, 'adminShow'])
+                ->name('monthlyreceipt.show');
+
             Route::get('list-subject', [RoutingController::class, 'listsubject'])
                 ->name('listsubject');
 

@@ -13,6 +13,11 @@
                     <li class="breadcrumb-item">List</li>
                 </ul>
             </div>
+            <div class="page-header-right ms-auto">
+                <a href="{{ route('admin.monthlyreceipt.index') }}" class="btn btn-primary">
+                    <i class="feather-calendar me-2" aria-hidden="true"></i>Monthly Receipts
+                </a>
+            </div>
         </div>
 
         <!-- [ page-header ] end -->
@@ -114,6 +119,11 @@
                                                     <a href="{{ route('admin.viewpayment', $firstPayment->id) }}"
                                                         class="avatar-text avatar-md">
                                                         <i class="feather feather-eye"></i>
+                                                    </a>
+
+                                                    <a href="{{ route('admin.monthlyreceipt.index', ['student_id' => $firstPayment->student_id]) }}"
+                                                        class="avatar-text avatar-md" title="Monthly receipts for {{ $firstPayment->to_name }}" aria-label="Monthly receipts for {{ $firstPayment->to_name }}">
+                                                        <i class="feather feather-calendar"></i>
                                                     </a>
 
 

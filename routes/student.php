@@ -23,6 +23,11 @@ Route::middleware(['auth:student', \App\Http\Middleware\StudentPanelGuard::class
         Route::get('fees', [\App\Http\Controllers\Student\PortalController::class, 'fees'])
             ->name('fees');
 
+        Route::get('monthly-receipts', [\App\Http\Controllers\MonthlyReceiptController::class, 'studentIndex'])
+            ->name('monthlyreceipt.index');
+        Route::get('monthly-receipts/{receipt}', [\App\Http\Controllers\MonthlyReceiptController::class, 'studentShow'])
+            ->name('monthlyreceipt.show');
+
         Route::get('help', [\App\Http\Controllers\Student\PortalController::class, 'help'])
             ->name('help');
 

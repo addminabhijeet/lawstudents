@@ -47,6 +47,7 @@
                     </div>
                     <div class="sf-now__actions">
                         <a href="{{ route('student.viewpayment') }}" class="btn btn-primary"><i class="feather-file me-2"></i>Open payment slip</a>
+                        <a href="{{ route('student.monthlyreceipt.index') }}" class="btn btn-light-brand"><i class="feather-calendar me-2" aria-hidden="true"></i>Monthly Receipts</a>
                         @if ($whatsapp)
                             <a href="{{ $whatsapp }}" target="_blank" rel="noopener" class="btn btn-light-brand"><i class="feather-message-circle me-2"></i>I have paid: tell the office</a>
                         @endif
