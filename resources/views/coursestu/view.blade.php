@@ -392,7 +392,7 @@
         let modal = new bootstrap.Modal(document.getElementById('pdfModal'));
         modal.show();
 
-        pdfjsLib.getDocument(url).promise.then(function(pdf) {
+        pdfjsLib.getDocument({url: url, isEvalSupported: false}).promise.then(function(pdf) {
 
             pdfDoc = pdf;
             totalPages = pdf.numPages;
@@ -443,9 +443,7 @@
                 viewport: scaledViewport
             };
 
-            page.render(renderContext).promise.then(function() {
-                return drawPaidNoteWatermark(canvas, outputScale);
-            });
+            page.render(renderContext);
 
             fetch("{{ url('/student/save-progress') }}", {
                 method: "POST",

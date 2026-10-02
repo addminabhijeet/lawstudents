@@ -8,8 +8,7 @@ use App\Models\CopyCategory;
 use App\Models\Copy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use setasign\Fpdi\Fpdi;
-use Illuminate\Support\Facades\File;
+use App\Services\PdfWatermarkService;
 
 
 class FreeNotesController extends Controller
@@ -82,40 +81,7 @@ class FreeNotesController extends Controller
 
         $path = Storage::disk('public')->path($file);
 
-        // ===== WATERMARK LOGIC START =====
-        $tempDir = storage_path('app/temp');
-
-        if (!File::exists($tempDir)) {
-            File::makeDirectory($tempDir, 0775, true);
-        }
-
-        $tempFile = $tempDir . '/watermarked_' . time() . '.pdf';
-
-        $pdf = new Fpdi();
-        $pageCount = $pdf->setSourceFile($path);
-
-        $watermarkText = 'Law Students'; // You can customize this
-
-        for ($i = 1; $i <= $pageCount; $i++) {
-
-            $template = $pdf->importPage($i);
-            $size = $pdf->getTemplateSize($template);
-
-            $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
-            $pdf->useTemplate($template);
-
-            // Watermark
-            $pdf->SetFont('Arial', 'B', 20);
-            $pdf->SetTextColor(150, 150, 150);
-
-            $pdf->SetXY(0, $size['height'] / 2);
-            $pdf->Cell(0, 10, $watermarkText, 0, 1, 'C');
-        }
-
-        $pdf->Output($tempFile, 'F');
-        // ===== WATERMARK LOGIC END =====
-
-        return response()->download($tempFile, 'note.pdf')->deleteFileAfterSend(true);
+        return app(PdfWatermarkService::class)->response($file, true, 'note.pdf');
     }
 
     public function viewnotes($id, $index = 0)
@@ -139,7 +105,7 @@ class FreeNotesController extends Controller
 
         return view('copys.copys', [
             'categories' => $categories,
-            'filePath' => asset('storage/app/public/' . $file),
+            'filePath' => route('frontend.study-pdf.file', ['type' => 'copy', 'id' => $id, 'index' => $index]),
             'studentName' => 'Guest',
             'studentEmail' => 'guest@example.com',
         ]);
@@ -161,37 +127,6 @@ class FreeNotesController extends Controller
 
         $path = Storage::disk('public')->path($file);
 
-        // ===== WATERMARK LOGIC (same as download) =====
-        $tempDir = storage_path('app/temp');
-
-        if (!File::exists($tempDir)) {
-            File::makeDirectory($tempDir, 0775, true);
-        }
-
-        $tempFile = $tempDir . '/view_watermarked_' . time() . '.pdf';
-
-        $pdf = new Fpdi();
-        $pageCount = $pdf->setSourceFile($path);
-
-        $watermarkText = 'Law Students'; // same watermark as download
-
-        for ($i = 1; $i <= $pageCount; $i++) {
-            $template = $pdf->importPage($i);
-            $size = $pdf->getTemplateSize($template);
-
-            $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
-            $pdf->useTemplate($template);
-
-            // Watermark
-            $pdf->SetFont('Arial', 'B', 20);
-            $pdf->SetTextColor(150, 150, 150);
-            $pdf->SetXY(0, $size['height'] / 2);
-            $pdf->Cell(0, 10, $watermarkText, 0, 1, 'C');
-        }
-
-        $pdf->Output($tempFile, 'F');
-
-        // Stream to browser for inline viewing
-        return response()->file($tempFile);
+        return app(PdfWatermarkService::class)->response($file);
     }
 }

@@ -58,10 +58,11 @@
                                     <label class="form-label">Existing PDFs</label>
                                     <ul class="list-group">
                                         @foreach ($rules->pdfs as $index => $pdf)
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <a href="{{ asset('storage/' . $pdf) }}" data-document-preview data-preview-title="{{ basename($pdf) }}">
+                                        <li class="list-group-item d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                                            <a href="{{ route('admin.study-pdf', ['type' => 'rule', 'id' => $rules->id, 'index' => $index]) }}" data-document-preview data-preview-title="{{ basename($pdf) }}">
                                                 {{ pathinfo($pdf, PATHINFO_BASENAME) }}
                                             </a>
+                                            @include('pdfs.watermark-toggle', ['type' => 'rule', 'id' => $rules->id, 'index' => $index, 'file' => $pdf])
                                         </li>
                                         @endforeach
                                     </ul>
@@ -72,6 +73,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Upload More PDFs</label>
                                     <input type="file" name="pdfs[]" id="pdfInput" class="form-control" multiple>
+                                    @include('pdfs.upload-watermark')
 
                                     <ul id="previewList" class="list-group mt-3"></ul>
                                 </div>

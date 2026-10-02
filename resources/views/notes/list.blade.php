@@ -81,6 +81,7 @@
                                         <i class="feather-eye me-2"></i>
                                         <span>View Note</span>
                                     </a>
+                                    @include('pdfs.watermark-toggle', ['type' => 'course-note', 'id' => $note->id, 'file' => $note->file_path])
 
                                     <a href="javascript:void(0);"
                                         class="btn btn-warning w-100 edit-note-btn"
@@ -179,6 +180,7 @@
                                 <!-- PDF Upload -->
                                 <div class="mb-3">
                                     <label class="form-label">Upload PDF *</label>
+                                    @include('pdfs.upload-watermark', ['watermarkInputId' => 'addShowWatermark'])
                                     <input type="file" name="pdf" class="form-control"
                                         accept="application/pdf" required>
                                     <small class="text-muted">Max size: 20MB</small>
@@ -277,6 +279,7 @@
                                 <!-- PDF Upload -->
                                 <div class="mb-3">
                                     <label class="form-label">Replace PDF</label>
+                                    @include('pdfs.upload-watermark', ['watermarkInputId' => 'editShowWatermark'])
                                     <input type="file" name="pdf" class="form-control"
                                         accept="application/pdf">
                                     <small class="text-muted">Leave empty to keep existing PDF</small>

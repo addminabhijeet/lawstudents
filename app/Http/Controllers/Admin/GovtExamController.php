@@ -158,6 +158,7 @@ class GovtExamController extends Controller
 
     public function storeexam(Request $request)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:govt_exam_categories,id',
             'subcategory_id' => 'required|exists:govt_exam_subcategories,id',
@@ -172,6 +173,7 @@ class GovtExamController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('govt-exams', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }
@@ -199,6 +201,7 @@ class GovtExamController extends Controller
 
     public function updateexam(Request $request, $id)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:govt_exam_categories,id',
             'subcategory_id' => 'required|exists:govt_exam_subcategories,id',
@@ -217,6 +220,7 @@ class GovtExamController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('govt-exams', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }

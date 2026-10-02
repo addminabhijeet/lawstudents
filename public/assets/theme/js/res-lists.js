@@ -26,7 +26,7 @@
     $$('.list-meta', card).forEach(function(meta){
       var label = meta.querySelector('.pdf'), view = meta.querySelector('a.primary');
       if(!label || !view) return;
-      var i = info[fileKey(view.getAttribute('href') || '')];
+      var i = info[view.getAttribute('data-pdf-key') || fileKey(view.getAttribute('href') || '')];
       if(!i) return;
       var short = i.pages !== null && i.pages <= 2, parts = [];
       if(short) parts.push('Summary');

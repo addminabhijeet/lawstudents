@@ -214,6 +214,7 @@ class CourseController extends Controller
     }
     public function storeacts(Request $request)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
@@ -228,6 +229,7 @@ class CourseController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('acts', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }
@@ -255,6 +257,7 @@ class CourseController extends Controller
 
     public function updateacts(Request $request, $id)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:act_categories,id',
             'subcategory_id' => 'required|exists:act_subcategories,id',
@@ -273,6 +276,7 @@ class CourseController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('acts', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path; // append like store
             }
         }
@@ -580,6 +584,7 @@ class CourseController extends Controller
 
     public function storerules(Request $request)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:rule_categories,id',
             'subcategory_id' => 'required|exists:rule_subcategories,id',
@@ -594,6 +599,7 @@ class CourseController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('rules', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }
@@ -620,6 +626,7 @@ class CourseController extends Controller
     }
     public function updaterules(Request $request, $id)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
 
         $request->validate([
             'category_id' => 'required|exists:rule_categories,id',
@@ -639,6 +646,7 @@ class CourseController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('rules', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }
@@ -1066,6 +1074,7 @@ class CourseController extends Controller
     }
     public function storecopys(Request $request)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:copy_categories,id',
             'subcategory_id' => 'required|exists:copy_subcategories,id',
@@ -1080,6 +1089,7 @@ class CourseController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('copys', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }
@@ -1107,6 +1117,7 @@ class CourseController extends Controller
 
     public function updatecopys(Request $request, $id)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:copy_categories,id',
             'subcategory_id' => 'required|exists:copy_subcategories,id',
@@ -1125,6 +1136,7 @@ class CourseController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('copys', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path; // append like store
             }
         }

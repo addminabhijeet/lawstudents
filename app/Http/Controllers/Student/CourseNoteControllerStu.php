@@ -123,7 +123,7 @@ class CourseNoteControllerStu extends Controller
             abort(404, 'File not found.');
         }
 
-        return response()->download($filePath, $note->title . '.pdf');
+        return app(\App\Services\PdfWatermarkService::class)->response($note->file_path, true, $note->title . '.pdf');
     }
 
 

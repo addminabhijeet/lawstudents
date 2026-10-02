@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Support\PaidNotePdf;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfParser\StreamReader;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\Process;
 use Tests\TestCase;
 
 class PaidNoteWatermarkTest extends TestCase
@@ -34,9 +36,10 @@ class PaidNoteWatermarkTest extends TestCase
 
         $this->assertStringContainsString('Original note content P', $branded);
         $this->assertStringContainsString('Original note content L', $branded);
-        $this->assertSame(2, substr_count($branded, '(Law Students)'));
+        $this->assertGreaterThan(150, substr_count($branded, '(Law Students)'));
+        $this->assertSame(substr_count($branded, '(Law Students)'), substr_count($branded, '(law.norloxsolutionscrm.com)'));
         $this->assertStringContainsString('/Subtype /Image', $branded);
-        $this->assertStringContainsString('/ca 0.20', $branded);
+        $this->assertStringContainsString('/ca 0.08', $branded);
         $this->assertStringContainsString('/CompanyWatermark', $branded);
 
         $reader = new Fpdi();
@@ -60,13 +63,67 @@ class PaidNoteWatermarkTest extends TestCase
         $this->assertStringContainsString('(Law Students)', $pdf->Output('S'));
     }
 
-    public function test_viewer_uses_the_same_brand_config_with_escaped_attributes(): void
+    public function test_viewers_load_print_protection_with_cache_busting(): void
     {
-        config(['file-management.watermark.company_name' => 'Law "Students" & Academy']);
         $html = view('notesstu.company-watermark')->render();
 
-        $this->assertStringContainsString('Law &quot;Students&quot; &amp; Academy', $html);
-        $this->assertStringContainsString(config('file-management.watermark.logo'), $html);
-        $this->assertStringContainsString('paid-note-watermark.js', $html);
+        $this->assertStringContainsString('paid-note-protection.css?v=', $html);
+        $this->assertStringContainsString('paid-note-protection.js?v=', $html);
+    }
+
+    public function test_concurrent_copies_use_distinct_files_and_preserve_the_source(): void
+    {
+        $source = tempnam(sys_get_temp_dir(), 'note-source-');
+        $first = $second = null;
+        try {
+            $pdf = new Fpdi();
+            $pdf->AddPage();
+            $pdf->Output('F', $source);
+            $hash = hash_file('sha256', $source);
+            $first = PaidNotePdf::brandedCopy($source);
+            $second = PaidNotePdf::brandedCopy($source);
+
+            $this->assertNotSame($first, $second);
+            $this->assertNotSame($source, $first);
+            $this->assertFileExists($first);
+            $this->assertFileExists($second);
+            $this->assertSame($hash, hash_file('sha256', $source));
+        } finally {
+            foreach ([$source, $first, $second] as $file) {
+                if ($file && is_file($file)) {
+                    unlink($file);
+                }
+            }
+        }
+    }
+
+    public function test_compressed_object_streams_are_watermarked_without_changing_the_upload(): void
+    {
+        $binary = config('file-management.watermark.qpdf_binary');
+        if (!is_file($binary) && !(new ExecutableFinder())->find($binary)) $this->markTestSkipped('QPDF is not installed.');
+        $source = tempnam(sys_get_temp_dir(), 'note-plain-');
+        $compressed = tempnam(sys_get_temp_dir(), 'note-compressed-');
+        $branded = null;
+        try {
+            $pdf = new Fpdi();
+            $pdf->AddPage('L', 'A4');
+            $pdf->SetFont('Arial', '', 12);
+            $pdf->Text(20, 20, 'Compressed original content');
+            $pdf->Output('F', $source);
+            (new Process([$binary, '--object-streams=generate', $source, $compressed]))->mustRun();
+            $hash = hash_file('sha256', $compressed);
+            $branded = PaidNotePdf::brandedCopy($compressed);
+            $reader = new Fpdi();
+            $this->assertSame(1, $reader->setSourceFile($branded));
+            $size = $reader->getTemplateSize($reader->importPage(1));
+            $this->assertEqualsWithDelta(297, $size['width'], 0.1);
+            $this->assertEqualsWithDelta(210, $size['height'], 0.1);
+            $this->assertSame($hash, hash_file('sha256', $compressed));
+            $this->assertStringContainsString('/CompanyWatermark', file_get_contents($branded));
+        } finally {
+            foreach ([$source, $compressed, $branded] as $file) {
+                if ($file && is_file($file)) unlink($file);
+            }
+        }
     }
 }

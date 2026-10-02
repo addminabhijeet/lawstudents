@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\CourseNote;
 use App\Models\CourseSubject;
 use App\Models\Category;
+use App\Services\PdfWatermarkService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -96,6 +97,7 @@ class CourseNoteController extends Controller
             'title'      => 'required|string|max:255',
             'pdf'        => 'required|mimes:pdf|max:20480',
             'subject_id' => 'nullable|exists:course_subjects,id',
+            'show_watermark' => 'sometimes|boolean',
         ]);
 
         $course = Course::findOrFail($request->course_id);
@@ -114,6 +116,7 @@ class CourseNoteController extends Controller
             'status'          => true,
             'download_count'  => 0,
         ]);
+        app(PdfWatermarkService::class)->applyUploadPreference($path, $request);
 
         return back()->with('success', 'PDF Note uploaded successfully.');
     }
@@ -125,6 +128,7 @@ class CourseNoteController extends Controller
             'title'      => 'required|string|max:255',
             'pdf'        => 'nullable|mimes:pdf|max:20480',
             'subject_id' => 'nullable|exists:course_subjects,id',
+            'show_watermark' => 'sometimes|boolean',
         ]);
 
         $note = CourseNote::findOrFail($id);
@@ -150,6 +154,7 @@ class CourseNoteController extends Controller
         }
 
         $note->save();
+        app(PdfWatermarkService::class)->applyUploadPreference($note->file_path, $request);
 
         return back()->with('success', 'Note updated successfully.');
     }
@@ -172,7 +177,7 @@ class CourseNoteController extends Controller
             abort(404, 'File not found.');
         }
 
-        return response()->download($filePath, $note->title . '.pdf');
+        return app(PdfWatermarkService::class)->response($note->file_path, true, $note->title . '.pdf');
     }
 
 
@@ -186,7 +191,7 @@ class CourseNoteController extends Controller
 
         $path = Storage::disk('public')->path($note->file_path);
 
-        return response()->file($path);
+        return app(PdfWatermarkService::class)->response($note->file_path);
     }
 
 

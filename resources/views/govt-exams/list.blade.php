@@ -66,11 +66,14 @@
                                             <td>
                                                 <div>{{ $exam->description }}</div>
                                                 <div class="d-flex flex-wrap gap-2 mt-2">
-                                                    @foreach ($exam->pdfs ?? [] as $pdf)
-                                                        <a href="{{ asset('storage/' . $pdf) }}" class="btn btn-sm btn-outline-primary"
+                                                    @foreach ($exam->pdfs ?? [] as $index => $pdf)
+                                                        <div class="d-flex flex-column gap-1">
+                                                        <a href="{{ route('admin.study-pdf', ['type' => 'govt-exam', 'id' => $exam->id, 'index' => $index]) }}" class="btn btn-sm btn-outline-primary"
                                                             data-document-preview data-preview-title="{{ basename($pdf) }}">
                                                             <i class="feather-file-text me-1" aria-hidden="true"></i>PDF {{ $loop->iteration }}
                                                         </a>
+                                                        @include('pdfs.watermark-toggle', ['type' => 'govt-exam', 'id' => $exam->id, 'index' => $index, 'file' => $pdf])
+                                                        </div>
                                                     @endforeach
                                                 </div>
                                             </td>

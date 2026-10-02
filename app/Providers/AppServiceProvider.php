@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(\App\Services\CourseAccessService::class);
         $this->app->singleton(\App\Services\NotificationService::class);
         $this->app->singleton(\App\Services\FileManagementService::class);
+        $this->app->scoped(\App\Services\PdfWatermarkService::class);
 
         // Register Repositories
         $this->app->singleton(\App\Repositories\CourseRepository::class);

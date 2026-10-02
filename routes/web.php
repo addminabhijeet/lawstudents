@@ -32,6 +32,10 @@ Route::middleware(['web'])
         Route::get('rules', RuleController::class)->name('rules');
         Route::get('acts', ActController::class)->name('acts');
         Route::get('copys', FreeNotesController::class)->name('copys');
+        Route::get('study-pdf/{type}/{id}/{index?}/file', [\App\Http\Controllers\PdfDocumentController::class, 'file'])
+            ->whereNumber(['id', 'index'])->name('study-pdf.file');
+        Route::get('study-pdf/{type}/{id}/{index?}', [\App\Http\Controllers\PdfDocumentController::class, 'viewer'])
+            ->whereNumber(['id', 'index'])->name('study-pdf');
         Route::get('view-note/{id}', [FreeNotesController::class, 'viewnote'])->name('viewnote');
         Route::get('view-notes/{id}', [FreeNotesController::class, 'viewnotes'])->name('viewnotes');
         Route::get('clientele', ClienteleController::class)->name('clientele');

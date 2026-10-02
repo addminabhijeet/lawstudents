@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 use Carbon\Carbon;
 use App\Models\NoteWishlist;
 use App\Models\NoteProgress;
-use Illuminate\Support\Facades\File;
-use App\Support\PaidNotePdf;
+use App\Services\PdfWatermarkService;
 
 class CourseControllerStu extends Controller
 {
@@ -168,7 +167,7 @@ class CourseControllerStu extends Controller
             'activity_type' => 'view_note'
         ]);
 
-        return response()->file($filePath, [
+        return app(PdfWatermarkService::class)->response($note->file_path, false, null, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="viewer.pdf"',
             'Cache-Control' => 'no-store, no-cache, must-revalidate',
@@ -279,30 +278,6 @@ class CourseControllerStu extends Controller
             'activity_type' => 'download_note'
         ]);
 
-        $tempDir = storage_path('app/temp');
-
-        if (!File::exists($tempDir)) {
-            File::makeDirectory($tempDir, 0775, true);
-        }
-
-        $tempFile = $tempDir . '/watermarked_' . time() . '.pdf';
-
-        $pdf = new PaidNotePdf();
-        $pageCount = $pdf->setSourceFile($filePath);
-
-        for ($i = 1; $i <= $pageCount; $i++) {
-
-            $template = $pdf->importPage($i);
-            $size = $pdf->getTemplateSize($template);
-
-            $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
-            $pdf->useTemplate($template);
-
-            $pdf->addCompanyWatermark($size['width'], $size['height']);
-        }
-
-        $pdf->Output($tempFile, 'F');
-
-        return response()->download($tempFile, $note->title . '.pdf')->deleteFileAfterSend(true);
+        return app(PdfWatermarkService::class)->response($note->file_path, true, $note->title . '.pdf');
     }
 }

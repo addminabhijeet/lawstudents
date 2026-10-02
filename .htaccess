@@ -5,6 +5,11 @@
 
     RewriteEngine On
 
+    RewriteRule ^storage/app/(?:temp|tools)(?:/|$) - [F,NC,L]
+
+    # Study PDFs are served through the permission and watermark controllers.
+    RewriteRule ^(?:public/)?storage/(?:app/public/)?(?:course_notes|acts|rules|copys|govt-exams|legal-knowledge-library)/.+\.pdf$ - [F,NC,L]
+
     RewriteRule ^build/(.*)$ public/build/$1 [L]
     RewriteRule ^assets/(.*)$ public/assets/$1 [L]
     RewriteRule ^img/(.*)$ public/img/$1 [L]

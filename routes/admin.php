@@ -17,6 +17,11 @@ Route::middleware(['auth:admin', \App\Http\Middleware\RedirectIfNotAdmin::class]
         ->name('admin.')
         ->group(function () {
 
+            Route::put('pdf-watermarks', [\App\Http\Controllers\PdfDocumentController::class, 'update'])
+                ->name('pdf-watermarks.update');
+            Route::get('study-pdf/{type}/{id}/{index?}', [\App\Http\Controllers\PdfDocumentController::class, 'adminFile'])
+                ->whereNumber(['id', 'index'])->name('study-pdf');
+
             Route::controller(\App\Http\Controllers\Admin\ActivityTrackingController::class)->prefix('activity')->name('activity.')->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('events', 'events')->name('events');

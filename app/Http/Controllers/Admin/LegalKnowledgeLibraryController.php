@@ -158,6 +158,7 @@ class LegalKnowledgeLibraryController extends Controller
 
     public function storenote(Request $request)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:legal_knowledge_categories,id',
             'subcategory_id' => 'required|exists:legal_knowledge_subcategories,id',
@@ -172,6 +173,7 @@ class LegalKnowledgeLibraryController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('legal-knowledge-library', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }
@@ -199,6 +201,7 @@ class LegalKnowledgeLibraryController extends Controller
 
     public function updatenote(Request $request, $id)
     {
+        $request->validate(['show_watermark' => 'sometimes|boolean']);
         $request->validate([
             'category_id' => 'required|exists:legal_knowledge_categories,id',
             'subcategory_id' => 'required|exists:legal_knowledge_subcategories,id',
@@ -217,6 +220,7 @@ class LegalKnowledgeLibraryController extends Controller
             foreach ($request->file('pdfs') as $file) {
                 $filename = uniqid() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('legal-knowledge-library', $filename, 'public');
+                app(\App\Services\PdfWatermarkService::class)->applyUploadPreference($path, $request);
                 $pdfPaths[] = $path;
             }
         }

@@ -55,6 +55,7 @@
                                     <label class="form-label">Upload PDFs</label>
 
                                     <input type="file" name="pdfs[]" id="pdfInput" class="form-control" multiple>
+                                    @include('pdfs.upload-watermark')
 
                                     <ul id="previewList" class="list-group mt-3"></ul>
                                 </div>

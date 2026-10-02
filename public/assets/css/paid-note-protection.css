@@ -1,0 +1,41 @@
+.pdf-protected-viewer canvas {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.protected-pdf-concealed .pdf-protected-viewer canvas {
+    visibility: hidden !important;
+}
+
+html.protected-pdf-concealed::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2147483647;
+    background: #fff;
+    pointer-events: all;
+}
+
+@media print {
+    body {
+        margin: 0 !important;
+        background: #fff !important;
+    }
+
+    body > * {
+        display: none !important;
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    body::after {
+        content: "Printing protected study material is disabled.";
+        display: block !important;
+        visibility: visible !important;
+        color: #111 !important;
+        font: 14px Arial, sans-serif !important;
+    }
+}

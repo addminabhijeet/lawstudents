@@ -1,0 +1,20 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #e9ecef; color: #20242a; font: 14px Arial, sans-serif; }
+.protected-pdf-toolbar { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 12px 16px; background: #fff; border-bottom: 1px solid #d8dce0; }
+.protected-pdf-toolbar a { color: #20242a; font-weight: bold; text-decoration: none; white-space: nowrap; }
+.protected-pdf-toolbar h1 { flex: 1; min-width: 0; margin: 0; font-size: 14px; font-weight: normal; overflow-wrap: anywhere; }
+.protected-pdf-toolbar nav { display: flex; align-items: center; gap: 10px; }
+.protected-pdf-toolbar button { width: 36px; height: 36px; border: 1px solid #c7cdd3; border-radius: 4px; background: #fff; cursor: pointer; }
+.protected-pdf-toolbar button:disabled { opacity: .4; cursor: default; }
+.protected-pdf-toolbar button:focus-visible { outline: 2px solid #306bb7; outline-offset: 2px; }
+.protected-pdf-toolbar [data-pdf-prev] .site-icon { --site-icon: url('../theme/images/icons/tabler/chevron-left.svg'); }
+[data-pdf-pages] { min-width: 70px; text-align: center; }
+[data-protected-note-viewer] { width: min(100%, 1000px); margin: auto; padding: 16px; }
+[data-pdf-canvas] { display: block; max-width: 100%; margin: auto; background: #fff; }
+[data-pdf-status] { text-align: center; }
+@media (max-width: 600px) {
+    .protected-pdf-toolbar { gap: 8px; padding: 8px 12px; }
+    .protected-pdf-toolbar h1 { flex-basis: calc(100% - 120px); }
+    .protected-pdf-toolbar nav { margin: auto; }
+    [data-protected-note-viewer] { padding: 8px; }
+}

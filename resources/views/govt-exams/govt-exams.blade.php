@@ -87,10 +87,11 @@
                                                         <span class="pdf">PDF {{ $index + 1 }}</span>
                                                         <span class="res-actions">
                                                             <a class="primary"
-                                                                href="{{ asset('storage/app/public/' . $pdf) }}"
+                                                                data-pdf-key="{{ $pdf }}"
+                                                                href="{{ route('frontend.study-pdf', ['type' => 'govt-exam', 'id' => $item->id, 'index' => $index]) }}"
                                                                 target="_blank" rel="noopener">View</a>
                                                             @auth
-                                                                <a href="{{ asset('storage/app/public/' . $pdf) }}"
+                                                                <a href="{{ route('frontend.study-pdf.file', ['type' => 'govt-exam', 'id' => $item->id, 'index' => $index, 'download' => 1]) }}"
                                                                     download>Download</a>
                                                             @else
                                                                 <a href="{{ route('google.login') }}">Download</a>
