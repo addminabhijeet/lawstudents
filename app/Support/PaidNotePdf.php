@@ -82,7 +82,7 @@ class PaidNotePdf extends Fpdi
     {
         $this->_newobj();
         $this->watermarkResourceId = $this->n;
-        $opacity = max(0, min(1, (float) config('file-management.watermark.paid_opacity', 0.10)));
+        $opacity = max(0, min(1, (float) config('file-management.watermark.paid_opacity', 0.20)));
         $this->_put(sprintf('<< /Type /ExtGState /ca %.2F /CA %.2F /BM /Normal >>', $opacity, $opacity));
         $this->_put('endobj');
         parent::_putresources();

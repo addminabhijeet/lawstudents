@@ -30,7 +30,7 @@ return [
         'company_name' => 'Law Students',
         'logo' => 'assets/theme/images/logo-full-720.png',
         'website' => 'law.norloxsolutionscrm.com',
-        'paid_opacity' => 0.10,
+        'paid_opacity' => 0.20,
         'qpdf_binary' => env('PDF_QPDF_BINARY', is_file(storage_path('app/tools/qpdf-12.4.2-msvc64/bin/qpdf.exe'))
             ? storage_path('app/tools/qpdf-12.4.2-msvc64/bin/qpdf.exe') : 'qpdf'),
         'opacity' => 0.3,
