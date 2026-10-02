@@ -157,6 +157,7 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+@include('notesstu.company-watermark')
 <script>
     let pdfDoc = null;
     let pageNum = 1;
@@ -223,23 +224,7 @@
             };
 
             page.render(renderContext).promise.then(function() {
-
-                let watermarkText =
-                    "{{ auth()->guard('student')->user()->name }} - {{ auth()->guard('student')->user()->email }}";
-
-                ctx.font = (28 * outputScale) + "px Arial";
-                ctx.fillStyle = "rgba(150,150,150,0.20)";
-                ctx.textAlign = "center";
-
-                ctx.save();
-                ctx.translate(canvas.width / 2, canvas.height / 2);
-                ctx.rotate(-Math.PI / 6);
-
-                for (let y = -canvas.height; y < canvas.height; y += 200 * outputScale) {
-                    ctx.fillText(watermarkText, 0, y);
-                }
-
-                ctx.restore();
+                return drawPaidNoteWatermark(canvas, outputScale);
             });
 
             fetch("{{ url('/student/save-progress') }}", {

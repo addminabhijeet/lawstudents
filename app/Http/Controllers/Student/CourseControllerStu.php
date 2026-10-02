@@ -15,7 +15,7 @@ use Carbon\Carbon;
 use App\Models\NoteWishlist;
 use App\Models\NoteProgress;
 use Illuminate\Support\Facades\File;
-use setasign\Fpdi\Fpdi;
+use App\Support\PaidNotePdf;
 
 class CourseControllerStu extends Controller
 {
@@ -287,10 +287,8 @@ class CourseControllerStu extends Controller
 
         $tempFile = $tempDir . '/watermarked_' . time() . '.pdf';
 
-        $pdf = new Fpdi();
+        $pdf = new PaidNotePdf();
         $pageCount = $pdf->setSourceFile($filePath);
-
-        $watermarkText = 'Law Students';
 
         for ($i = 1; $i <= $pageCount; $i++) {
 
@@ -300,12 +298,7 @@ class CourseControllerStu extends Controller
             $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
             $pdf->useTemplate($template);
 
-            // Watermark
-            $pdf->SetFont('Arial', 'B', 20);
-            $pdf->SetTextColor(150, 150, 150);
-
-            $pdf->SetXY(0, $size['height'] / 2);
-            $pdf->Cell(0, 10, $watermarkText, 0, 1, 'C');
+            $pdf->addCompanyWatermark($size['width'], $size['height']);
         }
 
         $pdf->Output($tempFile, 'F');

@@ -27,6 +27,8 @@ return [
     'watermark' => [
         'enabled' => env('WATERMARK_ENABLED', true),
         'text' => 'Law Students Platform - For Licensed Use Only',
+        'company_name' => 'Law Students',
+        'logo' => 'assets/theme/images/logo-full-720.png',
         'opacity' => 0.3,
         'position' => 'center',
     ],
