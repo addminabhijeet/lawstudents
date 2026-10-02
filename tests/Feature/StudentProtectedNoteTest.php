@@ -96,7 +96,7 @@ class StudentProtectedNoteTest extends TestCase
                 $reader = new PdfReader(new PdfParser(StreamReader::createByFile($copy)));
                 $content = $reader->getPage(1)->getContentStream();
                 $this->assertGreaterThan(100, substr_count($content, '(Law Students)'));
-                $this->assertStringContainsString('(law.norloxsolutionscrm.com)', $content);
+                $this->assertStringNotContainsString('(law.norloxsolutionscrm.com)', $content);
                 $this->assertSame($hash, hash_file('sha256', $this->source));
                 if ($action === 'view') {
                     $this->assertStringContainsString('no-store', $response->headers->get('Cache-Control'));

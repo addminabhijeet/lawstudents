@@ -30,7 +30,7 @@ download permissions and counters remain in the existing student controllers.
 Public routes can only resolve active, free study documents. Watermark settings
 can only be changed through authenticated admin routes with CSRF protection.
 
-Faint tiled logo, company name and website branding is embedded in PDF pages,
+Faint tiled logo and company name branding is embedded in PDF pages,
 not merely placed above them in the browser. Original files are not overwritten.
 Disabling a watermark intentionally serves the original content for that file.
 

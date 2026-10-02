@@ -77,7 +77,8 @@ class PdfWatermarkSettingsTest extends TestCase
             $reader = new PdfReader(new PdfParser(StreamReader::createByFile($file)));
             $content = $reader->getPage(1)->getContentStream();
             if ($enabled) {
-                $this->assertGreaterThan(100, substr_count($content, '(law.norloxsolutionscrm.com)'));
+                $this->assertGreaterThan(100, substr_count($content, '(Law Students)'));
+                $this->assertStringNotContainsString('(law.norloxsolutionscrm.com)', $content);
                 $this->assertNotSame($this->sources[$index], $file);
             } else {
                 $this->assertStringNotContainsString('(law.norloxsolutionscrm.com)', $content);

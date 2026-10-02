@@ -37,9 +37,9 @@ class PaidNoteWatermarkTest extends TestCase
         $this->assertStringContainsString('Original note content P', $branded);
         $this->assertStringContainsString('Original note content L', $branded);
         $this->assertGreaterThan(150, substr_count($branded, '(Law Students)'));
-        $this->assertSame(substr_count($branded, '(Law Students)'), substr_count($branded, '(law.norloxsolutionscrm.com)'));
+        $this->assertStringNotContainsString('(law.norloxsolutionscrm.com)', $branded);
         $this->assertStringContainsString('/Subtype /Image', $branded);
-        $this->assertStringContainsString('/ca 0.08', $branded);
+        $this->assertStringContainsString('/ca 0.10', $branded);
         $this->assertStringContainsString('/CompanyWatermark', $branded);
 
         $reader = new Fpdi();

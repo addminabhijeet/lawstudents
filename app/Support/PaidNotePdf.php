@@ -58,7 +58,6 @@ class PaidNotePdf extends Fpdi
         $this->PDFVersion = max($this->PDFVersion, '1.4');
         $logo = public_path(config('file-management.watermark.logo'));
         $name = config('file-management.watermark.company_name');
-        $website = config('file-management.watermark.website');
         $logoWidth = 16;
         $logoSize = is_file($logo) ? getimagesize($logo) : false;
         $logoHeight = $logoSize ? $logoWidth * $logoSize[1] / $logoSize[0] : 0;
@@ -74,8 +73,6 @@ class PaidNotePdf extends Fpdi
                 }
                 $this->SetFont('Arial', 'B', 5);
                 $this->Text($center - $this->GetStringWidth($name) / 2, $y + $logoHeight + 2, $name);
-                $this->SetFont('Arial', '', 3.7);
-                $this->Text($center - $this->GetStringWidth($website) / 2, $y + $logoHeight + 4, $website);
             }
         }
         $this->_out('Q');
@@ -85,7 +82,7 @@ class PaidNotePdf extends Fpdi
     {
         $this->_newobj();
         $this->watermarkResourceId = $this->n;
-        $opacity = max(0, min(1, (float) config('file-management.watermark.paid_opacity', 0.08)));
+        $opacity = max(0, min(1, (float) config('file-management.watermark.paid_opacity', 0.10)));
         $this->_put(sprintf('<< /Type /ExtGState /ca %.2F /CA %.2F /BM /Normal >>', $opacity, $opacity));
         $this->_put('endobj');
         parent::_putresources();
